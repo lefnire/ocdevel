@@ -1,3 +1,27 @@
-div {
-  color:green;
+ body {
+   background-image: url("https://fbcdn-photos-h-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p480x480/10955350_10200337857206109_8490604878283505127_n.jpg?oh=6d8e35b4b80789f8b9de013ae2fc8879&oe=56C78A58&__gda__=1455881243_1073b9a4d25aff882fb8918aec374bd1");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: top center;
+}
+
+ h1, h2, h3 {
+   color: white;
+   font-family: 'Inconsolata', Arial, serif;
+}
+
+h1 {
+  text-align:center;
+}
+
+#tyler, #lisa {
+    text-transform: uppercase;
+}
+
+#tyler {
+  float:right;
+}
+
+#lisa {
+  float: left;
 }
