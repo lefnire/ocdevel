@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 var imageResize = require('gulp-image-resize');
 var del = require('del');
 var runSequence = require('run-sequence');
+var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
   styles: [
@@ -18,10 +19,11 @@ var paths = {
     'app/scripts.js'
   ],
   templates: [
-    'app/**/*.html'
+    'app/templates/*.html'
   ],
   copy: [
-    'app/*.jpg'
+    'app/*.jpg',
+    'app/index.html'
   ],
   portfolio: [
     'app/portfolio/*.png'
@@ -67,6 +69,7 @@ gulp.task('scripts', function(){
 
 gulp.task('templates', function(){
   return gulp.src(paths.templates)
+    .pipe(templateCache({module: 'app'}))
     .pipe(gulp.dest('dist'));
 })
 
