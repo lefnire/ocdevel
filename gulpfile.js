@@ -3,6 +3,9 @@ var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
+var imageResize = require('gulp-image-resize');
+var del = require('del');
+var runSequence = require('run-sequence');
 
 var paths = {
   styles: [
@@ -19,14 +22,32 @@ var paths = {
   ],
   copy: [
     'app/*.jpg'
+  ],
+  portfolio: [
+    'app/portfolio/*.png'
   ]
 };
+
+gulp.task('del', function(){
+  return del('dist/**/*');
+})
 
 gulp.task('styles', function(){
   return gulp.src(paths.styles)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist'));
 
+});
+
+gulp.task('images', function(){
+  gulp.src(paths.portfolio)
+    .pipe(imageResize({ 
+      width : 350,
+      height : 350,
+      crop : true,
+      upscale : false
+    }))
+    .pipe(gulp.dest('dist/portfolio'));
 });
 
 gulp.task('copy', function(){
@@ -49,17 +70,19 @@ gulp.task('templates', function(){
     .pipe(gulp.dest('dist'));
 })
 
-// Static server
-gulp.task('default', ['styles', 'copy', 'scripts', 'templates'], function() {
+var steps = ['styles', 'images', 'copy', 'scripts', 'templates'];
+
+gulp.task('default', function() {
+  runSequence('del', steps, function(){
     browserSync.init({
-        notify: true,
+        notify: false,
         server: {
             baseDir: "dist"
         }
     });
-    gulp.watch(paths.copy, ['copy'])
-    gulp.watch(paths.styles, ['styles']);
-    gulp.watch(paths.templates, ['templates']);
-    gulp.watch(paths.scripts, ['scripts']);
+    steps.forEach(function(s){
+      gulp.watch(paths[s], [s])  
+    });
     gulp.watch("dist/**/*").on('change', browserSync.reload);
+  })
 });

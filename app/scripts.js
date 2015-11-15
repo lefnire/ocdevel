@@ -11,9 +11,9 @@ angular.module('app', ['ui.router'])
       url: "/home",
       templateUrl: "home.html"
     })
-    .state('about', {
-      url: "/about",
-      templateUrl: "about.html"
+    .state('portfolio', {
+      url: "/portfolio",
+      templateUrl: "portfolio.html"
     })
     .state('contact', {
       url: "/contact",
@@ -24,5 +24,9 @@ angular.module('app', ['ui.router'])
 
 .controller('MyCtrl', MyCtrl);
 function MyCtrl($scope){
-  this.hello = 'hello';
+  this.portfolio = [
+    {name:"HabitRPG", url:'https://habitica.com', img: '/portfolio/habitrpg.png'},
+    {name:"Dynamk", url:'https://habitica.com', img: '/portfolio/habitrpg.png'},
+    {name:"HabitRPG", url:'https://habitica.com', img: '/portfolio/habitrpg.png'},
+  ];
 }

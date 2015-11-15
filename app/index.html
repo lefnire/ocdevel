@@ -8,16 +8,15 @@
   <link type="text/css" rel="stylesheet" href="style.css" />
 </head>
 
-<body ng-app='app' ng-controller='MyCtrl'>
-<div class="container-fluid front-page">
-
+<body ng-app='app' ng-controller='MyCtrl as vm'>
+  <div class="container-fluid">
     <nav class="nav navbar-nav navbar pull-right">
       <li><a ui-sref="home">Home</a></li>
-      <li><a ui-sref="about">About</a></li>
+      <li><a ui-sref="portfolio">Portfolio</a></li>
       <li><a ui-sref="contact">Contact</a></li>
     </nav>
     
-     <div ui-view></div>
-</div>
+    <div ui-view></div>
+  </div>
 </body>
 </html>

@@ -2,17 +2,9 @@
 <h1 class="heading">Portfolio Page</h1>
 
 <div class='row'>
-    <div class='col-md-4'>
-      <a href="www.habitca.com">HabitRPG</a>
-      <img src="http://i.imgur.com/UR2PhaL.png"/>
-    </div>
-    <div class='col-md-4'>
-      <a href="www.habitca.com">HabitRPG</a>
-      <img src="http://i.imgur.com/UR2PhaL.png" />
-    </div>
-    <div class='col-md-4'>
-      <a href="www.habitca.com">HabitRPG</a>
-      <img src="http://i.imgur.com/UR2PhaL.png" />
+    <div class='col-md-4' ng-repeat='item in vm.portfolio'>
+      <h4><a href="{{item.url}}">{{item.name}}</a></h4>
+      <img src="{{item.img}}" target='_blank'/>
     </div>
   </div>
 

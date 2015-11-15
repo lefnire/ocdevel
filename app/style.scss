@@ -5,7 +5,7 @@
 
 body {
   background-color: #000000;
-  background: url("http://i.imgur.com/yQzwp1n.jpg?1") no-repeat top center fixed;
+  background: url("BackgroundImage.jpg") no-repeat top center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,20 +16,12 @@ body {
    color: white;
  }
 
- img {
-   height: 800px;
- }
-
 nav {
   display: inline;
   list-style-type: none;
   margin: 0;
   padding: 0;
   color: black;
-}
-
-[class^='col-md-'] img {
-  width: 100%;
 }
 
 .lisa {
@@ -43,6 +35,6 @@ nav {
   float:right;
 }
 
-.front-page p {
+.front p {
   clear: both;
 }
