@@ -4,11 +4,20 @@
   "description": "",
   "main": "scripts.js",
   "dependencies": {
+    "angular": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
     "bootstrap": "^3.3.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",

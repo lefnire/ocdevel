@@ -2,6 +2,7 @@
   width:100%;
   text-align: center;
 }
+
 body {
   background-color: #000000;
   background: url("http://i.imgur.com/yQzwp1n.jpg?1") no-repeat top center fixed;
@@ -31,16 +32,17 @@ nav {
   width: 100%;
 }
 
-.ocdevel-nav {
-  float:right;
-}
-
 .lisa {
   text-align:left;
   float:left;
+  clear:both;
 }
 
 .tyler {
   text-align:right;
   float:right;
+}
+
+.front-page p {
+  clear: both;
 }
