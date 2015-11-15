@@ -11,7 +11,7 @@ var paths = {
   scripts: [
     // 'node_modules/bootstrap/dist/js/bootstrap.min.js',
     'node_modules/angular/angular.js',
-    'node_modules/angular-ui-router/angular/release/angular-ui-router.js',
+    'node_modules/angular-ui-router/build/angular-ui-router.js',
     'app/scripts.js'
   ],
   templates: [
