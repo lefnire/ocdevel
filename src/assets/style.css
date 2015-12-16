@@ -4,8 +4,11 @@
 }
 
 body {
-  background-color: #000000;
-  background: url("BackgroundImage.jpg") no-repeat top center fixed;
+  background-color: black;
+  background-image: url("BackgroundImage.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  /*fixed;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -37,4 +40,11 @@ nav {
 
 .front p {
   clear: both;
+}
+
+.personal-details {
+  height:100%;
+  background-color: black;
+  color: white;
+  z-index: 100;
 }
