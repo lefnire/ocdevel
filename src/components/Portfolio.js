@@ -1,8 +1,11 @@
 import React from 'react';
 
+
 export default class Portfolio extends React.Component {
-  render() {
-    var portfolio = [
+
+  constructor() {
+    super();
+    this.portfolio = [
       {
         name:"Habitica",
         img: "/portfolio/habitica.png",
@@ -23,28 +26,33 @@ export default class Portfolio extends React.Component {
       },
       {
         name: "Indianchief Travel",
-        img: "/portfolio/indianchief.png",
+        img: "/portfolio/IndianChiefTravel1.png",
         url: "http://indianchieftravel.com/",
         description: ""
       }
     ];
+  }
 
-    var styles = {
-      img: {
-        width: 400,
-        height: 400
-      }
-    };
+  jumbotron() {
+    return (
+      <div className="container">
+        <div className="jumbotron">
+          <h1>Our projects</h1>
+        </div>
+      </div>
+    );
+  }
 
+  render() {
     return (
       <div>
-        <h1 className="heading">Portfolio Page</h1>
+        {this.jumbotron()}
         <div className='row'>
           {
-            portfolio.map((item) =>
-              <div className='col-md-4'>
+            this.portfolio.map(item =>
+              <div className="col-md-4">
                 <h4><a href={item.url}>{item.name}</a></h4>
-                <img style={styles.img} src={item.img} target='_blank'/>
+                <img className='portfolio-image' src={item.img} target='_blank'/>
               </div>
             )
           }

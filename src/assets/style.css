@@ -5,36 +5,46 @@
 
 body {
   background-color: black;
-  background-image: url("BackgroundImage.jpg");
-  background-repeat: no-repeat;
+  background-image: url("portfolio/brick.jpg");
+  background-size:cover;
+  background-repeat:   no-repeat;
   background-position: center center;
-  /*fixed;*/
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  font-family: serif;
+  font-size: 25px;
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: teal;
+  color: white;
 }
 
  h1, h2 {
-   color: white;
+   color: teal ;
  }
 
 nav {
-  display: inline;
+  display:table-header-group;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  color: black;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+nav li a {
+  color: white;
+  text-align: center;
 }
 
 .lisa {
-  text-align:left;
+  text-align:center;
   float:left;
   clear:both;
 }
 
 .tyler {
-  text-align:right;
+  text-align:center;
   float:right;
 }
 
@@ -45,6 +55,29 @@ nav {
 .personal-details {
   height:100%;
   background-color: black;
-  color: white;
+  color: teal;
   z-index: 100;
+
+}
+
+.front {
+  width: 1000px;
+}
+.homepage-picture {
+  width: 500px;
+  height: 800px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.container-fluid {
+text-align: center;
+}
+
+.portfolio-image {
+  width: 300px;
+  height: 200px;
+}
+
+.table {
+
 }
