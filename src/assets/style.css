@@ -5,7 +5,7 @@
 
 body {
   background-color: black;
-  background-image: url("portfolio/brick.jpg");
+  background-image: url("Tyler/brick.jpg");
   background-size:cover;
   background-repeat:   no-repeat;
   background-position: center center;
@@ -73,11 +73,21 @@ nav li a {
 text-align: center;
 }
 
-.portfolio-image {
+.tyler-image {
   width: 300px;
   height: 200px;
 }
 
-.table {
-
+.lisa-image {
+  width: 300px;
+  height: 200px;
 }
+ .contact-form {
+   width: 40%;
+   margin: 0 auto; /* center on page */
+   margin-top: 40px;
+ }
+
+ .portfolio {
+   color: white;
+ }

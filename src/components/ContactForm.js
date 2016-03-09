@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default class Contact extends React.Component {
-  render(){
+export default class ContactForm extends React.Component {
+  render() {
     return (
-      <form>
+      <form className="contact-form">
         <div className="form-group">
           <input type="email" className="form-control" id="email" placeholder="Email" />
         </div>
