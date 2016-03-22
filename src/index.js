@@ -1,3 +1,5 @@
+//require('./assets/style.css');
+
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Router, Route, Link, IndexRoute } from 'react-router';
