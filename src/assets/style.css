@@ -1,93 +1,161 @@
-.heading {
-  width:100%;
-  text-align: center;
-}
-
 body {
-  background-color: black;
-  background-image: url("Tyler/brick.jpg");
-  background-size:cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
-  font-family: serif;
-  font-size: 25px;
-  text-align: center;
+    background-color: black;
+    background-image: url("/background-ocd.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: serif;
+    font-size: 25px;
+    text-align: center;
 }
 
-.jumbotron {
-  background-color: teal;
-  color: white;
+.social-buttons {
+    float: left;
+    listStyle: none;
 }
 
- h1, h2 {
-   color: teal ;
- }
-
-nav {
-  display:table-header-group;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  text-align: center;
+.social-buttons li {
+    float: left;
+    padding-right: 10px;
 }
 
-nav li a {
-  color: white;
-  text-align: center;
+.social-buttons li a {
+    font-size: .75em;
 }
 
-.lisa {
-  text-align:center;
-  float:left;
-  clear:both;
+.contact-form {
+    width: 40%;
+    margin: 0 auto; /* center on page */
+    margin-top: 200px;
+    font-family: sans-serif;
+    color: white;
+    font-size: 100px;
+    margin-bottom: 60px;
 }
 
-.tyler {
-  text-align:center;
-  float:right;
+.contact-formh1 {
+    font-family: sans-serif;
+    color: white;
+    font-size: 30px;
+}
+
+.container-fluid {
+    text-align: center;
+}
+
+.description{
+    font-size: 20px;
+    color: white;
+    font-family: sans-serif;
+    text-align: left;
+    margin: 100px;
+}
+
+.divider {
+    width: auto;
+    color: white;
+}
+.front {
+    width: 1000px;
 }
 
 .front p {
-  clear: both;
+    clear: both;
 }
+
+h1, h2 {
+    color: #fffbf8;
+}
+
+.head-image{
+    width: 160;
+    height: 160;
+    margin-bottom: 40px;
+}
+
+.heading {
+    width: 100%;
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: transparent;
+    color: white;
+    font-family: 'Sacramento', cursive;
+    margin-top: 70px;
+    margin-bottom: 50;
+    font-size: x-large;
+}
+
+li{
+    color: white;
+}
+
+
+.names {
+    font-family: 'Sacramento', cursive;
+    font-size: 50px;
+}
+
+nav {
+    display: table-header-group;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    text-align: center;
+}
+.navbar {
+    font-size: smaller;
+    /*border-color: #2aabd2;*/
+    /*border-bottom-width: medium;*/
+    text-decoration: margin: 0;
+    top: 0;
+}
+
+nav li a {
+    color: white;
+    text-align: center;
+    background-color: transparent !important;
+}
+
 
 .personal-details {
-  height:100%;
-  background-color: black;
-  color: teal;
-  z-index: 100;
-
+    height: 100%;
+    background-color: black;
+    color: teal;
+    z-index: 100;
+}
+.portfolio {
+    color: white;
 }
 
-.front {
-  width: 1000px;
-}
-.homepage-picture {
-  width: 500px;
-  height: 800px;
-  margin: 0 auto;
-  padding-top: 50px;
-}
-.container-fluid {
-text-align: center;
+.portfolio-image {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 40px;
 }
 
-.tyler-image {
-  width: 300px;
-  height: 200px;
+.portfoliolink {
+    color: white;
 }
 
-.lisa-image {
-  width: 300px;
-  height: 200px;
+.stick {
+    height: 200px;
+    width: 400px;
+    margin-top: 2px;
 }
- .contact-form {
-   width: 40%;
-   margin: 0 auto; /* center on page */
-   margin-top: 40px;
- }
 
- .portfolio {
-   color: white;
- }
+.welcome {
+    color: #fffbf8;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 30px;
+}
+
+.zocial{
+    position: left;
+}
+
+

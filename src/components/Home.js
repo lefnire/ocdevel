@@ -3,7 +3,7 @@ import Jumbotron from './Jumbotron';
 
 export default class Home extends React.Component {
 
-	constructor(){
+	constructor() {
 		super();
 		this.state = {
 			hover: null
@@ -14,32 +14,13 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<Jumbotron title="OCDevel">
-					<p>Tyler & Lisa Renelle</p>
-				</Jumbotron>
-				<div className='row front'>
-					<div className='col-md-6 lisa' onMouseEnter={ ()=>this.setState({hover:'lisa'}) }>
-						{
-							this.state.hover === 'tyler' ?
-								<div className="personal-details">
-									<h2>Tyler Renelle</h2>
-									<p>{this.lorem}</p>
-								</div>
-								: null
-						}
-					</div>
-					<div className='col-md-6 tyler' onMouseEnter={ ()=>this.setState({hover:'tyler'}) }>
-						{
-							this.state.hover === 'lisa' ?
-								<div className="personal-details">
-									<h2>Lisa Renelle</h2>
-									<p>{this.lorem}</p>
-								</div>
-								: null
-						}
-					</div>
-				</div>
+				<Jumbotron title="OCDevel"/>
+				<img className="stick" src=" stix2.png"/>
+				<h1 className="Welcome">Welcome to the portfolio page of</h1>
+					<h2 className="Names"> Tyler & Lisa Renelle</h2>
+
 			</div>
 		);
 	}
 }
+
