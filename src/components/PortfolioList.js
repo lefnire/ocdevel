@@ -10,7 +10,7 @@ export default class PortfolioList extends React.Component {
           this.props.items.map(item =>
             <div className="col-md-4">
               <h4><a className="portfoliolink" href={item.url} target='_blank'>{item.name}</a></h4>
-              <img className='portfolio-image img-rounded' src={item.img}/>
+              <img className='portfolio-image img-rounded' href={item.url} src={item.img}/>
             </div>
 
           )

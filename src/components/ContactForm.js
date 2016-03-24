@@ -10,7 +10,7 @@ export default class ContactForm extends React.Component {
     return (
       <form className="contact-form" onSubmit={this.submit}>
         <div className="form-group">
-          <h1 className="contact-formh1"> We are available for freelance work! Contact us today</h1>
+          <h1 className="contact-formh1"> Let's work together! Contact me today.</h1>
           <input type="email" className="form-control" id="email" placeholder="Email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
         </div>
         <div className="form-group">

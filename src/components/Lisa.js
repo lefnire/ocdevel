@@ -35,6 +35,12 @@ export default class Lisa extends React.Component {
       <div>
         <Jumbotron title="Lisa Renelle" />
         <Heads img="/Lisa/lisahead2.png" />
+        <ul className="social-buttons">
+          <li><i href="https://www.facebook.com/lisa.haskellbunker" className="zocial facebook icon"/></li>
+          <li><i href="https://www.linkedin.com/in/lisa-renelle-243413106?trk=nav_responsive_tab_profile_pic" className="zocial linkedin icon"/></li>
+          <li><i href="https://github.com/LisaMarie7073" className="zocial github icon"/></li>
+          <li><i href="https://www.pinterest.com/lillisamhaskell/" className="zocial pinterest icon"/></li>
+        </ul>
         <hr/>
         <p className="description">Lisa is a front end JavaScript developer and been in the working with javascript for almost a year. She has currently been
           focusing on React. Lisa has worked 11 years in the medical field and would love to combine her knowledge in medical and programming one day.
@@ -42,11 +48,7 @@ export default class Lisa extends React.Component {
         <hr/>
         <PortfolioList items={this.lisa} />
         <hr/>
-        <ul className="social-buttons">
-          <li><a className="buttonfacebook" href="https://www.facebook.com/lisa.haskellbunker" className="zocial facebook">Facebook</a></li>
-          <li><a className="buttonlinedin" href="https://www.linkedin.com/in/lisa-renelle-243413106?trk=nav_responsive_tab_profile_pic" className="zocial linkedin">LinkedIn</a></li>
-          <li><a className="buttongithub" href="https://github.com/LisaMarie7073" className="zocial github">Github</a></li>
-        </ul>
+
           <ContactForm />
       </div>
     );

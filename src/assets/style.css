@@ -5,14 +5,16 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     font-family: serif;
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
 }
 
 .social-buttons {
-    float: left;
-    listStyle: none;
+    list-style: none;
+    margin-left: 550px;
+    margin-top: 50px;
 }
+
 
 .social-buttons li {
     float: left;
@@ -21,6 +23,7 @@ body {
 
 .social-buttons li a {
     font-size: .75em;
+
 }
 
 .contact-form {
@@ -29,14 +32,14 @@ body {
     margin-top: 200px;
     font-family: sans-serif;
     color: white;
-    font-size: 100px;
+    font-size: 20px;
     margin-bottom: 60px;
 }
 
 .contact-formh1 {
     font-family: sans-serif;
     color: white;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .container-fluid {
@@ -70,7 +73,8 @@ h1, h2 {
 .head-image{
     width: 160;
     height: 160;
-    margin-bottom: 40px;
+
+
 }
 
 .heading {
@@ -106,11 +110,12 @@ nav {
     text-align: center;
 }
 .navbar {
-    font-size: smaller;
+    font-size: 20xwpx;
     /*border-color: #2aabd2;*/
     /*border-bottom-width: medium;*/
     text-decoration: margin: 0;
     top: 0;
+    margin-right: 935px;
 }
 
 nav li a {
@@ -128,6 +133,7 @@ nav li a {
 }
 .portfolio {
     color: white;
+    background-color: white;
 }
 
 .portfolio-image {
@@ -155,7 +161,65 @@ nav li a {
 }
 
 .zocial{
-    position: left;
+    background: none !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+
+}
+
+hr{
+    margin: 100px;
 }
 
 
+
+
+nav ul a,
+nav .brand-logo {
+    color: #444;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.button-collapse {
+    color: #26a69a;
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+footer.page-footer {
+    margin: 0;
