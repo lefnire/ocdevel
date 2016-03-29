@@ -1,4 +1,4 @@
-//require('./assets/style.css');
+require('./assets/style.css');
 
 import React from 'react';
 import ReactDom from 'react-dom';
