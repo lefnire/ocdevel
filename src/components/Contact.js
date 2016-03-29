@@ -2,7 +2,7 @@ import React from 'react';
 import request from 'superagent';
 import _ from 'lodash';
 
-export default class ContactForm extends React.Component {
+export default class Contact extends React.Component {
   constructor(){
     super();
     this.state = {};
