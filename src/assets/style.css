@@ -223,3 +223,12 @@ p {
 footer.page-footer {
     margin: 0;
 }
+
+.error {
+    color: red;
+}
+
+.message-sent {
+    color: white;
+    padding-bottom: 100px;
+}
