@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    background-image: url("/background-ocd.jpg");
+    background-image: url("Background-OCD.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -71,10 +71,9 @@ h1, h2 {
 }
 
 .head-image{
-    width: 160;
-    height: 160;
-
-
+    width: 160px;
+    height: 160px;
+    /*margin-bottom: 40px;*/
 }
 
 .heading {
@@ -87,7 +86,7 @@ h1, h2 {
     color: white;
     font-family: 'Sacramento', cursive;
     margin-top: 70px;
-    margin-bottom: 50;
+    margin-bottom: 50px;
     font-size: x-large;
 }
 
@@ -110,10 +109,10 @@ nav {
     text-align: center;
 }
 .navbar {
-    font-size: 20xwpx;
+    font-size: 20px;
     /*border-color: #2aabd2;*/
     /*border-bottom-width: medium;*/
-    text-decoration: margin: 0;
+    /*text-decoration: margin: 0;*/
     top: 0;
     margin-right: 935px;
 }
@@ -223,3 +222,4 @@ p {
 
 footer.page-footer {
     margin: 0;
+}
