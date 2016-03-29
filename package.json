@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "client": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "server": "node ./server.js"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",
@@ -17,12 +18,18 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "lodash": "^4.6.1",
+    "webpack-dev-server": "^1.14.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "lodash": "^4.6.1",
+    "nconf": "^0.8.4",
+    "nodemailer": "^2.3.0",
+    "superagent": "^1.8.3"
   }
 }
