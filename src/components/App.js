@@ -3,7 +3,7 @@ import { Parallax, Background } from 'react-parallax';
 
 import Contact from './Contact';
 import Jumbotron from './Jumbotron';
-import PorfolioModal from './PortfolioModal';
+import Portfolio from './Portfolio';
 
 
 export default class App extends React.Component {
@@ -26,24 +26,7 @@ export default class App extends React.Component {
           </div>
         </Parallax>
 
-        <div>
-          {/* Portfolio */}
-          <p className="project">Our projects</p>
-
-          <div className='row'>
-            {portfolio.map(item =>
-              <div className="col-md-4">
-                <a className="portfoliolink" href={item.url} target='_blank'><h4>{item.name}</h4></a>
-                <img
-                  className='portfolio-image img-rounded'
-                  src={item.img}
-                  onClick={() => this.refs.modal.open(item)}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-
+        <Portfolio />
 
         <Parallax bgImage={images.bgImage} strength={400} log={true}>
         <Jumbotron title="Tyler Renelle" />
@@ -60,7 +43,6 @@ export default class App extends React.Component {
           800k+ users. Tyler built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients such as Adidas,
           BigFix, and UCSF. Currently obsessed with machine learning, he labels himself a "bonafide singularitarian".
           Available starting April for remote work in React, Angular / Ionic, Node, and/or Python.</p>
-
 
 
         <Parallax bgImage={images.bgOCD} strength={400} log={true}>
@@ -84,8 +66,6 @@ export default class App extends React.Component {
           </div>
         </Parallax>
 
-        <PorfolioModal ref="modal"/>
-
       </div>
     );
   }
@@ -102,29 +82,3 @@ let images = {
   cathead: require('../assets/cat.png'),
 };
 
-let portfolio = [{
-  name:"Habitica",
-  img: require("../assets/Tyler/habiticapic.png"),
-  url: "https://habitica.com",
-  description: "A gamified habit-improvement app (web & mobile) w/ 800k+ users, ~$40k/m. I started this as a Kickstarter campaign which blew up to a multi-employee startup. Angular, Ionic, Node/Express, MongoDB, AWS."
-}, {
-  name: "Jobpig",
-  img: require("../assets/Tyler/pig.png"),
-  url: "http://jobpigapp.com",
-  description: "A Pandora-like job finding website."
-}, {
-  name: "Flashdrinks",
-  img: require("../assets/Tyler/flashdrinkspic.png"),
-  url: "https://flashdrink.firebaseapp.com",
-  description: "Web & mobile mobile app for finding nearby drinking partners."
-}, {
-  name: "TheWanderingBackpackers",
-  img: require("../assets/Lisa/WanderingBackpackers.png"),
-  url: "http://thewanderingbackpackers.com/",
-  description: "A Wordpress blog for our travels."
-}, {
-  name: "Indianchief Travel",
-  img: require("../assets/Tyler/indianchieftravelpic.jpg"),
-  url: "http://indianchieftravel.com/",
-  description: ""
-}];
