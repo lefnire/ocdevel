@@ -1,26 +1,14 @@
 body {
-    background-color: black;
+    /*background-image: url("blue.jpg");*/
+    /* background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center center;*/
+    background-color: #2c2e2f;
     font-family: serif;
     font-size: 20px;
     text-align: center;
 }
 
-.social-buttons {
-    list-style: none;
-    margin-left: 550px;
-    margin-top: 50px;
-}
-
-
-.social-buttons li {
-    float: left;
-    padding-right: 10px;
-}
-
-.social-buttons li a {
-    font-size: .75em;
-
-}
 
 .contact-form {
     width: 40%;
@@ -54,6 +42,10 @@ body {
     width: auto;
     color: white;
 }
+
+.error {
+    color: red;
+}
 .front {
     width: 1000px;
 }
@@ -64,6 +56,7 @@ body {
 
 h1, h2 {
     color: #fffbf8;
+    margin-bottom: 80px;
 }
 
 .head-image{
@@ -76,6 +69,9 @@ h1, h2 {
     width: 100%;
     text-align: center;
 }
+hr{
+    margin: 100px;
+}
 
 .jumbotron {
     background-color: transparent;
@@ -83,13 +79,38 @@ h1, h2 {
     font-family: 'Sacramento', cursive;
     margin-top: 70px;
     margin-bottom: 50px;
-    font-size: x-large;
+    font-size: 200px;
+}
+.jumbotron p{
+    font-size: 20px;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    line-height: 35px;
+    margin-top: 50px;
+    border-width: medium;
+    border-color: #C99C4E;
+    border-style: groove;
+
+}
+.kari{
+    font-size: 20px;
+    color: white !important;
+    font-family: sans-serif;
+    margin-bottom: 50px;
+}
+
+.kari a{
+    color: white;
 }
 
 li{
     color: white;
 }
-
+.message-sent {
+    color: white;
+    padding-bottom: 100px;
+}
 
 .names {
     font-family: 'Sacramento', cursive;
@@ -140,11 +161,31 @@ nav li a {
 .portfoliolink {
     color: white;
 }
+.project {
+    font-color: white;
+}
+
+.social-buttons {
+    list-style: none;
+    margin-left: 580px;
+    margin-top: 50px;
+}
+
+
+.social-buttons li {
+    float: left;
+    padding-right: 10px;
+}
+
+.social-buttons li a {
+    font-size: .75em;
+
+}
 
 .stick {
     height: 200px;
     width: 400px;
-    margin-top: 2px;
+    margin-top: 200px;
 }
 
 .welcome {
@@ -162,12 +203,6 @@ nav li a {
     box-shadow: none !important;
 
 }
-
-hr{
-    margin: 100px;
-}
-
-
 
 
 nav ul a,
@@ -220,11 +255,4 @@ footer.page-footer {
     margin: 0;
 }
 
-.error {
-    color: red;
-}
 
-.message-sent {
-    color: white;
-    padding-bottom: 100px;
-}
