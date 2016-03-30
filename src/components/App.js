@@ -2,56 +2,14 @@ import React from 'react';
 import { Parallax, Background } from 'react-parallax';
 
 import Contact from './Contact';
-import Portfolio from './Portfolio';
 import Jumbotron from './Jumbotron';
+import PorfolioModal from './PortfolioModal';
 
-const images = {
-  bird: require('../assets/moss.jpg'),
-  bgOCD: require('../assets/Background-OCD.jpg'),
-  bgImage: require('../assets/water.png.jpg'),
-  oregon: require('../assets/oregon.jpg'),
-  stix2: require('../assets/stix2.png'),
-  lisaHead: require('../assets/Lisa/lisahead2.png'),
-  tylerHead: require('../assets/Tyler/tylerhead.png'),
-  cathead: require('../assets/cat.png'),
-};
-
-const portfolios = {
-
-  tyler: [{
-    name:"Habitica",
-    img: require("../assets/Tyler/habiticapic.png"),
-    url: "https://habitica.com",
-    description: "A gamified habit-improvement app (web & mobile) w/ 800k+ users, ~$40k/m. I started this as a Kickstarter campaign which blew up to a multi-employee startup. Angular, Ionic, Node/Express, MongoDB, AWS."
-  }, {
-    name: "Jobpig",
-    img: require("../assets/Tyler/pig.png"),
-    url: "http://jobpigapp.com",
-    description: "A Pandora-like job finding website."
-  }, {
-    name: "Flashdrinks",
-    img: require("../assets/Tyler/flashdrinkspic.png"),
-    url: "https://flashdrink.firebaseapp.com",
-    description: "Web & mobile mobile app for finding nearby drinking partners."
-  }, {
-    name: "TheWanderingBackpackers",
-    img: require("../assets/Lisa/WanderingBackpackers.png"),
-    url: "http://thewanderingbackpackers.com/",
-    description: "A Wordpress blog for our travels."
-  }, {
-    name: "Indianchief Travel",
-    img: require("../assets/Tyler/indianchieftravelpic.jpg"),
-    url: "http://indianchieftravel.com/",
-    description: ""
-
-  }]
-};
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-
           <Jumbotron title="OCDevel">
             <img className='head-image' src={images.cathead} />
             <p>OCDevel; [O-C-Devel]<br/>
@@ -69,8 +27,21 @@ export default class App extends React.Component {
         </Parallax>
 
         <div>
+          {/* Portfolio */}
           <p className="project">Our projects</p>
-          <Portfolio items={portfolios.tyler} />
+
+          <div className='row'>
+            {portfolio.map(item =>
+              <div className="col-md-4">
+                <a className="portfoliolink" href={item.url} target='_blank'><h4>{item.name}</h4></a>
+                <img
+                  className='portfolio-image img-rounded'
+                  src={item.img}
+                  onClick={() => this.refs.modal.open(item)}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
 
@@ -84,7 +55,7 @@ export default class App extends React.Component {
           <li><i href="https://github.com/lefnire" className="zocial github icon">Github</i></li>
         </ul>
         </Parallax>
-        <p className="description">Tyler is a full Stack JavaScript developer and has spent 10 years in web & mobile. He is focused on Node,
+        <p className="description">Tyler is a full-stack Senior JavaScript developer and has spent 10 years in web & mobile. He is focused on Node,
           React / React Native, and Angular / Ionic. He is the also creator of HabitRPG, a startup begun on Kickstarter which now has
           800k+ users. Tyler built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients such as Adidas,
           BigFix, and UCSF. Currently obsessed with machine learning, he labels himself a "bonafide singularitarian".
@@ -102,7 +73,7 @@ export default class App extends React.Component {
             <li><i target='_blank' href="https://www.pinterest.com/lillisamhaskell/" className="zocial pinterest icon"/></li>
           </ul>
         </Parallax>
-          <p className="description">Lisa is a front end JavaScript developer and been in the working with javascript for almost a year. She has currently been
+          <p className="description">Lisa is a front-end, Junior JavaScript developer and been in the working with javascript for almost a year. She has currently been
             focusing on React. Lisa has worked 11 years in the medical field and would love to combine her knowledge in medical and programming one day.
             Lisa is available starting April for remote work in React and Javascript.</p>
 
@@ -113,9 +84,47 @@ export default class App extends React.Component {
           </div>
         </Parallax>
 
+        <PorfolioModal ref="modal"/>
+
       </div>
     );
   }
-
-
 }
+
+let images = {
+  bird: require('../assets/moss.jpg'),
+  bgOCD: require('../assets/Background-OCD.jpg'),
+  bgImage: require('../assets/water.png.jpg'),
+  oregon: require('../assets/oregon.jpg'),
+  stix2: require('../assets/stix2.png'),
+  lisaHead: require('../assets/Lisa/lisahead2.png'),
+  tylerHead: require('../assets/Tyler/tylerhead.png'),
+  cathead: require('../assets/cat.png'),
+};
+
+let portfolio = [{
+  name:"Habitica",
+  img: require("../assets/Tyler/habiticapic.png"),
+  url: "https://habitica.com",
+  description: "A gamified habit-improvement app (web & mobile) w/ 800k+ users, ~$40k/m. I started this as a Kickstarter campaign which blew up to a multi-employee startup. Angular, Ionic, Node/Express, MongoDB, AWS."
+}, {
+  name: "Jobpig",
+  img: require("../assets/Tyler/pig.png"),
+  url: "http://jobpigapp.com",
+  description: "A Pandora-like job finding website."
+}, {
+  name: "Flashdrinks",
+  img: require("../assets/Tyler/flashdrinkspic.png"),
+  url: "https://flashdrink.firebaseapp.com",
+  description: "Web & mobile mobile app for finding nearby drinking partners."
+}, {
+  name: "TheWanderingBackpackers",
+  img: require("../assets/Lisa/WanderingBackpackers.png"),
+  url: "http://thewanderingbackpackers.com/",
+  description: "A Wordpress blog for our travels."
+}, {
+  name: "Indianchief Travel",
+  img: require("../assets/Tyler/indianchieftravelpic.jpg"),
+  url: "http://indianchieftravel.com/",
+  description: ""
+}];
