@@ -10,12 +10,13 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-          <Jumbotron title="OCDevel">
+          <Jumbotron title="OCDevel" className="ocdevel">
             <img className='head-image' src={images.cathead} />
-            <p>OCDevel; [O-C-Devel]<br/>
-              (noun)<br/>
-              1. Orange Cat Development <br/> 2. Developed by Tyler Renelle in 2009. <br/>
-              3. Web & mobile app development by a married duo with a profound love for programming.</p>
+            <p className="Dictionary img-rounded">ocdevel; [O-C-Devel]<br/>
+              (noun)\<br/>
+              1.orange cat development <br/> 2. developed by tyler renelle in 2009. <br/>
+              3. web & mobile app development by a married duo with a profound love for programming.<br/>
+              4. specializing in javascript, react, ionic, angular, python, and node.</p>
           </Jumbotron>
 
         <Parallax bgImage={images.bird} strength={400} log={true}>
@@ -62,7 +63,8 @@ export default class App extends React.Component {
         <Parallax bgImage={images.oregon} strength={400} log={true}>
           <div>
             <Contact />
-            <p className="kari">Photography by the talented <a href="https://www.kariannphotography.com">Kari Ann Haskell.</a></p>
+            <p className="kari">Photography by the talented <a href="https://www.kariannphotography.com">Kari Ann Haskell.</a>
+              <br/> Also, thank you <a href="https://www.myfreetextures.com">myfreetextures.com.</a></p>
           </div>
         </Parallax>
 
@@ -80,5 +82,6 @@ let images = {
   lisaHead: require('../assets/Lisa/lisahead2.png'),
   tylerHead: require('../assets/Tyler/tylerhead.png'),
   cathead: require('../assets/cat.png'),
+  cpq: require('../assets/CPQ.png')
 };
 

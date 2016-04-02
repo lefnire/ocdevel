@@ -1,14 +1,19 @@
 body {
-    /*background-image: url("blue.jpg");*/
-    /* background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center center;*/
-    background-color: #2c2e2f;
+    background-size: 100% 15.9%;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: #0d1721;
     font-family: serif;
     font-size: 20px;
     text-align: center;
+    background-image: url("paper.jpg");
 }
 
+.ocdevel h1{
+    color: #5c1b12;
+    font-weight: bold;
+    font-size: 60px;
+}
 
 .contact-form {
     width: 40%;
@@ -73,30 +78,36 @@ hr{
     margin: 100px;
 }
 
+
+
 .jumbotron {
     background-color: transparent;
-    color: white;
+    color: #fffbf8;
     font-family: 'Sacramento', cursive;
     margin-top: 70px;
     margin-bottom: 50px;
     font-size: 200px;
+
 }
 .jumbotron p{
     font-size: 20px;
-    color: white;
+    color: #5c1b12;
     font-family: sans-serif;
+    font-weight: bold;
     text-align: center;
     line-height: 35px;
     margin-top: 50px;
     border-width: medium;
-    border-color: #C99C4E;
-    border-style: groove;
-
+    border-color: #5c1b12;
+    border-style: solid;
 }
+
+
 .kari{
     font-size: 20px;
     color: white !important;
     font-family: sans-serif;
+    line-height: 30px;
     margin-bottom: 50px;
 }
 
@@ -140,6 +151,24 @@ nav li a {
     background-color: transparent !important;
 }
 
+.ocdevel-modal a {
+    font-family: sans-serif;
+    font-size: x-large;
+    color: black;
+}
+
+.ocdevel-modal p {
+    line-height: 20px;
+    margin-top: 30px;
+    font-family: sans-serif;
+    font-size: medium;
+}
+
+.ocdevel.modal {
+    font-family: 'Sacramento', cursive;
+    font-size: 50px;
+}
+
 
 .personal-details {
     height: 100%;
@@ -162,7 +191,11 @@ nav li a {
     color: white;
 }
 .project {
-    font-color: white;
+    color: white;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-family: sans-serif;
+    font-size: 50px;
 }
 
 .social-buttons {
