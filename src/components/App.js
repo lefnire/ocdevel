@@ -13,7 +13,7 @@ export default class App extends React.Component {
           <Jumbotron title="OCDevel" className="ocdevel">
             <img className='head-image' src={images.cathead} />
             <p className="Dictionary img-rounded">ocdevel; [O-C-Devel]<br/>
-              (noun)\<br/>
+              (noun)<br/>
               1.orange cat development <br/> 2. developed by tyler renelle in 2009. <br/>
               3. web & mobile app development by a married duo with a profound love for programming.<br/>
               4. specializing in javascript, react, ionic, angular, python, and node.</p>
