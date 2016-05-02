@@ -12,8 +12,14 @@ module.exports = {
   module: {
     loaders: [
       { loader: 'babel', exclude: /node_modules/ },
-      { test: /\.css$/, loader: "style!css" }, // "style-loader!css-loader?importLoaders=1"
-      { test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/, loader: 'url-loader' } //'url-loader?limit=100000'
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'url-loader',
+          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+        ]
+      }
     ],
   },
   resolve: {
