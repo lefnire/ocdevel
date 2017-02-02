@@ -6,7 +6,7 @@ body {
     font-family: serif;
     font-size: 20px;
     text-align: center;
-    background-image: url("paper.jpg");
+    background-image: url("paper-low.jpg");
 }
 
 .ocdevel h1{
@@ -211,8 +211,7 @@ nav li a {
 }
 
 .social-buttons li a {
-    font-size: .75em;
-
+    /*font-size: .75em;*/
 }
 
 .stick {
