@@ -1,0 +1,132 @@
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/" version="2.0">
+    <channel>
+        <title>OCDevel Web Development Podcast</title>
+        <link>http://ocdevel.com</link>
+        <image>
+            <url>http://ocdevel.com/podcast/art.png</url>
+            <title>OCDevel Web Development Podcast</title>
+            <link>http://ocdevel.com</link>
+        </image>
+        <description>
+            How To: Web Development, Web Design, Content Management Systems, and more.
+        </description>
+        <language>en-us</language>
+        <copyright>OCDevel copyright 2016</copyright>
+        <atom:link href="http://podcasts.nraboy.com/podcast.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Thu, 02 Feb 2017 06:00:00 PDT</lastBuildDate>
+        <itunes:author>OCDevel</itunes:author>
+        <itunes:summary>
+            How To: Web Development, Web Design, Content Management Systems, and more.
+        </itunes:summary>
+        <itunes:subtitle>Web development basics</itunes:subtitle>
+        <itunes:owner>
+            <itunes:name>OCDevel</itunes:name>
+            <itunes:email>tylerrenelle@gmail.com</itunes:email>
+        </itunes:owner>
+        <itunes:explicit>No</itunes:explicit>
+        <itunes:keywords>
+            web,development,design,content,management
+        </itunes:keywords>
+        <itunes:image href="http://ocdevel.com/podcast/art.png"/>
+        <itunes:category text="Technology"/>
+        <pubDate>Wed, 05 Dec 2007 21:44:01 +0000</pubDate>
+        <item>
+            <title>Podcast 8: Linux</title>
+            <link>http://ocdevel.com/podcast/Episode_8_Linux.mp3</link>
+            <description>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems.</description>
+            <pubDate>Wed, 27 Feb 2008 03:14:40 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_8_Linux.mp3" length="28231497" type="audio/mpeg"/>
+            <itunes:duration>52:51</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems</itunes:subtitle>
+            <itunes:summary>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_8_Linux.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 7: Internet Marketing</title>
+            <link>http://ocdevel.com/podcast/Episode_7_Internet_Marketing.mp3</link>
+            <description>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</description>
+            <pubDate>Fri, 25 Jan 2008 22:18:37 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_7_Internet_Marketing.mp3" length="21738323"
+                       type="audio/mpeg"/>
+            <itunes:duration>40:29</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</itunes:subtitle>
+            <itunes:summary>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_7_Internet_Marketing.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 6: CMS &amp; Frameworks</title>
+            <link>http://ocdevel.com/podcast/Episode_6_Frameworks.mp3</link>
+            <description>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</description>
+            <pubDate>Fri, 25 Jan 2008 00:04:17 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_6_Frameworks.mp3" length="14990967" type="audio/mpeg"/>
+            <itunes:duration>27:59</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</itunes:subtitle>
+            <itunes:summary>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_6_Frameworks.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 5: Tools</title>
+            <link>http://ocdevel.com/podcast/Episode_5_Tools.mp3</link>
+            <description>Web design &amp;amp; development tools &amp;amp; IDE&#039;s, Eclipse, Firefox plugins, Firebug, etc.</description>
+            <pubDate>Thu, 24 Jan 2008 21:49:34 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_5_Tools.mp3" length="16540453" type="audio/mpeg"/>
+            <itunes:duration>30:46</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>Web design &amp; development tools &amp; IDE&#039;s, Eclipse, Firefox plugins, Firebug, etc.</itunes:subtitle>
+            <itunes:summary>Web design &amp; development tools &amp; IDE&#039;s, Eclipse, Firefox plugins, Firebug, etc.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_5_Tools.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 4: Your First Site</title>
+            <link>http://ocdevel.com/podcast/Episode_4_Server.mp3</link>
+            <description>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</description>
+            <pubDate>Thu, 24 Jan 2008 00:25:31 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_4_Server.mp3" length="23215676" type="audio/mpeg"/>
+            <itunes:duration>44:25</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</itunes:subtitle>
+            <itunes:summary>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_4_Server.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 3: Client</title>
+            <link>http://ocdevel.com/podcast/Episode_3_Client.mp3</link>
+            <description>Client-side development, HTML, JavaScript, CSS, Flash, AJAX, and more.</description>
+            <pubDate>Thu, 20 Dec 2007 04:15:06 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_3_Client.mp3" length="16850861" type="audio/mpeg"/>
+            <itunes:duration>28:36</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>Client-side development, HTML, JavaScript, CSS, Flash, AJAX, and more.</itunes:subtitle>
+            <itunes:summary>Client-side development, HTML, JavaScript, CSS, Flash, AJAX, and more.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_3_Client.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 2: Server</title>
+            <link>http://ocdevel.com/podcast/Episode_2_Server.mp3</link>
+            <description>Server-side development: LAMP stack (linux, apache, mysql, php), scripting languages, etc.</description>
+            <pubDate>Fri, 07 Dec 2007 22:13:27 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_2_Server.mp3" length="24019634" type="audio/mpeg"/>
+            <itunes:duration>45:15</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>Server-side development: LAMP stack (linux, apache, mysql, php), scripting languages, etc.</itunes:subtitle>
+            <itunes:summary>Server-side development: LAMP stack (linux, apache, mysql, php), scripting languages, etc.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_2_Server.mp3</guid>
+        </item>
+        <item>
+            <title>Podcast 1: Introduction</title>
+            <link>http://ocdevel.com/podcast/Episode_1_Introduction.mp3</link>
+            <description>Web Development Tutorials, Web Design Tutorials, Content Management Systems, and more.</description>
+            <pubDate>Wed, 05 Dec 2007 21:44:01 +0000</pubDate>
+            <enclosure url="http://ocdevel.com/podcast/Episode_1_Introduction.mp3" length="7529053" type="audio/mpeg"/>
+            <itunes:duration>12:56</itunes:duration>
+            <itunes:author>Web Development Podcast | OCDevel</itunes:author>
+            <itunes:subtitle>Web Development Tutorials, Web Design Tutorials, Content Management Systems, and more.</itunes:subtitle>
+            <itunes:summary>Web Development Tutorials, Web Design Tutorials, Content Management Systems, and more.</itunes:summary>
+            <guid isPermaLink="false">http://ocdevel.com/podcast/Episode_1_Introduction.mp3</guid>
+        </item>
+    </channel>
+</rss>
