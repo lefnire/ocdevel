@@ -10,7 +10,7 @@ export default class Podcasts extends Component {
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Podcasts</Link>
+            <Link to="/">Home</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -24,6 +24,9 @@ export default class Podcasts extends Component {
             </LinkContainer>
             {/*<LinkContainer to="/podcasts/digital-nomad">
               <NavItem eventKey={3}>Digital Nomad</NavItem>
+            </LinkContainer>*/}
+            {/*<LinkContainer to="/blog">
+              <NavItem eventKey={4}>Blog</NavItem>
             </LinkContainer>*/}
           </Nav>
           <Nav pullRight>

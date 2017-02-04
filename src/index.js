@@ -13,7 +13,10 @@ ReactDom.render(<Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="podcasts" component={Podcasts}>
         <Route path="machine-learning" component={MachineLearning}/>
-        <Route path="web-development" component={WebDevelopment}/>
+        <Route path="web-development" component={WebDevelopment.Series}>
+          <Route path=":id" component={WebDevelopment.Episode} />
+          <IndexRoute component={WebDevelopment.List} />
+        </Route>
         <Route path="digital-nomad" component={DigitalNomad}/>
         <Redirect from="*" to="machine-learning"/>
       </Route>

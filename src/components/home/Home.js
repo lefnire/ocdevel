@@ -16,7 +16,7 @@ export default class Home extends Component {
           <p className="Dictionary img-rounded">ocdevel; [O-C-Devel]<br/>
             (noun)<br/>
             1. orange cat development<br/>
-            2. created by tyler renelle in 2007<br/>
+            2. created by tyler renelle in 2006<br/>
             3. web & mobile app development by a married duo with a profound love for programming<br/>
             4. specializing in javascript, react, python, and node</p>
         </Jumbotron>

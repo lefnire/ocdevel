@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Modal
 } from 'react-bootstrap';
-import portfolio from '../content/portfolio';
+import portfolio from '../../content/portfolio';
 
 class PortfolioModal extends React.Component {
   constructor() {
