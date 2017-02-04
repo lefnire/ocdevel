@@ -1,4 +1,4 @@
-body {
+.Home {
     background-size: 100% 15.9%;
     background-repeat: no-repeat;
     background-position: top;
@@ -6,16 +6,16 @@ body {
     font-family: serif;
     font-size: 20px;
     text-align: center;
-    background-image: url("paper-low.jpg");
+    background-image: url("../../assets/paper-low.jpg");
 }
 
-.ocdevel h1{
+.Home .ocdevel h1 {
     color: #5c1b12;
     font-weight: bold;
     font-size: 60px;
 }
 
-.contact-form {
+.Home .contact-form {
     width: 40%;
     margin: 0 auto; /* center on page */
     margin-top: 200px;
@@ -25,17 +25,17 @@ body {
     margin-bottom: 60px;
 }
 
-.contact-formh1 {
+.Home .contact-formh1 {
     font-family: sans-serif;
     color: white;
     font-size: 20px;
 }
 
-.container-fluid {
+.Home .container-fluid {
     text-align: center;
 }
 
-.description{
+.Home .description {
     font-size: 20px;
     color: white;
     font-family: sans-serif;
@@ -43,44 +43,44 @@ body {
     margin: 100px;
 }
 
-.divider {
+.Home .divider {
     width: auto;
     color: white;
 }
 
-.error {
+.Home .error {
     color: red;
 }
-.front {
+
+.Home .front {
     width: 1000px;
 }
 
-.front p {
+.Home .front p {
     clear: both;
 }
 
-h1, h2 {
+.Home h1, .Home h2 {
     color: #fffbf8;
     margin-bottom: 80px;
 }
 
-.head-image{
+.Home .head-image {
     width: 160px;
     height: 160px;
     /*margin-bottom: 40px;*/
 }
 
-.heading {
+.Home .heading {
     width: 100%;
     text-align: center;
 }
-hr{
+
+.Home hr {
     margin: 100px;
 }
 
-
-
-.jumbotron {
+.Home .jumbotron {
     background-color: transparent;
     color: #fffbf8;
     font-family: 'Sacramento', cursive;
@@ -89,7 +89,8 @@ hr{
     font-size: 200px;
 
 }
-.jumbotron p{
+
+.Home .jumbotron p {
     font-size: 20px;
     color: #5c1b12;
     font-family: sans-serif;
@@ -102,8 +103,7 @@ hr{
     border-style: solid;
 }
 
-
-.kari{
+.Home .kari {
     font-size: 20px;
     color: white !important;
     font-family: sans-serif;
@@ -111,24 +111,25 @@ hr{
     margin-bottom: 50px;
 }
 
-.kari a{
+.Home .kari a {
     color: white;
 }
 
-li{
+.Home li {
     color: white;
 }
-.message-sent {
+
+.Home .message-sent {
     color: white;
     padding-bottom: 100px;
 }
 
-.names {
+.Home .names {
     font-family: 'Sacramento', cursive;
     font-size: 50px;
 }
 
-nav {
+.Home nav {
     display: table-header-group;
     list-style-type: none;
     margin: 0;
@@ -136,7 +137,8 @@ nav {
     font-family: sans-serif;
     text-align: center;
 }
-.navbar {
+
+.Home .navbar {
     font-size: 20px;
     /*border-color: #2aabd2;*/
     /*border-bottom-width: medium;*/
@@ -145,52 +147,53 @@ nav {
     margin-right: 935px;
 }
 
-nav li a {
+.Home nav li a {
     color: white;
     text-align: center;
     background-color: transparent !important;
 }
 
-.ocdevel-modal a {
+.Home .ocdevel-modal a {
     font-family: sans-serif;
     font-size: x-large;
     color: black;
 }
 
-.ocdevel-modal p {
+.Home .ocdevel-modal p {
     line-height: 20px;
     margin-top: 30px;
     font-family: sans-serif;
     font-size: medium;
 }
 
-.ocdevel.modal {
+.Home .ocdevel.modal {
     font-family: 'Sacramento', cursive;
     font-size: 50px;
 }
 
-
-.personal-details {
+.Home .personal-details {
     height: 100%;
     background-color: black;
     color: teal;
     z-index: 100;
 }
-.portfolio {
+
+.Home .portfolio {
     color: white;
     background-color: white;
 }
 
-.portfolio-image {
+.Home .portfolio-image {
     width: 220px;
     height: 220px;
     margin-bottom: 40px;
 }
 
-.portfoliolink {
+.Home .portfoliolink {
     color: white;
 }
-.project {
+
+.Home .project {
     color: white;
     margin-top: 80px;
     margin-bottom: 80px;
@@ -198,29 +201,28 @@ nav li a {
     font-size: 50px;
 }
 
-.social-buttons {
+.Home .social-buttons {
     list-style: none;
     margin-left: 580px;
     margin-top: 50px;
 }
 
-
-.social-buttons li {
+.Home .social-buttons li {
     float: left;
     padding-right: 10px;
 }
 
-.social-buttons li a {
+.Home .social-buttons li a {
     /*font-size: .75em;*/
 }
 
-.stick {
+.Home .stick {
     height: 200px;
     width: 400px;
     margin-top: 200px;
 }
 
-.welcome {
+.Home .welcome {
     color: #fffbf8;
     margin: 0 auto;
     margin-top: 10px;
@@ -228,7 +230,7 @@ nav li a {
     font-size: 30px;
 }
 
-.zocial{
+.Home .zocial {
     background: none !important;
     color: white !important;
     border: none !important;
@@ -236,54 +238,56 @@ nav li a {
 
 }
 
-
-nav ul a,
-nav .brand-logo {
+.Home nav ul a,
+.Home nav .brand-logo {
     color: #444;
 }
 
-p {
+.Home p {
     line-height: 2rem;
 }
 
-.button-collapse {
+.Home .button-collapse {
     color: #26a69a;
 }
 
-.parallax-container {
+.Home .parallax-container {
     min-height: 380px;
     line-height: 0;
     height: auto;
-    color: rgba(255,255,255,.9);
+    color: rgba(255, 255, 255, .9);
 }
-.parallax-container .section {
+
+.Home .parallax-container .section {
     width: 100%;
 }
 
-@media only screen and (max-width : 992px) {
-    .parallax-container .section {
+@media only screen and (max-width: 992px) {
+    .Home .parallax-container .section {
         position: absolute;
         top: 40%;
     }
-    #index-banner .section {
+
+    .Home #index-banner .section {
         top: 10%;
     }
 }
 
-@media only screen and (max-width : 600px) {
-    #index-banner .section {
+.Home @media only screen and (max-width: 600px) {
+    .Home #index-banner .section {
         top: 0;
     }
 }
 
-.icon-block {
+.Home .icon-block {
     padding: 0 15px;
 }
-.icon-block .material-icons {
+
+.Home .icon-block .material-icons {
     font-size: inherit;
 }
 
-footer.page-footer {
+.Home footer.page-footer {
     margin: 0;
 }
 

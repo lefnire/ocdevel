@@ -7,7 +7,7 @@ export default [{
 }, {
   name: "Jobpig",
   person: "Tyler & Lisa",
-  img: require("../../assets/Tyler/pig.png"),
+  img: require("../../assets/Tyler/Pig.png"),
   url: "http://jobpigapp.com",
   description: "Pandora-like job board. Built with Node / Express, Postgres, React / React Native, Material Design, Amazon Web Services. Code at github.com/lefnire/jobpig"
 }, {

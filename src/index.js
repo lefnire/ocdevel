@@ -1,5 +1,3 @@
-require('./assets/style.css');
-
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute, Redirect } from 'react-router';
@@ -13,14 +11,14 @@ import DigitalNomad from './components/podcasts/DigitalNomad';
 
 ReactDom.render(<Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="podcasts">
+      <Route path="podcasts" component={Podcasts}>
         <Route path="machine-learning" component={MachineLearning}/>
         <Route path="web-development" component={WebDevelopment}/>
         <Route path="digital-nomad" component={DigitalNomad}/>
-        <IndexRoute component={Podcasts} />
+        <Redirect from="*" to="machine-learning"/>
       </Route>
       <IndexRoute component={Home} />
       <Redirect from="*" to="/"/>
     </Route>
   </Router>
-, document.getElementById('app'));
+, document.getElementById('root'));
