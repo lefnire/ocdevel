@@ -1,6 +1,6 @@
 const episodes = [{
   title: "1. Introduction",
-  date: new Date("02/01/2017"),
+  date: "02/01/2017",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
     length: 11955748,
@@ -9,8 +9,7 @@ const episodes = [{
   },
   teaser: "Introduction to the Machine Learning Guide",
   body:
-`
-Who am I: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
+`Who am I: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
 What is this podcast? 
   - "Middle" level overview (deeper than a bird's eye view of machine learning; higher than math equations)
   - No math/programming experience required
@@ -38,8 +37,7 @@ Planned episodes
   - Parts: regularization, performance evaluation, dimensionality reduction, etc
   - Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
   - Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc
-Resources
-`
+Resources`
 }];
 
 const podcast = {
