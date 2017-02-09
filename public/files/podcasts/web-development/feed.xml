@@ -11,7 +11,7 @@
           <language>en-us</language>
           <copyright>OCDevel copyright 2017</copyright>
           <atom:link href="http://ocdevel.com/podcast/feed" rel="self" type="application/rss+xml"/>
-          <lastBuildDate>Thu Feb 09 2017 14:52:16 GMT-0700 (MST)</lastBuildDate>
+          <lastBuildDate>Thu Feb 09 2017 15:35:31 GMT-0700 (MST)</lastBuildDate>
           <itunes:author>OCDevel</itunes:author>
           <itunes:summary>How To: Web Development, Web Design, Content Management Systems, and more.</itunes:summary>
           <itunes:subtitle>Web development basics</itunes:subtitle>
@@ -32,7 +32,7 @@
               <pubDate>Tue Feb 26 2008 20:14:40 GMT-0700 (MST)</pubDate>
               <description>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_8_Linux.mp3" length="28231497" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_8_Linux.mp3</guid>
+              <guid>6c6e80f9-a105-4adc-83ca-53e7ed46f402</guid>
               <itunes:duration>52:51</itunes:duration>
               <itunes:subtitle>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems</itunes:subtitle>
               <itunes:summary>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems</itunes:summary>
@@ -46,7 +46,7 @@
               <pubDate>Fri Jan 25 2008 15:18:37 GMT-0700 (MST)</pubDate>
               <description>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_7_Internet_Marketing.mp3" length="21738323" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_7_Internet_Marketing.mp3</guid>
+              <guid>e5fc6d42-a6be-4fd3-80a5-c9f35ee89785</guid>
               <itunes:duration>40:29</itunes:duration>
               <itunes:subtitle>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</itunes:subtitle>
               <itunes:summary>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</itunes:summary>
@@ -60,7 +60,7 @@
               <pubDate>Thu Jan 24 2008 17:04:17 GMT-0700 (MST)</pubDate>
               <description>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_6_Frameworks.mp3" length="14990967" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_6_Frameworks.mp3</guid>
+              <guid>bd5bb5f1-d54a-467a-b371-74fac60991dc</guid>
               <itunes:duration>27:59</itunes:duration>
               <itunes:subtitle>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</itunes:subtitle>
               <itunes:summary>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</itunes:summary>
@@ -74,7 +74,7 @@
               <pubDate>Thu Jan 24 2008 14:49:34 GMT-0700 (MST)</pubDate>
               <description>Web design &amp; development tools &amp; IDE&#39;s, Eclipse, Firefox plugins, Firebug, etc.</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_5_Tools.mp3" length="16540453" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_5_Tools.mp3</guid>
+              <guid>b9494d40-7a44-4503-8d21-ad026fbff60b</guid>
               <itunes:duration>30:46</itunes:duration>
               <itunes:subtitle>Web design &amp; development tools &amp; IDE&#39;s, Eclipse, Firefox plugins, Firebug, etc.</itunes:subtitle>
               <itunes:summary>Web design &amp; development tools &amp; IDE&#39;s, Eclipse, Firefox plugins, Firebug, etc.</itunes:summary>
@@ -88,7 +88,7 @@
               <pubDate>Wed Jan 23 2008 17:25:31 GMT-0700 (MST)</pubDate>
               <description>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_4_Server.mp3" length="23215676" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_4_Server.mp3</guid>
+              <guid>7d63b52b-0da4-4de4-b6bf-43cfe7ec025c</guid>
               <itunes:duration>44:25</itunes:duration>
               <itunes:subtitle>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</itunes:subtitle>
               <itunes:summary>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</itunes:summary>
@@ -126,7 +126,7 @@ RIA (Flex, OpenLaszlo)
 
 AJAX!!!</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_3_Client.mp3" length="16850861" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_3_Client.mp3</guid>
+              <guid>161c6d75-a70b-4e0c-b1a9-c5c74ec9c588</guid>
               <itunes:duration>28:36</itunes:duration>
               <itunes:subtitle>Client-side development, HTML, JavaScript, CSS, Flash, AJAX, and more.</itunes:subtitle>
               <itunes:summary>Client Side Technology includes
@@ -189,7 +189,7 @@ Web server extension modules
   - Web server extension modules: *PHP, ASP, ASP.NET
   - Java servlets</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_2_Server.mp3" length="24019634" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_2_Server.mp3</guid>
+              <guid>c9410e32-59c3-4292-9557-d6df2720647b</guid>
               <itunes:duration>45:15</itunes:duration>
               <itunes:subtitle>Server-side development: LAMP stack (linux, apache, mysql, php), scripting languages, etc.</itunes:subtitle>
               <itunes:summary>Systems (sys admin)
@@ -231,7 +231,7 @@ Web server extension modules
 - Internet marketing: SEO, Accessibility, Marketing, Monitization
 - Extras: WYSIWYG tools, Web Frameworks ( Django, Rails ), Blogging &amp; CMS ( WordPress, Joomla!, Drupal)</description>
               <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_1_Introduction.mp3" length="7529053" type="audio/mpeg"/>
-              <guid isPermaLink="false">http://ocdevel.com/files/podcasts/web-development/Episode_1_Introduction.mp3</guid>
+              <guid>51ba2a8a-d0cc-4ead-8cb2-ba8e4fe0ecdd</guid>
               <itunes:duration>12:56</itunes:duration>
               <itunes:subtitle>Web Development Tutorials, Web Design Tutorials, Content Management Systems, and more.</itunes:subtitle>
               <itunes:summary>- Client: Web design ( HTML, CSS, Images ), Interactivity / Browser Objects ( Flash, Flex, Laszlo, Silverlight, Java Applets / Webstart), Client-side scripting ( JavaScript, AJAX)

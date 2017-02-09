@@ -44,7 +44,7 @@ _.each(podcasts, (podcast, key) => {
               <pubDate>${new Date(e.date)}</pubDate>
               <description>${_.escape(e.body || e.teaser)}</description>
               <enclosure url="${e.file.url}" length="${e.file.length}" type="${e.file.type || 'audio/mpeg'}"/>
-              <guid isPermaLink="false">${e.guid || e.file.url}</guid>
+              <guid>${e.guid}</guid>
               <itunes:duration>${e.file.duration}</itunes:duration>
               <itunes:subtitle>${_.escape(e.teaser)}</itunes:subtitle>
               <itunes:summary>${_.escape(e.body || e.teaser)}</itunes:summary>

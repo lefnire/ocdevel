@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
+import ReactDisqusThread from 'react-disqus-thread';
 
 import _machineLearning from '../content/machine-learning';
 import _webDevelopment from '../content/web-development';
@@ -18,7 +19,8 @@ const fmt = 'MMM, MM/DD/YYYY';
 class Episode extends Component {
   render() {
     let {series, id} = this.props.params;
-    let e = podcasts[series].episodes[id-1];
+    let podcast = podcasts[series],
+      e = podcast.episodes[id-1];
     return (
       <div>
         <Link to={`podcasts/${series}`}>&lt; Back</Link>
@@ -30,6 +32,11 @@ class Episode extends Component {
             Your browser does not support the audio element.
           </audio>
         </Panel>
+        <ReactDisqusThread
+          shortname="ocdevel"
+          identifier={e.guid}
+          title={`${e.title} | ${podcast.title}`}
+          url={`http://ocdevel.com/podcasts/${series}/${id}`}/>
       </div>
     );
   }
@@ -55,12 +62,16 @@ class Series extends Component {
   render() {
     let {series} = this.props.params;
     let p = podcasts[series];
-    let webDevNote = <p>Original work was <a href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank">OCDevel Web Development Podcast</a>, which is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</p>
     return (
       <div>
         <PageHeader>{p.title}</PageHeader>
-        <p>{p.body || p.teaser}</p>
-        {series === 'web-development'? webDevNote : null}
+        <div>
+          <img src={p.image} style={{height: 140, width: 140}} />
+          <p>{p.body || p.teaser}</p>
+          {series !== 'web-development'? null : (
+            <p>Original work was <a href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank">OCDevel Web Development Podcast</a>, which is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</p>
+          )}
+        </div>
         {this.props.children}
       </div>
     );

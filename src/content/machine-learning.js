@@ -4,7 +4,6 @@ const episodes = [{
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
     length: 11955748,
-    type: "audio/mpeg",
     duration: "12:54"
   },
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
@@ -41,13 +40,12 @@ Planned episodes
 Resources`
 }, {
   title: "2. What is AI / ML",
-  date: "02/19/2017",
+  date: "02/09/2017",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2.mp3",
     length: 30172184,
     duration: "32:14",
-    type: "audio/mpeg"
   },
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
   body:
