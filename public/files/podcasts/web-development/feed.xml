@@ -10,8 +10,8 @@
           <description>How To: Web Development, Web Design, Content Management Systems, and more.</description>
           <language>en-us</language>
           <copyright>OCDevel copyright 2017</copyright>
-          <atom:link href="http://ocdevel.com/files/podcasts/web-development.xml" rel="self" type="application/rss+xml"/>
-          <lastBuildDate>Mon Feb 06 2017 10:37:49 GMT-0700 (MST)</lastBuildDate>
+          <atom:link href="http://ocdevel.com/podcast/feed" rel="self" type="application/rss+xml"/>
+          <lastBuildDate>Thu Feb 09 2017 14:52:16 GMT-0700 (MST)</lastBuildDate>
           <itunes:author>OCDevel</itunes:author>
           <itunes:summary>How To: Web Development, Web Design, Content Management Systems, and more.</itunes:summary>
           <itunes:subtitle>Web development basics</itunes:subtitle>
@@ -22,7 +22,9 @@
           <itunes:explicit>No</itunes:explicit>
           <itunes:keywords>web,development,design,content,management</itunes:keywords>
           <itunes:image href="http://ocdevel.com/files/podcasts/web-development/art.png"/>
-          <itunes:category text="Software How-To"/>
+          <itunes:category text="Technology">
+            <itunes:category text="Information Technology"/>
+          </itunes:category>
           <pubDate>Wed Dec 05 2007 14:44:01 GMT-0700 (MST)</pubDate>
           <item>
               <title>Podcast 8: Linux</title>

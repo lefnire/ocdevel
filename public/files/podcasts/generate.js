@@ -34,7 +34,9 @@ _.each(podcasts, (podcast, key) => {
           <itunes:explicit>No</itunes:explicit>
           <itunes:keywords>${podcast.keywords}</itunes:keywords>
           <itunes:image href="${podcast.image}"/>
-          <itunes:category text="Software How-To"/>
+          <itunes:category text="Technology">
+            <itunes:category text="Information Technology"/>
+          </itunes:category>
           <pubDate>${new Date(podcast.date)}</pubDate>
           ${_(podcast.episodes).map(e => `<item>
               <title>${_.escape(e.title)}</title>
@@ -42,7 +44,7 @@ _.each(podcasts, (podcast, key) => {
               <pubDate>${new Date(e.date)}</pubDate>
               <description>${_.escape(e.body || e.teaser)}</description>
               <enclosure url="${e.file.url}" length="${e.file.length}" type="${e.file.type || 'audio/mpeg'}"/>
-              <guid isPermaLink="false">${e.file.url}</guid>
+              <guid isPermaLink="false">${e.guid || e.file.url}</guid>
               <itunes:duration>${e.file.duration}</itunes:duration>
               <itunes:subtitle>${_.escape(e.teaser)}</itunes:subtitle>
               <itunes:summary>${_.escape(e.body || e.teaser)}</itunes:summary>

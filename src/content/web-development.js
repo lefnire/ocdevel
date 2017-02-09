@@ -161,7 +161,7 @@ AJAX!!!`
 const podcast = {
   title: "OCDevel Web Development Podcast",
   link: "http://ocdevel.com/podcasts/web-development",
-  feed: "http://ocdevel.com/files/podcasts/web-development.xml",
+  feed: "http://ocdevel.com/podcast/feed",
   keywords: "web,development,design,content,management",
   image: "http://ocdevel.com/files/podcasts/web-development/art.png",
   date: "Wed, 05 Dec 2007 21:44:01 +0000",
