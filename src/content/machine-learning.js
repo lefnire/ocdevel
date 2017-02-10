@@ -43,9 +43,9 @@ Resources`
   date: "02/09/2017",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   file: {
-    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2.mp3",
-    length: 28427390,
-    duration: "30:21",
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3",
+    length: 29646598,
+    duration: "32:05",
   },
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
   body:

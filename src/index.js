@@ -13,7 +13,6 @@ ReactDom.render(<Router history={browserHistory}>
           <Route path=":id" component={Podcasts.Episode} />
           <IndexRoute component={Podcasts.Episodes} />
         </Route>
-        <Redirect from="*" to="machine-learning"/>
       </Route>
       <IndexRoute component={Home} />
       <Redirect from="*" to="/"/>
