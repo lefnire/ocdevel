@@ -11,7 +11,7 @@
           <language>en-us</language>
           <copyright>OCDevel copyright 2017</copyright>
           <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-          <lastBuildDate>Thu Feb 09 2017 15:35:31 GMT-0700 (MST)</lastBuildDate>
+          <lastBuildDate>Fri Feb 10 2017 13:51:18 GMT-0700 (MST)</lastBuildDate>
           <itunes:author>OCDevel</itunes:author>
           <itunes:summary>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:summary>
           <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:subtitle>
@@ -27,9 +27,63 @@
           </itunes:category>
           <pubDate>Wed Feb 01 2017 00:00:00 GMT-0700 (MST)</pubDate>
           <item>
+              <title>3. Inspiration</title>
+              <link>http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3</link>
+              <pubDate>Fri Feb 10 2017 00:00:00 GMT-0700 (MST)</pubDate>
+              <description>## Episode
+- Economics / Automation
+  - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
+  - [Is your job safe?](http://www.bbc.com/news/technology-34066941)
+  - Universal basic income
+- Singularity (AGI; Singularity; Next stage of evolution)
+- Consciousness (Functionalism / Computational Theory of Mind / Simulations)
+- The Scare
+  - Superintelligence by Nick Bostrom
+  - Bill Gates, Stephen Hawking, Elon Musk ^
+  
+## Resources
+- [The Singularity Is Near](http://amzn.to/2lzCqKk) #audio
+- Consciousness
+  - [How to Create a Mind](http://amzn.to/2l2frtN) #audio
+  - * [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](https://goo.gl/YIbSaH)
+    #audio My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
+  - [Consciousness Explained](http://amzn.to/2kXR2WI) #audio
+- [Superintelligence](http://amzn.to/2lzLcrL) #audio
+  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
+</description>
+              <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3" length="16363973" type="audio/mpeg"/>
+              <guid>a0b24583-e253-492c-addc-ee0c0aeb1765</guid>
+              <itunes:duration>17:41</itunes:duration>
+              <itunes:subtitle>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.</itunes:subtitle>
+              <itunes:summary>## Episode
+- Economics / Automation
+  - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
+  - [Is your job safe?](http://www.bbc.com/news/technology-34066941)
+  - Universal basic income
+- Singularity (AGI; Singularity; Next stage of evolution)
+- Consciousness (Functionalism / Computational Theory of Mind / Simulations)
+- The Scare
+  - Superintelligence by Nick Bostrom
+  - Bill Gates, Stephen Hawking, Elon Musk ^
+  
+## Resources
+- [The Singularity Is Near](http://amzn.to/2lzCqKk) #audio
+- Consciousness
+  - [How to Create a Mind](http://amzn.to/2l2frtN) #audio
+  - * [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](https://goo.gl/YIbSaH)
+    #audio My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
+  - [Consciousness Explained](http://amzn.to/2kXR2WI) #audio
+- [Superintelligence](http://amzn.to/2lzLcrL) #audio
+  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
+</itunes:summary>
+              <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+              <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+              <itunes:explicit>no</itunes:explicit>
+          </item>
+<item>
               <title>2. What is AI / ML</title>
               <link>http://ocdevel.com/files/podcasts/machine-learning/ml-2.mp3</link>
-              <pubDate>Sun Feb 19 2017 00:00:00 GMT-0700 (MST)</pubDate>
+              <pubDate>Thu Feb 09 2017 00:00:00 GMT-0700 (MST)</pubDate>
               <description>## Episode
   - What is AI?
     - Simulate any intellectual task
@@ -105,12 +159,12 @@
 ## Resources
   - [Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence)
   - Brief history articles: [1](https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) [2](http://aitopics.org/misc/brief-history)
-  - Accessible / short audiobook on AI history: [Machines of Loving Grace](http://amzn.to/2k8Atrx)
-  - Exhaustive book on AI history (defacto) [The Quest for Artificial Intelligence](http://amzn.to/2lwoGQH)
+  - [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
+  - [Machines of Loving Grace](http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
 </description>
-              <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-2.mp3" length="30172184" type="audio/mpeg"/>
+              <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-2.mp3" length="28427390" type="audio/mpeg"/>
               <guid>129d0157-fbda-4cc6-aaae-1c96745c12c9</guid>
-              <itunes:duration>32:14</itunes:duration>
+              <itunes:duration>30:21</itunes:duration>
               <itunes:subtitle>What is artificial intelligence and machine learning? What&#39;s the difference? How about compared to statistics and data science? AI history.</itunes:subtitle>
               <itunes:summary>## Episode
   - What is AI?
@@ -187,8 +241,8 @@
 ## Resources
   - [Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence)
   - Brief history articles: [1](https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) [2](http://aitopics.org/misc/brief-history)
-  - Accessible / short audiobook on AI history: [Machines of Loving Grace](http://amzn.to/2k8Atrx)
-  - Exhaustive book on AI history (defacto) [The Quest for Artificial Intelligence](http://amzn.to/2lwoGQH)
+  - [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
+  - [Machines of Loving Grace](http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
 </itunes:summary>
               <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
               <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -227,9 +281,9 @@ Planned episodes
   - Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
   - Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc
 Resources</description>
-              <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3" length="11955748" type="audio/mpeg"/>
+              <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3" length="12365357" type="audio/mpeg"/>
               <guid>a9bf6e09-aa7e-4126-9e36-22b152419c8f</guid>
-              <itunes:duration>12:54</itunes:duration>
+              <itunes:duration>13:08</itunes:duration>
               <itunes:subtitle>Introduction to the Machine Learning Guide</itunes:subtitle>
               <itunes:summary>Who am I: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
 What is this podcast? 

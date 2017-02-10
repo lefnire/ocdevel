@@ -3,8 +3,8 @@ const episodes = [{
   date: "02/01/2017",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
-    length: 11955748,
-    duration: "12:54"
+    length: 12365357,
+    duration: "13:08"
   },
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   teaser: "Introduction to the Machine Learning Guide",
@@ -44,8 +44,8 @@ Resources`
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2.mp3",
-    length: 30172184,
-    duration: "32:14",
+    length: 28427390,
+    duration: "30:21",
   },
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
   body:
@@ -124,8 +124,40 @@ Resources`
 ## Resources
   - [Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence)
   - Brief history articles: [1](https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) [2](http://aitopics.org/misc/brief-history)
-  - Accessible / short audiobook on AI history: [Machines of Loving Grace](http://amzn.to/2k8Atrx)
-  - Exhaustive book on AI history (defacto) [The Quest for Artificial Intelligence](http://amzn.to/2lwoGQH)
+  - [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
+  - [Machines of Loving Grace](http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
+`
+}, {
+  title: "3. Inspiration",
+  date: "02/10/2017",
+  guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3",
+    length: 16363973,
+    duration: "17:41",
+  },
+  teaser: "Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.",
+  body:
+`## Episode
+- Economics / Automation
+  - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
+  - [Is your job safe?](http://www.bbc.com/news/technology-34066941)
+  - Universal basic income
+- Singularity (AGI; Singularity; Next stage of evolution)
+- Consciousness (Functionalism / Computational Theory of Mind / Simulations)
+- The Scare
+  - Superintelligence by Nick Bostrom
+  - Bill Gates, Stephen Hawking, Elon Musk ^
+  
+## Resources
+- [The Singularity Is Near](http://amzn.to/2lzCqKk) #audio
+- Consciousness
+  - [How to Create a Mind](http://amzn.to/2l2frtN) #audio
+  - * [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](https://goo.gl/YIbSaH)
+    #audio My absolute favorite consciousness starter. Get the audio download & listen along-side this podcast!
+  - [Consciousness Explained](http://amzn.to/2kXR2WI) #audio
+- [Superintelligence](http://amzn.to/2lzLcrL) #audio
+  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it's kinda "must read"
 `
 }];
 

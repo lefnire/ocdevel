@@ -26,9 +26,13 @@ class Episode extends Component {
         <Link to={`podcasts/${series}`}>&lt; Back</Link>
         <Panel header={<h3>{e.title}</h3>}>
           <span className="pull-right">{moment(e.date).format(fmt)}</span>
-          {e.body? <ReactMarkdown source={e.body} /> : <p>{e.teaser}</p>}
-          <audio controls>
-            <source src={e.file.url} type={e.file.type} />
+          {e.body? (
+            <ReactMarkdown source={e.body}
+              renderers={{Link: props => <a href={props.href} target="_blank">{props.children}</a>}}
+            />
+          ): <p>{e.teaser}</p>}
+          <audio controls style={{width:'100%'}}>
+            <source src={e.file.url} type={e.file.type}/>
             Your browser does not support the audio element.
           </audio>
         </Panel>
