@@ -73,21 +73,22 @@ class Series extends Component {
 
     let podcast = podcasts[series];
     let buttons = {
-      'web-development': null,
+      'web-development': (
+        <div className="sub-button-container">
+          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank" rel="nofollow">iTunes</a>
+        </div>
+      ),
       'machine-learning': (
         <div className="sub-button-container">
-          <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow'>Listen on Google Play Music</a>
-          <a className="zocial appstore sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130">Subscribe in iTunes</a>
+          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
+          <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
+          <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
         </div>
       )
     }[series];
-    let extra = {
-      'web-development': (<p>Original work was <a href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank">OCDevel Web Development Podcast</a>, which is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</p>),
-      'machine-learning': null
-    }[series];
 
     return (
-      <div>
+      <div className="Series">
         <PageHeader>{podcast.title}</PageHeader>
         <div>
           <div className="logo-and-sub">
@@ -95,8 +96,12 @@ class Series extends Component {
             {buttons}
           </div>
           <div className="clearfix"/>
-          {extra}
-          <p>{podcast.body || podcast.teaser}</p>
+          <p>
+            {series === 'web-development' && (
+              <i>This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</i>
+            )}
+            {podcast.body || podcast.teaser}
+          </p>
         </div>
         {this.props.children}
       </div>

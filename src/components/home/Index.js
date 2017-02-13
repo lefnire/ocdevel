@@ -5,7 +5,7 @@ import Contact from './Contact';
 import Jumbotron from './Jumbotron';
 import Portfolio from './Portfolio';
 
-import './style.css';
+import './home.css';
 
 export default class Home extends Component {
   render() {

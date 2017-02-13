@@ -1,19 +1,19 @@
-.logo-and-sub {
+.Series .logo-and-sub {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.logo-and-sub .logo {
+.Series .logo-and-sub .logo {
     flex: 1;
 }
 
-.sub-button-container {
+.Series .sub-button-container {
     flex: 1;
 }
 
-.sub-button {
-    display: block !important;
+.Series .sub-button {
+    display: block;
     margin: 5px;
-    padding: 5px !important;
+    /*padding: 5px;*/
 }
