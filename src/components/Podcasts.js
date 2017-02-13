@@ -11,6 +11,8 @@ import _ from 'lodash';
 import _machineLearning from '../content/machine-learning';
 import _webDevelopment from '../content/web-development';
 
+import './podcasts.css';
+
 const podcasts = {
   'machine-learning': _machineLearning,
   'web-development': _webDevelopment,
@@ -69,18 +71,32 @@ class Series extends Component {
     if (!_.includes(['machine-learning', 'web-development'], series))
       return window.location.href = '/podcasts/machine-learning';
 
-    let p = podcasts[series];
-    let extra = {
-      'web-development': <p>Original work was <a href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank">OCDevel Web Development Podcast</a>, which is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</p>,
-      'machine-learning': <a href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow'><img width='125px' alt='Listen on Google Play Music' src='https://play.google.com/intl/en_us/badges-music/images/badges/en_badge_web_music.png'/></a>
+    let podcast = podcasts[series];
+    let buttons = {
+      'web-development': null,
+      'machine-learning': (
+        <div className="sub-button-container">
+          <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow'>Listen on Google Play Music</a>
+          <a className="zocial appstore sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130">Subscribe in iTunes</a>
+        </div>
+      )
     }[series];
+    let extra = {
+      'web-development': (<p>Original work was <a href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank">OCDevel Web Development Podcast</a>, which is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</p>),
+      'machine-learning': null
+    }[series];
+
     return (
       <div>
-        <PageHeader>{p.title}</PageHeader>
+        <PageHeader>{podcast.title}</PageHeader>
         <div>
-          <img src={p.image} style={{height: 140, width: 140}} />
+          <div className="logo-and-sub">
+            <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+            {buttons}
+          </div>
+          <div className="clearfix"/>
           {extra}
-          <p>{p.body || p.teaser}</p>
+          <p>{podcast.body || podcast.teaser}</p>
         </div>
         {this.props.children}
       </div>

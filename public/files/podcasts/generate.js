@@ -1,12 +1,13 @@
 const podcasts = {
   'machine-learning': require('../../../src/content/machine-learning'),
-  'web-development': require('../../../src/content/web-development'),
+  // 'web-development': require('../../../src/content/web-development'),
 };
 const moment = require('moment');
 const _ = require('lodash');
 const fs = require('fs');
 
 let count = 0;
+const fmt = 'ddd, DD MMM YYYY 00:00:00';
 
 
 _.each(podcasts, (podcast, key) => {
@@ -24,7 +25,7 @@ _.each(podcasts, (podcast, key) => {
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="${podcast.feed}" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>${new Date()}</lastBuildDate>
+        <lastBuildDate>${moment().format(fmt)} EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>${_.escape(podcast.body || podcast.teaser)}</itunes:summary>
         <itunes:subtitle>${_.escape(podcast.teaser)}</itunes:subtitle>
@@ -38,11 +39,11 @@ _.each(podcasts, (podcast, key) => {
         <itunes:category text="Technology">
           <itunes:category text="Information Technology"/>
         </itunes:category>
-        <pubDate>${new Date(podcast.date)}</pubDate>
+        <pubDate>${moment(podcast.date).format(fmt)} EST</pubDate>
         ${_(podcast.episodes).map(e => `<item>
             <title>${_.escape(e.title)}</title>
             <link>${e.file.url}</link>
-            <pubDate>${new Date(e.date)}</pubDate>
+            <pubDate>${moment(e.date).format(fmt)} EST</pubDate>
             <description>${_.escape(e.body || e.teaser)}</description>
             <enclosure url="${e.file.url}" length="${e.file.length}" type="${e.file.type || 'audio/mpeg'}"/>
             <guid>${e.guid}</guid>

@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/podcast/feed" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Fri Feb 10 2017 17:30:49 GMT-0700 (MST)</lastBuildDate>
+        <lastBuildDate>Sat Feb 11 2017 13:24:22 GMT-0700 (MST)</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>How To: Web Development, Web Design, Content Management Systems, and more.</itunes:summary>
         <itunes:subtitle>Web development basics</itunes:subtitle>
@@ -26,11 +26,11 @@
         <itunes:category text="Technology">
           <itunes:category text="Information Technology"/>
         </itunes:category>
-        <pubDate>Wed Dec 05 2007 14:44:01 GMT-0700 (MST)</pubDate>
+        <pubDate>Wed, 05 Dec 2007 00:00:00 EST</pubDate>
         <item>
             <title>Podcast 8: Linux</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_8_Linux.mp3</link>
-            <pubDate>Tue Feb 26 2008 20:14:40 GMT-0700 (MST)</pubDate>
+            <pubDate>Tue, 26 Feb 2008 00:00:00 EST</pubDate>
             <description>Linux, BSD, Solaris, Windows Server 2008, Server Operating Systems</description>
             <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_8_Linux.mp3" length="28231497" type="audio/mpeg"/>
             <guid>6c6e80f9-a105-4adc-83ca-53e7ed46f402</guid>
@@ -44,7 +44,7 @@
 <item>
             <title>Podcast 7: Internet Marketing</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_7_Internet_Marketing.mp3</link>
-            <pubDate>Fri Jan 25 2008 15:18:37 GMT-0700 (MST)</pubDate>
+            <pubDate>Fri, 25 Jan 2008 00:00:00 EST</pubDate>
             <description>SEO (search engine optimization), Internet Marketing, Monetization, Accessibility.</description>
             <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_7_Internet_Marketing.mp3" length="21738323" type="audio/mpeg"/>
             <guid>e5fc6d42-a6be-4fd3-80a5-c9f35ee89785</guid>
@@ -58,7 +58,7 @@
 <item>
             <title>Podcast 6: CMS &amp; Frameworks</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_6_Frameworks.mp3</link>
-            <pubDate>Thu Jan 24 2008 17:04:17 GMT-0700 (MST)</pubDate>
+            <pubDate>Thu, 24 Jan 2008 00:00:00 EST</pubDate>
             <description>CMS (content management systems), Web frameworks, Ruby on Rails, Drupal, etc.</description>
             <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_6_Frameworks.mp3" length="14990967" type="audio/mpeg"/>
             <guid>bd5bb5f1-d54a-467a-b371-74fac60991dc</guid>
@@ -72,7 +72,7 @@
 <item>
             <title>Podcast 5: Tools</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_5_Tools.mp3</link>
-            <pubDate>Thu Jan 24 2008 14:49:34 GMT-0700 (MST)</pubDate>
+            <pubDate>Thu, 24 Jan 2008 00:00:00 EST</pubDate>
             <description>Web design &amp; development tools &amp; IDE&#39;s, Eclipse, Firefox plugins, Firebug, etc.</description>
             <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_5_Tools.mp3" length="16540453" type="audio/mpeg"/>
             <guid>b9494d40-7a44-4503-8d21-ad026fbff60b</guid>
@@ -86,7 +86,7 @@
 <item>
             <title>Podcast 4: Your First Site</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_4_Server.mp3</link>
-            <pubDate>Wed Jan 23 2008 17:25:31 GMT-0700 (MST)</pubDate>
+            <pubDate>Wed, 23 Jan 2008 00:00:00 EST</pubDate>
             <description>Installing your first site on a WAMP server (windows, apache, mysql, php). Making your site publically accessible.</description>
             <enclosure url="http://ocdevel.com/files/podcasts/web-development/Episode_4_Server.mp3" length="23215676" type="audio/mpeg"/>
             <guid>7d63b52b-0da4-4de4-b6bf-43cfe7ec025c</guid>
@@ -100,7 +100,7 @@
 <item>
             <title>Podcast 3: Client</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_3_Client.mp3</link>
-            <pubDate>Wed Dec 19 2007 21:15:06 GMT-0700 (MST)</pubDate>
+            <pubDate>Wed, 19 Dec 2007 00:00:00 EST</pubDate>
             <description>Client Side Technology includes
   - DHTML
   - Flash, Silverlight, Applets
@@ -162,7 +162,7 @@ AJAX!!!</itunes:summary>
 <item>
             <title>Podcast 2: Server</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_2_Server.mp3</link>
-            <pubDate>Fri Dec 07 2007 15:13:27 GMT-0700 (MST)</pubDate>
+            <pubDate>Fri, 07 Dec 2007 00:00:00 EST</pubDate>
             <description>Systems (sys admin)
   - Linux, Windows Server 2003, BSD
   
@@ -226,7 +226,7 @@ Web server extension modules
 <item>
             <title>Podcast 1: Introduction</title>
             <link>http://ocdevel.com/files/podcasts/web-development/Episode_1_Introduction.mp3</link>
-            <pubDate>Wed Dec 05 2007 14:44:01 GMT-0700 (MST)</pubDate>
+            <pubDate>Wed, 05 Dec 2007 00:00:00 EST</pubDate>
             <description>- Client: Web design ( HTML, CSS, Images ), Interactivity / Browser Objects ( Flash, Flex, Laszlo, Silverlight, Java Applets / Webstart), Client-side scripting ( JavaScript, AJAX)
 - Server: Server-side scripting( PHP, ASP, ASP.NET, J2EE, CGI, Python, Perl, Ruby), Database, Systems Administration
 - Internet marketing: SEO, Accessibility, Marketing, Monitization

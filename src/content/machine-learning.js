@@ -1,10 +1,10 @@
 const episodes = [{
   title: "1. Introduction",
-  date: "02/01/2017",
+  date: "2017-02-01",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
-    length: 12365357,
-    duration: "13:08"
+    length: 11886227,
+    duration: "12:34"
   },
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   teaser: "Introduction to the Machine Learning Guide",
@@ -46,7 +46,7 @@ Planned episodes
 Resources`
 }, {
   title: "2. What is AI / ML",
-  date: "02/09/2017",
+  date: "2017-02-09",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3",
@@ -138,7 +138,7 @@ History
 `
 }, {
   title: "3. Inspiration",
-  date: "02/10/2017",
+  date: "2017-02-10",
   guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3",
