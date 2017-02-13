@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sat, 11 Feb 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Mon, 13 Feb 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:subtitle>
@@ -28,6 +28,80 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+            <title>4. Algorithms - Intuition</title>
+            <link>http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3</link>
+            <pubDate>Sun, 12 Feb 2017 00:00:00 EST</pubDate>
+            <description>## Episode
+Learning (ML)
+- 3-step process
+  - Infer / Predict
+  - Error / Loss
+  - Train / Learn
+- First as batch from spreadsheet, then &quot;online&quot; going forward
+  - Pre-train your &quot;model&quot;
+  - &quot;Examples&quot;
+  - &quot;Weights&quot;
+- Housing cost example
+  - &quot;Features&quot;
+  - Infer cost based on num_rooms, sq_foot, etc
+  - Error / Loss function 
+
+Categories
+- Supervised learning
+  - Vision (CNN)
+  - Speech (RNN)
+- Unsupervised
+  - Market segmentation
+- Reinforcement &amp; Semi-Supervised
+  - Planning (DQN)
+    - Games (chess, Mario)
+    - Robot movement
+  
+## Resources
+- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) overview #article
+- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
+  Semi-technical overview of ML basics &amp; main algorithms 
+</description>
+            <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3" length="20773676" type="audio/mpeg"/>
+            <guid>a7d9b86e-d3aa-4384-a854-792bfcf36e24</guid>
+            <itunes:duration>21:54</itunes:duration>
+            <itunes:subtitle>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.</itunes:subtitle>
+            <itunes:summary>## Episode
+Learning (ML)
+- 3-step process
+  - Infer / Predict
+  - Error / Loss
+  - Train / Learn
+- First as batch from spreadsheet, then &quot;online&quot; going forward
+  - Pre-train your &quot;model&quot;
+  - &quot;Examples&quot;
+  - &quot;Weights&quot;
+- Housing cost example
+  - &quot;Features&quot;
+  - Infer cost based on num_rooms, sq_foot, etc
+  - Error / Loss function 
+
+Categories
+- Supervised learning
+  - Vision (CNN)
+  - Speech (RNN)
+- Unsupervised
+  - Market segmentation
+- Reinforcement &amp; Semi-Supervised
+  - Planning (DQN)
+    - Games (chess, Mario)
+    - Robot movement
+  
+## Resources
+- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) overview #article
+- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
+  Semi-technical overview of ML basics &amp; main algorithms 
+</itunes:summary>
+            <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+            <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+            <itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
             <title>3. Inspiration</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3</link>
             <pubDate>Fri, 10 Feb 2017 00:00:00 EST</pubDate>

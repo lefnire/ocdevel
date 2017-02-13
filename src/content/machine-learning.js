@@ -171,6 +171,48 @@ The Scare
   - [Superintelligence](http://amzn.to/2lzLcrL) #audio
     I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it's kinda "must read"
 `
+}, {
+  title: "4. Algorithms - Intuition",
+  date: "2017-02-12",
+  guid: "a7d9b86e-d3aa-4384-a854-792bfcf36e24",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3",
+    length: 20773676,
+    duration: "21:54"
+  },
+  teaser: "Overview of machine learning algorithms. Infer/predict -> error/loss -> train/learn. Supervised, unsupervised, reinforcement learning.",
+  body:
+`## Episode
+Learning (ML)
+- 3-step process
+  - Infer / Predict
+  - Error / Loss
+  - Train / Learn
+- First as batch from spreadsheet, then "online" going forward
+  - Pre-train your "model"
+  - "Examples"
+  - "Weights"
+- Housing cost example
+  - "Features"
+  - Infer cost based on num_rooms, sq_foot, etc
+  - Error / Loss function 
+
+Categories
+- Supervised learning
+  - Vision (CNN)
+  - Speech (RNN)
+- Unsupervised
+  - Market segmentation
+- Reinforcement & Semi-Supervised
+  - Planning (DQN)
+    - Games (chess, Mario)
+    - Robot movement
+  
+## Resources
+- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) overview #article
+- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
+  Semi-technical overview of ML basics & main algorithms 
+`
 }];
 
 const podcast = {

@@ -6,6 +6,7 @@
     "server": "node ./server.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
+    "podcast": "cd public/files/podcasts && node generate.js && cd ../../..",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
