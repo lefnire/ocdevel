@@ -58,6 +58,7 @@ class Episodes extends Component {
           <Panel key={e.file.url} header={<h3><Link to={`/podcasts/${series}/${i+1}`}>{e.title}</Link></h3>}>
             <span className="pull-right">{moment(e.date).format(fmt)}</span>
             <p>{e.teaser}</p>
+            <Link to={`/podcasts/${series}/${i+1}`}>Read More &raquo;</Link>
           </Panel>
         ))}
       </div>
@@ -142,6 +143,10 @@ class App extends Component {
   };
 
   render() {
+    let {series} = this.props.params;
+    if (!_.includes(['machine-learning', 'web-development'], series))
+      return window.location.href = '/podcasts/machine-learning';
+
     return (
       <div>
         {this.renderHeader()}
