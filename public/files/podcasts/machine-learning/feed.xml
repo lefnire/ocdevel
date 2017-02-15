@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Mon, 13 Feb 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Tue, 14 Feb 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:subtitle>
@@ -58,8 +58,8 @@ Categories
     - Robot movement
   
 ## Resources
-- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) overview #article
-- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) #article 
+- The Master Algorithm (http://amzn.to/2kLOQjW) #audio
   Semi-technical overview of ML basics &amp; main algorithms 
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3" length="20773676" type="audio/mpeg"/>
@@ -93,8 +93,8 @@ Categories
     - Robot movement
   
 ## Resources
-- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) overview #article
-- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) #article 
+- The Master Algorithm (http://amzn.to/2kLOQjW) #audio
   Semi-technical overview of ML basics &amp; main algorithms 
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
@@ -108,7 +108,7 @@ Categories
             <description>## Episode
 Economics / Automation
   - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
-  - [Is your job safe?](http://www.bbc.com/news/technology-34066941)
+  - Is your job safe? (http://www.bbc.com/news/technology-34066941)
   - Universal basic income
 
 Singularity (AGI; Singularity; Next stage of evolution)
@@ -120,13 +120,13 @@ The Scare
   - Bill Gates, Stephen Hawking, Elon Musk ^
   
 ## Resources
-  - [The Singularity Is Near](http://amzn.to/2lzCqKk) #audio
+  - The Singularity Is Near (http://amzn.to/2lzCqKk) #audio
   - Consciousness
-    - [How to Create a Mind](http://amzn.to/2l2frtN) #audio
-    - ☞ [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](https://goo.gl/YIbSaH)
+    - How to Create a Mind (http://amzn.to/2l2frtN) #audio
+    - ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
       #audio My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
-    - [Consciousness Explained](http://amzn.to/2kXR2WI) #audio
-  - [Superintelligence](http://amzn.to/2lzLcrL) #audio
+    - Consciousness Explained (http://amzn.to/2kXR2WI) #audio
+  - Superintelligence (http://amzn.to/2lzLcrL) #audio
     I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3" length="16382362" type="audio/mpeg"/>
@@ -136,7 +136,7 @@ The Scare
             <itunes:summary>## Episode
 Economics / Automation
   - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
-  - [Is your job safe?](http://www.bbc.com/news/technology-34066941)
+  - Is your job safe? (http://www.bbc.com/news/technology-34066941)
   - Universal basic income
 
 Singularity (AGI; Singularity; Next stage of evolution)
@@ -148,13 +148,13 @@ The Scare
   - Bill Gates, Stephen Hawking, Elon Musk ^
   
 ## Resources
-  - [The Singularity Is Near](http://amzn.to/2lzCqKk) #audio
+  - The Singularity Is Near (http://amzn.to/2lzCqKk) #audio
   - Consciousness
-    - [How to Create a Mind](http://amzn.to/2l2frtN) #audio
-    - ☞ [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](https://goo.gl/YIbSaH)
+    - How to Create a Mind (http://amzn.to/2l2frtN) #audio
+    - ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
       #audio My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
-    - [Consciousness Explained](http://amzn.to/2kXR2WI) #audio
-  - [Superintelligence](http://amzn.to/2lzLcrL) #audio
+    - Consciousness Explained (http://amzn.to/2kXR2WI) #audio
+  - Superintelligence (http://amzn.to/2lzLcrL) #audio
     I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
@@ -241,10 +241,10 @@ History
   - AlphaGo &amp; DeepMind
     
 ## Resources
-- [Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence)
-- Brief history articles: [1](https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) [2](http://aitopics.org/misc/brief-history)
-- ☞ [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
-- [Machines of Loving Grace](http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
+- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence)
+- Brief history articles: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history)
+- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
+- Machines of Loving Grace (http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3" length="29646598" type="audio/mpeg"/>
             <guid>129d0157-fbda-4cc6-aaae-1c96745c12c9</guid>
@@ -326,10 +326,10 @@ History
   - AlphaGo &amp; DeepMind
     
 ## Resources
-- [Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence)
-- Brief history articles: [1](https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) [2](http://aitopics.org/misc/brief-history)
-- ☞ [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
-- [Machines of Loving Grace](http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
+- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence)
+- Brief history articles: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history)
+- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
+- Machines of Loving Grace (http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
             <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -339,7 +339,7 @@ History
             <title>1. Introduction</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3</link>
             <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
-            <description>Who am I: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
+            <description>Who am I: Tyler Renelle (https://www.linkedin.com/in/lefnire)
 
 What is this podcast? 
   - &quot;Middle&quot; level overview (deeper than a bird&#39;s eye view of machine learning; higher than math equations)
@@ -354,14 +354,14 @@ Why audio?
 
 What it&#39;s not
   - News and Interviews
-    - [TWiML and AI](https://twimlai.com)
-    - [O&#39;Reilly Data Show](https://www.oreilly.com/topics/oreilly-data-show-podcast)
-    - [Talking machines](http://www.thetalkingmachines.com/)
+    - TWiML and AI (https://twimlai.com)
+    - O&#39;Reilly Data Show (https://www.oreilly.com/topics/oreilly-data-show-podcast)
+    - Talking machines (http://www.thetalkingmachines.com/)
   - Misc Topics
-    - [Linear Digressions](http://lineardigressions.com/)
-    - [Data Skeptic](https://dataskeptic.com/)
+    - Linear Digressions (http://lineardigressions.com/)
+    - Data Skeptic (https://dataskeptic.com/)
   - iTunesU issues
-  - [Learning machines 101](http://www.learningmachines101.com/)
+  - Learning machines 101 (http://www.learningmachines101.com/)
 
 Planned episodes
   - What is AI/ML: definition, comparison, history
@@ -378,7 +378,7 @@ Resources</description>
             <guid>a9bf6e09-aa7e-4126-9e36-22b152419c8f</guid>
             <itunes:duration>12:34</itunes:duration>
             <itunes:subtitle>Introduction to the Machine Learning Guide</itunes:subtitle>
-            <itunes:summary>Who am I: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
+            <itunes:summary>Who am I: Tyler Renelle (https://www.linkedin.com/in/lefnire)
 
 What is this podcast? 
   - &quot;Middle&quot; level overview (deeper than a bird&#39;s eye view of machine learning; higher than math equations)
@@ -393,14 +393,14 @@ Why audio?
 
 What it&#39;s not
   - News and Interviews
-    - [TWiML and AI](https://twimlai.com)
-    - [O&#39;Reilly Data Show](https://www.oreilly.com/topics/oreilly-data-show-podcast)
-    - [Talking machines](http://www.thetalkingmachines.com/)
+    - TWiML and AI (https://twimlai.com)
+    - O&#39;Reilly Data Show (https://www.oreilly.com/topics/oreilly-data-show-podcast)
+    - Talking machines (http://www.thetalkingmachines.com/)
   - Misc Topics
-    - [Linear Digressions](http://lineardigressions.com/)
-    - [Data Skeptic](https://dataskeptic.com/)
+    - Linear Digressions (http://lineardigressions.com/)
+    - Data Skeptic (https://dataskeptic.com/)
   - iTunesU issues
-  - [Learning machines 101](http://www.learningmachines101.com/)
+  - Learning machines 101 (http://www.learningmachines101.com/)
 
 Planned episodes
   - What is AI/ML: definition, comparison, history

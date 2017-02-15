@@ -165,7 +165,7 @@ The Scare
   - [The Singularity Is Near](http://amzn.to/2lzCqKk) #audio
   - Consciousness
     - [How to Create a Mind](http://amzn.to/2l2frtN) #audio
-    - ☞ [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](https://goo.gl/YIbSaH)
+    - ☞ [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](http://amzn.to/2kQGgk5)
       #audio My absolute favorite consciousness starter. Get the audio download & listen along-side this podcast!
     - [Consciousness Explained](http://amzn.to/2kXR2WI) #audio
   - [Superintelligence](http://amzn.to/2lzLcrL) #audio
@@ -209,7 +209,7 @@ Categories
     - Robot movement
   
 ## Resources
-- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) overview #article
+- [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) #article 
 - [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
   Semi-technical overview of ML basics & main algorithms 
 `
