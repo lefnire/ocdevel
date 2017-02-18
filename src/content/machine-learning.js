@@ -133,7 +133,7 @@ History
 ## Resources
 - [Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence)
 - Brief history articles: [1](https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) [2](http://aitopics.org/misc/brief-history)
-- ☞ [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) Exhaustive book on AI history 
+- ☞ [The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) #book Exhaustive book on AI history. [Free PDF?](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
 - [Machines of Loving Grace](http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
 `
 }, {
@@ -210,8 +210,50 @@ Categories
   
 ## Resources
 - [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) #article 
-- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio
-  Semi-technical overview of ML basics & main algorithms 
+- [The Master Algorithm](http://amzn.to/2kLOQjW) #audio Semi-technical overview of ML basics & main algorithms 
+`
+}, {
+  title: "5. Linear Regression",
+  date: "2017-02-16",
+  guid: "2d2e66dd-d100-4e05-afba-a948de1c956d",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-5.mp3",
+    length: 30769356,
+    duration: "33:40"
+  },
+  teaser: "Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression",
+  body:
+`## Episode
+See [Andrew Ng's course notes](https://www.coursera.org/learn/machine-learning/resources/QQx8l)
+
+## Resources
+- ☞ [Andrew Ng's Machine Learning Coursera course](https://www.coursera.org/learn/machine-learning) #mooc
+  No question about it, this is the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
+`
+}, {
+  title: "6. Certificates & Degrees",
+  date: "2017-02-17",
+  guid: "a8bd671f-100f-42ff-a68a-cff7763298f6",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-6.mp3",
+    length: 14888861,
+    duration: "15:36"
+  },
+  teaser: "Discussion on certificates and degrees from Udacity to a Masters degree.",
+  body:
+`## Episode
+- Self-edify
+  - Coursera Specialization - flat $500
+  - Udacity Nanodegree - $200/m (discount if timely completion)
+    - Great for self-teaching, not recognized degree
+    - [Machine Learning](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009)
+    - [Self Driving Car](https://www.udacity.com/drive)
+    - [Artificial Intelligence](https://www.udacity.com/ai)
+- [OMSCS](https://www.omscs.gatech.edu/): Great & cheap online masters degree
+- Portfolio: Most important for getting a job
+
+## Resources
+- Discussions: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)
 `
 }];
 
