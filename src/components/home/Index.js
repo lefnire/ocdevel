@@ -20,7 +20,7 @@ export default class Home extends Component {
             4. specializing in javascript, react, python, and node</p>
         </Jumbotron>
 
-        <Parallax bgImage={images.bird} strength={400} log={true}>
+        <Parallax bgImage={images.moss} strength={400} log={true}>
           <div>
             <img className="stick" src={images.stix2}/>
             <h1 className="Welcome">Web and Mobile Development by</h1>
@@ -71,13 +71,9 @@ export default class Home extends Component {
           medical and programming one day.
           Lisa is available starting April for remote work in React and Javascript.</p>
 
-        <Parallax bgImage={images.oregon} strength={400} log={true}>
-          <div>
-            <p className="kari">Photography by the talented <a href="https://www.kariannphotography.com">Kari Ann
-              Haskell.</a>
-              <br/> Also, thank you <a href="https://www.myfreetextures.com">myfreetextures.com.</a></p>
-          </div>
-        </Parallax>
+        <div>
+          <small className="kari">Photography by the talented <a target="_blank" href="https://www.kariannphotography.com">Kari Ann Haskell.</a></small>
+        </div>
 
       </div>
     );
@@ -85,14 +81,12 @@ export default class Home extends Component {
 }
 
 let images = {
-  bird: require('../../assets/moss-low.jpg'),
+  moss: require('../../assets/moss-low.jpg'),
   bgOCD: require('../../assets/Background-OCD.jpg'),
   bgImage: require('../../assets/water.png.jpg'),
-  oregon: require('../../assets/oregon-low.jpg'),
   stix2: require('../../assets/stix2.png'),
   lisaHead: require('../../assets/Lisa/lisahead2.png'),
   tylerHead: require('../../assets/Tyler/tylerhead.png'),
-  cathead: require('../../assets/cat.png'),
-  cpq: require('../../assets/CPQ.png')
+  cathead: require('../../assets/cat.png')
 };
 

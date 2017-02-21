@@ -6,24 +6,14 @@
     font-family: serif;
     font-size: 20px;
     text-align: center;
-    background-image: url("../../assets/paper-low.jpg");
 }
 
 .Home .ocdevel h1 {
-    color: #5c1b12;
+    color: white;
     font-weight: bold;
     font-size: 60px;
 }
 
-.Home .contact-form {
-    width: 40%;
-    margin: 0 auto; /* center on page */
-    margin-top: 200px;
-    font-family: sans-serif;
-    color: white;
-    font-size: 20px;
-    margin-bottom: 60px;
-}
 
 .Home .contact-formh1 {
     font-family: sans-serif;
@@ -62,13 +52,13 @@
 
 .Home h1, .Home h2 {
     color: #fffbf8;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 
-.Home .head-image {
+.Home img.head-image {
     width: 160px;
     height: 160px;
-    /*margin-bottom: 40px;*/
+    vertical-align: initial;
 }
 
 .Home .heading {
@@ -84,7 +74,6 @@
     background-color: transparent;
     color: #fffbf8;
     font-family: 'Sacramento', cursive;
-    margin-top: 70px;
     margin-bottom: 50px;
     font-size: 200px;
 
@@ -92,14 +81,14 @@
 
 .Home .jumbotron p {
     font-size: 20px;
-    color: #5c1b12;
+    color: white;
     font-family: sans-serif;
     font-weight: bold;
     text-align: center;
     line-height: 35px;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
     border-width: medium;
-    border-color: #5c1b12;
+    border-color: white;
     border-style: solid;
 }
 
