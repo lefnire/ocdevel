@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sat, 18 Feb 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Tue, 21 Feb 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:subtitle>
@@ -28,6 +28,24 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+            <title>7. Logistic Regression</title>
+            <link>http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3</link>
+            <pubDate>Sun, 19 Feb 2017 00:00:00 EST</pubDate>
+            <description>## Episode &amp; Resources
+Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+</description>
+            <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3" length="30495267" type="audio/mpeg"/>
+            <guid>36b6133d-3018-4be0-a36c-61904aa80a1a</guid>
+            <itunes:duration>34:19</itunes:duration>
+            <itunes:subtitle>Your first classifier: Logistic Regression. That plus Linear Regression, and you&#39;re a 101 supervised learner!</itunes:subtitle>
+            <itunes:summary>## Episode &amp; Resources
+Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+</itunes:summary>
+            <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+            <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+            <itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
             <title>6. Certificates &amp; Degrees</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-6.mp3</link>
             <pubDate>Fri, 17 Feb 2017 00:00:00 EST</pubDate>

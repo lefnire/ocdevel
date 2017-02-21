@@ -255,6 +255,20 @@ See [Andrew Ng's course notes](https://www.coursera.org/learn/machine-learning/r
 ## Resources
 - Discussions: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)
 `
+}, {
+  title: "7. Logistic Regression",
+  date: "2017-02-19",
+  guid: "36b6133d-3018-4be0-a36c-61904aa80a1a",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3",
+    length: 30495267,
+    duration: "34:19"
+  },
+  teaser: "Your first classifier: Logistic Regression. That plus Linear Regression, and you're a 101 supervised learner!",
+  body:
+`## Episode & Resources
+[Andrew Ng's Week 3](https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+`
 }];
 
 const podcast = {
