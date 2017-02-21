@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Parallax, Background} from 'react-parallax';
 
-import Contact from './Contact';
 import Jumbotron from './Jumbotron';
 import Portfolio from './Portfolio';
 
@@ -74,7 +73,6 @@ export default class Home extends Component {
 
         <Parallax bgImage={images.oregon} strength={400} log={true}>
           <div>
-            <Contact />
             <p className="kari">Photography by the talented <a href="https://www.kariannphotography.com">Kari Ann
               Haskell.</a>
               <br/> Also, thank you <a href="https://www.myfreetextures.com">myfreetextures.com.</a></p>

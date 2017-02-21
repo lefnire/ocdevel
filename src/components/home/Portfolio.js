@@ -49,7 +49,7 @@ export default class Portfolio extends React.Component {
 
         <div className='row'>
           {portfolio.map(item =>
-            <div className="col-md-4">
+            <div className="col-md-4" key={item.url}>
               <a className="portfoliolink" href={item.url} target='_blank'><h4>{item.name}</h4></a>
               <img
                 className='portfolio-image img-rounded'

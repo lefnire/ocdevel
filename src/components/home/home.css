@@ -291,4 +291,8 @@
     margin: 0;
 }
 
-
+.modal-body .contact-buttons a {
+    margin: 5px;
+    padding: 5px;
+    display: block;
+}

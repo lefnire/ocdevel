@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {PageHeader, Panel} from 'react-bootstrap';
-import {Navbar,Nav,NavItem,NavDropdown,MenuItem} from 'react-bootstrap';
 import {Link} from 'react-router';
-import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import ReactDisqusThread from 'react-disqus-thread';
@@ -111,37 +109,6 @@ class Series extends Component {
 }
 
 class App extends Component {
-  renderHeader = () => {
-    return (
-      <Navbar collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">Home</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <LinkContainer to="/podcasts/machine-learning">
-              <NavItem eventKey={1}>Machine Learning & AI</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/podcasts/web-development">
-              <NavItem eventKey={2}>Web Development</NavItem>
-            </LinkContainer>
-            {/*<LinkContainer to="/blog">
-              <NavItem eventKey={4}>Blog</NavItem>
-            </LinkContainer>*/}
-          </Nav>
-          <Nav pullRight>
-            <LinkContainer to="/contact">
-              <NavItem eventKey={1}>Contact</NavItem>
-            </LinkContainer>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
-  };
-
   render() {
     let {series} = this.props.params;
     if (!_.includes(['machine-learning', 'web-development'], series))
@@ -149,7 +116,6 @@ class App extends Component {
 
     return (
       <div>
-        {this.renderHeader()}
         <div className="container">
           {this.props.children}
         </div>
