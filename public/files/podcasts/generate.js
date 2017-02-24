@@ -14,6 +14,8 @@ const _escape = (str) => {
     .replace(/\[(.*?)\](?=\()/g, '$1 '); // change links from `[a](a.com)` to a (a.com)
 };
 
+const _bodyAndTeaser = (e) => _escape(e.teaser) + (e.body? ('\n\n' + _escape(e.body)) : '');
+
 _.each(podcasts, (podcast, key) => {
   let xml = `<?xml version="1.0" encoding="utf-8"?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
@@ -48,12 +50,12 @@ _.each(podcasts, (podcast, key) => {
             <title>${_.escape(e.title)}</title>
             <link>${e.file.url}</link>
             <pubDate>${moment(e.date).format(fmt)} EST</pubDate>
-            <description>${_escape(e.body || e.teaser)}</description>
+            <description>${_bodyAndTeaser(e)}</description>
             <enclosure url="${e.file.url}" length="${e.file.length}" type="${e.file.type || 'audio/mpeg'}"/>
             <guid>${e.guid}</guid>
             <itunes:duration>${e.file.duration}</itunes:duration>
             <itunes:subtitle>${_escape(e.teaser)}</itunes:subtitle>
-            <itunes:summary>${_escape(e.body || e.teaser)}</itunes:summary>
+            <itunes:summary>${_bodyAndTeaser(e)}</itunes:summary>
             <itunes:image href="${podcast.image}"/>
             <itunes:keywords>${_(podcast.keywords).concat(e.keywords).compact().uniq().values()}</itunes:keywords>
             <itunes:explicit>no</itunes:explicit>

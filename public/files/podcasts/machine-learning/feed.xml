@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Tue, 21 Feb 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Fri, 24 Feb 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your &#39;start here&#39; ML resource.</itunes:subtitle>
@@ -28,18 +28,104 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+            <title>8. Math</title>
+            <link>http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3</link>
+            <pubDate>Thu, 23 Feb 2017 00:00:00 EST</pubDate>
+            <description>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus
+
+## Episode
+- Linear Algebra = Matrix (or &quot;Tensor&quot;) math. Wx + b. like chopping in our analogy
+- Stats = Probability/inference, the heart of machine learning. Like recipes/cookbook
+- Calculus = Learning. Moving our error dot to the bottom of the valley. Like baking, the actual &quot;cook&quot; step.
+
+## Resources
+Either come back here after you&#39;ve finished Ng&#39;s course, or start learning the math in tandem with ML (say 1 day a week).
+
+☞ KhanAcademy: 
+- LinAlg (https://www.khanacademy.org/math/linear-algebra)
+- Stats (https://www.khanacademy.org/math/statistics-probability)
+- Calc (https://www.khanacademy.org/math/calculus-home)
+
+Primers (PDFs)
+- See &quot;Section Notes&quot; of cs229 (http://cs229.stanford.edu/materials.html)
+
+Books
+- &quot;Linear Algebra Done Right&quot;
+- &quot;All of statistics&quot;
+- (Not sure on Calc, comment if you know a good one)
+
+The Great Courses `audio` highly recommend audio supplementary material 
+- Stats (https://goo.gl/sIBOjw)
+- Calc 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- ☞ Mathematical Decision Making (https://goo.gl/V75I49) `recommended` basically an ML course (&quot;Operations Research&quot;, a very similar field)
+- Relevant others: 
+  - Game Theory (https://goo.gl/yEEOG1)
+  - Discrete Math (https://goo.gl/CBKCJE)
+- Conversion Script: `for f in *.mp4; do ffmpeg -i &quot;$f&quot; &quot;${f%.mp4}.mp3&quot; &amp;&amp; rm &quot;$f&quot;; done`
+</description>
+            <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3" length="23861215" type="audio/mpeg"/>
+            <guid>a5c01d38-5242-4b63-b265-81fc53d38ad3</guid>
+            <itunes:duration>26:12</itunes:duration>
+            <itunes:subtitle>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus</itunes:subtitle>
+            <itunes:summary>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus
+
+## Episode
+- Linear Algebra = Matrix (or &quot;Tensor&quot;) math. Wx + b. like chopping in our analogy
+- Stats = Probability/inference, the heart of machine learning. Like recipes/cookbook
+- Calculus = Learning. Moving our error dot to the bottom of the valley. Like baking, the actual &quot;cook&quot; step.
+
+## Resources
+Either come back here after you&#39;ve finished Ng&#39;s course, or start learning the math in tandem with ML (say 1 day a week).
+
+☞ KhanAcademy: 
+- LinAlg (https://www.khanacademy.org/math/linear-algebra)
+- Stats (https://www.khanacademy.org/math/statistics-probability)
+- Calc (https://www.khanacademy.org/math/calculus-home)
+
+Primers (PDFs)
+- See &quot;Section Notes&quot; of cs229 (http://cs229.stanford.edu/materials.html)
+
+Books
+- &quot;Linear Algebra Done Right&quot;
+- &quot;All of statistics&quot;
+- (Not sure on Calc, comment if you know a good one)
+
+The Great Courses `audio` highly recommend audio supplementary material 
+- Stats (https://goo.gl/sIBOjw)
+- Calc 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- ☞ Mathematical Decision Making (https://goo.gl/V75I49) `recommended` basically an ML course (&quot;Operations Research&quot;, a very similar field)
+- Relevant others: 
+  - Game Theory (https://goo.gl/yEEOG1)
+  - Discrete Math (https://goo.gl/CBKCJE)
+- Conversion Script: `for f in *.mp4; do ffmpeg -i &quot;$f&quot; &quot;${f%.mp4}.mp3&quot; &amp;&amp; rm &quot;$f&quot;; done`
+</itunes:summary>
+            <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+            <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+            <itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
             <title>7. Logistic Regression</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3</link>
             <pubDate>Sun, 19 Feb 2017 00:00:00 EST</pubDate>
-            <description>## Episode &amp; Resources
-Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+            <description>Your first classifier: Logistic Regression. That plus Linear Regression, and you&#39;re a 101 supervised learner!
+
+## Episode
+See Andrew Ng Week 3 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+
+## Resources
+You&#39;ve started Ng&#39;s Coursera course (https://www.coursera.org/learn/machine-learning), right? Riight?
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3" length="30495267" type="audio/mpeg"/>
             <guid>36b6133d-3018-4be0-a36c-61904aa80a1a</guid>
             <itunes:duration>34:19</itunes:duration>
             <itunes:subtitle>Your first classifier: Logistic Regression. That plus Linear Regression, and you&#39;re a 101 supervised learner!</itunes:subtitle>
-            <itunes:summary>## Episode &amp; Resources
-Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+            <itunes:summary>Your first classifier: Logistic Regression. That plus Linear Regression, and you&#39;re a 101 supervised learner!
+
+## Episode
+See Andrew Ng Week 3 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
+
+## Resources
+You&#39;ve started Ng&#39;s Coursera course (https://www.coursera.org/learn/machine-learning), right? Riight?
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
             <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -49,7 +135,9 @@ Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resource
             <title>6. Certificates &amp; Degrees</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-6.mp3</link>
             <pubDate>Fri, 17 Feb 2017 00:00:00 EST</pubDate>
-            <description>## Episode
+            <description>Discussion on certificates and degrees from Udacity to a Masters degree.
+
+## Episode
 - Self-edify
   - Coursera Specialization - flat $500
   - Udacity Nanodegree - $200/m (discount if timely completion)
@@ -67,7 +155,9 @@ Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resource
             <guid>a8bd671f-100f-42ff-a68a-cff7763298f6</guid>
             <itunes:duration>15:36</itunes:duration>
             <itunes:subtitle>Discussion on certificates and degrees from Udacity to a Masters degree.</itunes:subtitle>
-            <itunes:summary>## Episode
+            <itunes:summary>Discussion on certificates and degrees from Udacity to a Masters degree.
+
+## Episode
 - Self-edify
   - Coursera Specialization - flat $500
   - Udacity Nanodegree - $200/m (discount if timely completion)
@@ -89,22 +179,26 @@ Andrew Ng&#39;s Week 3 (https://www.coursera.org/learn/machine-learning/resource
             <title>5. Linear Regression</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-5.mp3</link>
             <pubDate>Thu, 16 Feb 2017 00:00:00 EST</pubDate>
-            <description>## Episode
-See Andrew Ng&#39;s course notes (https://www.coursera.org/learn/machine-learning/resources/QQx8l)
+            <description>Introduction to the first machine-learning algorithm, the &#39;hello world&#39; of supervised learning - Linear Regression
+
+## Episode
+See Andrew Ng Week 2 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/QQx8l)
 
 ## Resources
-- ☞ Andrew Ng&#39;s Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) #mooc
+- ☞ Andrew Ng&#39;s Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) `mooc`
   No question about it, this is the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-5.mp3" length="30769356" type="audio/mpeg"/>
             <guid>2d2e66dd-d100-4e05-afba-a948de1c956d</guid>
             <itunes:duration>33:40</itunes:duration>
             <itunes:subtitle>Introduction to the first machine-learning algorithm, the &#39;hello world&#39; of supervised learning - Linear Regression</itunes:subtitle>
-            <itunes:summary>## Episode
-See Andrew Ng&#39;s course notes (https://www.coursera.org/learn/machine-learning/resources/QQx8l)
+            <itunes:summary>Introduction to the first machine-learning algorithm, the &#39;hello world&#39; of supervised learning - Linear Regression
+
+## Episode
+See Andrew Ng Week 2 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/QQx8l)
 
 ## Resources
-- ☞ Andrew Ng&#39;s Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) #mooc
+- ☞ Andrew Ng&#39;s Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) `mooc`
   No question about it, this is the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
@@ -115,7 +209,9 @@ See Andrew Ng&#39;s course notes (https://www.coursera.org/learn/machine-learnin
             <title>4. Algorithms - Intuition</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3</link>
             <pubDate>Sun, 12 Feb 2017 00:00:00 EST</pubDate>
-            <description>## Episode
+            <description>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.
+
+## Episode
 Learning (ML)
 - 3-step process
   - Infer / Predict
@@ -142,14 +238,16 @@ Categories
     - Robot movement
   
 ## Resources
-- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) #article 
-- The Master Algorithm (http://amzn.to/2kLOQjW) #audio Semi-technical overview of ML basics &amp; main algorithms 
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article` 
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio` Semi-technical overview of ML basics &amp; main algorithms 
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3" length="20773676" type="audio/mpeg"/>
             <guid>a7d9b86e-d3aa-4384-a854-792bfcf36e24</guid>
             <itunes:duration>21:54</itunes:duration>
             <itunes:subtitle>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.</itunes:subtitle>
-            <itunes:summary>## Episode
+            <itunes:summary>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.
+
+## Episode
 Learning (ML)
 - 3-step process
   - Infer / Predict
@@ -176,8 +274,8 @@ Categories
     - Robot movement
   
 ## Resources
-- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) #article 
-- The Master Algorithm (http://amzn.to/2kLOQjW) #audio Semi-technical overview of ML basics &amp; main algorithms 
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article` 
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio` Semi-technical overview of ML basics &amp; main algorithms 
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
             <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -187,57 +285,59 @@ Categories
             <title>3. Inspiration</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3</link>
             <pubDate>Fri, 10 Feb 2017 00:00:00 EST</pubDate>
-            <description>## Episode
+            <description>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.
+
+## Episode
 Economics / Automation
-  - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
-  - Is your job safe? (http://www.bbc.com/news/technology-34066941)
-  - Universal basic income
+- Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
+- Is your job safe? (http://www.bbc.com/news/technology-34066941)
+- Universal basic income
 
 Singularity (AGI; Singularity; Next stage of evolution)
 
 Consciousness (Functionalism / Computational Theory of Mind / Simulations)
 
 The Scare
-  - Superintelligence by Nick Bostrom
-  - Bill Gates, Stephen Hawking, Elon Musk ^
+- Superintelligence by Nick Bostrom
+- Bill Gates, Stephen Hawking, Elon Musk ^
   
 ## Resources
-  - The Singularity Is Near (http://amzn.to/2lzCqKk) #audio
-  - Consciousness
-    - How to Create a Mind (http://amzn.to/2l2frtN) #audio
-    - ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
-      #audio My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
-    - Consciousness Explained (http://amzn.to/2kXR2WI) #audio
-  - Superintelligence (http://amzn.to/2lzLcrL) #audio
-    I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
+- The Singularity Is Near (http://amzn.to/2lzCqKk) `audio`
+- Consciousness
+  - How to Create a Mind (http://amzn.to/2l2frtN) `audio`
+  - ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio` My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
+  - Consciousness Explained (http://amzn.to/2kXR2WI) `audio`
+- Superintelligence (http://amzn.to/2lzLcrL) `audio`
+  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3" length="16382362" type="audio/mpeg"/>
             <guid>a0b24583-e253-492c-addc-ee0c0aeb1765</guid>
             <itunes:duration>17:41</itunes:duration>
             <itunes:subtitle>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.</itunes:subtitle>
-            <itunes:summary>## Episode
+            <itunes:summary>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.
+
+## Episode
 Economics / Automation
-  - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
-  - Is your job safe? (http://www.bbc.com/news/technology-34066941)
-  - Universal basic income
+- Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
+- Is your job safe? (http://www.bbc.com/news/technology-34066941)
+- Universal basic income
 
 Singularity (AGI; Singularity; Next stage of evolution)
 
 Consciousness (Functionalism / Computational Theory of Mind / Simulations)
 
 The Scare
-  - Superintelligence by Nick Bostrom
-  - Bill Gates, Stephen Hawking, Elon Musk ^
+- Superintelligence by Nick Bostrom
+- Bill Gates, Stephen Hawking, Elon Musk ^
   
 ## Resources
-  - The Singularity Is Near (http://amzn.to/2lzCqKk) #audio
-  - Consciousness
-    - How to Create a Mind (http://amzn.to/2l2frtN) #audio
-    - ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
-      #audio My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
-    - Consciousness Explained (http://amzn.to/2kXR2WI) #audio
-  - Superintelligence (http://amzn.to/2lzLcrL) #audio
-    I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
+- The Singularity Is Near (http://amzn.to/2lzCqKk) `audio`
+- Consciousness
+  - How to Create a Mind (http://amzn.to/2l2frtN) `audio`
+  - ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio` My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
+  - Consciousness Explained (http://amzn.to/2kXR2WI) `audio`
+- Superintelligence (http://amzn.to/2lzLcrL) `audio`
+  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it&#39;s kinda &quot;must read&quot;
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
             <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -247,171 +347,175 @@ The Scare
             <title>2. What is AI / ML</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3</link>
             <pubDate>Thu, 09 Feb 2017 00:00:00 EST</pubDate>
-            <description>## Episode
+            <description>What is artificial intelligence and machine learning? What&#39;s the difference? How about compared to statistics and data science? AI history.
+
+## Episode
 
 What is AI?
-  - Simulate any intellectual task
-  - Goals
-    - Search / planning (eg chess)
-    - Reasoning / knowledge representation (eg Watson on Jeopardy)
-    - Perception
-    - Ability to move and manipulate objects
-    - Natural language processing (communication)
-    - Learning
-  - Applications
-    - Autonomous vehicles (drones, self-driving cars)
-    - Medical diagnosis
-    - Creating art (such as poetry)
-    - Proving mathematical theorems
-    - Playing games (such as Chess or Go)
-    - Search engines
-    - Online assistants (such as Siri)
-    - Image recognition in photographs
-    - Spam filtering
-    - Prediction of judicial decisions
-    - Targeting online advertisements 
-  - When a technique -&gt; mainstream, no longer AI: &quot;AI effect&quot;
-    - Pre-programming
-    - Weak AI vs Strong / AGI
+- Simulate any intellectual task
+- Goals
+  - Search / planning (eg chess)
+  - Reasoning / knowledge representation (eg Watson on Jeopardy)
+  - Perception
+  - Ability to move and manipulate objects
+  - Natural language processing (communication)
+  - Learning
+- Applications
+  - Autonomous vehicles (drones, self-driving cars)
+  - Medical diagnosis
+  - Creating art (such as poetry)
+  - Proving mathematical theorems
+  - Playing games (such as Chess or Go)
+  - Search engines
+  - Online assistants (such as Siri)
+  - Image recognition in photographs
+  - Spam filtering
+  - Prediction of judicial decisions
+  - Targeting online advertisements 
+- When a technique -&gt; mainstream, no longer AI: &quot;AI effect&quot;
+  - Pre-programming
+  - Weak AI vs Strong / AGI
 
 What is ML?
-  - Pattern / Predict / Learn
-  - Versus
-    - AI
-      - The &quot;whole&quot; (robotics, planning, etc)
-      - Professional
-        - ML more interesting, subsuming other fields
-          - From circle to splotch, with ever-growing tendrils
-          - Deep Learning ^
-        - ML is starter
-      - Conversation
-        &quot;AI when wow-ing or colloquial, ML when being professional. Like &quot;coding&quot; vs &quot;software engineering&quot;&quot;
-    - Stats
-    - DataScience
-      - Professionally
-      - Adsense v Analytics
+- Pattern / Predict / Learn
+- Versus
+  - AI
+    - The &quot;whole&quot; (robotics, planning, etc)
+    - Professional
+      - ML more interesting, subsuming other fields
+        - From circle to splotch, with ever-growing tendrils
+        - Deep Learning ^
+      - ML is starter
+    - Conversation
+      &quot;AI when wow-ing or colloquial, ML when being professional. Like &quot;coding&quot; vs &quot;software engineering&quot;&quot;
+  - Stats
+  - DataScience
+    - Professionally
+    - Adsense v Analytics
 
 History
-  - Greek mythology, Golums
-  - First attempt: Ramon Lull, 13th century
-  - Davinci&#39;s walking animals
-  - Descartes, Leibniz
-  - 1700s-1800s: Statistics &amp; Mathematical decision making
-    - Thomas Bayes: reasoning about the probability of events
-    - George Boole: logical reasoning / binary algebra
-    - Gottlob Frege: Propositional logic 
-  - 1832: Charles Babbage &amp; Ada Byron / Lovelace: designed Analytical Engine (1832), programmable mechanical calculating machines
-  - 1936: Universal Turing Machine
-    - Computing Machinery and Intelligence - explored AI!
-  - 1946: John von Neumann Universal Computing Machine
-  - 1943: Warren McCulloch &amp; Walter Pitts: cogsci rep of neuron; Frank Rosemblatt uses to create Perceptron (-&gt; neural networks by way of MLP)
-  - 50s-70s: &quot;AI&quot; coined @Dartmouth workshop 1956 - goal to simulate all aspects of intelligence. John McCarthy, Marvin Minksy, Arthur Samuel, Oliver Selfridge, Ray Solomonoff, Allen Newell, Herbert Simon
-    - Newell &amp; Simon: Hueristics -&gt; Logic Theories, General Problem Solver
-    - Slefridge: Computer Vision
-    - NLP
-    - Stanford Research Institute: Shakey
-    - Feigenbaum: Expert systems
-    - GOFAI / symbolism
-      - symbolic
-      - operations research / management science
-      - logic-based
-      - knowledge-based / expert systems
-  - 70s: Lighthill report (James Lighthill), big promises -&gt; AI Winter
-  - 90s: Data, Computation, Practical Application -&gt; AI back (90s)
-    - Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
-  - Bloomberg, 2015 was whopper for AI in industry
-  - AlphaGo &amp; DeepMind
+- Greek mythology, Golums
+- First attempt: Ramon Lull, 13th century
+- Davinci&#39;s walking animals
+- Descartes, Leibniz
+- 1700s-1800s: Statistics &amp; Mathematical decision making
+  - Thomas Bayes: reasoning about the probability of events
+  - George Boole: logical reasoning / binary algebra
+  - Gottlob Frege: Propositional logic 
+- 1832: Charles Babbage &amp; Ada Byron / Lovelace: designed Analytical Engine (1832), programmable mechanical calculating machines
+- 1936: Universal Turing Machine
+  - Computing Machinery and Intelligence - explored AI!
+- 1946: John von Neumann Universal Computing Machine
+- 1943: Warren McCulloch &amp; Walter Pitts: cogsci rep of neuron; Frank Rosemblatt uses to create Perceptron (-&gt; neural networks by way of MLP)
+- 50s-70s: &quot;AI&quot; coined @Dartmouth workshop 1956 - goal to simulate all aspects of intelligence. John McCarthy, Marvin Minksy, Arthur Samuel, Oliver Selfridge, Ray Solomonoff, Allen Newell, Herbert Simon
+  - Newell &amp; Simon: Hueristics -&gt; Logic Theories, General Problem Solver
+  - Slefridge: Computer Vision
+  - NLP
+  - Stanford Research Institute: Shakey
+  - Feigenbaum: Expert systems
+  - GOFAI / symbolism
+    - symbolic
+    - operations research / management science
+    - logic-based
+    - knowledge-based / expert systems
+- 70s: Lighthill report (James Lighthill), big promises -&gt; AI Winter
+- 90s: Data, Computation, Practical Application -&gt; AI back (90s)
+  - Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
+- Bloomberg, 2015 was whopper for AI in industry
+- AlphaGo &amp; DeepMind
     
 ## Resources
-- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence)
-- Brief history articles: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history)
-- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) #book Exhaustive book on AI history. Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
-- Machines of Loving Grace (http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
+- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence) `article`
+- Brief history: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history) `article`
+- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) `book` Exhaustive book on AI history. Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
+- Machines of Loving Grace (http://amzn.to/2kRcBWq) `audio` Shorter version if the above is too much to chew
 </description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3" length="29646598" type="audio/mpeg"/>
             <guid>129d0157-fbda-4cc6-aaae-1c96745c12c9</guid>
             <itunes:duration>32:05</itunes:duration>
             <itunes:subtitle>What is artificial intelligence and machine learning? What&#39;s the difference? How about compared to statistics and data science? AI history.</itunes:subtitle>
-            <itunes:summary>## Episode
+            <itunes:summary>What is artificial intelligence and machine learning? What&#39;s the difference? How about compared to statistics and data science? AI history.
+
+## Episode
 
 What is AI?
-  - Simulate any intellectual task
-  - Goals
-    - Search / planning (eg chess)
-    - Reasoning / knowledge representation (eg Watson on Jeopardy)
-    - Perception
-    - Ability to move and manipulate objects
-    - Natural language processing (communication)
-    - Learning
-  - Applications
-    - Autonomous vehicles (drones, self-driving cars)
-    - Medical diagnosis
-    - Creating art (such as poetry)
-    - Proving mathematical theorems
-    - Playing games (such as Chess or Go)
-    - Search engines
-    - Online assistants (such as Siri)
-    - Image recognition in photographs
-    - Spam filtering
-    - Prediction of judicial decisions
-    - Targeting online advertisements 
-  - When a technique -&gt; mainstream, no longer AI: &quot;AI effect&quot;
-    - Pre-programming
-    - Weak AI vs Strong / AGI
+- Simulate any intellectual task
+- Goals
+  - Search / planning (eg chess)
+  - Reasoning / knowledge representation (eg Watson on Jeopardy)
+  - Perception
+  - Ability to move and manipulate objects
+  - Natural language processing (communication)
+  - Learning
+- Applications
+  - Autonomous vehicles (drones, self-driving cars)
+  - Medical diagnosis
+  - Creating art (such as poetry)
+  - Proving mathematical theorems
+  - Playing games (such as Chess or Go)
+  - Search engines
+  - Online assistants (such as Siri)
+  - Image recognition in photographs
+  - Spam filtering
+  - Prediction of judicial decisions
+  - Targeting online advertisements 
+- When a technique -&gt; mainstream, no longer AI: &quot;AI effect&quot;
+  - Pre-programming
+  - Weak AI vs Strong / AGI
 
 What is ML?
-  - Pattern / Predict / Learn
-  - Versus
-    - AI
-      - The &quot;whole&quot; (robotics, planning, etc)
-      - Professional
-        - ML more interesting, subsuming other fields
-          - From circle to splotch, with ever-growing tendrils
-          - Deep Learning ^
-        - ML is starter
-      - Conversation
-        &quot;AI when wow-ing or colloquial, ML when being professional. Like &quot;coding&quot; vs &quot;software engineering&quot;&quot;
-    - Stats
-    - DataScience
-      - Professionally
-      - Adsense v Analytics
+- Pattern / Predict / Learn
+- Versus
+  - AI
+    - The &quot;whole&quot; (robotics, planning, etc)
+    - Professional
+      - ML more interesting, subsuming other fields
+        - From circle to splotch, with ever-growing tendrils
+        - Deep Learning ^
+      - ML is starter
+    - Conversation
+      &quot;AI when wow-ing or colloquial, ML when being professional. Like &quot;coding&quot; vs &quot;software engineering&quot;&quot;
+  - Stats
+  - DataScience
+    - Professionally
+    - Adsense v Analytics
 
 History
-  - Greek mythology, Golums
-  - First attempt: Ramon Lull, 13th century
-  - Davinci&#39;s walking animals
-  - Descartes, Leibniz
-  - 1700s-1800s: Statistics &amp; Mathematical decision making
-    - Thomas Bayes: reasoning about the probability of events
-    - George Boole: logical reasoning / binary algebra
-    - Gottlob Frege: Propositional logic 
-  - 1832: Charles Babbage &amp; Ada Byron / Lovelace: designed Analytical Engine (1832), programmable mechanical calculating machines
-  - 1936: Universal Turing Machine
-    - Computing Machinery and Intelligence - explored AI!
-  - 1946: John von Neumann Universal Computing Machine
-  - 1943: Warren McCulloch &amp; Walter Pitts: cogsci rep of neuron; Frank Rosemblatt uses to create Perceptron (-&gt; neural networks by way of MLP)
-  - 50s-70s: &quot;AI&quot; coined @Dartmouth workshop 1956 - goal to simulate all aspects of intelligence. John McCarthy, Marvin Minksy, Arthur Samuel, Oliver Selfridge, Ray Solomonoff, Allen Newell, Herbert Simon
-    - Newell &amp; Simon: Hueristics -&gt; Logic Theories, General Problem Solver
-    - Slefridge: Computer Vision
-    - NLP
-    - Stanford Research Institute: Shakey
-    - Feigenbaum: Expert systems
-    - GOFAI / symbolism
-      - symbolic
-      - operations research / management science
-      - logic-based
-      - knowledge-based / expert systems
-  - 70s: Lighthill report (James Lighthill), big promises -&gt; AI Winter
-  - 90s: Data, Computation, Practical Application -&gt; AI back (90s)
-    - Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
-  - Bloomberg, 2015 was whopper for AI in industry
-  - AlphaGo &amp; DeepMind
+- Greek mythology, Golums
+- First attempt: Ramon Lull, 13th century
+- Davinci&#39;s walking animals
+- Descartes, Leibniz
+- 1700s-1800s: Statistics &amp; Mathematical decision making
+  - Thomas Bayes: reasoning about the probability of events
+  - George Boole: logical reasoning / binary algebra
+  - Gottlob Frege: Propositional logic 
+- 1832: Charles Babbage &amp; Ada Byron / Lovelace: designed Analytical Engine (1832), programmable mechanical calculating machines
+- 1936: Universal Turing Machine
+  - Computing Machinery and Intelligence - explored AI!
+- 1946: John von Neumann Universal Computing Machine
+- 1943: Warren McCulloch &amp; Walter Pitts: cogsci rep of neuron; Frank Rosemblatt uses to create Perceptron (-&gt; neural networks by way of MLP)
+- 50s-70s: &quot;AI&quot; coined @Dartmouth workshop 1956 - goal to simulate all aspects of intelligence. John McCarthy, Marvin Minksy, Arthur Samuel, Oliver Selfridge, Ray Solomonoff, Allen Newell, Herbert Simon
+  - Newell &amp; Simon: Hueristics -&gt; Logic Theories, General Problem Solver
+  - Slefridge: Computer Vision
+  - NLP
+  - Stanford Research Institute: Shakey
+  - Feigenbaum: Expert systems
+  - GOFAI / symbolism
+    - symbolic
+    - operations research / management science
+    - logic-based
+    - knowledge-based / expert systems
+- 70s: Lighthill report (James Lighthill), big promises -&gt; AI Winter
+- 90s: Data, Computation, Practical Application -&gt; AI back (90s)
+  - Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
+- Bloomberg, 2015 was whopper for AI in industry
+- AlphaGo &amp; DeepMind
     
 ## Resources
-- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence)
-- Brief history articles: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history)
-- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) #book Exhaustive book on AI history. Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
-- Machines of Loving Grace (http://amzn.to/2kRcBWq) #audio Shorter version if the above is too much to chew
+- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence) `article`
+- Brief history: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history) `article`
+- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) `book` Exhaustive book on AI history. Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
+- Machines of Loving Grace (http://amzn.to/2kRcBWq) `audio` Shorter version if the above is too much to chew
 </itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
             <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -421,80 +525,80 @@ History
             <title>1. Introduction</title>
             <link>http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3</link>
             <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
-            <description>Who am I: Tyler Renelle (https://www.linkedin.com/in/lefnire)
+            <description>Introduction to the Machine Learning Guide
+
+Who am I: Tyler Renelle (https://www.linkedin.com/in/lefnire)
 
 What is this podcast? 
-  - &quot;Middle&quot; level overview (deeper than a bird&#39;s eye view of machine learning; higher than math equations)
-  - No math/programming experience required
+- &quot;Middle&quot; level overview (deeper than a bird&#39;s eye view of machine learning; higher than math equations)
+- No math/programming experience required
 
 Who is it for
-  - Anyone curious about machine learning fundamentals (coming from /r/singularity, futurology, learningmachinelearning, etc)
-  - Aspiring machine learning developers (maybe transitioning from web/mobile development)
+- Anyone curious about machine learning fundamentals (coming from /r/singularity, futurology, learningmachinelearning, etc)
+- Aspiring machine learning developers (maybe transitioning from web/mobile development)
 
 Why audio?
-  - Supplementary content for commute/exercise/chores will help solidify your book/course-work
+- Supplementary content for commute/exercise/chores will help solidify your book/course-work
 
 What it&#39;s not
-  - News and Interviews
-    - TWiML and AI (https://twimlai.com)
-    - O&#39;Reilly Data Show (https://www.oreilly.com/topics/oreilly-data-show-podcast)
-    - Talking machines (http://www.thetalkingmachines.com/)
-  - Misc Topics
-    - Linear Digressions (http://lineardigressions.com/)
-    - Data Skeptic (https://dataskeptic.com/)
-  - iTunesU issues
-  - Learning machines 101 (http://www.learningmachines101.com/)
+- News and Interviews
+  - TWiML and AI (https://twimlai.com)
+  - O&#39;Reilly Data Show (https://www.oreilly.com/topics/oreilly-data-show-podcast)
+  - Talking machines (http://www.thetalkingmachines.com/)
+- Misc Topics
+  - Linear Digressions (http://lineardigressions.com/)
+  - Data Skeptic (https://dataskeptic.com/)
+- iTunesU issues
+- Learning machines 101 (http://www.learningmachines101.com/)
 
 Planned episodes
-  - What is AI/ML: definition, comparison, history
-  - Inspiration: automation, singularity, consciousness
-  - ML Intuition: learning basics (infer/error/train); supervised/unsupervised/reinforcement; applications
-  - Math overview: linear algebra, statistics, calculus
-  - Linear models: supervised (regression, classification); unsupervised
-  - Parts: regularization, performance evaluation, dimensionality reduction, etc
-  - Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
-  - Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc
-  
-Resources</description>
+- What is AI/ML: definition, comparison, history
+- Inspiration: automation, singularity, consciousness
+- ML Intuition: learning basics (infer/error/train); supervised/unsupervised/reinforcement; applications
+- Math overview: linear algebra, statistics, calculus
+- Linear models: supervised (regression, classification); unsupervised
+- Parts: regularization, performance evaluation, dimensionality reduction, etc
+- Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
+- Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc</description>
             <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3" length="11886227" type="audio/mpeg"/>
             <guid>a9bf6e09-aa7e-4126-9e36-22b152419c8f</guid>
             <itunes:duration>12:34</itunes:duration>
             <itunes:subtitle>Introduction to the Machine Learning Guide</itunes:subtitle>
-            <itunes:summary>Who am I: Tyler Renelle (https://www.linkedin.com/in/lefnire)
+            <itunes:summary>Introduction to the Machine Learning Guide
+
+Who am I: Tyler Renelle (https://www.linkedin.com/in/lefnire)
 
 What is this podcast? 
-  - &quot;Middle&quot; level overview (deeper than a bird&#39;s eye view of machine learning; higher than math equations)
-  - No math/programming experience required
+- &quot;Middle&quot; level overview (deeper than a bird&#39;s eye view of machine learning; higher than math equations)
+- No math/programming experience required
 
 Who is it for
-  - Anyone curious about machine learning fundamentals (coming from /r/singularity, futurology, learningmachinelearning, etc)
-  - Aspiring machine learning developers (maybe transitioning from web/mobile development)
+- Anyone curious about machine learning fundamentals (coming from /r/singularity, futurology, learningmachinelearning, etc)
+- Aspiring machine learning developers (maybe transitioning from web/mobile development)
 
 Why audio?
-  - Supplementary content for commute/exercise/chores will help solidify your book/course-work
+- Supplementary content for commute/exercise/chores will help solidify your book/course-work
 
 What it&#39;s not
-  - News and Interviews
-    - TWiML and AI (https://twimlai.com)
-    - O&#39;Reilly Data Show (https://www.oreilly.com/topics/oreilly-data-show-podcast)
-    - Talking machines (http://www.thetalkingmachines.com/)
-  - Misc Topics
-    - Linear Digressions (http://lineardigressions.com/)
-    - Data Skeptic (https://dataskeptic.com/)
-  - iTunesU issues
-  - Learning machines 101 (http://www.learningmachines101.com/)
+- News and Interviews
+  - TWiML and AI (https://twimlai.com)
+  - O&#39;Reilly Data Show (https://www.oreilly.com/topics/oreilly-data-show-podcast)
+  - Talking machines (http://www.thetalkingmachines.com/)
+- Misc Topics
+  - Linear Digressions (http://lineardigressions.com/)
+  - Data Skeptic (https://dataskeptic.com/)
+- iTunesU issues
+- Learning machines 101 (http://www.learningmachines101.com/)
 
 Planned episodes
-  - What is AI/ML: definition, comparison, history
-  - Inspiration: automation, singularity, consciousness
-  - ML Intuition: learning basics (infer/error/train); supervised/unsupervised/reinforcement; applications
-  - Math overview: linear algebra, statistics, calculus
-  - Linear models: supervised (regression, classification); unsupervised
-  - Parts: regularization, performance evaluation, dimensionality reduction, etc
-  - Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
-  - Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc
-  
-Resources</itunes:summary>
+- What is AI/ML: definition, comparison, history
+- Inspiration: automation, singularity, consciousness
+- ML Intuition: learning basics (infer/error/train); supervised/unsupervised/reinforcement; applications
+- Math overview: linear algebra, statistics, calculus
+- Linear models: supervised (regression, classification); unsupervised
+- Parts: regularization, performance evaluation, dimensionality reduction, etc
+- Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
+- Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc</itunes:summary>
             <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
             <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
             <itunes:explicit>no</itunes:explicit>
