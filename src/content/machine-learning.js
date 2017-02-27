@@ -81,20 +81,13 @@ What is AI?
 
 What is ML?
 - Pattern / Predict / Learn
-- Versus
-  - AI
-    - The "whole" (robotics, planning, etc)
-    - Professional
-      - ML more interesting, subsuming other fields
-        - From circle to splotch, with ever-growing tendrils
-        - Deep Learning ^
-      - ML is starter
-    - Conversation
-      "AI when wow-ing or colloquial, ML when being professional. Like "coding" vs "software engineering""
-  - Stats
-  - DataScience
-    - Professionally
-    - Adsense v Analytics
+- Versus AI
+  - The "whole" (robotics, planning, etc)
+  - Professional: ML more interesting, subsuming other fields; ML is starter
+  - Conversation
+    "AI when wow-ing or colloquial, ML when being professional. Like "coding" vs "software engineering""
+- Versus Stats
+- Versus DataScience: professionally; ansense vs analytics
 
 History
 - Greek mythology, Golums
@@ -116,11 +109,7 @@ History
   - NLP
   - Stanford Research Institute: Shakey
   - Feigenbaum: Expert systems
-  - GOFAI / symbolism
-    - symbolic
-    - operations research / management science
-    - logic-based
-    - knowledge-based / expert systems
+  - GOFAI / symbolism: operations research / management science; logic-based; knowledge-based / expert systems
 - 70s: Lighthill report (James Lighthill), big promises -> AI Winter
 - 90s: Data, Computation, Practical Application -> AI back (90s)
   - Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
@@ -200,9 +189,7 @@ Categories
 - Unsupervised
   - Market segmentation
 - Reinforcement & Semi-Supervised
-  - Planning (DQN)
-    - Games (chess, Mario)
-    - Robot movement
+  - Planning (DQN): Games (chess, Mario); Robot movement
   
 ## Resources
 - [Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) \`article\` 
@@ -238,15 +225,17 @@ See [Andrew Ng Week 2 Lecture Notes](https://www.coursera.org/learn/machine-lear
   teaser: "Discussion on certificates and degrees from Udacity to a Masters degree.",
   body:
 `## Episode
-- Self-edify
-  - Coursera Specialization - flat $500
-  - Udacity Nanodegree - $200/m (discount if timely completion)
-    - Great for self-teaching, not recognized degree
-    - [Machine Learning](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009)
-    - [Self Driving Car](https://www.udacity.com/drive)
-    - [Artificial Intelligence](https://www.udacity.com/ai)
-- [OMSCS](https://www.omscs.gatech.edu/): Great & cheap online masters degree
-- Portfolio: Most important for getting a job
+Self-edify
+- Coursera Specialization - flat $500
+- Udacity Nanodegree - $200/m (discount if timely completion)
+  - Great for self-teaching, not recognized degree
+  - [Machine Learning](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009)
+  - [Self Driving Car](https://www.udacity.com/drive)
+  - [Artificial Intelligence](https://www.udacity.com/ai)
+
+[OMSCS](https://www.omscs.gatech.edu/): Great & cheap online masters degree
+
+Portfolio: Most important for getting a job
 
 ## Resources
 - Discussions: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)
@@ -274,18 +263,18 @@ You've started [Ng's Coursera course](https://www.coursera.org/learn/machine-lea
   guid: "a5c01d38-5242-4b63-b265-81fc53d38ad3",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3",
-    length: 23861215,
-    duration: "26:12"
+    length: 24924160,
+    duration: "27:28"
   },
-  teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus",
+  teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
   body:
 `## Episode
-- Linear Algebra = Matrix (or "Tensor") math. Wx + b. like chopping in our analogy
-- Stats = Probability/inference, the heart of machine learning. Like recipes/cookbook
-- Calculus = Learning. Moving our error dot to the bottom of the valley. Like baking, the actual "cook" step.
+- Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
+- Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
+- Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.
 
 ## Resources
-Either come back here after you've finished Ng's course, or start learning the math in tandem with ML (say 1 day a week).
+Come back here after you've finished Ng's course; or learn these resources in tandem with ML (say 1 day a week).
 
 ☞ KhanAcademy: 
 - [LinAlg](https://www.khanacademy.org/math/linear-algebra)
@@ -319,7 +308,7 @@ const podcast = {
   image: "http://ocdevel.com/files/podcasts/machine-learning/art.jpg",
   date: new Date('02/01/2017'),
   teaser: "Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.",
-  body: "",
+  body: "This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.",
   episodes: episodes
 };
 

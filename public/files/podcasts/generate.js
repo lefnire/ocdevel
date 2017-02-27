@@ -11,7 +11,10 @@ const fmt = 'ddd, DD MMM YYYY 00:00:00';
 
 const _escape = (str) => {
   return _.escape(str) // remove html entities
-    .replace(/\[(.*?)\](?=\()/g, '$1 '); // change links from `[a](a.com)` to a (a.com)
+    // str.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;')
+
+    .replace(/\[(.*?)\](?=\()/g, '$1 ') // change links from `[a](a.com)` to a (a.com)
+    .replace(/  \-/g, '**'); // replace nested lists
 };
 
 const _bodyAndTeaser = (e) => _escape(e.teaser) + (e.body? ('\n\n' + _escape(e.body)) : '');
@@ -47,18 +50,18 @@ _.each(podcasts, (podcast, key) => {
         </itunes:category>
         <pubDate>${moment(podcast.date).format(fmt)} EST</pubDate>
         ${_(podcast.episodes).map(e => `<item>
-            <title>${_.escape(e.title)}</title>
-            <link>${e.file.url}</link>
-            <pubDate>${moment(e.date).format(fmt)} EST</pubDate>
-            <description>${_bodyAndTeaser(e)}</description>
-            <enclosure url="${e.file.url}" length="${e.file.length}" type="${e.file.type || 'audio/mpeg'}"/>
-            <guid>${e.guid}</guid>
-            <itunes:duration>${e.file.duration}</itunes:duration>
-            <itunes:subtitle>${_escape(e.teaser)}</itunes:subtitle>
-            <itunes:summary>${_bodyAndTeaser(e)}</itunes:summary>
-            <itunes:image href="${podcast.image}"/>
-            <itunes:keywords>${_(podcast.keywords).concat(e.keywords).compact().uniq().values()}</itunes:keywords>
-            <itunes:explicit>no</itunes:explicit>
+<title>${_.escape(e.title)}</title>
+<link>${e.file.url}</link>
+<pubDate>${moment(e.date).format(fmt)} EST</pubDate>
+<description>${_bodyAndTeaser(e)}</description>
+<enclosure url="${e.file.url}" length="${e.file.length}" type="${e.file.type || 'audio/mpeg'}"/>
+<guid>${e.guid}</guid>
+<itunes:duration>${e.file.duration}</itunes:duration>
+<itunes:subtitle>${_escape(e.teaser)}</itunes:subtitle>
+<itunes:summary>${_bodyAndTeaser(e)}</itunes:summary>
+<itunes:image href="${podcast.image}"/>
+<itunes:keywords>${_(podcast.keywords).concat(e.keywords).compact().uniq().values()}</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
         </item>`).reverse().join('\n')}
     </channel>
 </rss>`;
