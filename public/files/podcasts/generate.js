@@ -10,8 +10,8 @@ let count = 0;
 const fmt = 'ddd, DD MMM YYYY 00:00:00';
 
 const _escape = (str) => {
-  return _.escape(str) // remove html entities
-    // str.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;')
+  // return _.escape(str) // remove html entities
+  return str.replace(/\&/g, '&amp;').replace(/\</g, '&lt;').replace(/\>/g, '&gt;')
 
     .replace(/\[(.*?)\](?=\()/g, '$1 ') // change links from `[a](a.com)` to a (a.com)
     .replace(/  \-/g, '**'); // replace nested lists

@@ -41,7 +41,8 @@ Planned episodes
 - Linear models: supervised (regression, classification); unsupervised
 - Parts: regularization, performance evaluation, dimensionality reduction, etc
 - Deep models: neural networks, recurrent neural networks (RNNs), convolutional neural networks (convnets/CNNs)
-- Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc`
+- Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc
+`
 }, {
   title: "2. What is AI / ML",
   date: "2017-02-09",
@@ -297,6 +298,56 @@ The Great Courses \`audio\` highly recommend audio supplementary material
   - [Game Theory](https://goo.gl/yEEOG1)
   - [Discrete Math](https://goo.gl/CBKCJE)
 - Conversion Script: \`for f in *.mp4; do ffmpeg -i "$f" "\${f%.mp4}.mp3" && rm "$f"; done\`
+`
+}, {
+  title: "9. Deep Learning",
+  date: "2017-03-04",
+  guid: "d842fe61-7cf2-4209-9cb3-d29be6c4d1a8",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-9.mp3",
+    length: 45855231,
+    duration: "51:09"
+  },
+  teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",
+  body:
+`## Episode
+- Value
+  - Represents brain? Magic black-box
+  - Feature learning (layer removed from programmer)
+  - Subsumes AI
+- Stacked shallow learning
+  - Logistic regression = lego, Neural Network = castle
+- Deep Learning => ANNs => MLPs (& RNNs, CNNs, DQNs, etc)
+  - MLP: Perceptron vs LogReg / sigmoid activation
+- Architecture
+  - (Feed forward) Input => Hidden Layers => Hypothesis fn
+  - "Feed forward" vs recursive (RNNs, later)
+  - (Loss function) Cross entropy
+  - (Learn) Back Propagation
+- Price ~ smoking + obesity + age^2
+  - 1-layer MLP
+- Face? ~ pixels
+  - Extra layer = hierarchical breakdown
+  - Inputs => Employees => Supervisors => Boss
+- Backprop / Gradient descent
+  - Optimizers: adagrad, adam, ... vs gradient descent
+- Silver bullet, but don't abuse
+  - linear (housing market)
+  - features don't combine
+  - expensive: like hiring a company when the boss h(x) does all the work
+- Brian comparison (dentrites, axons); early pioneers as neuroscientists / cogsci
+- Different types
+  - vs brain
+  - RNNs
+  - CNNs
+- Activation fns
+  - Activation units / neurons (hidden layer)
+  - Relu, TanH
+  
+## Resources
+- [Deep Learning Simplified](https://www.youtube.com/watch?v=b99UVkWzYTQ) \`video\` quick series to get a lay-of-the-land. 
+- ☞ [Deep Learning Book](http://www.deeplearningbook.org) \`book\`
+- You'll also see [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) recommended, but DL Book is more thorough and updated.
 `
 }];
 
