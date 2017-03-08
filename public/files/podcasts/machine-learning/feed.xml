@@ -28,6 +28,66 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>11. Checkpoint</title>
+<link>http://ocdevel.com/files/podcasts/machine-learning/ml-11.mp3</link>
+<pubDate>Wed, 08 Mar 2017 00:00:00 EST</pubDate>
+<description>Checkpoint - start learning the material offline!
+
+## Resources
+45m/d ML
+- Coursera (https://www.coursera.org/learn/machine-learning)
+- Deep Learning (http://www.deeplearningbook.org/)
+- Python ((http://amzn.to/2mVgtJW))
+- TensorFlow (https://www.tensorflow.org/get_started/get_started)
+
+15m/d Math (KhanAcademy)
+- LinAlg (https://www.khanacademy.org/math/linear-algebra)
+- Stats (https://www.khanacademy.org/math/statistics-probability)
+- Calc (https://www.khanacademy.org/math/calculus-home)
+
+Audio
+- (Very optional) 
+** Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
+** The Singularity Is Near (http://amzn.to/2lzCqKk)
+- The Master Algorithm (http://amzn.to/2kLOQjW)
+- Mathematical Decision Making (https://goo.gl/V75I49)
+- Statistics 1 (https://goo.gl/sIBOjw) 2 (https://goo.gl/b15Aug)
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- Great Courses Plus (http://thegreatcoursesplus.7eer.net/c/358692/225371/3896) subscription, might save $
+</description>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-11.mp3" length="6946229" type="audio/mpeg"/>
+<guid>fe205bbc-b9d4-4df5-b840-c6f5b728903f</guid>
+<itunes:duration>7:45</itunes:duration>
+<itunes:subtitle>Checkpoint - start learning the material offline!</itunes:subtitle>
+<itunes:summary>Checkpoint - start learning the material offline!
+
+## Resources
+45m/d ML
+- Coursera (https://www.coursera.org/learn/machine-learning)
+- Deep Learning (http://www.deeplearningbook.org/)
+- Python ((http://amzn.to/2mVgtJW))
+- TensorFlow (https://www.tensorflow.org/get_started/get_started)
+
+15m/d Math (KhanAcademy)
+- LinAlg (https://www.khanacademy.org/math/linear-algebra)
+- Stats (https://www.khanacademy.org/math/statistics-probability)
+- Calc (https://www.khanacademy.org/math/calculus-home)
+
+Audio
+- (Very optional) 
+** Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
+** The Singularity Is Near (http://amzn.to/2lzCqKk)
+- The Master Algorithm (http://amzn.to/2kLOQjW)
+- Mathematical Decision Making (https://goo.gl/V75I49)
+- Statistics 1 (https://goo.gl/sIBOjw) 2 (https://goo.gl/b15Aug)
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- Great Courses Plus (http://thegreatcoursesplus.7eer.net/c/358692/225371/3896) subscription, might save $
+</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>10. Languages &amp; Frameworks</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3</link>
 <pubDate>Tue, 07 Mar 2017 00:00:00 EST</pubDate>
@@ -89,7 +149,7 @@ Frameworks
 - Python (http://amzn.to/2mVgtJW)
 - TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started)
 </description>
-<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3" length="39351615" type="audio/mpeg"/>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3" length="39407399" type="audio/mpeg"/>
 <guid>c613d746-0916-448e-8315-5ac4323389e2</guid>
 <itunes:duration>44:17</itunes:duration>
 <itunes:subtitle>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.</itunes:subtitle>
@@ -285,9 +345,9 @@ The Great Courses `audio` highly recommend audio supplementary material
 ** Discrete Math (https://goo.gl/CBKCJE)
 - Conversion Script: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
 </description>
-<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3" length="24924160" type="audio/mpeg"/>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3" length="24852040" type="audio/mpeg"/>
 <guid>a5c01d38-5242-4b63-b265-81fc53d38ad3</guid>
-<itunes:duration>27:28</itunes:duration>
+<itunes:duration>27:23</itunes:duration>
 <itunes:subtitle>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.</itunes:subtitle>
 <itunes:summary>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.
 

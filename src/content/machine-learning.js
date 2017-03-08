@@ -264,8 +264,8 @@ You've started [Ng's Coursera course](https://www.coursera.org/learn/machine-lea
   guid: "a5c01d38-5242-4b63-b265-81fc53d38ad3",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3",
-    length: 24924160,
-    duration: "27:28"
+    length: 24852040,
+    duration: "27:23"
   },
   teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
   body:
@@ -355,7 +355,7 @@ The Great Courses \`audio\` highly recommend audio supplementary material
   guid: "c613d746-0916-448e-8315-5ac4323389e2",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3",
-    length: 39351615,
+    length: 39407399,
     duration: "44:17"
   },
   teaser: "Languages & frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.",
@@ -415,6 +415,39 @@ Frameworks
 ## Resources
 - [Python](http://amzn.to/2mVgtJW)
 - [TensorFlow Tutorials](https://www.tensorflow.org/get_started/get_started)
+`
+}, {
+  title: '11. Checkpoint',
+  date: "2017-03-08",
+  guid: "fe205bbc-b9d4-4df5-b840-c6f5b728903f",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-11.mp3",
+    length: 6946229,
+    duration: "7:45"
+  },
+  teaser: "Checkpoint - start learning the material offline!",
+  body:
+`## Resources
+45m/d ML
+- [Coursera](https://www.coursera.org/learn/machine-learning)
+- [Deep Learning](http://www.deeplearningbook.org/)
+- [Python]((http://amzn.to/2mVgtJW))
+- [TensorFlow](https://www.tensorflow.org/get_started/get_started)
+
+15m/d Math (KhanAcademy)
+- [LinAlg](https://www.khanacademy.org/math/linear-algebra)
+- [Stats](https://www.khanacademy.org/math/statistics-probability)
+- [Calc](https://www.khanacademy.org/math/calculus-home)
+
+Audio
+- (Very optional) 
+  - [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](http://amzn.to/2kQGgk5)
+  - [The Singularity Is Near](http://amzn.to/2lzCqKk)
+- [The Master Algorithm](http://amzn.to/2kLOQjW)
+- [Mathematical Decision Making](https://goo.gl/V75I49)
+- Statistics [1](https://goo.gl/sIBOjw) [2](https://goo.gl/b15Aug)
+- Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh)
+- [Great Courses Plus](http://thegreatcoursesplus.7eer.net/c/358692/225371/3896) subscription, might save $
 `
 }];
 
