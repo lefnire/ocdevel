@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sat, 04 Mar 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Tue, 07 Mar 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,6 +28,134 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>10. Languages &amp; Frameworks</title>
+<link>http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3</link>
+<pubDate>Tue, 07 Mar 2017 00:00:00 EST</pubDate>
+<description>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.
+
+## Episode
+Languages
+- C/C++
+** Performance
+** GPU (CUDA/cuDNN)
+- Math Langs
+** R
+** MATLAB / Octave
+** Julia
+- Java / Scala
+** Data mining
+** Hadoop + Mahout / Spark + SparkML
+** Deeplearning4j
+- Python
+** R =&gt; Pandas
+** MATLAB =&gt; numpy
+** C/C++/GPU =&gt; TensorFlow (or other symbolic graph)
+** Data Mining =&gt; PySpark
+** Server (Flask, Django)
+- Analogy: Data =&gt; Analytics (biz intelligence, etc) =&gt; Adsense
+- Other languages like Node, Go, Rust (forgot to mention) see my answer (https://goo.gl/9d21xE) for why NOT to use them.
+- Articles
+** Best Programming Language for Machine Learning (http://machinelearningmastery.com/best-programming-language-for-machine-learning)
+** Data Science Job Report 2017 (http://r4stats.com/2017/02/28/r-passes-sas)
+  
+Frameworks
+- ML libraries
+** Numpy, Pandas, scikit-learn
+- Computational/symbolic graphs
+** Automatic differentiation
+- Theano
+** Math layer
+** Blocks/Lasagne ML layer
+** Keras DL layer
+- Torch
+** CNNs
+** note about RNNs
+- TensorFlow
+** Perf over time
+** Mobile etc
+** Keras
+- Others
+** Caffe (old-n-dying, C++)
+** CNTK (MS)
+** mxnet (Amazon)
+** DL4J
+** OpenCV (vision only)
+- Articles
+** An Overview of Python Deep Learning Frameworks (http://www.kdnuggets.com/2017/02/python-deep-learning-frameworks-overview.html)
+** Evaluation of Deep Learning Toolkits (https://github.com/zer0n/deepframeworks/blob/master/README.md)
+** Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras &amp; CNTK (https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)
+  
+## Resources
+- Python (http://amzn.to/2mVgtJW)
+- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started)
+</description>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3" length="39351615" type="audio/mpeg"/>
+<guid>c613d746-0916-448e-8315-5ac4323389e2</guid>
+<itunes:duration>44:17</itunes:duration>
+<itunes:subtitle>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.</itunes:subtitle>
+<itunes:summary>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.
+
+## Episode
+Languages
+- C/C++
+** Performance
+** GPU (CUDA/cuDNN)
+- Math Langs
+** R
+** MATLAB / Octave
+** Julia
+- Java / Scala
+** Data mining
+** Hadoop + Mahout / Spark + SparkML
+** Deeplearning4j
+- Python
+** R =&gt; Pandas
+** MATLAB =&gt; numpy
+** C/C++/GPU =&gt; TensorFlow (or other symbolic graph)
+** Data Mining =&gt; PySpark
+** Server (Flask, Django)
+- Analogy: Data =&gt; Analytics (biz intelligence, etc) =&gt; Adsense
+- Other languages like Node, Go, Rust (forgot to mention) see my answer (https://goo.gl/9d21xE) for why NOT to use them.
+- Articles
+** Best Programming Language for Machine Learning (http://machinelearningmastery.com/best-programming-language-for-machine-learning)
+** Data Science Job Report 2017 (http://r4stats.com/2017/02/28/r-passes-sas)
+  
+Frameworks
+- ML libraries
+** Numpy, Pandas, scikit-learn
+- Computational/symbolic graphs
+** Automatic differentiation
+- Theano
+** Math layer
+** Blocks/Lasagne ML layer
+** Keras DL layer
+- Torch
+** CNNs
+** note about RNNs
+- TensorFlow
+** Perf over time
+** Mobile etc
+** Keras
+- Others
+** Caffe (old-n-dying, C++)
+** CNTK (MS)
+** mxnet (Amazon)
+** DL4J
+** OpenCV (vision only)
+- Articles
+** An Overview of Python Deep Learning Frameworks (http://www.kdnuggets.com/2017/02/python-deep-learning-frameworks-overview.html)
+** Evaluation of Deep Learning Toolkits (https://github.com/zer0n/deepframeworks/blob/master/README.md)
+** Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras &amp; CNTK (https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)
+  
+## Resources
+- Python (http://amzn.to/2mVgtJW)
+- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started)
+</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>9. Deep Learning</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-9.mp3</link>
 <pubDate>Sat, 04 Mar 2017 00:00:00 EST</pubDate>
