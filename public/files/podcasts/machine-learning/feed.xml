@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Tue, 07 Mar 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Sun, 19 Mar 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,6 +28,64 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>12. Shallow Algos pt.1</title>
+<link>http://ocdevel.com/files/podcasts/machine-learning/ml-12.mp3</link>
+<pubDate>Sun, 19 Mar 2017 00:00:00 EST</pubDate>
+<description>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees
+
+## Episode
+KNN (supervised)
+
+Unsupervised
+- Clustering -&gt; K-Means
+- Association rule learning / Market basket -&gt; Apriori
+- Dimensionality Reduction -&gt; PCA
+
+Decision Trees (supervised, classify/regress)
+- Random Forests
+- Gradient Boost
+  
+## Resources
+- Andrew Ng Week 8 (https://www.coursera.org/learn/machine-learning/resources/kGWsY)
+- Tour of ML Algos (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) `article`
+- Decision Tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `article`
+- Elements of Statistical Learning (https://statweb.stanford.edu/~tibs/ElemStatLearn/) `book`
+- [Machine Learning with R(http://amzn.to/2n5fSUF)
+- Pattern Recognition and Machine Learning (http://www.springer.com/us/book/9780387310732) `book`
+** Free PDF (https://goo.gl/aX038j)?
+</description>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-12.mp3" length="50030574" type="audio/mpeg"/>
+<guid>1074a375-6831-456d-9bbc-d28c8f85a557</guid>
+<itunes:duration>53:17</itunes:duration>
+<itunes:subtitle>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees</itunes:subtitle>
+<itunes:summary>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees
+
+## Episode
+KNN (supervised)
+
+Unsupervised
+- Clustering -&gt; K-Means
+- Association rule learning / Market basket -&gt; Apriori
+- Dimensionality Reduction -&gt; PCA
+
+Decision Trees (supervised, classify/regress)
+- Random Forests
+- Gradient Boost
+  
+## Resources
+- Andrew Ng Week 8 (https://www.coursera.org/learn/machine-learning/resources/kGWsY)
+- Tour of ML Algos (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) `article`
+- Decision Tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `article`
+- Elements of Statistical Learning (https://statweb.stanford.edu/~tibs/ElemStatLearn/) `book`
+- [Machine Learning with R(http://amzn.to/2n5fSUF)
+- Pattern Recognition and Machine Learning (http://www.springer.com/us/book/9780387310732) `book`
+** Free PDF (https://goo.gl/aX038j)?
+</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>11. Checkpoint</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-11.mp3</link>
 <pubDate>Wed, 08 Mar 2017 00:00:00 EST</pubDate>

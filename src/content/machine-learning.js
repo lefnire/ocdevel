@@ -449,7 +449,38 @@ Audio
 - Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh)
 - [Great Courses Plus](http://thegreatcoursesplus.7eer.net/c/358692/225371/3896) subscription, might save $
 `
-}];
+}, {
+  title: "12. Shallow Algos pt.1",
+  date: "2017-03-19",
+  guid: "1074a375-6831-456d-9bbc-d28c8f85a557",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-12.mp3",
+    length: 50030574,
+    duration: "53:17"
+  },
+  teaser: "Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees",
+  body:
+`## Episode
+KNN (supervised)
+
+Unsupervised
+- Clustering -> K-Means
+- Association rule learning / Market basket -> Apriori
+- Dimensionality Reduction -> PCA
+
+Decision Trees (supervised, classify/regress)
+- Random Forests
+- Gradient Boost
+  
+## Resources
+- [Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY)
+- [Tour of ML Algos](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) \`article\`
+- [Decision Tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`article\`
+- [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/) \`book\`
+- [Machine Learning with R(http://amzn.to/2n5fSUF)
+- [Pattern Recognition and Machine Learning](http://www.springer.com/us/book/9780387310732) \`book\`
+  - [Free PDF](https://goo.gl/aX038j)?
+`}];
 
 const podcast = {
   title: "Machine Learning Guide",
