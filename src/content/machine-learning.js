@@ -431,7 +431,7 @@ Frameworks
 45m/d ML
 - [Coursera](https://www.coursera.org/learn/machine-learning)
 - [Deep Learning](http://www.deeplearningbook.org/)
-- [Python]((http://amzn.to/2mVgtJW))
+- [Python](http://amzn.to/2mVgtJW)
 - [TensorFlow](https://www.tensorflow.org/get_started/get_started)
 
 15m/d Math (KhanAcademy)
@@ -477,7 +477,7 @@ Decision Trees (supervised, classify/regress)
 - [Tour of ML Algos](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) \`article\`
 - [Decision Tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`article\`
 - [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/) \`book\`
-- [Machine Learning with R(http://amzn.to/2n5fSUF)
+- [Machine Learning with R](http://amzn.to/2n5fSUF)
 - [Pattern Recognition and Machine Learning](http://www.springer.com/us/book/9780387310732) \`book\`
   - [Free PDF](https://goo.gl/aX038j)?
 `}, {
@@ -502,6 +502,135 @@ Decision Trees (supervised, classify/regress)
 - Which algo to use?
   - [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/)
   - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`article\`
+`
+}, {
+  title: "14. Shallow Algos pt.3",
+  date: "2017-04-23",
+  guid: "8ec3010c-8897-43fa-b90b-14f7e43912a8",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-14.mp3",
+    length: 45705749,
+    duration: "48:06"
+  },
+  teaser: "Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)",
+  body:
+`## Episode
+- Anomoly Detection algorithm
+- Recommender Systems (Content Filtering, Collaborative Filtering)
+- Markov Chains & Monte Carlo
+
+## Resources
+- [Andrew Ng Week 9](https://www.coursera.org/learn/machine-learning/resources/szFCa)`
+}, {
+  title: "15. Performance",
+  date: "2017-05-07",
+  guid: "7da253aa-b035-4702-8475-55b8d3eeeebd",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-15.mp3",
+    length: 37982381 ,
+    duration: "41:24"
+  },
+  teaser: "Performance evaluation & improvement",
+  body:
+`## Episode
+
+Performance evaluation
+
+- Performance measures: accuracy, precision, recall, F1/F2 score
+- Cross validation: split your data into train, validation, test sets
+- Training set is for training your algorithm
+- Validation set is to test your algorithm's performance. It can be used to inform changing your model (ie, hyperparameters)
+- Test set is used for your final score. It can't be used to inform changing your model.
+
+Performance improvement
+ 
+- Modify hyperpamaraters
+- Data: collect more, fill in missing cells, normalize fields
+- Regularize: reduce overfitting (high variance) and underfitting (high bias)
+`}, {
+  title: "16. Consciousness",
+  date: "2017-05-21",
+  guid: "c2db5df8-936b-4404-8f0f-7eb188bfe9ab",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-16.mp3",
+    length: 69807705,
+    duration: "01:14:57"
+  },
+  teaser: "Can AI be conscious?",
+  body:
+`## Episode
+
+Inspirations for AI
+- economic automation
+- singularity
+- consciousness
+
+Definitinitions
+- cogsci: neuroscience, neuro-x(biology, physiology, computational __, etc), psychology, philosophy, AI
+  - computational neuroscience => perceptron
+  - frank rosenblatt, warren McCulloche, walter pitts - all brain guys (neurobiology, neurophysiology, computational neuroscience respectively)
+- intelligence (computation) vs consciousness (soul); intelligence in scale (animals); brain in scale; consciousness in scale?
+- perception, self-identity, memory, attention; (self reflection is just a human-special component)
+- awereness (qualia / sentience / subjective experience); modified by attention? (driving, dreams, coma)
+- missing: emotions; just built-in goal reinforcemer. plus we don't know how machines experience reinforcement (floor-is-lava)
+
+Hard vs soft problem
+  - soft problem = neuroscience
+  - hard problem = philosophy
+    - dualism: pineal gland, issue with physical->metaphysical; society of mind / connected intelligences
+    - maybe definitively non-science, since subjective
+    - maybe matter of time; phil is pre-science at each juncture; science turns magic => known (sickness). Either hard problem is unscientific (phil) or around the corner
+
+Emergence (emergent property)
+
+Computational theory of mind
+- intelligence & consciousness connected / same
+- think: word2vec = understanding? 
+- consciousness in scale; does this mean every layer has its own consciousness? Panpsychism. I don't know - just concerned with that which does exhibit intelligence
+- integrated information theory
+- freewill; conscious / awareness center activated after decision made; all the information in place before whole ; westworld
+
+Biological plausibility
+- planes, brains
+- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room
+
+# Resources
+
+[Philosophy of Mind: Brains, Consciousness, and Thinking Machines](http://amzn.to/2kQGgk5) \`audio\`
+`}, {
+  title: '17. Checkpoint',
+  date: "2017-06-04",
+  guid: "4977e285-d4fc-45cb-b3a5-aed9e97915c2",
+  file: {
+    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-17.mp3",
+    length: 6625180,
+    duration: "6:59"
+  },
+  teaser: "Checkpoint - learn the material offline!",
+  body:
+`## Resources
+45m/d ML
+- [Coursera](https://www.coursera.org/learn/machine-learning) \`course\` (last time mentioning)
+- [Python](http://amzn.to/2mVgtJW) \`book\`
+- [TensorFlow](https://www.tensorflow.org/get_started/get_started) \`tutorial\`
+- [Deep Learning](http://www.deeplearningbook.org/) \`book\`
+- Go deeper on shallow algos
+  - [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/) \`book\`
+  - [Pattern Recognition and Machine Learning](http://www.springer.com/us/book/9780387310732) \`book\` ([Free PDF](https://goo.gl/aX038j)?)
+
+15m/d Math (KhanAcademy) \`courses\`
+- [LinAlg](https://www.khanacademy.org/math/linear-algebra)
+- [Stats](https://www.khanacademy.org/math/statistics-probability)
+- [Calc](https://www.khanacademy.org/math/calculus-home)
+
+Audio
+- [CS229 - Machine Learning](https://see.stanford.edu/Course/CS229)
+- [The Master Algorithm](http://amzn.to/2kLOQjW)
+- [Mathematical Decision Making](https://goo.gl/V75I49)
+- Statistics [1](https://goo.gl/sIBOjw) [2](https://goo.gl/b15Aug)
+- Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh)
+
+[Kaggle.com](https://www.kaggle.com/)
 `
 }];
 

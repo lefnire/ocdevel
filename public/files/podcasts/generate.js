@@ -46,7 +46,7 @@ _.each(podcasts, (podcast, key) => {
         <itunes:keywords>${podcast.keywords}</itunes:keywords>
         <itunes:image href="${podcast.image}"/>
         <itunes:category text="Technology">
-          <itunes:category text="Information Technology"/>
+          <itunes:category text="Software How-To"/>
         </itunes:category>
         <pubDate>${moment(podcast.date).format(fmt)} EST</pubDate>
         ${_(podcast.episodes).map(e => `<item>
