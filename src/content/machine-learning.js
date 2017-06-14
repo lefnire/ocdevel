@@ -4,8 +4,9 @@ const episodes = [{
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
     length: 11886227,
-    duration: "12:34"
+    duration: "12:34",
   },
+  libsynEpisode: 5440758,
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   teaser: "Introduction to the Machine Learning Guide",
   body:
@@ -52,6 +53,7 @@ Planned episodes
     length: 29646598,
     duration: "32:05",
   },
+  libsynEpisode: 5440757,
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
   body:
 `## Episode
@@ -132,6 +134,7 @@ History
     length: 16382362,
     duration: "17:41",
   },
+  libsynEpisode: 5440756,
   teaser: "Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.",
   body:
 `## Episode
@@ -166,6 +169,7 @@ The Scare
     length: 20773676,
     duration: "21:54"
   },
+  libsynEpisode: 5440755,
   teaser: "Overview of machine learning algorithms. Infer/predict -> error/loss -> train/learn. Supervised, unsupervised, reinforcement learning.",
   body:
 `## Episode
@@ -205,6 +209,7 @@ Categories
     length: 30769356,
     duration: "33:40"
   },
+  libsynEpisode: 5440754,
   teaser: "Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression",
   body:
 `## Episode
@@ -223,6 +228,7 @@ See [Andrew Ng Week 2 Lecture Notes](https://www.coursera.org/learn/machine-lear
     length: 14888861,
     duration: "15:36"
   },
+  libsynEpisode: 5440753,
   teaser: "Discussion on certificates and degrees from Udacity to a Masters degree.",
   body:
 `## Episode
@@ -250,6 +256,7 @@ Portfolio: Most important for getting a job
     length: 30495267,
     duration: "34:19"
   },
+  libsynEpisode: 5440752,
   teaser: "Your first classifier: Logistic Regression. That plus Linear Regression, and you're a 101 supervised learner!",
   body:
 `## Episode
@@ -267,6 +274,7 @@ You've started [Ng's Coursera course](https://www.coursera.org/learn/machine-lea
     length: 24852040,
     duration: "27:23"
   },
+  libsynEpisode: 5440751,
   teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
   body:
 `## Episode
@@ -308,6 +316,7 @@ The Great Courses \`audio\` highly recommend audio supplementary material
     length: 45855231,
     duration: "51:09"
   },
+  libsynEpisode: 5440749,
   teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",
   body:
 `## Episode
@@ -358,6 +367,7 @@ The Great Courses \`audio\` highly recommend audio supplementary material
     length: 39407399,
     duration: "44:17"
   },
+  libsynEpisode: 5440748,
   teaser: "Languages & frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.",
   body:
 `## Episode
@@ -425,6 +435,7 @@ Frameworks
     length: 6946229,
     duration: "7:45"
   },
+  libsynEpisode: 5440747,
   teaser: "Checkpoint - start learning the material offline!",
   body:
 `## Resources
@@ -458,6 +469,7 @@ Audio
     length: 50030574,
     duration: "53:17"
   },
+  libsynEpisode: 5440746,
   teaser: "Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees",
   body:
 `## Episode
@@ -489,6 +501,7 @@ Decision Trees (supervised, classify/regress)
     length: 51788056,
     duration: "55:12"
   },
+  libsynEpisode: 5440745,
   teaser: "Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.",
   body:
 `## Episode
@@ -512,6 +525,7 @@ Decision Trees (supervised, classify/regress)
     length: 45705749,
     duration: "48:06"
   },
+  libsynEpisode: 5440744,
   teaser: "Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)",
   body:
 `## Episode
@@ -530,6 +544,7 @@ Decision Trees (supervised, classify/regress)
     length: 37982381 ,
     duration: "41:24"
   },
+  libsynEpisode: 5440743,
   teaser: "Performance evaluation & improvement",
   body:
 `## Episode
@@ -556,6 +571,7 @@ Performance improvement
     length: 69807705,
     duration: "01:14:57"
   },
+  libsynEpisode: 5440742,
   teaser: "Can AI be conscious?",
   body:
 `## Episode
@@ -606,6 +622,7 @@ Biological plausibility
     length: 6625180,
     duration: "6:59"
   },
+  libsynEpisode: 5440741,
   teaser: "Checkpoint - learn the material offline!",
   body:
 `## Resources
@@ -643,7 +660,8 @@ const podcast = {
   date: new Date('02/01/2017'),
   teaser: "Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.",
   body: "This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.",
-  episodes: episodes
+  episodes: episodes,
+  useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
 };
 
 module.exports = podcast;

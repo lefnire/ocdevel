@@ -18,29 +18,41 @@ const podcasts = {
 const fmt = 'MMM, MM/DD/YYYY';
 
 class Episode extends Component {
+  renderPlayer = (podcast, episode) => {
+    if (podcast.useLibsynPlayer) {
+      const embedCode = `<iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/${episode.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/" height="90" width="640" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>`;
+      return <div dangerouslySetInnerHTML={{__html: embedCode}} />;
+      // Tried massaging the embed-code to React-compliant props, but still getting `Unknown prop __` - so using dangerouslySetInnerHTML instead
+      // return <iframe src={`//html5-player.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/no/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/`} style={{border: "none"}} height="90" width="640" scrolling="no" allowFullScreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+    }
+    return (
+      <audio controls style={{width:'100%'}}>
+        <source src={episode.file.url} type={episode.file.type}/>
+        Your browser does not support the audio element.
+      </audio>
+    );
+  };
+
   render() {
     let {series, id} = this.props.params;
-    let podcast = podcasts[series],
-      e = podcast.episodes[id-1];
+    const podcast = podcasts[series],
+      episode = podcast.episodes[id-1];
     return (
       <div>
         <Link to={`podcasts/${series}`}>&lt; Back</Link>
-        <Panel header={<h3>{e.title}</h3>}>
-          <span className="pull-right">{moment(e.date).format(fmt)}</span>
-          {e.body? (
-            <ReactMarkdown source={e.body}
+        <Panel header={<h3>{episode.title}</h3>}>
+          <span className="pull-right">{moment(episode.date).format(fmt)}</span>
+          {episode.body? (
+            <ReactMarkdown source={episode.body}
               renderers={{Link: props => <a href={props.href} target="_blank">{props.children}</a>}}
             />
-          ): <p>{e.teaser}</p>}
-          <audio controls style={{width:'100%'}}>
-            <source src={e.file.url} type={e.file.type}/>
-            Your browser does not support the audio element.
-          </audio>
+          ): <p>{episode.teaser}</p>}
+          {this.renderPlayer(podcast, episode)}
         </Panel>
         <ReactDisqusThread
           shortname="ocdevel"
-          identifier={e.guid}
-          title={`${e.title} | ${podcast.title}`}
+          identifier={episode.guid}
+          title={`${episode.title} | ${podcast.title}`}
           url={`http://ocdevel.com/podcasts/${series}/${id}`}/>
       </div>
     );
