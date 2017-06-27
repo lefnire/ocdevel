@@ -461,7 +461,7 @@ Audio
 - [Great Courses Plus](http://thegreatcoursesplus.7eer.net/c/358692/225371/3896) subscription, might save $
 `
 }, {
-  title: "12. Shallow Algos pt.1",
+  title: "12. Shallow Algos 1",
   date: "2017-03-19",
   guid: "1074a375-6831-456d-9bbc-d28c8f85a557",
   file: {
@@ -493,7 +493,7 @@ Decision Trees (supervised, classify/regress)
 - [Pattern Recognition and Machine Learning](http://www.springer.com/us/book/9780387310732) \`book\`
   - [Free PDF](https://goo.gl/aX038j)?
 `}, {
-  title: "13. Shallow Algos pt.2",
+  title: "13. Shallow Algos 2",
   date: "2017-04-09",
   guid: "af4c231e-c8c1-4d91-ab21-2e256669982e",
   file: {
@@ -517,7 +517,7 @@ Decision Trees (supervised, classify/regress)
   - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`article\`
 `
 }, {
-  title: "14. Shallow Algos pt.3",
+  title: "14. Shallow Algos 3",
   date: "2017-04-23",
   guid: "8ec3010c-8897-43fa-b90b-14f7e43912a8",
   file: {
@@ -648,6 +648,59 @@ Audio
 - Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh)
 
 [Kaggle.com](https://www.kaggle.com/)
+`
+}, {
+  title: '18. Natural Language Processing 1',
+  date: "2017-06-25",
+  guid: "d8ebdbe6640d0d34f12778f90b91db8d",
+  file: {},
+  libsynEpisode: 5479957,
+  teaser: 'Introduction to Natural Language Processing (NLP) topics.',
+  body:
+`## Errata
+22:21 "cat & car different by one word" should be "different by one letter"
+
+## Episode
+Syntax vs Semantics
+
+Parts
+- Corpus
+- Lexicon
+- Morphology
+  - Lemmas & Stems (reduce morphological variation; lemmatization more sophisticated)
+  - Tokens
+  - Stop words
+  - Edit-distance
+  - Word sense disambiguation
+
+Syntax / Tasks
+- Info Extraction (POS, NER, Relationship extraction)
+- Parsing
+
+Goals
+- Spell check
+- Classification
+  - Tagging (topic modeling / keyword extraction)
+  - Sentiment analysis
+- Search / relevance, document similarity
+- Natural language understanding
+  - Question answering
+  - Textual entailment
+  - Machine Translation (AI-complete)
+  - NLU vs NLP
+- Natural language generation
+  - Image captioning
+  - Chatbots
+  - Automatic summarization
+- Won't cover
+  - Optical character recognition (OCR)
+  - Speech (TTS, STT, Segmentation, Diarization)
+
+## Resources
+- [Speech and Language Processing](https://web.stanford.edu/~jurafsky)
+- [Stanford NLP YouTube](https://www.youtube.com/watch?v=nfoudtpBV68&list=PL6397E4B26D00A269)
+  - [Convert video to mp3](http://www.flvto.biz/) - don't download the app, use the website!
+- [NLTK Book](http://www.nltk.org/book)
 `
 }];
 

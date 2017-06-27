@@ -98,6 +98,18 @@ class Series extends Component {
       )
     }[series];
 
+    let extraContent = {
+      'web-development': (
+        <i>This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</i>
+      ),
+      'machine-learning': (
+        <h4 className="alert alert-success">
+          Hey all, could do me a solid and fill out a <a href="http://survey.libsyn.com/machinelearningguide" target="_blank">demographic survey</a>?
+        </h4>
+      )
+
+    }[series];
+
     return (
       <div className="Series">
         <PageHeader>{podcast.title}</PageHeader>
@@ -108,9 +120,7 @@ class Series extends Component {
           </div>
           <div className="clearfix"/>
           <p>
-            {series === 'web-development' && (
-              <i>This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</i>
-            )}
+            {extraContent}
             {podcast.body || podcast.teaser}
           </p>
         </div>

@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Mon, 12 Jun 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Sun, 25 Jun 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,6 +28,112 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>18. Natural Language Processing 1</title>
+<link>undefined</link>
+<pubDate>Sun, 25 Jun 2017 00:00:00 EST</pubDate>
+<description>Introduction to Natural Language Processing (NLP) topics.
+
+## Errata
+22:21 "cat &amp; car different by one word" should be "different by one letter"
+
+## Episode
+Syntax vs Semantics
+
+Parts
+- Corpus
+- Lexicon
+- Morphology
+** Lemmas &amp; Stems (reduce morphological variation; lemmatization more sophisticated)
+** Tokens
+** Stop words
+** Edit-distance
+** Word sense disambiguation
+
+Syntax / Tasks
+- Info Extraction (POS, NER, Relationship extraction)
+- Parsing
+
+Goals
+- Spell check
+- Classification
+** Tagging (topic modeling / keyword extraction)
+** Sentiment analysis
+- Search / relevance, document similarity
+- Natural language understanding
+** Question answering
+** Textual entailment
+** Machine Translation (AI-complete)
+** NLU vs NLP
+- Natural language generation
+** Image captioning
+** Chatbots
+** Automatic summarization
+- Won't cover
+** Optical character recognition (OCR)
+** Speech (TTS, STT, Segmentation, Diarization)
+
+## Resources
+- Speech and Language Processing (https://web.stanford.edu/~jurafsky)
+- Stanford NLP YouTube (https://www.youtube.com/watch?v=nfoudtpBV68&amp;list=PL6397E4B26D00A269)
+** Convert video to mp3 (http://www.flvto.biz/)
+- NLTK Book (http://www.nltk.org/book)
+</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>d8ebdbe6640d0d34f12778f90b91db8d</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>Introduction to Natural Language Processing (NLP) topics.</itunes:subtitle>
+<itunes:summary>Introduction to Natural Language Processing (NLP) topics.
+
+## Errata
+22:21 "cat &amp; car different by one word" should be "different by one letter"
+
+## Episode
+Syntax vs Semantics
+
+Parts
+- Corpus
+- Lexicon
+- Morphology
+** Lemmas &amp; Stems (reduce morphological variation; lemmatization more sophisticated)
+** Tokens
+** Stop words
+** Edit-distance
+** Word sense disambiguation
+
+Syntax / Tasks
+- Info Extraction (POS, NER, Relationship extraction)
+- Parsing
+
+Goals
+- Spell check
+- Classification
+** Tagging (topic modeling / keyword extraction)
+** Sentiment analysis
+- Search / relevance, document similarity
+- Natural language understanding
+** Question answering
+** Textual entailment
+** Machine Translation (AI-complete)
+** NLU vs NLP
+- Natural language generation
+** Image captioning
+** Chatbots
+** Automatic summarization
+- Won't cover
+** Optical character recognition (OCR)
+** Speech (TTS, STT, Segmentation, Diarization)
+
+## Resources
+- Speech and Language Processing (https://web.stanford.edu/~jurafsky)
+- Stanford NLP YouTube (https://www.youtube.com/watch?v=nfoudtpBV68&amp;list=PL6397E4B26D00A269)
+** Convert video to mp3 (http://www.flvto.biz/)
+- NLTK Book (http://www.nltk.org/book)
+</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>17. Checkpoint</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-17.mp3</link>
 <pubDate>Sun, 04 Jun 2017 00:00:00 EST</pubDate>
@@ -236,7 +342,7 @@ Performance improvement
 <itunes:explicit>no</itunes:explicit>
         </item>
 <item>
-<title>14. Shallow Algos pt.3</title>
+<title>14. Shallow Algos 3</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-14.mp3</link>
 <pubDate>Sun, 23 Apr 2017 00:00:00 EST</pubDate>
 <description>Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)
@@ -266,7 +372,7 @@ Performance improvement
 <itunes:explicit>no</itunes:explicit>
         </item>
 <item>
-<title>13. Shallow Algos pt.2</title>
+<title>13. Shallow Algos 2</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-13.mp3</link>
 <pubDate>Sun, 09 Apr 2017 00:00:00 EST</pubDate>
 <description>Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.
@@ -306,7 +412,7 @@ Performance improvement
 <itunes:explicit>no</itunes:explicit>
         </item>
 <item>
-<title>12. Shallow Algos pt.1</title>
+<title>12. Shallow Algos 1</title>
 <link>http://ocdevel.com/files/podcasts/machine-learning/ml-12.mp3</link>
 <pubDate>Sun, 19 Mar 2017 00:00:00 EST</pubDate>
 <description>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees
