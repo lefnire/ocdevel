@@ -17,6 +17,26 @@ const podcasts = {
 };
 const fmt = 'MMM, MM/DD/YYYY';
 
+class Recommend extends Component {
+  render() {
+    let {series, id} = this.props.params;
+    const podcast = podcasts[series];
+    return (
+      <div>
+        <Link to={`podcasts/${series}`}>&lt; Back</Link>
+        <Panel header={<h3>Recommend a Future Episode</h3>}>
+          <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
+        </Panel>
+        <ReactDisqusThread
+          shortname="ocdevel"
+          identifier={series + '-recommend'}
+          title={`Recommend an Episode | ${podcast.title}`}
+          url={`http://ocdevel.com/podcasts/${series}/recommend`}/>
+      </div>
+    );
+  }
+}
+
 class Episode extends Component {
   renderPlayer = (podcast, episode) => {
     if (podcast.useLibsynPlayer) {
@@ -65,7 +85,7 @@ class Episodes extends Component {
     return (
       <div>
         {podcasts[series].episodes.map((e,i) => (
-          <Panel key={e.file.url} header={<h3><Link to={`/podcasts/${series}/${i+1}`}>{e.title}</Link></h3>}>
+          <Panel key={e.guid} header={<h3><Link to={`/podcasts/${series}/${i+1}`}>{e.title}</Link></h3>}>
             <span className="pull-right">{moment(e.date).format(fmt)}</span>
             <p>{e.teaser}</p>
             <Link to={`/podcasts/${series}/${i+1}`}>Read More &raquo;</Link>
@@ -100,14 +120,23 @@ class Series extends Component {
 
     let extraContent = {
       'web-development': (
-        <i>This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a>.</i>
+        <h4 className="alert alert-warning">This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a> instead.</h4>
       ),
       'machine-learning': (
-        <h4 className="alert alert-success">
-          Hey all, could do me a solid and fill out a <a href="http://survey.libsyn.com/machinelearningguide" target="_blank">demographic survey</a>?
-        </h4>
+        <div className="alert alert-success">
+          <ul className="lead list-unstyled">
+            <li>
+              ☞ Could y'all do me a solid and fill out a <a href="http://survey.libsyn.com/machinelearningguide" target="_blank">demographic survey</a>?
+            </li>
+            <li>
+              ☞ <Link to={`/podcasts/${series}/recommend`}>Recommend a Future Episode</Link>
+            </li>
+            <li>
+              ☞ <a href="http://eepurl.com/cUUWfD" target="_blank">Mailing List</a> - get notified of new episodes / announcements
+            </li>
+          </ul>
+        </div>
       )
-
     }[series];
 
     return (
@@ -146,4 +175,4 @@ class App extends Component {
   }
 }
 
-export default {App, Series, Episodes, Episode};
+export default {App, Series, Episodes, Episode, Recommend};

@@ -19,6 +19,7 @@ ReactDom.render(<Router history={browserHistory} onUpdate={logPageView}>
     <Route path="/" component={App}>
       <Route path="podcasts" component={Podcasts.App}>
         <Route path=":series" component={Podcasts.Series}>
+          <Route path="recommend" component={Podcasts.Recommend} />
           <Route path=":id" component={Podcasts.Episode} />
           <IndexRoute component={Podcasts.Episodes} />
         </Route>
