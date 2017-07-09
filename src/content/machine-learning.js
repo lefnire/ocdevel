@@ -154,9 +154,9 @@ The Scare
 ## Resources
 - [The Singularity Is Near](http://amzn.to/2lzCqKk) \`audio\`
 - Consciousness
-  - [How to Create a Mind](http://amzn.to/2l2frtN) \`audio\`
+  - [How to Create a Mind](http://amzn.to/2tXLvUm) \`audio\`
   - ☞ [Philosophy of Mind: Brains, Consciousness, and Thinking Machines](http://amzn.to/2kQGgk5) \`audio\` My absolute favorite consciousness starter. Get the audio download & listen along-side this podcast!
-  - [Consciousness Explained](http://amzn.to/2kXR2WI) \`audio\`
+  - [Consciousness Explained](http://amzn.to/2tXboUz) \`audio\`
 - [Superintelligence](http://amzn.to/2lzLcrL) \`audio\`
   I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it's kinda "must read"
 `
@@ -294,9 +294,9 @@ Primers (PDFs)
 - See "Section Notes" of [cs229](http://cs229.stanford.edu/materials.html)
 
 Books
-- "Linear Algebra Done Right"
-- "All of statistics"
-- (Not sure on Calc, comment if you know a good one)
+- [Linear Algebra Done Right](http://amzn.to/2t28p8F)
+- [All of statistics](http://amzn.to/2t2dOwg)
+- [Calculus](http://amzn.to/2tXfXhp)
 
 The Great Courses \`audio\` highly recommend audio supplementary material 
 - [Stats](https://goo.gl/sIBOjw)
@@ -355,7 +355,7 @@ The Great Courses \`audio\` highly recommend audio supplementary material
   
 ## Resources
 - [Deep Learning Simplified](https://www.youtube.com/watch?v=b99UVkWzYTQ) \`video\` quick series to get a lay-of-the-land. 
-- ☞ [Deep Learning Book](http://www.deeplearningbook.org) \`book\`
+- ☞ [Deep Learning Book](http://amzn.to/2tXgCiT) \`book\` [Free HTML version](http://www.deeplearningbook.org/)
 - You'll also see [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) recommended, but DL Book is more thorough and updated.
 `
 }, {
@@ -440,15 +440,15 @@ Frameworks
   body:
 `## Resources
 45m/d ML
-- [Coursera](https://www.coursera.org/learn/machine-learning)
-- [Deep Learning](http://www.deeplearningbook.org/)
-- [Python](http://amzn.to/2mVgtJW)
-- [TensorFlow](https://www.tensorflow.org/get_started/get_started)
+- [Coursera](https://www.coursera.org/learn/machine-learning) \`course\`
+- [Deep Learning Book](http://amzn.to/2tXgCiT)\`book\` [Free HTML version](http://www.deeplearningbook.org/)
+- [Python](http://amzn.to/2mVgtJW) \`book\`
+- [TensorFlow](https://www.tensorflow.org/get_started/get_started) \`tutorial\`
 
 15m/d Math (KhanAcademy)
-- [LinAlg](https://www.khanacademy.org/math/linear-algebra)
-- [Stats](https://www.khanacademy.org/math/statistics-probability)
-- [Calc](https://www.khanacademy.org/math/calculus-home)
+- [LinAlg](https://www.khanacademy.org/math/linear-algebra) \`course\`
+- [Stats](https://www.khanacademy.org/math/statistics-probability) \`course\`
+- [Calc](https://www.khanacademy.org/math/calculus-home) \`course\`
 
 Audio
 - (Very optional) 
@@ -458,7 +458,6 @@ Audio
 - [Mathematical Decision Making](https://goo.gl/V75I49)
 - Statistics [1](https://goo.gl/sIBOjw) [2](https://goo.gl/b15Aug)
 - Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh)
-- [Great Courses Plus](http://thegreatcoursesplus.7eer.net/c/358692/225371/3896) subscription, might save $
 `
 }, {
   title: "12. Shallow Algos 1",
@@ -488,10 +487,9 @@ Decision Trees (supervised, classify/regress)
 - [Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY)
 - [Tour of ML Algos](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) \`article\`
 - [Decision Tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`article\`
-- [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/) \`book\`
+- [Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book\`
+- [Pattern Recognition and Machine Learning](http://amzn.to/2sDIIfb) \`book\` [Free PDF](https://goo.gl/aX038j)
 - [Machine Learning with R](http://amzn.to/2n5fSUF)
-- [Pattern Recognition and Machine Learning](http://www.springer.com/us/book/9780387310732) \`book\`
-  - [Free PDF](https://goo.gl/aX038j)?
 `}, {
   title: "13. Shallow Algos 2",
   date: "2017-04-09",
@@ -630,10 +628,10 @@ Biological plausibility
 - [Coursera](https://www.coursera.org/learn/machine-learning) \`course\` (last time mentioning)
 - [Python](http://amzn.to/2mVgtJW) \`book\`
 - [TensorFlow](https://www.tensorflow.org/get_started/get_started) \`tutorial\`
-- [Deep Learning](http://www.deeplearningbook.org/) \`book\`
+- [Deep Learning Book](http://amzn.to/2tXgCiT)\`book\` [Free HTML version](http://www.deeplearningbook.org/)
 - Go deeper on shallow algos
-  - [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/) \`book\`
-  - [Pattern Recognition and Machine Learning](http://www.springer.com/us/book/9780387310732) \`book\` ([Free PDF](https://goo.gl/aX038j)?)
+  - [Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book\`
+  - [Pattern Recognition and Machine Learning](http://amzn.to/2sDIIfb) \`book\` [Free PDF](https://goo.gl/aX038j)
 
 15m/d Math (KhanAcademy) \`courses\`
 - [LinAlg](https://www.khanacademy.org/math/linear-algebra)
@@ -697,9 +695,9 @@ Goals
   - Speech (TTS, STT, Segmentation, Diarization)
 
 ## Resources
-- [Speech and Language Processing](https://web.stanford.edu/~jurafsky)
-- [Stanford NLP YouTube](https://www.youtube.com/watch?v=nfoudtpBV68&list=PL6397E4B26D00A269)
-  - [Convert video to mp3](http://www.flvto.biz/) - don't download the app, use the website!
+- [Speech and Language Processing](http://amzn.to/2uZaNyg)
+- [Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269)
+  - Setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x --audio-format mp3 https://www.youtube.com/playlist?list=PL6397E4B26D00A269\`
 - [NLTK Book](http://www.nltk.org/book)
 `
 }];
