@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {PageHeader, Panel} from 'react-bootstrap';
-import {Link} from 'react-router';
+import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon} from 'react-bootstrap';
+import {Link, browserHistory} from 'react-router';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import ReactDisqusThread from 'react-disqus-thread';
@@ -23,7 +23,7 @@ class Recommend extends Component {
     const podcast = podcasts[series];
     return (
       <div>
-        <Link to={`podcasts/${series}`}>&lt; Back</Link>
+        <Link to={`podcasts/${series}`}>&lt; All Episodes</Link>
         <Panel header={<h3>Recommend a Future Episode</h3>}>
           <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
         </Panel>
@@ -59,7 +59,7 @@ class Episode extends Component {
       episode = podcast.episodes[id-1];
     return (
       <div>
-        <Link to={`podcasts/${series}`}>&lt; Back</Link>
+        <Link to={`podcasts/${series}`}>&lt; All Episodes</Link>
         <Panel header={<h3>{episode.title}</h3>}>
           <span className="pull-right">{moment(episode.date).format(fmt)}</span>
           {episode.body? (
@@ -97,63 +97,87 @@ class Episodes extends Component {
 }
 
 class Series extends Component {
+  'sidebar-web-development' = () => {
+    const {series} = this.props.params;
+    return (
+      <div>
+        <div className="sub-button-container">
+          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank" rel="nofollow">iTunes</a>
+        </div>
+        <div>
+          <h4 className="alert alert-warning">This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a> instead.</h4>
+        </div>
+      </div>
+    );
+  };
+
+  'sidebar-machine-learning' = () => {
+    const {series} = this.props.params;
+    return (
+      <div>
+        <Button bsSize="large" bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">
+          <Glyphicon glyph="heart-empty"/> Patreon
+        </Button>
+        <Button bsSize="large" block href="http://survey.libsyn.com/machinelearningguide" target="_blank">
+          <Glyphicon glyph="list-alt"/> Demographic Survey
+        </Button>
+        <Button bsSize="large" block onClick={this.goToRecommend}>
+          <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
+        </Button>
+        <OverlayTrigger
+          placement="right"
+          overlay={(
+            <Popover id="popover-positioned-right">
+              Get notified of new episodes / announcements
+            </Popover>
+          )}
+        >
+          <Button bsSize="large" block href="http://eepurl.com/cUUWfD" target="_blank">
+            <Glyphicon glyph="envelope"/> Mailing List
+          </Button>
+        </OverlayTrigger>
+
+
+        <h4>Subscribe</h4>
+        <div className="sub-button-container">
+          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
+          <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
+          <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
+          <a className="zocial rss sub-button" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
+        </div>
+
+        <h4></h4>
+      </div>
+    );
+  };
+
+  goToRecommend = () => browserHistory.push(`/podcasts/${this.props.params.series}/recommend`);
+
   render() {
     let {series} = this.props.params;
     if (!_.includes(['machine-learning', 'web-development'], series))
       return window.location.href = '/podcasts/machine-learning';
 
     let podcast = podcasts[series];
-    let buttons = {
-      'web-development': (
-        <div className="sub-button-container">
-          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank" rel="nofollow">iTunes</a>
-        </div>
-      ),
-      'machine-learning': (
-        <div className="sub-button-container">
-          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
-          <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
-          <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
-        </div>
-      )
-    }[series];
-
-    let extraContent = {
-      'web-development': (
-        <h4 className="alert alert-warning">This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a> instead.</h4>
-      ),
-      'machine-learning': (
-        <div className="alert alert-success">
-          <ul className="lead list-unstyled">
-            <li>
-              ☞ Could y'all do me a solid and fill out a <a href="http://survey.libsyn.com/machinelearningguide" target="_blank">demographic survey</a>?
-            </li>
-            <li>
-              ☞ <Link to={`/podcasts/${series}/recommend`}>Recommend a Future Episode</Link>
-            </li>
-            <li>
-              ☞ <a href="http://eepurl.com/cUUWfD" target="_blank">Mailing List</a> - get notified of new episodes / announcements
-            </li>
-          </ul>
-        </div>
-      )
-    }[series];
 
     return (
       <div className="Series">
         <PageHeader>{podcast.title}</PageHeader>
-        <div>
-          <div className="logo-and-sub">
-            <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-            {buttons}
-          </div>
-          <div className="clearfix"/>
-          <p>
-            {extraContent}
-            {podcast.body || podcast.teaser}
-          </p>
-        </div>
-        {this.props.children}
+        <Grid>
+          <Row>
+            <Col xs={12} md={4}>
+              <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+              {this['sidebar-' + series]()}
+              <div>
+                <h4>About</h4>
+                {podcast.body || podcast.teaser}
+              </div>
+            </Col>
+            <Col xs={12} md={8}>
+              {this.props.children}
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
