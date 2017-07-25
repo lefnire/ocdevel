@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Mon, 10 Jul 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Tue, 25 Jul 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,10 +28,70 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>20. Natural Language Processing 3</title>
+<link>undefined</link>
+<pubDate>Sun, 23 Jul 2017 00:00:00 EST</pubDate>
+<description>Natural Language Processing classical/shallow algorithms.
+
+## Resources
+- Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- NLTK Book (http://www.nltk.org/book) `book:medium`
+- - Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
+## Episode
+- Parsing
+** Constituents
+** Grammar: Context Free Grammars (CFGs), Probabalistic CFGs (PCFGs), Cocke–Younger–Kasami (CYK)
+** Dependency Tree: Greedy transition-based parsing (stack/buffer)
+** SyntaxNet (English = Parsey McParseface)
+- Relationship Extraction
+- Question Answering / Textual Entailment (TF-IDF+Cosine Similarity; Parsing; NER)
+- Automatic summarization (TF-IDF; TextRank)
+- Machine Translation (details here (https://www.youtube.com/watch?v=QuELiw8tbx8&amp;list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&amp;index=9))</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>556b3779a8f8546de9457002a19e63b2</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>Natural Language Processing classical/shallow algorithms.</itunes:subtitle>
+<itunes:summary>Natural Language Processing classical/shallow algorithms.
+
+## Resources
+- Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- NLTK Book (http://www.nltk.org/book) `book:medium`
+- - Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
+## Episode
+- Parsing
+** Constituents
+** Grammar: Context Free Grammars (CFGs), Probabalistic CFGs (PCFGs), Cocke–Younger–Kasami (CYK)
+** Dependency Tree: Greedy transition-based parsing (stack/buffer)
+** SyntaxNet (English = Parsey McParseface)
+- Relationship Extraction
+- Question Answering / Textual Entailment (TF-IDF+Cosine Similarity; Parsing; NER)
+- Automatic summarization (TF-IDF; TextRank)
+- Machine Translation (details here (https://www.youtube.com/watch?v=QuELiw8tbx8&amp;list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&amp;index=9))</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>19. Natural Language Processing 2</title>
 <link>undefined</link>
 <pubDate>Mon, 10 Jul 2017 00:00:00 EST</pubDate>
 <description>Natural Language Processing classical/shallow algorithms.
+
+## Resources
+- Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- NLTK Book (http://www.nltk.org/book) `book:medium`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
 ## Episode
 
@@ -51,20 +111,21 @@
 - Topic Modeling and keyword extraction: Latent Dirichlet Allocation (LDA)
 ** LDA ~= LSA ~= LSI: Latent diriclet allocation, latent semantic indexing, latent semantic analysis
 - Search / relevance / document-similarity: Bag-of-words, TF-IDF
-- Similarity: Jaccard, Cosine, Euclidean
-
-## Resources
-- Speech and Language Processing (http://amzn.to/2uZaNyg)
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269)
-** Setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x --audio-format mp3 https://www.youtube.com/playlist?list=PL6397E4B26D00A269`
-- NLTK Book (http://www.nltk.org/book)
-</description>
+- Similarity: Jaccard, Cosine, Euclidean</description>
 <enclosure url="undefined" length="undefined" type="audio/mpeg"/>
 <guid>e05e640ba2f99105f52c4eef0c5cabfb</guid>
 <itunes:duration>undefined</itunes:duration>
 <itunes:subtitle>Natural Language Processing classical/shallow algorithms.</itunes:subtitle>
 <itunes:summary>Natural Language Processing classical/shallow algorithms.
 
+## Resources
+- Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- NLTK Book (http://www.nltk.org/book) `book:medium`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
 ## Episode
 
 - Edit distance: Levenshtein distance
@@ -83,14 +144,7 @@
 - Topic Modeling and keyword extraction: Latent Dirichlet Allocation (LDA)
 ** LDA ~= LSA ~= LSI: Latent diriclet allocation, latent semantic indexing, latent semantic analysis
 - Search / relevance / document-similarity: Bag-of-words, TF-IDF
-- Similarity: Jaccard, Cosine, Euclidean
-
-## Resources
-- Speech and Language Processing (http://amzn.to/2uZaNyg)
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269)
-** Setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x --audio-format mp3 https://www.youtube.com/playlist?list=PL6397E4B26D00A269`
-- NLTK Book (http://www.nltk.org/book)
-</itunes:summary>
+- Similarity: Jaccard, Cosine, Euclidean</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -101,6 +155,14 @@
 <pubDate>Sun, 25 Jun 2017 00:00:00 EST</pubDate>
 <description>Introduction to Natural Language Processing (NLP) topics.
 
+## Resources
+- Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- NLTK Book (http://www.nltk.org/book) `book:medium`
+- - Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
 ## Errata
 22:21 "cat &amp; car different by one word" should be "different by one letter"
 
@@ -138,20 +200,21 @@ Goals
 ** Automatic summarization
 - Won't cover
 ** Optical character recognition (OCR)
-** Speech (TTS, STT, Segmentation, Diarization)
-
-## Resources
-- Speech and Language Processing (http://amzn.to/2uZaNyg)
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269)
-** Setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x --audio-format mp3 https://www.youtube.com/playlist?list=PL6397E4B26D00A269`
-- NLTK Book (http://www.nltk.org/book)
-</description>
+** Speech (TTS, STT, Segmentation, Diarization)</description>
 <enclosure url="undefined" length="undefined" type="audio/mpeg"/>
 <guid>d8ebdbe6640d0d34f12778f90b91db8d</guid>
 <itunes:duration>undefined</itunes:duration>
 <itunes:subtitle>Introduction to Natural Language Processing (NLP) topics.</itunes:subtitle>
 <itunes:summary>Introduction to Natural Language Processing (NLP) topics.
 
+## Resources
+- Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- NLTK Book (http://www.nltk.org/book) `book:medium`
+- - Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
 ## Errata
 22:21 "cat &amp; car different by one word" should be "different by one letter"
 
@@ -189,14 +252,7 @@ Goals
 ** Automatic summarization
 - Won't cover
 ** Optical character recognition (OCR)
-** Speech (TTS, STT, Segmentation, Diarization)
-
-## Resources
-- Speech and Language Processing (http://amzn.to/2uZaNyg)
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269)
-** Setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x --audio-format mp3 https://www.youtube.com/playlist?list=PL6397E4B26D00A269`
-- NLTK Book (http://www.nltk.org/book)
-</itunes:summary>
+** Speech (TTS, STT, Segmentation, Diarization)</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -207,27 +263,32 @@ Goals
 <pubDate>Sun, 04 Jun 2017 00:00:00 EST</pubDate>
 <description>Checkpoint - learn the material offline!
 
-## Resources
 45m/d ML
-- Coursera (https://www.coursera.org/learn/machine-learning) `course` (last time mentioning)
-- Python (http://amzn.to/2mVgtJW) `book`
-- TensorFlow (https://www.tensorflow.org/get_started/get_started) `tutorial`
-- Deep Learning Book (http://amzn.to/2tXgCiT)`book` Free HTML version (http://www.deeplearningbook.org/)
+- Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
+- Python (http://amzn.to/2mVgtJW) `book:medium`
+- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+- Pick one:
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
 - Go deeper on shallow algos
-** Elements of Statistical Learning (http://amzn.to/2tWW8He) `book`
-** Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) `book` Free PDF (https://goo.gl/aX038j)
+** Elements of Statistical Learning (http://amzn.to/2tWW8He) `book:hard`
+** Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) (Free PDF? (https://goo.gl/aX038j)) `book:hard`
 
-15m/d Math (KhanAcademy) `courses`
-- LinAlg (https://www.khanacademy.org/math/linear-algebra)
-- Stats (https://www.khanacademy.org/math/statistics-probability)
-- Calc (https://www.khanacademy.org/math/calculus-home)
+15m/d Math
+- Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
+- Stats (https://www.khanacademy.org/math/statistics-probability) `course:medium`
+- Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Audio
-- CS229 - Machine Learning (https://see.stanford.edu/Course/CS229)
-- The Master Algorithm (http://amzn.to/2kLOQjW)
-- Mathematical Decision Making (https://goo.gl/V75I49)
-- Statistics 1 (https://goo.gl/sIBOjw) 2 (https://goo.gl/b15Aug)
-- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- (removed CS229 - very heavy chalkboard use lends poorly to audio)
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio:medium` Semi-technical overview of ML basics &amp; main algorithms
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
+- Statistics (https://projects.iq.harvard.edu/stat110/youtube) `audio|course:hard`
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
 Kaggle.com (https://www.kaggle.com/)
 </description>
@@ -237,27 +298,32 @@ Kaggle.com (https://www.kaggle.com/)
 <itunes:subtitle>Checkpoint - learn the material offline!</itunes:subtitle>
 <itunes:summary>Checkpoint - learn the material offline!
 
-## Resources
 45m/d ML
-- Coursera (https://www.coursera.org/learn/machine-learning) `course` (last time mentioning)
-- Python (http://amzn.to/2mVgtJW) `book`
-- TensorFlow (https://www.tensorflow.org/get_started/get_started) `tutorial`
-- Deep Learning Book (http://amzn.to/2tXgCiT)`book` Free HTML version (http://www.deeplearningbook.org/)
+- Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
+- Python (http://amzn.to/2mVgtJW) `book:medium`
+- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+- Pick one:
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
 - Go deeper on shallow algos
-** Elements of Statistical Learning (http://amzn.to/2tWW8He) `book`
-** Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) `book` Free PDF (https://goo.gl/aX038j)
+** Elements of Statistical Learning (http://amzn.to/2tWW8He) `book:hard`
+** Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) (Free PDF? (https://goo.gl/aX038j)) `book:hard`
 
-15m/d Math (KhanAcademy) `courses`
-- LinAlg (https://www.khanacademy.org/math/linear-algebra)
-- Stats (https://www.khanacademy.org/math/statistics-probability)
-- Calc (https://www.khanacademy.org/math/calculus-home)
+15m/d Math
+- Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
+- Stats (https://www.khanacademy.org/math/statistics-probability) `course:medium`
+- Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Audio
-- CS229 - Machine Learning (https://see.stanford.edu/Course/CS229)
-- The Master Algorithm (http://amzn.to/2kLOQjW)
-- Mathematical Decision Making (https://goo.gl/V75I49)
-- Statistics 1 (https://goo.gl/sIBOjw) 2 (https://goo.gl/b15Aug)
-- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- (removed CS229 - very heavy chalkboard use lends poorly to audio)
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio:medium` Semi-technical overview of ML basics &amp; main algorithms
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
+- Statistics (https://projects.iq.harvard.edu/stat110/youtube) `audio|course:hard`
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
 Kaggle.com (https://www.kaggle.com/)
 </itunes:summary>
@@ -271,6 +337,10 @@ Kaggle.com (https://www.kaggle.com/)
 <pubDate>Sun, 21 May 2017 00:00:00 EST</pubDate>
 <description>Can AI be conscious?
 
+## Resources
+
+Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio:easy`
+
 ## Episode
 
 Inspirations for AI
@@ -305,18 +375,17 @@ Computational theory of mind
 
 Biological plausibility
 - planes, brains
-- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room
-
-# Resources
-
-Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio`
-</description>
+- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-16.mp3" length="69807705" type="audio/mpeg"/>
 <guid>c2db5df8-936b-4404-8f0f-7eb188bfe9ab</guid>
 <itunes:duration>01:14:57</itunes:duration>
 <itunes:subtitle>Can AI be conscious?</itunes:subtitle>
 <itunes:summary>Can AI be conscious?
 
+## Resources
+
+Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio:easy`
+
 ## Episode
 
 Inspirations for AI
@@ -351,12 +420,7 @@ Computational theory of mind
 
 Biological plausibility
 - planes, brains
-- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room
-
-# Resources
-
-Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio`
-</itunes:summary>
+- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -415,26 +479,26 @@ Performance improvement
 <pubDate>Sun, 23 Apr 2017 00:00:00 EST</pubDate>
 <description>Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)
 
+## Resources
+- Andrew Ng Week 9 (https://www.coursera.org/learn/machine-learning/resources/szFCa)
+
 ## Episode
 - Anomoly Detection algorithm
 - Recommender Systems (Content Filtering, Collaborative Filtering)
-- Markov Chains &amp; Monte Carlo
-
-## Resources
-- Andrew Ng Week 9 (https://www.coursera.org/learn/machine-learning/resources/szFCa)</description>
+- Markov Chains &amp; Monte Carlo</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-14.mp3" length="45705749" type="audio/mpeg"/>
 <guid>8ec3010c-8897-43fa-b90b-14f7e43912a8</guid>
 <itunes:duration>48:06</itunes:duration>
 <itunes:subtitle>Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)</itunes:subtitle>
 <itunes:summary>Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)
 
+## Resources
+- Andrew Ng Week 9 (https://www.coursera.org/learn/machine-learning/resources/szFCa)
+
 ## Episode
 - Anomoly Detection algorithm
 - Recommender Systems (Content Filtering, Collaborative Filtering)
-- Markov Chains &amp; Monte Carlo
-
-## Resources
-- Andrew Ng Week 9 (https://www.coursera.org/learn/machine-learning/resources/szFCa)</itunes:summary>
+- Markov Chains &amp; Monte Carlo</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -445,36 +509,34 @@ Performance improvement
 <pubDate>Sun, 09 Apr 2017 00:00:00 EST</pubDate>
 <description>Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.
 
-## Episode
-- Support Vector Machines (SVM)
-- Naive Bayes Classifier
-
 ## Resources
 - Andrew Ng Week 7 (https://www.coursera.org/learn/machine-learning/resources/Es9Qo)
-- Machine Learning with R (http://amzn.to/2n5fSUF)
-- Mathematical Decision Making (https://goo.gl/V75I49)
+- Machine Learning with R (http://amzn.to/2n5fSUF) `book:medium`
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
 - Which algo to use?
-** Pros/cons table for algos (https://blog.recast.ai/machine-learning-algorithms/2/)
-** Decision tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `article`
-</description>
+** Pros/cons table for algos (https://blog.recast.ai/machine-learning-algorithms/2/) `picture`
+** Decision tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `picture`
+
+## Episode
+- Support Vector Machines (SVM)
+- Naive Bayes Classifier</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-13.mp3" length="51788056" type="audio/mpeg"/>
 <guid>af4c231e-c8c1-4d91-ab21-2e256669982e</guid>
 <itunes:duration>55:12</itunes:duration>
 <itunes:subtitle>Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.</itunes:subtitle>
 <itunes:summary>Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.
 
-## Episode
-- Support Vector Machines (SVM)
-- Naive Bayes Classifier
-
 ## Resources
 - Andrew Ng Week 7 (https://www.coursera.org/learn/machine-learning/resources/Es9Qo)
-- Machine Learning with R (http://amzn.to/2n5fSUF)
-- Mathematical Decision Making (https://goo.gl/V75I49)
+- Machine Learning with R (http://amzn.to/2n5fSUF) `book:medium`
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
 - Which algo to use?
-** Pros/cons table for algos (https://blog.recast.ai/machine-learning-algorithms/2/)
-** Decision tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `article`
-</itunes:summary>
+** Pros/cons table for algos (https://blog.recast.ai/machine-learning-algorithms/2/) `picture`
+** Decision tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `picture`
+
+## Episode
+- Support Vector Machines (SVM)
+- Naive Bayes Classifier</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -485,6 +547,16 @@ Performance improvement
 <pubDate>Sun, 19 Mar 2017 00:00:00 EST</pubDate>
 <description>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees
 
+## Resources
+- Andrew Ng Week 8 (https://www.coursera.org/learn/machine-learning/resources/kGWsY)
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article:easy`
+- Elements of Statistical Learning (http://amzn.to/2tWW8He) `book:hard`
+- Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) (Free PDF? (https://goo.gl/aX038j)) `book:hard`
+- Machine Learning with R (http://amzn.to/2n5fSUF) `book:medium`
+- Which algo to use?
+** Pros/cons table for algos (https://blog.recast.ai/machine-learning-algorithms/2/) `picture`
+** Decision tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `picture`
+
 ## Episode
 KNN (supervised)
 
@@ -495,22 +567,23 @@ Unsupervised
 
 Decision Trees (supervised, classify/regress)
 - Random Forests
-- Gradient Boost
-  
-## Resources
-- Andrew Ng Week 8 (https://www.coursera.org/learn/machine-learning/resources/kGWsY)
-- Tour of ML Algos (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) `article`
-- Decision Tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `article`
-- Elements of Statistical Learning (http://amzn.to/2tWW8He) `book`
-- Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) `book` Free PDF (https://goo.gl/aX038j)
-- Machine Learning with R (http://amzn.to/2n5fSUF)
-</description>
+- Gradient Boost</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-12.mp3" length="50030574" type="audio/mpeg"/>
 <guid>1074a375-6831-456d-9bbc-d28c8f85a557</guid>
 <itunes:duration>53:17</itunes:duration>
 <itunes:subtitle>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees</itunes:subtitle>
 <itunes:summary>Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees
 
+## Resources
+- Andrew Ng Week 8 (https://www.coursera.org/learn/machine-learning/resources/kGWsY)
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article:easy`
+- Elements of Statistical Learning (http://amzn.to/2tWW8He) `book:hard`
+- Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) (Free PDF? (https://goo.gl/aX038j)) `book:hard`
+- Machine Learning with R (http://amzn.to/2n5fSUF) `book:medium`
+- Which algo to use?
+** Pros/cons table for algos (https://blog.recast.ai/machine-learning-algorithms/2/) `picture`
+** Decision tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `picture`
+
 ## Episode
 KNN (supervised)
 
@@ -521,16 +594,7 @@ Unsupervised
 
 Decision Trees (supervised, classify/regress)
 - Random Forests
-- Gradient Boost
-  
-## Resources
-- Andrew Ng Week 8 (https://www.coursera.org/learn/machine-learning/resources/kGWsY)
-- Tour of ML Algos (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) `article`
-- Decision Tree of algos (http://scikit-learn.org/stable/tutorial/machine_learning_map/) `article`
-- Elements of Statistical Learning (http://amzn.to/2tWW8He) `book`
-- Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) `book` Free PDF (https://goo.gl/aX038j)
-- Machine Learning with R (http://amzn.to/2n5fSUF)
-</itunes:summary>
+- Gradient Boost</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -541,26 +605,27 @@ Decision Trees (supervised, classify/regress)
 <pubDate>Wed, 08 Mar 2017 00:00:00 EST</pubDate>
 <description>Checkpoint - start learning the material offline!
 
-## Resources
 45m/d ML
-- Coursera (https://www.coursera.org/learn/machine-learning) `course`
-- Deep Learning Book (http://amzn.to/2tXgCiT)`book` Free HTML version (http://www.deeplearningbook.org/)
-- Python (http://amzn.to/2mVgtJW) `book`
-- TensorFlow (https://www.tensorflow.org/get_started/get_started) `tutorial`
+- Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
+- Python (http://amzn.to/2mVgtJW) `book:medium`
+- Pick one:
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+** Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
 
 15m/d Math (KhanAcademy)
-- LinAlg (https://www.khanacademy.org/math/linear-algebra) `course`
-- Stats (https://www.khanacademy.org/math/statistics-probability) `course`
-- Calc (https://www.khanacademy.org/math/calculus-home) `course`
+- Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
+- Stats (https://www.khanacademy.org/math/statistics-probability) `course:medium`
+- Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Audio
-- (Very optional) 
-** Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
-** The Singularity Is Near (http://amzn.to/2lzCqKk)
-- The Master Algorithm (http://amzn.to/2kLOQjW)
-- Mathematical Decision Making (https://goo.gl/V75I49)
-- Statistics 1 (https://goo.gl/sIBOjw) 2 (https://goo.gl/b15Aug)
-- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio:medium` Semi-technical overview of ML basics &amp; main algorithms
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
+- Statistics (https://projects.iq.harvard.edu/stat110/youtube) `audio|course:hard`
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 </description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-11.mp3" length="6946229" type="audio/mpeg"/>
 <guid>fe205bbc-b9d4-4df5-b840-c6f5b728903f</guid>
@@ -568,26 +633,27 @@ Audio
 <itunes:subtitle>Checkpoint - start learning the material offline!</itunes:subtitle>
 <itunes:summary>Checkpoint - start learning the material offline!
 
-## Resources
 45m/d ML
-- Coursera (https://www.coursera.org/learn/machine-learning) `course`
-- Deep Learning Book (http://amzn.to/2tXgCiT)`book` Free HTML version (http://www.deeplearningbook.org/)
-- Python (http://amzn.to/2mVgtJW) `book`
-- TensorFlow (https://www.tensorflow.org/get_started/get_started) `tutorial`
+- Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
+- Python (http://amzn.to/2mVgtJW) `book:medium`
+- Pick one:
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+** Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
 
 15m/d Math (KhanAcademy)
-- LinAlg (https://www.khanacademy.org/math/linear-algebra) `course`
-- Stats (https://www.khanacademy.org/math/statistics-probability) `course`
-- Calc (https://www.khanacademy.org/math/calculus-home) `course`
+- Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
+- Stats (https://www.khanacademy.org/math/statistics-probability) `course:medium`
+- Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Audio
-- (Very optional) 
-** Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5)
-** The Singularity Is Near (http://amzn.to/2lzCqKk)
-- The Master Algorithm (http://amzn.to/2kLOQjW)
-- Mathematical Decision Making (https://goo.gl/V75I49)
-- Statistics 1 (https://goo.gl/sIBOjw) 2 (https://goo.gl/b15Aug)
-- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio:medium` Semi-technical overview of ML basics &amp; main algorithms
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
+- Statistics (https://projects.iq.harvard.edu/stat110/youtube) `audio|course:hard`
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 </itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -599,67 +665,10 @@ Audio
 <pubDate>Tue, 07 Mar 2017 00:00:00 EST</pubDate>
 <description>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.
 
-## Episode
-Languages
-- C/C++
-** Performance
-** GPU (CUDA/cuDNN)
-- Math Langs
-** R
-** MATLAB / Octave
-** Julia
-- Java / Scala
-** Data mining
-** Hadoop + Mahout / Spark + SparkML
-** Deeplearning4j
-- Python
-** R =&gt; Pandas
-** MATLAB =&gt; numpy
-** C/C++/GPU =&gt; TensorFlow (or other symbolic graph)
-** Data Mining =&gt; PySpark
-** Server (Flask, Django)
-- Analogy: Data =&gt; Analytics (biz intelligence, etc) =&gt; Adsense
-- Other languages like Node, Go, Rust (forgot to mention) see my answer (https://goo.gl/9d21xE) for why NOT to use them.
-- Articles
-** Best Programming Language for Machine Learning (http://machinelearningmastery.com/best-programming-language-for-machine-learning)
-** Data Science Job Report 2017 (http://r4stats.com/2017/02/28/r-passes-sas)
-  
-Frameworks
-- ML libraries
-** Numpy, Pandas, scikit-learn
-- Computational/symbolic graphs
-** Automatic differentiation
-- Theano
-** Math layer
-** Blocks/Lasagne ML layer
-** Keras DL layer
-- Torch
-** CNNs
-** note about RNNs
-- TensorFlow
-** Perf over time
-** Mobile etc
-** Keras
-- Others
-** Caffe (old-n-dying, C++)
-** CNTK (MS)
-** mxnet (Amazon)
-** DL4J
-** OpenCV (vision only)
-- Articles
-** An Overview of Python Deep Learning Frameworks (http://www.kdnuggets.com/2017/02/python-deep-learning-frameworks-overview.html)
-** Evaluation of Deep Learning Toolkits (https://github.com/zer0n/deepframeworks/blob/master/README.md)
-** Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras &amp; CNTK (https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)
-  
 ## Resources
-- Python (http://amzn.to/2mVgtJW)
-- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started)
-</description>
-<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3" length="39407399" type="audio/mpeg"/>
-<guid>c613d746-0916-448e-8315-5ac4323389e2</guid>
-<itunes:duration>44:17</itunes:duration>
-<itunes:subtitle>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.</itunes:subtitle>
-<itunes:summary>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.
+- Python (http://amzn.to/2mVgtJW) `book:medium`
+- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+- Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
 
 ## Episode
 Languages
@@ -711,12 +720,69 @@ Frameworks
 - Articles
 ** An Overview of Python Deep Learning Frameworks (http://www.kdnuggets.com/2017/02/python-deep-learning-frameworks-overview.html)
 ** Evaluation of Deep Learning Toolkits (https://github.com/zer0n/deepframeworks/blob/master/README.md)
-** Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras &amp; CNTK (https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)
-  
+** Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras &amp; CNTK (https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)</description>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3" length="39407399" type="audio/mpeg"/>
+<guid>c613d746-0916-448e-8315-5ac4323389e2</guid>
+<itunes:duration>44:17</itunes:duration>
+<itunes:subtitle>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.</itunes:subtitle>
+<itunes:summary>Languages &amp; frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.
+
 ## Resources
-- Python (http://amzn.to/2mVgtJW)
-- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started)
-</itunes:summary>
+- Python (http://amzn.to/2mVgtJW) `book:medium`
+- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+- Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
+
+## Episode
+Languages
+- C/C++
+** Performance
+** GPU (CUDA/cuDNN)
+- Math Langs
+** R
+** MATLAB / Octave
+** Julia
+- Java / Scala
+** Data mining
+** Hadoop + Mahout / Spark + SparkML
+** Deeplearning4j
+- Python
+** R =&gt; Pandas
+** MATLAB =&gt; numpy
+** C/C++/GPU =&gt; TensorFlow (or other symbolic graph)
+** Data Mining =&gt; PySpark
+** Server (Flask, Django)
+- Analogy: Data =&gt; Analytics (biz intelligence, etc) =&gt; Adsense
+- Other languages like Node, Go, Rust (forgot to mention) see my answer (https://goo.gl/9d21xE) for why NOT to use them.
+- Articles
+** Best Programming Language for Machine Learning (http://machinelearningmastery.com/best-programming-language-for-machine-learning)
+** Data Science Job Report 2017 (http://r4stats.com/2017/02/28/r-passes-sas)
+  
+Frameworks
+- ML libraries
+** Numpy, Pandas, scikit-learn
+- Computational/symbolic graphs
+** Automatic differentiation
+- Theano
+** Math layer
+** Blocks/Lasagne ML layer
+** Keras DL layer
+- Torch
+** CNNs
+** note about RNNs
+- TensorFlow
+** Perf over time
+** Mobile etc
+** Keras
+- Others
+** Caffe (old-n-dying, C++)
+** CNTK (MS)
+** mxnet (Amazon)
+** DL4J
+** OpenCV (vision only)
+- Articles
+** An Overview of Python Deep Learning Frameworks (http://www.kdnuggets.com/2017/02/python-deep-learning-frameworks-overview.html)
+** Evaluation of Deep Learning Toolkits (https://github.com/zer0n/deepframeworks/blob/master/README.md)
+** Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras &amp; CNTK (https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -727,50 +793,11 @@ Frameworks
 <pubDate>Sat, 04 Mar 2017 00:00:00 EST</pubDate>
 <description>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.
 
-## Episode
-- Value
-** Represents brain? Magic black-box
-** Feature learning (layer removed from programmer)
-** Subsumes AI
-- Stacked shallow learning
-** Logistic regression = lego, Neural Network = castle
-- Deep Learning =&gt; ANNs =&gt; MLPs (&amp; RNNs, CNNs, DQNs, etc)
-** MLP: Perceptron vs LogReg / sigmoid activation
-- Architecture
-** (Feed forward) Input =&gt; Hidden Layers =&gt; Hypothesis fn
-** "Feed forward" vs recursive (RNNs, later)
-** (Loss function) Cross entropy
-** (Learn) Back Propagation
-- Price ~ smoking + obesity + age^2
-** 1-layer MLP
-- Face? ~ pixels
-** Extra layer = hierarchical breakdown
-** Inputs =&gt; Employees =&gt; Supervisors =&gt; Boss
-- Backprop / Gradient descent
-** Optimizers: adagrad, adam, ... vs gradient descent
-- Silver bullet, but don't abuse
-** linear (housing market)
-** features don't combine
-** expensive: like hiring a company when the boss h(x) does all the work
-- Brian comparison (dentrites, axons); early pioneers as neuroscientists / cogsci
-- Different types
-** vs brain
-** RNNs
-** CNNs
-- Activation fns
-** Activation units / neurons (hidden layer)
-** Relu, TanH
-  
 ## Resources
-- Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video` quick series to get a lay-of-the-land. 
-- ☞ Deep Learning Book (http://amzn.to/2tXgCiT) `book` Free HTML version (http://www.deeplearningbook.org/)
-- You'll also see Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) recommended, but DL Book is more thorough and updated.
-</description>
-<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-9.mp3" length="45855231" type="audio/mpeg"/>
-<guid>d842fe61-7cf2-4209-9cb3-d29be6c4d1a8</guid>
-<itunes:duration>51:09</itunes:duration>
-<itunes:subtitle>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.</itunes:subtitle>
-<itunes:summary>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.
+- Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video:easy` quick series to get a lay-of-the-land.
+- Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical  
+- Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+- Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
 
 ## Episode
 - Value
@@ -804,13 +831,52 @@ Frameworks
 ** CNNs
 - Activation fns
 ** Activation units / neurons (hidden layer)
-** Relu, TanH
-  
+** Relu, TanH, Sigmoid</description>
+<enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-9.mp3" length="45855231" type="audio/mpeg"/>
+<guid>d842fe61-7cf2-4209-9cb3-d29be6c4d1a8</guid>
+<itunes:duration>51:09</itunes:duration>
+<itunes:subtitle>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.</itunes:subtitle>
+<itunes:summary>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.
+
 ## Resources
-- Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video` quick series to get a lay-of-the-land. 
-- ☞ Deep Learning Book (http://amzn.to/2tXgCiT) `book` Free HTML version (http://www.deeplearningbook.org/)
-- You'll also see Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) recommended, but DL Book is more thorough and updated.
-</itunes:summary>
+- Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video:easy` quick series to get a lay-of-the-land.
+- Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical  
+- Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+- Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+
+## Episode
+- Value
+** Represents brain? Magic black-box
+** Feature learning (layer removed from programmer)
+** Subsumes AI
+- Stacked shallow learning
+** Logistic regression = lego, Neural Network = castle
+- Deep Learning =&gt; ANNs =&gt; MLPs (&amp; RNNs, CNNs, DQNs, etc)
+** MLP: Perceptron vs LogReg / sigmoid activation
+- Architecture
+** (Feed forward) Input =&gt; Hidden Layers =&gt; Hypothesis fn
+** "Feed forward" vs recursive (RNNs, later)
+** (Loss function) Cross entropy
+** (Learn) Back Propagation
+- Price ~ smoking + obesity + age^2
+** 1-layer MLP
+- Face? ~ pixels
+** Extra layer = hierarchical breakdown
+** Inputs =&gt; Employees =&gt; Supervisors =&gt; Boss
+- Backprop / Gradient descent
+** Optimizers: adagrad, adam, ... vs gradient descent
+- Silver bullet, but don't abuse
+** linear (housing market)
+** features don't combine
+** expensive: like hiring a company when the boss h(x) does all the work
+- Brian comparison (dentrites, axons); early pioneers as neuroscientists / cogsci
+- Different types
+** vs brain
+** RNNs
+** CNNs
+- Activation fns
+** Activation units / neurons (hidden layer)
+** Relu, TanH, Sigmoid</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -821,72 +887,70 @@ Frameworks
 <pubDate>Thu, 23 Feb 2017 00:00:00 EST</pubDate>
 <description>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.
 
-## Episode
-- Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
-- Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
-- Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.
-
 ## Resources
 Come back here after you've finished Ng's course; or learn these resources in tandem with ML (say 1 day a week).
 
-☞ KhanAcademy: 
-- LinAlg (https://www.khanacademy.org/math/linear-algebra)
-- Stats (https://www.khanacademy.org/math/statistics-probability)
-- Calc (https://www.khanacademy.org/math/calculus-home)
-
 Primers (PDFs)
-- See "Section Notes" of cs229 (http://cs229.stanford.edu/materials.html)
+- See "Section Notes" of cs229 (http://cs229.stanford.edu/materials.html) `handout:medium`
+
+KhanAcademy: 
+- Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
+- Stats (https://www.khanacademy.org/math/statistics-probability) `course:medium`
+- Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Books
-- Linear Algebra Done Right (http://amzn.to/2t28p8F)
-- All of statistics (http://amzn.to/2t2dOwg)
-- Calculus (http://amzn.to/2tXfXhp)
+- Linear Algebra Done Right (http://amzn.to/2t28p8F) `book:hard`
+- All of statistics (http://amzn.to/2t2dOwg) `book:hard`
+- Calculus (http://amzn.to/2tXfXhp) `book:hard`
 
-The Great Courses `audio` highly recommend audio supplementary material 
-- Stats (https://goo.gl/sIBOjw)
-- Calc 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
-- ☞ Mathematical Decision Making (https://goo.gl/V75I49) `recommended` basically an ML course ("Operations Research", a very similar field)
-- Relevant others: 
-** Game Theory (https://goo.gl/yEEOG1)
-** Discrete Math (https://goo.gl/CBKCJE)
-- Conversion Script: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
-</description>
+Audio (supplementary material)
+- Statistics (https://projects.iq.harvard.edu/stat110/youtube) `audio|course:hard` 
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh) `course|audio:hard`
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
+- Information Theory (http://www.thegreatcourses.com/courses/the-science-of-information-from-language-to-black-holes.html) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
+## Episode
+- Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
+- Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
+- Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3" length="24852040" type="audio/mpeg"/>
 <guid>a5c01d38-5242-4b63-b265-81fc53d38ad3</guid>
 <itunes:duration>27:23</itunes:duration>
 <itunes:subtitle>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.</itunes:subtitle>
 <itunes:summary>Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.
 
-## Episode
-- Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
-- Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
-- Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.
-
 ## Resources
 Come back here after you've finished Ng's course; or learn these resources in tandem with ML (say 1 day a week).
 
-☞ KhanAcademy: 
-- LinAlg (https://www.khanacademy.org/math/linear-algebra)
-- Stats (https://www.khanacademy.org/math/statistics-probability)
-- Calc (https://www.khanacademy.org/math/calculus-home)
-
 Primers (PDFs)
-- See "Section Notes" of cs229 (http://cs229.stanford.edu/materials.html)
+- See "Section Notes" of cs229 (http://cs229.stanford.edu/materials.html) `handout:medium`
+
+KhanAcademy: 
+- Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
+- Stats (https://www.khanacademy.org/math/statistics-probability) `course:medium`
+- Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Books
-- Linear Algebra Done Right (http://amzn.to/2t28p8F)
-- All of statistics (http://amzn.to/2t2dOwg)
-- Calculus (http://amzn.to/2tXfXhp)
+- Linear Algebra Done Right (http://amzn.to/2t28p8F) `book:hard`
+- All of statistics (http://amzn.to/2t2dOwg) `book:hard`
+- Calculus (http://amzn.to/2tXfXhp) `book:hard`
 
-The Great Courses `audio` highly recommend audio supplementary material 
-- Stats (https://goo.gl/sIBOjw)
-- Calc 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh)
-- ☞ Mathematical Decision Making (https://goo.gl/V75I49) `recommended` basically an ML course ("Operations Research", a very similar field)
-- Relevant others: 
-** Game Theory (https://goo.gl/yEEOG1)
-** Discrete Math (https://goo.gl/CBKCJE)
-- Conversion Script: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
-</itunes:summary>
+Audio (supplementary material)
+- Statistics (https://projects.iq.harvard.edu/stat110/youtube) `audio|course:hard` 
+- Calculus 1 (https://goo.gl/fcLP3l) 2 (https://goo.gl/sBpljN) 3 (https://goo.gl/8Hdwuh) `course|audio:hard`
+- Mathematical Decision Making (https://goo.gl/V75I49) `audio|course:hard` course on "Operations Research", similar to ML
+- Information Theory (http://www.thegreatcourses.com/courses/the-science-of-information-from-language-to-black-holes.html) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
+## Episode
+- Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
+- Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
+- Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -897,24 +961,22 @@ The Great Courses `audio` highly recommend audio supplementary material
 <pubDate>Sun, 19 Feb 2017 00:00:00 EST</pubDate>
 <description>Your first classifier: Logistic Regression. That plus Linear Regression, and you're a 101 supervised learner!
 
-## Episode
-See Andrew Ng Week 3 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
-
 ## Resources
 You've started Ng's Coursera course (https://www.coursera.org/learn/machine-learning), right? Riight?
-</description>
+
+## Episode
+See Andrew Ng Week 3 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/Zi29t)</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3" length="30495267" type="audio/mpeg"/>
 <guid>36b6133d-3018-4be0-a36c-61904aa80a1a</guid>
 <itunes:duration>34:19</itunes:duration>
 <itunes:subtitle>Your first classifier: Logistic Regression. That plus Linear Regression, and you're a 101 supervised learner!</itunes:subtitle>
 <itunes:summary>Your first classifier: Logistic Regression. That plus Linear Regression, and you're a 101 supervised learner!
 
-## Episode
-See Andrew Ng Week 3 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/Zi29t)
-
 ## Resources
 You've started Ng's Coursera course (https://www.coursera.org/learn/machine-learning), right? Riight?
-</itunes:summary>
+
+## Episode
+See Andrew Ng Week 3 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/Zi29t)</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -925,6 +987,9 @@ You've started Ng's Coursera course (https://www.coursera.org/learn/machine-lear
 <pubDate>Fri, 17 Feb 2017 00:00:00 EST</pubDate>
 <description>Discussion on certificates and degrees from Udacity to a Masters degree.
 
+## Resources
+- Discussions: 1 (http://canyon289.github.io/DSGuide.html#DSGuide) 2 (https://news.ycombinator.com/item?id=13654127) 3 (http://cole-maclean.github.io/blog/Self%20Taught%20AI/) 4 (https://news.ycombinator.com/item?id=12516441)
+
 ## Episode
 Self-edify
 - Coursera Specialization - flat $500
@@ -936,17 +1001,16 @@ Self-edify
 
 OMSCS (https://www.omscs.gatech.edu/): Great &amp; cheap online masters degree
 
-Portfolio: Most important for getting a job
-
-## Resources
-- Discussions: 1 (http://canyon289.github.io/DSGuide.html#DSGuide) 2 (https://news.ycombinator.com/item?id=13654127) 3 (http://cole-maclean.github.io/blog/Self%20Taught%20AI/) 4 (https://news.ycombinator.com/item?id=12516441)
-</description>
+Portfolio: Most important for getting a job</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-6.mp3" length="14888861" type="audio/mpeg"/>
 <guid>a8bd671f-100f-42ff-a68a-cff7763298f6</guid>
 <itunes:duration>15:36</itunes:duration>
 <itunes:subtitle>Discussion on certificates and degrees from Udacity to a Masters degree.</itunes:subtitle>
 <itunes:summary>Discussion on certificates and degrees from Udacity to a Masters degree.
 
+## Resources
+- Discussions: 1 (http://canyon289.github.io/DSGuide.html#DSGuide) 2 (https://news.ycombinator.com/item?id=13654127) 3 (http://cole-maclean.github.io/blog/Self%20Taught%20AI/) 4 (https://news.ycombinator.com/item?id=12516441)
+
 ## Episode
 Self-edify
 - Coursera Specialization - flat $500
@@ -958,11 +1022,7 @@ Self-edify
 
 OMSCS (https://www.omscs.gatech.edu/): Great &amp; cheap online masters degree
 
-Portfolio: Most important for getting a job
-
-## Resources
-- Discussions: 1 (http://canyon289.github.io/DSGuide.html#DSGuide) 2 (https://news.ycombinator.com/item?id=13654127) 3 (http://cole-maclean.github.io/blog/Self%20Taught%20AI/) 4 (https://news.ycombinator.com/item?id=12516441)
-</itunes:summary>
+Portfolio: Most important for getting a job</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -973,12 +1033,11 @@ Portfolio: Most important for getting a job
 <pubDate>Thu, 16 Feb 2017 00:00:00 EST</pubDate>
 <description>Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression
 
+## Resources
+- Andrew Ng's Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) `course:hard` No question, the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
+
 ## Episode
 See Andrew Ng Week 2 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/QQx8l)
-
-## Resources
-- ☞ Andrew Ng's Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) `mooc`
-  No question about it, this is the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
 </description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-5.mp3" length="30769356" type="audio/mpeg"/>
 <guid>2d2e66dd-d100-4e05-afba-a948de1c956d</guid>
@@ -986,12 +1045,11 @@ See Andrew Ng Week 2 Lecture Notes (https://www.coursera.org/learn/machine-learn
 <itunes:subtitle>Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression</itunes:subtitle>
 <itunes:summary>Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression
 
+## Resources
+- Andrew Ng's Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) `course:hard` No question, the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
+
 ## Episode
 See Andrew Ng Week 2 Lecture Notes (https://www.coursera.org/learn/machine-learning/resources/QQx8l)
-
-## Resources
-- ☞ Andrew Ng's Machine Learning Coursera course (https://www.coursera.org/learn/machine-learning) `mooc`
-  No question about it, this is the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional. 
 </itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -1003,6 +1061,10 @@ See Andrew Ng Week 2 Lecture Notes (https://www.coursera.org/learn/machine-learn
 <pubDate>Sun, 12 Feb 2017 00:00:00 EST</pubDate>
 <description>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.
 
+## Resources
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article:easy` 
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio:medium` Semi-technical overview of ML basics &amp; main algorithms 
+
 ## Episode
 Learning (ML)
 - 3-step process
@@ -1025,18 +1087,17 @@ Categories
 - Unsupervised
 ** Market segmentation
 - Reinforcement &amp; Semi-Supervised
-** Planning (DQN): Games (chess, Mario); Robot movement
-  
-## Resources
-- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article` 
-- The Master Algorithm (http://amzn.to/2kLOQjW) `audio` Semi-technical overview of ML basics &amp; main algorithms 
-</description>
+** Planning (DQN): Games (chess, Mario); Robot movement</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3" length="20773676" type="audio/mpeg"/>
 <guid>a7d9b86e-d3aa-4384-a854-792bfcf36e24</guid>
 <itunes:duration>21:54</itunes:duration>
 <itunes:subtitle>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.</itunes:subtitle>
 <itunes:summary>Overview of machine learning algorithms. Infer/predict -&gt; error/loss -&gt; train/learn. Supervised, unsupervised, reinforcement learning.
 
+## Resources
+- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article:easy` 
+- The Master Algorithm (http://amzn.to/2kLOQjW) `audio:medium` Semi-technical overview of ML basics &amp; main algorithms 
+
 ## Episode
 Learning (ML)
 - 3-step process
@@ -1059,12 +1120,7 @@ Categories
 - Unsupervised
 ** Market segmentation
 - Reinforcement &amp; Semi-Supervised
-** Planning (DQN): Games (chess, Mario); Robot movement
-  
-## Resources
-- Tour of Machine Learning Algorithms (http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) `article` 
-- The Master Algorithm (http://amzn.to/2kLOQjW) `audio` Semi-technical overview of ML basics &amp; main algorithms 
-</itunes:summary>
+** Planning (DQN): Games (chess, Mario); Robot movement</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -1075,6 +1131,11 @@ Categories
 <pubDate>Fri, 10 Feb 2017 00:00:00 EST</pubDate>
 <description>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.
 
+## Resources
+- The Singularity Is Near (http://amzn.to/2lzCqKk) `audio:easy`
+- Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio:easy`
+- Superintelligence (http://amzn.to/2lzLcrL) `audio:easy` doom-and-gloom favorite of Musk, Gates, Hawking.
+
 ## Episode
 Economics / Automation
 - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
@@ -1087,23 +1148,18 @@ Consciousness (Functionalism / Computational Theory of Mind / Simulations)
 
 The Scare
 - Superintelligence by Nick Bostrom
-- Bill Gates, Stephen Hawking, Elon Musk ^
-  
-## Resources
-- The Singularity Is Near (http://amzn.to/2lzCqKk) `audio`
-- Consciousness
-** How to Create a Mind (http://amzn.to/2tXLvUm) `audio`
-** ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio` My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
-** Consciousness Explained (http://amzn.to/2tXboUz) `audio`
-- Superintelligence (http://amzn.to/2lzLcrL) `audio`
-  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it's kinda "must read"
-</description>
+- Bill Gates, Stephen Hawking, Elon Musk ^</description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3" length="16382362" type="audio/mpeg"/>
 <guid>a0b24583-e253-492c-addc-ee0c0aeb1765</guid>
 <itunes:duration>17:41</itunes:duration>
 <itunes:subtitle>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.</itunes:subtitle>
 <itunes:summary>Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.
 
+## Resources
+- The Singularity Is Near (http://amzn.to/2lzCqKk) `audio:easy`
+- Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio:easy`
+- Superintelligence (http://amzn.to/2lzLcrL) `audio:easy` doom-and-gloom favorite of Musk, Gates, Hawking.
+
 ## Episode
 Economics / Automation
 - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
@@ -1116,17 +1172,7 @@ Consciousness (Functionalism / Computational Theory of Mind / Simulations)
 
 The Scare
 - Superintelligence by Nick Bostrom
-- Bill Gates, Stephen Hawking, Elon Musk ^
-  
-## Resources
-- The Singularity Is Near (http://amzn.to/2lzCqKk) `audio`
-- Consciousness
-** How to Create a Mind (http://amzn.to/2tXLvUm) `audio`
-** ☞ Philosophy of Mind: Brains, Consciousness, and Thinking Machines (http://amzn.to/2kQGgk5) `audio` My absolute favorite consciousness starter. Get the audio download &amp; listen along-side this podcast!
-** Consciousness Explained (http://amzn.to/2tXboUz) `audio`
-- Superintelligence (http://amzn.to/2lzLcrL) `audio`
-  I personally think this book is BS, but the great minds (Musk, Gates, Hawking) loved it - so it's kinda "must read"
-</itunes:summary>
+- Bill Gates, Stephen Hawking, Elon Musk ^</itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
 <itunes:explicit>no</itunes:explicit>
@@ -1137,6 +1183,11 @@ The Scare
 <pubDate>Thu, 09 Feb 2017 00:00:00 EST</pubDate>
 <description>What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.
 
+## Resources
+- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence) `article:easy`
+- The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) (Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) `book:hard` AI history
+- Machines of Loving Grace (http://amzn.to/2kRcBWq) `audio:easy` AI history
+
 ## Episode
 What is AI?
 - Simulate any intellectual task
@@ -1199,12 +1250,6 @@ History
 ** Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
 - Bloomberg, 2015 was whopper for AI in industry
 - AlphaGo &amp; DeepMind
-    
-## Resources
-- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence) `article`
-- Brief history: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history) `article`
-- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) `book` Exhaustive book on AI history. Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
-- Machines of Loving Grace (http://amzn.to/2kRcBWq) `audio` Shorter version if the above is too much to chew
 </description>
 <enclosure url="http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3" length="29646598" type="audio/mpeg"/>
 <guid>129d0157-fbda-4cc6-aaae-1c96745c12c9</guid>
@@ -1212,6 +1257,11 @@ History
 <itunes:subtitle>What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.</itunes:subtitle>
 <itunes:summary>What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.
 
+## Resources
+- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence) `article:easy`
+- The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) (Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) `book:hard` AI history
+- Machines of Loving Grace (http://amzn.to/2kRcBWq) `audio:easy` AI history
+
 ## Episode
 What is AI?
 - Simulate any intellectual task
@@ -1274,12 +1324,6 @@ History
 ** Connectionism optimizations: Geoffrey Hinton: 2006, optimized back propagation
 - Bloomberg, 2015 was whopper for AI in industry
 - AlphaGo &amp; DeepMind
-    
-## Resources
-- Wikipedia:AI (https://en.wikipedia.org/wiki/Artificial_intelligence) `article`
-- Brief history: 1 (https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai) 2 (http://aitopics.org/misc/brief-history) `article`
-- ☞ The Quest for Artificial Intelligence (http://amzn.to/2kRd4Ie) `book` Exhaustive book on AI history. Free PDF? (http://ai.stanford.edu/~nilsson/QAI/qai.pdf)  
-- Machines of Loving Grace (http://amzn.to/2kRcBWq) `audio` Shorter version if the above is too much to chew
 </itunes:summary>
 <itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
 <itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
@@ -1298,7 +1342,7 @@ What is this podcast?
 - No math/programming experience required
 
 Who is it for
-- Anyone curious about machine learning fundamentals (coming from /r/singularity, futurology, learningmachinelearning, etc)
+- Anyone curious about machine learning fundamentals
 - Aspiring machine learning developers (maybe transitioning from web/mobile development)
 
 Why audio?
@@ -1312,6 +1356,7 @@ What it's not
 - Misc Topics
 ** Linear Digressions (http://lineardigressions.com/)
 ** Data Skeptic (https://dataskeptic.com/)
+** Partially Derivative (http://partiallyderivative.com/)
 - iTunesU issues
 - Learning machines 101 (http://www.learningmachines101.com/)
 
@@ -1338,7 +1383,7 @@ What is this podcast?
 - No math/programming experience required
 
 Who is it for
-- Anyone curious about machine learning fundamentals (coming from /r/singularity, futurology, learningmachinelearning, etc)
+- Anyone curious about machine learning fundamentals
 - Aspiring machine learning developers (maybe transitioning from web/mobile development)
 
 Why audio?
@@ -1352,6 +1397,7 @@ What it's not
 - Misc Topics
 ** Linear Digressions (http://lineardigressions.com/)
 ** Data Skeptic (https://dataskeptic.com/)
+** Partially Derivative (http://partiallyderivative.com/)
 - iTunesU issues
 - Learning machines 101 (http://www.learningmachines101.com/)
 
