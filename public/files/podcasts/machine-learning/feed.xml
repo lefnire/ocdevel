@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Tue, 25 Jul 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Fri, 28 Jul 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,6 +28,24 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>21. Update</title>
+<link>undefined</link>
+<pubDate>Thu, 27 Jul 2017 00:00:00 EST</pubDate>
+<description>Update on Patreon and resources.
+
+Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearningguide)</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>30566e73f0346fd82c174e2931a39a97</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>Update on Patreon and resources.</itunes:subtitle>
+<itunes:summary>Update on Patreon and resources.
+
+Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearningguide)</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>20. Natural Language Processing 3</title>
 <link>undefined</link>
 <pubDate>Sun, 23 Jul 2017 00:00:00 EST</pubDate>

@@ -64,7 +64,8 @@ const resources = {
     which_algo_to_use: `- Which algo to use?
   - [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/) \`picture\`
   - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`picture\``,
-    kaggle: `[Kaggle.com](https://www.kaggle.com/)`
+    kaggle: `[Kaggle.com](https://www.kaggle.com/)`,
+    patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`
   }
 };
 
@@ -812,6 +813,14 @@ ${resources.audio.video_to_audio}
 - Question Answering / Textual Entailment (TF-IDF+Cosine Similarity; Parsing; NER)
 - Automatic summarization (TF-IDF; TextRank)
 - Machine Translation ([details here](https://www.youtube.com/watch?v=QuELiw8tbx8&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&index=9))`
+}, {
+  title: '21. Update',
+  date: "2017-07-27",
+  guid: "30566e73f0346fd82c174e2931a39a97",
+  file: {},
+  libsynEpisode: 5585790,
+  teaser: 'Update on Patreon and resources.',
+  body: `Keep the podcast alive, donate on [Patreon](https://www.patreon.com/machinelearningguide)`
 }];
 
 const podcast = {
