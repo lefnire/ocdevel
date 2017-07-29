@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon} from 'react-bootstrap';
 import {Link, browserHistory} from 'react-router';
+import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import ReactDisqusThread from 'react-disqus-thread';
@@ -23,10 +24,9 @@ class Recommend extends Component {
     const podcast = podcasts[series];
     return (
       <div>
-        <Link to={`podcasts/${series}`}>&lt; All Episodes</Link>
-        <Panel header={<h3>Recommend a Future Episode</h3>}>
-          <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
-        </Panel>
+        <Button href={`/podcasts/${series}`}>&lt; All Episodes</Button>
+        <h2>Recommend a Future Episode</h2>
+        <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
         <ReactDisqusThread
           shortname="ocdevel"
           identifier={series + '-recommend'}
@@ -53,22 +53,30 @@ class Episode extends Component {
     );
   };
 
+  markdownRenderers = {
+    // Ensure all episode links are target=_blank
+    Link: props => (<a href={props.href} target="_blank">{props.children}</a>)
+  };
+
   render() {
-    let {series, id} = this.props.params;
+    const {series, id} = this.props.params;
     const podcast = podcasts[series],
       episode = podcast.episodes[id-1];
+    // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
+    const body = episode.body && episode.body.replace(/##/g, '###');
     return (
       <div>
-        <Link to={`podcasts/${series}`}>&lt; All Episodes</Link>
-        <Panel header={<h3>{episode.title}</h3>}>
+        <Button href={`/podcasts/${series}`}>&lt; All Episodes</Button>
+        <div>
+          <h2>{episode.title}</h2>
           <span className="pull-right">{moment(episode.date).format(fmt)}</span>
-          {episode.body? (
-            <ReactMarkdown source={episode.body}
-              renderers={{Link: props => <a href={props.href} target="_blank">{props.children}</a>}}
-            />
-          ): <p>{episode.teaser}</p>}
-          {this.renderPlayer(podcast, episode)}
-        </Panel>
+          {body? (
+            <ReactMarkdown source={body} renderers={this.markdownRenderers} />
+          ): (
+            <p>{episode.teaser}</p>
+          )}
+        </div>
+        {this.renderPlayer(podcast, episode)}
         <ReactDisqusThread
           shortname="ocdevel"
           identifier={episode.guid}
@@ -81,15 +89,17 @@ class Episode extends Component {
 
 class Episodes extends Component {
   render() {
-    let {series} = this.props.params;
+    const {series} = this.props.params;
+    const episodes = podcasts[series].episodes;
     return (
       <div>
-        {podcasts[series].episodes.map((e,i) => (
-          <Panel key={e.guid} header={<h3><Link to={`/podcasts/${series}/${i+1}`}>{e.title}</Link></h3>}>
+        {episodes.slice().reverse().map((e, i) => (
+          <div key={e.guid}>
+            <h3><Link to={`/podcasts/${series}/${episodes.length - i}`}>{e.title}</Link></h3>
             <span className="pull-right">{moment(e.date).format(fmt)}</span>
             <p>{e.teaser}</p>
-            <Link to={`/podcasts/${series}/${i+1}`}>Read More &raquo;</Link>
-          </Panel>
+            <hr/>
+          </div>
         ))}
       </div>
     );
