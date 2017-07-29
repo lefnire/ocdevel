@@ -28,6 +28,112 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>22. Deep NLP 1</title>
+<link>undefined</link>
+<pubDate>Fri, 28 Jul 2017 00:00:00 EST</pubDate>
+<description>Recurrent Neural Networks (RNNs) and Word2Vec.
+
+## Resources
+- Articles: Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/), Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/), Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+- cs224n - Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
+- TensorFlow Tutorials (https://www.tensorflow.org/tutorials/word2vec) `tutorial:medium` (start at Word2Vec + next 2 pages)
+- The usual DL resources (pick one):
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+
+
+## Episode
+
+Deep NLP pros
+- Language complexity &amp; nuances
+** Feature engineering / learning
+** Salary = degree*field, not +
+** Multiple layers: pixels =&gt; lines =&gt; objects
+** Multiple layers of language
+- Once model to rule them all; E2E models
+
+Sequence vs non-sequence
+- DNN = ANN = MLP = Feed Forward
+- RNNs for sequence (time series)
+
+RNNs
+- Looped hidden layers, learns nuances by combined features
+- Carries info through time: language model
+- Translation, sentiment, classification, POS, NER, ...
+- Seq2seq, encode/decode
+
+Word2Vec (https://www.tensorflow.org/tutorials/word2vec)
+- One-hot (sparse) doesn't help (plus sparse = compute)
+- Word embeddings
+** Euclidean distance for synonyms / similar, Cosine for "projections" . king + queen - man = woman
+** t-SNE (t-distributed stochastic neighbor embedding)
+- Vector Space Models (VSMs). Learn from context, predictive vs count-based
+- Predictive methods (neural probabilistic language models) - Learn model parameters which predict contexts
+** Word2vec
+** CBOW / Skip-Gram (cbow predicts center from context, skip-gram context from center. Small v large datasets)
+** DNN, Softmax hypothesis fn, NCE loss (noise contrastive estimation)
+- Count-based methods / Distributional Semantics - (compute the statistics of how often some word co-occurs with its neighbor words in a large text corpus, and then map these count-statistics down to a small, dense vector for each word)
+** GloVe
+** Linear algebra stuff (PCA, LSA, SVD)
+** Pros (?): faster, more accurate, incremental fitting. Cons (?): data hungry, more RAM. More info (http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)
+- DNN for POS, NER (or RNNs)</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>d9e15cfe501a8f0c6e3c075c09f7e682</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>Recurrent Neural Networks (RNNs) and Word2Vec.</itunes:subtitle>
+<itunes:summary>Recurrent Neural Networks (RNNs) and Word2Vec.
+
+## Resources
+- Articles: Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/), Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/), Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+- cs224n - Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
+- TensorFlow Tutorials (https://www.tensorflow.org/tutorials/word2vec) `tutorial:medium` (start at Word2Vec + next 2 pages)
+- The usual DL resources (pick one):
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+
+
+## Episode
+
+Deep NLP pros
+- Language complexity &amp; nuances
+** Feature engineering / learning
+** Salary = degree*field, not +
+** Multiple layers: pixels =&gt; lines =&gt; objects
+** Multiple layers of language
+- Once model to rule them all; E2E models
+
+Sequence vs non-sequence
+- DNN = ANN = MLP = Feed Forward
+- RNNs for sequence (time series)
+
+RNNs
+- Looped hidden layers, learns nuances by combined features
+- Carries info through time: language model
+- Translation, sentiment, classification, POS, NER, ...
+- Seq2seq, encode/decode
+
+Word2Vec (https://www.tensorflow.org/tutorials/word2vec)
+- One-hot (sparse) doesn't help (plus sparse = compute)
+- Word embeddings
+** Euclidean distance for synonyms / similar, Cosine for "projections" . king + queen - man = woman
+** t-SNE (t-distributed stochastic neighbor embedding)
+- Vector Space Models (VSMs). Learn from context, predictive vs count-based
+- Predictive methods (neural probabilistic language models) - Learn model parameters which predict contexts
+** Word2vec
+** CBOW / Skip-Gram (cbow predicts center from context, skip-gram context from center. Small v large datasets)
+** DNN, Softmax hypothesis fn, NCE loss (noise contrastive estimation)
+- Count-based methods / Distributional Semantics - (compute the statistics of how often some word co-occurs with its neighbor words in a large text corpus, and then map these count-statistics down to a small, dense vector for each word)
+** GloVe
+** Linear algebra stuff (PCA, LSA, SVD)
+** Pros (?): faster, more accurate, incremental fitting. Cons (?): data hungry, more RAM. More info (http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)
+- DNN for POS, NER (or RNNs)</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>21. Update</title>
 <link>undefined</link>
 <pubDate>Thu, 27 Jul 2017 00:00:00 EST</pubDate>

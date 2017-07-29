@@ -31,7 +31,8 @@ const resources = {
     stats: `[Stats](https://www.khanacademy.org/math/statistics-probability) \`course:medium\``,
     calc: `[Calc](https://www.khanacademy.org/math/calculus-home) \`course:medium\``,
 
-    fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`
+    fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`,
+    cs224n: `[cs224n - Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`
   },
   audio: {
     machines_of_loving_grace: `[Machines of Loving Grace](http://amzn.to/2kRcBWq) \`audio:easy\` AI history`,
@@ -65,7 +66,9 @@ const resources = {
   - [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/) \`picture\`
   - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`picture\``,
     kaggle: `[Kaggle.com](https://www.kaggle.com/)`,
-    patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`
+    patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`,
+    rnn_articles: `Articles: [Unreasonable Effectiveness of RNNs](http://karpathy.github.io/2015/05/21/rnn-effectiveness/), [Deep Learning, NLP, and Representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/), [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)`,
+    tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`
   }
 };
 
@@ -821,6 +824,58 @@ ${resources.audio.video_to_audio}
   libsynEpisode: 5585790,
   teaser: 'Update on Patreon and resources.',
   body: `Keep the podcast alive, donate on [Patreon](https://www.patreon.com/machinelearningguide)`
+}, {
+  title: '22. Deep NLP 1',
+  date: "2017-07-28",
+  guid: "d9e15cfe501a8f0c6e3c075c09f7e682",
+  file: {},
+  libsynEpisode: 5589161,
+  teaser: 'Recurrent Neural Networks (RNNs) and Word2Vec.',
+  body: `## Resources
+- ${resources.other.rnn_articles}
+- ${resources.courses.cs224n}
+- ${resources.other.tf_tuts_rnns}
+- The usual DL resources (pick one):
+  - ${resources.books.dl_book}
+  - ${resources.courses.fastai}
+  - ${resources.other.nns_and_dl}
+
+
+## Episode
+
+Deep NLP pros
+- Language complexity & nuances
+  - Feature engineering / learning
+  - Salary = degree*field, not +
+  - Multiple layers: pixels => lines => objects
+  - Multiple layers of language
+- Once model to rule them all; E2E models
+
+Sequence vs non-sequence
+- DNN = ANN = MLP = Feed Forward
+- RNNs for sequence (time series)
+
+RNNs
+- Looped hidden layers, learns nuances by combined features
+- Carries info through time: language model
+- Translation, sentiment, classification, POS, NER, ...
+- Seq2seq, encode/decode
+
+[Word2Vec](https://www.tensorflow.org/tutorials/word2vec)
+- One-hot (sparse) doesn't help (plus sparse = compute)
+- Word embeddings
+  - Euclidean distance for synonyms / similar, Cosine for "projections" . king + queen - man = woman
+  - t-SNE (t-distributed stochastic neighbor embedding)
+- Vector Space Models (VSMs). Learn from context, predictive vs count-based
+- Predictive methods (neural probabilistic language models) - Learn model parameters which predict contexts
+  - Word2vec
+  - CBOW / Skip-Gram (cbow predicts center from context, skip-gram context from center. Small v large datasets)
+  - DNN, Softmax hypothesis fn, NCE loss (noise contrastive estimation)
+- Count-based methods / Distributional Semantics - (compute the statistics of how often some word co-occurs with its neighbor words in a large text corpus, and then map these count-statistics down to a small, dense vector for each word)
+  - GloVe
+  - Linear algebra stuff (PCA, LSA, SVD)
+  - Pros (?): faster, more accurate, incremental fitting. Cons (?): data hungry, more RAM. [More info](http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)
+- DNN for POS, NER (or RNNs)`
 }];
 
 const podcast = {
