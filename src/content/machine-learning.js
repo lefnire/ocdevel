@@ -32,7 +32,7 @@ const resources = {
     calc: `[Calc](https://www.khanacademy.org/math/calculus-home) \`course:medium\``,
 
     fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`,
-    cs224n: `[cs224n - Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`
+    cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`
   },
   audio: {
     machines_of_loving_grace: `[Machines of Loving Grace](http://amzn.to/2kRcBWq) \`audio:easy\` AI history`,
@@ -48,11 +48,12 @@ const resources = {
     calc: `Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh) \`course|audio:hard\``,
     math_decision_making: `[Mathematical Decision Making](https://goo.gl/V75I49) \`audio|course:hard\` course on "Operations Research", similar to ML`,
     info_theory: `[Information Theory](http://www.thegreatcourses.com/courses/the-science-of-information-from-language-to-black-holes.html) \`course|audio:hard\``,
-    video_to_audio: `- Convert video to audio:
+    video_to_audio: `Convert video to audio:
   - mp4 => mp3: \`for f in *.mp4; do ffmpeg -i "$f" "\${f%.mp4}.mp3" && rm "$f"; done\`
   - youtube => mp3: setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x youtube.com/playlist?list=<EDIT THIS>\``,
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
-    speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\``
+    speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\``,
+    dl_episode: `[Deep Learning Resources](/podcasts/machine-learning/9)`
   },
   other: {
     wikipedia_ai: `[Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence) \`article:easy\``,
@@ -67,7 +68,10 @@ const resources = {
   - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`picture\``,
     kaggle: `[Kaggle.com](https://www.kaggle.com/)`,
     patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`,
-    rnn_articles: `Articles: [Unreasonable Effectiveness of RNNs](http://karpathy.github.io/2015/05/21/rnn-effectiveness/), [Deep Learning, NLP, and Representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/), [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)`,
+    rnn_articles: `Overview Articles: 
+  - [Unreasonable Effectiveness of RNNs](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) \`article:easy\`
+  - [Deep Learning, NLP, and Representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) \`article:medium\`
+  - [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) \`article:medium\``,
     tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`
   }
 };
@@ -364,7 +368,7 @@ Audio (supplementary material)
 - ${resources.audio.calc}
 - ${resources.audio.math_decision_making}
 - ${resources.audio.info_theory}
-${resources.audio.video_to_audio}
+- ${resources.audio.video_to_audio}
 
 ## Episode
 - Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
@@ -383,10 +387,16 @@ ${resources.audio.video_to_audio}
   teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",
   body:
 `## Resources
-- ${resources.other.dl_simplified}
-- ${resources.books.dl_book}  
-- ${resources.courses.fastai}
-- ${resources.other.nns_and_dl}
+- Overview: 
+  - ${resources.other.dl_simplified}
+- Quickstart:
+  - ${resources.other.tensorflow_tuts}
+- Deep-dive code (pick one):
+  - ${resources.courses.fastai}
+  - ${resources.books.handson_tensorflow}
+- Deep-dive theory (pick one):
+  - ${resources.books.dl_book}  
+  - ${resources.other.nns_and_dl}
 
 ## Episode
 - Value
@@ -504,10 +514,7 @@ Frameworks
 `45m/d ML
 - ${resources.courses.ng}
 - ${resources.books.python}
-- Pick one:
-  - ${resources.books.dl_book}
-  - ${resources.other.tensorflow_tuts}
-  - ${resources.books.handson_tensorflow}
+- ${resources.audio.dl_episode}
 
 15m/d Math (KhanAcademy)
 - ${resources.courses.linear_algebra}
@@ -519,7 +526,7 @@ Audio
 - ${resources.audio.math_decision_making}
 - ${resources.audio.stats}
 - ${resources.audio.calc}
-${resources.audio.video_to_audio}
+- ${resources.audio.video_to_audio}
 `
 }, {
   title: "12. Shallow Algos 1",
@@ -683,11 +690,7 @@ Biological plausibility
 `45m/d ML
 - ${resources.courses.ng}
 - ${resources.books.python}
-- ${resources.other.tensorflow_tuts}
-- Pick one:
-  - ${resources.books.dl_book}
-  - ${resources.courses.fastai}
-  - ${resources.other.nns_and_dl}
+- ${resources.audio.dl_episode}
 - Go deeper on shallow algos
   - ${resources.books.elements_of_stat_learning}
   - ${resources.books.pattern_rec}
@@ -703,7 +706,7 @@ Audio
 - ${resources.audio.math_decision_making}
 - ${resources.audio.stats}
 - ${resources.audio.calc}
-${resources.audio.video_to_audio}
+- ${resources.audio.video_to_audio}
 
 ${resources.other.kaggle}
 `
@@ -771,7 +774,7 @@ Goals
 - ${resources.books.speech_and_nlp}
 - ${resources.audio.speech_and_nlp}
 - ${resources.books.nltk}
-${resources.audio.video_to_audio}
+- ${resources.audio.video_to_audio}
 
 ## Episode
 
@@ -835,10 +838,7 @@ ${resources.audio.video_to_audio}
 - ${resources.other.rnn_articles}
 - ${resources.courses.cs224n}
 - ${resources.other.tf_tuts_rnns}
-- The usual DL resources (pick one):
-  - ${resources.books.dl_book}
-  - ${resources.courses.fastai}
-  - ${resources.other.nns_and_dl}
+- ${resources.audio.dl_episode}
 
 
 ## Episode
