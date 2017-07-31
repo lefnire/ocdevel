@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Fri, 28 Jul 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Mon, 31 Jul 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -34,13 +34,13 @@
 <description>Recurrent Neural Networks (RNNs) and Word2Vec.
 
 ## Resources
-- Articles: Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/), Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/), Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
-- cs224n - Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
+- Overview Articles: 
+** Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/) `article:easy`
+** Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) `article:medium`
+** Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/) `article:medium`
+- Stanford cs224n: Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
 - TensorFlow Tutorials (https://www.tensorflow.org/tutorials/word2vec) `tutorial:medium` (start at Word2Vec + next 2 pages)
-- The usual DL resources (pick one):
-** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
-** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
-** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+- Deep Learning Resources (http://ocdevel.com/podcasts/machine-learning/9)
 
 
 ## Episode
@@ -85,13 +85,13 @@ Word2Vec (https://www.tensorflow.org/tutorials/word2vec)
 <itunes:summary>Recurrent Neural Networks (RNNs) and Word2Vec.
 
 ## Resources
-- Articles: Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/), Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/), Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
-- cs224n - Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
+- Overview Articles: 
+** Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/) `article:easy`
+** Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) `article:medium`
+** Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/) `article:medium`
+- Stanford cs224n: Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
 - TensorFlow Tutorials (https://www.tensorflow.org/tutorials/word2vec) `tutorial:medium` (start at Word2Vec + next 2 pages)
-- The usual DL resources (pick one):
-** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
-** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
-** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+- Deep Learning Resources (http://ocdevel.com/podcasts/machine-learning/9)
 
 
 ## Episode
@@ -161,7 +161,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
 - Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
 - NLTK Book (http://www.nltk.org/book) `book:medium`
-- - Convert video to audio:
+- Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
 ** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
@@ -185,7 +185,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
 - Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
 - NLTK Book (http://www.nltk.org/book) `book:medium`
-- - Convert video to audio:
+- Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
 ** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
@@ -283,7 +283,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
 - Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
 - NLTK Book (http://www.nltk.org/book) `book:medium`
-- - Convert video to audio:
+- Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
 ** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
@@ -335,7 +335,7 @@ Goals
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
 - Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
 - NLTK Book (http://www.nltk.org/book) `book:medium`
-- - Convert video to audio:
+- Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
 ** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
 
@@ -390,11 +390,7 @@ Goals
 45m/d ML
 - Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
 - Python (http://amzn.to/2mVgtJW) `book:medium`
-- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
-- Pick one:
-** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
-** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
-** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+- Deep Learning Resources (http://ocdevel.com/podcasts/machine-learning/9)
 - Go deeper on shallow algos
 ** Elements of Statistical Learning (http://amzn.to/2tWW8He) `book:hard`
 ** Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) (Free PDF? (https://goo.gl/aX038j)) `book:hard`
@@ -425,11 +421,7 @@ Kaggle.com (https://www.kaggle.com/)
 45m/d ML
 - Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
 - Python (http://amzn.to/2mVgtJW) `book:medium`
-- TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
-- Pick one:
-** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
-** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
-** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+- Deep Learning Resources (http://ocdevel.com/podcasts/machine-learning/9)
 - Go deeper on shallow algos
 ** Elements of Statistical Learning (http://amzn.to/2tWW8He) `book:hard`
 ** Pattern Recognition and Machine Learning (http://amzn.to/2sDIIfb) (Free PDF? (https://goo.gl/aX038j)) `book:hard`
@@ -732,10 +724,7 @@ Decision Trees (supervised, classify/regress)
 45m/d ML
 - Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
 - Python (http://amzn.to/2mVgtJW) `book:medium`
-- Pick one:
-** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
-** TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
-** Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
+- Deep Learning Resources (http://ocdevel.com/podcasts/machine-learning/9)
 
 15m/d Math (KhanAcademy)
 - Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
@@ -760,10 +749,7 @@ Audio
 45m/d ML
 - Coursera (https://www.coursera.org/learn/machine-learning) `course:hard`
 - Python (http://amzn.to/2mVgtJW) `book:medium`
-- Pick one:
-** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
-** TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
-** Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
+- Deep Learning Resources (http://ocdevel.com/podcasts/machine-learning/9)
 
 15m/d Math (KhanAcademy)
 - Either LinAlg (https://www.khanacademy.org/math/linear-algebra) `course:medium` OR Fast.ai (http://www.fast.ai/2017/07/17/num-lin-alg/) `course:medium`
@@ -918,10 +904,16 @@ Frameworks
 <description>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.
 
 ## Resources
-- Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video:easy` quick series to get a lay-of-the-land.
-- Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical  
-- Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
-- Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+- Overview: 
+** Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video:easy` quick series to get a lay-of-the-land.
+- Quickstart:
+** TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+- Deep-dive code (pick one):
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
+- Deep-dive theory (pick one):
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical  
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
 
 ## Episode
 - Value
@@ -963,10 +955,16 @@ Frameworks
 <itunes:summary>Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.
 
 ## Resources
-- Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video:easy` quick series to get a lay-of-the-land.
-- Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical  
-- Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
-- Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+- Overview: 
+** Deep Learning Simplified (https://www.youtube.com/watch?v=b99UVkWzYTQ) `video:easy` quick series to get a lay-of-the-land.
+- Quickstart:
+** TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
+- Deep-dive code (pick one):
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
+- Deep-dive theory (pick one):
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical  
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
 
 ## Episode
 - Value

@@ -53,7 +53,7 @@ const resources = {
   - youtube => mp3: setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x youtube.com/playlist?list=<EDIT THIS>\``,
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
     speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\``,
-    dl_episode: `[Deep Learning Resources](/podcasts/machine-learning/9)`
+    dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`
   },
   other: {
     wikipedia_ai: `[Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence) \`article:easy\``,
