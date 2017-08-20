@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Mon, 31 Jul 2017 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Sun, 20 Aug 2017 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,6 +28,86 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>23. Deep NLP 2</title>
+<link>undefined</link>
+<pubDate>Sun, 20 Aug 2017 00:00:00 EST</pubDate>
+<description>RNN review, bi-directional RNNs, LSTM &amp; GRU cells.
+
+## Resources
+- Overview Articles: 
+** Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/) `article:easy`
+** Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) `article:medium`
+** Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/) `article:medium`
+- Stanford cs224n: Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
+- TensorFlow Tutorials (https://www.tensorflow.org/tutorials/word2vec) `tutorial:medium` (start at Word2Vec + next 2 pages)
+- The usual DL resources (pick one):
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+
+
+## Episode
+
+RNN Review
+** Vanilla: When words + running context is sufficient. 
+  ** POS, NER, stocks, weather
+** Bidirectional RNN (BiLSTM): When stuff from right helps too
+** Encoder/decoder or Seq2seq: When you should hear everything first / spin a different way
+  ** Classification, sentiment, translation
+** Now w/ word embeddings
+
+Train: backprop through time
+** Vanishing/exploding gradient
+
+- LSTMs (http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+** ReLU vs Sigmoid vs TanH (Nonlinearities future episode)
+** Forget gate layer
+** Input gate layer: decides which values to update
+** Tanh layer: creates new candidate values
+** Output layer</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>1</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>RNN review, bi-directional RNNs, LSTM &amp; GRU cells.</itunes:subtitle>
+<itunes:summary>RNN review, bi-directional RNNs, LSTM &amp; GRU cells.
+
+## Resources
+- Overview Articles: 
+** Unreasonable Effectiveness of RNNs (http://karpathy.github.io/2015/05/21/rnn-effectiveness/) `article:easy`
+** Deep Learning, NLP, and Representations (http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) `article:medium`
+** Understanding LSTM Networks (http://colah.github.io/posts/2015-08-Understanding-LSTMs/) `article:medium`
+- Stanford cs224n: Deep NLP (https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) `course:medium` (replaces cs224d)
+- TensorFlow Tutorials (https://www.tensorflow.org/tutorials/word2vec) `tutorial:medium` (start at Word2Vec + next 2 pages)
+- The usual DL resources (pick one):
+** Deep Learning Book (http://amzn.to/2tXgCiT) (Free HTML version (http://www.deeplearningbook.org/)) `book:hard` comprehensive DL bible; highly mathematical
+** Fast.ai (http://course.fast.ai/) `course:medium` practical DL for coders
+** Neural Networks and Deep Learning (http://neuralnetworksanddeeplearning.com/) `book:medium` shorter online "book"
+
+
+## Episode
+
+RNN Review
+** Vanilla: When words + running context is sufficient. 
+  ** POS, NER, stocks, weather
+** Bidirectional RNN (BiLSTM): When stuff from right helps too
+** Encoder/decoder or Seq2seq: When you should hear everything first / spin a different way
+  ** Classification, sentiment, translation
+** Now w/ word embeddings
+
+Train: backprop through time
+** Vanishing/exploding gradient
+
+- LSTMs (http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+** ReLU vs Sigmoid vs TanH (Nonlinearities future episode)
+** Forget gate layer
+** Input gate layer: decides which values to update
+** Tanh layer: creates new candidate values
+** Output layer</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>22. Deep NLP 1</title>
 <link>undefined</link>
 <pubDate>Fri, 28 Jul 2017 00:00:00 EST</pubDate>
