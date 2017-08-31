@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon} from 'react-bootstrap';
+import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert} from 'react-bootstrap';
 import {Link, browserHistory} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
