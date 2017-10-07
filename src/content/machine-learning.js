@@ -912,6 +912,34 @@ Train: backprop through time
   - Input gate layer: decides which values to update
   - Tanh layer: creates new candidate values
   - Output layer`
+}, {
+  title: '24. Tech Stack',
+  date: "2017-10-06",
+  guid: "11e604992dcd4f124cb4d3897c81056f",
+  file: {},
+  libsynEpisode: 5816352,
+  teaser: 'TensorFlow, Pandas, Numpy, Scikit-Learn, Keras, TensorForce.',
+  body: `## Resources
+- ${resources.books.handson_tensorflow}
+- The usual DL resources (pick one):
+  - ${resources.books.dl_book}
+  - ${resources.courses.fastai}
+  - ${resources.other.nns_and_dl}
+
+
+## Episode
+
+- [Looking for work](https://www.linkedin.com/in/lefnire/)
+- Autodiff frameworks
+  - TensorFlow
+  - PyTorch (Theano dead!)
+  - GPU: Nvidia + Ubuntu
+  - AWS v GCP v Azure (see AWS spot instances)
+- Pandas, Numpy, ScikitLearn, TensorFlow
+- Celery (RabbitMQ)
+- Higher
+  - Keras
+  - TensorForce`
 }];
 
 const podcast = {
