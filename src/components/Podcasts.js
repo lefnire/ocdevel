@@ -128,9 +128,6 @@ class Series extends Component {
         <Button bsSize="large" bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">
           <Glyphicon glyph="heart-empty"/> Patreon
         </Button>
-        <Button bsSize="large" block href="http://survey.libsyn.com/machinelearningguide" target="_blank">
-          <Glyphicon glyph="list-alt"/> Demographic Survey
-        </Button>
         <Button bsSize="large" block onClick={this.goToRecommend}>
           <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
         </Button>
