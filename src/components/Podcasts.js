@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert} from 'react-bootstrap';
+import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert,
+  FormGroup, InputGroup, FormControl} from 'react-bootstrap';
 import {Link, browserHistory} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
@@ -107,6 +108,11 @@ class Episodes extends Component {
 }
 
 class Series extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
   'sidebar-web-development' = () => {
     const {series} = this.props.params;
     return (
@@ -125,9 +131,42 @@ class Series extends Component {
     const {series} = this.props.params;
     return (
       <div>
-        <Button bsSize="large" bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">
-          <Glyphicon glyph="heart-empty"/> Patreon
-        </Button>
+        {this.state.showDonate ? (
+          <Panel header="Donate">
+            <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
+            <hr/>
+
+            <FormGroup>
+              <OverlayTrigger
+                placement="right"
+                overlay={(
+                  <Popover id="popover-positioned-right">
+                    Note: only BTC, not other coins or Bitcoin forks.
+                  </Popover>
+                )}
+              >
+                <InputGroup>
+                  <InputGroup.Addon>BTC</InputGroup.Addon>
+                  <FormControl type="text" value="12coU1g6q3XR4iow2fNytR5cneWRHgU841" />
+                </InputGroup>
+              </OverlayTrigger>
+            </FormGroup>
+            <hr />
+
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+              </form>
+            </div>
+          </Panel>
+        ) : (
+            <Button bsSize="large" bsStyle="primary" block onClick={this.showDonate}>
+              <Glyphicon glyph="heart-empty"/> Donate
+            </Button>
+        )}
         <Button bsSize="large" block onClick={this.goToRecommend}>
           <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
         </Button>
@@ -157,6 +196,8 @@ class Series extends Component {
       </div>
     );
   };
+
+  showDonate = () => this.setState({showDonate: true})
 
   goToRecommend = () => browserHistory.push(`/podcasts/${this.props.params.series}/recommend`);
 
