@@ -1,4 +1,4 @@
-const resources = {
+let resources = {
   books: {
     qai: `[The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) ([Free PDF?](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) \`book:hard\` AI history`,
 
@@ -44,10 +44,10 @@ const resources = {
     master_algorithm: `[The Master Algorithm](http://amzn.to/2kLOQjW) \`audio:medium\` Semi-technical overview of ML basics & main algorithms`,
 
     // Math
-    stats: `[Statistics](https://projects.iq.harvard.edu/stat110/youtube) \`audio|course:hard\``,
-    calc: `Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh) \`course|audio:hard\``,
+    stats: `[Statistics](https://www.thegreatcourses.com/courses/learning-statistics-concepts-and-applications-in-r.html) \`audio|course:hard\``,
+    calc: `Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh) \`audio|course:hard\``,
     math_decision_making: `[Mathematical Decision Making](https://goo.gl/V75I49) \`audio|course:hard\` course on "Operations Research", similar to ML`,
-    info_theory: `[Information Theory](http://www.thegreatcourses.com/courses/the-science-of-information-from-language-to-black-holes.html) \`course|audio:hard\``,
+    info_theory: `[Information Theory](http://www.thegreatcourses.com/courses/the-science-of-information-from-language-to-black-holes.html) \`audio|course:hard\``,
     video_to_audio: `Convert video to audio:
   - mp4 => mp3: \`for f in *.mp4; do ffmpeg -i "$f" "\${f%.mp4}.mp3" && rm "$f"; done\`
   - youtube => mp3: setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x youtube.com/playlist?list=<EDIT THIS>\``,
@@ -75,6 +75,7 @@ const resources = {
     tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`
   }
 };
+resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;
 
 const episodes = [{
   title: "1. Introduction",
