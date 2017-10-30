@@ -32,7 +32,8 @@ let resources = {
     calc: `[Calc](https://www.khanacademy.org/math/calculus-home) \`course:medium\``,
 
     fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`,
-    cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`
+    cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`,
+    cs231n: `[Stanford cs231n: Convnets](https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) \`course:medium\``
   },
   audio: {
     machines_of_loving_grace: `[Machines of Loving Grace](http://amzn.to/2kRcBWq) \`audio:easy\` AI history`,
@@ -961,6 +962,38 @@ Please suggest improvements in the comments!
 - Higher
   - Keras
   - TensorForce`
+}, {
+  title: '25. Convolutional Neural Networks',
+  date: "2017-10-30",
+  guid: "91bf8a0266bc22088c897eb756cc97d3",
+  file: {},
+  libsynEpisode: 5890712,
+  teaser: 'Convnets or CNNs. Filters, feature maps, window/stride/padding, max-pooling.',
+  body: `## Resources
+- ${resources.courses.cs231n}
+- ${resources.books.handson_tensorflow}
+- The usual DL resources (pick one):
+  - ${resources.books.dl_book}
+  - ${resources.courses.fastai}
+  - ${resources.other.nns_and_dl}
+  
+## Episode
+
+- One-time donations w/ BTC / PayPal
+- Image recognition, classification - computer vision
+  - ML takeover
+  - Final main network (MLP, RNN, CNN)
+- Don't use MLP for images, use CNNs
+- Filters -> feature maps -> convolutional layers
+- Window, stride, padding
+- Max-pooling
+- Architectures (ILSVRC ImageNet Challenge)
+  - LeNet-5
+  - AlexNet
+  - GoogLeNet
+  - Inception
+  - Resnet
+  - etc..`
 }];
 
 const podcast = {
