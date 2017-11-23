@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert,
-  FormGroup, InputGroup, FormControl} from 'react-bootstrap';
+  FormGroup, InputGroup, FormControl, Modal} from 'react-bootstrap';
 import {Link, browserHistory} from 'react-router';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
@@ -110,7 +110,9 @@ class Episodes extends Component {
 class Series extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      showHireModal: false
+    };
   }
 
   'sidebar-web-development' = () => {
@@ -167,6 +169,9 @@ class Series extends Component {
               <Glyphicon glyph="heart-empty"/> Donate
             </Button>
         )}
+        <Button bsSize="large" block onClick={this.showHireModal}>
+          <Glyphicon glyph="briefcase"/> Hire Me
+        </Button>
         <Button bsSize="large" block onClick={this.goToRecommend}>
           <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
         </Button>
@@ -183,7 +188,6 @@ class Series extends Component {
           </Button>
         </OverlayTrigger>
 
-
         <h4>Subscribe</h4>
         <div className="sub-button-container">
           <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
@@ -196,6 +200,34 @@ class Series extends Component {
       </div>
     );
   };
+
+  renderHireModal = () => (
+    <Modal show={this.state.showHireModal} onHide={this.closeHireModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Hire Me</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className='hire-me'>
+        <img src="https://media-exp1.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/113/2f5/2579111.jpg" style={{float:'left', paddingRight:10, paddingBottom: 5, width: 150}} />
+        <h4>Tyler Renelle</h4>
+        <p>Machine learning engineer focused on time series & reinforcement (esp. NLP & algo-trading). Background in full-stack JavaScript, 10 years web & mobile. Tech: Python, TensorFlow, React / React Native.</p>
+        <p>Creator of HabitRPG, a startup begun on Kickstarter which now has ~2M users. Built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients such as Adidas, BigFix, and UCSF. Obsessed with AI - bonafide Singularitarian and herald for the takeover.</p>
+        <p>Looking for remote work, or local to Portland, OR.</p>
+        <div>
+          <ul className="list-unstyled">
+            <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a></li>
+            <li><a target="_blank" href="https://github.com/lefnire" className="zocial github">Github</a></li>
+            <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email">Email</a></li>
+          </ul>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={this.closeHireModal}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  showHireModal = () => this.setState({showHireModal: true});
+  closeHireModal = () => this.setState({showHireModal: false});
 
   showDonate = () => this.setState({showDonate: true})
 
@@ -210,6 +242,7 @@ class Series extends Component {
 
     return (
       <div className="Series">
+        {this.renderHireModal()}
         <PageHeader>{podcast.title}</PageHeader>
         <Grid>
           <Row>

@@ -17,3 +17,10 @@
     margin: 5px;
     /*padding: 5px;*/
 }
+
+.hire-me ul li {
+    margin-bottom: 5px;
+}
+.hire-me ul li a {
+    display: block;
+}
