@@ -930,24 +930,7 @@ Train: backprop through time
   
 ## Custom PC Build
 
-- Motherboard: [ASUS ROG STRIX Z270E GAMING LGA1151](http://amzn.to/2g8uFxe)
-- Graphics Card: [EVGA GeForce GTX 1080 Ti 11GB GDDR5X](http://amzn.to/2zdlZui)
-- CPU: [Intel i7-7700K](http://amzn.to/2ybGmba) Don't forget to overclock this! (See videos below)
-- CPU Cooler: [Corsair Hydro H80i v2 Liquid CPU Cooler](http://amzn.to/2yeWDgZ)
-- RAM: [Corsair Vengeance LPX 16GB (2x8GB) DDR4 DRAM 3200MHz](http://amzn.to/2xvm533) Also overclock these!
-- Storage: [Crucial MX300 525GB M.2 (2280) Internal Solid State Drive](http://amzn.to/2yf6Vhg) You may want an additional non-SSD HDD; this was enough for me.
-- PSU: [EVGA SuperNOVA 750 G2, 80+ GOLD 750W, Fully Modular](http://amzn.to/2hzXaAA)
-- 2x Extra Fans: [Cooler Master JetFlo 120](http://amzn.to/2xxV6im) You'll need the extras.
-- Case: [Corsair Carbide Series SPEC-01 Mid Tower](http://amzn.to/2hzWvza) Actually not super happy with this one, hard to fit the extra exhaust fan - do some research.
-- Monitor: [ASUS PB277Q 27" WQHD 2560x1440 75Hz](http://amzn.to/2yapYHT)
-- Peripherals: [Redragon K552 KUMARA Mechanical Keyboard](http://amzn.to/2gaCIK6), [Razer DeathAdder Elite Mouse](http://amzn.to/2yX6x4q)
-- Odds/ends: [mouse pad](http://amzn.to/2yf7ibt), [tools](http://amzn.to/2xx5EmY), [twisties](http://amzn.to/2xuY8sN), [ESD strap](http://amzn.to/2yY6Zzq)
-- Fun: [Vive](http://amzn.to/2hADLzq) You know what they say about all work and no play - and with a PC like _that_?
-
-[Video tutorial](https://www.youtube.com/watch?v=AGMin_6Yb1E) how to build. Part of a series, recommend watching them all. This was the build I used, but I'll be updating this list as newer components release. The video's instructions should hold up with time.
-
-Please suggest improvements in the comments!
-
+Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan-v/) was released, which succeeds my prior 1080ti build recommend. Keep an eye on https://pcpartpicker.com/builds/ for builds with that card (currently none).
 
 ## Episode
 
