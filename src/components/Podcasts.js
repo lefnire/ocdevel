@@ -100,6 +100,12 @@ class Episodes extends Component {
             <span className="pull-right">{moment(e.date).format(fmt)}</span>
             <p>{e.teaser}</p>
             <hr/>
+            {i % 10 === 0 && (
+              <div>
+                <a href="//thegreatcoursesplus.7eer.net/c/358692/370438/3896"><img src="//a.impactradius-go.com/display-ad/3896-370438" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/370438/3896" style={{position:"absolute",visibility:"hidden"}} border="0" />
+                <hr/>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -111,7 +117,9 @@ class Series extends Component {
   constructor() {
     super();
     this.state = {
-      showHireModal: false
+      showHireModal: false,
+      showDonate: false,
+      showCrypto: false
     };
   }
 
@@ -130,31 +138,41 @@ class Series extends Component {
   };
 
   'sidebar-machine-learning' = () => {
-    const {series} = this.props.params;
+    // const {series} = this.props.params;
+    const {showDonate, showCrypto} = this.state;
     return (
       <div>
-        {this.state.showDonate ? (
+        {showDonate ? (
           <Panel header="Donate">
             <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
             <hr/>
 
-            <FormGroup>
-              <OverlayTrigger
-                placement="right"
-                overlay={(
-                  <Popover id="popover-positioned-right">
-                    Note: only BTC, not other coins or Bitcoin forks.
-                  </Popover>
-                )}
-              >
-                <InputGroup>
-                  <InputGroup.Addon>BTC</InputGroup.Addon>
-                  <FormControl type="text" value="12coU1g6q3XR4iow2fNytR5cneWRHgU841" />
-                </InputGroup>
-              </OverlayTrigger>
-            </FormGroup>
-            <hr />
+            {showCrypto ? (
+              <FormGroup>
+                  <InputGroup>
+                    <InputGroup.Addon>BTC</InputGroup.Addon>
+                    <FormControl type="text" value="1Mgi64qWNYAcUhjvyoc8oYDNN6oKPzpaWs" />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputGroup.Addon>BCH</InputGroup.Addon>
+                    <FormControl type="text" value="17VMYyAHFZSfy8EzLcy69Sie9sw5qe8nyP" />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputGroup.Addon>ETH</InputGroup.Addon>
+                    <FormControl type="text" value="0x250092887eC61E75f0F82edcBC741fF428D5c8d5" />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputGroup.Addon>LTC</InputGroup.Addon>
+                    <FormControl type="text" value="LfVo7VR1fWPcaG7GhC4LLSrGNQynPsMdSL"/>
+                  </InputGroup>
+              </FormGroup>
 
+            ) : (
+              <Button bsStyle="primary" block onClick={this.showCrypto}>Cryptocurrency</Button>
+            )}
+            <hr/>
+
+            Paypal:
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_s-xclick" />
@@ -195,8 +213,6 @@ class Series extends Component {
           <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
           <a className="zocial rss sub-button" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
         </div>
-
-        <h4></h4>
       </div>
     );
   };
@@ -229,7 +245,8 @@ class Series extends Component {
   showHireModal = () => this.setState({showHireModal: true});
   closeHireModal = () => this.setState({showHireModal: false});
 
-  showDonate = () => this.setState({showDonate: true})
+  showDonate = () => this.setState({showDonate: true});
+  showCrypto = () => this.setState({showCrypto: true});
 
   goToRecommend = () => browserHistory.push(`/podcasts/${this.props.params.series}/recommend`);
 

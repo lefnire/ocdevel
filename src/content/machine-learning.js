@@ -38,17 +38,16 @@ let resources = {
   audio: {
     machines_of_loving_grace: `[Machines of Loving Grace](http://amzn.to/2kRcBWq) \`audio:easy\` AI history`,
     singularity_is_near: `[The Singularity Is Near](http://amzn.to/2lzCqKk) \`audio:easy\``,
-    ttc_consciousness: `[Philosophy of Mind: Brains, Consciousness, and Thinking Machines](http://amzn.to/2kQGgk5) \`audio:easy\``,
+    ttc_consciousness: `Philosophy of Mind: Brains, Consciousness, and Thinking Machines ([Audible](http://amzn.to/2kQGgk5), [TGC](https://goo.gl/fDteyi)) \`audio:easy\``,
     how_to_create_mind: `[How to Create a Mind](http://amzn.to/2tXLvUm) \`audio:easy\``,
-    consciousness_explained: `[Consciousness Explained](http://amzn.to/2tXboUz) \`audio:easy\``,
     superintelligence: `[Superintelligence](http://amzn.to/2lzLcrL) \`audio:easy\` doom-and-gloom favorite of Musk, Gates, Hawking.`,
     master_algorithm: `[The Master Algorithm](http://amzn.to/2kLOQjW) \`audio:medium\` Semi-technical overview of ML basics & main algorithms`,
 
     // Math
-    stats: `[Statistics](https://www.thegreatcourses.com/courses/learning-statistics-concepts-and-applications-in-r.html) \`audio|course:hard\``,
-    calc: `Calculus [1](https://goo.gl/fcLP3l) [2](https://goo.gl/sBpljN) [3](https://goo.gl/8Hdwuh) \`audio|course:hard\``,
+    stats: `[Statistics](https://goo.gl/4vvXJs), [Probability](https://goo.gl/Q4KwZ6) \`audio|course:hard\``,
+    calc: `Calculus [1](https://goo.gl/fcLP3l), [2](https://goo.gl/sBpljN), [3](https://goo.gl/8Hdwuh) \`audio|course:hard\``,
     math_decision_making: `[Mathematical Decision Making](https://goo.gl/V75I49) \`audio|course:hard\` course on "Operations Research", similar to ML`,
-    info_theory: `[Information Theory](http://www.thegreatcourses.com/courses/the-science-of-information-from-language-to-black-holes.html) \`audio|course:hard\``,
+    info_theory: `[Information Theory](https://goo.gl/ugAi2m) \`audio|course:hard\``,
     video_to_audio: `Convert video to audio:
   - mp4 => mp3: \`for f in *.mp4; do ffmpeg -i "$f" "\${f%.mp4}.mp3" && rm "$f"; done\`
   - youtube => mp3: setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x youtube.com/playlist?list=<EDIT THIS>\``,
@@ -235,7 +234,6 @@ Consciousness (Functionalism / Computational Theory of Mind / Simulations)
 The Scare
 - Superintelligence by Nick Bostrom
 - Bill Gates, Stephen Hawking, Elon Musk ^`
-  // removed audio.consciousness_explained & audio.how_to_create_mind
 }, {
   title: "4. Algorithms - Intuition",
   date: "2017-02-12",
@@ -641,7 +639,7 @@ Performance improvement
   body:
 `## Resources
 
-${resources.audio.ttc_consciousness}
+- ${resources.audio.ttc_consciousness}
 
 ## Episode
 
