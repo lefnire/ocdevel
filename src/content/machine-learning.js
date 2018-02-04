@@ -61,7 +61,7 @@ let resources = {
     degrees_convos: `Discussions: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)`,
     math_primer: `See "Section Notes" of [cs229](http://cs229.stanford.edu/materials.html) \`handout:medium\``,
     dl_simplified: `[Deep Learning Simplified](https://www.youtube.com/watch?v=b99UVkWzYTQ) \`video:easy\` quick series to get a lay-of-the-land.`,
-    nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
+    // nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
     tensorflow_tuts: `[TensorFlow Tutorials](https://www.tensorflow.org/get_started/get_started) \`tutorial:medium\``,
     which_algo_to_use: `- Which algo to use?
   - [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/) \`picture\`
@@ -72,7 +72,8 @@ let resources = {
   - [Unreasonable Effectiveness of RNNs](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) \`article:easy\`
   - [Deep Learning, NLP, and Representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) \`article:medium\`
   - [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) \`article:medium\``,
-    tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`
+    tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`,
+    project_repo: `[TForce BTC Trader](https://github.com/lefnire/tforce_btc_trader) (podcast project)`
   }
 };
 resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;
@@ -394,9 +395,8 @@ Audio (supplementary material)
 - Deep-dive code (pick one):
   - ${resources.courses.fastai}
   - ${resources.books.handson_tensorflow}
-- Deep-dive theory (pick one):
+- Deep-dive theory:
   - ${resources.books.dl_book}  
-  - ${resources.other.nns_and_dl}
 
 ## Episode
 - Value
@@ -890,7 +890,6 @@ RNNs
 - The usual DL resources (pick one):
   - ${resources.books.dl_book}
   - ${resources.courses.fastai}
-  - ${resources.other.nns_and_dl}
 
 
 ## Episode
@@ -924,7 +923,6 @@ Train: backprop through time
 - The usual DL resources (pick one):
   - ${resources.books.dl_book}
   - ${resources.courses.fastai}
-  - ${resources.other.nns_and_dl}
   
 ## Custom PC Build
 
@@ -956,7 +954,6 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
 - The usual DL resources (pick one):
   - ${resources.books.dl_book}
   - ${resources.courses.fastai}
-  - ${resources.other.nns_and_dl}
   
 ## Episode
 
@@ -975,6 +972,96 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   - Inception
   - Resnet
   - etc..`
+}, {
+  title: '26. Project Bitcoin Trader',
+  date: "2018-01-26",
+  guid: "e704eb47d4280a7abc9bb6f0895a7b26",
+  file: {},
+  libsynEpisode: 6194090,
+  teaser: 'Community project & intro to Bitcoin/crypto + trading',
+  body: `## Resources
+- ${resources.other.project_repo}
+
+## Episode
+
+- Project: Trading Crypto
+  - Reasons
+    - Get rich
+    - Hot topic
+    - Special: Intuitively highlights decisions: hypers, supervised v reinforcement, LSTM v CNN
+  - Pros: skip this
+- Crypto (v stock)
+  - Bitcoin, Ethereum, Litecoin, Ripple
+  - Many benefits (immutable permenant distributed ledger; security; low fees; international; etc)
+  - For our purposes: popular, volatile, singular
+    - Singular like Forex vs Stock (instruments)
+- Trading basics
+  - Day, swing, investing
+  - Patterns (technical analysis, vs fundamentals)
+  - OHLCV / Candles
+  - Indicators
+  - Exchanges & Arbitrage (GDAX, Krakken)
+- Good because highlights lots
+  - LSTM v CNN
+  - Supervised v Reinforcement
+  - Obvious net architectures (indicators, time-series, tanh v relu)`
+}, {
+  title: '27. Hyperparameters 1',
+  date: "2018-01-27",
+  guid: "f5a903d68c1ed04bd37a31175d456fc0",
+  file: {},
+  libsynEpisode: 6195814,
+  teaser: 'Hyperparameters part 1: network architecture',
+  body: `## Episode
+
+- Hypers future & meta-learning
+  - We're always removing hypers. DL removed feature-engineering \`
+- Model selection
+  - Unsupervised? K-means Clustering => DL
+  - Linear? Linear regression, logistic regression
+  - Simple? Naive Bayes, Decision Tree (Random Forest, Gradient Boosting)
+  - Little data? Boosting
+  - Lots of data, complex situation? Deep learning
+- Network
+  - Layer arch
+    - Vision? CNN
+    - Time? LSTM
+    - Other? MLP
+    - Trading LSTM => CNN decision
+  - Layer size design (funnel, etc)
+    - Face pics
+    - From BTC episode
+    - Don't know? Layers=1, Neurons=mean(inputs, output)
+      https://stats.stackexchange.com/a/1097/107199
+- Activations / nonlinearity
+  https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
+  - Output
+    - Sigmoid = predict probability of output, usually at output
+    - Softmax = multi-class
+    - Nothing = regression
+  - Relu family (Leaky Relu, Elu, Selu, ...) = vanishing gradient (gradient is constant), performance, usually better
+  - Tanh = classification between two classes, mean 0 important`
+}, {
+  title: '28. Hyperparameters 2',
+  date: "2018-02-04",
+  guid: "8671d415236e9a9394a0c4aaa383e1ba",
+  file: {},
+  libsynEpisode: 6222761,
+  teaser: 'Hyperparameters part 2: hyper-search, regularization, SGD optimizers, scaling',
+  body: `## Episode
+
+- Hyper optimization
+  - GridSearch, RandomSearch
+  - [Bayesian Optimization](https://thuijskens.github.io/2016/12/29/bayesian-optimisation/)
+- Regularization: Dropout, L2, L1
+  - DNNs = Dropout
+  - L2 = most common
+  - L1 = sparsity (zeros) & feature-selection (rarer circumstances)
+- [Optimizers (SGD): Momentum -> Adagrad -> RMSProp -> Adam -> Nadam](http://sebastianruder.com/optimizing-gradient-descent/index.html#visualizationofalgorithms)
+- Initializers: Zeros, Random Uniform, Xavier
+- Scaling
+  - Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
+  - Features + inter-layer: Batch Normalization`
 }];
 
 const podcast = {

@@ -7,6 +7,8 @@ import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import ReactDisqusThread from 'react-disqus-thread';
 import _ from 'lodash';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
 import _machineLearning from '../content/machine-learning';
 import _webDevelopment from '../content/web-development';
@@ -92,6 +94,7 @@ class Episodes extends Component {
   render() {
     const {series} = this.props.params;
     const episodes = podcasts[series].episodes;
+    let j = 0;
     return (
       <div>
         {episodes.slice().reverse().map((e, i) => (
@@ -100,9 +103,13 @@ class Episodes extends Component {
             <span className="pull-right">{moment(e.date).format(fmt)}</span>
             <p>{e.teaser}</p>
             <hr/>
-            {i % 10 === 0 && (
+            {i % 7 === 0 && (
               <div>
-                <a href="//thegreatcoursesplus.7eer.net/c/358692/370438/3896"><img src="//a.impactradius-go.com/display-ad/3896-370438" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/370438/3896" style={{position:"absolute",visibility:"hidden"}} border="0" />
+                {{
+                  0: <div><a href="//thegreatcoursesplus.7eer.net/c/358692/370438/3896"><img src="//a.impactradius-go.com/display-ad/3896-370438" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/370438/3896" style={{position:"absolute",visibility:"hidden"}} border="0" /></div>,
+                  1: <div><a href="//thegreatcoursesplus.7eer.net/c/358692/236875/3896"><img src="//a.impactradius-go.com/display-ad/3896-236875" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/236875/3896" style={{position:"absolute",visibility:"hidden"}} border="0" /></div>,
+                  2: <div><a href="//thegreatcoursesplus.7eer.net/c/358692/310093/3896"><img src="//a.impactradius-go.com/display-ad/3896-310093" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/310093/3896" style={{position:"absolute",visibility:"hidden"}} border="0" /></div>,
+                }[j++%2]}
                 <hr/>
               </div>
             )}
@@ -205,6 +212,9 @@ class Series extends Component {
             <Glyphicon glyph="envelope"/> Mailing List
           </Button>
         </OverlayTrigger>
+        <Button bsSize="large" block href="https://github.com/lefnire/tforce_btc_trader">
+          <FontAwesomeIcon icon={faGithub} /> Podcast Project
+        </Button>
 
         <h4>Subscribe</h4>
         <div className="sub-button-container">
