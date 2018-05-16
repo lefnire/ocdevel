@@ -3,12 +3,13 @@ let resources = {
     qai: `[The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) ([Free PDF?](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) \`book:hard\` AI history`,
 
     // Math
-    linear_algebra: `[Linear Algebra Done Right](http://amzn.to/2t28p8F) \`book:hard\``,
+    linear_algebra: `[Introduction to Linear Algebra](https://amzn.to/2wP8TWS) \`book:hard\``,
     stats: `[All of statistics](http://amzn.to/2t2dOwg) \`book:hard\``,
     calc: `[Calculus](http://amzn.to/2tXfXhp) \`book:hard\``,
 
     dl_book: `[Deep Learning Book](http://amzn.to/2tXgCiT) ([Free HTML version](http://www.deeplearningbook.org/)) \`book:hard\` comprehensive DL bible; highly mathematical`,
     python: `[Python](http://amzn.to/2mVgtJW) \`book:medium\``,
+    python_data_analysis: `[Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition](https://amzn.to/2IHFh2m) \`book:easy\``,
     handson_tensorflow: `[Hands-On Machine Learning with Scikit-Learn and TensorFlow](http://amzn.to/2tVdIXN) \`book:medium\``,
     ml_with_r: `[Machine Learning with R](http://amzn.to/2n5fSUF) \`book:medium\``,
     elements_of_stat_learning: `[Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book:hard\``,
@@ -52,7 +53,7 @@ let resources = {
   - mp4 => mp3: \`for f in *.mp4; do ffmpeg -i "$f" "\${f%.mp4}.mp3" && rm "$f"; done\`
   - youtube => mp3: setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x youtube.com/playlist?list=<EDIT THIS>\``,
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
-    speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\``,
+    speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\` If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).`,
     dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`
   },
   other: {
@@ -445,6 +446,7 @@ Audio (supplementary material)
   body:
 `## Resources
 - ${resources.books.python}
+- ${resources.books.python_data_analysis}
 - ${resources.other.tensorflow_tuts}
 - ${resources.books.handson_tensorflow}
 

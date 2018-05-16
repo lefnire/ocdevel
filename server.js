@@ -49,5 +49,5 @@ app.post('/email', (req, res) => {
 });
 
 app.listen(nconf.get('PORT'), () => {
-  console.log('Example app listening on port 3000!');
+  console.log('Example app listening on port ' + nconf.get('PORT'));
 });
