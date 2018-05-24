@@ -15,8 +15,9 @@ let resources = {
     elements_of_stat_learning: `[Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book:hard\``,
     pattern_rec: `[Pattern Recognition and Machine Learning](http://amzn.to/2sDIIfb) ([Free PDF?](https://goo.gl/aX038j)) \`book:hard\``,
     speech_and_nlp: `[Speech and Language Processing](http://amzn.to/2uZaNyg) \`book:hard\` comprehensive classical-NLP bible`,
-    nltk: `[NLTK Book](http://www.nltk.org/book) \`book:medium\``
-
+    nltk: `[NLTK Book](http://www.nltk.org/book) \`book:medium\``,
+    sutton_barto: `[Sutton & Barto 2nd Ed PDF](http://incompleteideas.net/book/the-book-2nd.html) \`book:hard\``,
+    aima: `AI a Modern Approach. [Website](http://aima.cs.berkeley.edu/), [Book](http://amzn.to/2E02dEr) \`book:hard\``
   },
   courses: {
     // Ng
@@ -34,7 +35,9 @@ let resources = {
 
     fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`,
     cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`,
-    cs231n: `[Stanford cs231n: Convnets](https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) \`course:medium\``
+    cs231n: `[Stanford cs231n: Convnets](https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) \`course:medium\``,
+    cs294: `[Berkeley cs294: Deep Reinforcement Learning](http://rll.berkeley.edu/deeprlcourse/) \`course:hard\``,
+    david_silver: `[RL Course by David Silver](https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-) \`course|audio:hard\``
   },
   audio: {
     machines_of_loving_grace: `[Machines of Loving Grace](http://amzn.to/2kRcBWq) \`audio:easy\` AI history`,
@@ -1064,6 +1067,54 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
 - Scaling
   - Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
   - Features + inter-layer: Batch Normalization`
+}, {
+  title: '29. Reinforcement Learning Intro',
+  date: "2018-02-05",
+  guid: "fc7802de8fb4d4f609fd11db9afb2189",
+  file: {},
+  libsynEpisode: 6226276,
+  teaser: 'Introduction to reinforcement learning concepts',
+  body: `
+## Resources
+- ${resources.books.handson_tensorflow} (last chapter)
+- ${resources.sutton_barto}
+- ${resources.books.aima}
+- ${resources.courses.cs294}
+- ${resources.courses.david_silver}
+- ${resources.audio.video_to_audio}
+
+## Episode
+- RL definition: goal, rewards, actions
+** Games (Atari, Chess, Go - Lee Sedol & Alpha Go)
+** AI: learning, vision / speech, action / motion, planning
+** Reasoning / knowledge vs model-based Deep RL?
+** Reasoning / knowledge rep (+memory?) => Differential computers (https://deepmind.com/blog/differentiable-neural-computers/)
+** vs supervised. Vision = supervised. Games = action. Trading can go both ways!
+** Time: Credit assignment, delayed rewards, investment
+- Model-based v free
+** Policy (what you do; gut reaction)
+- Value-based (Q-learning) vs Policy Gradient
+** PG is direct: ML -> action
+** Value-based indirect: Bellman stuff -> state/action values (Q-values) -> policy
+- Openai Gym, cartpole
+- Frameworks
+** [openai/baselines](https://github.com/openai/baselines)
+** [reinforceio/tensorforce](https://github.com/reinforceio/tensorforce)
+** [NervanaSystems/coach](https://github.com/NervanaSystems/coach)
+** [rll/rllab](https://github.com/rll/rllab)
+`
+}, {
+  title: '30. New Series: Machine Learning Applied',
+  date: "2018-05-24",
+  guid: "d03cc1d947684f3ab6337033d194090d",
+  file: {},
+  libsynEpisode: 6632262,
+  teaser: 'Introducing a new podcast series on Patreon: Machine Learning Applied',
+  body: `
+MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian methods, Tree methods, etc). 
+
+I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
+`
 }];
 
 const podcast = {

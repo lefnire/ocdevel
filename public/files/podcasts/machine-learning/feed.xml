@@ -12,7 +12,7 @@
         <language>en-us</language>
         <copyright>OCDevel copyright 2017</copyright>
         <atom:link href="http://ocdevel.com/files/podcasts/machine-learning/feed.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sun, 04 Feb 2018 00:00:00 EST</lastBuildDate>
+        <lastBuildDate>Thu, 24 May 2018 00:00:00 EST</lastBuildDate>
         <itunes:author>OCDevel</itunes:author>
         <itunes:summary>This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.</itunes:summary>
         <itunes:subtitle>Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.</itunes:subtitle>
@@ -28,6 +28,110 @@
         </itunes:category>
         <pubDate>Wed, 01 Feb 2017 00:00:00 EST</pubDate>
         <item>
+<title>30. New Series: Machine Learning Applied</title>
+<link>undefined</link>
+<pubDate>Thu, 24 May 2018 00:00:00 EST</pubDate>
+<description>Introducing a new podcast series on Patreon: Machine Learning Applied
+
+
+MLG: I'm rebooting this series to fix mistakes &amp; add more shallows (Bayesian methods, Tree methods, etc). 
+
+I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
+</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>d03cc1d947684f3ab6337033d194090d</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>Introducing a new podcast series on Patreon: Machine Learning Applied</itunes:subtitle>
+<itunes:summary>Introducing a new podcast series on Patreon: Machine Learning Applied
+
+
+MLG: I'm rebooting this series to fix mistakes &amp; add more shallows (Bayesian methods, Tree methods, etc). 
+
+I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
+</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
+<title>29. Reinforcement Learning Intro</title>
+<link>undefined</link>
+<pubDate>Mon, 05 Feb 2018 00:00:00 EST</pubDate>
+<description>Introduction to reinforcement learning concepts
+
+
+## Resources
+- Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium` (last chapter)
+- undefined
+- AI a Modern Approach. Website (http://aima.cs.berkeley.edu/), Book (http://amzn.to/2E02dEr) `book:hard`
+- Berkeley cs294: Deep Reinforcement Learning (http://rll.berkeley.edu/deeprlcourse/) `course:hard`
+- RL Course by David Silver (https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
+## Episode
+- RL definition: goal, rewards, actions
+** Games (Atari, Chess, Go - Lee Sedol &amp; Alpha Go)
+** AI: learning, vision / speech, action / motion, planning
+** Reasoning / knowledge vs model-based Deep RL?
+** Reasoning / knowledge rep (+memory?) =&gt; Differential computers (https://deepmind.com/blog/differentiable-neural-computers/)
+** vs supervised. Vision = supervised. Games = action. Trading can go both ways!
+** Time: Credit assignment, delayed rewards, investment
+- Model-based v free
+** Policy (what you do; gut reaction)
+- Value-based (Q-learning) vs Policy Gradient
+** PG is direct: ML -&gt; action
+** Value-based indirect: Bellman stuff -&gt; state/action values (Q-values) -&gt; policy
+- Openai Gym, cartpole
+- Frameworks
+** openai/baselines (https://github.com/openai/baselines)
+** reinforceio/tensorforce (https://github.com/reinforceio/tensorforce)
+** NervanaSystems/coach (https://github.com/NervanaSystems/coach)
+** rll/rllab (https://github.com/rll/rllab)
+</description>
+<enclosure url="undefined" length="undefined" type="audio/mpeg"/>
+<guid>fc7802de8fb4d4f609fd11db9afb2189</guid>
+<itunes:duration>undefined</itunes:duration>
+<itunes:subtitle>Introduction to reinforcement learning concepts</itunes:subtitle>
+<itunes:summary>Introduction to reinforcement learning concepts
+
+
+## Resources
+- Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium` (last chapter)
+- undefined
+- AI a Modern Approach. Website (http://aima.cs.berkeley.edu/), Book (http://amzn.to/2E02dEr) `book:hard`
+- Berkeley cs294: Deep Reinforcement Learning (http://rll.berkeley.edu/deeprlcourse/) `course:hard`
+- RL Course by David Silver (https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-) `course|audio:hard`
+- Convert video to audio:
+** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
+** youtube =&gt; mp3: setup youtube-dl (https://github.com/rg3/youtube-dl) and run `youtube-dl -x youtube.com/playlist?list=&lt;EDIT THIS&gt;`
+
+## Episode
+- RL definition: goal, rewards, actions
+** Games (Atari, Chess, Go - Lee Sedol &amp; Alpha Go)
+** AI: learning, vision / speech, action / motion, planning
+** Reasoning / knowledge vs model-based Deep RL?
+** Reasoning / knowledge rep (+memory?) =&gt; Differential computers (https://deepmind.com/blog/differentiable-neural-computers/)
+** vs supervised. Vision = supervised. Games = action. Trading can go both ways!
+** Time: Credit assignment, delayed rewards, investment
+- Model-based v free
+** Policy (what you do; gut reaction)
+- Value-based (Q-learning) vs Policy Gradient
+** PG is direct: ML -&gt; action
+** Value-based indirect: Bellman stuff -&gt; state/action values (Q-values) -&gt; policy
+- Openai Gym, cartpole
+- Frameworks
+** openai/baselines (https://github.com/openai/baselines)
+** reinforceio/tensorforce (https://github.com/reinforceio/tensorforce)
+** NervanaSystems/coach (https://github.com/NervanaSystems/coach)
+** rll/rllab (https://github.com/rll/rllab)
+</itunes:summary>
+<itunes:image href="http://ocdevel.com/files/podcasts/machine-learning/art.jpg"/>
+<itunes:keywords>machine,learning,ml,introduction,artificial,intelligence,ai</itunes:keywords>
+<itunes:explicit>no</itunes:explicit>
+        </item>
+<item>
 <title>28. Hyperparameters 2</title>
 <link>undefined</link>
 <pubDate>Sun, 04 Feb 2018 00:00:00 EST</pubDate>
@@ -42,8 +146,7 @@
 ** DNNs = Dropout
 ** L2 = most common
 ** L1 = sparsity (zeros) &amp; feature-selection (rarer circumstances)
-- Optimizers (SGD): Momentum -&gt; Adagrad -&gt; RMSProp -&gt; Adam -&gt; Nadam
-** http://sebastianruder.com/optimizing-gradient-descent/index.html#visualizationofalgorithms
+- Optimizers (SGD): Momentum -&gt; Adagrad -&gt; RMSProp -&gt; Adam -&gt; Nadam (http://sebastianruder.com/optimizing-gradient-descent/index.html#visualizationofalgorithms)
 - Initializers: Zeros, Random Uniform, Xavier
 - Scaling
 ** Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
@@ -63,8 +166,7 @@
 ** DNNs = Dropout
 ** L2 = most common
 ** L1 = sparsity (zeros) &amp; feature-selection (rarer circumstances)
-- Optimizers (SGD): Momentum -&gt; Adagrad -&gt; RMSProp -&gt; Adam -&gt; Nadam
-** http://sebastianruder.com/optimizing-gradient-descent/index.html#visualizationofalgorithms
+- Optimizers (SGD): Momentum -&gt; Adagrad -&gt; RMSProp -&gt; Adam -&gt; Nadam (http://sebastianruder.com/optimizing-gradient-descent/index.html#visualizationofalgorithms)
 - Initializers: Zeros, Random Uniform, Xavier
 - Scaling
 ** Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
@@ -551,7 +653,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 
 ## Resources
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium` If offline, skip to the Deep NLP playlist (see tweet (https://twitter.com/jurafsky/status/972726681118023680)).
 - NLTK Book (http://www.nltk.org/book) `book:medium`
 - Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
@@ -575,7 +677,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 
 ## Resources
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium` If offline, skip to the Deep NLP playlist (see tweet (https://twitter.com/jurafsky/status/972726681118023680)).
 - NLTK Book (http://www.nltk.org/book) `book:medium`
 - Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
@@ -603,7 +705,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 
 ## Resources
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium` If offline, skip to the Deep NLP playlist (see tweet (https://twitter.com/jurafsky/status/972726681118023680)).
 - NLTK Book (http://www.nltk.org/book) `book:medium`
 - Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
@@ -636,7 +738,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 
 ## Resources
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium` If offline, skip to the Deep NLP playlist (see tweet (https://twitter.com/jurafsky/status/972726681118023680)).
 - NLTK Book (http://www.nltk.org/book) `book:medium`
 - Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
@@ -673,7 +775,7 @@ Keep the podcast alive, donate on Patreon (https://www.patreon.com/machinelearni
 
 ## Resources
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium` If offline, skip to the Deep NLP playlist (see tweet (https://twitter.com/jurafsky/status/972726681118023680)).
 - NLTK Book (http://www.nltk.org/book) `book:medium`
 - Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
@@ -725,7 +827,7 @@ Goals
 
 ## Resources
 - Speech and Language Processing (http://amzn.to/2uZaNyg) `book:hard` comprehensive classical-NLP bible
-- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium`
+- Stanford NLP YouTube (https://www.youtube.com/playlist?list=PL6397E4B26D00A269) `course|audio:medium` If offline, skip to the Deep NLP playlist (see tweet (https://twitter.com/jurafsky/status/972726681118023680)).
 - NLTK Book (http://www.nltk.org/book) `book:medium`
 - Convert video to audio:
 ** mp4 =&gt; mp3: `for f in *.mp4; do ffmpeg -i "$f" "${f%.mp4}.mp3" &amp;&amp; rm "$f"; done`
@@ -1169,6 +1271,7 @@ Audio
 
 ## Resources
 - Python (http://amzn.to/2mVgtJW) `book:medium`
+- Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition (https://amzn.to/2IHFh2m) `book:easy`
 - TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
 - Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
 
@@ -1231,6 +1334,7 @@ Frameworks
 
 ## Resources
 - Python (http://amzn.to/2mVgtJW) `book:medium`
+- Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition (https://amzn.to/2IHFh2m) `book:easy`
 - TensorFlow Tutorials (https://www.tensorflow.org/get_started/get_started) `tutorial:medium`
 - Hands-On Machine Learning with Scikit-Learn and TensorFlow (http://amzn.to/2tVdIXN) `book:medium`
 
@@ -1411,7 +1515,7 @@ KhanAcademy:
 - Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Books
-- Linear Algebra Done Right (http://amzn.to/2t28p8F) `book:hard`
+- Introduction to Linear Algebra (https://amzn.to/2wP8TWS) `book:hard`
 - All of statistics (http://amzn.to/2t2dOwg) `book:hard`
 - Calculus (http://amzn.to/2tXfXhp) `book:hard`
 
@@ -1446,7 +1550,7 @@ KhanAcademy:
 - Calc (https://www.khanacademy.org/math/calculus-home) `course:medium`
 
 Books
-- Linear Algebra Done Right (http://amzn.to/2t28p8F) `book:hard`
+- Introduction to Linear Algebra (https://amzn.to/2wP8TWS) `book:hard`
 - All of statistics (http://amzn.to/2t2dOwg) `book:hard`
 - Calculus (http://amzn.to/2tXfXhp) `book:hard`
 
