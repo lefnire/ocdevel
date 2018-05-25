@@ -148,79 +148,83 @@ class Series extends Component {
     const {showDonate, showCrypto} = this.state;
     return (
       <div>
-        {showDonate ? (
-          <Panel header="Donate">
-            <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
-            <hr/>
-
-            {showCrypto ? (
-              <FormGroup>
-                  <InputGroup>
-                    <InputGroup.Addon>BTC</InputGroup.Addon>
-                    <FormControl type="text" value="1Mgi64qWNYAcUhjvyoc8oYDNN6oKPzpaWs" />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroup.Addon>BCH</InputGroup.Addon>
-                    <FormControl type="text" value="17VMYyAHFZSfy8EzLcy69Sie9sw5qe8nyP" />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroup.Addon>ETH</InputGroup.Addon>
-                    <FormControl type="text" value="0x250092887eC61E75f0F82edcBC741fF428D5c8d5" />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroup.Addon>LTC</InputGroup.Addon>
-                    <FormControl type="text" value="LfVo7VR1fWPcaG7GhC4LLSrGNQynPsMdSL"/>
-                  </InputGroup>
-              </FormGroup>
-
-            ) : (
-              <Button bsStyle="primary" block onClick={this.showCrypto}>Cryptocurrency</Button>
-            )}
-            <hr/>
-
-            Paypal:
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                <input type="hidden" name="cmd" value="_s-xclick" />
-                <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-              </form>
-            </div>
-          </Panel>
-        ) : (
-            <Button bsSize="large" bsStyle="primary" block onClick={this.showDonate}>
-              <Glyphicon glyph="heart-empty"/> Donate
-            </Button>
-        )}
-        {/*<Button bsSize="large" block onClick={this.showHireModal}>
-          <Glyphicon glyph="briefcase"/> Hire Me
-        </Button>*/}
-        <Button bsSize="large" block onClick={this.goToRecommend}>
-          <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
-        </Button>
-        <OverlayTrigger
-          placement="right"
-          overlay={(
-            <Popover id="popover-positioned-right">
-              Get notified of new episodes / announcements
-            </Popover>
-          )}
-        >
-          <Button bsSize="large" block href="http://eepurl.com/cUUWfD" target="_blank">
-            <Glyphicon glyph="envelope"/> Mailing List
-          </Button>
-        </OverlayTrigger>
-        <Button bsSize="large" block href="https://github.com/lefnire/tforce_btc_trader">
-          <FontAwesomeIcon icon={faGithub} /> Podcast Project
-        </Button>
-
-        <h4>Subscribe</h4>
         <div className="sub-button-container">
           <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
           <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
           <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
           <a className="zocial rss sub-button" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
+        </div>
+
+        <hr/>
+
+        <div className='sidebar-resources' style={{margin: 5}}>
+          {showDonate ? (
+            <Panel header="Donate">
+              <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
+              <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
+              <hr/>
+
+              {showCrypto ? (
+                <FormGroup>
+                    <InputGroup>
+                      <InputGroup.Addon>BTC</InputGroup.Addon>
+                      <FormControl type="text" value="1Mgi64qWNYAcUhjvyoc8oYDNN6oKPzpaWs" />
+                    </InputGroup>
+                    <InputGroup>
+                      <InputGroup.Addon>BCH</InputGroup.Addon>
+                      <FormControl type="text" value="17VMYyAHFZSfy8EzLcy69Sie9sw5qe8nyP" />
+                    </InputGroup>
+                    <InputGroup>
+                      <InputGroup.Addon>ETH</InputGroup.Addon>
+                      <FormControl type="text" value="0x250092887eC61E75f0F82edcBC741fF428D5c8d5" />
+                    </InputGroup>
+                    <InputGroup>
+                      <InputGroup.Addon>LTC</InputGroup.Addon>
+                      <FormControl type="text" value="LfVo7VR1fWPcaG7GhC4LLSrGNQynPsMdSL"/>
+                    </InputGroup>
+                </FormGroup>
+
+              ) : (
+                <Button bsStyle="primary" block onClick={this.showCrypto}>Cryptocurrency</Button>
+              )}
+              <hr/>
+
+              Paypal:
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick" />
+                  <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                </form>
+              </div>
+            </Panel>
+          ) : (
+              <a href='#' style={{display: 'block'}} onClick={this.showDonate}>
+                <Glyphicon glyph="usd"/> Donate
+              </a>
+          )}
+          <a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
+            <Glyphicon glyph="briefcase"/> Hire Me
+          </a>
+          <a style={{display: 'block'}} href='#' onClick={this.goToRecommend}>
+            <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
+          </a>
+          <OverlayTrigger
+            placement="right"
+            overlay={(
+              <Popover id="popover-positioned-right">
+                Get notified of new episodes / announcements
+              </Popover>
+            )}
+          >
+            <a style={{display: 'block'}} href="http://eepurl.com/cUUWfD" target="_blank">
+              <Glyphicon glyph="envelope"/> Mailing List
+            </a>
+          </OverlayTrigger>
+          <a style={{display: 'block'}} href="https://github.com/lefnire/tforce_btc_trader" target='_blank'>
+            <FontAwesomeIcon icon={faGithub} /> Podcast Project
+          </a>
         </div>
       </div>
     );
@@ -232,7 +236,7 @@ class Series extends Component {
         <Modal.Title>Hire Me</Modal.Title>
       </Modal.Header>
       <Modal.Body className='hire-me'>
-        <img src="https://media-exp1.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/113/2f5/2579111.jpg" style={{float:'left', paddingRight:10, paddingBottom: 5, width: 150}} />
+        <img src="/files/profile_pic.jpeg" style={{float:'left', paddingRight:10, paddingBottom: 5, width: 150}} />
         <h4>Tyler Renelle</h4>
         <p>Machine learning engineer focused on time series & reinforcement (esp. NLP & algo-trading). Background in full-stack JavaScript, 10 years web & mobile. Tech: Python, TensorFlow, React / React Native.</p>
         <p>Creator of HabitRPG, a startup begun on Kickstarter which now has ~2M users. Built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients such as Adidas, BigFix, and UCSF. Obsessed with AI - bonafide Singularitarian and herald for the takeover.</p>
@@ -274,11 +278,10 @@ class Series extends Component {
           <Row>
             <Col xs={12} md={4}>
               <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-              {this['sidebar-' + series]()}
               <div>
-                <h4>About</h4>
                 {podcast.body || podcast.teaser}
               </div>
+              {this['sidebar-' + series]()}
             </Col>
             <Col xs={12} md={8}>
               {this.props.children}
