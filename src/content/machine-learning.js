@@ -83,7 +83,8 @@ let resources = {
 resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;
 
 const episodes = [{
-  title: "1. Introduction",
+  title: "Introduction",
+  episode: 1,
   date: "2017-02-01",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
@@ -130,7 +131,8 @@ Planned episodes
 - Languages and Frameworks: Python vs R vs Java vs C/C++ vs MATLAB, etc; TensorFlow vs Torch vs Theano vs Spark, etc
 `
 }, {
-  title: "2. What is AI / ML",
+  title: "What is AI / ML",
+  episode: 2,
   date: "2017-02-09",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   file: {
@@ -210,7 +212,8 @@ History
 - AlphaGo & DeepMind
 `
 }, {
-  title: "3. Inspiration",
+  title: "Inspiration",
+  episode: 3,
   date: "2017-02-10",
   guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
   file: {
@@ -240,7 +243,8 @@ The Scare
 - Superintelligence by Nick Bostrom
 - Bill Gates, Stephen Hawking, Elon Musk ^`
 }, {
-  title: "4. Algorithms - Intuition",
+  title: "Algorithms - Intuition",
+  episode: 4,
   date: "2017-02-12",
   guid: "a7d9b86e-d3aa-4384-a854-792bfcf36e24",
   file: {
@@ -279,7 +283,8 @@ Categories
 - Reinforcement & Semi-Supervised
   - Planning (DQN): Games (chess, Mario); Robot movement`
 }, {
-  title: "5. Linear Regression",
+  title: "Linear Regression",
+  episode: 5,
   date: "2017-02-16",
   guid: "2d2e66dd-d100-4e05-afba-a948de1c956d",
   file: {
@@ -297,7 +302,8 @@ Categories
 See [Andrew Ng Week 2 Lecture Notes](https://www.coursera.org/learn/machine-learning/resources/QQx8l)
 `
 }, {
-  title: "6. Certificates & Degrees",
+  title: "Certificates & Degrees",
+  episode: 6,
   date: "2017-02-17",
   guid: "a8bd671f-100f-42ff-a68a-cff7763298f6",
   file: {
@@ -324,7 +330,8 @@ Self-edify
 
 Portfolio: Most important for getting a job`
 }, {
-  title: "7. Logistic Regression",
+  title: "Logistic Regression",
+  episode: 7,
   date: "2017-02-19",
   guid: "36b6133d-3018-4be0-a36c-61904aa80a1a",
   file: {
@@ -341,7 +348,8 @@ ${resources.courses.ng_2}
 ## Episode
 See [Andrew Ng Week 3 Lecture Notes](https://www.coursera.org/learn/machine-learning/resources/Zi29t)`
 }, {
-  title: "8. Math",
+  title: "Math",
+  episode: 8,
   date: "2017-02-23",
   guid: "a5c01d38-5242-4b63-b265-81fc53d38ad3",
   file: {
@@ -380,7 +388,8 @@ Audio (supplementary material)
 - Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
 - Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.`
 }, {
-  title: "9. Deep Learning",
+  title: "Deep Learning",
+  episode: 9,
   date: "2017-03-04",
   guid: "d842fe61-7cf2-4209-9cb3-d29be6c4d1a8",
   file: {
@@ -436,7 +445,8 @@ Audio (supplementary material)
   - Activation units / neurons (hidden layer)
   - Relu, TanH, Sigmoid`
 }, {
-  title: "10. Languages & Frameworks",
+  title: "Languages & Frameworks",
+  episode: 10,
   date: "2017-03-07",
   guid: "c613d746-0916-448e-8315-5ac4323389e2",
   file: {
@@ -505,7 +515,8 @@ Frameworks
   - [Evaluation of Deep Learning Toolkits](https://github.com/zer0n/deepframeworks/blob/master/README.md)
   - [Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras & CNTK](https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)`
 }, {
-  title: '11. Checkpoint',
+  title: 'Checkpoint',
+  episode: 11,
   date: "2017-03-08",
   guid: "fe205bbc-b9d4-4df5-b840-c6f5b728903f",
   file: {
@@ -534,7 +545,8 @@ Audio
 - ${resources.audio.video_to_audio}
 `
 }, {
-  title: "12. Shallow Algos 1",
+  title: "Shallow Algos 1",
+  episode: 12,
   date: "2017-03-19",
   guid: "1074a375-6831-456d-9bbc-d28c8f85a557",
   file: {
@@ -564,7 +576,8 @@ Unsupervised
 Decision Trees (supervised, classify/regress)
 - Random Forests
 - Gradient Boost`}, {
-  title: "13. Shallow Algos 2",
+  title: "Shallow Algos 2",
+  episode: 13,
   date: "2017-04-09",
   guid: "af4c231e-c8c1-4d91-ab21-2e256669982e",
   file: {
@@ -585,7 +598,8 @@ ${resources.other.which_algo_to_use}
 - Support Vector Machines (SVM)
 - Naive Bayes Classifier`
 }, {
-  title: "14. Shallow Algos 3",
+  title: "Shallow Algos 3",
+  episode: 14,
   date: "2017-04-23",
   guid: "8ec3010c-8897-43fa-b90b-14f7e43912a8",
   file: {
@@ -604,7 +618,8 @@ ${resources.other.which_algo_to_use}
 - Recommender Systems (Content Filtering, Collaborative Filtering)
 - Markov Chains & Monte Carlo`
 }, {
-  title: "15. Performance",
+  title: "Performance",
+  episode: 15,
   date: "2017-05-07",
   guid: "7da253aa-b035-4702-8475-55b8d3eeeebd",
   file: {
@@ -631,7 +646,8 @@ Performance improvement
 - Data: collect more, fill in missing cells, normalize fields
 - Regularize: reduce overfitting (high variance) and underfitting (high bias)
 `}, {
-  title: "16. Consciousness",
+  title: "Consciousness",
+  episode: 16,
   date: "2017-05-21",
   guid: "c2db5df8-936b-4404-8f0f-7eb188bfe9ab",
   file: {
@@ -681,7 +697,8 @@ Computational theory of mind
 Biological plausibility
 - planes, brains
 - sans bio-plaus, functionalism; zombies; turing test; searle's chinese room`}, {
-  title: '17. Checkpoint',
+  title: 'Checkpoint',
+  episode: 17,
   date: "2017-06-04",
   guid: "4977e285-d4fc-45cb-b3a5-aed9e97915c2",
   file: {
@@ -716,7 +733,8 @@ Audio
 ${resources.other.kaggle}
 `
 }, {
-  title: '18. Natural Language Processing 1',
+  title: 'Natural Language Processing 1',
+  episode: 18,
   date: "2017-06-25",
   guid: "d8ebdbe6640d0d34f12778f90b91db8d",
   file: {},
@@ -768,7 +786,8 @@ Goals
   - Optical character recognition (OCR)
   - Speech (TTS, STT, Segmentation, Diarization)`
 }, {
-  title: '19. Natural Language Processing 2',
+  title: 'Natural Language Processing 2',
+  episode: 19,
   date: "2017-07-10",
   guid: "e05e640ba2f99105f52c4eef0c5cabfb",
   file: {},
@@ -801,7 +820,8 @@ Goals
 - Search / relevance / document-similarity: Bag-of-words, TF-IDF
 - Similarity: Jaccard, Cosine, Euclidean`
 }, {
-  title: '20. Natural Language Processing 3',
+  title: 'Natural Language Processing 3',
+  episode: 20,
   date: "2017-07-23",
   guid: "556b3779a8f8546de9457002a19e63b2",
   file: {},
@@ -825,7 +845,8 @@ Goals
 - Automatic summarization (TF-IDF; TextRank)
 - Machine Translation ([details here](https://www.youtube.com/watch?v=QuELiw8tbx8&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&index=9))`
 }, {
-  title: '21. Update',
+  title: 'Update',
+  episode: 21,
   date: "2017-07-27",
   guid: "30566e73f0346fd82c174e2931a39a97",
   file: {},
@@ -833,7 +854,8 @@ Goals
   teaser: 'Update on Patreon and resources.',
   body: `Keep the podcast alive, donate on [Patreon](https://www.patreon.com/machinelearningguide)`
 }, {
-  title: '22. Deep NLP 1',
+  title: 'Deep NLP 1',
+  episode: 22,
   date: "2017-07-28",
   guid: "d9e15cfe501a8f0c6e3c075c09f7e682",
   file: {},
@@ -882,7 +904,8 @@ RNNs
   - Pros (?): faster, more accurate, incremental fitting. Cons (?): data hungry, more RAM. [More info](http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)
 - DNN for POS, NER (or RNNs)`
 }, {
-  title: '23. Deep NLP 2',
+  title: 'Deep NLP 2',
+  episode: 23,
   date: "2017-08-20",
   guid: "1346120e3e578b15c8f34b31bc21ef78",
   file: {},
@@ -917,7 +940,8 @@ Train: backprop through time
   - Tanh layer: creates new candidate values
   - Output layer`
 }, {
-  title: '24. Tech Stack',
+  title: 'Tech Stack',
+  episode: 24,
   date: "2017-10-06",
   guid: "11e604992dcd4f124cb4d3897c81056f",
   file: {},
@@ -947,7 +971,8 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   - Keras
   - TensorForce`
 }, {
-  title: '25. Convolutional Neural Networks',
+  title: 'Convolutional Neural Networks',
+  episode: 25,
   date: "2017-10-30",
   guid: "91bf8a0266bc22088c897eb756cc97d3",
   file: {},
@@ -978,7 +1003,8 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   - Resnet
   - etc..`
 }, {
-  title: '26. Project Bitcoin Trader',
+  title: 'Project Bitcoin Trader',
+  episode: 26,
   date: "2018-01-26",
   guid: "e704eb47d4280a7abc9bb6f0895a7b26",
   file: {},
@@ -1011,7 +1037,8 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   - Supervised v Reinforcement
   - Obvious net architectures (indicators, time-series, tanh v relu)`
 }, {
-  title: '27. Hyperparameters 1',
+  title: 'Hyperparameters 1',
+  episode: 27,
   date: "2018-01-27",
   guid: "f5a903d68c1ed04bd37a31175d456fc0",
   file: {},
@@ -1047,7 +1074,8 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   - Relu family (Leaky Relu, Elu, Selu, ...) = vanishing gradient (gradient is constant), performance, usually better
   - Tanh = classification between two classes, mean 0 important`
 }, {
-  title: '28. Hyperparameters 2',
+  title: 'Hyperparameters 2',
+  episode: 28,
   date: "2018-02-04",
   guid: "8671d415236e9a9394a0c4aaa383e1ba",
   file: {},
@@ -1068,7 +1096,8 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   - Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
   - Features + inter-layer: Batch Normalization`
 }, {
-  title: '29. Reinforcement Learning Intro',
+  title: 'Reinforcement Learning Intro',
+  episode: 29,
   date: "2018-02-05",
   guid: "fc7802de8fb4d4f609fd11db9afb2189",
   file: {},
@@ -1104,7 +1133,8 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
 ** [rll/rllab](https://github.com/rll/rllab)
 `
 }, {
-  title: '30. New Series: Machine Learning Applied',
+  title: 'New Series: Machine Learning Applied',
+  episode: 30,
   date: "2018-05-24",
   guid: "d03cc1d947684f3ab6337033d194090d",
   file: {},
@@ -1116,19 +1146,22 @@ MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian met
 I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
 `
 }, {
-  title: 'MLA 001 Certificates & Degrees',
+  title: 'Certificates & Degrees',
+  episode: 1,
   mla: true,
   date: "2018-05-24",
   guid: "19010647",
   teaser: 'Reboot on the MLG episode, with more confident recommends. Specifically: get a masters, and get it from OMSCS Georgia Tech.',
 }, {
-  title: 'MLA 002 Numpy & Pandas',
+  title: 'Numpy & Pandas',
+  episode: 2,
   mla: true,
   date: "2018-05-24",
   guid: "19012224",
   teaser: 'Some numerical data nitty-gritty in Python.'
 }, {
-  title: 'MLA 003 Storage: HDF, Pickle, Postgres',
+  title: 'Storage: HDF, Pickle, Postgres',
+  episode: 3,
   mla: true,
   date: "2018-05-24",
   guid: "19012844",

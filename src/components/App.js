@@ -43,17 +43,9 @@ export default class App extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavDropdown eventKey={1} title="Podcasts" id="basic-nav-dropdown">
-              <LinkContainer to="/podcasts/machine-learning">
-                <MenuItem eventKey={1.1}>Machine Learning & AI</MenuItem>
-              </LinkContainer>
-              <LinkContainer to="/podcasts/web-development">
-                <MenuItem eventKey={1.2}>Web Development</MenuItem>
-              </LinkContainer>
-            </NavDropdown>
-            {/*<LinkContainer to="/blog">
-             <NavItem eventKey={4}>Blog</NavItem>
-             </LinkContainer>*/}
+            <LinkContainer to="/mlg">
+              <NavItem >Machine Learning Guide</NavItem>
+            </LinkContainer>
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={1} onClick={this.open}>Contact</NavItem>

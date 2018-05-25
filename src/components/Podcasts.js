@@ -11,31 +11,22 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { faUnlock } from '@fortawesome/fontawesome-free-solid'
 
-import _machineLearning from '../content/machine-learning';
-import _webDevelopment from '../content/web-development';
-
+import podcast from '../content/machine-learning';
 import './podcasts.css';
-
-const podcasts = {
-  'machine-learning': _machineLearning,
-  'web-development': _webDevelopment,
-};
 const fmt = 'MMM, MM/DD/YYYY';
 
 class Recommend extends Component {
   render() {
-    let {series, id} = this.props.params;
-    const podcast = podcasts[series];
     return (
       <div>
-        <Button href={`/podcasts/${series}`}>&lt; All Episodes</Button>
+        <Button href={`/mlg`}>&lt; All Episodes</Button>
         <h2>Recommend a Future Episode</h2>
         <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
         <ReactDisqusThread
           shortname="ocdevel"
-          identifier={series + '-recommend'}
+          identifier={'machine-learning-recommend'}
           title={`Recommend an Episode | ${podcast.title}`}
-          url={`http://ocdevel.com/podcasts/${series}/recommend`}/>
+          url={`http://ocdevel.com/mlg/recommend`}/>
       </div>
     );
   }
@@ -63,14 +54,13 @@ class Episode extends Component {
   };
 
   render() {
-    const {series, id} = this.props.params;
-    const podcast = podcasts[series],
-      episode = podcast.episodes[id-1];
+    const {id} = this.props.params;
+    const episode = _.find(podcast.episodes, {episode: parseInt(id)});
     // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
     const body = episode.body && episode.body.replace(/##/g, '###');
     return (
       <div>
-        <Button href={`/podcasts/${series}`}>&lt; All Episodes</Button>
+        <Button href={`/mlg`}>&lt; All Episodes</Button>
         <div>
           <h2>{episode.title}</h2>
           <i>{moment(episode.date).format(fmt)}</i>
@@ -85,26 +75,30 @@ class Episode extends Component {
           shortname="ocdevel"
           identifier={episode.guid}
           title={`${episode.title} | ${podcast.title}`}
-          url={`http://ocdevel.com/podcasts/${series}/${id}`}/>
+          url={`http://ocdevel.com/mlg/${id}`}/>
       </div>
     );
   }
 }
 
 class Episodes extends Component {
+  title = (e, isMLA) => {
+    let num = _.padStart(e.episode, 3, '0');
+    return `${e.mla? 'MLA ':''}${num} ${e.title}`;
+  };
+
   render() {
-    const {series} = this.props.params;
-    const episodes = podcasts[series].episodes;
+    const episodes = podcast.episodes;
     return (
       <div>
-        {episodes.slice().reverse().map((e, i) => (
+        {episodes.slice().reverse().map(e => (
           <div key={e.guid}>
 
             <h3>
               {e.mla? (
-                <a href='https://www.patreon.com/machinelearningguide' target="_blank">{e.title}</a>
+                <a href='https://www.patreon.com/machinelearningguide' target="_blank">{this.title(e)}</a>
               ) : (
-                <Link to={`/podcasts/${series}/${episodes.length - i}`}>{e.title}</Link>
+                <Link to={`/mlg/${e.episode}`}>{this.title(e)}</Link>
               )}
             </h3>
             {e.mla && (
@@ -129,22 +123,7 @@ class Series extends Component {
     };
   }
 
-  'sidebar-web-development' = () => {
-    const {series} = this.props.params;
-    return (
-      <div>
-        <div className="sub-button-container">
-          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/ocdevel-web-development-podcast/id269893594?mt=2" target="_blank" rel="nofollow">iTunes</a>
-        </div>
-        <div>
-          <h4 className="alert alert-warning">This podcast is broadly still relevant, but vastly out-dated. Might I recommend <a href="http://starthere.fm/category/webdev" target="_blank">Start Here FM</a> instead.</h4>
-        </div>
-      </div>
-    );
-  };
-
-  'sidebar-machine-learning' = () => {
-    // const {series} = this.props.params;
+  sidebar = () => {
     const {showDonate, showCrypto} = this.state;
     return (
       <div>
@@ -261,52 +240,33 @@ class Series extends Component {
   showDonate = () => this.setState({showDonate: true});
   showCrypto = () => this.setState({showCrypto: true});
 
-  goToRecommend = () => browserHistory.push(`/podcasts/${this.props.params.series}/recommend`);
+  goToRecommend = () => browserHistory.push(`/mlg/recommend`);
 
   render() {
-    let {series} = this.props.params;
-    if (!_.includes(['machine-learning', 'web-development'], series))
-      return window.location.href = '/podcasts/machine-learning';
-
-    let podcast = podcasts[series];
-
     return (
-      <div className="Series">
-        {this.renderHireModal()}
-        <PageHeader>{podcast.title}</PageHeader>
-        <Grid>
-          <Row>
-            <Col xs={12} md={4}>
-              <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-              <div>
-                {podcast.body || podcast.teaser}
-              </div>
-              {this['sidebar-' + series]()}
-            </Col>
-            <Col xs={12} md={8}>
-              {this.props.children}
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
-}
-
-class App extends Component {
-  render() {
-    let {series} = this.props.params;
-    if (!_.includes(['machine-learning', 'web-development'], series))
-      return window.location.href = '/podcasts/machine-learning';
-
-    return (
-      <div>
-        <div className="container">
-          {this.props.children}
+      <div className="container">
+        <div className="Series">
+          {this.renderHireModal()}
+          <PageHeader>{podcast.title}</PageHeader>
+          <Grid>
+            <Row>
+              <Col xs={12} md={4}>
+                <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+                <div>
+                  <p><b>Machine Learning Guide</b> {podcast.body}</p>
+                  <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</a> to access this series.</p>
+                </div>
+                {this.sidebar()}
+              </Col>
+              <Col xs={12} md={8}>
+                {this.props.children}
+              </Col>
+            </Row>
+          </Grid>
         </div>
       </div>
     );
   }
 }
 
-export default {App, Series, Episodes, Episode, Recommend};
+export default {Series, Episodes, Episode, Recommend};
