@@ -23,6 +23,7 @@
     "@fortawesome/react-fontawesome": "0.0.17"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",

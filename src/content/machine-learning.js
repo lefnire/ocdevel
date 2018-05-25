@@ -1115,6 +1115,24 @@ MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian met
 
 I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
 `
+}, {
+  title: 'MLA 001 Certificates & Degrees',
+  mla: true,
+  date: "2018-05-24",
+  guid: "19010647",
+  teaser: 'Reboot on the MLG episode, with more confident recommends. Specifically: get a masters, and get it from OMSCS Georgia Tech.',
+}, {
+  title: 'MLA 002 Numpy & Pandas',
+  mla: true,
+  date: "2018-05-24",
+  guid: "19012224",
+  teaser: 'Some numerical data nitty-gritty in Python.'
+}, {
+  title: 'MLA 003 Storage: HDF, Pickle, Postgres',
+  mla: true,
+  date: "2018-05-24",
+  guid: "19012844",
+  teaser: 'Comparison of different data storage options when working with your ML models. You\'ll ingest your dataset (CSV, TSV, JSON API, ..) via Pandas. Then you munge the data / Pandas, convert to Numpy & send to your model. Model saves intermediate steps as Numpy->HDF. Publish results of your model\'s predictions (whether for use in app/website, or for researchers, etc) in a SQL database or CSV.'
 }];
 
 const podcast = {
@@ -1125,7 +1143,7 @@ const podcast = {
   image: "http://ocdevel.com/files/podcasts/machine-learning/art.jpg",
   date: new Date('02/01/2017'),
   teaser: "Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.",
-  body: "This series aims to teach you the high level fundamentals of machine learning from A to Z. I'll teach you the basic intuition, algorithms, and math. We'll discuss languages and frameworks, deep learning, and more. Audio may be an inferior medium to task; but with all our exercise, commute, and chores hours of the day, not having an audio supplementary education would be a missed opportunity. And where your other resources will provide you the machine learning trees, I’ll provide the forest. Additionally, consider me your syllabus. At the end of every episode I’ll provide the best-of-the-best resources curated from around the web for you to learn each episode’s details.",
+  body: "Teaches the high level fundamentals of machine learning and artificial intelligence. I teach basic intuition, algorithms, and math. I discuss languages and frameworks, deep learning, and more. Audio may seem inferior, but it's a great supplement during exercise/commute/chores. Where your other resources provide the machine learning trees, I provide the forest. Consider me your syllabus. At the end of every episode I provide high-quality curated resources for learning each episode’s details.",
   episodes: episodes,
   useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
 };

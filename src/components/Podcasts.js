@@ -9,6 +9,7 @@ import ReactDisqusThread from 'react-disqus-thread';
 import _ from 'lodash';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
+import { faUnlock } from '@fortawesome/fontawesome-free-solid'
 
 import _machineLearning from '../content/machine-learning';
 import _webDevelopment from '../content/web-development';
@@ -72,7 +73,7 @@ class Episode extends Component {
         <Button href={`/podcasts/${series}`}>&lt; All Episodes</Button>
         <div>
           <h2>{episode.title}</h2>
-          <span className="pull-right">{moment(episode.date).format(fmt)}</span>
+          <i>{moment(episode.date).format(fmt)}</i>
           {body? (
             <ReactMarkdown source={body} renderers={this.markdownRenderers} />
           ): (
@@ -98,8 +99,18 @@ class Episodes extends Component {
       <div>
         {episodes.slice().reverse().map((e, i) => (
           <div key={e.guid}>
-            <h3><Link to={`/podcasts/${series}/${episodes.length - i}`}>{e.title}</Link></h3>
-            <span className="pull-right">{moment(e.date).format(fmt)}</span>
+
+            <h3>
+              {e.mla? (
+                <a href='https://www.patreon.com/machinelearningguide' target="_blank">{e.title}</a>
+              ) : (
+                <Link to={`/podcasts/${series}/${episodes.length - i}`}>{e.title}</Link>
+              )}
+            </h3>
+            {e.mla && (
+              <span className='label label-info' style={{marginRight: 10}}><FontAwesomeIcon icon={faUnlock} />  $1/m on Patreon</span>
+            )}
+            <i>{moment(e.date).format(fmt)}</i>
             <p>{e.teaser}</p>
           </div>
         ))}
@@ -182,9 +193,9 @@ class Series extends Component {
               <Glyphicon glyph="heart-empty"/> Donate
             </Button>
         )}
-        <Button bsSize="large" block onClick={this.showHireModal}>
+        {/*<Button bsSize="large" block onClick={this.showHireModal}>
           <Glyphicon glyph="briefcase"/> Hire Me
-        </Button>
+        </Button>*/}
         <Button bsSize="large" block onClick={this.goToRecommend}>
           <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
         </Button>
