@@ -92,10 +92,8 @@ class Episode extends Component {
 
 class Episodes extends Component {
   render() {
-    const renderAds = false;
     const {series} = this.props.params;
     const episodes = podcasts[series].episodes;
-    let j = 0;
     return (
       <div>
         {episodes.slice().reverse().map((e, i) => (
@@ -103,17 +101,6 @@ class Episodes extends Component {
             <h3><Link to={`/podcasts/${series}/${episodes.length - i}`}>{e.title}</Link></h3>
             <span className="pull-right">{moment(e.date).format(fmt)}</span>
             <p>{e.teaser}</p>
-            <hr/>
-            {renderAds && i % 7 === 0 && (
-              <div>
-                {{
-                  0: <div><a href="//thegreatcoursesplus.7eer.net/c/358692/370438/3896"><img src="//a.impactradius-go.com/display-ad/3896-370438" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/370438/3896" style={{position:"absolute",visibility:"hidden"}} border="0" /></div>,
-                  1: <div><a href="//thegreatcoursesplus.7eer.net/c/358692/236875/3896"><img src="//a.impactradius-go.com/display-ad/3896-236875" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/236875/3896" style={{position:"absolute",visibility:"hidden"}} border="0" /></div>,
-                  2: <div><a href="//thegreatcoursesplus.7eer.net/c/358692/310093/3896"><img src="//a.impactradius-go.com/display-ad/3896-310093" border="0" alt="" width="728" height="90"/></a><img height="0" width="0" src="//thegreatcoursesplus.7eer.net/i/358692/310093/3896" style={{position:"absolute",visibility:"hidden"}} border="0" /></div>,
-                }[j++%2]}
-                <hr/>
-              </div>
-            )}
           </div>
         ))}
       </div>
