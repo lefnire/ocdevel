@@ -845,14 +845,14 @@ Goals
 - Automatic summarization (TF-IDF; TextRank)
 - Machine Translation ([details here](https://www.youtube.com/watch?v=QuELiw8tbx8&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&index=9))`
 }, {
-  title: 'Update',
+  title: 'New Series: Machine Learning Applied',
   episode: 21,
   date: "2017-07-27",
   guid: "30566e73f0346fd82c174e2931a39a97",
   file: {},
   libsynEpisode: 5585790,
-  teaser: 'Update on Patreon and resources.',
-  body: `Keep the podcast alive, donate on [Patreon](https://www.patreon.com/machinelearningguide)`
+  teaser: 'Introducing a new podcast series on Patreon: Machine Learning Applied',
+  body: `Keep this podcast going by donating $1/m on [Patreon](https://www.patreon.com/machinelearningguide), which gives you access to a new podcast series: Machine Learning Applied`
 }, {
   title: 'Deep NLP 1',
   episode: 22,
