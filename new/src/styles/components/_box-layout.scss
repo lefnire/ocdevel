@@ -1,0 +1,23 @@
+.box-layout {
+  background: url('/images/city-bg_edited.jpg');
+  height: 100vh;
+  display: flex;
+  width: 100vw;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-layout__box {
+  background: fade-out(white, .15);
+  border-radius: 2px;
+  text-align: center;
+  width: 25rem;
+  padding: $l-size $m-size;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1;
+  
+}
