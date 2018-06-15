@@ -89,4 +89,3 @@ let images = {
   tylerHead: require('../../assets/Tyler/tylerhead.png'),
   cathead: require('../../assets/cat.png')
 };
-
