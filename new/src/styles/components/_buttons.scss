@@ -1,0 +1,60 @@
+.button {
+  background-color: $google-blue;
+  color: white;
+  padding: $s-size;
+  display: inline-block;
+  border: none;
+  font-weight: 300;
+  font-size: $font-size-large;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.button-link {
+  background-color: Transparent;
+  color: white;
+  font-size: $font-size-header-xl;
+  font-family: $exo;
+  border: none;
+  position: relative;
+  padding: $s-size;
+
+  &::after {
+    content: "";
+    height: 3px;
+    width: 0%;
+    position: absolute;
+    background-color: white;
+    bottom: 0px;
+    left: 0px;
+    transition: width .7s .1s cubic-bezier(0,.56,1,1.57);
+
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+
+.back-button {
+  cursor: pointer;
+  color: $ocd-orange;
+  padding: $m-size;
+  i {
+    animation: bandf 1s ease-in-out 2s infinite alternate;
+  }
+
+}
+@keyframes bandf {
+  0% {
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(15px);
+  }
+}
+
+.button-secondary {
+  background-color: #888
+}

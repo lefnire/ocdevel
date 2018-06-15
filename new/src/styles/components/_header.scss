@@ -1,0 +1,26 @@
+.header {
+  background: #111;
+}
+
+.header__title {
+  color: white;
+  font-family: $elec;
+  text-decoration: none;
+  h1 {
+    margin: 0;
+  }
+}
+
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  font-family: $elec;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+
+}
