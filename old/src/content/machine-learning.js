@@ -1185,7 +1185,7 @@ I'm adding Patreon rewards, including access to a new podcast series: Machine Le
   episode: 6,
   mla: true,
   date: "2018-07-19",
-  guid: "19356672",
+  guid: "20094414",
   teaser: "Salary based on location, gender, age, tech... from O'Reilly."
 }];
 
