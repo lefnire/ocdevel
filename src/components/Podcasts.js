@@ -13,7 +13,7 @@ import { faUnlock } from '@fortawesome/fontawesome-free-solid'
 
 import podcast from '../content/machine-learning';
 import './podcasts.css';
-const fmt = 'MMM, MM/DD/YYYY';
+const fmt = 'MMM DD, YYYY';
 
 class Recommend extends Component {
   render() {

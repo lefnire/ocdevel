@@ -1151,7 +1151,7 @@ I'm adding Patreon rewards, including access to a new podcast series: Machine Le
   mla: true,
   date: "2018-05-24",
   guid: "19010647",
-  teaser: 'Reboot on the MLG episode, with more confident recommends. Specifically: get a masters, and get it from OMSCS Georgia Tech.',
+  teaser: 'Reboot on the MLG episode, with more confident recommends.',
 }, {
   title: 'Numpy & Pandas',
   episode: 2,
@@ -1165,7 +1165,28 @@ I'm adding Patreon rewards, including access to a new podcast series: Machine Le
   mla: true,
   date: "2018-05-24",
   guid: "19012844",
-  teaser: 'Comparison of different data storage options when working with your ML models. You\'ll ingest your dataset (CSV, TSV, JSON API, ..) via Pandas. Then you munge the data / Pandas, convert to Numpy & send to your model. Model saves intermediate steps as Numpy->HDF. Publish results of your model\'s predictions (whether for use in app/website, or for researchers, etc) in a SQL database or CSV.'
+  teaser: "Comparison of different data storage options when working with your ML models."
+}, {
+  title: 'Study Tips',
+  episode: 4,
+  mla: true,
+  date: "2018-05-28",
+  guid: "19084737",
+  teaser: 'Two tips that helped me the most while learning ML.'
+}, {
+  title: 'Shapes & Sizes',
+  episode: 5,
+  mla: true,
+  date: "2018-06-09",
+  guid: "19356672",
+  teaser: 'Dimensions, size, and shape of Numpy ndarrays / TensorFlow tensors, and methods for transforming those.'
+}, {
+  title: 'Salary',
+  episode: 6,
+  mla: true,
+  date: "2018-07-19",
+  guid: "20094414",
+  teaser: "Salary based on location, gender, age, tech... from O'Reilly."
 }];
 
 const podcast = {
