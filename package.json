@@ -27,7 +27,7 @@
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "moment": "^2.17.1",
     "nconf": "^0.8.4",
     "nodemailer": "^2.3.0",
