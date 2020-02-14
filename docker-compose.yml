@@ -1,0 +1,9 @@
+version: "3"
+services:
+  server:
+    build: .
+    container_name: ocdevel
+    entrypoint: /bin/bash
+    stdin_open: true
+    volumes:
+      - ./:/app

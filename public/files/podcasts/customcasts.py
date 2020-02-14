@@ -47,12 +47,12 @@ xml = f"""<?xml version="1.0" encoding="utf-8"?>
         <copyright>{pcopyright}</copyright>
         <atom:link href="{pfeed}" rel="self" type="application/rss+xml"/>
         <lastBuildDate>{pdate}</lastBuildDate>
-        <itunes:author>OCDevel</itunes:author>
+        <itunes:author>X</itunes:author>
         <itunes:summary>{pdesc}</itunes:summary>
         <itunes:subtitle>{pdesc}</itunes:subtitle>
         <itunes:owner>
-            <itunes:name>Tyler Renelle</itunes:name>
-            <itunes:email>tylerrenelle@gmail.com</itunes:email>
+            <itunes:name>X</itunes:name>
+            <itunes:email>x@y.com</itunes:email>
         </itunes:owner>
         <itunes:explicit>No</itunes:explicit>
         <itunes:keywords>{pkeywords}</itunes:keywords>
