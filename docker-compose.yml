@@ -8,7 +8,7 @@ services:
 #    entrypoint: /bin/bash
 #    stdin_open: true
 #    volumes:
-#      - ./:/app
+#      - ./server:/app
 
   client:
     build:
@@ -20,4 +20,4 @@ services:
       - 3003:3000
     stdin_open: true
     volumes:
-      - ./:/app
+      - ./client:/app
