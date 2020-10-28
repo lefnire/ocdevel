@@ -183,9 +183,9 @@ class Series extends Component {
                 <Glyphicon glyph="usd"/> Donate
               </a>
           )}
-          <a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
+          {/*<a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
             <Glyphicon glyph="briefcase"/> Hire Me
-          </a>
+          </a>*/}
           <a style={{display: 'block'}} href='#' onClick={this.goToRecommend}>
             <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
           </a>
@@ -201,7 +201,7 @@ class Series extends Component {
               <Glyphicon glyph="envelope"/> Mailing List
             </a>
           </OverlayTrigger>
-          <a style={{display: 'block'}} href="https://github.com/lefnire/tforce_btc_trader" target='_blank'>
+          <a style={{display: 'block'}} href="https://github.com/lefnire/gnothi" target='_blank'>
             <FontAwesomeIcon icon={faGithub} /> Podcast Project
           </a>
         </div>

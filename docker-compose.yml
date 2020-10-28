@@ -1,9 +1,23 @@
-version: "3"
+version: "3.7"
 services:
-  server:
-    build: .
-    container_name: ocdevel
+#  server:
+#    build:
+#      context: .
+#      dockerfile: ./server.dockerfile
+#    container_name: custom-casts
+#    entrypoint: /bin/bash
+#    stdin_open: true
+#    volumes:
+#      - ./:/app
+
+  client:
+    build:
+      context: .
+      dockerfile: ./client.dockerfile
     entrypoint: /bin/bash
+    container_name: ocdevel-client
+    ports:
+      - 3003:3000
     stdin_open: true
     volumes:
       - ./:/app
