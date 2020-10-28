@@ -17,7 +17,9 @@ services:
     entrypoint: /bin/bash
     container_name: ocdevel-client
     ports:
-      - 3003:3000
+      - 3003:3000  # main
+      - 8003:8000  # gatsby
     stdin_open: true
     volumes:
       - ./client:/app
+      - ./gatsby:/gatsby
