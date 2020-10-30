@@ -20,6 +20,12 @@ def get_db():
     try: yield db
     finally: db.close()
 
+
+@app.get("/health")
+def health_get():
+    return {"ok": True}
+
+
 @app.get("/feed/download")
 def feed_download(db: Session = Depends(get_db)):
     feed = db.query(M.MLAUrl).get('patreon_feed')
