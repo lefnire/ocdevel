@@ -1,4 +1,19 @@
-FROM ubuntu
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
+RUN apt-get update -y && apt-get install -y wget
+RUN pip install \
+    sqlalchemy \
+    sqlalchemy_utils \
+    mutagen \
+    psycopg2-binary \
+    requests \
+    python-box \
+    shortuuid \
+    pytest \
+    boto3 \
+    dynaconf
+
+COPY ./server/app /app/app
 WORKDIR /app
-RUN apt-get update && apt-get install -y python3 python3-pip unzip wget
-RUN pip3 install mutagen
+
+EXPOSE 80
+EXPOSE 443
