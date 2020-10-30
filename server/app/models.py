@@ -1,4 +1,5 @@
-from sqlalchemy import text, String, Column, Integer, ForeignKey, TIMESTAMP
+import datetime as dt
+from sqlalchemy import text, String, Column, Integer, ForeignKey, TIMESTAMP, or_, and_
 from sqlalchemy.dialects.postgresql import UUID
 from .database import Base
 
@@ -35,11 +36,19 @@ class MLASub(Base):
     created_at = DateCol()
     updated_at = DateCol(update=True)
 
+    @staticmethod
+    def get_sub(uid, db):
+        return db.execute(text("""
+        select * from mla_subs m
+        where m.id=:uid and ( 
+            m.expires=0 or m.expires is null
+            or m.expire_start > now() - interval '1 month' * m.expires)    
+        """), dict(uid=uid)).fetchone()
+
 
 class MLAUrl(Base):
     __tablename__ = "mla_urls"
-    id = IDCol()
-    key = Column(String, unique=True, index=True)
+    id = Column(String, primary_key=True)
     url = Column(String, nullable=False)
     created_at = DateCol()
     updated_at = DateCol(update=True)
