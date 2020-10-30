@@ -33,6 +33,6 @@
     "nodemailer": "^2.3.0",
     "react-disqus-thread": "^0.4.0",
     "react-ga": "^2.1.2",
-    "superagent": "^1.8.3"
+    "superagent": "^3.7.0"
   }
 }
