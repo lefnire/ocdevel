@@ -22,27 +22,27 @@ def users(client, db):
         u['id'] = u_.id
 
     # ensure feed.xml present # TODO call this for fresh testing
-    # client.get("/feed/download")
+    # client.get("/mla/download")
     for item in ET.parse("feed.xml").findall("channel/item"):
         guid = item.find("guid").text
-        db.add(M.MLAUrl(id=guid, url=f"https://mla.ocdevel.com/feed/item/{guid}"))
+        db.add(M.MLAUrl(id=guid, url=f"https://api.ocdevel.com/mla/item/{guid}"))
     db.commit()
 
     return users
 
 def test_feed(client, users):
-    res = client.get("/feed/doesnt_exist")
+    res = client.get("/mla/doesnt_exist")
     assert res.status_code == 422
 
-    res = client.get(f"/feed/{str(uuid4())}")
+    res = client.get(f"/mla/{str(uuid4())}")
     assert res.status_code == 401
 
-    res = client.get(f"/feed/{users[0]['id']}")
+    res = client.get(f"/mla/{users[0]['id']}")
     assert res.status_code == 200
     assert 'patreonusercontent' not in res.content.decode('utf-8')
 
-    res = client.get(f"/feed/{users[1]['id']}")
+    res = client.get(f"/mla/{users[1]['id']}")
     assert res.status_code == 401
 
-    res = client.get(f"/feed/{users[2]['id']}")
+    res = client.get(f"/mla/{users[2]['id']}")
     assert res.status_code == 200

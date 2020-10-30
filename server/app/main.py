@@ -26,14 +26,14 @@ def health_get():
     return {"ok": True}
 
 
-@app.get("/feed/download")
+@app.get("/mla/download")
 def feed_download(db: Session = Depends(get_db)):
     feed = db.query(M.MLAUrl).get('patreon_feed')
     res = requests.get(feed.url)
     with open("feed.xml", "wb") as f:
         f.write(res.content)
 
-@app.get("/feed/{uid}")
+@app.get("/mla/{uid}")
 def feed_get(uid: UUID4, db: Session = Depends(get_db)):
     sub = M.MLASub.get_sub(uid, db)
     if not sub:
@@ -50,12 +50,12 @@ def feed_get(uid: UUID4, db: Session = Depends(get_db)):
     channel.find("image/url").text = img
     for item in channel.findall('item'):
         item_id = item.find("guid").text
-        url = f"https://mla.ocdevel.com/feed/{uid}/{item_id}"
+        url = f"https://api.ocdevel.com/mla/{uid}/{item_id}"
         item.find("enclosure").set("url", url)
     xml = ET.tostring(root, encoding='utf8', method='xml')
     return Response(content=xml, media_type="application/xml")
 
-@app.get("/feed/item/{uid}/{item_id}")
+@app.get("/mla/{uid}/{guid}")
 def feed_get(uid: UUID4, guid: str, db: Session = Depends(get_db)):
     sub = M.MLASub.get_sub(uid, db)
     if not sub:

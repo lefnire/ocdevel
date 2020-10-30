@@ -3,13 +3,11 @@ RUN apt-get update -y && apt-get install -y wget
 RUN pip install \
     sqlalchemy \
     sqlalchemy_utils \
-    mutagen \
+    # mutagen \
     psycopg2-binary \
     requests \
     python-box \
-    shortuuid \
     pytest \
-    boto3 \
     dynaconf
 
 COPY ./server/app /app/app
