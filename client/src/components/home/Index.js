@@ -6,6 +6,24 @@ import Portfolio from './Portfolio';
 
 import './home.css';
 
+import moss from "../../../static/assets/moss-low.jpg"
+import bgOCD from "../../../static/assets/Background-OCD.jpg"
+import bgImage from "../../../static/assets/water.png.jpg"
+import stix2 from "../../../static/assets/stix2.png"
+import lisaHead from "../../../static/assets/Lisa/lisahead2.png"
+import tylerHead from "../../../static/assets/Tyler/tylerhead.png"
+import cathead from "../../../static/assets/cat.png"
+
+let images = {
+  moss,
+  bgOCD,
+  bgImage,
+  stix2,
+  lisaHead,
+  tylerHead,
+  cathead,
+};
+
 export default class Home extends Component {
   render() {
     return (
@@ -79,14 +97,4 @@ export default class Home extends Component {
     );
   }
 }
-
-let images = {
-  moss: require('../../assets/moss-low.jpg'),
-  bgOCD: require('../../assets/Background-OCD.jpg'),
-  bgImage: require('../../assets/water.png.jpg'),
-  stix2: require('../../assets/stix2.png'),
-  lisaHead: require('../../assets/Lisa/lisahead2.png'),
-  tylerHead: require('../../assets/Tyler/tylerhead.png'),
-  cathead: require('../../assets/cat.png')
-};
 

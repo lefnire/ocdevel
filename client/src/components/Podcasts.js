@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert,
   FormGroup, InputGroup, FormControl, Modal} from 'react-bootstrap';
-import {Link, browserHistory} from 'react-router';
+import {
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
-import ReactDisqusThread from 'react-disqus-thread';
+import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/fontawesome-free-brands';
-import { faUnlock } from '@fortawesome/fontawesome-free-solid'
+import { FaGithub } from 'react-icons/fa';
+import { FaUnlock } from 'react-icons/fa'
 
 import podcast from '../content/machine-learning';
 import './podcasts.css';
@@ -22,7 +26,7 @@ class Recommend extends Component {
         <Button href={`/mlg`}>&lt; All Episodes</Button>
         <h2>Recommend a Future Episode</h2>
         <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
-        <ReactDisqusThread
+        <ReactDisqusComments
           shortname="ocdevel"
           identifier={'machine-learning-recommend'}
           title={`Recommend an Episode | ${podcast.title}`}
@@ -71,7 +75,7 @@ class Episode extends Component {
           )}
         </div>
         {this.renderPlayer(podcast, episode)}
-        <ReactDisqusThread
+        <ReactDisqusComments
           shortname="ocdevel"
           identifier={episode.guid}
           title={`${episode.title} | ${podcast.title}`}
@@ -102,7 +106,7 @@ class Episodes extends Component {
               )}
             </h3>
             {e.mla && (
-              <span className='label label-info' style={{marginRight: 10}}><FontAwesomeIcon icon={faUnlock} />  $1/m on Patreon</span>
+              <span className='label label-info' style={{marginRight: 10}}><FaUnlock />  $1/m on Patreon</span>
             )}
             <i>{moment(e.date).format(fmt)}</i>
             <p>{e.teaser}</p>
@@ -202,7 +206,7 @@ class Series extends Component {
             </a>
           </OverlayTrigger>
           <a style={{display: 'block'}} href="https://github.com/lefnire/gnothi" target='_blank'>
-            <FontAwesomeIcon icon={faGithub} /> Podcast Project
+            <FaGithub /> Podcast Project
           </a>
         </div>
       </div>
@@ -240,7 +244,7 @@ class Series extends Component {
   showDonate = () => this.setState({showDonate: true});
   showCrypto = () => this.setState({showCrypto: true});
 
-  goToRecommend = () => browserHistory.push(`/mlg/recommend`);
+  goToRecommend = () => {return} // browserHistory.push(`/mlg/recommend`);
 
   render() {
     return (
@@ -259,7 +263,11 @@ class Series extends Component {
                 {this.sidebar()}
               </Col>
               <Col xs={12} md={8}>
-                {this.props.children}
+                <Switch>
+                  <Route path="/mlg" exact><Episodes /></Route>
+                  <Route path="/mlg/recommend" exact><Recommend /></Route>
+                  <Route path="/mlg/:id"><Episode /></Route>
+                </Switch>
               </Col>
             </Row>
           </Grid>

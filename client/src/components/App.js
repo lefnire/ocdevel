@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Modal, Button} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Link} from 'react-router';
+import {
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+import Podcasts from "./Podcasts";
+import Home from "./home/Index";
 
 export default class App extends Component {
   state = {
@@ -35,20 +42,18 @@ export default class App extends Component {
   renderHeader = () => {
     return (
       <Navbar collapseOnSelect style={{marginBottom: 0}}>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">Home</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
+        <LinkContainer to="/">
+          <Navbar.Brand>OCDevel</Navbar.Brand>
+        </LinkContainer>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav>
             <LinkContainer to="/mlg">
-              <NavItem >Machine Learning Guide</NavItem>
+              <Nav.Link>Machine Learning Guide</Nav.Link>
             </LinkContainer>
           </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} onClick={this.open}>Contact</NavItem>
+          <Nav className="justify-content-end">
+            <Nav.Link eventKey={1} onClick={this.open}>Contact</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -60,7 +65,11 @@ export default class App extends Component {
       <div>
         {this.renderHeader()}
         {this.renderModal()}
-        {this.props.children}
+        <Switch>
+          <Route path="/" exact><Home /></Route>
+          <Route path="/mlg"><Podcasts.Series /></Route>
+          <Redirect from="*" to="/mlg"/>
+        </Switch>
       </div>
     );
   }
