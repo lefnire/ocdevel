@@ -1,16 +1,23 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Modal, Button} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
-import Podcasts from "./Podcasts";
-import Home from "./home/Index";
+// import ReactGA from 'react-ga';
 
-export default class App extends Component {
+// redirect from old routes
+let match = window.location.href.match(/machine[\-]?learning(\/.*)?/);
+if (match) {
+  window.location.href = match[1] ? `/mlg${match[1]}` : '/mlg';
+}
+
+// const PROD = !~window.location.href.indexOf('localhost');
+// PROD && ReactGA.initialize('UA-3128634-8');
+// function logPageView() {
+//   if (!PROD) return;
+//   ReactGA.set({ page: window.location.pathname });
+//   ReactGA.pageview(window.location.pathname);
+// }
+
+export default class Layout extends Component {
   state = {
     showModal: false
   };
@@ -42,15 +49,11 @@ export default class App extends Component {
   renderHeader = () => {
     return (
       <Navbar collapseOnSelect style={{marginBottom: 0}}>
-        <LinkContainer to="/">
-          <Navbar.Brand>OCDevel</Navbar.Brand>
-        </LinkContainer>
+        <Navbar.Brand href="/">OCDevel</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer to="/mlg">
-              <Nav.Link>Machine Learning Guide</Nav.Link>
-            </LinkContainer>
+            <Nav.Link href="/mlg">Machine Learning Guide</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
             <Nav.Link eventKey={1} onClick={this.open}>Contact</Nav.Link>
@@ -65,11 +68,7 @@ export default class App extends Component {
       <div>
         {this.renderHeader()}
         {this.renderModal()}
-        <Switch>
-          <Route path="/" exact><Home /></Route>
-          <Route path="/mlg"><Podcasts.Series /></Route>
-          <Redirect from="*" to="/mlg"/>
-        </Switch>
+        {this.props.children}
       </div>
     );
   }

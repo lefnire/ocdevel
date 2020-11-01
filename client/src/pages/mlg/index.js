@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert,
+import {Link} from 'gatsby'
+import {Row, Col, Button, OverlayTrigger, Popover, Alert,
   FormGroup, InputGroup, FormControl, Modal} from 'react-bootstrap';
-import {
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
@@ -14,9 +9,10 @@ import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
 import { FaGithub } from 'react-icons/fa';
 import { FaUnlock } from 'react-icons/fa'
+import Layout from '../../components/Layout'
 
-import podcast from '../content/machine-learning';
-import './podcasts.css';
+import podcast from '../../content/machine-learning';
+import '../../components/podcasts.css';
 const fmt = 'MMM DD, YYYY';
 
 class Recommend extends Component {
@@ -117,7 +113,7 @@ class Episodes extends Component {
   }
 }
 
-class Series extends Component {
+export default class Series extends Component {
   constructor() {
     super();
     this.state = {
@@ -142,7 +138,10 @@ class Series extends Component {
 
         <div className='sidebar-resources' style={{margin: 5}}>
           {showDonate ? (
-            <Panel header="Donate">
+            <Modal.Dialog>
+              <Modal.Header>
+                <Modal.Title>Donate</Modal.Title>
+              </Modal.Header>
               <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
               <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
               <hr/>
@@ -181,17 +180,17 @@ class Series extends Component {
                   <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                 </form>
               </div>
-            </Panel>
+            </Modal.Dialog>
           ) : (
               <a href='#' style={{display: 'block'}} onClick={this.showDonate}>
-                <Glyphicon glyph="usd"/> Donate
+                {/*<Glyphicon glyph="usd"/>*/}$ Donate
               </a>
           )}
           {/*<a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
             <Glyphicon glyph="briefcase"/> Hire Me
           </a>*/}
           <a style={{display: 'block'}} href='#' onClick={this.goToRecommend}>
-            <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
+            {/*<Glyphicon glyph="exclamation-sign"/>*/}! Recommend an Episode
           </a>
           <OverlayTrigger
             placement="right"
@@ -202,7 +201,7 @@ class Series extends Component {
             )}
           >
             <a style={{display: 'block'}} href="http://eepurl.com/cUUWfD" target="_blank">
-              <Glyphicon glyph="envelope"/> Mailing List
+              {/*<Glyphicon glyph="envelope"/>*/} Mailing List
             </a>
           </OverlayTrigger>
           <a style={{display: 'block'}} href="https://github.com/lefnire/gnothi" target='_blank'>
@@ -247,34 +246,34 @@ class Series extends Component {
   goToRecommend = () => {return} // browserHistory.push(`/mlg/recommend`);
 
   render() {
-    return (
+    console.log(podcast)
+    const {children} = this.props
+    return <Layout>
       <div className="container">
         <div className="Series">
           {this.renderHireModal()}
-          <PageHeader>{podcast.title}</PageHeader>
-          <Grid>
-            <Row>
-              <Col xs={12} md={4}>
-                <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-                <div>
-                  <p><b>Machine Learning Guide</b> {podcast.body}</p>
-                  <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</a> to access this series.</p>
-                </div>
-                {this.sidebar()}
-              </Col>
-              <Col xs={12} md={8}>
-                <Switch>
-                  <Route path="/mlg" exact><Episodes /></Route>
-                  <Route path="/mlg/recommend" exact><Recommend /></Route>
-                  <Route path="/mlg/:id"><Episode /></Route>
-                </Switch>
-              </Col>
-            </Row>
-          </Grid>
+          {/*<PageHeader>{podcast.title}</PageHeader>*/}
+          <h3>{podcast.title}</h3>
+          <Row>
+            <Col xs={12} md={4}>
+              <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+              <div>
+                <p><b>Machine Learning Guide</b> {podcast.body}</p>
+                <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</a> to access this series.</p>
+              </div>
+              {this.sidebar()}
+            </Col>
+            <Col xs={12} md={8}>
+              {children || <Episodes />}
+              {/*<Switch>
+                <Route path="/mlg" exact><Episodes /></Route>
+                <Route path="/mlg/recommend" exact><Recommend /></Route>
+                <Route path="/mlg/:id"><Episode /></Route>
+              </Switch>*/}
+            </Col>
+          </Row>
         </div>
       </div>
-    );
+    </Layout>
   }
 }
-
-export default {Series, Episodes, Episode, Recommend};
