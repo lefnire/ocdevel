@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute, Redirect } from 'react-router';
-import ReactGA from 'react-ga';
 
 import App from './components/App';
 import Home from './components/home/Index';
@@ -13,15 +12,8 @@ if (match) {
   window.location.href = match[1] ? `/mlg${match[1]}` : '/mlg';
 }
 
-const PROD = !~window.location.href.indexOf('localhost');
-PROD && ReactGA.initialize('UA-3128634-8');
-function logPageView() {
-  if (!PROD) return;
-  ReactGA.set({ page: window.location.pathname });
-  ReactGA.pageview(window.location.pathname);
-}
-
-ReactDom.render(<Router history={browserHistory} onUpdate={logPageView}>
+// 8bb28bed: google analytics
+ReactDom.render(<Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="mlg" component={Podcasts.Series}>
         <Route path="recommend" component={Podcasts.Recommend} />
