@@ -17,7 +17,7 @@ services:
     entrypoint: /bin/bash
     container_name: ocdevel-client
     ports:
-      - 8003:8000
+      - 3003:3000
     stdin_open: true
     volumes:
       - ./client:/app

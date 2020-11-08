@@ -1,1 +1,0 @@
-Make sure to move ./web-development.xml -> /podcast/feed in S3; and change its mime-type to application/rss+xml
