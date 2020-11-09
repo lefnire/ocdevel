@@ -140,6 +140,7 @@ class Series extends Component {
   }
 
   sidebar = () => {
+    const buttonAttrs = {variant: 'outline-dark', style: {display: 'block', width: '100%', marginBottom: 5, textAlign: 'left'}}
     const {showDonate, showCrypto} = this.state;
     return (
       <div>
@@ -198,16 +199,16 @@ class Series extends Component {
               </Card.Body>
             </Card>
           ) : (
-              <a href='#' style={{display: 'block'}} onClick={this.showDonate}>
-                <FaDollarSign /> Donate
-              </a>
+            <Button {...buttonAttrs} onClick={this.showDonate}>
+              <FaDollarSign /> Donate
+            </Button>
           )}
           {/*<a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
             <FaBriefcase /> Hire Me
           </a>*/}
-          <Link to="/mlg/recommend" style={{display: 'block'}} >
+          <Button {...buttonAttrs} href="/mlg/recommend">
             <FaLightbulb /> Recommend an Episode
-          </Link>
+          </Button>
           <OverlayTrigger
             placement="right"
             overlay={(
@@ -216,13 +217,13 @@ class Series extends Component {
               </Popover>
             )}
           >
-            <a style={{display: 'block'}} href="http://eepurl.com/cUUWfD" target="_blank">
+            <Button {...buttonAttrs} href="http://eepurl.com/cUUWfD" target="_blank">
               <FaEnvelope /> Mailing List
-            </a>
+            </Button>
           </OverlayTrigger>
-          <a style={{display: 'block'}} href="https://github.com/lefnire/gnothi" target='_blank'>
+          <Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
             <FaGithub /> Podcast Project
-          </a>
+          </Button>
         </div>
       </div>
     );
@@ -261,7 +262,7 @@ class Series extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="Series">
           {this.renderHireModal()}
           <h1 className="page-header">{podcast.title}</h1>
