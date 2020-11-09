@@ -1141,7 +1141,7 @@ Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan
   libsynEpisode: 6632262,
   teaser: 'Introducing a new podcast series on Patreon: Machine Learning Applied',
   body: `
-MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian methods, Tree methods, etc). 
+MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian methods, Tree methods, etc). 
 
 I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
 `
@@ -1149,7 +1149,7 @@ I'm adding Patreon rewards, including access to a new podcast series: Machine Le
   title: 'The Podcasts Return',
   episode: 31,
   date: "2020-10-27",
-  guid: "e6bb5c68-fb53-44fd-bbcc-5c5f25aa8e48\n",
+  guid: "e6bb5c68-fb53-44fd-bbcc-5c5f25aa8e48",
   file: {},
   libsynEpisode: 16575524,
   teaser: 'MLG and MLA return, accompanied by a community project',
@@ -1159,6 +1159,31 @@ Machine Learning Guide & Machine Learning Applied are returning, and will use a 
 1. 3 months free:  post about Gnothi on social media (the link & some info), then [email me](mailto:tylerrenelle@gmail.com) a link or screenshot.
 1. Free for life: contribute to [Gnothi's codebase](https://github.com/lefnire/gnothi). Needs to be a decent commit, not single-letter typos.
 `
+}, {
+  title: 'Cartesian Similarity Metrics',
+  episode: 32,
+  date: "2020-11-07",
+  guid: "7f335339-1e45-4ab1-99de-20a9bda41fca",
+  file: {},
+  libsynEpisode: 16722518,
+  teaser: 'L1/L2 norm, Manhattan, Euclidean, cosine distances, dot product',
+  body: `
+Social media [Gnothi](https://gnothiai.com/) and email me a screenshot/link for 3-month access to [Machine Learning Applied](https://www.patreon.com/machinelearningguide); commit code to the [Github repository](https://github.com/lefnire/gnothi) for life-access.
+
+Normed distances [link](https://medium.com/@kunal_gohrani/different-types-of-distance-metrics-used-in-machine-learning-e9928c5e26c7)
+
+*   A norm is a function that assigns a strictly positive length to each vector in a vector space. [link](https://towardsdatascience.com/how-to-measure-distances-in-machine-learning-13a396aa34ce)
+*   Minkowski is generalized. \`p_root(sum(xi-yi)^p)\`. "p" = ? (1, 2, ..) for below.
+*   L1: Manhattan/city-block/taxicab. \`abs(x2-x1)+abs(y2-y1)\`. Grid-like distance (triangle legs). Preferred for high-dim space.
+*   L2: Euclidean. \`sqrt((x2-x1)^2+(y2-y1)^2\`. \`sqrt(dot-product)\`. Straight-line distance; min distance (Pythagorean triangle edge)
+*   Others: Mahalanobis, Chebyshev (p=inf), etc
+
+Dot product
+
+*   A type of inner product.  
+    Outer-product: lies outside the involved planes. Inner-product: dot product lies inside the planes/axes involved [link](https://www.quora.com/Whats-the-difference-between-inner-product-dot-product-and-scalar-product/answer/Urgunoon-Saleem). Dot product: inner product on a finite dimensional Euclidean space [link](https://www.quora.com/Whats-the-difference-between-inner-product-dot-product-and-scalar-product/answer/Richard-Morris-34)
+
+Cosine (normalized dot)`
 },
 
 {
@@ -1203,6 +1228,48 @@ Machine Learning Guide & Machine Learning Applied are returning, and will use a 
   date: "2018-07-19",
   guid: "20094414",
   teaser: "Salary based on location, gender, age, tech... from O'Reilly."
+}, {
+  title: 'Jupyter Notebooks',
+  episode: 7,
+  mla: true,
+  date: "2018-10-16",
+  guid: "22114897",
+  teaser: "Run your code + visualizations in the browser: iPython / Jupyter Notebooks."
+}, {
+  title: 'Exploratory Data Analysis',
+  episode: 8,
+  mla: true,
+  date: "2018-10-26",
+  guid: "22175347",
+  teaser: "EDA + charting. DataFrame info/describe, imputing strategies. Useful charts like histograms and correlation matrices."
+}, {
+  title: 'Charting tools',
+  episode: 9,
+  mla: true,
+  date: "2018-11-05",
+  guid: "22332881",
+  teaser: "matplotlib, Seaborn, Bokeh, D3, Tableau, Power BI, QlikView, Excel"
+}, {
+  title: 'NLP packages: transformers, spaCy, Gensim, NLTK',
+  episode: 10,
+  mla: true,
+  date: "2020-10-27",
+  guid: "43234402",
+  teaser: "NLTK: swiss army knife. Gensim: LDA topic modeling, n-grams. spaCy: linguistics. transformers: high-level business NLP tasks."
+}, {
+  title: 'Practical Clustering',
+  episode: 11,
+  mla: true,
+  date: "2020-11-07",
+  guid: "43675078",
+  teaser: "Kmeans (sklearn vs FAISS), finding n_clusters via inertia/silhouette, Agglomorative, DBSCAN/HDBSCAN"
+}, {
+  title: 'Docker',
+  episode: 12,
+  mla: true,
+  date: "2020-11-08",
+  guid: "43678922",
+  teaser: "Use Docker for env setup on localhost & cloud deployment, instead of pyenv / Anaconda"
 }];
 
 const podcast = {
