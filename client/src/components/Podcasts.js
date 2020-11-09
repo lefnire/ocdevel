@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col, Button, OverlayTrigger, Popover, Alert,
-  FormGroup, InputGroup, FormControl, Modal, Badge, Card} from 'react-bootstrap';
+  FormGroup, InputGroup, FormControl, Modal, Card} from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
@@ -12,30 +12,56 @@ import {FaGithub, FaUnlock, FaDollarSign, FaLightbulb, FaBriefcase, FaEnvelope} 
 import podcast from '../content/machine-learning';
 import './podcasts.css';
 const fmt = 'MMM DD, YYYY';
+const patreonLink = 'https://www.patreon.com/machinelearningguide'
 
 function BackButton() {
-  return <Button href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+  return <Button className="back-button" href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
   // TODO using LinkContainer loses the variant syles
   return <LinkContainer to="/mlg">
     <Button variant="outline-secondary" size="sm">&lt; All Episodes</Button>
   </LinkContainer>
 }
 
-class Recommend extends Component {
-  render() {
-    return (
-      <div>
-        <BackButton />
-        <h2>Recommend a Future Episode</h2>
-        <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
-        <ReactDisqusComments
-          shortname="ocdevel"
-          identifier={'machine-learning-recommend'}
-          title={`Recommend an Episode | ${podcast.title}`}
-          url={`http://ocdevel.com/mlg/recommend`}/>
-      </div>
-    );
-  }
+function Card_({title, children, subtitle=null, mla=false}) {
+  return <Card>
+    <Card.Body>
+      <Card.Title>{title}</Card.Title>
+      {subtitle && <Card.Subtitle className="mb-2 text-muted">
+        {subtitle}
+      </Card.Subtitle>}
+      <Card.Text>{children}</Card.Text>
+    </Card.Body>
+    {mla && <Card.Footer>
+      <FaUnlock />  $1/m on <a href={patreonLink} target="_blank">Patreon</a> or <Link to="/mlg/free-access">get free access</Link>
+    </Card.Footer>}
+  </Card>
+}
+
+function Recommend() {
+  return <div>
+    <BackButton />
+    <Card_ title="Recommend a Future Episode">
+      <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
+      <ReactDisqusComments
+        shortname="ocdevel"
+        identifier="machine-learning-recommend"
+        title={`Recommend an Episode | ${podcast.title}`}
+        url="http://ocdevel.com/mlg/recommend" />
+    </Card_>
+  </div>
+}
+
+function FreeAccess() {
+  return <div>
+    <BackButton />
+    <Card_ title="Get Free MLA Access">
+      <a href={patreonLink} target="_blank">Machine Learning Applied</a> is a $1/m exclusive podcast, but you can get free access in the following ways.
+      <ol>
+        <li>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email the</a> link or screenshot.</li>
+        <li>Get free access for <strong>life</strong> by contributing to the project. Submit a pull-request to the Github repository (see <a href="https://github.com/lefnire/ocdevel/issues">active issues</a>) and let me know in the PR or via email that you want MLA access.</li>
+      </ol>
+    </Card_>
+  </div>
 }
 
 function Episode({children}) {
@@ -66,54 +92,41 @@ function Episode({children}) {
   const body = episode.body && episode.body.replace(/##/g, '###');
   return <div>
     <BackButton />
-    <div>
-      <h2>{episode.title}</h2>
-      <i>{moment(episode.date).format(fmt)}</i>
+    <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)}>
       {body? (
         <ReactMarkdown source={body} renderers={markdownRenderers} />
       ): (
         <p>{episode.teaser}</p>
       )}
-    </div>
-    {renderPlayer(podcast, episode)}
-    <ReactDisqusComments
-      shortname="ocdevel"
-      identifier={episode.guid}
-      title={`${episode.title} | ${podcast.title}`}
-      url={`http://ocdevel.com/mlg/${id}`}/>
+      {renderPlayer(podcast, episode)}
+      <ReactDisqusComments
+        shortname="ocdevel"
+        identifier={episode.guid}
+        title={`${episode.title} | ${podcast.title}`}
+        url={`http://ocdevel.com/mlg/${id}`}/>
+    </Card_>
   </div>
 }
 
-class Episodes extends Component {
-  title = (e, isMLA) => {
+function Episodes() {
+  const episodes = _.sortBy(podcast.episodes, e => -moment(e.date));
+
+  function renderEpisode(e) {
     let num = _.padStart(e.episode, 3, '0');
-    return `${e.mla? 'MLA ':''}${num} ${e.title}`;
-  };
+    let title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
 
-  render() {
-    const episodes = podcast.episodes;
-    return (
-      <div>
-        {episodes.slice().reverse().map(e => (
-          <div key={e.guid}>
-
-            <h4>
-              {e.mla? (
-                <a href='https://www.patreon.com/machinelearningguide' target="_blank">{this.title(e)}</a>
-              ) : (
-                <Link to={`/mlg/${e.episode}`}>{this.title(e)}</Link>
-              )}
-            </h4>
-            {e.mla && (
-              <Badge variant="info" style={{marginRight: 10}}><FaUnlock />  $1/m on Patreon</Badge>
-            )}
-            <i>{moment(e.date).format(fmt)}</i>
-            <p>{e.teaser}</p>
-          </div>
-        ))}
-      </div>
-    );
+    title = e.mla ? <a href={patreonLink} target="_blank">{title}</a>
+      : <Link to={`/mlg/${e.episode}`}>{title}</Link>
+    return <div key={e.guid} style={{marginBottom: 10}}>
+      <Card_ title={title} subtitle={moment(e.date).format(fmt)} mla={e.mla}>
+        <p>{e.teaser}</p>
+      </Card_>
+    </div>
   }
+
+  return <div>
+    {episodes.map(renderEpisode)}
+  </div>
 }
 
 class Series extends Component {
@@ -144,7 +157,7 @@ class Series extends Component {
             <Card>
               <Card.Header><Card.Title>Donate</Card.Title></Card.Header>
               <Card.Body>
-                <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
+                <Button bsStyle="primary" block href={patreonLink} target="_blank">Patreon</Button>
                 <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
                 <hr/>
 
@@ -246,27 +259,26 @@ class Series extends Component {
   showDonate = () => this.setState({showDonate: true});
   showCrypto = () => this.setState({showCrypto: true});
 
-  goToRecommend = () => {} // browserHistory.push(`/mlg/recommend`);
-
   render() {
     return (
       <div className="container">
         <div className="Series">
           {this.renderHireModal()}
-          <h1 className=".page-header">{podcast.title}</h1>
+          <h1 className="page-header">{podcast.title}</h1>
           <Row>
             <Col xs={12} md={4}>
               <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
               <div>
                 <p><b>Machine Learning Guide</b> {podcast.body}</p>
-                <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</a> to access this series.</p>
+                <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href={patreonLink} target="_blank">Patreon</a> to access this series.</p>
               </div>
               {this.sidebar()}
             </Col>
             <Col xs={12} md={8}>
               <Switch>
                 <Route path="/mlg" exact><Episodes /></Route>
-                <Route path="/mlg/recommend"><Recommend /></Route>
+                <Route path="/mlg/recommend" exact><Recommend /></Route>
+                <Route path="/mlg/free-access" exact><FreeAccess /></Route>
                 <Route path="/mlg/:id"><Episode /></Route>
               </Switch>
             </Col>
