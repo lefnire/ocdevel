@@ -1,90 +1,99 @@
-import React, {Component} from 'react';
-import {Parallax, Background} from 'react-parallax';
+import React, {useState} from 'react';
+import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Link, Route, Switch, useParams} from 'react-router-dom'
 
-import moss from '../../assets/moss-low.jpg'
-import bgOCD from '../../assets/Background-OCD.jpg'
-import bgImage from '../../assets/water.png.jpg'
-import stix2 from '../../assets/stix2.png'
-import lisaHead from '../../assets/Lisa/lisahead2.png'
-import tylerHead from '../../assets/Tyler/tylerhead.png'
-import cathead from '../../assets/cat.png'
+import avatar from "../../assets/avatar.jfif"
+import {FaCouch, FaDragon, FaGithub, FaMicrophone, FaUnlock} from "react-icons/all";
+import blog from '../../content/blog'
+import {LinkContainer} from "react-router-bootstrap";
+import ReactDisqusComments from "react-disqus-comments";
+import moment from "moment";
+import ReactMarkdown from "react-markdown";
+import _ from 'lodash'
 
-import Jumbotron from './Jumbotron';
-import Portfolio from './Portfolio';
+const fmt = 'MMM DD, YYYY';
 
-import './home.css';
+function BackButton() {
+  return <Button className="back-button" href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div className="Home">
-        <Jumbotron title="OCDevel" className="ocdevel">
-          <img className='head-image' src={cathead}/>
-          <p className="Dictionary img-rounded">ocdevel; [O-C-Devel]<br/>
-            (noun)<br/>
-            1. orange cat development<br/>
-            2. created by tyler renelle in 2006<br/>
-            3. web & mobile app development by a married duo with a profound love for programming<br/>
-            4. specializing in javascript, react, python, and node</p>
-        </Jumbotron>
-
-        <Parallax bgImage={moss} strength={400} log={true}>
-          <div>
-            <img className="stick" src={stix2}/>
-            <h1 className="Welcome">Web and Mobile Development by</h1>
-            <h2 className="Names"> Tyler & Lisa Renelle</h2>
-          </div>
-        </Parallax>
-
-        <Portfolio />
-
-        <Parallax bgImage={bgImage} strength={400} log={true}>
-          <Jumbotron title="Tyler Renelle"/>
-          <img className='head-image' src={tylerHead}/>
-          <ul className="social-buttons">
-            <li><a target="_blank" href="https://www.facebook.com/lefnire" className="zocial facebook icon">Facebook</a>
-            </li>
-            <li><a target="_blank" href="https://www.linkedin.com/in/lefnire"
-                   className="zocial linkedin icon">LinkedIn</a></li>
-            <li><a target="_blank" href="https://twitter.com/lefnire" className="zocial twitter icon">Twitter</a></li>
-            <li><a target="_blank" href="https://github.com/lefnire" className="zocial github icon">Github</a></li>
-          </ul>
-        </Parallax>
-        <p className="description">Tyler is a full-stack Senior JavaScript developer and has spent 10 years in web &
-          mobile. He is focused on Node,
-          React / React Native, and Angular / Ionic. He is the also creator of HabitRPG, a startup begun on Kickstarter
-          which now has
-          800k+ users. Tyler built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients
-          such as Adidas,
-          BigFix, and UCSF. Currently obsessed with machine learning, he labels himself a "bonafide singularitarian".
-          Available starting April for remote work in React, Angular / Ionic, Node, and/or Python.</p>
-
-
-        <Parallax bgImage={bgOCD} strength={400} log={true}>
-          <Jumbotron title="Lisa Renelle"/>
-          <img className='head-image' src={lisaHead}/>
-          <ul className="social-buttons">
-            <li><a target='_blank' href="https://www.facebook.com/lisa.haskellbunker" className="zocial facebook icon"/>
-            </li>
-            <li><a target='_blank' href="https://www.linkedin.com/in/lisa-renelle-243413106"
-                   className="zocial linkedin icon"/></li>
-            <li><a target='_blank' href="https://github.com/LisaMarie7073" className="zocial github icon"/></li>
-            <li><a target='_blank' href="https://www.pinterest.com/lillisamhaskell/" className="zocial pinterest icon"/>
-            </li>
-          </ul>
-        </Parallax>
-        <p className="description">Lisa is a front-end, Junior JavaScript developer and been in the working with
-          javascript for almost a year. She has currently been
-          focusing on React. Lisa has worked 11 years in the medical field and would love to combine her knowledge in
-          medical and programming one day.
-          Lisa is available starting April for remote work in React and Javascript.</p>
-
-        <div>
-          <small className="kari">Photography by the talented <a target="_blank" href="https://www.kariannphotography.com">Kari Ann Haskell.</a></small>
-        </div>
-
-      </div>
-    );
-  }
+  // TODO using LinkContainer loses the variant syles
+  return <LinkContainer to="/mlg">
+    <Button variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+  </LinkContainer>
 }
 
+function Card_({title, children, subtitle=null}) {
+  return <Card>
+    <Card.Body>
+      <Card.Title>{title}</Card.Title>
+      {subtitle && <Card.Subtitle className="mb-2 text-muted">
+        {subtitle}
+      </Card.Subtitle>}
+      <Card.Text>{children}</Card.Text>
+    </Card.Body>
+  </Card>
+}
+
+function Posts({children}) {
+  const posts = _.sortBy(blog, e => -moment(e.date));
+
+  function renderPost(p) {
+    return <div key={p.id} style={{marginBottom: 10}}>
+      <Card_ title={p.title} subtitle={moment(p.date).format(fmt)}>
+        <ReactMarkdown source={p.body} linkTarget="_blank" />
+      </Card_>
+    </div>
+  }
+
+  return <div>
+    {posts.map(renderPost)}
+  </div>
+}
+
+export default function Home() {
+  const renderProfile = () => {
+    return <>
+      <Card className='profile-card'>
+        <Card.Img variant="top" src={avatar}/>
+        <Card.Body>
+          <Card.Title>Tyler Renelle</Card.Title>
+          <Card.Text>
+            <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameter optimization, etc. Devops with AWS & Docker. Full-stack with Python/FastAPI, Postgres, and React / React Native. I offer NLP services using robust tooling I maintain at <a href="https://github.com/lefnire/ml-tools" target="_blank">lefnire/ml-tools</a>.</p>
+            <div>
+              <ul className="list-unstyled block-items">
+                <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a></li>
+                <li><a target="_blank" href="https://github.com/lefnire" className="zocial github">Github</a></li>
+                <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email">Email</a></li>
+              </ul>
+            </div>
+          </Card.Text>
+
+          <hr />
+
+          <Card.Title>Projects</Card.Title>
+          <Card.Subtitle><FaCouch /> <a href="https://gnothiai.com" target="_blank">Gnothi</a></Card.Subtitle>
+          <Card.Text>An personal journal that uses AI to provide insights & resources. I created and maintain this open source project.</Card.Text>
+          <Card.Subtitle><FaDragon /> <a href="https://habitica.com" target="_blank">Habitica</a></Card.Subtitle>
+          <Card.Text>A gamified habit tracker. I created Habitica, but am no longer with the company.</Card.Text>
+          <Card.Subtitle><FaMicrophone /> <Link to="/mlg">Machine Learning Guide</Link></Card.Subtitle>
+          <Card.Text>I teach the fundamentals of machine learning and artificial intelligence over a podcast.</Card.Text>
+          <Card.Subtitle><FaGithub /> More</Card.Subtitle>
+          <Card.Text>See my Github and LinkedIn profiles for more projects.</Card.Text>
+        </Card.Body>
+      </Card>
+    </>
+  }
+
+  return <div className="Home">
+    <Row>
+      <Col xs={12} sm={5} lg={3} xl={2}>
+        {renderProfile()}
+      </Col>
+      <Col xs={12} sm={7} lg={9} xl={10}>
+        <Switch>
+          <Route path="/" exact><Posts /></Route>
+        </Switch>
+      </Col>
+    </Row>
+  </div>
+}

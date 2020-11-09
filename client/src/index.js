@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
-import App from './components/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'css-social-buttons/css/zocial.css';
+
+import App from './components/App';
 
 // redirect from old routes
 let match = window.location.href.match(/machine[\-]?learning(\/.*)?/);

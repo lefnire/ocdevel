@@ -1,0 +1,27 @@
+.block-items {
+    /*flex: 1;*/
+}
+
+.block-items li, .block-items button {
+    margin-bottom: 5px;
+}
+
+.block-items a, .block-items button {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.Home {
+    margin-top: 10px;
+}
+
+.profile-card {
+    padding: 0px;
+    border: none;
+}
+.profile-card .card-body {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+

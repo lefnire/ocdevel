@@ -83,11 +83,6 @@ function Episode({children}) {
     );
   };
 
-  const markdownRenderers = {
-    // Ensure all episode links are target=_blank
-    Link: props => (<a href={props.href} target="_blank">{children}</a>)
-  };
-
   const episode = _.find(podcast.episodes, {episode: parseInt(id)});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
   const body = episode.body && episode.body.replace(/##/g, '###');
@@ -95,7 +90,7 @@ function Episode({children}) {
     <BackButton />
     <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)}>
       {body? (
-        <ReactMarkdown source={body} renderers={markdownRenderers} />
+        <ReactMarkdown source={body} linkTarget="_blank" />
       ): (
         <p>{episode.teaser}</p>
       )}
@@ -131,24 +126,26 @@ function Episodes() {
 function Series() {
   const [showHire, setShowHire] = useState(false)
   const [showDonate, setShowDonate] = useState(false)
+  const enableHire = false
+  const enablePodcastProj = false
   // d75998bd cryptocurrency
 
   const sidebar = () => {
     const buttonAttrs = {
       variant: 'outline-dark',
-      style: {display: 'block', width: '100%', marginBottom: 5, textAlign: 'left'}
+      style: {textAlign: 'left'}
     }
     return (
       <div>
-        <div className="sub-button-container">
-          <a className="zocial itunes sub-button" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
-          <a className="zocial android sub-button" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
-          <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
-          <a className="zocial rss sub-button" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
+        <div className="block-items">
+          <a className="zocial itunes" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
+          <a className="zocial android" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
+          <a className="zocial podcast" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
+          <a className="zocial rss" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
         </div>
         <hr/>
 
-        <div className='sidebar-resources' style={{margin: 5}}>
+        <div className='block-items'>
           {showDonate ? (
             <Card>
               <Card.Header><Card.Title>Donate</Card.Title></Card.Header>
@@ -173,9 +170,9 @@ function Series() {
               <FaDollarSign /> Donate
             </Button>
           )}
-          {/*<a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
+          {enableHire && <Button {...buttonAttrs} onClick={() => setShowHire(true)}>
             <FaBriefcase /> Hire Me
-          </a>*/}
+          </Button>}
           <Button {...buttonAttrs} href="/mlg/recommend">
             <FaLightbulb /> Recommend an Episode
           </Button>
@@ -191,9 +188,9 @@ function Series() {
               <FaEnvelope /> Mailing List
             </Button>
           </OverlayTrigger>
-          {/*<Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
+          {enablePodcastProj && <Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
             <FaGithub /> Podcast Project
-          </Button>*/}
+          </Button>}
         </div>
       </div>
     );
@@ -204,13 +201,13 @@ function Series() {
       <Modal.Header closeButton>
         <Modal.Title>Hire Me</Modal.Title>
       </Modal.Header>
-      <Modal.Body className='hire-me'>
+      <Modal.Body>
         <img src="/files/profile_pic.jpeg" style={{float:'left', paddingRight:10, paddingBottom: 5, width: 150}} />
         <h4>Tyler Renelle</h4>
         <p>Machine learning engineer focused on time series & reinforcement (esp. NLP & algo-trading). Background in full-stack JavaScript, 10 years web & mobile. Tech: Python, TensorFlow, React / React Native.</p>
         <p>Creator of HabitRPG, a startup begun on Kickstarter which now has ~2M users. Built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients such as Adidas, BigFix, and UCSF. Obsessed with AI - bonafide Singularitarian and herald for the takeover.</p>
         <p>Looking for remote work, or local to Portland, OR.</p>
-        <div>
+        <div className='block-items'>
           <ul className="list-unstyled">
             <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a></li>
             <li><a target="_blank" href="https://github.com/lefnire" className="zocial github">Github</a></li>
@@ -218,38 +215,31 @@ function Series() {
           </ul>
         </div>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={() => setShowHire(false)}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 
-  return (
-    <div className="container-fluid">
-      <div className="Series">
-        {renderHireModal()}
-        <h1 className="page-header">{podcast.title}</h1>
-        <Row>
-          <Col xs={12} md={4}>
-            <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-            <div>
-              <p><b>Machine Learning Guide</b> {podcast.body}</p>
-              <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href={patreonLink} target="_blank">Patreon</a> to access this series.</p>
-            </div>
-            {sidebar()}
-          </Col>
-          <Col xs={12} md={8}>
-            <Switch>
-              <Route path="/mlg" exact><Episodes /></Route>
-              <Route path="/mlg/recommend" exact><Recommend /></Route>
-              <Route path="/mlg/free-access" exact><FreeAccess /></Route>
-              <Route path="/mlg/:id"><Episode /></Route>
-            </Switch>
-          </Col>
-        </Row>
-      </div>
-    </div>
-  );
+  return <div className="Series">
+    {renderHireModal()}
+    <h1 className="page-header">{podcast.title}</h1>
+    <Row>
+      <Col xs={12} md={4}>
+        <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+        <div>
+          <p><b>Machine Learning Guide</b> {podcast.body}</p>
+          <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href={patreonLink} target="_blank">Patreon</a> to access this series.</p>
+        </div>
+        {sidebar()}
+      </Col>
+      <Col xs={12} md={8}>
+        <Switch>
+          <Route path="/mlg" exact><Episodes /></Route>
+          <Route path="/mlg/recommend" exact><Recommend /></Route>
+          <Route path="/mlg/free-access" exact><FreeAccess /></Route>
+          <Route path="/mlg/:id"><Episode /></Route>
+        </Switch>
+      </Col>
+    </Row>
+  </div>
 }
 
 export default {Series, Episodes, Episode, Recommend};

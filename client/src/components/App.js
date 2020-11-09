@@ -3,8 +3,10 @@ import {Navbar, Nav, Modal, Button} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Switch, Redirect, Route} from 'react-router-dom';
 import Podcasts from "./podcasts";
-import Home from "./home"
 import {FaCouch, FaDragon, FaEnvelope, FaMicrophone} from "react-icons/all";
+
+import Home from "./home"
+import './app.css'
 
 export default function App() {
   const [showModal, setShowModal] = useState(false)
@@ -58,10 +60,12 @@ export default function App() {
     {renderHeader()}
     {renderModal()}
 
-    <Switch>
-      <Route path="/" exact><Home /></Route>
-      <Route path="/mlg"><Podcasts.Series /></Route>
-      <Redirect from="*" to="/mlg"/>
-    </Switch>
+    <div className="container-fluid">
+      <Switch>
+        <Route path="/" exact><Home /></Route>
+        <Route path="/mlg"><Podcasts.Series /></Route>
+        <Redirect from="*" to="/mlg"/>
+      </Switch>
+    </div>
   </div>
 }
