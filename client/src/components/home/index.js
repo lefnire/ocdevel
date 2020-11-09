@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
 import {Parallax, Background} from 'react-parallax';
 
+import moss from '../../assets/moss-low.jpg'
+import bgOCD from '../../assets/Background-OCD.jpg'
+import bgImage from '../../assets/water.png.jpg'
+import stix2 from '../../assets/stix2.png'
+import lisaHead from '../../assets/Lisa/lisahead2.png'
+import tylerHead from '../../assets/Tyler/tylerhead.png'
+import cathead from '../../assets/cat.png'
+
 import Jumbotron from './Jumbotron';
 import Portfolio from './Portfolio';
 
@@ -11,7 +19,7 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <Jumbotron title="OCDevel" className="ocdevel">
-          <img className='head-image' src={images.cathead}/>
+          <img className='head-image' src={cathead}/>
           <p className="Dictionary img-rounded">ocdevel; [O-C-Devel]<br/>
             (noun)<br/>
             1. orange cat development<br/>
@@ -20,9 +28,9 @@ export default class Home extends Component {
             4. specializing in javascript, react, python, and node</p>
         </Jumbotron>
 
-        <Parallax bgImage={images.moss} strength={400} log={true}>
+        <Parallax bgImage={moss} strength={400} log={true}>
           <div>
-            <img className="stick" src={images.stix2}/>
+            <img className="stick" src={stix2}/>
             <h1 className="Welcome">Web and Mobile Development by</h1>
             <h2 className="Names"> Tyler & Lisa Renelle</h2>
           </div>
@@ -30,9 +38,9 @@ export default class Home extends Component {
 
         <Portfolio />
 
-        <Parallax bgImage={images.bgImage} strength={400} log={true}>
+        <Parallax bgImage={bgImage} strength={400} log={true}>
           <Jumbotron title="Tyler Renelle"/>
-          <img className='head-image' src={images.tylerHead}/>
+          <img className='head-image' src={tylerHead}/>
           <ul className="social-buttons">
             <li><a target="_blank" href="https://www.facebook.com/lefnire" className="zocial facebook icon">Facebook</a>
             </li>
@@ -52,9 +60,9 @@ export default class Home extends Component {
           Available starting April for remote work in React, Angular / Ionic, Node, and/or Python.</p>
 
 
-        <Parallax bgImage={images.bgOCD} strength={400} log={true}>
+        <Parallax bgImage={bgOCD} strength={400} log={true}>
           <Jumbotron title="Lisa Renelle"/>
-          <img className='head-image' src={images.lisaHead}/>
+          <img className='head-image' src={lisaHead}/>
           <ul className="social-buttons">
             <li><a target='_blank' href="https://www.facebook.com/lisa.haskellbunker" className="zocial facebook icon"/>
             </li>
@@ -79,14 +87,4 @@ export default class Home extends Component {
     );
   }
 }
-
-let images = {
-  moss: require('../../assets/moss-low.jpg'),
-  bgOCD: require('../../assets/Background-OCD.jpg'),
-  bgImage: require('../../assets/water.png.jpg'),
-  stix2: require('../../assets/stix2.png'),
-  lisaHead: require('../../assets/Lisa/lisahead2.png'),
-  tylerHead: require('../../assets/Tyler/tylerhead.png'),
-  cathead: require('../../assets/cat.png')
-};
 

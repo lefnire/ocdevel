@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute, Redirect } from 'react-router';
-
+import {BrowserRouter as Router} from 'react-router-dom';
 import App from './components/App';
-import Home from './components/home/Index';
-import Podcasts from './components/Podcasts';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'css-social-buttons/css/zocial.css';
 
 // redirect from old routes
 let match = window.location.href.match(/machine[\-]?learning(\/.*)?/);
@@ -13,15 +13,4 @@ if (match) {
 }
 
 // 8bb28bed: google analytics
-ReactDom.render(<Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <Route path="mlg" component={Podcasts.Series}>
-        <Route path="recommend" component={Podcasts.Recommend} />
-        <Route path=":id" component={Podcasts.Episode} />
-        <IndexRoute component={Podcasts.Episodes} />
-      </Route>
-      <IndexRoute component={Home} />
-      <Redirect from="*" to="/mlg"/>
-    </Route>
-  </Router>
-, document.getElementById('root'));
+ReactDom.render(<Router><App /></Router>, document.getElementById('root'));

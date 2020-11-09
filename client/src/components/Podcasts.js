@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
-import {PageHeader, Panel, Grid, Row, Col, Button, OverlayTrigger, Popover, Glyphicon, Alert,
-  FormGroup, InputGroup, FormControl, Modal} from 'react-bootstrap';
-import {Link, browserHistory} from 'react-router';
+import {Row, Col, Button, OverlayTrigger, Popover, Alert,
+  FormGroup, InputGroup, FormControl, Modal, Badge, Card} from 'react-bootstrap';
+import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
-import ReactDisqusThread from 'react-disqus-thread';
+import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/fontawesome-free-brands';
-import { faUnlock } from '@fortawesome/fontawesome-free-solid'
+import {FaGithub, FaUnlock, FaDollarSign, FaLightbulb, FaBriefcase, FaEnvelope} from 'react-icons/all';
 
 import podcast from '../content/machine-learning';
 import './podcasts.css';
 const fmt = 'MMM DD, YYYY';
 
+function BackButton() {
+  return <Button href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+  // TODO using LinkContainer loses the variant syles
+  return <LinkContainer to="/mlg">
+    <Button variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+  </LinkContainer>
+}
+
 class Recommend extends Component {
   render() {
     return (
       <div>
-        <Button href={`/mlg`}>&lt; All Episodes</Button>
+        <BackButton />
         <h2>Recommend a Future Episode</h2>
         <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
-        <ReactDisqusThread
+        <ReactDisqusComments
           shortname="ocdevel"
           identifier={'machine-learning-recommend'}
           title={`Recommend an Episode | ${podcast.title}`}
@@ -32,8 +38,10 @@ class Recommend extends Component {
   }
 }
 
-class Episode extends Component {
-  renderPlayer = (podcast, episode) => {
+function Episode({children}) {
+  const {id} = useParams()
+  
+  function renderPlayer(podcast, episode) {
     if (podcast.useLibsynPlayer) {
       const embedCode = `<iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/${episode.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/" height="90" width="640" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>`;
       return <div dangerouslySetInnerHTML={{__html: embedCode}} />;
@@ -48,37 +56,32 @@ class Episode extends Component {
     );
   };
 
-  markdownRenderers = {
+  const markdownRenderers = {
     // Ensure all episode links are target=_blank
-    Link: props => (<a href={props.href} target="_blank">{props.children}</a>)
+    Link: props => (<a href={props.href} target="_blank">{children}</a>)
   };
 
-  render() {
-    const {id} = this.props.params;
-    const episode = _.find(podcast.episodes, {episode: parseInt(id)});
-    // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
-    const body = episode.body && episode.body.replace(/##/g, '###');
-    return (
-      <div>
-        <Button href={`/mlg`}>&lt; All Episodes</Button>
-        <div>
-          <h2>{episode.title}</h2>
-          <i>{moment(episode.date).format(fmt)}</i>
-          {body? (
-            <ReactMarkdown source={body} renderers={this.markdownRenderers} />
-          ): (
-            <p>{episode.teaser}</p>
-          )}
-        </div>
-        {this.renderPlayer(podcast, episode)}
-        <ReactDisqusThread
-          shortname="ocdevel"
-          identifier={episode.guid}
-          title={`${episode.title} | ${podcast.title}`}
-          url={`http://ocdevel.com/mlg/${id}`}/>
-      </div>
-    );
-  }
+  const episode = _.find(podcast.episodes, {episode: parseInt(id)});
+  // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
+  const body = episode.body && episode.body.replace(/##/g, '###');
+  return <div>
+    <BackButton />
+    <div>
+      <h2>{episode.title}</h2>
+      <i>{moment(episode.date).format(fmt)}</i>
+      {body? (
+        <ReactMarkdown source={body} renderers={markdownRenderers} />
+      ): (
+        <p>{episode.teaser}</p>
+      )}
+    </div>
+    {renderPlayer(podcast, episode)}
+    <ReactDisqusComments
+      shortname="ocdevel"
+      identifier={episode.guid}
+      title={`${episode.title} | ${podcast.title}`}
+      url={`http://ocdevel.com/mlg/${id}`}/>
+  </div>
 }
 
 class Episodes extends Component {
@@ -94,15 +97,15 @@ class Episodes extends Component {
         {episodes.slice().reverse().map(e => (
           <div key={e.guid}>
 
-            <h3>
+            <h4>
               {e.mla? (
                 <a href='https://www.patreon.com/machinelearningguide' target="_blank">{this.title(e)}</a>
               ) : (
                 <Link to={`/mlg/${e.episode}`}>{this.title(e)}</Link>
               )}
-            </h3>
+            </h4>
             {e.mla && (
-              <span className='label label-info' style={{marginRight: 10}}><FontAwesomeIcon icon={faUnlock} />  $1/m on Patreon</span>
+              <Badge variant="info" style={{marginRight: 10}}><FaUnlock />  $1/m on Patreon</Badge>
             )}
             <i>{moment(e.date).format(fmt)}</i>
             <p>{e.teaser}</p>
@@ -138,57 +141,60 @@ class Series extends Component {
 
         <div className='sidebar-resources' style={{margin: 5}}>
           {showDonate ? (
-            <Panel header="Donate">
-              <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
-              <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
-              <hr/>
+            <Card>
+              <Card.Header><Card.Title>Donate</Card.Title></Card.Header>
+              <Card.Body>
+                <Button bsStyle="primary" block href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</Button>
+                <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
+                <hr/>
 
-              {showCrypto ? (
-                <FormGroup>
-                    <InputGroup>
-                      <InputGroup.Addon>BTC</InputGroup.Addon>
-                      <FormControl type="text" value="1Mgi64qWNYAcUhjvyoc8oYDNN6oKPzpaWs" />
-                    </InputGroup>
-                    <InputGroup>
-                      <InputGroup.Addon>BCH</InputGroup.Addon>
-                      <FormControl type="text" value="17VMYyAHFZSfy8EzLcy69Sie9sw5qe8nyP" />
-                    </InputGroup>
-                    <InputGroup>
-                      <InputGroup.Addon>ETH</InputGroup.Addon>
-                      <FormControl type="text" value="0x250092887eC61E75f0F82edcBC741fF428D5c8d5" />
-                    </InputGroup>
-                    <InputGroup>
-                      <InputGroup.Addon>LTC</InputGroup.Addon>
-                      <FormControl type="text" value="LfVo7VR1fWPcaG7GhC4LLSrGNQynPsMdSL"/>
-                    </InputGroup>
-                </FormGroup>
+                {showCrypto ? (
+                  <FormGroup>
+                      <InputGroup>
+                        <InputGroup.Addon>BTC</InputGroup.Addon>
+                        <FormControl type="text" value="1Mgi64qWNYAcUhjvyoc8oYDNN6oKPzpaWs" />
+                      </InputGroup>
+                      <InputGroup>
+                        <InputGroup.Addon>BCH</InputGroup.Addon>
+                        <FormControl type="text" value="17VMYyAHFZSfy8EzLcy69Sie9sw5qe8nyP" />
+                      </InputGroup>
+                      <InputGroup>
+                        <InputGroup.Addon>ETH</InputGroup.Addon>
+                        <FormControl type="text" value="0x250092887eC61E75f0F82edcBC741fF428D5c8d5" />
+                      </InputGroup>
+                      <InputGroup>
+                        <InputGroup.Addon>LTC</InputGroup.Addon>
+                        <FormControl type="text" value="LfVo7VR1fWPcaG7GhC4LLSrGNQynPsMdSL"/>
+                      </InputGroup>
+                  </FormGroup>
 
-              ) : (
-                <Button bsStyle="primary" block onClick={this.showCrypto}>Cryptocurrency</Button>
-              )}
-              <hr/>
+                ) : (
+                  <Button bsStyle="primary" block onClick={this.showCrypto}>Cryptocurrency</Button>
+                )}
+                <hr/>
 
-              Paypal:
-              <div style={{display: 'flex', justifyContent: 'center'}}>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                  <input type="hidden" name="cmd" value="_s-xclick" />
-                  <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
-                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                </form>
-              </div>
-            </Panel>
+                Paypal:
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick" />
+                    <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                  </form>
+                </div>
+              </Card.Body>
+            </Card>
           ) : (
               <a href='#' style={{display: 'block'}} onClick={this.showDonate}>
-                <Glyphicon glyph="usd"/> Donate
+                <FaDollarSign /> Donate
               </a>
           )}
           {/*<a style={{display: 'block'}} href='#' onClick={this.showHireModal}>
-            <Glyphicon glyph="briefcase"/> Hire Me
+            <FaBriefcase /> Hire Me
           </a>*/}
-          <a style={{display: 'block'}} href='#' onClick={this.goToRecommend}>
-            <Glyphicon glyph="exclamation-sign"/> Recommend an Episode
-          </a>
+          <Link to="/mlg/recommend" style={{display: 'block'}} >
+            <FaLightbulb /> Recommend an Episode
+          </Link>
           <OverlayTrigger
             placement="right"
             overlay={(
@@ -198,11 +204,11 @@ class Series extends Component {
             )}
           >
             <a style={{display: 'block'}} href="http://eepurl.com/cUUWfD" target="_blank">
-              <Glyphicon glyph="envelope"/> Mailing List
+              <FaEnvelope /> Mailing List
             </a>
           </OverlayTrigger>
           <a style={{display: 'block'}} href="https://github.com/lefnire/gnothi" target='_blank'>
-            <FontAwesomeIcon icon={faGithub} /> Podcast Project
+            <FaGithub /> Podcast Project
           </a>
         </div>
       </div>
@@ -240,29 +246,31 @@ class Series extends Component {
   showDonate = () => this.setState({showDonate: true});
   showCrypto = () => this.setState({showCrypto: true});
 
-  goToRecommend = () => browserHistory.push(`/mlg/recommend`);
+  goToRecommend = () => {} // browserHistory.push(`/mlg/recommend`);
 
   render() {
     return (
       <div className="container">
         <div className="Series">
           {this.renderHireModal()}
-          <PageHeader>{podcast.title}</PageHeader>
-          <Grid>
-            <Row>
-              <Col xs={12} md={4}>
-                <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-                <div>
-                  <p><b>Machine Learning Guide</b> {podcast.body}</p>
-                  <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</a> to access this series.</p>
-                </div>
-                {this.sidebar()}
-              </Col>
-              <Col xs={12} md={8}>
-                {this.props.children}
-              </Col>
-            </Row>
-          </Grid>
+          <h1 className=".page-header">{podcast.title}</h1>
+          <Row>
+            <Col xs={12} md={4}>
+              <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+              <div>
+                <p><b>Machine Learning Guide</b> {podcast.body}</p>
+                <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href="https://www.patreon.com/machinelearningguide" target="_blank">Patreon</a> to access this series.</p>
+              </div>
+              {this.sidebar()}
+            </Col>
+            <Col xs={12} md={8}>
+              <Switch>
+                <Route path="/mlg" exact><Episodes /></Route>
+                <Route path="/mlg/recommend"><Recommend /></Route>
+                <Route path="/mlg/:id"><Episode /></Route>
+              </Switch>
+            </Col>
+          </Row>
         </div>
       </div>
     );
