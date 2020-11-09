@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import {Row, Col, Button, OverlayTrigger, Popover, Alert,
-  FormGroup, InputGroup, FormControl, Modal, Card} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card} from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
@@ -9,13 +8,14 @@ import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
 import {FaGithub, FaUnlock, FaDollarSign, FaLightbulb, FaBriefcase, FaEnvelope} from 'react-icons/all';
 
-import podcast from '../content/machine-learning';
+import podcast from '../../content/machine-learning';
 import './podcasts.css';
 const fmt = 'MMM DD, YYYY';
 const patreonLink = 'https://www.patreon.com/machinelearningguide'
 
 function BackButton() {
   return <Button className="back-button" href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+
   // TODO using LinkContainer loses the variant syles
   return <LinkContainer to="/mlg">
     <Button variant="outline-secondary" size="sm">&lt; All Episodes</Button>
@@ -41,7 +41,8 @@ function Recommend() {
   return <div>
     <BackButton />
     <Card_ title="Recommend a Future Episode">
-      <p>Comment (using Disqus) any future episode you'd like to see, or upvote another's recommendation if it's already in the comments. When I'm done with my game-plan, I hope to tackle recommendations in order of popularity.</p>
+      <p>See which episodes are currently planned <a href="https://github.com/lefnire/ocdevel/projects/1" target="_blank">on Github</a>. If you want an episode not on that list, <a href="https://github.com/lefnire/ocdevel/issues/new" target="_blank">submit an issue</a>. I'll tackle recommendations in order of popularity (based on Github thumb-ups).</p>
+      <p>Below is a Disqus thread I <em>used</em> to use for episode-recommends, but I'm not using anymore.</p>
       <ReactDisqusComments
         shortname="ocdevel"
         identifier="machine-learning-recommend"
@@ -57,7 +58,7 @@ function FreeAccess() {
     <Card_ title="Get Free MLA Access">
       <a href={patreonLink} target="_blank">Machine Learning Applied</a> is a $1/m exclusive podcast, but you can get free access in the following ways.
       <ol>
-        <li>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email the</a> link or screenshot.</li>
+        <li>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me</a> the link or screenshot.</li>
         <li>Get free access for <strong>life</strong> by contributing to the project. Submit a pull-request to the Github repository (see <a href="https://github.com/lefnire/ocdevel/issues">active issues</a>) and let me know in the PR or via email that you want MLA access.</li>
       </ol>
     </Card_>
@@ -129,19 +130,16 @@ function Episodes() {
   </div>
 }
 
-class Series extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showHireModal: false,
-      showDonate: false,
-      showCrypto: false
-    };
-  }
+function Series() {
+  const [showHire, setShowHire] = useState(false)
+  const [showDonate, setShowDonate] = useState(false)
+  // d75998bd cryptocurrency
 
-  sidebar = () => {
-    const buttonAttrs = {variant: 'outline-dark', style: {display: 'block', width: '100%', marginBottom: 5, textAlign: 'left'}}
-    const {showDonate, showCrypto} = this.state;
+  const sidebar = () => {
+    const buttonAttrs = {
+      variant: 'outline-dark',
+      style: {display: 'block', width: '100%', marginBottom: 5, textAlign: 'left'}
+    }
     return (
       <div>
         <div className="sub-button-container">
@@ -150,7 +148,6 @@ class Series extends Component {
           <a className="zocial podcast sub-button" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
           <a className="zocial rss sub-button" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
         </div>
-
         <hr/>
 
         <div className='sidebar-resources' style={{margin: 5}}>
@@ -160,31 +157,6 @@ class Series extends Component {
               <Card.Body>
                 <Button bsStyle="primary" block href={patreonLink} target="_blank">Patreon</Button>
                 <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
-                <hr/>
-
-                {showCrypto ? (
-                  <FormGroup>
-                      <InputGroup>
-                        <InputGroup.Addon>BTC</InputGroup.Addon>
-                        <FormControl type="text" value="1Mgi64qWNYAcUhjvyoc8oYDNN6oKPzpaWs" />
-                      </InputGroup>
-                      <InputGroup>
-                        <InputGroup.Addon>BCH</InputGroup.Addon>
-                        <FormControl type="text" value="17VMYyAHFZSfy8EzLcy69Sie9sw5qe8nyP" />
-                      </InputGroup>
-                      <InputGroup>
-                        <InputGroup.Addon>ETH</InputGroup.Addon>
-                        <FormControl type="text" value="0x250092887eC61E75f0F82edcBC741fF428D5c8d5" />
-                      </InputGroup>
-                      <InputGroup>
-                        <InputGroup.Addon>LTC</InputGroup.Addon>
-                        <FormControl type="text" value="LfVo7VR1fWPcaG7GhC4LLSrGNQynPsMdSL"/>
-                      </InputGroup>
-                  </FormGroup>
-
-                ) : (
-                  <Button bsStyle="primary" block onClick={this.showCrypto}>Cryptocurrency</Button>
-                )}
                 <hr/>
 
                 Paypal:
@@ -199,7 +171,7 @@ class Series extends Component {
               </Card.Body>
             </Card>
           ) : (
-            <Button {...buttonAttrs} onClick={this.showDonate}>
+            <Button {...buttonAttrs} onClick={() => setShowDonate(true)}>
               <FaDollarSign /> Donate
             </Button>
           )}
@@ -221,16 +193,16 @@ class Series extends Component {
               <FaEnvelope /> Mailing List
             </Button>
           </OverlayTrigger>
-          <Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
+          {/*<Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
             <FaGithub /> Podcast Project
-          </Button>
+          </Button>*/}
         </div>
       </div>
     );
   };
 
-  renderHireModal = () => (
-    <Modal show={this.state.showHireModal} onHide={this.closeHireModal}>
+  const renderHireModal = () => (
+    <Modal show={showHire} onHide={() => setShowHire(false)}>
       <Modal.Header closeButton>
         <Modal.Title>Hire Me</Modal.Title>
       </Modal.Header>
@@ -249,45 +221,37 @@ class Series extends Component {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={this.closeHireModal}>Close</Button>
+        <Button onClick={() => setShowHire(false)}>Close</Button>
       </Modal.Footer>
     </Modal>
   );
 
-  showHireModal = () => this.setState({showHireModal: true});
-  closeHireModal = () => this.setState({showHireModal: false});
-
-  showDonate = () => this.setState({showDonate: true});
-  showCrypto = () => this.setState({showCrypto: true});
-
-  render() {
-    return (
-      <div className="container-fluid">
-        <div className="Series">
-          {this.renderHireModal()}
-          <h1 className="page-header">{podcast.title}</h1>
-          <Row>
-            <Col xs={12} md={4}>
-              <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-              <div>
-                <p><b>Machine Learning Guide</b> {podcast.body}</p>
-                <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href={patreonLink} target="_blank">Patreon</a> to access this series.</p>
-              </div>
-              {this.sidebar()}
-            </Col>
-            <Col xs={12} md={8}>
-              <Switch>
-                <Route path="/mlg" exact><Episodes /></Route>
-                <Route path="/mlg/recommend" exact><Recommend /></Route>
-                <Route path="/mlg/free-access" exact><FreeAccess /></Route>
-                <Route path="/mlg/:id"><Episode /></Route>
-              </Switch>
-            </Col>
-          </Row>
-        </div>
+  return (
+    <div className="container-fluid">
+      <div className="Series">
+        {renderHireModal()}
+        <h1 className="page-header">{podcast.title}</h1>
+        <Row>
+          <Col xs={12} md={4}>
+            <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
+            <div>
+              <p><b>Machine Learning Guide</b> {podcast.body}</p>
+              <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href={patreonLink} target="_blank">Patreon</a> to access this series.</p>
+            </div>
+            {sidebar()}
+          </Col>
+          <Col xs={12} md={8}>
+            <Switch>
+              <Route path="/mlg" exact><Episodes /></Route>
+              <Route path="/mlg/recommend" exact><Recommend /></Route>
+              <Route path="/mlg/free-access" exact><FreeAccess /></Route>
+              <Route path="/mlg/:id"><Episode /></Route>
+            </Switch>
+          </Col>
+        </Row>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default {Series, Episodes, Episode, Recommend};
