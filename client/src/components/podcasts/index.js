@@ -115,9 +115,7 @@ function Episodes() {
   function renderEpisode(e) {
     let num = _.padStart(e.episode, 3, '0');
     let title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
-
-    title = e.mla ? <a href={patreonLink} target="_blank">{title}</a>
-      : <Link to={`/mlg/${e.episode}`}>{title}</Link>
+    if (!e.mla) { title = <Link to={`/mlg/${e.episode}`}>{title}</Link> }
     return <div key={e.guid} style={{marginBottom: 10}}>
       <Card_ title={title} subtitle={moment(e.date).format(fmt)} mla={e.mla}>
         <p>{e.teaser}</p>
