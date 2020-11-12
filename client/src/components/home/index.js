@@ -40,7 +40,11 @@ function Posts({children}) {
   function renderPost(p) {
     return <div key={p.id} style={{marginBottom: 10}}>
       <Card_ title={p.title} subtitle={moment(p.date).format(fmt)}>
-        <ReactMarkdown source={p.body} linkTarget="_blank" />
+        {typeof(p.body) === 'string' ?
+          <ReactMarkdown source={p.body} linkTarget="_blank" />
+          : p.body
+        }
+
       </Card_>
     </div>
   }

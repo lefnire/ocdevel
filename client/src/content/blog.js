@@ -1,3 +1,9 @@
+import jp0 from './jobpig/0'
+import jp1 from './jobpig/1'
+import jp2 from './jobpig/2'
+import jp3 from './jobpig/3'
+import jp4 from './jobpig/4'
+
 const blog = [
 {
   id: "061a8427-ae59-4bcf-a3e9-a36e1288ca2e",
@@ -31,5 +37,8 @@ I'm using AWS Batch for ML model-runs on [Gnothi](https://gnothiai.com). I'm usi
     4. Privileged=true  
     Details on the above. Volumes specifies the name/tag/label you're referring to this mount path on the system, and Mount points references that to place it into the container at  "Container path ". Number of GPUs requests a GPU, and an Nvidia driver from host. Privileged is required for this setup, as the /mnt/efs will be \`chown root\`.
 `
-}]
+},
+
+  jp4, jp3, jp2, jp1, jp0
+]
 export default blog

@@ -20,7 +20,7 @@ export default function App() {
           <Modal.Title>Contact Info</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="contact-buttons">
+          <div className="block-items">
             <a href="mailto:tylerrenelle@gmail.com" className="zocial email">Email</a>
             <a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a>
             <a target="_blank" href="https://twitter.com/lefnire" className="zocial twitter">Twitter</a>
