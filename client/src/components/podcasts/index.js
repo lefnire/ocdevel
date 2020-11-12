@@ -7,6 +7,8 @@ import moment from 'moment';
 import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
 import {FaGithub, FaUnlock, FaDollarSign, FaLightbulb, FaBriefcase, FaEnvelope} from 'react-icons/all';
+import {Helmet} from "react-helmet";
+
 
 import podcast from '../../content/machine-learning';
 import './podcasts.css';
@@ -87,6 +89,10 @@ function Episode({children}) {
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
   const body = episode.body && episode.body.replace(/##/g, '###');
   return <div>
+    <Helmet>
+      <title>{episode.title} | Machine Learning Guide</title>
+      <meta name="description" content={episode.teaser} />
+    </Helmet>
     <BackButton />
     <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)}>
       {body? (
@@ -219,6 +225,10 @@ function Series() {
   );
 
   return <div className="Series">
+    <Helmet>
+      <title>Machine Learning Guide Podcast</title>
+      <meta name="description" content={podcast.teaser} />
+    </Helmet>
     {renderHireModal()}
     <h1 className="page-header">{podcast.title}</h1>
     <Row>

@@ -10,6 +10,8 @@ import ReactDisqusComments from "react-disqus-comments";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import _ from 'lodash'
+import {Helmet} from "react-helmet";
+
 
 const fmt = 'MMM DD, YYYY';
 
@@ -22,6 +24,11 @@ function Post() {
 
   const p = _.find(blog, {id});
   return <div>
+    <Helmet>
+      <title>{p.title} | OCDevel</title>
+      {/* Should use teaser here */}
+      {/*<meta name="description" content="Helmet application" />*/}
+    </Helmet>
     <BackButton />
     <Card>
       <Card.Body>
