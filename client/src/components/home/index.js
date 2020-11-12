@@ -115,6 +115,9 @@ export default function Home() {
   }
 
   return <div className="Home">
+    <Helmet>
+      <title>OCDevel</title>
+    </Helmet>
     <Row>
       <Col xs={12} sm={5} lg={3} xl={2}>
         {renderProfile()}
