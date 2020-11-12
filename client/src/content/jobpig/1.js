@@ -9,14 +9,14 @@ let teaser = <p>There are hundreds, if not thousands, of online job boards - and
 let body = <div>
   {teaser}
   <p>First, if you haven't read <Link to="/0">Find Tech Jobs</Link> yet, do so. You wanna try in-person networking first (if you can) and setup a strong LinkedIn profile. Then return here.</p>
-  <h3>General</h3>
-  <h4>The Good</h4>
+  <h4>General</h4>
+  <h5>The Good</h5>
   <ul>
     <li>{l('Github Jobs', 'https://jobs.github.com/')}</li>
     <li>{l('Stack Overflow Jobs', 'https://stackoverflow.com/jobs')}</li>
     <li>{l('AngelList', 'https://angel.co/')}</li>
     <li>{l('Dice', 'http://www.dice.com/')}</li>
-    <li>{l('Jobpig', 'https://jobpigapp.com/')}</li>
+    {/*<li>{l('Jobpig', 'https://jobpigapp.com/')}</li>*/}
   </ul>
   <p>My personal favorites. I've found fantastic-quality gigs from these boards. Their search functions are fine-grained and tech-geared. Employers who post here are hip and with the latest technology trends. Well-funded startups and the like.</p>
   <h4>The "OK"</h4>
@@ -28,7 +28,7 @@ let body = <div>
     <li>{l('CareerBuilder','https://careerbuilder.com')}</li>
   </ul>
   <p>Everyone knows Monster & Indeed - those are the heavy-hitters. But these are general boards, not tech-geared. Their search functions are cruder than the previous list which let you filter - or at least shows you - skills, salary, equity, etc. Their tech postings tend to be by large "legacy" companies. YMMV, definitely give them a shot - you may have a different experience.</p>
-  <h3>Remote</h3>
+  <h4>Remote</h4>
   <p>If you're looking for remote work - contract / freelance / digital nomad; or full-time remote W2 - here are tips.</p>
   <h4>The Good</h4>
   <p>Firstly, see {l('NoDesk', 'http://nodesk.co/')} and {l('Awesome Remote Job', 'https://github.com/lukasz-madon/awesome-remote-job/')} - curated resources for remote workers, and lists of remote job boards.</p>
@@ -62,7 +62,7 @@ let body = <div>
   </ul>
 
   <p>If you target a specific technology, check first if there's a job board for to that tech - they tend to be great insiders' listings. Eg {l('Go', 'http://www.golangprojects.com/golang-remote-jobs.html')}, {l('Python','http://www.pythonjobs.com/')}, {l('Ionic','http://jobs.ionic.io/')}, etc.</p>
-  <h4>The OK</h4>
+  <h5>The OK</h5>
   <p>The following boards "mean well," but through which I've never found me solid work:</p>
   <ul>
     <li>{l('Gun.io', 'https://gun.io/')} - great system, but their job churn is slow. I rarely see new posts.</li>
@@ -79,8 +79,8 @@ let body = <div>
     <li>Fiverr</li>
   </ul>
 
-  <h3>Jobpig</h3>
-  <p>{l('Jobpig','https://jobpigapp.com')} is my favorite, but I'm biased. It aggregates the highest quality boards above, so you only have to look in one location. And instead of using search, you <em>rate</em> jobs (thumbs up/down, like Pandora) which teaches it your search preferences so it can find the best-matching posts. If you're a digital nomad, be sure to seed it with the "Remote" tag. {l('Give it a shot!','https://jobpigapp.com')}</p>
+  {/*<h4>Jobpig</h4>
+  <p>{l('Jobpig','https://jobpigapp.com')} is my favorite, but I'm biased. It aggregates the highest quality boards above, so you only have to look in one location. And instead of using search, you <em>rate</em> jobs (thumbs up/down, like Pandora) which teaches it your search preferences so it can find the best-matching posts. If you're a digital nomad, be sure to seed it with the "Remote" tag. {l('Give it a shot!','https://jobpigapp.com')}</p>*/}
 </div>;
 
 export default {

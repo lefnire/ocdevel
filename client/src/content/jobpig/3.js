@@ -39,5 +39,5 @@ let body = <div>
 </div>;
 
 export default {
-  id: '038e5143-3dd4-4291-afb7-8d156478b9d8',
+  id: '87b7f847-5397-4910-8b29-e17647854d94',
   title, date, teaser, body};

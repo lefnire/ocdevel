@@ -20,9 +20,9 @@ let body = <div>
 <p>Now that you know HTML / CSS / JS, learn a front-end framework to make fusing them simpler. Learn <em>either</em> React or Angular. Code School & Codecademy have Angular courses. React is newer, best bet there is videos on {l('Udemy','https://www.udemy.com/')} or {l('Egghead','https://egghead.io/')}. Do your own research on which to choose; I'll just say I prefer React.</p>
 
 <p>How about mobile apps? Swift? Java? Why all the web stuff? These days, while you can (and many still champion) develop mobile apps in their native languages, you can also write them in HTML / CSS / JS. There are many frameworks for such; the two most promising contenders in my opinion are {l('Ionic','http://ionicframework.com')} and {l('React Native','https://facebook.github.io/react-native/')}. Which to pick is {l('a long story','https://www.quora.com/Which-Hybrid-Framewok-has-more-future-Ionic-React-or-Meteor')}. You'll use these frameworks to cross-compile to both iOS and Android (and WP if inclined).</p>
-<p>At this point you'll know how to make websites & mobile apps, all you need to land a well-paying remote job! First, read <Link to="/0">Find Tech Jobs</Link>. If you have trouble finding a gig (you shouldn't, it's a thirsty industry!) {l('email me','mailto:admin@jobpigapp.com')} and I'd be happy to help you find work.</p>
+<p>At this point you'll know how to make websites & mobile apps, all you need to land a well-paying remote job! First, read <Link to="/0">Find Tech Jobs</Link>. If you have trouble finding a gig (you shouldn't, it's a thirsty industry!) {l('email me','mailto:tylerrenelle@gmail.com')} and I'd be happy to help you find work.</p>
 
-<h3>Much later</h3>
+<h4>Much later</h4>
 <p>Notice my focus on front-end jobs. Clients are more amenable to entry-level (and remote) front-end developers / designers than they are to backend. You'll have more success starting on front-end. Eventually you may find yourself wanting to learn server & database programming. Pick Node.js & MongoDB. One reason: they're both JavaScript technologies, meaning they'll be easy to learn. Heck, I prefer Python & PostgreSQL personally; but if you can keep your entire tech stack in one language, you'll get further faster. Additionally, JavaScript is {l('the most popular language','http://githut.info/')} meaning more job opportunities.</p>
 </div>;
 

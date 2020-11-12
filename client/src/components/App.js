@@ -63,8 +63,9 @@ export default function App() {
     <div className="container-fluid">
       <Switch>
         <Route path="/" exact><Home /></Route>
+        <Route path="/blog"><Home /></Route>
         <Route path="/mlg"><Podcasts.Series /></Route>
-        <Redirect from="*" to="/mlg"/>
+        {/*<Redirect from="*" to="/mlg"/>*/}
       </Switch>
     </div>
   </div>

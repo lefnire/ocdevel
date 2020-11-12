@@ -14,38 +14,57 @@ import _ from 'lodash'
 const fmt = 'MMM DD, YYYY';
 
 function BackButton() {
-  return <Button className="back-button" href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
-
-  // TODO using LinkContainer loses the variant syles
-  return <LinkContainer to="/mlg">
-    <Button variant="outline-secondary" size="sm">&lt; All Episodes</Button>
-  </LinkContainer>
+  return <Button className="back-button" href="/" variant="outline-secondary" size="sm">&lt; All Posts</Button>
 }
 
-function Card_({title, children, subtitle=null}) {
-  return <Card>
-    <Card.Body>
-      <Card.Title>{title}</Card.Title>
-      {subtitle && <Card.Subtitle className="mb-2 text-muted">
-        {subtitle}
-      </Card.Subtitle>}
-      <Card.Text>{children}</Card.Text>
-    </Card.Body>
-  </Card>
+function Post() {
+  const {id} = useParams()
+
+  const p = _.find(blog, {id});
+  return <div>
+    <BackButton />
+    <Card>
+      <Card.Body>
+        <Card.Title>{p.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          {moment(p.date).format(fmt)}
+        </Card.Subtitle>
+        <Card.Text>
+          {typeof(p.body) === 'string'
+            ? <ReactMarkdown source={p.body} linkTarget="_blank" />
+            : p.body
+          }
+        </Card.Text>
+        {/*<ReactDisqusComments
+        shortname="ocdevel"
+        identifier={episode.guid}
+        title={`${episode.title} | ${podcast.title}`}
+        url={`http://ocdevel.com/mlg/${id}`}/>*/}
+      </Card.Body>
+    </Card>
+  </div>
 }
 
-function Posts({children}) {
+function Posts() {
   const posts = _.sortBy(blog, e => -moment(e.date));
 
   function renderPost(p) {
-    return <div key={p.id} style={{marginBottom: 10}}>
-      <Card_ title={p.title} subtitle={moment(p.date).format(fmt)}>
-        {typeof(p.body) === 'string' ?
-          <ReactMarkdown source={p.body} linkTarget="_blank" />
-          : p.body
-        }
-
-      </Card_>
+    return <div key={p.id} className='blog-posts-post'>
+      <Card>
+        <Card.Body>
+          <Card.Title><Link to={'/blog/' + p.id}>{p.title}</Link></Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            {moment(p.date).format(fmt)}
+          </Card.Subtitle>
+          <Card.Text>
+            {typeof(p.body) === 'string'
+              ? <ReactMarkdown source={p.body} linkTarget="_blank" />
+              : p.body
+            }
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <div className='blog-post-fade'></div>
     </div>
   }
 
@@ -96,6 +115,7 @@ export default function Home() {
       <Col xs={12} sm={7} lg={9} xl={10}>
         <Switch>
           <Route path="/" exact><Posts /></Route>
+          <Route path="/blog/:id"><Post /></Route>
         </Switch>
       </Col>
     </Row>
