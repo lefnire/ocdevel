@@ -95,7 +95,12 @@ const episodes = [{
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   teaser: "Introduction to the Machine Learning Guide",
   body:
-`Who am I: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
+`Links:
+- [OCDevel Website](https://ocdevel.com)
+- [Show notes](https://ocdevel.com/mlg/1)
+- Gnothi, podcast project: [website](https://gnothiai.com), [Github](https://github.com/lefnire/gnothi)
+- [Machine Learning Applied](https://www.patreon.com/machinelearningguide), [get free access](http://ocdevel.com/mlg/free-access)
+- Me: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
 
 What is this podcast? 
 - "Middle" level overview (deeper than a bird's eye view of machine learning; higher than math equations)
@@ -103,7 +108,7 @@ What is this podcast?
 
 Who is it for
 - Anyone curious about machine learning fundamentals
-- Aspiring machine learning developers (maybe transitioning from web/mobile development)
+- Aspiring machine learning developers
 
 Why audio?
 - Supplementary content for commute/exercise/chores will help solidify your book/course-work
@@ -117,8 +122,9 @@ What it's not
   - [Linear Digressions](http://lineardigressions.com/)
   - [Data Skeptic](https://dataskeptic.com/)
   - [Partially Derivative](http://partiallyderivative.com/)
+  - [Learning machines 101](http://www.learningmachines101.com/)
 - iTunesU issues
-- [Learning machines 101](http://www.learningmachines101.com/)
+- [The Great Courses: Machine Learning](https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fintroduction-to-machine-learning.html%3Fai%3D107119&intsrc=PUI1_1204)
 
 Planned episodes
 - What is AI/ML: definition, comparison, history

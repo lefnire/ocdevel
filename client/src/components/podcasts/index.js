@@ -230,7 +230,7 @@ function Series() {
       <meta name="description" content={podcast.teaser} />
     </Helmet>
     {renderHireModal()}
-    <h1 className="page-header">{podcast.title}</h1>
+    {/*<h1 className="page-header">{podcast.title}</h1>*/}
     <Row>
       <Col xs={12} md={4}>
         <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>

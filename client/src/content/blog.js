@@ -6,6 +6,24 @@ import jp4 from './jobpig/4'
 
 const blog = [
 {
+  id: "116246ad-42d3-4ef6-afec-1c9e41d3ec71",
+  date: "2020-11-12",
+  title: "Install Emacs 27 on Ubuntu 18.04",
+  body: `
+I use [Spacemacs](https://www.spacemacs.org/) (highly recommended) who's latest versions aren't compatible with earlier Emacs (eg, 25 is common on 18.04).
+
+\`\`\`
+# Install Emacs 27
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt update
+sudo apt install emacs27
+
+# Install Spacemacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+\`\`\`    
+`
+},
+{
   id: "061a8427-ae59-4bcf-a3e9-a36e1288ca2e",
   date: "2020-10-22",
   title: "AWS Batch with EFS mount",
