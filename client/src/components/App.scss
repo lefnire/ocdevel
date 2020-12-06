@@ -1,0 +1,67 @@
+body {
+    background-color: rgb(246, 249, 252) ;
+}
+
+.navbar {
+    background-color: #fafbfc;
+}
+
+.blog-posts-post {
+    max-height: 400px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.blog-post-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 30px 0;
+
+    /* "transparent" only works here because == rgba(0,0,0,0) */
+    background-image: linear-gradient(to bottom, transparent, white);
+}
+
+.sidebar {
+    div.logo {
+        img {
+            width: 100%;
+            max-width: 250px;
+            //height: 140px;
+        }
+    }
+
+}
+
+.zocial {
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.podcasts {
+    // 3108d595: .logo-and-sub, .sub-button-container, .sub-button */
+
+    .card {
+        //border: none;
+        .card-footer {
+            border: none;
+        }
+    }
+
+    .patreon-btn {
+        background-color: #ff424d;
+        border: none;
+    }
+    .patreon-btn-free {
+        color: #ff424d;
+    }
+
+    .zocial {
+        border: none !important;
+    }
+}

@@ -3,10 +3,10 @@ import {Navbar, Nav, Modal, Button} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Switch, Redirect, Route} from 'react-router-dom';
 import Podcasts from "./podcasts";
-import {FaCouch, FaDragon, FaEnvelope, FaMicrophone} from "react-icons/all";
+import {FaCouch, FaDragon, FaEnvelope, FaExternalLinkAlt, FaMicrophone} from "react-icons/all";
 
 import Home from "./home"
-import './app.css'
+import './App.scss'
 
 export default function App() {
   const [showModal, setShowModal] = useState(false)
@@ -21,10 +21,10 @@ export default function App() {
         </Modal.Header>
         <Modal.Body>
           <div className="block-items">
-            <a href="mailto:tylerrenelle@gmail.com" className="zocial email">Email</a>
-            <a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a>
-            <a target="_blank" href="https://twitter.com/lefnire" className="zocial twitter">Twitter</a>
-            <a target="_blank" href="https://github.com/lefnire" className="zocial github">Github</a>
+            <a href="mailto:tylerrenelle@gmail.com" className="zocial email d-block mb-1">Email</a>
+            <a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin d-block mb-1">LinkedIn</a>
+            <a target="_blank" href="https://twitter.com/lefnire" className="zocial twitter d-block mb-1">Twitter</a>
+            <a target="_blank" href="https://github.com/lefnire" className="zocial github d-block mb-1">Github</a>
           </div>
         </Modal.Body>
       </Modal>
@@ -33,7 +33,7 @@ export default function App() {
 
   const renderHeader = () => {
     return (
-      <Navbar bg='light' variant='light' expand="md">
+      <Navbar bg='light' variant='light' className="shadow-sm mb-4" expand="md">
         <LinkContainer to="/">
           <Navbar.Brand>OCDevel</Navbar.Brand>
         </LinkContainer>
@@ -43,8 +43,8 @@ export default function App() {
             <LinkContainer to="/mlg">
               <Nav.Link><FaMicrophone /> Podcast</Nav.Link>
             </LinkContainer>
-            <Nav.Link href="https://gnothiai.com" target="_blank"><FaCouch /> Gnothi</Nav.Link>
-            <Nav.Link href="https://habitica.com" target="_blank"><FaDragon /> Habitica</Nav.Link>
+            <Nav.Link href="https://gnothiai.com" target="_blank"><FaCouch /> Gnothi <FaExternalLinkAlt /></Nav.Link>
+            <Nav.Link href="https://habitica.com" target="_blank"><FaDragon /> Habitica <FaExternalLinkAlt /></Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">

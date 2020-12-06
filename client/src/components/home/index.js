@@ -3,7 +3,7 @@ import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, ListGroup, ListG
 import {Link, Route, Switch, useParams} from 'react-router-dom'
 
 import avatar from "../../assets/avatar.jfif"
-import {FaCouch, FaDragon, FaGithub, FaMicrophone, FaUnlock} from "react-icons/all";
+import {FaArrowLeft, FaCouch, FaDragon, FaGithub, FaMicrophone, FaUnlock} from "react-icons/all";
 import blog from '../../content/blog'
 import {LinkContainer} from "react-router-bootstrap";
 import ReactDisqusComments from "react-disqus-comments";
@@ -11,12 +11,15 @@ import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import _ from 'lodash'
 import {Helmet} from "react-helmet";
+import podcast from "../../content/machine-learning";
 
 
 const fmt = 'MMM DD, YYYY';
 
 function BackButton() {
-  return <Button className="back-button" href="/" variant="outline-secondary" size="sm">&lt; All Posts</Button>
+  return <Button className="back-button mb-2 float-right" href="/" variant="outline-secondary" size="sm">
+    <FaArrowLeft /> All Posts
+  </Button>
 }
 
 function Post() {
@@ -29,9 +32,9 @@ function Post() {
       {/* Should use teaser here */}
       {/*<meta name="description" content="Helmet application" />*/}
     </Helmet>
-    <BackButton />
     <Card>
       <Card.Body>
+        <BackButton />
         <Card.Title>{p.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {moment(p.date).format(fmt)}
@@ -83,17 +86,19 @@ function Posts() {
 export default function Home() {
   const renderProfile = () => {
     return <>
-      <Card className='profile-card'>
-        <Card.Img variant="top" src={avatar}/>
+      <Card>
         <Card.Body>
+          <div className="logo text-center mb-3">
+            <img src={avatar} className='rounded' />
+          </div>
           <Card.Title>Tyler Renelle</Card.Title>
           <Card.Text>
             <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameter optimization, etc. Devops with AWS & Docker. Full-stack with Python/FastAPI, Postgres, and React / React Native. I offer NLP services using robust tooling I maintain at <a href="https://github.com/lefnire/ml-tools" target="_blank">lefnire/ml-tools</a>.</p>
             <div>
-              <ul className="list-unstyled block-items">
-                <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a></li>
-                <li><a target="_blank" href="https://github.com/lefnire" className="zocial github">Github</a></li>
-                <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email">Email</a></li>
+              <ul className="list-unstyled">
+                <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin d-block mb-1">LinkedIn</a></li>
+                <li><a target="_blank" href="https://github.com/lefnire" className="zocial github d-block mb-1">Github</a></li>
+                <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email d-block mb-1">Email</a></li>
               </ul>
             </div>
           </Card.Text>
@@ -114,15 +119,15 @@ export default function Home() {
     </>
   }
 
-  return <div className="Home">
+  return <div className="home">
     <Helmet>
       <title>OCDevel</title>
     </Helmet>
     <Row>
-      <Col xs={12} sm={5} lg={3} xl={2}>
+      <Col xs={12} sm={5} lg={3} xl={3} className='sidebar'>
         {renderProfile()}
       </Col>
-      <Col xs={12} sm={7} lg={9} xl={10}>
+      <Col xs={12} sm={7} lg={9} xl={9}>
         <Switch>
           <Route path="/" exact><Posts /></Route>
           <Route path="/blog/:id"><Post /></Route>

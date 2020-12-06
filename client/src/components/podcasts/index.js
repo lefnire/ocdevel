@@ -6,17 +6,27 @@ import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
-import {FaGithub, FaUnlock, FaDollarSign, FaLightbulb, FaBriefcase, FaEnvelope} from 'react-icons/all';
+import {
+  FaGithub,
+  FaUnlock,
+  FaDollarSign,
+  FaLightbulb,
+  FaBriefcase,
+  FaEnvelope,
+  FaArrowLeft,
+  FaPatreon
+} from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
 
 import podcast from '../../content/machine-learning';
-import './podcasts.css';
 const fmt = 'MMM DD, YYYY';
 const patreonLink = 'https://www.patreon.com/machinelearningguide'
 
 function BackButton() {
-  return <Button className="back-button" href="/mlg" variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+  return <Button className="back-button mb-2 float-right" href="/mlg" variant="outline-secondary" size="sm">
+    <FaArrowLeft /> All Episodes
+  </Button>
 
   // TODO using LinkContainer loses the variant syles
   return <LinkContainer to="/mlg">
@@ -24,9 +34,10 @@ function BackButton() {
   </LinkContainer>
 }
 
-function Card_({title, children, subtitle=null, mla=false}) {
+function Card_({title, children, subtitle=null, mla=false, backButton=true}) {
   return <Card>
     <Card.Body>
+      {backButton && <BackButton />}
       <Card.Title>{title}</Card.Title>
       {subtitle && <Card.Subtitle className="mb-2 text-muted">
         {subtitle}
@@ -41,7 +52,6 @@ function Card_({title, children, subtitle=null, mla=false}) {
 
 function Recommend() {
   return <div>
-    <BackButton />
     <Card_ title="Recommend a Future Episode">
       <p>See which episodes are currently planned <a href="https://github.com/lefnire/ocdevel/projects/1" target="_blank">on Github</a>. If you want an episode not on that list, <a href="https://github.com/lefnire/ocdevel/issues/new" target="_blank">submit an issue</a>. I'll tackle recommendations in order of popularity (based on Github thumb-ups).</p>
       <p>Below is a Disqus thread I <em>used</em> to use for episode-recommends, but I'm not using anymore.</p>
@@ -56,7 +66,6 @@ function Recommend() {
 
 function FreeAccess() {
   return <div>
-    <BackButton />
     <Card_ title="Get Free MLA Access">
       <a href={patreonLink} target="_blank">Machine Learning Applied</a> is a $1/m exclusive podcast, but you can get free access in the following ways.
       <ol>
@@ -93,7 +102,6 @@ function Episode({children}) {
       <title>{episode.title} | Machine Learning Guide</title>
       <meta name="description" content={episode.teaser} />
     </Helmet>
-    <BackButton />
     <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)}>
       {body? (
         <ReactMarkdown source={body} linkTarget="_blank" />
@@ -118,7 +126,7 @@ function Episodes() {
     let title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
     if (!e.mla) { title = <Link to={`/mlg/${e.episode}`}>{title}</Link> }
     return <div key={e.guid} style={{marginBottom: 10}}>
-      <Card_ title={title} subtitle={moment(e.date).format(fmt)} mla={e.mla}>
+      <Card_ backButton={false} title={title} subtitle={moment(e.date).format(fmt)} mla={e.mla}>
         <p>{e.teaser}</p>
       </Card_>
     </div>
@@ -136,24 +144,16 @@ function Series() {
   const enablePodcastProj = false
   // d75998bd cryptocurrency
 
-  const sidebar = () => {
+  function miscResources() {
     const buttonAttrs = {
       variant: 'outline-dark',
-      style: {textAlign: 'left'}
+      className: "d-block mb-1 w-100"
     }
     return (
       <div>
-        <div className="block-items">
-          <a className="zocial itunes" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank" rel="nofollow">iTunes</a>
-          <a className="zocial android" href='https://playmusic.app.goo.gl/?ibi=com.google.PlayMusic&amp;isi=691797987&amp;ius=googleplaymusic&amp;link=https://play.google.com/music/m/I6qthwgrz7b5tclqk4ruvipibtu?t%3DMachine_Learning_Guide%26pcampaignid%3DMKT-na-all-co-pr-mu-pod-16' rel='nofollow' target="_blank">Google Play</a>
-          <a className="zocial podcast" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank" rel="nofollow">Stitcher</a>
-          <a className="zocial rss" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
-        </div>
-        <hr/>
-
-        <div className='block-items'>
+        <div>
           {showDonate ? (
-            <Card>
+            <Card className='mb-1'>
               <Card.Header><Card.Title>Donate</Card.Title></Card.Header>
               <Card.Body>
                 <Button bsStyle="primary" block href={patreonLink} target="_blank">Patreon</Button>
@@ -179,9 +179,11 @@ function Series() {
           {enableHire && <Button {...buttonAttrs} onClick={() => setShowHire(true)}>
             <FaBriefcase /> Hire Me
           </Button>}
-          <Button {...buttonAttrs} href="/mlg/recommend">
-            <FaLightbulb /> Recommend an Episode
-          </Button>
+          <LinkContainer to="/mlg/recommend">
+            <Button {...buttonAttrs}>
+              <FaLightbulb /> Recommend an Episode
+            </Button>
+          </LinkContainer>
           <OverlayTrigger
             placement="right"
             overlay={(
@@ -200,7 +202,7 @@ function Series() {
         </div>
       </div>
     );
-  };
+  }
 
   const renderHireModal = () => (
     <Modal show={showHire} onHide={() => setShowHire(false)}>
@@ -213,31 +215,55 @@ function Series() {
         <p>Machine learning engineer focused on time series & reinforcement (esp. NLP & algo-trading). Background in full-stack JavaScript, 10 years web & mobile. Tech: Python, TensorFlow, React / React Native.</p>
         <p>Creator of HabitRPG, a startup begun on Kickstarter which now has ~2M users. Built an enterprise PDF-creation service employed by 1.5k sites, and websites for clients such as Adidas, BigFix, and UCSF. Obsessed with AI - bonafide Singularitarian and herald for the takeover.</p>
         <p>Looking for remote work, or local to Portland, OR.</p>
-        <div className='block-items'>
-          <ul className="list-unstyled">
-            <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin">LinkedIn</a></li>
-            <li><a target="_blank" href="https://github.com/lefnire" className="zocial github">Github</a></li>
-            <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email">Email</a></li>
-          </ul>
-        </div>
+        <ul className="list-unstyled">
+          <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin d-block">LinkedIn</a></li>
+          <li><a target="_blank" href="https://github.com/lefnire" className="zocial github d-block">Github</a></li>
+          <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email d-block">Email</a></li>
+        </ul>
       </Modal.Body>
     </Modal>
   );
 
-  return <div className="Series">
+  function sidebar() {
+    return <>
+      <Card>
+        <Card.Body>
+          <div className="logo text-center mb-3">
+            <img src={podcast.image} />
+          </div>
+          <div>
+            <p><b>Machine Learning Guide</b> {podcast.body}</p>
+            <div>
+              <a className="zocial itunes d-block mb-1" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank">iTunes</a>
+              <a className="zocial android d-block mb-1" href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw==' target="_blank">Google Podcasts</a>
+              <a className="zocial spotify d-block mb-1" href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9" target="_blank">Spotify</a>
+              <a className="zocial podcast d-block mb-1" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank">Stitcher</a>
+              <a className="zocial rss d-block mb-1" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
+            </div>
+          </div>
+          <hr />
+          <div>
+            <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes.</p>
+            <Button href={patreonLink} target='_blank' className='patreon-btn d-block mb-1'><FaPatreon /> Get it on Patreon</Button>
+            <LinkContainer to='/mlg/free-access'>
+              <Button variant="link" className='patreon-btn-free d-block mb-1'>Get it free</Button>
+            </LinkContainer>
+          </div>
+          <hr />
+          {miscResources()}
+        </Card.Body>
+      </Card>
+    </>
+  }
+
+  return <div className="podcasts">
     <Helmet>
       <title>Machine Learning Guide Podcast</title>
       <meta name="description" content={podcast.teaser} />
     </Helmet>
     {renderHireModal()}
-    {/*<h1 className="page-header">{podcast.title}</h1>*/}
     <Row>
-      <Col xs={12} md={4}>
-        <div className="logo"><img src={podcast.image} style={{height: 140, width: 140}}/></div>
-        <div>
-          <p><b>Machine Learning Guide</b> {podcast.body}</p>
-          <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes. See <a href={patreonLink} target="_blank">Patreon</a> to access this series.</p>
-        </div>
+      <Col xs={12} md={4} className='sidebar'>
         {sidebar()}
       </Col>
       <Col xs={12} md={8}>

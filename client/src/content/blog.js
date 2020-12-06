@@ -25,8 +25,8 @@ I've got a tentative eye on DecaGear, but from my Pimax experience I'm not hopef
    1. No gaming PC, just [the Quest](https://amzn.to/2VGEi7A)
    1. You have a gaming PC 
       1. You have a modern, expensive router. [Stream games via Virtual Desktop](https://uploadvr.com/how-to-play-pc-vr-oculus-quest-2/).
-      1. You don't know, or my router is old-ish. (Get Quest with Link)[https://amzn.to/37D74vi] (this link comes with a carrying-case too, and the _whole package_ is cheaper than HMD + Link separately) 
-3. You want both: portable *and* powerful. (1) If you can afford both, get both; (2) if not, get Quest 2 & mod it (Halo Strap or Elitestrap, over-ear headphones, controller hand-straps, etc).
+      1. You don't know, or my router is old-ish. [Get Quest with Link](https://amzn.to/37D74vi) (this link comes with a carrying-case too, and the _whole package_ is cheaper than HMD + Link separately) 
+3. You want both: portable *and* powerful. (1) If you can afford both, get both; (2) if not, get Quest 2 & mod it. Search for Halo Strap vs Elitestrap, over-ear headphones, controller hand-straps, etc. I'd link things, but it's fast-changing.
 `
 },
 {
