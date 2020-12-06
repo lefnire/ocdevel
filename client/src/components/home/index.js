@@ -42,11 +42,11 @@ function Post() {
             : p.body
           }
         </Card.Text>
-        {/*<ReactDisqusComments
-        shortname="ocdevel"
-        identifier={episode.guid}
-        title={`${episode.title} | ${podcast.title}`}
-        url={`http://ocdevel.com/mlg/${id}`}/>*/}
+        <ReactDisqusComments
+          shortname="ocdevel"
+          identifier={id}
+          title={`${p.title} | OCDevel`}
+          url={`http://ocdevel.com/blog/${id}`}/>
       </Card.Body>
     </Card>
   </div>
