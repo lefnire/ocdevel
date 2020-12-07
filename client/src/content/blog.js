@@ -10,7 +10,31 @@ const blog = [
   date: "2020-12-08",
   title: "WSL2 + Docker odds & ends",
   body: `
+#### Use more than 8GB RAM
+[[Details]](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig). Docker + WSL2 defaults to only use 8GB system RAM. Bump it up to max. 
 
+1. Edit \`C:\\Users\\yourUserName\\.wslconfig\`
+   \`\`\`
+   [wsl2]
+   #kernel=C:\\\\temp\\\\myCustomKernel
+   memory=4GB # Limits VM memory in WSL 2 to 4 GB
+   #processors=2 # Makes the WSL 2 VM use two virtual processors
+   \`\`\`
+1. Restart WSL (\`wsl --shutdown\` in Powershell)
+
+#### Clear cache (mem leak)
+Docker on WSL2 has a memory leak. Periodically clear the cache
+1. \`echo 1 | sudo tee /proc/sys/vm/drop_caches\`
+
+#### docker-compose w GPU support
+[[Details]](https://github.com/docker/compose/issues/6691#issuecomment-670700674)
+
+1. Install docker-py, yoanisgil/compose; modify yml (link above)
+1. \`COMPOSE_API_VERSION=1.40 docker-compose up\`
+1. UPDATE looks like the above got merged into docker-compose? Maybe this section not needed anymore? 
+
+#### Other
+See more tricks [here](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) (note-to-self: add the useful ones into this post). 
 `
 },
 {
@@ -82,7 +106,10 @@ If it fails, eg \`Error: only 0 Devices available, 1 requested. Exiting.\`:
    1. Right-click Nvidia GPU > Disable > Yes
    1. Right-click > Enable
    1. This is an Nvidia bug. "NVIDIA is aware of a specific installation issue reported on mobile platforms with the WIP driver 465.12 posted on 11/16/2020. A known workaround will be to disable and reenable the GPU adapter from device manager at system start. We are working on a fix for this issue and will have an updated driver soon."
-1. Try adding \`"node-generic-resources": ["NVIDIA-GPU=0"]\` to \`/etc/docker/daemon.json\` | [Details](https://github.com/docker/compose/issues/6691#issuecomment-696465142) 
+1. Try adding \`"node-generic-resources": ["NVIDIA-GPU=0"]\` to \`/etc/docker/daemon.json\` | [Details](https://github.com/docker/compose/issues/6691#issuecomment-696465142)
+
+#### Further tweaks
+[[Details]](/blog/10e3c2bf-c1a4-4c2d-af02-c6e09e278e2d). Click for additional setup tweaks like making all RAM available, docker-compose with GPU, etc.
 `
 },
 
