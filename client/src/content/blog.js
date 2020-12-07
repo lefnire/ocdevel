@@ -6,7 +6,7 @@ import jp4 from './jobpig/4'
 
 const blog = [
 {
-  id: "7f133b72-1d5d-4709-b6b1-282e978f3c7d",
+  id: "20201209-unable-to-fetch-archives",
   date: "2020-12-09",
   title: "Docker error: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?",
   body: `
@@ -24,7 +24,7 @@ RUN apt-get update && \\
 `
 },
 {
-  id: "10e3c2bf-c1a4-4c2d-af02-c6e09e278e2d",
+  id: "20201208-wsl-docker-misc",
   date: "2020-12-08",
   title: "WSL2 + Docker odds & ends",
   body: `
@@ -77,7 +77,7 @@ See more tricks [here](https://nickjanetakis.com/blog/setting-up-docker-for-wind
 `
 },
 {
-  id: "a666c140-9100-4a1d-b20a-f6b8d7f48e8e",
+  id: "20201207-wsl2-gpu-docker",
   date: "2020-12-07",
   title: "WSL2 + GPU + Docker",
   body: `
@@ -148,12 +148,12 @@ If it fails, eg \`Error: only 0 Devices available, 1 requested. Exiting.\`:
 1. Try adding \`"node-generic-resources": ["NVIDIA-GPU=0"]\` to \`/etc/docker/daemon.json\` | [Details](https://github.com/docker/compose/issues/6691#issuecomment-696465142)
 
 #### Further tweaks
-[[Details]](/blog/10e3c2bf-c1a4-4c2d-af02-c6e09e278e2d). Click for additional setup tweaks like making all RAM available, docker-compose with GPU, etc.
+[[Details]](/blog/20201208-wsl-docker-misc). Click for additional setup tweaks like making all RAM available, docker-compose with GPU, etc.
 `
 },
 
 {
-  id: "c364fa6e-e916-4d5d-a2bf-2284eaa8fea5",
+  id: "20201206-index-vs-quest2",
   date: "2020-12-06",
   title: "VR 2020: buy either Index or Quest 2",
   body: `
@@ -177,7 +177,7 @@ I've got a tentative eye on DecaGear, but from my Pimax experience I'm not hopef
 `
 },
 {
-  id: "116246ad-42d3-4ef6-afec-1c9e41d3ec71",
+  id: "20201112-emacs27-ubuntu1804",
   date: "2020-11-12",
   title: "Install Emacs 27 on Ubuntu 18.04",
   body: `
@@ -195,7 +195,7 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 `
 },
 {
-  id: "061a8427-ae59-4bcf-a3e9-a36e1288ca2e",
+  id: "20201022-aws-batch-efs-mount",
   date: "2020-10-22",
   title: "AWS Batch with EFS mount",
   body: `

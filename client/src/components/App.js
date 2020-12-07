@@ -4,9 +4,10 @@ import {LinkContainer} from 'react-router-bootstrap';
 import {Switch, Redirect, Route} from 'react-router-dom';
 import Podcasts from "./podcasts";
 import {FaCouch, FaDragon, FaEnvelope, FaExternalLinkAlt, FaMicrophone} from "react-icons/all";
-
+import CookieConsent from "react-cookie-consent";
 import Home from "./home"
 import './App.scss'
+
 
 export default function App() {
   const [showModal, setShowModal] = useState(false)
@@ -59,6 +60,7 @@ export default function App() {
   return <div>
     {renderHeader()}
     {renderModal()}
+    <CookieConsent buttonText="Accept">This website uses cookies to enhance the user experience.</CookieConsent>
 
     <div className="container-fluid">
       <Switch>
