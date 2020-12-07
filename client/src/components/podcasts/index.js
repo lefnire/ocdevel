@@ -34,7 +34,7 @@ function BackButton() {
   </LinkContainer>
 }
 
-function Card_({title, children, subtitle=null, mla=false, backButton=true}) {
+function Card_({title, children, subtitle=null, footer=null, backButton=true}) {
   return <Card>
     <Card.Body>
       {backButton && <BackButton />}
@@ -44,22 +44,20 @@ function Card_({title, children, subtitle=null, mla=false, backButton=true}) {
       </Card.Subtitle>}
       <Card.Text>{children}</Card.Text>
     </Card.Body>
-    {mla && <Card.Footer>
-      <FaUnlock />  $1/m on <a href={patreonLink} target="_blank">Patreon</a> or <Link to="/mlg/free-access">get free access</Link>
-    </Card.Footer>}
+    {footer && <Card.Footer>{footer}</Card.Footer>}
   </Card>
 }
 
 function Recommend() {
+  const footer = <ReactDisqusComments
+    shortname="ocdevel"
+    identifier="machine-learning-recommend"
+    title={`Recommend an Episode | ${podcast.title}`}
+    url="http://ocdevel.com/mlg/recommend" />
   return <div>
     <Card_ title="Recommend a Future Episode">
       <p>See which episodes are currently planned <a href="https://github.com/lefnire/ocdevel/projects/1" target="_blank">on Github</a>. If you want an episode not on that list, <a href="https://github.com/lefnire/ocdevel/issues/new" target="_blank">submit an issue</a>. I'll tackle recommendations in order of popularity (based on Github thumb-ups).</p>
       <p>Below is a Disqus thread I <em>used</em> to use for episode-recommends, but I'm not using anymore.</p>
-      <ReactDisqusComments
-        shortname="ocdevel"
-        identifier="machine-learning-recommend"
-        title={`Recommend an Episode | ${podcast.title}`}
-        url="http://ocdevel.com/mlg/recommend" />
     </Card_>
   </div>
 }
@@ -97,23 +95,23 @@ function Episode({children}) {
   const episode = _.find(podcast.episodes, {episode: parseInt(id)});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
   const body = episode.body && episode.body.replace(/##/g, '###');
+  const footer = <ReactDisqusComments
+      shortname="ocdevel"
+      identifier={episode.guid}
+      title={`${episode.title} | ${podcast.title}`}
+      url={`http://ocdevel.com/mlg/${id}`}/>
   return <div>
     <Helmet>
       <title>{episode.title} | Machine Learning Guide</title>
       <meta name="description" content={episode.teaser} />
     </Helmet>
-    <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)}>
+    <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)} footer={footer}>
       {body? (
         <ReactMarkdown source={body} linkTarget="_blank" />
       ): (
         <p>{episode.teaser}</p>
       )}
       {renderPlayer(podcast, episode)}
-      <ReactDisqusComments
-        shortname="ocdevel"
-        identifier={episode.guid}
-        title={`${episode.title} | ${podcast.title}`}
-        url={`http://ocdevel.com/mlg/${id}`}/>
     </Card_>
   </div>
 }
@@ -124,9 +122,16 @@ function Episodes() {
   function renderEpisode(e) {
     let num = _.padStart(e.episode, 3, '0');
     let title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
-    if (!e.mla) { title = <Link to={`/mlg/${e.episode}`}>{title}</Link> }
-    return <div key={e.guid} style={{marginBottom: 10}}>
-      <Card_ backButton={false} title={title} subtitle={moment(e.date).format(fmt)} mla={e.mla}>
+    let footer = null;
+    if (e.mla) {
+      footer = <>
+        <FaUnlock />  $1/m on <a href={patreonLink} target="_blank">Patreon</a> or <Link to="/mlg/free-access">get free access</Link>
+      </>
+    } else {
+      title = <Link to={`/mlg/${e.episode}`}>{title}</Link>
+    }
+    return <div key={e.guid} className='mb-3 episode-teaser'>
+      <Card_ backButton={false} title={title} subtitle={moment(e.date).format(fmt)} footer={footer}>
         <p>{e.teaser}</p>
       </Card_>
     </div>

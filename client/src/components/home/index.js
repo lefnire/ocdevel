@@ -45,12 +45,14 @@ function Post() {
             : p.body
           }
         </Card.Text>
+      </Card.Body>
+      <Card.Footer>
         <ReactDisqusComments
           shortname="ocdevel"
           identifier={id}
           title={`${p.title} | OCDevel`}
           url={`http://ocdevel.com/blog/${id}`}/>
-      </Card.Body>
+      </Card.Footer>
     </Card>
   </div>
 }
