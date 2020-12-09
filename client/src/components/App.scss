@@ -77,5 +77,6 @@ body {
 
     .zocial {
         border: none !important;
+        &.github {border: 1px solid #050505 !important;}
     }
 }

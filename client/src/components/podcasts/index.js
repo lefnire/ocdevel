@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card} from 'react-bootstrap';
+import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, Badge} from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
@@ -14,9 +14,24 @@ import {
   FaBriefcase,
   FaEnvelope,
   FaArrowLeft,
-  FaPatreon
+  FaPatreon, FaShareAlt, FaExternalLinkAlt, FaRegEnvelope
 } from 'react-icons/all';
 import {Helmet} from "react-helmet";
+
+import {
+  EmailShareButton,
+  EmailIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  PinterestShareButton,
+  PinterestIcon,
+  RedditShareButton,
+  RedditIcon,
+  TwitterShareButton,
+  TwitterIcon
+} from "react-share";
 
 
 import podcast from '../../content/machine-learning';
@@ -63,13 +78,80 @@ function Recommend() {
 }
 
 function FreeAccess() {
+  const url = {url: "https://gnothiai.com"}
+  const shareText = "Gnothi - a journal that uses AI to provide insights & resources"
+  const shareImg = "https://gnothiai.com/logo192.png"
+  function shareButtons() {
+    return <>
+      <FacebookShareButton
+        {...url}
+        quote={shareText}
+        className='mr-2'
+      >
+        <FacebookIcon size={32} round />
+      </FacebookShareButton>
+
+      <TwitterShareButton
+        {...url}
+        title={shareText}
+        className='mr-2'
+      >
+        <TwitterIcon size={32} round />
+      </TwitterShareButton>
+
+      <LinkedinShareButton
+        {...url}
+        className='mr-2'
+      >
+        <LinkedinIcon size={32} round />
+      </LinkedinShareButton>
+
+      <PinterestShareButton
+        {...url}
+        description={shareText}
+        media={shareImg}
+        className='mr-2'
+      >
+        <PinterestIcon size={32} round />
+      </PinterestShareButton>
+
+      <RedditShareButton
+        {...url}
+        title={shareText}
+        className='mr-2'
+      >
+        <RedditIcon size={32} round />
+      </RedditShareButton>
+
+      <EmailShareButton
+        {...url}
+        subject={shareText}
+        body=""
+        className='mr-2'
+      >
+        <EmailIcon size={32} round />
+      </EmailShareButton>
+      <div><small className='text-muted'>Or anywhere you want</small></div>
+    </>
+  }
+  const footer = <>
+    <h4>Option 1: Share</h4>
+    <p>Get <Badge variant='primary'>3 months</Badge> of free access by posting a link to <a href="https://gnothiai.com">Gnothi <FaExternalLinkAlt /></a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot.</p>
+    {shareButtons()}
+    <hr />
+
+    <h4>Option 2: Contribute</h4>
+    <p>Get free access <Badge variant='primary'>for life</Badge> by contributing to the project. Submit a pull-request to the Github repository (see <a href="https://github.com/lefnire/ocdevel/issues">active issues</a>) and let me know in the PR or via email that you want MLA access.</p>
+    <a className='zocial github'>Github</a>
+    <hr />
+
+    <p>Or just go the standard route and become a Patron.</p>
+    <Button href={patreonLink} target='_blank' className='patreon-btn'><FaPatreon /> Subscribe on Patreon</Button>
+  </>
+
   return <div>
-    <Card_ title="Get Free MLA Access">
-      <a href={patreonLink} target="_blank">Machine Learning Applied</a> is a $1/m exclusive podcast, but you can get free access in the following ways.
-      <ol>
-        <li>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me</a> the link or screenshot.</li>
-        <li>Get free access for <strong>life</strong> by contributing to the project. Submit a pull-request to the Github repository (see <a href="https://github.com/lefnire/ocdevel/issues">active issues</a>) and let me know in the PR or via email that you want MLA access.</li>
-      </ol>
+    <Card_ title="Get Free MLA Access" footer={footer}>
+      <p><a href={patreonLink} target="_blank">Machine Learning Applied</a> is a $1/m exclusive Patreon podcast. Get access via one of the following.</p>
     </Card_>
   </div>
 }
