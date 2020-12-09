@@ -24,6 +24,7 @@ function Index() {
   useEffect(() => {
     return listen((location) => {
       ReactGA.pageview(location.pathname) //  + location.search);
+      window.scrollTo(0, 0);
     })
   }, [])
 

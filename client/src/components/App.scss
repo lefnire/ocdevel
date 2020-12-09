@@ -61,6 +61,17 @@ body {
   text-shadow: none !important;
 }
 
+.icon-btn {
+  position: relative;
+  svg {
+    position: absolute;
+
+    // from .btn{padding}
+    left: 12px;
+    bottom: 6px;
+  }
+}
+
 .podcasts {
   // 3108d595: .logo-and-sub, .sub-button-container, .sub-button */
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, Badge} from 'react-bootstrap';
+import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, Badge, ButtonGroup} from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import ReactMarkdown from 'react-markdown';
@@ -14,7 +14,16 @@ import {
   FaBriefcase,
   FaEnvelope,
   FaArrowLeft,
-  FaPatreon, FaShareAlt, FaExternalLinkAlt, FaRegEnvelope
+  FaPatreon,
+  FaShareAlt,
+  FaExternalLinkAlt,
+  FaRegEnvelope,
+  FaItunes,
+  SiItunes,
+  SiSpotify,
+  FaSpotify,
+  RiSpotifyLine,
+  RiGooglePlayLine, SiStitcher, FaItunesNote, SiRss
 } from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
@@ -242,67 +251,64 @@ function Series() {
   const [showHire, setShowHire] = useState(false)
   const [showDonate, setShowDonate] = useState(false)
   const enableHire = false
-  const enablePodcastProj = false
   // d75998bd cryptocurrency
 
   function miscResources() {
     const buttonAttrs = {
-      variant: 'outline-dark',
-      className: "d-block mb-1 w-100"
+      variant: 'light',
+      className: 'icon-btn'
     }
-    return (
-      <div>
-        <div>
-          {showDonate ? (
-            <Card className='mb-1'>
-              <Card.Header><Card.Title>Donate</Card.Title></Card.Header>
-              <Card.Body>
-                <Button bsStyle="primary" block href={patreonLink} target="_blank">Patreon</Button>
-                <small>The best way to show your support, as you'll receive perks (like access to an exclusive podcast series on applied ML).</small>
-                <hr/>
+    return <div>
+      {showDonate && (
+        <Card className='mb-2'>
+          <Card.Header>Donate</Card.Header>
+          <Card.Body>
+            <p>The best way to show support is via Patreon (above), plus you'll receive perks like access to an exclusive podcast series on applied ML.</p>
+            <hr/>
 
-                Paypal:
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick" />
-                    <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                  </form>
-                </div>
-              </Card.Body>
-            </Card>
-          ) : (
-            <Button {...buttonAttrs} onClick={() => setShowDonate(true)}>
-              <FaDollarSign /> Donate
-            </Button>
+            Paypal:
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+              </form>
+            </div>
+          </Card.Body>
+        </Card>
+      )}
+
+      <ButtonGroup className='d-block' vertical>
+        <Button {...buttonAttrs} onClick={() => setShowDonate(true)}>
+          <FaDollarSign /> Donate
+        </Button>
+        {enableHire && <Button {...buttonAttrs} onClick={() => setShowHire(true)}>
+          <FaBriefcase /> Hire Me
+        </Button>}
+        <LinkContainer to="/mlg/recommend">
+          <Button {...buttonAttrs}>
+            <FaLightbulb /> Recommend an Episode
+          </Button>
+        </LinkContainer>
+        <OverlayTrigger
+          placement="right"
+          overlay={(
+            <Popover id="popover-positioned-right">
+              Get notified of new episodes / announcements
+            </Popover>
           )}
-          {enableHire && <Button {...buttonAttrs} onClick={() => setShowHire(true)}>
-            <FaBriefcase /> Hire Me
-          </Button>}
-          <LinkContainer to="/mlg/recommend">
-            <Button {...buttonAttrs}>
-              <FaLightbulb /> Recommend an Episode
-            </Button>
-          </LinkContainer>
-          <OverlayTrigger
-            placement="right"
-            overlay={(
-              <Popover id="popover-positioned-right">
-                Get notified of new episodes / announcements
-              </Popover>
-            )}
-          >
-            <Button {...buttonAttrs} href="http://eepurl.com/cUUWfD" target="_blank">
-              <FaEnvelope /> Mailing List
-            </Button>
-          </OverlayTrigger>
-          {enablePodcastProj && <Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
-            <FaGithub /> Podcast Project
-          </Button>}
-        </div>
-      </div>
-    );
+        >
+          <Button {...buttonAttrs} href="http://eepurl.com/cUUWfD" target="_blank">
+            <FaEnvelope /> Mailing List
+          </Button>
+        </OverlayTrigger>
+        <Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
+          <FaGithub /> Podcast Project: Gnothi
+        </Button>
+      </ButtonGroup>
+
+    </div>
   }
 
   const renderHireModal = () => (
@@ -326,30 +332,44 @@ function Series() {
   );
 
   function sidebar() {
+    const btnOpts = {
+      variant: 'light',
+      className: 'icon-btn',
+      target: '_blank'
+    }
     return <>
       <Card className='mb-3'>
         <Card.Body>
           <div className="logo text-center mb-3">
             <img src={podcast.image} />
           </div>
-          <div>
-            <p><b>Machine Learning Guide</b> {podcast.body}</p>
-            <div>
-              <a className="zocial itunes d-block mb-1" href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130" target="_blank">iTunes</a>
-              <a className="zocial android d-block mb-1" href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw==' target="_blank">Google Podcasts</a>
-              <a className="zocial spotify d-block mb-1" href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9" target="_blank">Spotify</a>
-              <a className="zocial podcast d-block mb-1" href="http://www.stitcher.com/s?fid=130679&refid=stpr" target="_blank">Stitcher</a>
-              <a className="zocial rss d-block mb-1" href="http://machinelearningguide.libsyn.com/rss" target="_blank" rel="nofollow">Custom (RSS)</a>
-            </div>
-          </div>
+          <Card.Title>Machine Learning Guide</Card.Title>
+          <p>{podcast.body}</p>
+
+          <ButtonGroup className='d-block' vertical>
+            <Button {...btnOpts} href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130">
+              <FaItunesNote size={24}/> iTunes
+            </Button>
+            <Button {...btnOpts} href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9">
+              <RiSpotifyLine size={24}/> Spotify
+            </Button>
+            <Button {...btnOpts} href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='>
+              <RiGooglePlayLine size={24} /> Google Podcasts
+            </Button>
+            <Button {...btnOpts} href="http://www.stitcher.com/s?fid=130679&refid=stpr">
+              <SiStitcher size={24} /> Stitcher
+            </Button>
+            <Button {...btnOpts} href="http://machinelearningguide.libsyn.com/rss"rel="nofollow">
+              <SiRss size={24} /> Custom (RSS)
+            </Button>
+          </ButtonGroup>
           <hr />
-          <div>
-            <p><b>Machine Learning Applied</b> is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes.</p>
-            <Button href={patreonLink} target='_blank' className='patreon-btn d-block mb-1'><FaPatreon /> Get it on Patreon</Button>
-            <LinkContainer to='/mlg/free-access'>
-              <Button variant="link" className='patreon-btn-free d-block mb-1'>Get it free</Button>
-            </LinkContainer>
-          </div>
+          <Card.Title>Machine Learning Applied</Card.Title>
+          <p>Is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes.</p>
+          <Button href={patreonLink} target='_blank' className='patreon-btn d-block mb-1'><FaPatreon /> Get it on Patreon</Button>
+          <LinkContainer to='/mlg/free-access'>
+            <Button variant="link" className='patreon-btn-free d-block mb-1'>Get it free</Button>
+          </LinkContainer>
           <hr />
           {miscResources()}
         </Card.Body>
