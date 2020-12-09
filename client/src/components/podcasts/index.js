@@ -49,32 +49,24 @@ function BackButton() {
   </LinkContainer>
 }
 
-function Card_({title, children, subtitle=null, footer=null, backButton=true}) {
+function Recommend() {
   return <Card>
     <Card.Body>
-      {backButton && <BackButton />}
-      <Card.Title>{title}</Card.Title>
-      {subtitle && <Card.Subtitle className="mb-2 text-muted">
-        {subtitle}
-      </Card.Subtitle>}
-      <Card.Text>{children}</Card.Text>
+      <BackButton />
+      <Card.Title>Recommend a Future Episode</Card.Title>
+      <Card.Text>
+        <p>See which episodes are currently planned <a href="https://github.com/lefnire/ocdevel/projects/1" target="_blank">on Github</a>. If you want an episode not on that list, <a href="https://github.com/lefnire/ocdevel/issues/new" target="_blank">submit an issue</a>. I'll tackle recommendations in order of popularity (based on Github thumb-ups).</p>
+        <p>Below is a Disqus thread I <em>used</em> to use for episode-recommends, but I'm not using anymore.</p>
+      </Card.Text>
     </Card.Body>
-    {footer && <Card.Footer>{footer}</Card.Footer>}
+    <Card.Footer>
+      <ReactDisqusComments
+        shortname="ocdevel"
+        identifier="machine-learning-recommend"
+        title={`Recommend an Episode | ${podcast.title}`}
+        url="http://ocdevel.com/mlg/recommend" />
+    </Card.Footer>
   </Card>
-}
-
-function Recommend() {
-  const footer = <ReactDisqusComments
-    shortname="ocdevel"
-    identifier="machine-learning-recommend"
-    title={`Recommend an Episode | ${podcast.title}`}
-    url="http://ocdevel.com/mlg/recommend" />
-  return <div>
-    <Card_ title="Recommend a Future Episode">
-      <p>See which episodes are currently planned <a href="https://github.com/lefnire/ocdevel/projects/1" target="_blank">on Github</a>. If you want an episode not on that list, <a href="https://github.com/lefnire/ocdevel/issues/new" target="_blank">submit an issue</a>. I'll tackle recommendations in order of popularity (based on Github thumb-ups).</p>
-      <p>Below is a Disqus thread I <em>used</em> to use for episode-recommends, but I'm not using anymore.</p>
-    </Card_>
-  </div>
 }
 
 function FreeAccess() {
@@ -131,32 +123,38 @@ function FreeAccess() {
       >
         <EmailIcon size={32} round />
       </EmailShareButton>
-      <div><small className='text-muted'>Or anywhere you want</small></div>
     </>
   }
-  const footer = <>
-    <h4>Option 1: Share</h4>
-    <p>Get <Badge variant='primary'>3 months</Badge> of free access by posting a link to <a href="https://gnothiai.com">Gnothi <FaExternalLinkAlt /></a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot.</p>
-    {shareButtons()}
-    <hr />
-
-    <h4>Option 2: Contribute</h4>
-    <p>Get free access <Badge variant='primary'>for life</Badge> by contributing to the project. Submit a pull-request to the Github repository (see <a href="https://github.com/lefnire/ocdevel/issues">active issues</a>) and let me know in the PR or via email that you want MLA access.</p>
-    <a className='zocial github'>Github</a>
-    <hr />
-
-    <p>Or just go the standard route and become a Patron.</p>
-    <Button href={patreonLink} target='_blank' className='patreon-btn'><FaPatreon /> Subscribe on Patreon</Button>
-  </>
-
   return <div>
-    <Card_ title="Get Free MLA Access" footer={footer}>
-      <p><a href={patreonLink} target="_blank">Machine Learning Applied</a> is a $1/m exclusive Patreon podcast. Get access via one of the following.</p>
-    </Card_>
+    <BackButton />
+    <h3 className='h4'>Get Free MLA Access</h3>
+    <p>
+      <em>Machine Learning Applied</em> is a $1/m exclusive podcast. <Button size='sm' href={patreonLink} target='_blank' className='patreon-btn'><FaPatreon /> Subscribe on Patreon</Button> for access, or get it for free below.
+    </p>
+
+    <Card className='mb-3 shadow-sm free-mla-card'>
+      <Card.Body>
+        <Card.Title>Share | 3 Months Free</Card.Title>
+        <Card.Text>
+          <p>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi <FaExternalLinkAlt /></a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
+          {shareButtons()}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+
+    <Card className='shadow-sm free-mla-card'>
+      <Card.Body>
+        <Card.Title>Contribute | Lifetime Free</Card.Title>
+        <Card.Text>
+          <p>Get free access for life by contributing to Gnothi. Submit a Pull Request on Github (see <a href="https://github.com/lefnire/ocdevel/issues" target='_blank'>active issues</a>) and ping me in the PR or email that you want MLA access.</p>
+          <a className='zocial github' href="https://github.com/lefnire/gnothi" target='_blank'>Github</a>
+        </Card.Text>
+      </Card.Body>
+    </Card>
   </div>
 }
 
-function Episode({children}) {
+function Episode() {
   const {id} = useParams()
   
   function renderPlayer(podcast, episode) {
@@ -177,24 +175,33 @@ function Episode({children}) {
   const episode = _.find(podcast.episodes, {episode: parseInt(id)});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
   const body = episode.body && episode.body.replace(/##/g, '###');
-  const footer = <ReactDisqusComments
-      shortname="ocdevel"
-      identifier={episode.guid}
-      title={`${episode.title} | ${podcast.title}`}
-      url={`http://ocdevel.com/mlg/${id}`}/>
   return <div>
     <Helmet>
       <title>{episode.title} | Machine Learning Guide</title>
       <meta name="description" content={episode.teaser} />
     </Helmet>
-    <Card_ title={episode.title} subtitle={moment(episode.date).format(fmt)} footer={footer}>
-      {body? (
-        <ReactMarkdown source={body} linkTarget="_blank" />
-      ): (
-        <p>{episode.teaser}</p>
-      )}
-      {renderPlayer(podcast, episode)}
-    </Card_>
+    <Card>
+      <Card.Body>
+        <BackButton />
+        <Card.Title>{episode.title}</Card.Title>
+        <Card.Subtitle className='text-muted mb-2'>{moment(episode.date).format(fmt)}</Card.Subtitle>
+        <Card.Text>
+          {body? (
+            <ReactMarkdown source={body} linkTarget="_blank" />
+          ): (
+            <p>{episode.teaser}</p>
+          )}
+          {renderPlayer(podcast, episode)}
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <ReactDisqusComments
+          shortname="ocdevel"
+          identifier={episode.guid}
+          title={`${episode.title} | ${podcast.title}`}
+          url={`http://ocdevel.com/mlg/${id}`}/>
+      </Card.Footer>
+    </Card>
   </div>
 }
 
@@ -212,10 +219,17 @@ function Episodes() {
     } else {
       title = <Link to={`/mlg/${e.episode}`}>{title}</Link>
     }
-    return <div key={e.guid} className='mb-3 episode-teaser'>
-      <Card_ backButton={false} title={title} subtitle={moment(e.date).format(fmt)} footer={footer}>
-        <p>{e.teaser}</p>
-      </Card_>
+    return <div key={e.guid} className='episode-teaser mb-3'>
+      <Card>
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Card.Subtitle>{moment(e.date).format(fmt)}</Card.Subtitle>
+          <Card.Text>
+            <p>{e.teaser}</p>
+          </Card.Text>
+        </Card.Body>
+        {footer && <Card.Footer>{footer}</Card.Footer>}
+      </Card>
     </div>
   }
 
