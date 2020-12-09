@@ -70,5 +70,8 @@ export default function App() {
         {/*<Redirect from="*" to="/mlg"/>*/}
       </Switch>
     </div>
+    <footer className='footer text-center mt-auto shadow'>
+      Copyright © 2009-2020 OCDevel LLC
+    </footer>
   </div>
 }

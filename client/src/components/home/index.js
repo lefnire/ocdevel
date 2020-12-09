@@ -88,7 +88,7 @@ function Posts() {
 export default function Home() {
   const renderProfile = () => {
     return <>
-      <Card>
+      <Card className='mb-3'>
         <Card.Body>
           <div className="logo text-center mb-3">
             <img src={avatar} className='rounded' />
