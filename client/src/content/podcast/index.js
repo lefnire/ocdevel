@@ -29,8 +29,6 @@ const episodes = [
   require('./mlg/028.js').default,
   require('./mlg/029.js').default,
   require('./mlg/030.js').default,
-  require('./mlg/031.js').default,
-  require('./mlg/032.js').default,
 
   require('./mla/001.js').default,
   require('./mla/002.js').default,
@@ -43,6 +41,10 @@ const episodes = [
   require('./mla/010.js').default,
   require('./mla/011.js').default,
   require('./mla/012.js').default,
+
+  require('./mlg/031.js').default,
+  require('./mlg/032.js').default,
+
 
 ]
 

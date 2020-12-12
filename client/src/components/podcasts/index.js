@@ -23,7 +23,7 @@ import {
   SiSpotify,
   FaSpotify,
   RiSpotifyLine,
-  RiGooglePlayLine, SiStitcher, FaItunesNote, SiRss
+  RiGooglePlayLine, SiStitcher, FaItunesNote, SiRss, BsArrowUpDown
 } from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
@@ -215,7 +215,9 @@ function Episode() {
 }
 
 function Episodes() {
-  const episodes = _.sortBy(podcast.episodes, e => -moment(e.date));
+  const [reverse, setReverse] = useState()
+
+  const episodes = reverse? _.reverse(podcast.episodes) : podcast.episodes
 
   function renderEpisode(e) {
     let num = _.padStart(e.episode, 3, '0');
@@ -243,6 +245,13 @@ function Episodes() {
   }
 
   return <div>
+    <Button
+      variant='outline-secondary'
+      onClick={() => setReverse(!reverse)}
+      className='mb-2 ml-auto'
+    >
+      <BsArrowUpDown /> Reverse
+    </Button>
     {episodes.map(renderEpisode)}
   </div>
 }
