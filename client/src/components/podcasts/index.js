@@ -43,7 +43,7 @@ import {
 } from "react-share";
 
 
-import podcast from '../../content/machine-learning';
+import podcast from '../../content/podcast';
 const fmt = 'MMM DD, YYYY';
 const patreonLink = 'https://www.patreon.com/machinelearningguide'
 

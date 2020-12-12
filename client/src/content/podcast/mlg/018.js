@@ -1,0 +1,56 @@
+import resources from "../resources";
+
+export default {
+  title: 'Natural Language Processing 1',
+  episode: 18,
+  date: "2017-06-25",
+  guid: "d8ebdbe6640d0d34f12778f90b91db8d",
+  file: {},
+  libsynEpisode: 5479957,
+  teaser: 'Introduction to Natural Language Processing (NLP) topics.',
+  body:
+`## Resources
+- ${resources.books.speech_and_nlp}
+- ${resources.audio.speech_and_nlp}
+- ${resources.books.nltk}
+- ${resources.audio.video_to_audio}
+
+## Errata
+22:21 "cat & car different by one word" should be "different by one letter"
+
+## Episode
+Syntax vs Semantics
+
+Parts
+- Corpus
+- Lexicon
+- Morphology
+  - Lemmas & Stems (reduce morphological variation; lemmatization more sophisticated)
+  - Tokens
+  - Stop words
+  - Edit-distance
+  - Word sense disambiguation
+
+Syntax / Tasks
+- Info Extraction (POS, NER, Relationship extraction)
+- Parsing
+
+Goals
+- Spell check
+- Classification
+  - Tagging (topic modeling / keyword extraction)
+  - Sentiment analysis
+- Search / relevance, document similarity
+- Natural language understanding
+  - Question answering
+  - Textual entailment
+  - Machine Translation (AI-complete)
+  - NLU vs NLP
+- Natural language generation
+  - Image captioning
+  - Chatbots
+  - Automatic summarization
+- Won't cover
+  - Optical character recognition (OCR)
+  - Speech (TTS, STT, Segmentation, Diarization)`
+}

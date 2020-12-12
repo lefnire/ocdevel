@@ -8,7 +8,7 @@ import 'css-social-buttons/css/zocial.css'
 import App from './components/App'
 
 import ReactGA from 'react-ga'
-ReactGA.initialize('UA-3128634-8')
+// ReactGA.initialize('UA-3128634-8')
 ReactGA.pageview(window.location.pathname)
 
 // redirect from old routes
