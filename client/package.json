@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
+    "@mdx-js/loader": "^1.6.22",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.5.3",
     "css-social-buttons": "^1.1.1",
+    "customize-cra": "^1.0.0",
+    "easy-peasy": "^4.0.1",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "node-sass": "4.14.1",
     "react": "^17.0.1",
+    "react-app-rewired": "^2.1.7",
     "react-bootstrap": "^1.4.0",
     "react-cookie-consent": "^6.2.0",
     "react-disqus-comments": "^1.4.0",
@@ -28,9 +34,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

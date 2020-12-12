@@ -42,6 +42,8 @@ import {
   TwitterIcon
 } from "react-share";
 
+import Test from '../../content/mlg/tmp.mdx'
+
 
 import podcast from '../../content/machine-learning';
 const fmt = 'MMM DD, YYYY';
