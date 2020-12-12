@@ -1,4 +1,59 @@
-const resources = {
+export const filters = {
+  engagement: {
+    active: ["Active", "Requires engagement, like assignments or exercises"],
+    passive: ["Passive", "Passive learning resource, like podcasts or videos"]
+  },
+  difficulty: {
+    easy: ["Easy", "Very easy material"],
+    medium: ["Medium", "Somewhat difficult material, be caffeinated"],
+    hard: ["Hard", "Difficult material, for hard-core learning sessions"]
+  },
+  format: {
+    audio: {
+      audiobook: ["Audiobook", "Audiobook or similar learning resources"],
+      podcast: ["Podcast", "Podcast"],
+    },
+    video: ["Video", "Video learning resource"],
+    book: ["Book", "Book resource. Textbooks or tradebooks"],
+    course: ["Course", "Online course. Either do-it-yourself (no grading) or graded with assignments"],
+    other: ["Other", "Other learning resources like articles & blogs"]
+  },
+  video2audio: {
+    bad: ["No-Go", "Watch it as a video, you'll need the visuals"],
+    medium: ["Doable", "Could be consumed as audio-only, but not for the feint of heart"],
+    good: ["As Good", "Almost just as good to listen to this video resource audio-only. Speaker does a great job orating the visuals."]
+  },
+  relevance: {
+    fresh: ["Fresh", "An up-to-date resource, or timeless"],
+    dated: ["Dated", "A dated resource, unless it's marked 'essential', see if you can find something newer"]
+  },
+  value: {
+    supplementary: ["Supplementary", "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter"],
+    valuable: ["Valuable", "Quite a valuable resource. If you have the extra time, do it"],
+    essential: ["Essential", "Required. If interested in this topic, you _need_ this resource"]
+  },
+  topic: {
+    basics: ["Basics", "ML basics, information, end-to-end stuff"],
+    math: ["Math", "Fundamental math for ML"],
+    vision: ["Vision", "Computer vision (CV)"],
+    nlp: ["Language", "Natural Language Processing (NLP)"],
+  },
+}
+
+
+export const resources = {
+qai: {
+  title: "The Quest for Artificial Intelligence",
+  links: ["http://amzn.to/2kRd4Ie", "[Free PDF](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)"],
+  engagement: filters.engagement.passive,
+  difficulty: filters.difficulty.hard,
+  format: filters.format.book,
+  relevance: filters.format.fresh,
+  value: filters.format.supplementary,
+  topic: filters.topic.basics,
+  price: 0
+},
+
   books: {
     qai: `[The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) ([Free PDF?](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) \`book:hard\` AI history`,
 
@@ -81,5 +136,3 @@ const resources = {
   }
 };
 resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;
-
-export default resources

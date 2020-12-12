@@ -66,7 +66,7 @@ export default function App() {
       <Switch>
         <Route path="/" exact><Home /></Route>
         <Route path="/blog"><Home /></Route>
-        <Route path="/mlg"><Podcasts.Series /></Route>
+        <Route path="/mlg"><Podcasts /></Route>
         {/*<Redirect from="*" to="/mlg"/>*/}
       </Switch>
     </div>

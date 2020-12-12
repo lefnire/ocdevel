@@ -1,4 +1,4 @@
-import resources from '../resources'
+import {resources} from '../resources'
 
 export default {
   title: "What is AI / ML",
@@ -12,6 +12,7 @@ export default {
   },
   libsynEpisode: 5440757,
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
+  resources: [resources.qai],
   body: String.raw`
 ## Resources
 - ${resources.other.wikipedia_ai}

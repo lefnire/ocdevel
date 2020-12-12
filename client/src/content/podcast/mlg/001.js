@@ -10,6 +10,7 @@ export default {
   libsynEpisode: 5440758,
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   teaser: "Introduction to the Machine Learning Guide",
+  resources: [],
   body: String.raw`
 Links:
 - [OCDevel Website](https://ocdevel.com)
