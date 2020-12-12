@@ -42,10 +42,8 @@ import {
   TwitterIcon
 } from "react-share";
 
-import Test from '../../content/mlg/tmp.mdx'
 
-
-import podcast from '../../content/machine-learning';
+import podcast from '../../content/machine-learning.js';
 const fmt = 'MMM DD, YYYY';
 const patreonLink = 'https://www.patreon.com/machinelearningguide'
 
@@ -185,7 +183,13 @@ function Episode() {
 
   const episode = _.find(podcast.episodes, {episode: parseInt(id)});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
-  const body = episode.body && episode.body.replace(/##/g, '###');
+  // const body = typeof episode.body === "string" ?
+  //   episode.body.replace(/##/g, '###') : episode.body
+  const body = episode.body
+  console.log(typeof body, !body)
+  const components = {
+    a: ({children, props}) => <a target="_blank" {...props}>{children}</a>
+  }
   return <div>
     <Helmet>
       <title>{episode.title} | Machine Learning Guide</title>
@@ -197,11 +201,11 @@ function Episode() {
         <Card.Title>{episode.title}</Card.Title>
         <Card.Subtitle className='text-muted mb-2'>{moment(episode.date).format(fmt)}</Card.Subtitle>
         <Card.Text>
-          {body? (
-            <ReactMarkdown source={body} linkTarget="_blank" />
-          ): (
-            <p>{episode.teaser}</p>
-          )}
+          {typeof body === "string"
+            ? <ReactMarkdown source={body} linkTarget="_blank" />
+            : !body ? <p>{episode.teaser}</p>
+            : React.createElement(body, {components})
+          }
           {renderPlayer(podcast, episode)}
         </Card.Text>
       </Card.Body>
