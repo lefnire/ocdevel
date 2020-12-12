@@ -11,6 +11,7 @@ import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import _ from 'lodash'
 import {Helmet} from "react-helmet";
+import podcast from "../../content/machine-learning";
 
 
 const fmt = 'MMM DD, YYYY';
