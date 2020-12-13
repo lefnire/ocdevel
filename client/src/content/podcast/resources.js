@@ -4,10 +4,9 @@ import {
   FaBook,
   FaChalkboardTeacher,
   FaCouch, FaEye,
-  FaHeadphones, FaInfo,
-  FaMicrophone, FaNewspaper, FaRegGem, FaRegSmile,
+  FaHeadphones, FaMicrophone, FaNewspaper, FaRegSmile,
   FaRunning, FaTrophy,
-  FaVideo, GiBattery0, GiBattery100, GiBattery50, IoIosChatbubbles, TiSortAlphabetically
+  FaVideo, GiBattery0, GiBattery100, GiBattery50, IoIosChatbubbles, MdWeb, TiSortAlphabetically
 } from "react-icons/all";
 
 export const filters = {
@@ -37,7 +36,7 @@ export const filters = {
       video: {t: "Video", d: "Video learning resource", i: <FaVideo />},
       book: {t: "Book", d: "Book resource. Textbooks or tradebooks", i: <FaBook />},
       course: {t: "Course", d: "Online course. Either do-it-yourself (no grading) or graded with assignments", i: <FaChalkboardTeacher />},
-      other: {t: "Other", d: "Other learning resources like articles & blogs", i: <FaBlog />},
+      other: {t: "Other", d: "Other learning resources like articles & blogs", i: <MdWeb />},
     }
   },
   video2audio: {
@@ -111,6 +110,15 @@ export const filterKeys = [
   // or_
 ]
 
+const defaults = {
+  importance: "supplementary",
+  format: "other",
+  difficulty: "easy",
+  engagement: "passive",
+  topic: "basics",
+  relevance: "fresh",
+}
+
 const podcasts = _.mapValues({
   twiml_and_ai: {
     t: "TWiML and AI",
@@ -134,13 +142,11 @@ const podcasts = _.mapValues({
   linear_digressions: {
     t: "Linear Digressions",
     links: [{t: "Website", l: "http://lineardigressions.com/", p: "free"}],
-    topic: "basics"
   },
 
   data_skeptic: {
     t: "Data Skeptic",
     links: [{t: "Website", l: "https://dataskeptic.com/", p: "free"}],
-    topic: "basics"
   },
 
   // Very dated, excluding
@@ -154,14 +160,9 @@ const podcasts = _.mapValues({
   learning_machines_101: {
     t: "Learning machines 101",
     links: [{t: "Website", l: "http://www.learningmachines101.com/", p: "free"}],
-    topic: "basics"
   }
 }, (v) => ({
-  engagement: "passive",
-  difficulty: "easy",
   format: "podcast",
-  relevance: "fresh",
-  importance: "supplementary",
   ...v,
 }))
 
@@ -170,22 +171,121 @@ const tgc = _.mapValues({
     t: "TGC Machine Learning",
     links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fintroduction-to-machine-learning.html%3Fai%3D107119&intsrc=PUI1_1204"}],
     topic: "basics"
-  }
+  },
+
+  tgc_consciousness: {
+    t: "Philosophy of Mind: Brains, Consciousness, and Thinking Machines",
+    links: [
+      {t: "Amazon", l: "http://amzn.to/2kQGgk5", p: "$"},
+      {t: "TGC", l: "https://goo.gl/fDteyi", p: "$$"} // FIXME
+    ],
+    difficulty: "easy",
+    importance: "valuable"
+
+  },
 }, v => ({
-  engagement: "passive",
+  tgc: true,
   difficulty: "hard",
   format: "video",
   video2audio: "good",
-  relevance: "fresh",
   importance: "essential",
   ...v
 }))
 
+const fun = _.mapValues({
+  singularity_is_near: {
+    t: "The Singularity Is Near",
+    links: [{t: "Amazon", l: "http://amzn.to/2lzCqKk", p: "$"}]
+  },
 
-export const resources = _.mapValues({
-  ...podcasts,
-  ...tgc,
+  superintelligence: {
+    t: "Superintelligence",
+    d: "Doom-and-gloom favorite of Musk, Gates, Hawking.",
+    links: [{t: "Amazon", l: "http://amzn.to/2lzLcrL", p: "$"}]
+  },
 
+  machines_of_loving_grace: {
+    t: `Machines of Loving Grace`,
+    d: "AI History",
+    links: [{t: "Amazon", l: "http://amzn.to/2kRcBWq", p: "$"}]
+  },
+
+  master_algorithm: {
+    t: `The Master Algorithm`,
+    d: 'Semi-technical overview of ML basics & main algorithms',
+    links: [{t: "Amazon", l: "http://amzn.to/2kLOQjW", p: "$"}],
+    difficulty: "medium"
+  }
+
+}, v => ({
+  format: "audiobook",
+  topic: "fun",
+  ...v
+}))
+
+const courses = _.mapValues({
+  ng: {
+    t: `Andrew Ng Coursera Course`,
+    d: "The most essential of all ML resources ever. It's an active course with assignments. Do note, it's VERY VERY dated. It uses Matlab and only teaches shallows. It's quite renowned and timeless, but see if you can find a more recent course. See [Coursera's ML listing](https://www.coursera.org/browse/computer-science?facets=skillNameMultiTag%3AMachine+Learning%2CcategoryMultiTag%3Acomputer-science), as well as Ng's [Deep Learning](https://www.coursera.org/specializations/deep-learning) Specialization.",
+    links: [{t: "Coursera", l: "https://www.coursera.org/learn/machine-learning", p: "free"}],
+    relevance: "dated",
+    importance: "essential"
+  },
+
+  udacity_ml: {
+    t: "Udacity Machine Learning",
+    links: [{t: "Udacity", l: "https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009", p: "$$$"}],
+  },
+
+  udacity_self_driving: {
+    t: "Udacity Self Driving Cars",
+    links: [{t: "Udacity", l: "https://www.udacity.com/drive", p: "$$$"}]
+  },
+
+  udacity_ai: {
+    t: "Artificial Intelligence",
+    links: [{t: "Udacity", l: "https://www.udacity.com/ai", p: "$$$"}]
+  },
+
+  omscs: {
+    t: "OMSCS",
+    d: "Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.",
+    links: [{t: "Website", l: "https://www.omscs.gatech.edu/", p: "$$$"}],
+    importance: "essential"
+  }
+
+
+}, v => ({
+  engagement: "active",
+  difficulty: "hard",
+  format: "course",
+  ...v
+}))
+
+const others = _.mapValues({
+  tour_ml_algos: {
+    t: `Tour of Machine Learning Algorithms`,
+    links: [{t: "Website", l: "http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms", p: "free"}]
+  },
+
+  wikipedia_ai: {
+    t: `Wikipedia:AI`,
+    links: [{t: "Wikipedia:AI", l: "https://en.wikipedia.org/wiki/Artificial_intelligence", p: "free"}],
+  },
+
+  math_primer: {
+    t: `Math Primer PDF`,
+    d: "See \"Section Notes\" of [cs229](http://cs229.stanford.edu/materials.html)",
+    links: [{t: "Website", l: "http://cs229.stanford.edu/materials.html", p: "free"}],
+    difficulty: 'medium'
+  }
+
+}, v => ({
+  format: "other",
+  ...v
+}))
+
+const books = _.mapValues({
   qai: {
     t: "The Quest for Artificial Intelligence",
     d: "Textbook about the history of AI",
@@ -193,19 +293,27 @@ export const resources = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2kRd4Ie", p: "$$"},
       {t: "PDF", l: "http://ai.stanford.edu/~nilsson/QAI/qai.pdf", p: "free"}
     ],
-    engagement: "passive",
-    difficulty: "hard",
-    format: "book",
-    relevance: "fresh",
-    importance: "supplementary",
-    topic: "basics",
     // or_: other_resource
   },
+}, v => ({
+  format: "book",
+  difficulty: "hard"
+}))
 
-  ////////////////////////////////////////////////////////////
+/** TODO
+ * FastAI
+ * New Ng Course
+ */
+
+export const resources = _.mapValues({
+  ...books,
+  ...podcasts,
+  ...tgc,
+  ...fun,
+  ...others,
+  ...courses,
+
   books: {
-    qai: `[The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) ([Free PDF?](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) \`book:hard\` AI history`,
-
     // Math
     linear_algebra: `[Introduction to Linear Algebra](https://amzn.to/2wP8TWS) \`book:hard\``,
     stats: `[All of statistics](http://amzn.to/2t2dOwg) \`book:hard\``,
@@ -225,9 +333,7 @@ export const resources = _.mapValues({
   },
   courses: {
     // Ng
-    ng: `[Coursera](https://www.coursera.org/learn/machine-learning) \`course:hard\``,
-    ng_1: `[Andrew Ng's Machine Learning Coursera course](https://www.coursera.org/learn/machine-learning) \`course:hard\` No question, the most essential, important, recommended resource in my entire series _period_. Consider it required, not optional.`,
-    ng_2: `You've started [Ng's Coursera course](https://www.coursera.org/learn/machine-learning), right? Riight?`,
+
     ng_wk_7: `[Andrew Ng Week 7](https://www.coursera.org/learn/machine-learning/resources/Es9Qo)`,
     ng_wk_8: `[Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY)`,
     ng_wk_9: `[Andrew Ng Week 9](https://www.coursera.org/learn/machine-learning/resources/szFCa)`,
@@ -244,12 +350,7 @@ export const resources = _.mapValues({
     david_silver: `[RL Course by David Silver](https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-) \`course|audio:hard\``
   },
   audio: {
-    machines_of_loving_grace: `[Machines of Loving Grace](http://amzn.to/2kRcBWq) \`audio:easy\` AI history`,
-    singularity_is_near: `[The Singularity Is Near](http://amzn.to/2lzCqKk) \`audio:easy\``,
-    ttc_consciousness: `Philosophy of Mind: Brains, Consciousness, and Thinking Machines ([Audible](http://amzn.to/2kQGgk5), [TGC](https://goo.gl/fDteyi)) \`audio:easy\``,
     how_to_create_mind: `[How to Create a Mind](http://amzn.to/2tXLvUm) \`audio:easy\``,
-    superintelligence: `[Superintelligence](http://amzn.to/2lzLcrL) \`audio:easy\` doom-and-gloom favorite of Musk, Gates, Hawking.`,
-    master_algorithm: `[The Master Algorithm](http://amzn.to/2kLOQjW) \`audio:medium\` Semi-technical overview of ML basics & main algorithms`,
 
     // Math
     stats: `[Statistics](https://goo.gl/4vvXJs), [Probability](https://goo.gl/Q4KwZ6) \`audio|course:hard\``,
@@ -264,10 +365,6 @@ export const resources = _.mapValues({
     dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`
   },
   other: {
-    wikipedia_ai: `[Wikipedia:AI](https://en.wikipedia.org/wiki/Artificial_intelligence) \`article:easy\``,
-    tour_ml_algos: `[Tour of Machine Learning Algorithms](http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms) \`article:easy\``,
-    degrees_convos: `Discussions: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)`,
-    math_primer: `See "Section Notes" of [cs229](http://cs229.stanford.edu/materials.html) \`handout:medium\``,
     dl_simplified: `[Deep Learning Simplified](https://www.youtube.com/watch?v=b99UVkWzYTQ) \`video:easy\` quick series to get a lay-of-the-land.`,
     // nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
     tensorflow_tuts: `[TensorFlow Tutorials](https://www.tensorflow.org/get_started/get_started) \`tutorial:medium\``,
@@ -283,5 +380,9 @@ export const resources = _.mapValues({
     tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`,
     project_repo: `[TForce BTC Trader](https://github.com/lefnire/tforce_btc_trader) (podcast project)`
   }
-}, (v, k) => ({...v, id: k}))
+}, (v, k) => ({
+  id: k,
+  ...defaults,
+  ...v,
+}))
 // resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;

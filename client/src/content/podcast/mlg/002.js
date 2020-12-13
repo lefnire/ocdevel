@@ -12,14 +12,8 @@ export default {
   },
   libsynEpisode: 5440757,
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
-  resources: [resources.qai],
+  resources: [resources.qai, resources.wikipedia_ai, resources.machines_of_loving_grace],
   body: String.raw`
-## Resources
-- ${resources.other.wikipedia_ai}
-- ${resources.books.qai}
-- ${resources.audio.machines_of_loving_grace}
-
-## Episode
 What is AI?
 - Simulate any intellectual task
 - Goals

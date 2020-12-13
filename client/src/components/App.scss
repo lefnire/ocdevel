@@ -24,25 +24,26 @@ body {
   background-color: #fafbfc;
 }
 
-.blog-posts-post {
-  max-height: 400px;
+.fade-post {
+  max-height: 200px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
+
+  .fade-post-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 30px 0;
+
+    /* "transparent" only works here because == rgba(0,0,0,0) */
+    background-image: linear-gradient(to bottom, transparent, white);
+  }
 }
 
-.blog-post-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  padding: 30px 0;
-
-  /* "transparent" only works here because == rgba(0,0,0,0) */
-  background-image: linear-gradient(to bottom, transparent, white);
-}
 
 .sidebar {
   div.logo {
@@ -109,9 +110,20 @@ body {
         text-decoration: underline;
       }
     }
+    .filters-table {
+      .ft-col1 {width: 30%;}
+      .ft-col2 {width: 70%;}
+    }
   }
 }
 
 .pointer {
   cursor: pointer;
+}
+
+.card-post {
+  p {margin-bottom: 0px;}
+  &:hover {
+    border: 1px solid $primary;
+  }
 }

@@ -57,26 +57,26 @@ function Post() {
 }
 
 function Posts() {
-  const posts = _.sortBy(blog, e => -moment(e.date));
+  // const posts = _.sortBy(blog, e => -moment(e.date));
+  const posts = blog;
 
   function renderPost(p) {
-    return <div key={p.id} className='blog-posts-post'>
-      <Card>
-        <Card.Body>
-          <Card.Title><Link to={'/blog/' + p.id}>{p.title}</Link></Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            {moment(p.date).format(fmt)}
-          </Card.Subtitle>
-          <Card.Text>
-            {typeof(p.body) === 'string'
-              ? <ReactMarkdown source={p.body} linkTarget="_blank" />
-              : p.body
-            }
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <div className='blog-post-fade'></div>
-    </div>
+    return <Card key={p.id} className='mb-3 card-post'>
+      <Card.Body>
+        <Card.Title><Link to={'/blog/' + p.id}>{p.title}</Link></Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          {moment(p.date).format(fmt)}
+        </Card.Subtitle>
+        <div className='fade-post'>
+          {typeof(p.body) === 'string'
+            ? <ReactMarkdown source={p.body} linkTarget="_blank" />
+            : p.body
+          }
+          <div className='fade-post-bottom'></div>
+        </div>
+        <Link to={'/blog/' + p.id}>Read More</Link>
+      </Card.Body>
+    </Card>
   }
 
   return <div>

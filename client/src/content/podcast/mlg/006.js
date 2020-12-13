@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Certificates & Degrees",
@@ -11,19 +11,23 @@ export default {
     duration: "15:36"
   },
   libsynEpisode: 5440753,
+  resources: [
+    resources.udacity_ml,
+    resources.udacity_ai,
+    resources.udacity_self_driving,
+    resources.omscs
+  ],
   teaser: "Discussion on certificates and degrees from Udacity to a Masters degree.",
-  body:
-`## Resources
-- ${resources.other.degrees_convos}
+  body: `
+See online discussions about degrees/certifications: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)
 
-## Episode
 Self-edify
 - Coursera Specialization - flat $500
 - Udacity Nanodegree - $200/m (discount if timely completion)
   - Great for self-teaching, not recognized degree
-  - [Machine Learning](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009)
-  - [Self Driving Car](https://www.udacity.com/drive)
-  - [Artificial Intelligence](https://www.udacity.com/ai)
+  - Machine Learning
+  - Self Driving Car
+  - Artificial Intelligence
 
 [OMSCS](https://www.omscs.gatech.edu/): Great & cheap online masters degree
 

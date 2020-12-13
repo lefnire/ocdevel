@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Linear Regression",
@@ -11,12 +11,11 @@ export default {
     duration: "33:40"
   },
   libsynEpisode: 5440754,
+  resources: [
+    resources.ng
+  ],
   teaser: "Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression",
-  body:
-`## Resources
-- ${resources.courses.ng_1} 
-
-## Episode
+  body: `
 See [Andrew Ng Week 2 Lecture Notes](https://www.coursera.org/learn/machine-learning/resources/QQx8l)
 `
 }

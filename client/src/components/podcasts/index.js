@@ -1,5 +1,17 @@
 import React, {useState} from 'react';
-import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, Badge, ButtonGroup, Alert} from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Button,
+  OverlayTrigger,
+  Popover,
+  Modal,
+  Card,
+  Badge,
+  ButtonGroup,
+  Alert,
+  Table
+} from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
@@ -7,7 +19,13 @@ import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
 import {
   FaUnlock,
-  BsArrowUpDown, FaExternalLinkAlt, FaLink, FaTags, FaChevronDown, FaChevronUp, FaInfoCircle
+  BsArrowUpDown,
+  FaExternalLinkAlt,
+  FaLink,
+  FaTags,
+  FaChevronDown,
+  FaChevronUp,
+  FaInfoCircle
 } from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
@@ -19,6 +37,14 @@ import podcast from '../../content/podcast';
 import {filters, resources, filterKeys} from '../../content/podcast/resources'
 const fmt = 'MMM DD, YYYY';
 
+function ReactMarkdown_({source}) {
+  // TODO turn h2s into h3s
+  return <ReactMarkdown
+    source={source}
+    linkTarget="_blank"
+  />
+
+}
 
 function EpisodeFull() {
   const {id} = useParams()
@@ -58,7 +84,7 @@ function EpisodeFull() {
         </Card.Subtitle>
         <Card.Text>
           {body? (
-            <ReactMarkdown source={body} linkTarget="_blank" />
+            <ReactMarkdown_ source={body} />
           ): (
             <p>{episode.teaser}</p>
           )}
@@ -101,24 +127,24 @@ function Resource({resource}) {
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
     if (!resourceFilter) {return null}
-    return <>
-      <dt {...helpAttrs(filter.d, 'pointer col-sm-3')}>
+    return <tr>
+      <td {...helpAttrs(filter.d, 'pointer')}>
         {filter.t}
-      </dt>
-      <dd {...helpAttrs(resourceFilter.d, 'pointer col-sm-9')}>
+      </td>
+      <td {...helpAttrs(resourceFilter.d, 'pointer')}>
         {renderIcon(filterKey)}
         {resourceFilter.t || resourceFilter}
-      </dd>
-    </>
+      </td>
+    </tr>
     // <Popover_ /> showing at random pages on page
   }
 
   function renderLinks() {
-    return <>
-      <dt {...helpAttrs("Where to get this resource", 'pointer col-sm-3')}>
+    return <tr>
+      <td {...helpAttrs("Where to get this resource", 'pointer')}>
         Links
-      </dt>
-      <dd className='col-sm-9'>
+      </td>
+      <td>
         {resource.links.map(l => (
           <a
             {...helpAttrs(filters.price.opts[l.p].d, 'mr-2')}
@@ -128,25 +154,40 @@ function Resource({resource}) {
             {l.t} ({l.p})
           </a>
         ))}
-      </dd>
-    </>
+      </td>
+    </tr>
   }
 
+  const fontWeight = {
+    essential: 600,
+    supplementary: 400
+  }[resource.importance] || 500
   return <li>
     <div onClick={toggle} className='pointer'>
       {show ? <FaChevronUp /> :<FaChevronDown />}
-      <span className='mx-2'>{resource.t}</span>
+      <span className="mx-2" style={{fontWeight}}>
+        {resource.t}
+      </span>
       {filterKeys.map(renderIcon)}
     </div>
     {show && <>
-      <div className='small ml-3'>
-        <dl className='row'>
-          {renderLinks()}
-          {filterKeys.map(renderFilter)}
-        </dl>
+      {resource.d && <div className='small text-muted my-2'>
+        <ReactMarkdown_ source={resource.d} />
+      </div>}
+      <div className='mb-2 small'>
+        <Table striped size='sm mb-0 filters-table'>
+          <colgroup>
+            <col className='ft-col1' />
+            <col className='ft-col2' />
+	        </colgroup>
+          <tbody>
+            {renderLinks()}
+            {filterKeys.map(renderFilter)}
+          </tbody>
+        </Table>
         {showHelp ?
-          <Alert variant='info'>{showHelp}</Alert> :
-          <Alert variant='info'><FaInfoCircle /> Hover over a key/value for information</Alert>
+          <Alert variant='info mt-0'>{showHelp}</Alert> :
+          <Alert variant='info mt-0'><FaInfoCircle /> Hover over a key/value for information</Alert>
         }
       </div>
     </>}
@@ -164,27 +205,31 @@ function EpisodeTeaser({e}) {
   } else {
     title = <Link to={`/mlg/${e.episode}`}>{title}</Link>
   }
-  return <div key={e.guid} className='episode-teaser mb-3'>
-    <Card>
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Subtitle className='text-muted mb-2'>
-          {moment(e.created).format(fmt)}
-          {e.updated && <>
-            <span> (updated {moment(e.updated).format(fmt)})</span>
-          </>}
-        </Card.Subtitle>
-        <p>{e.teaser}</p>
-      </Card.Body>
-      {e.resources && <Card.Footer className='resources'>
-        <Card.Title>Resources</Card.Title>
-        <ul className='list-unstyled'>
-          {e.resources.map(r => <Resource resource={r} key={r.id} />)}
-        </ul>
-      </Card.Footer>}
-      {footer && <Card.Footer>{footer}</Card.Footer>}
-    </Card>
-  </div>
+  const body = e.body && e.teaser ? `${e.teaser}\n\n${e.body}` :
+    e.body || e.teaser
+  return <Card key={e.guid} className='episode-teaser mb-3 card-post'>
+    <Card.Body>
+      <Card.Title>{title}</Card.Title>
+      <Card.Subtitle className='text-muted mb-2'>
+        {moment(e.created).format(fmt)}
+        {e.updated && <>
+          <span> (updated {moment(e.updated).format(fmt)})</span>
+        </>}
+      </Card.Subtitle>
+      <div className='fade-post'>
+        <ReactMarkdown_ source={body} />
+        <div className='fade-post-bottom' />
+      </div>
+      {!e.mla && <Link to={`/mlg/${e.episode}`}>Read More</Link>}
+    </Card.Body>
+    {e.resources && <Card.Footer className='resources'>
+      <Card.Title>Resources</Card.Title>
+      <ul className='list-unstyled'>
+        {e.resources.map(r => <Resource resource={r} key={r.id} />)}
+      </ul>
+    </Card.Footer>}
+    {footer && <Card.Footer>{footer}</Card.Footer>}
+  </Card>
 }
 
 function Episodes() {

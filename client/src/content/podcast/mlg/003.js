@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Inspiration",
@@ -12,13 +12,13 @@ export default {
   },
   libsynEpisode: 5440756,
   teaser: "Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.",
-  body:
-`## Resources
-- ${resources.audio.singularity_is_near}
-- ${resources.audio.ttc_consciousness}
-- ${resources.audio.superintelligence}
+  resources: [
+    resources.singularity_is_near,
 
-## Episode
+    resources.tgc_consciousness,
+    resources.superintelligence,
+  ],
+  body: String.raw`
 Economics / Automation
 - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)
 - [Is your job safe?](http://www.bbc.com/news/technology-34066941)

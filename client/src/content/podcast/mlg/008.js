@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Math",
@@ -11,13 +11,12 @@ export default {
     duration: "27:23"
   },
   libsynEpisode: 5440751,
+  resources: [
+    resources.math_primer,
+  ],
   teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
-  body:
-`## Resources
+  body: `
 Come back here after you've finished Ng's course; or learn these resources in tandem with ML (say 1 day a week).
-
-Primers (PDFs)
-- ${resources.other.math_primer}
 
 KhanAcademy: 
 - ${resources.courses.linear_algebra}
@@ -36,7 +35,6 @@ Audio (supplementary material)
 - ${resources.audio.info_theory}
 - ${resources.audio.video_to_audio}
 
-## Episode
 - Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
 - Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
 - Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.`

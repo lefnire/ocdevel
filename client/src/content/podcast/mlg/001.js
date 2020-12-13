@@ -25,7 +25,6 @@ export default {
     resources.learning_machines_101,
   ],
   body: String.raw`
-Links:
 - [OCDevel Website](https://ocdevel.com)
 - [Show notes](https://ocdevel.com/mlg/1)
 - Gnothi (podcast project): [website](https://gnothiai.com), [Github](https://github.com/lefnire/gnothi)
