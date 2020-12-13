@@ -104,7 +104,11 @@ body {
   }
 
   .resources {
-    .filters {margin-top: -1rem;}
+    dd, dt {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 

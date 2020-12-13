@@ -1,66 +1,102 @@
+import _ from 'lodash'
+import {
+  FaBlog,
+  FaBook,
+  FaChalkboardTeacher,
+  FaCouch, FaEye,
+  FaHeadphones, FaInfo,
+  FaMicrophone, FaNewspaper, FaRegGem, FaRegSmile,
+  FaRunning, FaTrophy,
+  FaVideo, GiBattery0, GiBattery100, GiBattery50, IoIosChatbubbles, TiSortAlphabetically
+} from "react-icons/all";
+
 export const filters = {
   engagement: {
-    _title: "Engagement",
-    _desc: `Is this resource "sit back and enjoy", or does it require coding challenges, exercises, etc?`,
-    active: ["Active", "Requires engagement, like assignments or exercises"],
-    passive: ["Passive", "Passive learning resource, like podcasts or videos"]
+    t: "Engagement",
+    d: `Is this resource "sit back and enjoy", or does it require coding challenges, exercises, etc?`,
+    opts: {
+      active: {t: "Active", d: "Requires engagement, like assignments or exercises", i: <FaRunning />},
+      passive: {t: "Passive", d: "Passive learning resource, like podcasts or videos", i: <FaCouch />}
+    }
   },
   difficulty: {
-    _title: "Difficulty",
-    _desc: `How hard is this resource to consume? Ie, how much caffeine do you need?`,
-    easy: ["Easy", "Very easy material"],
-    medium: ["Medium", "Somewhat difficult material, be caffeinated"],
-    hard: ["Hard", "Difficult material, for hard-core learning sessions"]
+    t: "Difficulty",
+    d: `How hard is this resource to consume? Ie, how much caffeine do you need?`,
+    opts: {
+      easy: {t: "Easy", d: "Very easy material", i: <GiBattery0 />},
+      medium: {t: "Medium", d: "Somewhat difficult material, be caffeinated", i: <GiBattery50 />},
+      hard: {t: "Hard", d: "Difficult material, for hard-core learning sessions", i: <GiBattery100 />},
+    }
   },
   format: {
-    _title: "Format",
-    _desc: `Resource format (book, video, course, etc).`,
-    audiobook: ["Audiobook", "Audiobook or similar learning resources"],
-    podcast: ["Podcast", "Podcast"],
-    video: ["Video", "Video learning resource"],
-    book: ["Book", "Book resource. Textbooks or tradebooks"],
-    course: ["Course", "Online course. Either do-it-yourself (no grading) or graded with assignments"],
-    other: ["Other", "Other learning resources like articles & blogs"]
+    t: "Format",
+    d: `Resource format (book, video, course, etc).`,
+    opts: {
+      audiobook: {t: "Audiobook", d: "Audiobook or similar learning resources", i: <FaHeadphones />},
+      podcast: {t: "Podcast", d: "Podcast", i: <FaMicrophone />},
+      video: {t: "Video", d: "Video learning resource", i: <FaVideo />},
+      book: {t: "Book", d: "Book resource. Textbooks or tradebooks", i: <FaBook />},
+      course: {t: "Course", d: "Online course. Either do-it-yourself (no grading) or graded with assignments", i: <FaChalkboardTeacher />},
+      other: {t: "Other", d: "Other learning resources like articles & blogs", i: <FaBlog />},
+    }
   },
   video2audio: {
-    _title: "Video->Audio",
-    _desc: `For video resources, could you just listen to the video without watching it and still benefit?`,
-    bad: ["No-Go", "Watch it as a video, you'll need the visuals"],
-    medium: ["Doable", "Could be consumed as audio-only, but not for the feint of heart"],
-    good: ["As Good", "Almost just as good to listen to this video resource audio-only. Speaker does a great job orating the visuals."]
+    t: "Video->Audio",
+    d: `For video resources, could you just listen to the video without watching it and still benefit?`,
+    opts: {
+      bad: {t: "No-Go", d: "Watch it as a video, you'll need the visuals"},
+      medium: {t: "Doable", d: "Could be consumed as audio-only, but not for the feint of heart"},
+      good: {t: "As Good", d: "Almost just as good to listen to this video resource audio-only. Speaker does a great job orating the visuals."},
+
+    }
   },
   relevance: {
-    _title: "Relevance",
-    _desc: `How up-to-date is this resource, in cases where it matters (eg with languages/frameworks)?`,
-    fresh: ["Fresh", "An up-to-date resource, or timeless"],
-    dated: ["Dated", "A dated resource, unless it's marked 'essential', see if you can find something newer"]
+    t: "Relevance",
+    d: `How up-to-date is this resource, in cases where it matters (eg with languages/frameworks)?`,
+    opts: {
+      fresh: {t: "Fresh", d: "An up-to-date resource, or timeless"},
+      dated: {t: "Dated", d: "A dated resource, unless it's marked 'essential', see if you can find something newer"},
+    }
   },
   importance: {
-    _title: "Importance",
-    _desc: `How important is this resource? This is the most important tag; it tells you what you must consume, vs what's nice to consume`,
-    supplementary: ["Supplementary", "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter"],
-    valuable: ["Valuable", "Quite a valuable resource. If you have the extra time, do it"],
-    essential: ["Essential", "Required. If interested in this topic, you _need_ this resource"]
+    t: "Importance",
+    d: `How important is this resource? This is the most important tag; it tells you what you must consume, vs what's nice to consume`,
+    opts: {
+      supplementary: {t: "Supplementary", d: "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter"},
+      valuable: {t: "Valuable", d: "Quite a valuable resource. If you have the extra time, do it"},
+      essential: {t: "Essential", d: "Required. If interested in this topic, you _need_ this resource", i: <FaTrophy color='#007bff' />},
+    }
   },
   topic: {
-    _title: "Topic",
-    _desc: `What ML topic is this resource relevant to?`,
-    basics: ["Basics", "ML basics, information, end-to-end stuff"],
-    math: ["Math", "Fundamental math for ML"],
-    vision: ["Vision", "Computer vision (CV)"],
-    nlp: ["Language", "Natural Language Processing (NLP)"],
+    t: "Topic",
+    d: `What ML topic is this resource relevant to?`,
+    opts: {
+      fun: {t: "Fun", d: "Fun and inspirational material, like consciousness and futurology", i: <FaRegSmile />},
+      basics: {t: "Basics", d: "ML basics, information, end-to-end stuff", i: <TiSortAlphabetically />},
+      news_interviews: {t: "News & Interviews", d: "Latest news & interviews in ML, mostly non-technical", i: <FaNewspaper />},
+      math: {t: "Math", d: "Fundamental math for ML"},
+      vision: {t: "Vision", d: "Computer vision (CV)", i: <FaEye />},
+      nlp: {t: "Language", d: "Natural Language Processing (NLP)", i: <IoIosChatbubbles />},
+    }
   },
   price: {
-    _title: "Price",
-    _desc: "Cost of this resource (look for other links, there are sometimes free versions)"
+    t: "Price",
+    d: "Cost of this resource (look for other links, there are sometimes free versions)",
+    opts: {
+      free: {t: "Free", d: "Free! Look for this on resources which have paid links (eg Amazon), sometimes professors release the PDF for free while continuing to sell elsewhere"},
+      "$": {t: "$", d: "Cheap. Under $10"},
+      "$$": {t: "$$", d: "Medium-priced. $10-$100"},
+      "$$$": {t: "$$$", d: "Expensive. >$100"},
+      [undefined]: ""
+    }
   },
   updated: {
-    _title: "Updated At",
-    _desc: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives."
+    t: "Updated At",
+    d: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives.",
   }
 }
 
-export const resourceKeys = [
+export const filterKeys = [
   // Specify filter-key order (since is {} above)
   'importance',
   'format',
@@ -70,24 +106,103 @@ export const resourceKeys = [
   'topic',
   'relevance',
   // Extra keys added per resource
-  'price',
-  'updated'
+  // 'price',
+  'updated',
+  // or_
 ]
 
+const podcasts = _.mapValues({
+  twiml_and_ai: {
+    t: "TWiML and AI",
+    // d: "News & interviews podcast",
+    links: [{t: "Website", l: "https://twimlai.com", p: "free"}],
+    topic: "news_interviews"
+  },
 
-export const resources = {
-qai: {
-  title: "The Quest for Artificial Intelligence",
-  links: ["[Amazon](http://amzn.to/2kRd4Ie)", "[Free PDF](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)"],
+  oreilly_data_show: {
+    t: "O'Reilly Data Show",
+    links: [{t: "Website", l: "https://www.oreilly.com/topics/oreilly-data-show-podcast", p: "free"}],
+    topic: "news_interviews"
+  },
+
+  talking_machines: {
+    t: "Talking machines",
+    links: [{t: "Website", l: "http://www.thetalkingmachines.com/", p: "free"}],
+    topic: "news_interviews"
+  },
+
+  linear_digressions: {
+    t: "Linear Digressions",
+    links: [{t: "Website", l: "http://lineardigressions.com/", p: "free"}],
+    topic: "basics"
+  },
+
+  data_skeptic: {
+    t: "Data Skeptic",
+    links: [{t: "Website", l: "https://dataskeptic.com/", p: "free"}],
+    topic: "basics"
+  },
+
+  // Very dated, excluding
+  // partially_derivative: {
+  //   t: "Partially Derivative",
+  //   links: [{t: "Website", l: "http://partiallyderivative.com/", p: "free"}],
+  //   topic: "basics",
+  //   relevance: "dated",
+  // },
+
+  learning_machines_101: {
+    t: "Learning machines 101",
+    links: [{t: "Website", l: "http://www.learningmachines101.com/", p: "free"}],
+    topic: "basics"
+  }
+}, (v) => ({
   engagement: "passive",
-  difficulty: "hard",
-  format: "book",
+  difficulty: "easy",
+  format: "podcast",
   relevance: "fresh",
   importance: "supplementary",
-  topic: "basics",
-  price: "Free"
-},
+  ...v,
+}))
 
+const tgc = _.mapValues({
+  tgc_ml: {
+    t: "TGC Machine Learning",
+    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fintroduction-to-machine-learning.html%3Fai%3D107119&intsrc=PUI1_1204"}],
+    topic: "basics"
+  }
+}, v => ({
+  engagement: "passive",
+  difficulty: "hard",
+  format: "video",
+  video2audio: "good",
+  relevance: "fresh",
+  importance: "essential",
+  ...v
+}))
+
+
+export const resources = _.mapValues({
+  ...podcasts,
+  ...tgc,
+
+  qai: {
+    t: "The Quest for Artificial Intelligence",
+    d: "Textbook about the history of AI",
+    links: [
+      {t: "Amazon", l: "http://amzn.to/2kRd4Ie", p: "$$"},
+      {t: "PDF", l: "http://ai.stanford.edu/~nilsson/QAI/qai.pdf", p: "free"}
+    ],
+    engagement: "passive",
+    difficulty: "hard",
+    format: "book",
+    relevance: "fresh",
+    importance: "supplementary",
+    topic: "basics",
+    // or_: other_resource
+  },
+
+  ////////////////////////////////////////////////////////////
   books: {
     qai: `[The Quest for Artificial Intelligence](http://amzn.to/2kRd4Ie) ([Free PDF?](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)) \`book:hard\` AI history`,
 
@@ -168,5 +283,5 @@ qai: {
     tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`,
     project_repo: `[TForce BTC Trader](https://github.com/lefnire/tforce_btc_trader) (podcast project)`
   }
-};
-resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;
+}, (v, k) => ({...v, id: k}))
+// resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;

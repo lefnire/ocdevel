@@ -1,3 +1,5 @@
+import {resources} from '../resources'
+
 export default {
   title: "Introduction",
   episode: 1,
@@ -11,13 +13,23 @@ export default {
   libsynEpisode: 5440758,
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   teaser: "Introduction to the Machine Learning Guide",
+  resources: [
+    resources.tgc_ml,
+
+    resources.twiml_and_ai,
+    resources.oreilly_data_show,
+    resources.talking_machines,
+
+    resources.linear_digressions,
+    resources.data_skeptic,
+    resources.learning_machines_101,
+  ],
   body: String.raw`
 Links:
 - [OCDevel Website](https://ocdevel.com)
 - [Show notes](https://ocdevel.com/mlg/1)
-- Gnothi, podcast project: [website](https://gnothiai.com), [Github](https://github.com/lefnire/gnothi)
+- Gnothi (podcast project): [website](https://gnothiai.com), [Github](https://github.com/lefnire/gnothi)
 - [Machine Learning Applied](https://www.patreon.com/machinelearningguide), [get free access](http://ocdevel.com/mlg/free-access)
-- Me: [Tyler Renelle](https://www.linkedin.com/in/lefnire)
 
 What is this podcast? 
 - "Middle" level overview (deeper than a bird's eye view of machine learning; higher than math equations)
@@ -31,17 +43,9 @@ Why audio?
 - Supplementary content for commute/exercise/chores will help solidify your book/course-work
 
 What it's not
-- News and Interviews
-  - [TWiML and AI](https://twimlai.com)
-  - [O'Reilly Data Show](https://www.oreilly.com/topics/oreilly-data-show-podcast)
-  - [Talking machines](http://www.thetalkingmachines.com/)
-- Misc Topics
-  - [Linear Digressions](http://lineardigressions.com/)
-  - [Data Skeptic](https://dataskeptic.com/)
-  - [Partially Derivative](http://partiallyderivative.com/)
-  - [Learning machines 101](http://www.learningmachines101.com/)
+- News and Interviews: TWiML and AI, O'Reilly Data Show, Talking machines
+- Misc Topics: Linear Digressions, Data Skeptic, Learning machines 101
 - iTunesU issues
-- [The Great Courses: Machine Learning](https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fintroduction-to-machine-learning.html%3Fai%3D107119&intsrc=PUI1_1204)
 
 Planned episodes
 - What is AI/ML: definition, comparison, history

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, Badge, ButtonGroup} from 'react-bootstrap';
+import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, Badge, ButtonGroup, Alert} from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
@@ -16,7 +16,7 @@ import {BackButton, patreonLink, Popover_} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import podcast from '../../content/podcast';
-import {filters, resources, resourceKeys} from '../../content/podcast/resources'
+import {filters, resources, filterKeys} from '../../content/podcast/resources'
 const fmt = 'MMM DD, YYYY';
 
 
@@ -76,56 +76,78 @@ function EpisodeFull() {
   </div>
 }
 
-function Resource({r}) {
-  const [show, setShow] = useState(true)
+function Resource({resource}) {
+  const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
 
   function toggle() {setShow(!show)}
+  function resetHelp() {setShowHelp(null)}
+  const helpAttrs = (helpMsg, className=null) => ({
+    className,
+    onMouseEnter: () => setShowHelp(helpMsg),
+    onMouseLeave: resetHelp
+  })
 
-  function renderFilter(k) {
-    const resource = filters[k][r[k]]
-    if (!resource) {return null}
-    const filter_ = filters[k]
-    return <li>
-      <span
-        className="pointer"
-        onMouseEnter={() => setShowHelp(filter_._desc)}
-        onMouseLeave={() => setShowHelp(null)}
-      >
-        {filter_._title}:{' '}
-      </span>
-      <span
-        className="pointer"
-        onMouseEnter={() => setShowHelp(resource[1])}
-        onMouseLeave={() => setShowHelp(null)}
-      >
-        {resource[0]}
-      </span>
-    </li>
+  function renderIcon(filterKey) {
+    if (!resource || !resource[filterKey]) {return } // FIXME due to old resources?
+    const filter = filters[filterKey]
+    const resourceFilter = filter.opts[resource[filterKey]]
+    if (!resourceFilter || !resourceFilter.i) {return null}
+    return <span className='mr-2 text-muted'>{resourceFilter.i}</span>
+  }
+
+  function renderFilter(filterKey) {
+    if (!resource || !resource[filterKey]) {return } // FIXME due to old resources?
+    const filter = filters[filterKey]
+    const resourceFilter = filter.opts[resource[filterKey]]
+    if (!resourceFilter) {return null}
+    return <>
+      <dt {...helpAttrs(filter.d, 'pointer col-sm-3')}>
+        {filter.t}
+      </dt>
+      <dd {...helpAttrs(resourceFilter.d, 'pointer col-sm-9')}>
+        {renderIcon(filterKey)}
+        {resourceFilter.t || resourceFilter}
+      </dd>
+    </>
     // <Popover_ /> showing at random pages on page
+  }
+
+  function renderLinks() {
+    return <>
+      <dt {...helpAttrs("Where to get this resource", 'pointer col-sm-3')}>
+        Links
+      </dt>
+      <dd className='col-sm-9'>
+        {resource.links.map(l => (
+          <a
+            {...helpAttrs(filters.price.opts[l.p].d, 'mr-2')}
+            href={l.l}
+            target="_blank"
+          >
+            {l.t} ({l.p})
+          </a>
+        ))}
+      </dd>
+    </>
   }
 
   return <li>
     <div onClick={toggle} className='pointer'>
-      {r.title}{' '}
       {show ? <FaChevronUp /> :<FaChevronDown />}
+      <span className='mx-2'>{resource.t}</span>
+      {filterKeys.map(renderIcon)}
     </div>
     {show && <>
       <div className='small ml-3'>
-        <ul className='list-inline'>
-          <li className='list-inline-item'><FaLink /></li>
-          {r.links.map(l => (
-            <li className='list-inline-item'>
-              <ReactMarkdown source={l} linkTarget="_blank" />
-            </li>
-          ))}
-        </ul>
-        <ul className='list-inline filters'>
-          {resourceKeys.map(renderFilter)}
-        </ul>
-        {showHelp && <div className='mt-1'>
-          <FaInfoCircle /> {showHelp}
-        </div>}
+        <dl className='row'>
+          {renderLinks()}
+          {filterKeys.map(renderFilter)}
+        </dl>
+        {showHelp ?
+          <Alert variant='info'>{showHelp}</Alert> :
+          <Alert variant='info'><FaInfoCircle /> Hover over a key/value for information</Alert>
+        }
       </div>
     </>}
   </li>
@@ -144,22 +166,20 @@ function EpisodeTeaser({e}) {
   }
   return <div key={e.guid} className='episode-teaser mb-3'>
     <Card>
-      <Card.Header>
+      <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Subtitle className='text-muted'>
+        <Card.Subtitle className='text-muted mb-2'>
           {moment(e.created).format(fmt)}
           {e.updated && <>
             <span> (updated {moment(e.updated).format(fmt)})</span>
           </>}
         </Card.Subtitle>
-      </Card.Header>
-      <Card.Body>
         <p>{e.teaser}</p>
       </Card.Body>
       {e.resources && <Card.Footer className='resources'>
         <Card.Title>Resources</Card.Title>
         <ul className='list-unstyled'>
-          {e.resources.map(r => <Resource r={r} />)}
+          {e.resources.map(r => <Resource resource={r} key={r.id} />)}
         </ul>
       </Card.Footer>}
       {footer && <Card.Footer>{footer}</Card.Footer>}
