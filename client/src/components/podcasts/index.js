@@ -7,15 +7,16 @@ import ReactDisqusComments from 'react-disqus-comments';
 import _ from 'lodash';
 import {
   FaUnlock,
-  BsArrowUpDown
+  BsArrowUpDown, FaExternalLinkAlt, FaLink, FaTags, FaChevronDown, FaChevronUp, FaInfoCircle
 } from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
 import Sidebar from './Sidebar'
-import {BackButton, patreonLink} from './utils'
+import {BackButton, patreonLink, Popover_} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import podcast from '../../content/podcast';
+import {filters, resources, resourceKeys} from '../../content/podcast/resources'
 const fmt = 'MMM DD, YYYY';
 
 
@@ -49,7 +50,12 @@ function EpisodeFull() {
       <Card.Body>
         <BackButton />
         <Card.Title>{episode.title}</Card.Title>
-        <Card.Subtitle className='text-muted mb-2'>{moment(episode.date).format(fmt)}</Card.Subtitle>
+        <Card.Subtitle className='text-muted mb-2'>
+          {moment(episode.created).format(fmt)}
+          {episode.updated && <>
+            <span> (updated {moment(episode.updated).format(fmt)})</span>
+          </>}
+        </Card.Subtitle>
         <Card.Text>
           {body? (
             <ReactMarkdown source={body} linkTarget="_blank" />
@@ -64,10 +70,65 @@ function EpisodeFull() {
           shortname="ocdevel"
           identifier={episode.guid}
           title={`${episode.title} | ${podcast.title}`}
-          url={`http://ocdevel.com/mlg/${id}`}/>
+          url={`https://ocdevel.com/mlg/${id}`}/>
       </Card.Footer>
     </Card>
   </div>
+}
+
+function Resource({r}) {
+  const [show, setShow] = useState(true)
+  const [showHelp, setShowHelp] = useState()
+
+  function toggle() {setShow(!show)}
+
+  function renderFilter(k) {
+    const resource = filters[k][r[k]]
+    if (!resource) {return null}
+    const filter_ = filters[k]
+    return <li>
+      <span
+        className="pointer"
+        onMouseEnter={() => setShowHelp(filter_._desc)}
+        onMouseLeave={() => setShowHelp(null)}
+      >
+        {filter_._title}:{' '}
+      </span>
+      <span
+        className="pointer"
+        onMouseEnter={() => setShowHelp(resource[1])}
+        onMouseLeave={() => setShowHelp(null)}
+      >
+        {resource[0]}
+      </span>
+    </li>
+    // <Popover_ /> showing at random pages on page
+  }
+
+  return <li>
+    <div onClick={toggle} className='pointer'>
+      {r.title}{' '}
+      {show ? <FaChevronUp /> :<FaChevronDown />}
+    </div>
+    {show && <>
+      <div className='small ml-3'>
+        <ul className='list-inline'>
+          <li className='list-inline-item'><FaLink /></li>
+          {r.links.map(l => (
+            <li className='list-inline-item'>
+              <ReactMarkdown source={l} linkTarget="_blank" />
+            </li>
+          ))}
+        </ul>
+        <ul className='list-inline filters'>
+          {resourceKeys.map(renderFilter)}
+        </ul>
+        {showHelp && <div className='mt-1'>
+          <FaInfoCircle /> {showHelp}
+        </div>}
+      </div>
+    </>}
+  </li>
 }
 
 function EpisodeTeaser({e}) {
@@ -83,13 +144,24 @@ function EpisodeTeaser({e}) {
   }
   return <div key={e.guid} className='episode-teaser mb-3'>
     <Card>
-      <Card.Body>
+      <Card.Header>
         <Card.Title>{title}</Card.Title>
-        <Card.Subtitle>{moment(e.date).format(fmt)}</Card.Subtitle>
-        <Card.Text>
-          <p>{e.teaser}</p>
-        </Card.Text>
+        <Card.Subtitle className='text-muted'>
+          {moment(e.created).format(fmt)}
+          {e.updated && <>
+            <span> (updated {moment(e.updated).format(fmt)})</span>
+          </>}
+        </Card.Subtitle>
+      </Card.Header>
+      <Card.Body>
+        <p>{e.teaser}</p>
       </Card.Body>
+      {e.resources && <Card.Footer className='resources'>
+        <Card.Title>Resources</Card.Title>
+        <ul className='list-unstyled'>
+          {e.resources.map(r => <Resource r={r} />)}
+        </ul>
+      </Card.Footer>}
       {footer && <Card.Footer>{footer}</Card.Footer>}
     </Card>
   </div>

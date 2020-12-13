@@ -1,4 +1,4 @@
-import {Button} from "react-bootstrap";
+import {Button, Popover, OverlayTrigger} from "react-bootstrap";
 import {FaArrowLeft} from "react-icons/all";
 import {LinkContainer} from "react-router-bootstrap";
 import React from "react";
@@ -15,3 +15,20 @@ export function BackButton() {
 }
 
 export const patreonLink = 'https://www.patreon.com/machinelearningguide'
+
+export function Popover_({children, content, id=null, title=null, opts={}}) {
+  const popover = (
+    <Popover id={id || +new Date}>
+      {title && <Popover.Title as="h3">Popover right</Popover.Title>}
+      <Popover.Content>
+        {content}
+      </Popover.Content>
+    </Popover>
+  );
+
+  return (
+    <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} {...opts}>
+      {children}
+    </OverlayTrigger>
+  );
+}

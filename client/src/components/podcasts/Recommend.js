@@ -19,7 +19,7 @@ export default function Recommend() {
         shortname="ocdevel"
         identifier="machine-learning-recommend"
         title={`Recommend an Episode | ${podcast.title}`}
-        url="http://ocdevel.com/mlg/recommend" />
+        url="https://ocdevel.com/mlg/recommend" />
     </Card.Footer>
   </Card>
 }

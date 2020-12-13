@@ -3,7 +3,7 @@ import {resources} from '../resources'
 export default {
   title: "What is AI / ML",
   episode: 2,
-  date: "2017-02-09",
+  created: "2017-02-09",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3",

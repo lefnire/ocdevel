@@ -52,7 +52,6 @@ body {
       //height: 140px;
     }
   }
-
 }
 
 .zocial {
@@ -103,4 +102,12 @@ body {
     border-radius: 0 .25rem .25rem 0;
     border-left: 3px solid $primary;
   }
+
+  .resources {
+    .filters {margin-top: -1rem;}
+  }
+}
+
+.pointer {
+  cursor: pointer;
 }

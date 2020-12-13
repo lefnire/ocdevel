@@ -1,57 +1,91 @@
 export const filters = {
   engagement: {
+    _title: "Engagement",
+    _desc: `Is this resource "sit back and enjoy", or does it require coding challenges, exercises, etc?`,
     active: ["Active", "Requires engagement, like assignments or exercises"],
     passive: ["Passive", "Passive learning resource, like podcasts or videos"]
   },
   difficulty: {
+    _title: "Difficulty",
+    _desc: `How hard is this resource to consume? Ie, how much caffeine do you need?`,
     easy: ["Easy", "Very easy material"],
     medium: ["Medium", "Somewhat difficult material, be caffeinated"],
     hard: ["Hard", "Difficult material, for hard-core learning sessions"]
   },
   format: {
-    audio: {
-      audiobook: ["Audiobook", "Audiobook or similar learning resources"],
-      podcast: ["Podcast", "Podcast"],
-    },
+    _title: "Format",
+    _desc: `Resource format (book, video, course, etc).`,
+    audiobook: ["Audiobook", "Audiobook or similar learning resources"],
+    podcast: ["Podcast", "Podcast"],
     video: ["Video", "Video learning resource"],
     book: ["Book", "Book resource. Textbooks or tradebooks"],
     course: ["Course", "Online course. Either do-it-yourself (no grading) or graded with assignments"],
     other: ["Other", "Other learning resources like articles & blogs"]
   },
   video2audio: {
+    _title: "Video->Audio",
+    _desc: `For video resources, could you just listen to the video without watching it and still benefit?`,
     bad: ["No-Go", "Watch it as a video, you'll need the visuals"],
     medium: ["Doable", "Could be consumed as audio-only, but not for the feint of heart"],
     good: ["As Good", "Almost just as good to listen to this video resource audio-only. Speaker does a great job orating the visuals."]
   },
   relevance: {
+    _title: "Relevance",
+    _desc: `How up-to-date is this resource, in cases where it matters (eg with languages/frameworks)?`,
     fresh: ["Fresh", "An up-to-date resource, or timeless"],
     dated: ["Dated", "A dated resource, unless it's marked 'essential', see if you can find something newer"]
   },
-  value: {
+  importance: {
+    _title: "Importance",
+    _desc: `How important is this resource? This is the most important tag; it tells you what you must consume, vs what's nice to consume`,
     supplementary: ["Supplementary", "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter"],
     valuable: ["Valuable", "Quite a valuable resource. If you have the extra time, do it"],
     essential: ["Essential", "Required. If interested in this topic, you _need_ this resource"]
   },
   topic: {
+    _title: "Topic",
+    _desc: `What ML topic is this resource relevant to?`,
     basics: ["Basics", "ML basics, information, end-to-end stuff"],
     math: ["Math", "Fundamental math for ML"],
     vision: ["Vision", "Computer vision (CV)"],
     nlp: ["Language", "Natural Language Processing (NLP)"],
   },
+  price: {
+    _title: "Price",
+    _desc: "Cost of this resource (look for other links, there are sometimes free versions)"
+  },
+  updated: {
+    _title: "Updated At",
+    _desc: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives."
+  }
 }
+
+export const resourceKeys = [
+  // Specify filter-key order (since is {} above)
+  'importance',
+  'format',
+  'video2audio',
+  'difficulty',
+  'engagement',
+  'topic',
+  'relevance',
+  // Extra keys added per resource
+  'price',
+  'updated'
+]
 
 
 export const resources = {
 qai: {
   title: "The Quest for Artificial Intelligence",
-  links: ["http://amzn.to/2kRd4Ie", "[Free PDF](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)"],
-  engagement: filters.engagement.passive,
-  difficulty: filters.difficulty.hard,
-  format: filters.format.book,
-  relevance: filters.format.fresh,
-  value: filters.format.supplementary,
-  topic: filters.topic.basics,
-  price: 0
+  links: ["[Amazon](http://amzn.to/2kRd4Ie)", "[Free PDF](http://ai.stanford.edu/~nilsson/QAI/qai.pdf)"],
+  engagement: "passive",
+  difficulty: "hard",
+  format: "book",
+  relevance: "fresh",
+  importance: "supplementary",
+  topic: "basics",
+  price: "Free"
 },
 
   books: {
