@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Languages & Frameworks",
@@ -11,15 +11,14 @@ export default {
     duration: "44:17"
   },
   libsynEpisode: 5440748,
+  resources: [
+    resources.book_python,
+    resources.python_data_analysis,
+    resources.tensorflow_tuts,
+    resources.handson_tensorflow
+  ],
   teaser: "Languages & frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.",
-  body:
-`## Resources
-- ${resources.books.python}
-- ${resources.books.python_data_analysis}
-- ${resources.other.tensorflow_tuts}
-- ${resources.books.handson_tensorflow}
-
-## Episode
+  body: `
 Languages
 - C/C++
   - Performance

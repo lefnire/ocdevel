@@ -75,7 +75,7 @@ function EpisodeFull() {
       <meta name="description" content={episode.teaser} />
     </Helmet>
     <Card>
-      <Card.Body>
+      <Card.Header>
         <BackButton />
         <Card.Title>{episode.title}</Card.Title>
         <Card.Subtitle className='text-muted mb-2'>
@@ -84,16 +84,18 @@ function EpisodeFull() {
             <span> (updated {moment(episode.updated).format(fmt)})</span>
           </>}
         </Card.Subtitle>
-        <Card.Text>
-          {body? (
-            <ReactMarkdown_ source={body} />
-          ): (
-            <p>{episode.teaser}</p>
-          )}
-          {renderPlayer(podcast, episode)}
-        </Card.Text>
+      </Card.Header>
+      <Card.Body>
+        {renderPlayer(podcast, episode)}
+        <Card.Title>Resources</Card.Title>
+        <Resources resources={episode.resources} />
       </Card.Body>
       <Card.Footer>
+        {body? (
+          <ReactMarkdown_ source={body} />
+        ): (
+          <p>{episode.teaser}</p>
+        )}
         <ReactDisqusComments
           shortname="ocdevel"
           identifier={episode.guid}
@@ -216,10 +218,14 @@ function Resources({resources}) {
   const either = {}
   resources = _.reduce(resources, (m, r) => {
     if (!filtered[r.id]) {return m}
-    if (r.eitherOr && !either[r.eitherOr]) {
-      // FIXME apply filters on eitherOr
+    if (r.eitherOr) {
+      if (either[r.eitherOr]) { return m}
       either[r.eitherOr] = true
-      r = _.filter(eitherOr[r.eitherOr], r_ => filtered[r_.id])
+      r = _.filter(eitherOr[r.eitherOr], r_ => {
+        // are the other eitherOrs listed here too?
+        // are they filtered out?
+        return ~resources.indexOf(r_) && filtered[r_.id]
+      })
       if (r.length === 0) { return m }
       if (r.length === 1) { r = r[0] }
     }
@@ -279,8 +285,16 @@ function EpisodeTeaser({e}) {
 }
 
 function Episodes() {
+  const mla = useStoreState(state => state.mla)
+  const mlg = useStoreState(state => state.mlg)
+
   const episodeOrder = useStoreState(state => state.episodeOrder);
   let episodes = episodeOrder === 'new2old' ? podcast.episodes.slice().reverse() : podcast.episodes
+
+  episodes = _.filter(episodes, e => {
+    if (mla && mlg) {return true}
+    return mla ? e.mla : mlg ? e.mlg : false
+  })
 
   // TODO filter episodes
   return <div>
@@ -298,8 +312,16 @@ function ResourcesTab() {
   </Card>
 }
 
-export default function Series() {
+function MainTab() {
   const viewAs = useStoreState(state => state.viewAs)
+  return {
+    episodes: <Episodes />,
+    resources: <ResourcesTab />
+  }[viewAs]
+}
+
+export default function Series() {
+
   return <div className="podcasts">
     <Helmet>
       <title>Machine Learning Guide Podcast</title>
@@ -312,12 +334,7 @@ export default function Series() {
       </Col>
       <Col xs={12} md={8}>
         <Switch>
-          <Route path="/mlg" exact>
-            {viewAs === 'episodes' ? <Episodes />
-              : viewAs === 'resources' ? <ResourcesTab />
-              : null
-            }
-          </Route>
+          <Route path="/mlg" exact><MainTab /></Route>
           <Route path="/mlg/recommend" exact><Recommend /></Route>
           <Route path="/mlg/free-access" exact><FreeAccess /></Route>
           <Route path="/mlg/:id"><EpisodeFull /></Route>

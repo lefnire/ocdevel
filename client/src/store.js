@@ -11,7 +11,6 @@ const filters = _.transform(filters_, (m, v, k) => {
   }, {})
   m[`set_${k}`] = action((state, payload) => {
     state[k] = {...state[k], ...payload}
-    return state
   })
   return m
 }, {})
@@ -19,18 +18,26 @@ const filters = _.transform(filters_, (m, v, k) => {
 export const store = createStore({
   tab: "filters",
   setTab: action((state, tab) => {
-    return {...state, tab}
+    state.tab = tab
+  }),
+
+  mlg: true,
+  setMlg: action((state, payload) => {
+    state.mlg = payload
+  }),
+  mla: true,
+  setMla: action((state, payload) => {
+    state.mla = payload
   }),
 
   episodeOrder: 'new2old',
-  setEpisodeOrder: action((state, episodeOrder) => {
-    return {...state, episodeOrder}
+  setEpisodeOrder: action((state, payload) => {
+    state.episodeOrder = payload
   }),
 
-  // TODO
   viewAs: 'episodes',
   setViewAs: action((state, payload) => {
-    return {...state, viewAs: payload}
+    state.viewAs = payload
   }),
 
   filters,

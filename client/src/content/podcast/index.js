@@ -1,4 +1,6 @@
-const episodes = [
+import _ from 'lodash'
+
+const episodes = _.map([
   require('./mlg/001.js').default,
   require('./mlg/002.js').default,
   require('./mlg/003.js').default,
@@ -8,7 +10,7 @@ const episodes = [
   require('./mlg/007.js').default,
   require('./mlg/008.js').default,
   require('./mlg/009.js').default,
-  // require('./mlg/010.js').default,
+  require('./mlg/010.js').default,
   // require('./mlg/011.js').default,
   // require('./mlg/012.js').default,
   // require('./mlg/013.js').default,
@@ -44,7 +46,7 @@ const episodes = [
   //
   // require('./mlg/031.js').default,
   // require('./mlg/032.js').default,
-]
+], e => ({...e, mlg: !e.mla}))
 
 const podcast = {
   title: "Machine Learning Guide",

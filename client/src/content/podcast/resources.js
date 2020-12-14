@@ -124,8 +124,6 @@ const defaults = {
 const TODO = {
   books: {
     // Math
-    python: `[Python](http://amzn.to/2mVgtJW) \`book:medium\``,
-    python_data_analysis: `[Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition](https://amzn.to/2IHFh2m) \`book:easy\``,
 
     ml_with_r: `[Machine Learning with R](http://amzn.to/2n5fSUF) \`book:medium\``,
     elements_of_stat_learning: `[Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book:hard\``,
@@ -251,7 +249,8 @@ const tgc = _.mapValues({
     links: [
       {t: "TGC Statistics", l: "https://goo.gl/4vvXJs", p: "$$"},
       {t: "TGC Probability", l: "https://goo.gl/Q4KwZ6", p: "$$"},
-    ]
+    ],
+    topic: "math"
   },
 
   tgc_calc: {
@@ -260,23 +259,27 @@ const tgc = _.mapValues({
       {t: "TGC Calc 1", l: "https://goo.gl/fcLP3l", p: "$$"},
       {t: "TGC Calc 2", l: "https://goo.gl/sBpljN", p: "$$"},
       {t: "TGC Calc 3", l: "https://goo.gl/8Hdwuh", p: "$$"}
-    ]
+    ],
+    topic: "math"
   },
 
   tgc_math_decision_making: {
     t: "TGC Mathematical Decision Making",
     d: "Course on \"Operations Research\", similar to ML",
-    links: [{t: "TGC", l: "https://goo.gl/V75I49"}]
+    links: [{t: "TGC", l: "https://goo.gl/V75I49"}],
+    topic: "basics"
   },
 
   tgc_info_theory: {
     t: "TGC Information Theory",
-    links: [{t: "https://goo.gl/ugAi2m", l: "https://goo.gl/ugAi2m", p: "$$"}]
+    links: [{t: "https://goo.gl/ugAi2m", l: "https://goo.gl/ugAi2m", p: "$$"}],
+    topic: "math"
   },
 
   tgc_linear_algebra: {
     t: "TGC Linear Algebra",
-    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD1056&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fmastering-linear-algebra-an-introduction-to-applications.html%3Fai%3D107119&intsrc=PUI1_1204"}]
+    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD1056&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fmastering-linear-algebra-an-introduction-to-applications.html%3Fai%3D107119&intsrc=PUI1_1204"}],
+    topic: "math"
   }
 
 }, v => ({
@@ -361,21 +364,25 @@ const courses = _.mapValues({
   // TODO either/or these
   khan_linear_algebra: {
     t: "KhanAcademy Linear Algebra",
-    links: [{t: "Website", l: "https://www.khanacademy.org/math/linear-algebra", p: "free"}]
+    links: [{t: "Website", l: "https://www.khanacademy.org/math/linear-algebra", p: "free"}],
+    topic: "math"
   },
   fastai_linear_algebra: {
     t: "Fast.ai Linear Algebra",
-    links: [{t: "Website", l: "http://www.fast.ai/2017/07/17/num-lin-alg/", p: "free"}]
+    links: [{t: "Website", l: "http://www.fast.ai/2017/07/17/num-lin-alg/", p: "free"}],
+    topic: "math"
   },
 
   khan_stats: {
     t: "KhanAcademy Statistics",
-    links: [{t: "Website", l: "https://www.khanacademy.org/math/statistics-probability", p: "free"}]
+    links: [{t: "Website", l: "https://www.khanacademy.org/math/statistics-probability", p: "free"}],
+    topic: "math"
   },
 
   khan_calc: {
     t: "KhanAcademy Calculus",
-    links: [{t: "Website", l: "https://www.khanacademy.org/math/calculus-home", p: "free"}]
+    links: [{t: "Website", l: "https://www.khanacademy.org/math/calculus-home", p: "free"}],
+    topic: "math"
   },
 
   fastai: {
@@ -409,7 +416,8 @@ const others = _.mapValues({
     t: `Math Primer PDF`,
     d: "See \"Section Notes\" of [cs229](http://cs229.stanford.edu/materials.html)",
     links: [{t: "Website", l: "http://cs229.stanford.edu/materials.html", p: "free"}],
-    difficulty: 'medium'
+    difficulty: 'medium',
+    topic: "math"
   },
 
   dl_simplified: {
@@ -443,17 +451,20 @@ const books = _.mapValues({
 
   book_linear_algebra: {
     t: "Introduction to Linear Algebra",
-    links: [{t: "Amazon", l: "https://amzn.to/2wP8TWS", p: "$"}]
+    links: [{t: "Amazon", l: "https://amzn.to/2wP8TWS", p: "$"}],
+    topic: "math"
   },
 
   book_stats: {
     t: "All of statistics",
-    links: [{t: "Amazon", l: "http://amzn.to/2t2dOwg", p: "$"}]
+    links: [{t: "Amazon", l: "http://amzn.to/2t2dOwg", p: "$"}],
+    topic: "math"
   },
 
   book_calc: {
     t: "Calculus Book",
-    links: [{t: "Amazon", l: "http://amzn.to/2tXfXhp", p: "$"}]
+    links: [{t: "Amazon", l: "http://amzn.to/2tXfXhp", p: "$"}],
+    topic: "math"
   },
 
   handson_tensorflow: {
@@ -471,6 +482,18 @@ const books = _.mapValues({
       {t: "HTML", l: "http://www.deeplearningbook.org", p: "free"}
     ],
     importance: "essential"
+  },
+
+  book_python: {
+    t: `Python Book`,
+    links: [{t: "Amazon", l: "http://amzn.to/2mVgtJW", p: "$"}],
+    difficulty: "medium"
+  },
+
+  python_data_analysis: {
+    t: "Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition",
+    links: [{t: "Amazon", l: "https://amzn.to/2IHFh2m", p: "$"}],
+    difficulty: "easy"
   }
 
 }, v => ({

@@ -1,5 +1,9 @@
 @import "node_modules/bootstrap/scss/bootstrap";
-
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
 
 html {
   position: relative;
@@ -126,6 +130,14 @@ body {
   .pick-one-resource {
     border: 1px solid #eee;
     border-left: .25rem solid $secondary; // #5bc0de
+
+    //padding-left: 2rem;
+    //h6 {
+    //  position: absolute;
+    //  left: -1rem;
+    //  top: 1.5rem;
+    //  @include transform(rotate(-90deg));
+    //}
   }
 
   .sidebar-filters {

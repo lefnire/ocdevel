@@ -55,6 +55,10 @@ function Filters() {
   const setEpisodeOrder = useStoreActions(actions => actions.setEpisodeOrder)
   const viewAs = useStoreState(state => state.viewAs)
   const setViewAs = useStoreActions(actions => actions.setViewAs)
+  const mla = useStoreState(state => state.mla)
+  const setMla = useStoreActions(actions => actions.setMla)
+  const mlg = useStoreState(state => state.mlg)
+  const setMlg = useStoreActions(actions => actions.setMlg)
 
   return <div className='sidebar-filters'>
     <Card className='mb-2'><Card.Body>
@@ -73,22 +77,30 @@ function Filters() {
           Resources
         </Button>
       </ButtonGroup>
-      <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
-      <ButtonGroup className='w-100'>
-        <Button {...sidebarBtn()}>MLG</Button>
-        <Button {...sidebarBtn()}>MLA</Button>
-      </ButtonGroup>
-      <Card.Subtitle className='mt-3 mb-1'>Sort</Card.Subtitle>
-      <ButtonGroup className='w-100'>
-        <Button
-          {...sidebarBtn(episodeOrder === 'old2new')}
-          onClick={() => setEpisodeOrder('old2new')}
-        >Old&rarr;New</Button>
-        <Button
-          {...sidebarBtn(episodeOrder === 'new2old')}
-          onClick={() => setEpisodeOrder('new2old')}
-        >New&rarr;Old</Button>
-      </ButtonGroup>
+      {viewAs === 'episodes' && <>
+        <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
+        <ButtonGroup className='w-100'>
+          <Button
+            {...sidebarBtn(mlg)}
+            onClick={() => setMlg(!mlg)}
+          >MLG</Button>
+          <Button
+            {...sidebarBtn(mla)}
+            onClick={() => setMla(!mla)}
+          >MLA</Button>
+        </ButtonGroup>
+        <Card.Subtitle className='mt-3 mb-1'>Sort</Card.Subtitle>
+        <ButtonGroup className='w-100'>
+          <Button
+            {...sidebarBtn(episodeOrder === 'old2new')}
+            onClick={() => setEpisodeOrder('old2new')}
+          >Old&rarr;New</Button>
+          <Button
+            {...sidebarBtn(episodeOrder === 'new2old')}
+            onClick={() => setEpisodeOrder('new2old')}
+          >New&rarr;Old</Button>
+        </ButtonGroup>
+      </>}
     </Card.Body></Card>
     {filterKeys.map(fk => <Filter fk={fk} key={fk} />)}
   </div>
@@ -98,6 +110,7 @@ function Podcasts() {
   const [showHire, setShowHire] = useState(false)
   const [showDonate, setShowDonate] = useState(false)
   const enableHire = false
+  const enableDonate = false
   // d75998bd cryptocurrency
 
   const renderHireModal = () => (
@@ -154,9 +167,9 @@ function Podcasts() {
       )}
 
       <ButtonGroup className='d-block' vertical>
-        <Button {...iconBtn.btn} onClick={() => setShowDonate(true)}>
+        {enableDonate && <Button {...iconBtn.btn} onClick={() => setShowDonate(true)}>
           <FaDollarSign {...iconBtn.icon} /> Donate
-        </Button>
+        </Button>}
         {enableHire && <Button {...iconBtn.btn} onClick={() => setShowHire(true)}>
           <FaBriefcase {...iconBtn.icon} /> Hire Me
         </Button>}
