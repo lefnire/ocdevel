@@ -155,13 +155,15 @@ function Resource({resource}) {
       <td>
         {resource.links.map(l => (
           <a
-            {...helpAttrs(filters.price.opts[l.p].d, 'mr-2')}
+            {...helpAttrs(filters.price.opts[l.p].d)}
+            className='d-block'
             href={l.l}
             target="_blank"
           >
             {l.t} ({l.p})
           </a>
         ))}
+        {resource.tgc && <Link to='/blog/20201213-tgc' className='d-block'>Get it cheaper</Link>}
       </td>
     </tr>
   }
@@ -179,13 +181,8 @@ function Resource({resource}) {
       {filterKeys.map(renderIcon)}
     </div>
     {show && <>
-      {(resource.d || resource.tgc) && <div className='small text-muted my-2'>
+      {resource.d && <div className='small text-muted my-2'>
         <ReactMarkdown_ source={resource.d} />
-
-        {resource.tgc && <Alert variant='info'>
-          Get TGC cheaper <Link to='/blog/20201213-tgc'>details here.</Link>
-        </Alert>}
-
       </div>}
       <div className='mb-2 small'>
         <Table striped size='sm mb-0 filters-table'>
@@ -205,6 +202,26 @@ function Resource({resource}) {
       </div>
     </>}
   </li>
+}
+
+function Resources({resources}) {
+  if (!resources) {return null}
+  return <>
+    <Card.Footer className='resources'>
+      <Card.Title>Resources</Card.Title>
+      <ul className='list-unstyled'>
+        {resources.map(r => <>
+          {_.isArray(r)
+            ? <Alert className='pick-one-resource'>
+                <h5>Pick one</h5>
+                {r.map(r_ => <Resource resource={r_} key={r.id} />)}
+              </Alert>
+            : <Resource resource={r} key={r.id} />
+          }
+        </>)}
+      </ul>
+    </Card.Footer>
+  </>
 }
 
 function EpisodeTeaser({e}) {
@@ -235,12 +252,7 @@ function EpisodeTeaser({e}) {
       </div>
       {!e.mla && <Link to={`/mlg/${e.episode}`}>Read More</Link>}
     </Card.Body>
-    {e.resources && <Card.Footer className='resources'>
-      <Card.Title>Resources</Card.Title>
-      <ul className='list-unstyled'>
-        {e.resources.map(r => <Resource resource={r} key={r.id} />)}
-      </ul>
-    </Card.Footer>}
+    <Resources resources={e.resources} />
     {footer && <Card.Footer>{footer}</Card.Footer>}
   </Card>
 }

@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Deep Learning",
@@ -11,6 +11,9 @@ export default {
     duration: "51:09"
   },
   libsynEpisode: 5440749,
+  resources: [
+
+  ],
   teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",
   body:
 `## Resources

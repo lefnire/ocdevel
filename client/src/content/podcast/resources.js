@@ -4,8 +4,8 @@ import {
   FaBook,
   FaChalkboardTeacher,
   FaCouch, FaEye,
-  FaHeadphones, FaMicrophone, FaNewspaper, FaRegSmile,
-  FaRunning, FaTrophy,
+  FaHeadphones, FaMicrophone, FaNewspaper, FaRegSmile, FaRegStar,
+  FaRunning, FaStar, FaStarHalfAlt, FaTrophy,
   FaVideo, GiBattery0, GiBattery100, GiBattery50, IoIosChatbubbles, MdWeb, TiSortAlphabetically
 } from "react-icons/all";
 
@@ -53,17 +53,17 @@ export const filters = {
     t: "Relevance",
     d: `How up-to-date is this resource, in cases where it matters (eg with languages/frameworks)?`,
     opts: {
-      fresh: {t: "Fresh", d: "An up-to-date resource, or timeless"},
-      dated: {t: "Dated", d: "A dated resource, unless it's marked 'essential', see if you can find something newer"},
+      fresh: {t: "Still Relevant", d: "An up-to-date resource, or timeless"},
+      dated: {t: "Outdated", d: "A dated resource, unless it's marked 'essential', see if you can find something newer"},
     }
   },
   importance: {
     t: "Importance",
     d: `How important is this resource? This is the most important tag; it tells you what you must consume, vs what's nice to consume`,
     opts: {
-      supplementary: {t: "Supplementary", d: "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter"},
-      valuable: {t: "Valuable", d: "Quite a valuable resource. If you have the extra time, do it"},
-      essential: {t: "Essential", d: "Required. If interested in this topic, you _need_ this resource", i: <FaTrophy color='#007bff' />},
+      supplementary: {t: "Supplementary", d: "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter", i: <FaRegStar />},
+      valuable: {t: "Valuable", d: "Quite a valuable resource. If you have the extra time, do it", i: <FaStarHalfAlt />},
+      essential: {t: "Essential", d: "Required. If interested in this topic, you _need_ this resource", i: <FaStar color='#007bff' />},
     }
   },
   topic: {
@@ -276,7 +276,7 @@ const courses = _.mapValues({
   },
 
   udacity_ai: {
-    t: "Artificial Intelligence",
+    t: "Udacity Artificial Intelligence",
     links: [{t: "Udacity", l: "https://www.udacity.com/ai", p: "$$$"}]
   },
 

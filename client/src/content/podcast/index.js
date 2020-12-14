@@ -7,7 +7,7 @@ const episodes = [
   require('./mlg/006.js').default,
   require('./mlg/007.js').default,
   require('./mlg/008.js').default,
-  // require('./mlg/009.js').default,
+  require('./mlg/009.js').default,
   // require('./mlg/010.js').default,
   // require('./mlg/011.js').default,
   // require('./mlg/012.js').default,

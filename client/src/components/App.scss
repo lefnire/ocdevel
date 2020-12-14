@@ -66,9 +66,13 @@ body {
   svg {
     position: absolute;
 
-    // from .btn{padding}
-    left: 12px;
-    bottom: 6px;
+    // from .btn{padding}. Make sure to adjust icon size (24, 16)
+    // normal
+    //left: 12px;
+    //bottom: 6px;
+    // small
+    left: 8px;
+    bottom: 4px;
   }
 }
 
@@ -114,6 +118,12 @@ body {
       .ft-col1 {width: 30%;}
       .ft-col2 {width: 70%;}
     }
+  }
+
+  .pick-one-resource {
+    border: 1px solid #eee;
+    border-left: .25rem solid #5bc0de; // $info;
+    h5 { color: #5bc0de; }
   }
 }
 

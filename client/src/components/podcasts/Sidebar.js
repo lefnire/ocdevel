@@ -40,11 +40,18 @@ export default function Sidebar() {
     </Modal>
   );
 
-  function miscResources() {
-    const buttonAttrs = {
+  const iconBtn = {
+    btn: {
       variant: 'light',
+      size: "sm",
       className: 'icon-btn'
+    },
+    icon: {
+      size: 20
     }
+  }
+
+  function miscResources() {
     return <div>
       {showDonate && (
         <Card className='mb-2'>
@@ -67,15 +74,15 @@ export default function Sidebar() {
       )}
 
       <ButtonGroup className='d-block' vertical>
-        <Button {...buttonAttrs} onClick={() => setShowDonate(true)}>
-          <FaDollarSign /> Donate
+        <Button {...iconBtn.btn} onClick={() => setShowDonate(true)}>
+          <FaDollarSign {...iconBtn.icon} /> Donate
         </Button>
-        {enableHire && <Button {...buttonAttrs} onClick={() => setShowHire(true)}>
-          <FaBriefcase /> Hire Me
+        {enableHire && <Button {...iconBtn.btn} onClick={() => setShowHire(true)}>
+          <FaBriefcase {...iconBtn.icon} /> Hire Me
         </Button>}
         <LinkContainer to="/mlg/recommend">
-          <Button {...buttonAttrs}>
-            <FaLightbulb /> Recommend an Episode
+          <Button {...iconBtn.btn}>
+            <FaLightbulb {...iconBtn.icon} /> Recommend an Episode
           </Button>
         </LinkContainer>
         <OverlayTrigger
@@ -86,12 +93,12 @@ export default function Sidebar() {
             </Popover>
           )}
         >
-          <Button {...buttonAttrs} href="http://eepurl.com/cUUWfD" target="_blank">
-            <FaEnvelope /> Mailing List
+          <Button {...iconBtn.btn} href="http://eepurl.com/cUUWfD" target="_blank">
+            <FaEnvelope {...iconBtn.icon} /> Mailing List
           </Button>
         </OverlayTrigger>
-        <Button {...buttonAttrs} href="https://github.com/lefnire/gnothi" target='_blank'>
-          <FaGithub /> Podcast Project: Gnothi
+        <Button {...iconBtn.btn} href="https://github.com/lefnire/gnothi" target='_blank'>
+          <FaGithub {...iconBtn.icon} /> Podcast Project: Gnothi
         </Button>
       </ButtonGroup>
 
@@ -100,6 +107,7 @@ export default function Sidebar() {
 
   const btnOpts = {
     variant: 'light',
+    size: "sm",
     className: 'icon-btn',
     target: '_blank'
   }
@@ -111,28 +119,28 @@ export default function Sidebar() {
           <img src={podcast.image} />
         </div>
         <Card.Title>Machine Learning Guide</Card.Title>
-        <p>{podcast.body}</p>
+        <p className="small">{podcast.body}</p>
 
         <ButtonGroup className='d-block' vertical>
-          <Button {...btnOpts} href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130">
-            <FaItunesNote size={24}/> iTunes
+          <Button {...iconBtn.btn} href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130">
+            <FaItunesNote {...iconBtn.icon} target="_blank" /> iTunes
           </Button>
-          <Button {...btnOpts} href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9">
-            <RiSpotifyLine size={24}/> Spotify
+          <Button {...iconBtn.btn} href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9">
+            <RiSpotifyLine {...iconBtn.icon} target="_blank" /> Spotify
           </Button>
-          <Button {...btnOpts} href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='>
-            <RiGooglePlayLine size={24} /> Google Podcasts
+          <Button {...iconBtn.btn} href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='>
+            <RiGooglePlayLine {...iconBtn.icon} target="_blank" /> Google Podcasts
           </Button>
-          <Button {...btnOpts} href="http://www.stitcher.com/s?fid=130679&refid=stpr">
-            <SiStitcher size={24} /> Stitcher
+          <Button {...iconBtn.btn} href="http://www.stitcher.com/s?fid=130679&refid=stpr">
+            <SiStitcher {...iconBtn.icon} target="_blank" /> Stitcher
           </Button>
-          <Button {...btnOpts} href="http://machinelearningguide.libsyn.com/rss"rel="nofollow">
-            <SiRss size={24} /> Custom (RSS)
+          <Button {...iconBtn.btn} href="http://machinelearningguide.libsyn.com/rss"rel="nofollow">
+            <SiRss {...iconBtn.icon} target="_blank" /> Custom (RSS)
           </Button>
         </ButtonGroup>
         <hr />
         <Card.Title>Machine Learning Applied</Card.Title>
-        <p>Is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes.</p>
+        <p className="small">Is an exclusive podcast series on practical/applied tech side of the same. Smaller, more frequent episodes.</p>
         <Button href={patreonLink} target='_blank' className='patreon-btn d-block mb-1'><FaPatreon /> Get it on Patreon</Button>
         <LinkContainer to='/mlg/free-access'>
           <Button variant="link" className='patreon-btn-free d-block mb-1'>Get it free</Button>

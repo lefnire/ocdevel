@@ -12,20 +12,25 @@ export default {
   },
   libsynEpisode: 5440751,
   resources: [
-    resources.tgc_linear_algebra,
-    resources.tgc_stats,
-    resources.tgc_calc,
+    [
+      resources.tgc_linear_algebra,
+      resources.book_linear_algebra,
+      resources.khan_linear_algebra,
+    ],
+    [
+      resources.tgc_stats,
+      resources.book_stats,
+      resources.khan_stats,
+    ],
+    [
+      resources.tgc_calc,
+      resources.book_calc,
+      resources.khan_calc,
+
+    ],
+
     resources.tgc_math_decision_making,
     resources.tgc_info_theory,
-
-    resources.book_linear_algebra,
-    resources.book_stats,
-    resources.book_calc,
-
-    resources.khan_calc,
-    resources.khan_stats,
-    resources.khan_linear_algebra,
-
     resources.math_primer,
   ],
   teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
