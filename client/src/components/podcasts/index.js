@@ -206,19 +206,22 @@ function Resource({resource}) {
 
 function Resources({resources}) {
   if (!resources) {return null}
+
+  function renderResource(r){
+    if (!_.isArray(r)) {
+      return <Resource resource={r} key={r.id} />
+    }
+    return <Alert className='pick-one-resource'>
+      <h6>Pick One</h6>
+      {r.map(r_ => <Resource resource={r_} key={r.id} />)}
+    </Alert>
+  }
+
   return <>
     <Card.Footer className='resources'>
       <Card.Title>Resources</Card.Title>
       <ul className='list-unstyled'>
-        {resources.map(r => <>
-          {_.isArray(r)
-            ? <Alert className='pick-one-resource'>
-                <h5>Pick one</h5>
-                {r.map(r_ => <Resource resource={r_} key={r.id} />)}
-              </Alert>
-            : <Resource resource={r} key={r.id} />
-          }
-        </>)}
+        {resources.map(renderResource)}
       </ul>
     </Card.Footer>
   </>

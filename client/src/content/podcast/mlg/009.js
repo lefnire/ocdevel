@@ -12,22 +12,16 @@ export default {
   },
   libsynEpisode: 5440749,
   resources: [
-
+    resources.dl_simplified,
+    resources.tensorflow_tuts,
+    [
+      resources.fastai,
+      resources.handson_tensorflow
+    ],
+    resources.dl_book
   ],
   teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",
-  body:
-`## Resources
-- Overview: 
-  - ${resources.other.dl_simplified}
-- Quickstart:
-  - ${resources.other.tensorflow_tuts}
-- Deep-dive code (pick one):
-  - ${resources.courses.fastai}
-  - ${resources.books.handson_tensorflow}
-- Deep-dive theory:
-  - ${resources.books.dl_book}  
-
-## Episode
+  body:`
 - Value
   - Represents brain? Magic black-box
   - Feature learning (layer removed from programmer)

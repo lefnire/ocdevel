@@ -147,6 +147,7 @@ const podcasts = _.mapValues({
   data_skeptic: {
     t: "Data Skeptic",
     links: [{t: "Website", l: "https://dataskeptic.com/", p: "free"}],
+    importance: "valuable"
   },
 
   // Very dated, excluding
@@ -228,7 +229,8 @@ const tgc = _.mapValues({
 const fun = _.mapValues({
   singularity_is_near: {
     t: "The Singularity Is Near",
-    links: [{t: "Amazon", l: "http://amzn.to/2lzCqKk", p: "$"}]
+    links: [{t: "Amazon", l: "http://amzn.to/2lzCqKk", p: "$"}],
+    importance: "valuable"
   },
 
   superintelligence: {
@@ -268,6 +270,7 @@ const courses = _.mapValues({
   udacity_ml: {
     t: "Udacity Machine Learning",
     links: [{t: "Udacity", l: "https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009", p: "$$$"}],
+    importance: "valuable"
   },
 
   udacity_self_driving: {
@@ -277,7 +280,8 @@ const courses = _.mapValues({
 
   udacity_ai: {
     t: "Udacity Artificial Intelligence",
-    links: [{t: "Udacity", l: "https://www.udacity.com/ai", p: "$$$"}]
+    links: [{t: "Udacity", l: "https://www.udacity.com/ai", p: "$$$"}],
+    importance: "valuable"
   },
 
   omscs: {
@@ -305,6 +309,14 @@ const courses = _.mapValues({
   khan_calc: {
     t: "KhanAcademy Calculus",
     links: [{t: "Website", l: "https://www.khanacademy.org/math/calculus-home", p: "free"}]
+  },
+
+  fastai: {
+    t: `Fast.ai`,
+    d: `Practical DL for coders`,
+    links: [{t: "Website", l: "http://course.fast.ai/", p: "free"}],
+    difficulty: "medium",
+    importance: "essential"
   }
 
 
@@ -331,6 +343,20 @@ const others = _.mapValues({
     d: "See \"Section Notes\" of [cs229](http://cs229.stanford.edu/materials.html)",
     links: [{t: "Website", l: "http://cs229.stanford.edu/materials.html", p: "free"}],
     difficulty: 'medium'
+  },
+
+  dl_simplified: {
+    t: "Deep Learning Simplified",
+    d: "Quick series to get a lay-of-the-land.",
+    links: [{t: "YouTube", l: "https://www.youtube.com/watch?v=b99UVkWzYTQ", p: "free"}],
+    format: "video"
+  },
+
+  tensorflow_tuts: {
+    t: `TensorFlow Tutorials`,
+    d: "Official TensorFlow tutorials, quick-start you into some hands-on code",
+    links: [{t: "Website", l: "https://www.tensorflow.org/get_started/get_started", p: "free"}],
+    difficulty: "medium"
   }
 
 }, v => ({
@@ -361,6 +387,23 @@ const books = _.mapValues({
   book_calc: {
     t: "Calculus Book",
     links: [{t: "Amazon", l: "http://amzn.to/2tXfXhp", p: "$"}]
+  },
+
+  handson_tensorflow: {
+    t: "Hands-On Machine Learning with Scikit-Learn and TensorFlow",
+    links: [{t: "Amazon", l: "http://amzn.to/2tVdIXN", p: "$"}],
+    difficulty: "medium",
+    importance: "essential"
+  },
+
+  dl_book: {
+    t: `Deep Learning Book`,
+    d: "Comprehensive DL bible; highly mathematical",
+    links: [
+      {t: "Amazon", l: "http://amzn.to/2tXgCiT", p: "$$"},
+      {t: "HTML", l: "http://www.deeplearningbook.org", p: "free"}
+    ],
+    importance: "essential"
   }
 
 }, v => ({
@@ -384,12 +427,9 @@ export const resources = _.mapValues({
 
   books: {
     // Math
-
-
-    dl_book: `[Deep Learning Book](http://amzn.to/2tXgCiT) ([Free HTML version](http://www.deeplearningbook.org/)) \`book:hard\` comprehensive DL bible; highly mathematical`,
     python: `[Python](http://amzn.to/2mVgtJW) \`book:medium\``,
     python_data_analysis: `[Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition](https://amzn.to/2IHFh2m) \`book:easy\``,
-    handson_tensorflow: `[Hands-On Machine Learning with Scikit-Learn and TensorFlow](http://amzn.to/2tVdIXN) \`book:medium\``,
+
     ml_with_r: `[Machine Learning with R](http://amzn.to/2n5fSUF) \`book:medium\``,
     elements_of_stat_learning: `[Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book:hard\``,
     pattern_rec: `[Pattern Recognition and Machine Learning](http://amzn.to/2sDIIfb) ([Free PDF?](https://goo.gl/aX038j)) \`book:hard\``,
@@ -408,7 +448,7 @@ export const resources = _.mapValues({
     // Math
 
 
-    fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`,
+
     cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`,
     cs231n: `[Stanford cs231n: Convnets](https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) \`course:medium\``,
     cs294: `[Berkeley cs294: Deep Reinforcement Learning](http://rll.berkeley.edu/deeprlcourse/) \`course:hard\``,
@@ -424,9 +464,9 @@ export const resources = _.mapValues({
     dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`
   },
   other: {
-    dl_simplified: `[Deep Learning Simplified](https://www.youtube.com/watch?v=b99UVkWzYTQ) \`video:easy\` quick series to get a lay-of-the-land.`,
+
     // nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
-    tensorflow_tuts: `[TensorFlow Tutorials](https://www.tensorflow.org/get_started/get_started) \`tutorial:medium\``,
+
     which_algo_to_use: `- Which algo to use?
   - [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/) \`picture\`
   - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`picture\``,

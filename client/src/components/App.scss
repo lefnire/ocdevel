@@ -122,8 +122,7 @@ body {
 
   .pick-one-resource {
     border: 1px solid #eee;
-    border-left: .25rem solid #5bc0de; // $info;
-    h5 { color: #5bc0de; }
+    border-left: .25rem solid $secondary; // #5bc0de
   }
 }
 
