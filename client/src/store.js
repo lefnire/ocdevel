@@ -1,5 +1,5 @@
-import { createStore, action } from 'easy-peasy';
-import {filters as filters_} from './content/podcast/resources'
+import { createStore, action, computed } from 'easy-peasy';
+import {filters as filters_, eitherOr, filterKeys, resources} from './content/podcast/resources'
 import _ from 'lodash'
 
 // importance: {supplementary: true, valuable: true, essential: true}
@@ -29,6 +29,17 @@ export const store = createStore({
 
   // TODO
   viewAs: 'episodes',
+  setViewAs: action((state, payload) => {
+    return {...state, viewAs: payload}
+  }),
 
-  filters
+  filters,
+  filteredResources: computed(({filters}) => {
+    return _.pickBy(resources, (r) => {
+      return _.reduce(filterKeys, (m, fk) => {
+        if (!r[fk]) {return m} // N/A attrs, like video2audio
+        return m && filters[fk][r[fk]]
+      }, true)
+    })
+  }),
 });

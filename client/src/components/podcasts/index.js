@@ -46,7 +46,6 @@ function ReactMarkdown_({source}) {
     source={source}
     linkTarget="_blank"
   />
-
 }
 
 function EpisodeFull() {
@@ -109,6 +108,8 @@ function Resource({resource}) {
   const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
 
+  if (!resource) {return null} // FIXME
+
   function toggle() {setShow(!show)}
   function resetHelp() {setShowHelp(null)}
   const helpAttrs = (helpMsg, className=null) => ({
@@ -118,19 +119,19 @@ function Resource({resource}) {
   })
 
   function renderIcon(filterKey) {
-    if (!resource || !resource[filterKey]) {return } // FIXME due to old resources?
+    // if (!resource[filterKey]) {return null} // FIXME due to old resources?
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
     if (!resourceFilter || !resourceFilter.i) {return null}
-    return <span className='mr-2 text-muted'>{resourceFilter.i}</span>
+    return <span key={filterKey} className='mr-2 text-muted'>{resourceFilter.i}</span>
   }
 
   function renderFilter(filterKey) {
-    if (!resource || !resource[filterKey]) {return } // FIXME due to old resources?
+    // if (!resource[filterKey]) {return } // FIXME due to old resources?
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
     if (!resourceFilter) {return null}
-    return <tr>
+    return <tr key={filterKey}>
       <td {...helpAttrs(filter.d, 'pointer')}>
         {filter.t}
       </td>
@@ -161,6 +162,7 @@ function Resource({resource}) {
             {...helpAttrs(filters.price.opts[l.p].d)}
             className='d-block'
             href={l.l}
+            key={l.l}
             target="_blank"
           >
             {l.t} ({l.p})
@@ -208,43 +210,36 @@ function Resource({resource}) {
 }
 
 function Resources({resources}) {
-  const filters_ = useStoreState(state => state.filters)
+  const filtered = useStoreState(state => state.filteredResources)
   if (!resources) {return null}
 
   const either = {}
   resources = _.reduce(resources, (m, r) => {
-    const show = _.reduce(filterKeys, (m, fk) => {
-      if (!r[fk]) {return m} // N/A attrs, like video2audio
-      return m && filters_[fk][r[fk]]
-    }, true)
-    if (!show) {return m}
+    if (!filtered[r.id]) {return m}
     if (r.eitherOr && !either[r.eitherOr]) {
+      // FIXME apply filters on eitherOr
       either[r.eitherOr] = true
-      m.push(eitherOr[r.eitherOr])
-    } else {
-      m.push(r)
+      r = _.filter(eitherOr[r.eitherOr], r_ => filtered[r_.id])
+      if (r.length === 0) { return m }
+      if (r.length === 1) { r = r[0] }
     }
+    m.push(r)
     return m
   }, [])
 
   function renderResource(r){
     if (!_.isArray(r)) {
-      return <Resource resource={r} key={r.id} />
+      return <Resource resource={r} key={r.id}/>
     }
-    return <Alert className='pick-one-resource'>
+    return <Alert className='pick-one-resource' key={r.id}>
       <h6>Pick One</h6>
-      {r.map(r_ => <Resource resource={r_} key={r.id} />)}
+      {r.map(r_ => <Resource resource={r_} key={r_.id}/>)}
     </Alert>
   }
 
-  return <>
-    <Card.Footer className='resources'>
-      <Card.Title>Resources</Card.Title>
-      <ul className='list-unstyled'>
-        {resources.map(renderResource)}
-      </ul>
-    </Card.Footer>
-  </>
+  return <ul className='list-unstyled'>
+    {resources.map(renderResource)}
+  </ul>
 }
 
 function EpisodeTeaser({e}) {
@@ -275,28 +270,36 @@ function EpisodeTeaser({e}) {
       </div>
       {!e.mla && <Link to={`/mlg/${e.episode}`}>Read More</Link>}
     </Card.Body>
-    <Resources resources={e.resources} />
+    <Card.Footer className='resources'>
+      <Card.Title>Resources</Card.Title>
+      <Resources resources={e.resources} />
+    </Card.Footer>
     {footer && <Card.Footer>{footer}</Card.Footer>}
   </Card>
 }
 
 function Episodes() {
-  const filters_ = useStoreState(state => state.filters)
   const episodeOrder = useStoreState(state => state.episodeOrder);
   let episodes = episodeOrder === 'new2old' ? podcast.episodes.slice().reverse() : podcast.episodes
 
-  // // apply filters
-  // function xform(m, v, k) {
-  //   if (!~filterKeys.indexOf(k)) {return true && m} // not a filter
-  // }
-  // episodes = _.filter(episodes, e => _.transform(state, xform, true))
-
+  // TODO filter episodes
   return <div>
     {episodes.map(e => <EpisodeTeaser key={e.guid} e={e} />)}
   </div>
 }
 
+function ResourcesTab() {
+  const filtered = useStoreState(state => state.filteredResources)
+  const r = _.values(filtered)
+  return <Card>
+    <Card.Body>
+      <Resources resources={r} />
+    </Card.Body>
+  </Card>
+}
+
 export default function Series() {
+  const viewAs = useStoreState(state => state.viewAs)
   return <div className="podcasts">
     <Helmet>
       <title>Machine Learning Guide Podcast</title>
@@ -309,7 +312,12 @@ export default function Series() {
       </Col>
       <Col xs={12} md={8}>
         <Switch>
-          <Route path="/mlg" exact><Episodes /></Route>
+          <Route path="/mlg" exact>
+            {viewAs === 'episodes' ? <Episodes />
+              : viewAs === 'resources' ? <ResourcesTab />
+              : null
+            }
+          </Route>
           <Route path="/mlg/recommend" exact><Recommend /></Route>
           <Route path="/mlg/free-access" exact><FreeAccess /></Route>
           <Route path="/mlg/:id"><EpisodeFull /></Route>

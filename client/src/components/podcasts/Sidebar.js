@@ -34,8 +34,8 @@ function Filter({fk}) {
     <Card.Body>
       <Card.Subtitle className='mb-2'>{f.t}</Card.Subtitle>
       <ButtonGroup vertical className='w-100'>
-        {_.map(f.opts, (v,k) => <>
-          <Button
+        {_.map(f.opts, (v,k) => <Button
+            key={k}
             {...sidebarBtn(selected[k])}
             onClick={() => setSelected({[k]: !selected[k]})}
             onMouseEnter={() => setHelp(v.d)}
@@ -43,8 +43,7 @@ function Filter({fk}) {
           >
             {v.i && <span className='mr-2'>{v.i}</span>}
             {v.t}
-          </Button>
-        </>)}
+        </Button>)}
       </ButtonGroup>
     </Card.Body>
     <Card.Footer className='small'>{help || f.d}</Card.Footer>
@@ -55,13 +54,24 @@ function Filters() {
   const episodeOrder = useStoreState(state => state.episodeOrder)
   const setEpisodeOrder = useStoreActions(actions => actions.setEpisodeOrder)
   const viewAs = useStoreState(state => state.viewAs)
+  const setViewAs = useStoreActions(actions => actions.setViewAs)
 
   return <div className='sidebar-filters'>
     <Card className='mb-2'><Card.Body>
       <Card.Subtitle className='mb-1'>View as</Card.Subtitle>
       <ButtonGroup className='w-100'>
-        <Button {...sidebarBtn(viewAs === 'episodes')}>Episodes</Button>
-        <Button {...sidebarBtn()} disabled>Resources</Button>
+        <Button
+          {...sidebarBtn(viewAs === 'episodes')}
+          onClick={() => setViewAs('episodes')}
+        >
+          Episodes
+        </Button>
+        <Button
+          {...sidebarBtn(viewAs === 'resources')}
+          onClick={() => setViewAs('resources')}
+        >
+          Resources
+        </Button>
       </ButtonGroup>
       <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
       <ButtonGroup className='w-100'>
