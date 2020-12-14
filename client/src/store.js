@@ -1,10 +1,10 @@
 import { createStore, action } from 'easy-peasy';
-import {filters} from './content/podcast/resources'
+import {filters as filters_} from './content/podcast/resources'
 import _ from 'lodash'
 
 // importance: {supplementary: true, valuable: true, essential: true}
 // set_importance: action()
-const filterModel = _.transform(filters, (m, v, k) => {
+const filters = _.transform(filters_, (m, v, k) => {
   m[k] = _.transform(v.opts, (m_, v_, k_) => {
     m_[k_] = true
     return m_
@@ -30,5 +30,5 @@ export const store = createStore({
   // TODO
   viewAs: 'episodes',
 
-  ...filterModel
+  filters
 });

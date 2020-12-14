@@ -24,8 +24,8 @@ const sidebarBtn = active => ({
 })
 
 function Filter({fk}) {
-  const selected = useStoreState(state => state[fk])
-  const setSelected = useStoreActions(actions => actions[`set_${fk}`])
+  const selected = useStoreState(state => state.filters[fk])
+  const setSelected = useStoreActions(actions => actions.filters[`set_${fk}`])
   const [help, setHelp] = useState()
 
   const f = filters[fk]

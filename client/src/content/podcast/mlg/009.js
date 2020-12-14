@@ -14,10 +14,10 @@ export default {
   resources: [
     resources.dl_simplified,
     resources.tensorflow_tuts,
-    [
-      resources.fastai,
-      resources.handson_tensorflow
-    ],
+
+    resources.fastai,
+    resources.handson_tensorflow,
+
     resources.dl_book
   ],
   teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",

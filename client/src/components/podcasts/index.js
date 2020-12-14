@@ -34,7 +34,7 @@ import {BackButton, patreonLink, Popover_} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import podcast from '../../content/podcast';
-import {filters, resources, filterKeys} from '../../content/podcast/resources'
+import {filters, resources, filterKeys, eitherOr} from '../../content/podcast/resources'
 
 import {useStoreState, useStoreActions, useStore} from "easy-peasy";
 
@@ -208,7 +208,24 @@ function Resource({resource}) {
 }
 
 function Resources({resources}) {
+  const filters_ = useStoreState(state => state.filters)
   if (!resources) {return null}
+
+  const either = {}
+  resources = _.reduce(resources, (m, r) => {
+    const show = _.reduce(filterKeys, (m, fk) => {
+      if (!r[fk]) {return m} // N/A attrs, like video2audio
+      return m && filters_[fk][r[fk]]
+    }, true)
+    if (!show) {return m}
+    if (r.eitherOr && !either[r.eitherOr]) {
+      either[r.eitherOr] = true
+      m.push(eitherOr[r.eitherOr])
+    } else {
+      m.push(r)
+    }
+    return m
+  }, [])
 
   function renderResource(r){
     if (!_.isArray(r)) {
@@ -264,7 +281,7 @@ function EpisodeTeaser({e}) {
 }
 
 function Episodes() {
-  // const state = useStoreState(state => state)
+  const filters_ = useStoreState(state => state.filters)
   const episodeOrder = useStoreState(state => state.episodeOrder);
   let episodes = episodeOrder === 'new2old' ? podcast.episodes.slice().reverse() : podcast.episodes
 
