@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, Card, Modal, OverlayTrigger, Popover} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Form, Modal, OverlayTrigger, Popover} from "react-bootstrap";
 import podcast from "../../content/podcast";
 import {
   FaBriefcase,
@@ -13,8 +13,78 @@ import {
 import {LinkContainer} from "react-router-bootstrap";
 import React, {useState} from "react";
 import {patreonLink} from './utils'
+import {useStoreActions, useStoreState} from "easy-peasy";
+import {filterKeys, filters} from "../../content/podcast/resources";
+import _ from "lodash";
 
-export default function Sidebar() {
+const sidebarBtn = active => ({
+  size: "sm",
+  variant: 'light',
+  className: active ? 'filter-selected text-left' : 'text-left'
+})
+
+function Filter({fk}) {
+  const selected = useStoreState(state => state[fk])
+  const setSelected = useStoreActions(actions => actions[`set_${fk}`])
+  const [help, setHelp] = useState()
+
+  const f = filters[fk]
+  if (!f.opts) {return null}
+  return <Card className='mb-2'>
+    <Card.Body>
+      <Card.Subtitle className='mb-2'>{f.t}</Card.Subtitle>
+      <ButtonGroup vertical className='w-100'>
+        {_.map(f.opts, (v,k) => <>
+          <Button
+            {...sidebarBtn(selected[k])}
+            onClick={() => setSelected({[k]: !selected[k]})}
+            onMouseEnter={() => setHelp(v.d)}
+            onMouseLeave={() => setHelp(null)}
+          >
+            {v.i && <span className='mr-2'>{v.i}</span>}
+            {v.t}
+          </Button>
+        </>)}
+      </ButtonGroup>
+    </Card.Body>
+    <Card.Footer className='small'>{help || f.d}</Card.Footer>
+  </Card>
+}
+
+function Filters() {
+  const episodeOrder = useStoreState(state => state.episodeOrder)
+  const setEpisodeOrder = useStoreActions(actions => actions.setEpisodeOrder)
+  const viewAs = useStoreState(state => state.viewAs)
+
+  return <div className='sidebar-filters'>
+    <Card className='mb-2'><Card.Body>
+      <Card.Subtitle className='mb-1'>View as</Card.Subtitle>
+      <ButtonGroup className='w-100'>
+        <Button {...sidebarBtn(viewAs === 'episodes')}>Episodes</Button>
+        <Button {...sidebarBtn()} disabled>Resources</Button>
+      </ButtonGroup>
+      <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
+      <ButtonGroup className='w-100'>
+        <Button {...sidebarBtn()}>MLG</Button>
+        <Button {...sidebarBtn()}>MLA</Button>
+      </ButtonGroup>
+      <Card.Subtitle className='mt-3 mb-1'>Sort</Card.Subtitle>
+      <ButtonGroup className='w-100'>
+        <Button
+          {...sidebarBtn(episodeOrder === 'old2new')}
+          onClick={() => setEpisodeOrder('old2new')}
+        >Old&rarr;New</Button>
+        <Button
+          {...sidebarBtn(episodeOrder === 'new2old')}
+          onClick={() => setEpisodeOrder('new2old')}
+        >New&rarr;Old</Button>
+      </ButtonGroup>
+    </Card.Body></Card>
+    {filterKeys.map(fk => <Filter fk={fk} key={fk} />)}
+  </div>
+}
+
+function Podcasts() {
   const [showHire, setShowHire] = useState(false)
   const [showDonate, setShowDonate] = useState(false)
   const enableHire = false
@@ -105,13 +175,7 @@ export default function Sidebar() {
     </div>
   }
 
-  const btnOpts = {
-    variant: 'light',
-    size: "sm",
-    className: 'icon-btn',
-    target: '_blank'
-  }
-  return <>
+  return <div className='sidebar-podcasts'>
     {renderHireModal()}
     <Card className='mb-3'>
       <Card.Body>
@@ -149,5 +213,30 @@ export default function Sidebar() {
         {miscResources()}
       </Card.Body>
     </Card>
-  </>
+  </div>
+}
+
+function Flowchart() {
+  return <h4>Coming soon</h4>
+}
+
+export default function Sidebar() {
+  const tab = useStoreState(state => state.tab)
+  const setTab = useStoreActions(actions => actions.setTab)
+
+  const btnOpts = (k) => ({
+    variant: k === tab ? 'secondary' : 'light',
+    size: 'sm',
+    onClick: () => setTab(k)
+  })
+  return <div className='sidebar'>
+    <ButtonGroup className='w-100 mb-2'>
+      <Button {...btnOpts('podcasts')}>Podcast</Button>
+      <Button {...btnOpts('filters')}>Filter Resources</Button>
+      <Button {...btnOpts('flowchart')}>Flow Chart</Button>
+    </ButtonGroup>
+    <div>
+      {{podcasts: <Podcasts />, filters: <Filters/>, flowchart: <Flowchart />}[tab]}
+    </div>
+  </div>
 }

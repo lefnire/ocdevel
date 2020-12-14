@@ -46,6 +46,9 @@ body {
 
 
 .sidebar {
+  &.sidebar-profile, .sidebar-podcasts {
+    .card {border: none;}
+  }
   div.logo {
     img {
       width: 100%;
@@ -123,6 +126,19 @@ body {
   .pick-one-resource {
     border: 1px solid #eee;
     border-left: .25rem solid $secondary; // #5bc0de
+  }
+
+  .sidebar-filters {
+    .card {
+      .card-footer {
+        border-top: none;
+      }
+    }
+    .filter-selected {
+      //border-bottom: 3px solid $primary;
+      //color: $primary;
+      font-weight: 700;
+    }
   }
 }
 

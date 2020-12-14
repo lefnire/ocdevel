@@ -3,7 +3,7 @@ import {
   FaBlog,
   FaBook,
   FaChalkboardTeacher,
-  FaCouch, FaEye,
+  FaCouch, FaEye, FaGraduationCap,
   FaHeadphones, FaMicrophone, FaNewspaper, FaRegSmile, FaRegStar,
   FaRunning, FaStar, FaStarHalfAlt, FaTrophy,
   FaVideo, GiBattery0, GiBattery100, GiBattery50, IoIosChatbubbles, MdWeb, TiSortAlphabetically
@@ -36,11 +36,12 @@ export const filters = {
       video: {t: "Video", d: "Video learning resource", i: <FaVideo />},
       book: {t: "Book", d: "Book resource. Textbooks or tradebooks", i: <FaBook />},
       course: {t: "Course", d: "Online course. Either do-it-yourself (no grading) or graded with assignments", i: <FaChalkboardTeacher />},
+      degree: {t: "Degree / Certificate", d: "Online degree or certificate. Prefer a degree of course if you have the time and money, nano-degrees and certificates are much less industry-valued.", i: <FaGraduationCap />},
       other: {t: "Other", d: "Other learning resources like articles & blogs", i: <MdWeb />},
     }
   },
   video2audio: {
-    t: "Video->Audio",
+    t: "Video→Audio",
     d: `For video resources, could you just listen to the video without watching it and still benefit?`,
     opts: {
       bad: {t: "No-Go", d: "Watch it as a video, you'll need the visuals"},
@@ -106,7 +107,7 @@ export const filterKeys = [
   'relevance',
   // Extra keys added per resource
   // 'price',
-  'updated',
+  // 'updated',
   // or_
 ]
 
@@ -180,6 +181,7 @@ const tgc = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2kQGgk5", p: "$"},
       {t: "TGC", l: "https://goo.gl/fDteyi", p: "$$"} // FIXME
     ],
+    format: "audio",
     difficulty: "easy",
     importance: "valuable"
   },
@@ -270,25 +272,30 @@ const courses = _.mapValues({
   udacity_ml: {
     t: "Udacity Machine Learning",
     links: [{t: "Udacity", l: "https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009", p: "$$$"}],
-    importance: "valuable"
+    importance: "valuable",
+    format: "degree"
   },
 
   udacity_self_driving: {
     t: "Udacity Self Driving Cars",
-    links: [{t: "Udacity", l: "https://www.udacity.com/drive", p: "$$$"}]
+    links: [{t: "Udacity", l: "https://www.udacity.com/drive", p: "$$$"}],
+    format: "degree"
   },
 
   udacity_ai: {
     t: "Udacity Artificial Intelligence",
     links: [{t: "Udacity", l: "https://www.udacity.com/ai", p: "$$$"}],
-    importance: "valuable"
+    importance: "valuable",
+    format: "degree"
   },
 
   omscs: {
     t: "OMSCS",
     d: "Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.",
     links: [{t: "Website", l: "https://www.omscs.gatech.edu/", p: "$$$"}],
-    importance: "essential"
+    importance: "essential",
+    format: "degree"
+
   },
 
   // TODO either/or these

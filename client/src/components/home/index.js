@@ -125,7 +125,7 @@ export default function Home() {
       <title>OCDevel</title>
     </Helmet>
     <Row>
-      <Col xs={12} sm={5} lg={3} xl={3} className='sidebar'>
+      <Col xs={12} sm={5} lg={3} xl={3} className='sidebar sidebar-profile'>
         {renderProfile()}
       </Col>
       <Col xs={12} sm={7} lg={9} xl={9}>

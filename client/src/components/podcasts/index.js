@@ -10,7 +10,7 @@ import {
   Badge,
   ButtonGroup,
   Alert,
-  Table
+  Table, Form
 } from 'react-bootstrap';
 import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -25,7 +25,7 @@ import {
   FaTags,
   FaChevronDown,
   FaChevronUp,
-  FaInfoCircle
+  FaInfoCircle, FaAngleRight
 } from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
@@ -35,6 +35,9 @@ import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import podcast from '../../content/podcast';
 import {filters, resources, filterKeys} from '../../content/podcast/resources'
+
+import {useStoreState, useStoreActions, useStore} from "easy-peasy";
+
 const fmt = 'MMM DD, YYYY';
 
 function ReactMarkdown_({source}) {
@@ -261,17 +264,17 @@ function EpisodeTeaser({e}) {
 }
 
 function Episodes() {
-  const [reverse, setReverse] = useState()
-  const episodes = reverse? _.reverse(podcast.episodes) : podcast.episodes
+  // const state = useStoreState(state => state)
+  const episodeOrder = useStoreState(state => state.episodeOrder);
+  let episodes = episodeOrder === 'new2old' ? podcast.episodes.slice().reverse() : podcast.episodes
+
+  // // apply filters
+  // function xform(m, v, k) {
+  //   if (!~filterKeys.indexOf(k)) {return true && m} // not a filter
+  // }
+  // episodes = _.filter(episodes, e => _.transform(state, xform, true))
 
   return <div>
-    <Button
-      variant='outline-secondary'
-      onClick={() => setReverse(!reverse)}
-      className='mb-2 ml-auto'
-    >
-      <BsArrowUpDown /> Reverse
-    </Button>
     {episodes.map(e => <EpisodeTeaser key={e.guid} e={e} />)}
   </div>
 }

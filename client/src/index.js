@@ -5,6 +5,9 @@ import {BrowserRouter as Router, useHistory} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'css-social-buttons/css/zocial.css'
 
+import { StoreProvider } from 'easy-peasy';
+import { store } from './store';
+
 import App from './components/App'
 
 import ReactGA from 'react-ga'
@@ -28,7 +31,9 @@ function Index() {
     })
   }, [])
 
-  return <App />
+  return <StoreProvider store={store}>
+    <App />
+  </StoreProvider>
 }
 
 // 8bb28bed: google analytics
