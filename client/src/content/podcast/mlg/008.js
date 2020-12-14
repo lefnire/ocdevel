@@ -12,28 +12,25 @@ export default {
   },
   libsynEpisode: 5440751,
   resources: [
+    resources.tgc_linear_algebra,
+    resources.tgc_stats,
+    resources.tgc_calc,
+    resources.tgc_math_decision_making,
+    resources.tgc_info_theory,
+
+    resources.book_linear_algebra,
+    resources.book_stats,
+    resources.book_calc,
+
+    resources.khan_calc,
+    resources.khan_stats,
+    resources.khan_linear_algebra,
+
     resources.math_primer,
   ],
   teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
   body: `
 Come back here after you've finished Ng's course; or learn these resources in tandem with ML (say 1 day a week).
-
-KhanAcademy: 
-- ${resources.courses.linear_algebra}
-- ${resources.courses.stats}
-- ${resources.courses.calc}
-
-Books
-- ${resources.books.linear_algebra}
-- ${resources.books.stats}
-- ${resources.books.calc}
-
-Audio (supplementary material)
-- ${resources.audio.stats} 
-- ${resources.audio.calc}
-- ${resources.audio.math_decision_making}
-- ${resources.audio.info_theory}
-- ${resources.audio.video_to_audio}
 
 - Linear Algebra = Matrix (or "Tensor") math. Wx + b. Chopping in our analogy.
 - Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.

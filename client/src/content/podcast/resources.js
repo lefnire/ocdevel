@@ -82,10 +82,10 @@ export const filters = {
     t: "Price",
     d: "Cost of this resource (look for other links, there are sometimes free versions)",
     opts: {
-      free: {t: "Free", d: "Free! Look for this on resources which have paid links (eg Amazon), sometimes professors release the PDF for free while continuing to sell elsewhere"},
-      "$": {t: "$", d: "Cheap. Under $10"},
-      "$$": {t: "$$", d: "Medium-priced. $10-$100"},
-      "$$$": {t: "$$$", d: "Expensive. >$100"},
+      free: {t: "Free", d: "Free! Look for this on resources which have paid links (eg Amazon), sometimes professors release the PDF for free while continuing to sell elsewhere", i: <span>Free</span>},
+      "$": {t: "$", d: "Cheap. Under $10", i: <span>$</span>},
+      "$$": {t: "$$", d: "Medium-priced. $10-$300", i: <span>$$</span>},
+      "$$$": {t: "$$$", d: "Expensive. >$300", i: <span>$$$</span>},
       [undefined]: ""
     }
   },
@@ -181,8 +181,41 @@ const tgc = _.mapValues({
     ],
     difficulty: "easy",
     importance: "valuable"
-
   },
+
+  tgc_stats: {
+    t: `TGC Statistics & Probability`,
+    links: [
+      {t: "TGC Statistics", l: "https://goo.gl/4vvXJs", p: "$$"},
+      {t: "TGC Probability", l: "https://goo.gl/Q4KwZ6", p: "$$"},
+    ]
+  },
+
+  tgc_calc: {
+    t: "TGC Calculus",
+    links: [
+      {t: "TGC Calc 1", l: "https://goo.gl/fcLP3l", p: "$$"},
+      {t: "TGC Calc 2", l: "https://goo.gl/sBpljN", p: "$$"},
+      {t: "TGC Calc 3", l: "https://goo.gl/8Hdwuh", p: "$$"}
+    ]
+  },
+
+  tgc_math_decision_making: {
+    t: "TGC Mathematical Decision Making",
+    d: "Course on \"Operations Research\", similar to ML",
+    links: [{t: "TGC", l: "https://goo.gl/V75I49"}]
+  },
+
+  tgc_info_theory: {
+    t: "TGC Information Theory",
+    links: [{t: "https://goo.gl/ugAi2m", l: "https://goo.gl/ugAi2m", p: "$$"}]
+  },
+
+  tgc_linear_algebra: {
+    t: "TGC Linear Algebra",
+    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD1056&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fmastering-linear-algebra-an-introduction-to-applications.html%3Fai%3D107119&intsrc=PUI1_1204"}]
+  }
+
 }, v => ({
   tgc: true,
   difficulty: "hard",
@@ -252,6 +285,26 @@ const courses = _.mapValues({
     d: "Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.",
     links: [{t: "Website", l: "https://www.omscs.gatech.edu/", p: "$$$"}],
     importance: "essential"
+  },
+
+  // TODO either/or these
+  khan_linear_algebra: {
+    t: "KhanAcademy Linear Algebra",
+    links: [{t: "Website", l: "https://www.khanacademy.org/math/linear-algebra", p: "free"}]
+  },
+  fastai_linear_algebra: {
+    t: "Fast.ai Linear Algebra",
+    links: [{t: "Website", l: "http://www.fast.ai/2017/07/17/num-lin-alg/", p: "free"}]
+  },
+
+  khan_stats: {
+    t: "KhanAcademy Statistics",
+    links: [{t: "Website", l: "https://www.khanacademy.org/math/statistics-probability", p: "free"}]
+  },
+
+  khan_calc: {
+    t: "KhanAcademy Calculus",
+    links: [{t: "Website", l: "https://www.khanacademy.org/math/calculus-home", p: "free"}]
   }
 
 
@@ -293,11 +346,27 @@ const books = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2kRd4Ie", p: "$$"},
       {t: "PDF", l: "http://ai.stanford.edu/~nilsson/QAI/qai.pdf", p: "free"}
     ],
-    // or_: other_resource
   },
+
+  book_linear_algebra: {
+    t: "Introduction to Linear Algebra",
+    links: [{t: "Amazon", l: "https://amzn.to/2wP8TWS", p: "$"}]
+  },
+
+  book_stats: {
+    t: "All of statistics",
+    links: [{t: "Amazon", l: "http://amzn.to/2t2dOwg", p: "$"}]
+  },
+
+  book_calc: {
+    t: "Calculus Book",
+    links: [{t: "Amazon", l: "http://amzn.to/2tXfXhp", p: "$"}]
+  }
+
 }, v => ({
   format: "book",
-  difficulty: "hard"
+  difficulty: "hard",
+  ...v
 }))
 
 /** TODO
@@ -315,9 +384,7 @@ export const resources = _.mapValues({
 
   books: {
     // Math
-    linear_algebra: `[Introduction to Linear Algebra](https://amzn.to/2wP8TWS) \`book:hard\``,
-    stats: `[All of statistics](http://amzn.to/2t2dOwg) \`book:hard\``,
-    calc: `[Calculus](http://amzn.to/2tXfXhp) \`book:hard\``,
+
 
     dl_book: `[Deep Learning Book](http://amzn.to/2tXgCiT) ([Free HTML version](http://www.deeplearningbook.org/)) \`book:hard\` comprehensive DL bible; highly mathematical`,
     python: `[Python](http://amzn.to/2mVgtJW) \`book:medium\``,
@@ -339,9 +406,7 @@ export const resources = _.mapValues({
     ng_wk_9: `[Andrew Ng Week 9](https://www.coursera.org/learn/machine-learning/resources/szFCa)`,
 
     // Math
-    linear_algebra: `Either [LinAlg](https://www.khanacademy.org/math/linear-algebra) \`course:medium\` OR [Fast.ai](http://www.fast.ai/2017/07/17/num-lin-alg/) \`course:medium\``,
-    stats: `[Stats](https://www.khanacademy.org/math/statistics-probability) \`course:medium\``,
-    calc: `[Calc](https://www.khanacademy.org/math/calculus-home) \`course:medium\``,
+
 
     fastai: `[Fast.ai](http://course.fast.ai/) \`course:medium\` practical DL for coders`,
     cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`,
@@ -353,10 +418,7 @@ export const resources = _.mapValues({
     how_to_create_mind: `[How to Create a Mind](http://amzn.to/2tXLvUm) \`audio:easy\``,
 
     // Math
-    stats: `[Statistics](https://goo.gl/4vvXJs), [Probability](https://goo.gl/Q4KwZ6) \`audio|course:hard\``,
-    calc: `Calculus [1](https://goo.gl/fcLP3l), [2](https://goo.gl/sBpljN), [3](https://goo.gl/8Hdwuh) \`audio|course:hard\``,
-    math_decision_making: `[Mathematical Decision Making](https://goo.gl/V75I49) \`audio|course:hard\` course on "Operations Research", similar to ML`,
-    info_theory: `[Information Theory](https://goo.gl/ugAi2m) \`audio|course:hard\``,
+
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
     speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\` If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).`,
     dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`
