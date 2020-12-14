@@ -134,6 +134,14 @@ function Resource({resource}) {
       <td {...helpAttrs(resourceFilter.d, 'pointer')}>
         {renderIcon(filterKey)}
         {resourceFilter.t || resourceFilter}
+
+        {/*TODO put this in resources.js somewhere */}
+        {filterKey === 'video2audio' && resourceFilter && <>
+          <span className='ml-2'>
+            <Link to='/blog/20201213-video2audio'>How to do this?</Link>
+          </span>
+        </>}
+
       </td>
     </tr>
     // <Popover_ /> showing at random pages on page
@@ -171,8 +179,13 @@ function Resource({resource}) {
       {filterKeys.map(renderIcon)}
     </div>
     {show && <>
-      {resource.d && <div className='small text-muted my-2'>
+      {(resource.d || resource.tgc) && <div className='small text-muted my-2'>
         <ReactMarkdown_ source={resource.d} />
+
+        {resource.tgc && <Alert variant='info'>
+          Get TGC cheaper <Link to='/blog/20201213-tgc'>details here.</Link>
+        </Alert>}
+
       </div>}
       <div className='mb-2 small'>
         <Table striped size='sm mb-0 filters-table'>

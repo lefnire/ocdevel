@@ -357,9 +357,6 @@ export const resources = _.mapValues({
     calc: `Calculus [1](https://goo.gl/fcLP3l), [2](https://goo.gl/sBpljN), [3](https://goo.gl/8Hdwuh) \`audio|course:hard\``,
     math_decision_making: `[Mathematical Decision Making](https://goo.gl/V75I49) \`audio|course:hard\` course on "Operations Research", similar to ML`,
     info_theory: `[Information Theory](https://goo.gl/ugAi2m) \`audio|course:hard\``,
-    video_to_audio: `Convert video to audio:
-  - mp4 => mp3: \`for f in *.mp4; do ffmpeg -i "$f" "\${f%.mp4}.mp3" && rm "$f"; done\`
-  - youtube => mp3: setup [youtube-dl](https://github.com/rg3/youtube-dl) and run \`youtube-dl -x youtube.com/playlist?list=<EDIT THIS>\``,
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
     speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\` If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).`,
     dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`

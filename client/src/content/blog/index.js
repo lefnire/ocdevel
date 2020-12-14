@@ -1,4 +1,6 @@
 export default [
+  require('./20201213-tgc').default,
+  require('./20201213-video2audio').default,
   require('./20201209-unable-to-fetch-archives').default,
   require('./20201208-wsl-docker-misc').default,
   require('./20201207-wsl2-gpu-docker').default,
