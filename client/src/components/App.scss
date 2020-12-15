@@ -70,7 +70,7 @@ body {
 
 .icon-btn {
   position: relative;
-  svg {
+  svg, span {
     position: absolute;
 
     // from .btn{padding}. Make sure to adjust icon size (24, 16)
@@ -149,7 +149,7 @@ body {
     .filter-selected {
       //border-bottom: 3px solid $primary;
       //color: $primary;
-      font-weight: 700;
+      font-weight: 500;
     }
   }
 }

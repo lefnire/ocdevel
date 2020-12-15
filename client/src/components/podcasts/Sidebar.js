@@ -19,8 +19,8 @@ import _ from "lodash";
 
 const sidebarBtn = active => ({
   size: "sm",
-  variant: 'light',
-  className: active ? 'filter-selected text-left' : 'text-left'
+  variant: active ? 'outline-dark' : 'outline-secondary',
+  className: active ? 'icon-btn filter-selected' : 'icon-btn'
 })
 
 function Filter({fk}) {
