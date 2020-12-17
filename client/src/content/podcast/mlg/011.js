@@ -12,22 +12,7 @@ export default {
   },
   libsynEpisode: 5440747,
   teaser: "Checkpoint - start learning the material offline!",
-  body:
-`45m/d ML
-- ${resources.courses.ng}
-- ${resources.books.python}
-- ${resources.audio.dl_episode}
-
-15m/d Math (KhanAcademy)
-- ${resources.courses.linear_algebra}
-- ${resources.courses.stats}
-- ${resources.courses.calc}
-
-Audio
-- ${resources.audio.master_algorithm}
-- ${resources.audio.math_decision_making}
-- ${resources.audio.stats}
-- ${resources.audio.calc}
-- ${resources.audio.video_to_audio}
+  body: `
+Try mixing your learning time 75/25 machine learning vs Math, and shoot for 1h per day. See resources list on the [math episode](/mlg/8) and the [deep learning episode](/ml/9).
 `
 }

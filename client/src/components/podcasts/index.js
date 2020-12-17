@@ -87,8 +87,10 @@ function EpisodeFull() {
       </Card.Header>
       <Card.Body>
         {renderPlayer(podcast, episode)}
-        <Card.Title>Resources</Card.Title>
-        <Resources resources={episode.resources} />
+        {episode.resources && <>
+          <Card.Title>Resources</Card.Title>
+          <Resources resources={episode.resources} />
+        </>}
       </Card.Body>
       <Card.Footer>
         {body? (
@@ -276,10 +278,12 @@ function EpisodeTeaser({e}) {
       </div>
       {!e.mla && <Link to={`/mlg/${e.episode}`}>Read More</Link>}
     </Card.Body>
-    <Card.Footer className='resources'>
-      <Card.Title>Resources</Card.Title>
-      <Resources resources={e.resources} />
-    </Card.Footer>
+    {e.resources && <>
+      <Card.Footer className='resources'>
+        <Card.Title>Resources</Card.Title>
+        <Resources resources={e.resources} />
+      </Card.Footer>
+    </>}
     {footer && <Card.Footer>{footer}</Card.Footer>}
   </Card>
 }

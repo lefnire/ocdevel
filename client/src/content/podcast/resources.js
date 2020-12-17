@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import {
+  CgMathPercent,
   FaBlog,
   FaBook,
   FaChalkboardTeacher,
   FaCouch, FaEye, FaGraduationCap,
-  FaHeadphones, FaMicrophone, FaNewspaper, FaRegSmile, FaRegStar,
+  FaHeadphones, FaMicrophone, FaNewspaper, FaRegSmile, FaRegStar, FaRobot,
   FaRunning, FaStar, FaStarHalfAlt, FaTrophy,
   FaVideo, GiBattery0, GiBattery100, GiBattery50, IoIosChatbubbles, MdWeb, TiSortAlphabetically
 } from "react-icons/all";
@@ -74,9 +75,10 @@ export const filters = {
       fun: {t: "Fun", d: "Fun and inspirational material, like consciousness and futurology", i: <FaRegSmile />},
       basics: {t: "Basics", d: "ML basics, information, end-to-end stuff", i: <TiSortAlphabetically />},
       news_interviews: {t: "News & Interviews", d: "Latest news & interviews in ML, mostly non-technical", i: <FaNewspaper />},
-      math: {t: "Math", d: "Fundamental math for ML"},
-      vision: {t: "Vision", d: "Computer vision (CV)", i: <FaEye />},
-      nlp: {t: "Language", d: "Natural Language Processing (NLP)", i: <IoIosChatbubbles />},
+      math: {t: "Math", d: "Fundamental math for ML", i: <CgMathPercent />},
+      vision: {t: "CV", d: "Computer Vision", i: <FaEye />},
+      nlp: {t: "NLP", d: "Natural Language Processing", i: <IoIosChatbubbles />},
+      rl: {t: "RL", d: "Reinforcement Learning / AI", i: <FaRobot />},
     }
   },
   price: {
@@ -125,24 +127,12 @@ const TODO = {
   books: {
     // Math
 
-    ml_with_r: `[Machine Learning with R](http://amzn.to/2n5fSUF) \`book:medium\``,
-    elements_of_stat_learning: `[Elements of Statistical Learning](http://amzn.to/2tWW8He) \`book:hard\``,
-    pattern_rec: `[Pattern Recognition and Machine Learning](http://amzn.to/2sDIIfb) ([Free PDF?](https://goo.gl/aX038j)) \`book:hard\``,
     speech_and_nlp: `[Speech and Language Processing](http://amzn.to/2uZaNyg) \`book:hard\` comprehensive classical-NLP bible`,
     nltk: `[NLTK Book](http://www.nltk.org/book) \`book:medium\``,
     sutton_barto: `[Sutton & Barto 2nd Ed PDF](http://incompleteideas.net/book/the-book-2nd.html) \`book:hard\``,
     aima: `AI a Modern Approach. [Website](http://aima.cs.berkeley.edu/), [Book](http://amzn.to/2E02dEr) \`book:hard\``
   },
   courses: {
-    // Ng
-
-    ng_wk_7: `[Andrew Ng Week 7](https://www.coursera.org/learn/machine-learning/resources/Es9Qo)`,
-    ng_wk_8: `[Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY)`,
-    ng_wk_9: `[Andrew Ng Week 9](https://www.coursera.org/learn/machine-learning/resources/szFCa)`,
-
-    // Math
-
-
 
     cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`,
     cs231n: `[Stanford cs231n: Convnets](https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) \`course:medium\``,
@@ -156,15 +146,12 @@ const TODO = {
 
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
     speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\` If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).`,
-    dl_episode: `[Deep Learning Resources](http://ocdevel.com/podcasts/machine-learning/9)`
   },
   other: {
 
     // nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
 
-    which_algo_to_use: `- Which algo to use?
-  - [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/) \`picture\`
-  - [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/) \`picture\``,
+
     kaggle: `[Kaggle.com](https://www.kaggle.com/)`,
     patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`,
     rnn_articles: `Overview Articles: 
@@ -239,7 +226,8 @@ const tgc = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2kQGgk5", p: "$"},
       {t: "TGC", l: "https://goo.gl/fDteyi", p: "$$"} // FIXME
     ],
-    format: "audio",
+    topic: "fun",
+    format: "audiobook",
     difficulty: "easy",
     importance: "valuable"
   },
@@ -467,6 +455,7 @@ const books = _.mapValues({
     topic: "math"
   },
 
+  // ml_with_r: `[Machine Learning with R](http://amzn.to/2n5fSUF) \`book:medium\``,
   handson_tensorflow: {
     t: "Hands-On Machine Learning with Scikit-Learn and TensorFlow",
     links: [{t: "Amazon", l: "https://amzn.to/3nwGxqt", p: "$"}],
@@ -494,18 +483,26 @@ const books = _.mapValues({
     t: "Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition",
     links: [{t: "Amazon", l: "https://amzn.to/2IHFh2m", p: "$"}],
     difficulty: "easy"
-  }
+  },
+
+  elements_of_stat_learning: {
+    t: "Elements of Statistical Learning",
+    links: [{t: "Amazon", l: "http://amzn.to/2tWW8He", p: "$"}]
+  },
+
+  pattern_rec: {
+    t: "Pattern Recognition and Machine Learning",
+    links: [
+      {t: "Amazon", l: "http://amzn.to/2sDIIfb", p: "$"},
+      {t: "PDF", l: "https://goo.gl/aX038j", p: "free"}
+    ]
+  },
 
 }, v => ({
   format: "book",
   difficulty: "hard",
   ...v
 }))
-
-/** TODO
- * FastAI
- * New Ng Course
- */
 
 export const resources = _.mapValues({
   ...books,

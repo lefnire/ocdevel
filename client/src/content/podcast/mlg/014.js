@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Shallow Algos 3",
@@ -11,12 +11,12 @@ export default {
     duration: "48:06"
   },
   libsynEpisode: 5440744,
+  resources: [
+    resources.ng
+  ],
   teaser: "Speed run of Anomaly Detection, Recommenders(Content Filtering vs Collaborative Filtering), and Markov Chain Monte Carlo (MCMC)",
-  body:
-`## Resources
-- ${resources.courses.ng_wk_9}
-
-## Episode
+  body: `
+See [Andrew Ng Week 9](https://www.coursera.org/learn/machine-learning/resources/szFCa)
 - Anomoly Detection algorithm
 - Recommender Systems (Content Filtering, Collaborative Filtering)
 - Markov Chains & Monte Carlo`

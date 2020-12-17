@@ -10,9 +10,7 @@ export default {
   },
   libsynEpisode: 5440743,
   teaser: "Performance evaluation & improvement",
-  body:
-`## Episode
-
+  body: `
 Performance evaluation
 
 - Performance measures: accuracy, precision, recall, F1/F2 score

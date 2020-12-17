@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Shallow Algos 1",
@@ -10,18 +10,20 @@ export default {
     length: 50030574,
     duration: "53:17"
   },
+  resources: [
+    resources.ng,
+    resources.tour_ml_algos,
+    resources.handson_tensorflow,
+  ],
   libsynEpisode: 5440746,
   teaser: "Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees",
-  body:
-`## Resources
-- ${resources.courses.ng_wk_8}
-- ${resources.other.tour_ml_algos}
-- ${resources.books.elements_of_stat_learning}
-- ${resources.books.pattern_rec}
-- ${resources.books.ml_with_r}
-${resources.other.which_algo_to_use}
+  body: `
+See [Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY).
 
-## Episode
+Which algo to use?
+- [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/)
+- [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/)
+
 KNN (supervised)
 
 Unsupervised

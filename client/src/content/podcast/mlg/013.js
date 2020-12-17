@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Shallow Algos 2",
@@ -11,15 +11,18 @@ export default {
     duration: "55:12"
   },
   libsynEpisode: 5440745,
+  resources: [
+    resources.ng,
+    resources.handson_tensorflow,
+    resources.tgc_math_decision_making,
+  ],
   teaser: "Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.",
-  body:
-`## Resources
-- ${resources.courses.ng_wk_7}
-- ${resources.books.ml_with_r}
-- ${resources.audio.math_decision_making}
-${resources.other.which_algo_to_use}
+  body: `
+See [Andrew Ng Week 7](https://www.coursera.org/learn/machine-learning/resources/Es9Qo)
+Which algo to use?
+- [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/)
+- [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/)
 
-## Episode
 - Support Vector Machines (SVM)
 - Naive Bayes Classifier`
 }

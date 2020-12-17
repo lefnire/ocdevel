@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: "Consciousness",
@@ -11,14 +11,11 @@ export default {
     duration: "01:14:57"
   },
   libsynEpisode: 5440742,
+  resources: [
+    resources.tgc_consciousness
+  ],
   teaser: "Can AI be conscious?",
-  body:
-`## Resources
-
-- ${resources.audio.ttc_consciousness}
-
-## Episode
-
+  body: `
 Inspirations for AI
 - economic automation
 - singularity
@@ -51,4 +48,5 @@ Computational theory of mind
 
 Biological plausibility
 - planes, brains
-- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room`}
+- sans bio-plaus, functionalism; zombies; turing test; searle's chinese room`
+}
