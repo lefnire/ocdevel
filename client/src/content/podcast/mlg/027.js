@@ -6,8 +6,7 @@ export default {
   file: {},
   libsynEpisode: 6195814,
   teaser: 'Hyperparameters part 1: network architecture',
-  body: `## Episode
-
+  body: `
 - Hypers future & meta-learning
   - We're always removing hypers. DL removed feature-engineering \`
 - Model selection

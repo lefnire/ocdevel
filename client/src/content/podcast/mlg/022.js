@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Deep NLP 1',
@@ -7,15 +7,14 @@ export default {
   guid: "d9e15cfe501a8f0c6e3c075c09f7e682",
   file: {},
   libsynEpisode: 5589161,
+  resources: [
+    resources.rnn_articles,
+    resources.cs224n,
+    resources.tf_tuts_rnns
+  ],
   teaser: 'Recurrent Neural Networks (RNNs) and Word2Vec.',
-  body: `## Resources
-- ${resources.other.rnn_articles}
-- ${resources.courses.cs224n}
-- ${resources.other.tf_tuts_rnns}
-- ${resources.audio.dl_episode}
-
-
-## Episode
+  body: `
+See resources on [Deep Learning episode](/mlg/9).
 
 Deep NLP pros
 - Language complexity & nuances

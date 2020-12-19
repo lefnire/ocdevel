@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Natural Language Processing 2',
@@ -7,16 +7,13 @@ export default {
   guid: "e05e640ba2f99105f52c4eef0c5cabfb",
   file: {},
   libsynEpisode: 5525243,
+  resources: [
+    resources.speech_and_nlp,
+    resources.stanford_nlp,
+    resources.nltk
+  ],
   teaser: 'Natural Language Processing classical/shallow algorithms.',
-  body:
-`## Resources
-- ${resources.books.speech_and_nlp}
-- ${resources.audio.speech_and_nlp}
-- ${resources.books.nltk}
-- ${resources.audio.video_to_audio}
-
-## Episode
-
+  body: `
 - Edit distance: Levenshtein distance
 - Stemming/lemmatization: Porter Stemmer
 - N-grams, Tokens: regex

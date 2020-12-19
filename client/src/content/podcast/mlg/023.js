@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Deep NLP 2',
@@ -7,17 +7,14 @@ export default {
   guid: "1346120e3e578b15c8f34b31bc21ef78",
   file: {},
   libsynEpisode: 5660423,
+  resources: [
+    resources.rnn_articles,
+    resources.cs224n,
+    resources.tf_tuts_rnns
+  ],
   teaser: 'RNN review, bi-directional RNNs, LSTM & GRU cells.',
-  body: `## Resources
-- ${resources.other.rnn_articles}
-- ${resources.courses.cs224n}
-- ${resources.other.tf_tuts_rnns}
-- The usual DL resources (pick one):
-  - ${resources.books.dl_book}
-  - ${resources.courses.fastai}
-
-
-## Episode
+  body: `
+See resources on [Deep Learning episode](/mlg/9).
 
 RNN Review
   - Vanilla: When words + running context is sufficient. 

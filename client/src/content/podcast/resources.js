@@ -124,42 +124,15 @@ const defaults = {
 
 
 const TODO = {
-  books: {
-    // Math
-
-    speech_and_nlp: `[Speech and Language Processing](http://amzn.to/2uZaNyg) \`book:hard\` comprehensive classical-NLP bible`,
-    nltk: `[NLTK Book](http://www.nltk.org/book) \`book:medium\``,
-    sutton_barto: `[Sutton & Barto 2nd Ed PDF](http://incompleteideas.net/book/the-book-2nd.html) \`book:hard\``,
-    aima: `AI a Modern Approach. [Website](http://aima.cs.berkeley.edu/), [Book](http://amzn.to/2E02dEr) \`book:hard\``
-  },
-  courses: {
-
-    cs224n: `[Stanford cs224n: Deep NLP](https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6) \`course:medium\` (replaces cs224d)`,
-    cs231n: `[Stanford cs231n: Convnets](https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC) \`course:medium\``,
-    cs294: `[Berkeley cs294: Deep Reinforcement Learning](http://rll.berkeley.edu/deeprlcourse/) \`course:hard\``,
-    david_silver: `[RL Course by David Silver](https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-) \`course|audio:hard\``
-  },
   audio: {
     how_to_create_mind: `[How to Create a Mind](http://amzn.to/2tXLvUm) \`audio:easy\``,
-
-    // Math
-
     cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
-    speech_and_nlp: `[Stanford NLP YouTube](https://www.youtube.com/playlist?list=PL6397E4B26D00A269) \`course|audio:medium\` If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).`,
+
   },
   other: {
-
     // nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
-
-
     kaggle: `[Kaggle.com](https://www.kaggle.com/)`,
     patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`,
-    rnn_articles: `Overview Articles: 
-  - [Unreasonable Effectiveness of RNNs](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) \`article:easy\`
-  - [Deep Learning, NLP, and Representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/) \`article:medium\`
-  - [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) \`article:medium\``,
-    tf_tuts_rnns: `[TensorFlow Tutorials](https://www.tensorflow.org/tutorials/word2vec) \`tutorial:medium\` (start at Word2Vec + next 2 pages)`,
-    project_repo: `[TForce BTC Trader](https://github.com/lefnire/tforce_btc_trader) (podcast project)`
   }
 }
 
@@ -379,13 +352,52 @@ const courses = _.mapValues({
     links: [{t: "Website", l: "http://course.fast.ai/", p: "free"}],
     difficulty: "medium",
     importance: "essential"
-  }
-
+  },
 
 }, v => ({
   engagement: "active",
   difficulty: "hard",
   format: "course",
+  ...v
+}))
+
+const videos = _.mapValues({
+  stanford_nlp: {
+    t:`Stanford NLP YouTube`,
+    d: "If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).",
+    links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL6397E4B26D00A269", p: "free"}],
+    difficulty: "medium",
+  },
+
+  cs224n: {
+    t:`Stanford cs224n: Deep NLP`,
+    d: "replaces cs224d",
+    links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6", p: "free"}],
+    difficulty: "medium"
+  },
+
+  cs231n: {
+    t:`Stanford cs231n: CNNs`,
+    links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC", p: "free"}],
+    difficulty: "medium",
+  },
+
+  cs294: {
+    t:`Berkeley cs294: Deep Reinforcement Learning`,
+    links: [{t: "Website", l: "http://rll.berkeley.edu/deeprlcourse/", p: "free"}],
+    difficulty: "hard"
+  },
+
+  david_silver: {
+    t:`RL Course by David Silver`,
+    links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-", p: "free"}],
+    video2audio: "good",
+    difficulty: "hard"
+  }
+}, v => ({
+  engagement: "passive",
+  format: "video",
+  video2audio: "medium",
   ...v
 }))
 
@@ -420,7 +432,24 @@ const others = _.mapValues({
     d: "Official TensorFlow tutorials, quick-start you into some hands-on code",
     links: [{t: "Website", l: "https://www.tensorflow.org/get_started/get_started", p: "free"}],
     difficulty: "medium"
-  }
+  },
+
+  rnn_articles: {
+    t: `RNN Overview Articles`,
+    links: [
+      {t: "Unreasonable Effectiveness of RNNs", l: "http://karpathy.github.io/2015/05/21/rnn-effectiveness/", p: "free"},
+      {t: "Deep Learning, NLP, and Representations", l: "http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/", p: "free"},
+      {t: "Understanding LSTM Networks", l: "http://colah.github.io/posts/2015-08-Understanding-LSTMs/", p: "free"}
+    ],
+    difficulty: "medium"
+  },
+
+  tf_tuts_rnns: {
+    t: `TensorFlow RNN Tutorials`,
+    d: "start at Word2Vec + next 2 pages",
+    links: [{t: "Website", l: "https://www.tensorflow.org/tutorials/word2vec", p: "free"}],
+    difficulty: "medium"
+  },
 
 }, v => ({
   format: "other",
@@ -498,6 +527,32 @@ const books = _.mapValues({
     ]
   },
 
+  speech_and_nlp: {
+    t: `Speech and Language Processing`,
+    d: `comprehensive classical-NLP bible`,
+    links: [{t: "Amazon", l: "http://amzn.to/2uZaNyg", p: "$"}],
+    difficulty: "hard"
+  },
+
+  nltk: {
+    t:`NLTK Book`,
+    links: [{t: "Website", l: "http://www.nltk.org/book", p: "free"}],
+    difficulty: "medium"
+  },
+
+  sutton_barto: {
+    t:`Sutton & Barto 2nd Ed`,
+    links: [{t: "PDF", l: "http://incompleteideas.net/book/the-book-2nd.html", p: "free"}]
+  },
+
+  aima: {
+    t:`AI a Modern Approach`,
+    links: [
+      {t: "Website", l: "http://aima.cs.berkeley.edu/", p: "free"},
+      {t: "Amazon", l: "http://amzn.to/2E02dEr", p: "$"}
+    ]
+  }
+
 }, v => ({
   format: "book",
   difficulty: "hard",
@@ -511,6 +566,7 @@ export const resources = _.mapValues({
   ...fun,
   ...others,
   ...courses,
+  ...videos
 }, (v, k) => ({
   id: k,
   ...defaults,

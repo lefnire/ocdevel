@@ -8,10 +8,10 @@ export default {
   file: {},
   libsynEpisode: 6194090,
   teaser: 'Community project & intro to Bitcoin/crypto + trading',
-  body: `## Resources
-- ${resources.other.project_repo}
+  body: `
+**NOTE**. This episode is no longer relevant and will be archived. The current podcast project is Gnothi (see sidebar)
 
-## Episode
+[TForce BTC Trader](https://github.com/lefnire/tforce_btc_trader)
 
 - Project: Trading Crypto
   - Reasons

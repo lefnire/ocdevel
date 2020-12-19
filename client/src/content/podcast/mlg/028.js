@@ -6,8 +6,7 @@ export default {
   file: {},
   libsynEpisode: 6222761,
   teaser: 'Hyperparameters part 2: hyper-search, regularization, SGD optimizers, scaling',
-  body: `## Episode
-
+  body: `
 - Hyper optimization
   - GridSearch, RandomSearch
   - [Bayesian Optimization](https://thuijskens.github.io/2016/12/29/bayesian-optimisation/)

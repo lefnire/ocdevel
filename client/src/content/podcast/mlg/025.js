@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Convolutional Neural Networks',
@@ -7,15 +7,12 @@ export default {
   guid: "91bf8a0266bc22088c897eb756cc97d3",
   file: {},
   libsynEpisode: 5890712,
+  resources: [
+    resources.cs231n,
+  ],
   teaser: 'Convnets or CNNs. Filters, feature maps, window/stride/padding, max-pooling.',
-  body: `## Resources
-- ${resources.courses.cs231n}
-- ${resources.books.handson_tensorflow}
-- The usual DL resources (pick one):
-  - ${resources.books.dl_book}
-  - ${resources.courses.fastai}
-  
-## Episode
+  body: `
+See resources on [Deep Learning episode](/mlg/9).
 
 - One-time donations w/ BTC / PayPal
 - Image recognition, classification - computer vision

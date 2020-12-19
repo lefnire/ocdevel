@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Natural Language Processing 3',
@@ -7,15 +7,13 @@ export default {
   guid: "556b3779a8f8546de9457002a19e63b2",
   file: {},
   libsynEpisode: 5566766,
+  resources: [
+    resources.speech_and_nlp,
+    resources.stanford_nlp,
+    resources.nltk,
+  ],
   teaser: 'Natural Language Processing classical/shallow algorithms.',
-  body:
-`## Resources
-- ${resources.books.speech_and_nlp}
-- ${resources.audio.speech_and_nlp}
-- ${resources.books.nltk}
-- ${resources.audio.video_to_audio}
-
-## Episode
+  body:`
 - Parsing
   - Constituents
   - Grammar: Context Free Grammars (CFGs), Probabalistic CFGs (PCFGs), Cocke–Younger–Kasami (CYK)

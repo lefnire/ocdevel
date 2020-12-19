@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Tech Stack',
@@ -8,17 +8,10 @@ export default {
   file: {},
   libsynEpisode: 5816352,
   teaser: 'TensorFlow, Pandas, Numpy, Scikit-Learn, Keras, TensorForce.',
-  body: `## Resources
-- ${resources.books.handson_tensorflow}
-- The usual DL resources (pick one):
-  - ${resources.books.dl_book}
-  - ${resources.courses.fastai}
+  body: `
+See resources on [Deep Learning episode](/mlg/9).
   
-## Custom PC Build
-
-Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan-v/) was released, which succeeds my prior 1080ti build recommend. Keep an eye on https://pcpartpicker.com/builds/ for builds with that card (currently none).
-
-## Episode
+**Custom PC Build**. Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan-v/) was released, which succeeds my prior 1080ti build recommend. Keep an eye on https://pcpartpicker.com/builds/ for builds with that card (currently none).
 
 - [Looking for work](https://www.linkedin.com/in/lefnire/)
 - Autodiff frameworks

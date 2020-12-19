@@ -1,4 +1,4 @@
-import resources from "../resources";
+import {resources} from "../resources";
 
 export default {
   title: 'Natural Language Processing 1',
@@ -7,18 +7,15 @@ export default {
   guid: "d8ebdbe6640d0d34f12778f90b91db8d",
   file: {},
   libsynEpisode: 5479957,
+  resources: [
+    resources.speech_and_nlp,
+    resources.stanford_nlp,
+    resources.nltk
+  ],
   teaser: 'Introduction to Natural Language Processing (NLP) topics.',
-  body:
-`## Resources
-- ${resources.books.speech_and_nlp}
-- ${resources.audio.speech_and_nlp}
-- ${resources.books.nltk}
-- ${resources.audio.video_to_audio}
+  body: `
+_Errata_: 22:21 "cat & car different by one word" should be "different by one letter"
 
-## Errata
-22:21 "cat & car different by one word" should be "different by one letter"
-
-## Episode
 Syntax vs Semantics
 
 Parts
