@@ -8,6 +8,9 @@ import {
 import {FaArrowLeft} from "react-icons/all";
 import {LinkContainer} from "react-router-bootstrap";
 import React from "react";
+import ReactMarkdown from "react-markdown";
+
+export const dateFmt = 'MMM DD, YYYY';
 
 export function BackButton() {
   return <LinkContainer to='/mlg'>
@@ -57,4 +60,12 @@ export const btns = {
       ))}
     </div>
   }
+}
+
+export function ReactMarkdown_({source}) {
+  // TODO turn h2s into h3s
+  return <ReactMarkdown
+    source={source}
+    linkTarget="_blank"
+  />
 }
