@@ -10,13 +10,10 @@ import {LinkContainer} from "react-router-bootstrap";
 import React from "react";
 
 export function BackButton() {
-  return <Button className="back-button mb-2 float-right" href="/mlg" variant="outline-secondary" size="sm">
-    <FaArrowLeft /> All Episodes
-  </Button>
-
-  // TODO using LinkContainer loses the variant syles
-  return <LinkContainer to="/mlg">
-    <Button variant="outline-secondary" size="sm">&lt; All Episodes</Button>
+  return <LinkContainer to='/mlg'>
+    <Button className="text-dark mb-2" variant="link">
+      <FaArrowLeft /> All Episodes
+    </Button>
   </LinkContainer>
 }
 
@@ -40,6 +37,15 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
 }
 
 export const btns = {
+  iconBtn: {
+    variant: 'light',
+    size: "sm",
+    className: 'icon-btn'
+  },
+  icon: {
+    size: 20
+  },
+
   tabs: (tab, setTab, buttons) => {
     return <div className='w-100 text-center mb-2'>
       {buttons.map(b => (
