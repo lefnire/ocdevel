@@ -23,7 +23,7 @@ import scout from '../../assets/mlg_square.jpg'
 const sidebarBtn = active => ({
   size: "sm",
   variant: active ? 'outline-dark' : 'outline-secondary',
-  className: active ? 'icon-btn filter-selected' : 'icon-btn'
+  className: active ? 'text-left filter-selected' : 'text-left'
 })
 
 function Filter({fk}) {
@@ -62,32 +62,43 @@ function Filters() {
   const mlg = useStoreState(state => state.mlg)
   const setMlg = useStoreActions(actions => actions.setMlg)
 
+  // manually picked a nubmer of leftFilters that fits well
+  const leftFilters = filterKeys.slice(0, 3)
+  const rightFilters = filterKeys.slice(3)
+
   return <div className='sidebar-filters'>
-    {viewAs === 'episodes' && <Card className='mb-2'><Card.Body>
-      <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
-      <ButtonGroup className='w-100'>
-        <Button
-          {...sidebarBtn(mlg)}
-          onClick={() => setMlg(!mlg)}
-        >MLG</Button>
-        <Button
-          {...sidebarBtn(mla)}
-          onClick={() => setMla(!mla)}
-        >MLA</Button>
-      </ButtonGroup>
-      <Card.Subtitle className='mt-3 mb-1'>Sort</Card.Subtitle>
-      <ButtonGroup className='w-100'>
-        <Button
-          {...sidebarBtn(episodeOrder === 'old2new')}
-          onClick={() => setEpisodeOrder('old2new')}
-        >Old&rarr;New</Button>
-        <Button
-          {...sidebarBtn(episodeOrder === 'new2old')}
-          onClick={() => setEpisodeOrder('new2old')}
-        >New&rarr;Old</Button>
-      </ButtonGroup>
-    </Card.Body></Card>}
-    {filterKeys.map(fk => <Filter fk={fk} key={fk} />)}
+    <Row>
+      <Col md={12} lg={6}>
+        {viewAs === 'episodes' && <Card className='mb-2'><Card.Body>
+          <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
+          <ButtonGroup className='w-100'>
+            <Button
+              {...sidebarBtn(mlg)}
+              onClick={() => setMlg(!mlg)}
+            >MLG</Button>
+            <Button
+              {...sidebarBtn(mla)}
+              onClick={() => setMla(!mla)}
+            >MLA</Button>
+          </ButtonGroup>
+          <Card.Subtitle className='mt-3 mb-1'>Sort</Card.Subtitle>
+          <ButtonGroup className='w-100'>
+            <Button
+              {...sidebarBtn(episodeOrder === 'old2new')}
+              onClick={() => setEpisodeOrder('old2new')}
+            >Old&rarr;New</Button>
+            <Button
+              {...sidebarBtn(episodeOrder === 'new2old')}
+              onClick={() => setEpisodeOrder('new2old')}
+            >New&rarr;Old</Button>
+          </ButtonGroup>
+        </Card.Body></Card>}
+        {leftFilters.map(fk => <Filter fk={fk} key={fk} />)}
+      </Col>
+      <Col md={12} lg={6}>
+        {rightFilters.map(fk => <Filter fk={fk} key={fk} />)}
+      </Col>
+    </Row>
   </div>
 }
 
