@@ -30,7 +30,7 @@ import {
 import {Helmet} from "react-helmet";
 
 import Sidebar from './Sidebar'
-import {BackButton, patreonLink, Popover_} from './utils'
+import {BackButton, patreonLink, btns} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import podcast from '../../content/podcast';
@@ -309,19 +309,28 @@ function Episodes() {
 function ResourcesTab() {
   const filtered = useStoreState(state => state.filteredResources)
   const r = _.values(filtered)
-  return <Card>
-    <Card.Body>
-      <Resources resources={r} />
-    </Card.Body>
-  </Card>
+  return <>
+    <Card>
+      <Card.Body>
+        <Resources resources={r} />
+      </Card.Body>
+    </Card>
+  </>
 }
 
 function MainTab() {
   const viewAs = useStoreState(state => state.viewAs)
-  return {
-    episodes: <Episodes />,
-    resources: <ResourcesTab />
-  }[viewAs]
+  const setViewAs = useStoreActions(actions => actions.setViewAs)
+  return <>
+    {btns.tabs(viewAs, setViewAs, [
+      {k: "episodes", v: "Episodes"},
+      {k: "resources", v: "Resources"}
+    ])}
+    {{
+      episodes: <Episodes />,
+      resources: <ResourcesTab />
+    }[viewAs]}
+  </>
 }
 
 export default function Series() {
@@ -333,10 +342,10 @@ export default function Series() {
     </Helmet>
 
     <Row>
-      <Col xs={12} md={4} className='sidebar'>
+      <Col xs={12} md={5} className='sidebar'>
         <Sidebar />
       </Col>
-      <Col xs={12} md={8}>
+      <Col xs={12} md={7}>
         <Switch>
           <Route path="/mlg" exact><MainTab /></Route>
           <Route path="/mlg/recommend" exact><Recommend /></Route>

@@ -16,7 +16,7 @@ const filters = _.transform(filters_, (m, v, k) => {
 }, {})
 
 export const store = createStore({
-  tab: "filters",
+  tab: "podcasts",
   setTab: action((state, tab) => {
     state.tab = tab
   }),

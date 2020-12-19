@@ -1,4 +1,10 @@
-import {Button, Popover, OverlayTrigger} from "react-bootstrap";
+import {
+  Button,
+  Popover,
+  OverlayTrigger,
+  ButtonGroup,
+  Nav
+} from "react-bootstrap";
 import {FaArrowLeft} from "react-icons/all";
 import {LinkContainer} from "react-router-bootstrap";
 import React from "react";
@@ -31,4 +37,18 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
       {children}
     </OverlayTrigger>
   );
+}
+
+export const btns = {
+  tabs: (tab, setTab, buttons) => {
+    return <div className='w-100 text-center mb-2'>
+      {buttons.map(b => (
+        <Button
+          variant='link'
+          className={tab === b.k ? 'text-dark font-weight-bold' : 'text-secondary'}
+          onClick={() => setTab(b.k)}
+        >{b.v}</Button>
+      ))}
+    </div>
+  }
 }

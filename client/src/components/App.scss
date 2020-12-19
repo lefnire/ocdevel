@@ -50,14 +50,18 @@ body {
 
 
 .sidebar {
-  &.sidebar-profile, .sidebar-podcasts {
-    .card {border: none;}
+  div.logo img {
+    width: 100%;
   }
-  div.logo {
-    img {
-      width: 100%;
+  &.sidebar-profile {
+    .card {border: none;}
+    div.log img {
       max-width: 250px;
-      //height: 140px;
+    }
+  }
+  .sidebar-podcasts {
+    p {
+      font-size: .95rem;
     }
   }
 }
