@@ -52,6 +52,7 @@ body {
 .sidebar {
   div.logo img {
     width: 100%;
+    max-width: 290px;
   }
   &.sidebar-profile {
     .card {border: none;}

@@ -5,6 +5,7 @@ import {
   ButtonGroup,
   Nav
 } from "react-bootstrap";
+import {useLocation} from 'react-router-dom'
 import {FaArrowLeft} from "react-icons/all";
 import {LinkContainer} from "react-router-bootstrap";
 import React from "react";
@@ -68,4 +69,8 @@ export function ReactMarkdown_({source}) {
     source={source}
     linkTarget="_blank"
   />
+}
+
+export function useQuery() {
+  return new URLSearchParams(useLocation().search);
 }

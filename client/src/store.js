@@ -1,5 +1,6 @@
 import { createStore, action, computed } from 'easy-peasy';
-import {filters as filters_, eitherOr, filterKeys, resources} from './content/podcast/resources'
+import {eitherOr, resources} from './content/podcast/resources'
+import {filters as filters_, filterKeys} from './content/podcast/resources/filters'
 import _ from 'lodash'
 
 // importance: {supplementary: true, valuable: true, essential: true}

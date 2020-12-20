@@ -1,8 +1,10 @@
 import React, {useState} from "react";
-import {eitherOr, filterKeys, filters} from "../../content/podcast/resources";
+import {eitherOr} from "../../content/podcast/resources";
+import {filterKeys, filters} from '../../content/podcast/resources/filters'
+import tree from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {FaChevronDown, FaChevronUp, FaInfoCircle} from "react-icons/all";
-import {Alert, Table} from "react-bootstrap";
+import {Alert, Button, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
 import {ReactMarkdown_} from "./utils";
 import _ from "lodash";
@@ -112,7 +114,7 @@ function Resource({resource}) {
   </li>
 }
 
-export default function Resources({resources}) {
+export function ResourcesFlat({resources}) {
   const filtered = useStoreState(state => state.filteredResources)
   if (!resources) {return null}
 
@@ -147,4 +149,62 @@ export default function Resources({resources}) {
   return <ul className='list-unstyled'>
     {resources.map(renderResource)}
   </ul>
+}
+
+export function ResourcesTree() {
+  const [showMore, setShowMore] = useState({})
+
+  function renderTree(node, level=0) {
+    if (!node.pick) {
+      return <Resource resource={node} />
+    }
+
+    if (node.hide && !showMore[node.hide]) {
+      return <Button
+        variant='link'
+        size='sm'
+        onClick={() => setShowMore({...showMore, [node.hide]: true})}
+        >Dive deeper</Button>
+    }
+
+    const ul = level > 0 ? "border-left pl-3" : ""
+    return <>
+      {level > 0 && <>
+        <strong>Pick {node.pick} </strong>
+        {node.t && <span>{node.t} </span>}
+        {node.d && <div className='small text-muted'>{node.d}</div>}
+      </>}
+      <ul className={`list-unstyled mb-3 ${ul}`}>
+        {node.v.map(n => <li key={n.id || n.t}>
+          {renderTree(n, level=level+1)}
+        </li>)}
+      </ul>
+    </>
+  }
+
+  return <div>
+    <Card className='mb-3'>
+      <Card.Body>
+        <Card.Title>{tree.main.t}</Card.Title>
+        <p className='small text-muted'>{tree.main.d}</p>
+        {renderTree(tree.main)}
+      </Card.Body>
+    </Card>
+
+    <Card className='mb-3'>
+      <Card.Body>
+        <Card.Title>{tree.math.t}</Card.Title>
+        <p className='small text-muted'>{tree.math.d}</p>
+        {renderTree(tree.math)}
+      </Card.Body>
+    </Card>
+
+    <Card className='mb-3'>
+      <Card.Body>
+        <Card.Title>{tree.audio.t}</Card.Title>
+        <p className='small text-muted'>{tree.audio.d}</p>
+        {renderTree(tree.audio)}
+      </Card.Body>
+    </Card>
+  </div>
 }

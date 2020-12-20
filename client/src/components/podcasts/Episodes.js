@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 import {BackButton, patreonLink, ReactMarkdown_, dateFmt} from "./utils";
 import {Card, Media} from "react-bootstrap";
 import moment from "moment";
-import Resources from "./Resources";
+import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {FaUnlock} from "react-icons/all";
 import {useStoreState} from "easy-peasy";
@@ -53,7 +53,7 @@ export function EpisodeFull() {
         {renderPlayer(podcast, episode)}
         {episode.resources && <>
           <Card.Title>Resources</Card.Title>
-          <Resources resources={episode.resources} />
+          <ResourcesFlat resources={episode.resources} />
         </>}
       </Card.Body>
       <Card.Footer>
@@ -103,7 +103,7 @@ function EpisodeTeaser({e}) {
     {e.resources && <>
       <Card.Footer className='resources'>
         <Card.Title>Resources</Card.Title>
-        <Resources resources={e.resources} />
+        <ResourcesFlat resources={e.resources} />
       </Card.Footer>
     </>}
     {footer && <Card.Footer>{footer}</Card.Footer>}

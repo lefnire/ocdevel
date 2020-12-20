@@ -2,7 +2,7 @@ import {Button, ButtonGroup, Card, Col, Form, Modal, OverlayTrigger, Popover, Ro
 import React, {useState} from "react";
 import {btns} from './utils'
 import {useStoreActions, useStoreState} from "easy-peasy";
-import {filterKeys, filters} from "../../content/podcast/resources";
+import {filterKeys, filters} from "../../content/podcast/resources/filters";
 import _ from "lodash";
 import About from './About'
 

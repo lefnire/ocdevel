@@ -5,17 +5,12 @@ import {
   Modal,
   Card,
 } from 'react-bootstrap';
-import {Switch, Link, Route, useParams, Redirect} from 'react-router-dom';
-import moment from 'moment';
-import ReactDisqusComments from 'react-disqus-comments';
+import {Switch, Route, useHistory} from 'react-router-dom';
 import _ from 'lodash';
-import {
-  FaUnlock, FaDollarSign, FaBriefcase, FaLightbulb, FaEnvelope, FaGithub
-} from 'react-icons/all';
 import {Helmet} from "react-helmet";
 
 import Sidebar from './Sidebar'
-import {BackButton, patreonLink, btns, Popover_, ReactMarkdown_} from './utils'
+import {btns} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import podcast from '../../content/podcast';
@@ -23,23 +18,16 @@ import {EpisodeFull, Episodes} from './Episodes'
 
 import {StoreProvider, useStoreState, useStoreActions, useStore} from "easy-peasy";
 import { store } from '../../store';
-import Resources from './Resources'
+import {ResourcesTree} from './Resources'
 
 
-
-function ResourcesTab() {
+function Resources() {
   const filtered = useStoreState(state => state.filteredResources)
   const r = _.values(filtered)
-  return <>
-    <Card>
-      <Card.Body>
-        <Resources resources={r} />
-      </Card.Body>
-    </Card>
-  </>
+  return <ResourcesTree resources={r} />
 }
 
-function MainTab() {
+function Content() {
   const viewAs = useStoreState(state => state.viewAs)
   const setViewAs = useStoreActions(actions => actions.setViewAs)
   return <>
@@ -49,7 +37,7 @@ function MainTab() {
     ])}
     {{
       episodes: <Episodes />,
-      resources: <ResourcesTab />
+      resources: <Resources />
     }[viewAs]}
   </>
 }
@@ -67,7 +55,7 @@ function Series_() {
       </Col>
       <Col xs={12} md={7}>
         <Switch>
-          <Route path="/mlg" exact><MainTab /></Route>
+          <Route path="/mlg" exact><Content /></Route>
           <Route path="/mlg/recommend" exact><Recommend /></Route>
           <Route path="/mlg/free-access" exact><FreeAccess /></Route>
           <Route path="/mlg/:id"><EpisodeFull /></Route>

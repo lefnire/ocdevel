@@ -2,7 +2,16 @@ import React, {useState} from "react";
 import scout from "../../assets/mlg_square.jpg";
 import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
 import {btns, patreonLink, ReactMarkdown_} from "./utils";
-import {FaItunesNote, FaPatreon, RiGooglePlayLine, RiSpotifyLine, SiRss, SiStitcher} from "react-icons/all";
+import {
+  FaArrowLeft,
+  FaItunesNote,
+  FaPatreon,
+  FaRegCheckCircle,
+  RiGooglePlayLine,
+  RiSpotifyLine,
+  SiRss,
+  SiStitcher
+} from "react-icons/all";
 import podcast from "../../content/podcast";
 import librarian from "../../assets/mla_square.jpg";
 import {LinkContainer} from "react-router-bootstrap";
@@ -61,6 +70,39 @@ export default function About() {
     </>
   }
 
+  const check = <FaRegCheckCircle className='text-primary' />
+
+  function renderPatreon() {
+    return <Card>
+      <Card.Body>
+        <Card.Title className='text-center'>Patreon</Card.Title>
+        <Row>
+          <Col>
+            <Card.Subtitle>MLA <span className='text-muted'>$5</span></Card.Subtitle>
+            <ul className='list-unstyled'>
+              <li>{check} Access to <em>Machine Learning Applied</em> podcast</li>
+              <li>{check} Premium account on Gnothi</li>
+              <li>{check} Ad-free MLG when I have ads</li>
+            </ul>
+          </Col>
+          <Col>
+            <Card.Subtitle>Discord <span className='text-muted'>$10</span></Card.Subtitle>
+            <ul className='list-unstyled'>
+              <li>{check} Rewards above</li>
+              <li>{check} Discord access, where I'll answer your ML questions</li>
+            </ul>
+          </Col>
+          <Col>
+            <Card.Subtitle>Office Hours <span className='text-muted'>$120</span></Card.Subtitle>
+          </Col>
+          <Col>
+            <Card.Subtitle>Job Hunter <span className='text-muted'>$200</span></Card.Subtitle>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
+  }
+
   return <div className='sidebar-podcasts'>
     <Card className='mb-3'>
       <Card.Body>
@@ -78,5 +120,6 @@ export default function About() {
         </Row>
       </Card.Body>
     </Card>
+    {/*renderPatreon()*/}
   </div>
 }
