@@ -130,6 +130,21 @@ body {
       .ft-col1 {width: 30%;}
       .ft-col2 {width: 70%;}
     }
+
+    .icon-importance-supplementary {}
+    .icon-importance-valuable {color: #383d41 !important;}
+    .icon-importance-essential {
+      //color: #fed900 !important;
+      color: black !important;
+    }
+    //.importance-essential { color: $primary; }
+    //.importance-valuable { color: $success; }
+
+    .section-title {font-weight: 600;}
+    .section-pick {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
   }
 
   .pick-one-resource {

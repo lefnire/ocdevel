@@ -64,9 +64,9 @@ export const filters = {
     t: "Importance",
     d: `How important is this resource? This is the most important tag; it tells you what you must consume, vs what's nice to consume`,
     opts: {
-      supplementary: {t: "Supplementary", d: "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter", i: <FaRegStar />},
+      supplementary: {t: "Supplementary", d: "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter", i: <FaRegStar/>},
       valuable: {t: "Valuable", d: "Quite a valuable resource. If you have the extra time, do it", i: <FaStarHalfAlt />},
-      essential: {t: "Essential", d: "Required. If interested in this topic, you _need_ this resource", i: <FaStar color='#007bff' />},
+      essential: {t: "Essential", d: "Required. If interested in this topic, you _need_ this resource", i: <FaStar />},
     }
   },
   topic: {

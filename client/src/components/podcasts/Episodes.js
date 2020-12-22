@@ -101,7 +101,7 @@ function EpisodeTeaser({e}) {
       {!e.mla && <Link to={`/mlg/${e.episode}`}>Read More</Link>}
     </Card.Body>
     {e.resources && <>
-      <Card.Footer className='resources'>
+      <Card.Footer>
         <Card.Title>Resources</Card.Title>
         <ResourcesFlat resources={e.resources} />
       </Card.Footer>

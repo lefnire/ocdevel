@@ -3,7 +3,7 @@ import {eitherOr} from "../../content/podcast/resources";
 import {filterKeys, filters} from '../../content/podcast/resources/filters'
 import tree from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
-import {FaChevronDown, FaChevronUp, FaInfoCircle} from "react-icons/all";
+import {FaChevronDown, FaChevronUp, FaInfoCircle, FiMinusSquare, FiPlusSquare, GiButtonFinger} from "react-icons/all";
 import {Alert, Button, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
 import {ReactMarkdown_} from "./utils";
@@ -28,10 +28,13 @@ function Resource({resource}) {
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
     if (!resourceFilter || !resourceFilter.i) {return null}
-    return <span key={filterKey} className='mr-2 text-muted'>{resourceFilter.i}</span>
+    let className = "mr-2 text-muted"
+    className += ` icon-${filterKey}-${resource[filterKey]}`
+    // if (filterKey !== 'importance') {className += ' text-muted'}
+    return <span key={filterKey} className={className}>{resourceFilter.i}</span>
   }
 
-  function renderFilter(filterKey) {
+  function renderDetails(filterKey) {
     // if (!resource[filterKey]) {return } // FIXME due to old resources?
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
@@ -78,40 +81,51 @@ function Resource({resource}) {
     </tr>
   }
 
-  const fontWeight = {
-    essential: 600,
-    supplementary: 400
-  }[resource.importance] || 500
-  return <li>
-    <div onClick={toggle} className='pointer'>
-      {show ? <FaChevronUp /> :<FaChevronDown />}
-      <span className="mx-2" style={{fontWeight}}>
-        {resource.t}
-      </span>
-      {filterKeys.map(renderIcon)}
-    </div>
-    {show && <>
-      {resource.d && <div className='small text-muted my-2'>
-        <ReactMarkdown_ source={resource.d} />
-      </div>}
-      <div className='mb-2 small'>
-        <Table striped size='sm mb-0 filters-table'>
-          <colgroup>
-            <col className='ft-col1' />
-            <col className='ft-col2' />
-	        </colgroup>
-          <tbody>
-            {renderLinks()}
-            {filterKeys.map(renderFilter)}
-          </tbody>
-        </Table>
-        {showHelp ?
-          <Alert variant='info mt-0'>{showHelp}</Alert> :
-          <Alert variant='info mt-0'><FaInfoCircle /> Hover over a key/value for information</Alert>
-        }
-      </div>
-    </>}
-  </li>
+  function ResourceWrapper({children}) {
+    if (!show) {return <div>{children}</div>}
+    return <Card className='shadow mb-2 pb-0'>
+      <Card.Body className='p-1'>
+        {children}
+      </Card.Body>
+    </Card>
+  }
+
+  function renderResource() {
+    return <li className={`resource`}>
+      <ResourceWrapper>
+        <div onClick={toggle} className="pointer">
+          {show ? <FiMinusSquare /> : <FiPlusSquare />}
+          <span className='mx-2 resource-title'>
+            {resource.t}
+          </span>
+          {filterKeys.map(renderIcon)}
+        </div>
+        {show && <div className='px-2 pb-1'>
+          {resource.d && <div className='small text-muted my-2'>
+            <ReactMarkdown_ source={resource.d} />
+          </div>}
+          <div className='small'>
+            <Table striped size='sm filters-table my-2'>
+              <colgroup>
+                <col className='ft-col1' />
+                <col className='ft-col2' />
+              </colgroup>
+              <tbody>
+                {renderLinks()}
+                {filterKeys.map(renderDetails)}
+              </tbody>
+            </Table>
+            {showHelp ?
+              <Alert variant='info mb-0'>{showHelp}</Alert> :
+              <Alert variant='info mb-0'><FaInfoCircle /> Hover over a key/value for information</Alert>
+            }
+          </div>
+        </div>}
+      </ResourceWrapper>
+    </li>
+  }
+
+  return renderResource()
 }
 
 export function ResourcesFlat({resources}) {
@@ -146,7 +160,7 @@ export function ResourcesFlat({resources}) {
     </Alert>
   }
 
-  return <ul className='list-unstyled'>
+  return <ul className='list-unstyled resources resources-flat'>
     {resources.map(renderResource)}
   </ul>
 }
@@ -169,12 +183,12 @@ export function ResourcesTree() {
 
     const ul = level > 0 ? "border-left pl-3" : ""
     return <>
-      {level > 0 && <>
-        <strong>Pick {node.pick} </strong>
-        {node.t && <span>{node.t} </span>}
+      {level > 0 && <div>
+        {node.t && <Card.Subtitle>{node.t}</Card.Subtitle>}
         {node.d && <div className='small text-muted'>{node.d}</div>}
-      </>}
+      </div>}
       <ul className={`list-unstyled mb-3 ${ul}`}>
+        <li><code>Pick {node.pick}</code></li>
         {node.v.map(n => <li key={n.id || n.t}>
           {renderTree(n, level=level+1)}
         </li>)}
@@ -182,10 +196,10 @@ export function ResourcesTree() {
     </>
   }
 
-  return <div>
+  return <div className='resources resources-tree'>
     <Card className='mb-3'>
       <Card.Body>
-        <Card.Title>{tree.main.t}</Card.Title>
+        <Card.Title className='mb-1'>{tree.main.t}</Card.Title>
         <p className='small text-muted'>{tree.main.d}</p>
         {renderTree(tree.main)}
       </Card.Body>
@@ -193,7 +207,7 @@ export function ResourcesTree() {
 
     <Card className='mb-3'>
       <Card.Body>
-        <Card.Title>{tree.math.t}</Card.Title>
+        <Card.Title className='mb-1'>{tree.math.t}</Card.Title>
         <p className='small text-muted'>{tree.math.d}</p>
         {renderTree(tree.math)}
       </Card.Body>
@@ -201,7 +215,7 @@ export function ResourcesTree() {
 
     <Card className='mb-3'>
       <Card.Body>
-        <Card.Title>{tree.audio.t}</Card.Title>
+        <Card.Title className='mb-1'>{tree.audio.t}</Card.Title>
         <p className='small text-muted'>{tree.audio.d}</p>
         {renderTree(tree.audio)}
       </Card.Body>

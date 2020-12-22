@@ -416,7 +416,8 @@ const books = _.mapValues({
 
   elements_of_stat_learning: {
     t: "Elements of Statistical Learning",
-    links: [{t: "Amazon", l: "http://amzn.to/2tWW8He", p: "$"}]
+    links: [{t: "Amazon", l: "http://amzn.to/2tWW8He", p: "$"}],
+    importance: "valuable"
   },
 
   pattern_rec: {
@@ -424,7 +425,8 @@ const books = _.mapValues({
     links: [
       {t: "Amazon", l: "http://amzn.to/2sDIIfb", p: "$"},
       {t: "PDF", l: "https://goo.gl/aX038j", p: "free"}
-    ]
+    ],
+    importance: "valuable"
   },
 
   speech_and_nlp: {
