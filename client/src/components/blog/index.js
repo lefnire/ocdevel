@@ -85,55 +85,13 @@ function Posts() {
 }
 
 export default function Home() {
-  const renderProfile = () => {
-    return <>
-      <Card className='mb-3'>
-        <Card.Body>
-          <div className="logo text-center mb-3">
-            <img src={avatar} className='rounded' />
-          </div>
-          <Card.Title>Tyler Renelle</Card.Title>
-          <Card.Text>
-            <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameter optimization, etc. Devops with AWS & Docker. Full-stack with Python/FastAPI, Postgres, and React / React Native. I offer NLP services using robust tooling I maintain at <a href="https://github.com/lefnire/ml-tools" target="_blank">lefnire/ml-tools</a>.</p>
-            <div>
-              <ul className="list-unstyled">
-                <li><a target="_blank" href="https://www.linkedin.com/in/lefnire" className="zocial linkedin d-block mb-1">LinkedIn</a></li>
-                <li><a target="_blank" href="https://github.com/lefnire" className="zocial github d-block mb-1">Github</a></li>
-                <li><a href="mailto:tylerrenelle@gmail.com" className="zocial email d-block mb-1">Email</a></li>
-              </ul>
-            </div>
-          </Card.Text>
-
-          <hr />
-
-          <Card.Title>Projects</Card.Title>
-          <Card.Subtitle><FaCouch /> <a href="https://gnothiai.com" target="_blank">Gnothi</a></Card.Subtitle>
-          <Card.Text>An personal journal that uses AI to provide insights & resources. I created and maintain this open source project.</Card.Text>
-          <Card.Subtitle><FaDragon /> <a href="https://habitica.com" target="_blank">Habitica</a></Card.Subtitle>
-          <Card.Text>A gamified habit tracker. I created Habitica, but am no longer with the company.</Card.Text>
-          <Card.Subtitle><FaMicrophone /> <Link to="/mlg">Machine Learning Guide</Link></Card.Subtitle>
-          <Card.Text>I teach the fundamentals of machine learning and artificial intelligence over a podcast.</Card.Text>
-          <Card.Subtitle><FaGithub /> More</Card.Subtitle>
-          <Card.Text>See my Github and LinkedIn profiles for more projects.</Card.Text>
-        </Card.Body>
-      </Card>
-    </>
-  }
-
   return <div className="home">
     <Helmet>
-      <title>OCDevel</title>
+      <title>OCDevel Blog</title>
     </Helmet>
-    <Row>
-      <Col xs={12} sm={5} lg={3} xl={3} className='sidebar sidebar-profile'>
-        {renderProfile()}
-      </Col>
-      <Col xs={12} sm={7} lg={9} xl={9}>
-        <Switch>
-          <Route path="/" exact><Posts /></Route>
-          <Route path="/blog/:id"><Post /></Route>
-        </Switch>
-      </Col>
-    </Row>
+    <Switch>
+      <Route path="/blog" exact><Posts /></Route>
+      <Route path="/blog/:id"><Post /></Route>
+    </Switch>
   </div>
 }
