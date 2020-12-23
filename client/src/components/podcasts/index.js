@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Row,
   Col,
   Modal,
   Card,
+  Container
 } from 'react-bootstrap';
-import {Switch, Route, useHistory} from 'react-router-dom';
+import {Switch, Route, useHistory, useLocation} from 'react-router-dom';
 import _ from 'lodash';
 import {Helmet} from "react-helmet";
 
@@ -16,9 +17,10 @@ import Recommend from './Recommend'
 import podcast from '../../content/podcast';
 import {EpisodeFull, Episodes} from './Episodes'
 
-import {StoreProvider, useStoreState, useStoreActions, useStore} from "easy-peasy";
+import {StoreProvider, useStoreState, useStoreActions, useStore, useLocalStore} from "easy-peasy";
 import { store } from '../../store';
 import {ResourcesTree} from './Resources'
+import {useQuery} from "../../utils";
 
 
 function Resources() {
@@ -42,8 +44,32 @@ function Content() {
   </>
 }
 
+export function useListenSearch() {
+  const {listen} = useHistory()
+  const location = useLocation()
+  const setTab = useStoreActions(actions => actions.setTab)
+  const setViewAs = useStoreActions(actions => actions.setViewAs)
+  const q = new URLSearchParams(useLocation().search);
+  function tabFromLocation(location) {
+    const [sidebar, content] = [q.get("sidebar"), q.get("content")]
+    if (sidebar) {
+      setTab(sidebar)
+    }
+    if (content) {
+      setViewAs(content)
+    }
+  }
+  useEffect(() => {
+    tabFromLocation(location)
+    return listen(tabFromLocation)
+  }, [])
+  return q
+}
+
 function Series_() {
-  return <div className="podcasts">
+  const q = useListenSearch()
+
+  return <Container fluid className="podcasts">
     <Helmet>
       <title>Machine Learning Guide Podcast</title>
       <meta name="description" content={podcast.teaser} />
@@ -62,7 +88,7 @@ function Series_() {
         </Switch>
       </Col>
     </Row>
-  </div>
+  </Container>
 }
 
 export default function Series() {

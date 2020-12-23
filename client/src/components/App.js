@@ -30,15 +30,13 @@ export default function App() {
       </Nav>
     </Navbar>
 
-    <div className="container-fluid">
-      <Switch>
-        <Route path="/" exact><Home /></Route>
-        <Route path="/blog"><Blog /></Route>
-        <Route path="/mlg"><Podcasts /></Route>
-        <Route path="/contact"><Contact /></Route>
-        {/*<Redirect from="*" to="/mlg"/>*/}
-      </Switch>
-    </div>
+    <Switch>
+      <Route path="/" exact><Home /></Route>
+      <Route path="/blog"><Blog /></Route>
+      <Route path="/mlg"><Podcasts /></Route>
+      <Route path="/contact"><Contact /></Route>
+      {/*<Redirect from="*" to="/mlg"/>*/}
+    </Switch>
 
     <footer className='footer text-center mt-auto shadow'>
       Copyright © 2009-2020 OCDevel LLC

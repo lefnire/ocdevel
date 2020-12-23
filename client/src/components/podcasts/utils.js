@@ -41,6 +41,8 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
 }
 
 export const btns = {
+  on: {size: "sm", variant: "outline-dark", className: "font-weight-bold"},
+  off: {size: "sm", variant: "outline-secondary"},
   iconBtn: {
     variant: 'light',
     size: "sm",
@@ -51,15 +53,15 @@ export const btns = {
   },
 
   tabs: (tab, setTab, buttons) => {
-    return <div className='w-100 text-center mb-2'>
+    const className = 'pointer list-inline-item mr-3 '
+    return <ul className='text-center list-inline mb-0'>
       {buttons.map(b => (
-        <Button
-          variant='link'
-          className={tab === b.k ? 'text-dark font-weight-bold' : 'text-secondary'}
+        <li
+          className={className + (tab === b.k ? 'text-dark text-underline' : 'text-muted')}
           onClick={() => setTab(b.k)}
-        >{b.v}</Button>
+        ><h5>{b.v}</h5></li>
       ))}
-    </div>
+    </ul>
   }
 }
 
@@ -69,8 +71,4 @@ export function ReactMarkdown_({source}) {
     source={source}
     linkTarget="_blank"
   />
-}
-
-export function useQuery() {
-  return new URLSearchParams(useLocation().search);
 }

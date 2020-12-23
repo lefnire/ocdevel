@@ -97,6 +97,13 @@ body {
 .podcasts {
   // 3108d595: .logo-and-sub, .sub-button-container, .sub-button */
 
+  .row {
+    div[class^="col-"], .col {
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+  }
+
   .episode-teaser {
     .card-footer {
       border: none;
@@ -118,12 +125,6 @@ body {
     &.github {
       border: 1px solid #050505 !important;
     }
-  }
-
-  .free-mla-card {
-    border: none;
-    border-radius: 0 .25rem .25rem 0;
-    border-left: 3px solid $primary;
   }
 
   .resources {
@@ -168,8 +169,15 @@ body {
 
   .sidebar-filters {
     .card {
+      .card-body {
+        //padding-top: .5em;
+        padding-bottom: .5em;
+      }
       .card-footer {
+        background-color: white;
         border-top: none;
+        color: #6c757d;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125)
       }
     }
     .filter-selected {
@@ -189,4 +197,14 @@ body {
   &:hover {
     border: 1px solid $primary;
   }
+}
+
+.notice-card {
+  border: none;
+  border-radius: 0 .25rem .25rem 0;
+  border-left: 3px solid $primary;
+}
+
+.text-underline {
+  text-decoration: underline;
 }

@@ -4,9 +4,9 @@ import {filterKeys, filters} from '../../content/podcast/resources/filters'
 import tree from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {FaChevronDown, FaChevronUp, FaInfoCircle, FiMinusSquare, FiPlusSquare, GiButtonFinger} from "react-icons/all";
-import {Alert, Button, Card, Col, Row, Table} from "react-bootstrap";
+import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
-import {ReactMarkdown_} from "./utils";
+import {ReactMarkdown_, btns} from "./utils";
 import _ from "lodash";
 
 function Resource({resource}) {
@@ -198,25 +198,31 @@ export function ResourcesTree() {
 
   return <div className='resources resources-tree'>
     <Card className='mb-3'>
+      <Card.Header>
+        <Card.Title className='mb-0'>{tree.main.t}</Card.Title>
+        <div className='small text-muted'>{tree.main.d}</div>
+      </Card.Header>
       <Card.Body>
-        <Card.Title className='mb-1'>{tree.main.t}</Card.Title>
-        <p className='small text-muted'>{tree.main.d}</p>
         {renderTree(tree.main)}
       </Card.Body>
     </Card>
 
     <Card className='mb-3'>
+      <Card.Header>
+        <Card.Title className='mb-0'>{tree.math.t}</Card.Title>
+        <div className='small text-muted'>{tree.math.d}</div>
+      </Card.Header>
       <Card.Body>
-        <Card.Title className='mb-1'>{tree.math.t}</Card.Title>
-        <p className='small text-muted'>{tree.math.d}</p>
         {renderTree(tree.math)}
       </Card.Body>
     </Card>
 
     <Card className='mb-3'>
+      <Card.Header>
+        <Card.Title className='mb-0'>{tree.audio.t}</Card.Title>
+        <div className='small text-muted'>{tree.audio.d}</div>
+      </Card.Header>
       <Card.Body>
-        <Card.Title className='mb-1'>{tree.audio.t}</Card.Title>
-        <p className='small text-muted'>{tree.audio.d}</p>
         {renderTree(tree.audio)}
       </Card.Body>
     </Card>

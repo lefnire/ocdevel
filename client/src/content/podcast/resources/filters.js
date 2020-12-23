@@ -111,7 +111,6 @@ export const filterKeys = [
   // Extra keys added per resource
   // 'price',
   // 'updated',
-  // or_
 ]
 
 export const defaults = {

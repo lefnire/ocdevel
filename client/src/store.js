@@ -16,6 +16,15 @@ const filters = _.transform(filters_, (m, v, k) => {
   return m
 }, {})
 
+const structure = {
+  audio: 'hardcore',
+  setAudio: action((state, payload) => {state.audio = payload}),
+
+  degrees: true,
+  setDegrees: action((state, payload) => {state.degrees = payload}),
+
+}
+
 export const store = createStore({
   tab: "podcasts",
   setTab: action((state, tab) => {

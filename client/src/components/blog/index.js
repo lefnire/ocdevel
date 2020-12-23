@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-import {Row, Col, Button, OverlayTrigger, Popover, Modal, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Row, Col, Button, Card, Container} from 'react-bootstrap';
 import {Link, Route, Switch, useParams} from 'react-router-dom'
 
-import avatar from "../../assets/avatar.jfif"
-import {FaArrowLeft, FaCouch, FaDragon, FaGithub, FaMicrophone, FaUnlock} from "react-icons/all";
+import {FaArrowLeft, } from "react-icons/all";
 import blog from '../../content/blog'
-import {LinkContainer} from "react-router-bootstrap";
 import ReactDisqusComments from "react-disqus-comments";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
@@ -85,7 +83,7 @@ function Posts() {
 }
 
 export default function Home() {
-  return <div className="home">
+  return <Container className="home">
     <Helmet>
       <title>OCDevel Blog</title>
     </Helmet>
@@ -93,5 +91,5 @@ export default function Home() {
       <Route path="/blog" exact><Posts /></Route>
       <Route path="/blog/:id"><Post /></Route>
     </Switch>
-  </div>
+  </Container>
 }

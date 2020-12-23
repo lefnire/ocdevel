@@ -15,10 +15,12 @@ import {
 import podcast from "../../content/podcast";
 import librarian from "../../assets/mla_square.jpg";
 import {LinkContainer} from "react-router-bootstrap";
+import {useStoreState} from "easy-peasy";
 
 export default function About() {
   const [showGetMLG, setShowGetMLG] = useState(false)
   const [showGetMLA, setShowGetMLA] = useState(false)
+  const viewAs = useStoreState(state => state.viewAs)
 
   function renderMLG() {
     return <>
@@ -103,16 +105,17 @@ export default function About() {
     </Card>
   }
 
-  return <div className='sidebar-podcasts'>
+  return <Col className='sidebar-podcasts'>
+    {viewAs === 'resources' && <h5 className='text-center'>Podcasts</h5>}
     <Card className='mb-3'>
       <Card.Body>
         <Row>
-          <Col md={6}>
+          <Col>
             <Card.Title className='text-center'>Theory</Card.Title>
             <Card.Subtitle className='text-center text-muted mb-1'>Machine Learning Guide</Card.Subtitle>
             {renderMLG()}
           </Col>
-          <Col md={6}>
+          <Col>
             <Card.Title className='text-center'>Hands-On</Card.Title>
             <Card.Subtitle className='text-center text-muted mb-1'>Machine Learning Applied</Card.Subtitle>
             {renderMLA()}
@@ -121,5 +124,5 @@ export default function About() {
       </Card.Body>
     </Card>
     {/*renderPatreon()*/}
-  </div>
+  </Col>
 }
