@@ -26,11 +26,6 @@ const structure = {
 }
 
 export const store = createStore({
-  tab: "podcasts",
-  setTab: action((state, tab) => {
-    state.tab = tab
-  }),
-
   mlg: true,
   setMlg: action((state, payload) => {
     state.mlg = payload
@@ -43,11 +38,6 @@ export const store = createStore({
   episodeOrder: 'new2old',
   setEpisodeOrder: action((state, payload) => {
     state.episodeOrder = payload
-  }),
-
-  viewAs: 'episodes',
-  setViewAs: action((state, payload) => {
-    state.viewAs = payload
   }),
 
   filters,

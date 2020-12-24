@@ -13,18 +13,18 @@ export default function App() {
   return <div>
     <CookieConsent buttonText="Accept">This website uses cookies to enhance the user experience.</CookieConsent>
 
-    <Navbar bg='light' variant='light' className="shadow-sm mb-4">
-      <LinkContainer to="/">
+    <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
+      <LinkContainer to="/" exact>
         <Navbar.Brand>OCDevel</Navbar.Brand>
       </LinkContainer>
       <Nav>
-        <LinkContainer to="/blog">
+        <LinkContainer to="/blog" exact>
           <Nav.Link>Blog</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/mlg">
+        <LinkContainer to="/mlg" exact>
           <Nav.Link>Podcasts</Nav.Link>
         </LinkContainer>
-        <LinkContainer to='/contact'>
+        <LinkContainer to='/contact' exact>
           <Nav.Link>Contact/Hire</Nav.Link>
         </LinkContainer>
       </Nav>

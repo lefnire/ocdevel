@@ -51,18 +51,6 @@ export const btns = {
   icon: {
     size: 20
   },
-
-  tabs: (tab, setTab, buttons) => {
-    const className = 'pointer list-inline-item mr-3 '
-    return <ul className='text-center list-inline mb-0'>
-      {buttons.map(b => (
-        <li
-          className={className + (tab === b.k ? 'text-dark text-underline' : 'text-muted')}
-          onClick={() => setTab(b.k)}
-        ><h5>{b.v}</h5></li>
-      ))}
-    </ul>
-  }
 }
 
 export function ReactMarkdown_({source}) {

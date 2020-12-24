@@ -6,6 +6,7 @@ import {filterKeys, filters} from "../../content/podcast/resources/filters";
 import _ from "lodash";
 import About from './About'
 import {FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {useLocation} from 'react-router-dom'
 
 const sidebarBtn = active => ({
   size: "sm",
@@ -47,19 +48,18 @@ function Filter({fk}) {
 function Filters() {
   const episodeOrder = useStoreState(state => state.episodeOrder)
   const setEpisodeOrder = useStoreActions(actions => actions.setEpisodeOrder)
-  const viewAs = useStoreState(state => state.viewAs)
   const mla = useStoreState(state => state.mla)
   const setMla = useStoreActions(actions => actions.setMla)
   const mlg = useStoreState(state => state.mlg)
   const setMlg = useStoreActions(actions => actions.setMlg)
 
-  if (viewAs !== 'resources') {return null}
-
   return <Col className='sidebar-filters'>
-    <h5 className='text-center'>Filters</h5>
     <Card>
+      <Card.Header>
+        <Card.Title className='mb-0 text-center'>Filters</Card.Title>
+      </Card.Header>
 
-    {viewAs === 'episodes' && <Card.Body>
+    {false && <Card.Body>
       <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
       <ButtonGroup className='w-100'>
         <Button
@@ -109,10 +109,10 @@ function Filters() {
 
 
 export default function Sidebar() {
+  const {pathname} = useLocation()
   return <div className='sidebar'>
     <Row>
-      <About />
-      <Filters />
+      {pathname === '/mlg/resources' ? <Filters /> : <About />}
     </Row>
   </div>
 }

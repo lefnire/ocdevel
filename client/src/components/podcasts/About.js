@@ -20,7 +20,6 @@ import {useStoreState} from "easy-peasy";
 export default function About() {
   const [showGetMLG, setShowGetMLG] = useState(false)
   const [showGetMLA, setShowGetMLA] = useState(false)
-  const viewAs = useStoreState(state => state.viewAs)
 
   function renderMLG() {
     return <>
@@ -76,8 +75,10 @@ export default function About() {
 
   function renderPatreon() {
     return <Card>
+      <Card.Header>
+        <Card.Title className='text-center mb-0'>Patreon</Card.Title>
+      </Card.Header>
       <Card.Body>
-        <Card.Title className='text-center'>Patreon</Card.Title>
         <Row>
           <Col>
             <Card.Subtitle>MLA <span className='text-muted'>$5</span></Card.Subtitle>
@@ -105,18 +106,19 @@ export default function About() {
     </Card>
   }
 
-  const col = viewAs === 'resources' ? {xs: 12} : {md: 6}
   return <Col className='sidebar-podcasts'>
-    <h5 className='text-center'>Podcasts</h5>
     <Card className='mb-3'>
+      <Card.Header>
+        <Card.Title className='text-center mb-0'>Machine Learning Podcasts</Card.Title>
+      </Card.Header>
       <Card.Body>
         <Row>
-          <Col {...col}>
+          <Col>
             <Card.Title className='text-center'>Theory</Card.Title>
             <Card.Subtitle className='text-center text-muted mb-1'>Machine Learning Guide</Card.Subtitle>
             {renderMLG()}
           </Col>
-          <Col {...col}>
+          <Col>
             <Card.Title className='text-center'>Hands-On</Card.Title>
             <Card.Subtitle className='text-center text-muted mb-1'>Machine Learning Applied</Card.Subtitle>
             {renderMLA()}
@@ -124,6 +126,6 @@ export default function About() {
         </Row>
       </Card.Body>
     </Card>
-    {/*renderPatreon()*/}
+    {renderPatreon()}
   </Col>
 }
