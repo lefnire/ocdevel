@@ -23,11 +23,11 @@ function Filter({fk}) {
   if (!f.opts) {return null}
   return <>
     <Card.Body>
-      <Card.Subtitle className='mb-2 pointer' onClick={() => setShow(!show)}>
+      <Card.Subtitle className='pointer' onClick={() => setShow(!show)}>
         {show ? <FiMinusSquare /> : <FiPlusSquare />}{' '}
         {f.t}
       </Card.Subtitle>
-      {show && <ButtonGroup vertical className='w-100'>
+      {show && <ButtonGroup vertical className='w-100 mt-2'>
         {_.map(f.opts, (v,k) => <Button
             key={k}
             {...sidebarBtn(selected[k])}

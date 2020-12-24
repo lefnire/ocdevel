@@ -20,7 +20,8 @@ import {EpisodeFull, Episodes} from './Episodes'
 import {StoreProvider, useStoreState, useStoreActions, useStore, useLocalStore} from "easy-peasy";
 import { store } from '../../store';
 import {ResourcesTree} from './Resources'
-import {useQuery} from "../../utils";
+import About from './About'
+// import {useQuery} from "../../utils";
 
 
 function Resources() {
@@ -75,6 +76,7 @@ function Series_() {
       <meta name="description" content={podcast.teaser} />
     </Helmet>
 
+    {/*<About />*/}
     <Row>
       <Col xs={12} md={5} className='sidebar'>
         <Sidebar />

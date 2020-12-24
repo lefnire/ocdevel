@@ -16,6 +16,12 @@ const TODO = {
 }
 
 const podcasts = _.mapValues({
+  mlg: {
+    t: "Machine Learning Guide",
+    links: [{t: "Website", l: "https://ocdevel.com/mlg", p: "free"}],
+    topic: "basics",
+  },
+
   twiml_and_ai: {
     t: "TWiML and AI",
     // d: "News & interviews podcast",

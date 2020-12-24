@@ -3,7 +3,7 @@ import {resources as r} from './index'
 export default {
   main: {
     t: "Main",
-    d: "Main learning track - 75% of your learning time",
+    d: "Machine learning track - 75% of your learning time",
     pick: "all",
     v: [
       {
@@ -38,7 +38,7 @@ export default {
 
   math: {
     t: "Math",
-    d: "Math learning track - 25% of your learning time",
+    d: "ML math learning track - 25% of your learning time",
     pick: "all",
     v: [
       {

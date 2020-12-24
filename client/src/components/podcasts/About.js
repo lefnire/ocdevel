@@ -105,17 +105,18 @@ export default function About() {
     </Card>
   }
 
+  const col = viewAs === 'resources' ? {xs: 12} : {md: 6}
   return <Col className='sidebar-podcasts'>
-    {viewAs === 'resources' && <h5 className='text-center'>Podcasts</h5>}
+    <h5 className='text-center'>Podcasts</h5>
     <Card className='mb-3'>
       <Card.Body>
         <Row>
-          <Col>
+          <Col {...col}>
             <Card.Title className='text-center'>Theory</Card.Title>
             <Card.Subtitle className='text-center text-muted mb-1'>Machine Learning Guide</Card.Subtitle>
             {renderMLG()}
           </Col>
-          <Col>
+          <Col {...col}>
             <Card.Title className='text-center'>Hands-On</Card.Title>
             <Card.Subtitle className='text-center text-muted mb-1'>Machine Learning Applied</Card.Subtitle>
             {renderMLA()}

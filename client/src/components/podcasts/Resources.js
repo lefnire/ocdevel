@@ -205,20 +205,16 @@ export function ResourcesTree() {
       <Card.Body>
         {renderTree(tree.main)}
       </Card.Body>
-    </Card>
 
-    <Card className='mb-3'>
-      <Card.Header>
+      <Card.Header className='border-top'>
         <Card.Title className='mb-0'>{tree.math.t}</Card.Title>
         <div className='small text-muted'>{tree.math.d}</div>
       </Card.Header>
       <Card.Body>
         {renderTree(tree.math)}
       </Card.Body>
-    </Card>
 
-    <Card className='mb-3'>
-      <Card.Header>
+      <Card.Header className='border-top'>
         <Card.Title className='mb-0'>{tree.audio.t}</Card.Title>
         <div className='small text-muted'>{tree.audio.d}</div>
       </Card.Header>
