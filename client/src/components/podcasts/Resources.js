@@ -1,9 +1,17 @@
 import React, {useState} from "react";
 import {eitherOr} from "../../content/podcast/resources";
 import {filterKeys, filters} from '../../content/podcast/resources/filters'
-import tree from '../../content/podcast/resources/tree'
+import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
-import {FaChevronDown, FaChevronUp, FaInfoCircle, FiMinusSquare, FiPlusSquare, GiButtonFinger} from "react-icons/all";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaInfoCircle,
+  FaQuestionCircle,
+  FiMinusSquare,
+  FiPlusSquare,
+  GiButtonFinger
+} from "react-icons/all";
 import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
 import {ReactMarkdown_, btns} from "./utils";
@@ -91,7 +99,7 @@ function Resource({resource}) {
   }
 
   function renderResource() {
-    return <li className={`resource`}>
+    return <div className={`resource`}>
       <ResourceWrapper>
         <div onClick={toggle} className="pointer">
           {show ? <FiMinusSquare /> : <FiPlusSquare />}
@@ -122,7 +130,7 @@ function Resource({resource}) {
           </div>
         </div>}
       </ResourceWrapper>
-    </li>
+    </div>
   }
 
   return renderResource()
@@ -160,66 +168,63 @@ export function ResourcesFlat({resources}) {
     </Alert>
   }
 
-  return <ul className='list-unstyled resources resources-flat'>
+  return <div className='resources resources-flat'>
     {resources.map(renderResource)}
-  </ul>
+  </div>
+}
+
+function ResourceNode({node, filtered, level=0}) {
+  const [expanded, setExpanded] = useState(!!node.expand)
+  const [showPick, setShowPick] = useState(false)
+
+  if (!node.pick) {
+    if (filtered && !filtered[node.id]) {return null}
+    return <div className='py-2'>
+        <Resource resource={node} />
+      </div>
+  }
+
+  let header = <>{expanded ? <FiMinusSquare /> : <FiPlusSquare />} {node.t}</>
+  header = level === 0 ?
+      <h4 className='resource-header mb-0'>{header}</h4> :
+      <div>{header}</div>
+
+  return <>
+    <div className='py-1'>
+      <div
+        onClick={() => setExpanded(!expanded)}
+        className={`pointer`}
+      >
+        {header}
+      </div>
+    </div>
+    {expanded && <ul className={`list-unstyled border-left pl-4`}>
+      {node.d && <li className='small section-description text-info'>
+        <div>{node.d}</div>
+        <div>
+          <span className='section-pick pointer' onClick={() => setShowPick(!showPick)}>{picks[node.pick].t}</span>
+          {showPick && <span>{' | '}{picks[node.pick].d}</span>}
+        </div>
+      </li>}
+      {node.v.map(n => <>
+        <li
+          key={n.id || n.t}
+        >
+          <ResourceNode node={n} filtered={filtered} level={level+1} />
+        </li>
+      </>)}
+    </ul>}
+  </>
 }
 
 export function ResourcesTree() {
-  const [showMore, setShowMore] = useState({})
-
-  function renderTree(node, level=0) {
-    if (!node.pick) {
-      return <Resource resource={node} />
-    }
-
-    if (node.hide && !showMore[node.hide]) {
-      return <Button
-        variant='link'
-        size='sm'
-        onClick={() => setShowMore({...showMore, [node.hide]: true})}
-        >Dive deeper</Button>
-    }
-
-    const ul = level > 0 ? "border-left pl-3" : ""
-    return <>
-      {level > 0 && <div>
-        {node.t && <Card.Subtitle>{node.t}</Card.Subtitle>}
-        {node.d && <div className='small text-muted'>{node.d}</div>}
-      </div>}
-      <ul className={`list-unstyled mb-3 ${ul}`}>
-        <li><code>Pick {node.pick}</code></li>
-        {node.v.map(n => <li key={n.id || n.t}>
-          {renderTree(n, level=level+1)}
-        </li>)}
-      </ul>
-    </>
-  }
-
+  const filtered = useStoreState(state => state.filteredResources)
   return <div className='resources resources-tree'>
     <Card className='mb-3'>
-      <Card.Header>
-        <Card.Title className='mb-0'>{tree.main.t}</Card.Title>
-        <div className='small text-muted'>{tree.main.d}</div>
-      </Card.Header>
       <Card.Body>
-        {renderTree(tree.main)}
-      </Card.Body>
-
-      <Card.Header className='border-top'>
-        <Card.Title className='mb-0'>{tree.math.t}</Card.Title>
-        <div className='small text-muted'>{tree.math.d}</div>
-      </Card.Header>
-      <Card.Body>
-        {renderTree(tree.math)}
-      </Card.Body>
-
-      <Card.Header className='border-top'>
-        <Card.Title className='mb-0'>{tree.audio.t}</Card.Title>
-        <div className='small text-muted'>{tree.audio.d}</div>
-      </Card.Header>
-      <Card.Body>
-        {renderTree(tree.audio)}
+        <ResourceNode node={tree.main} filtered={filtered} />
+        <ResourceNode node={tree.math} filtered={filtered} />
+        <ResourceNode node={tree.audio} filtered={filtered} />
       </Card.Body>
     </Card>
   </div>

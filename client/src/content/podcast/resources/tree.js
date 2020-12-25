@@ -1,13 +1,21 @@
 import {resources as r} from './index'
 
+export const picks = {
+  ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},
+  all: {t: "Complete All", d: "Order doesn't matter, but I recommend all these resources."},
+  any: {t: "Pick Any", d: "All these resources are good. Pick as many as you like (or none)."},
+  one: {t: "Pick One", d: "These resources generally cover the same material. You only really need one, but up to you if you want more than one of these for learning-by-repetition."},
+}
+
 export default {
   main: {
     t: "Main",
-    d: "Machine learning track - 75% of your learning time",
-    pick: "all",
+    d: "Machine learning track - 75% of your learning time. If a resource is available in audio, I list it there instead.",
+    pick: "ordered",
+    expand: true,
     v: [
       {
-        t: "Inspiration (optional)",
+        t: "Inspiration | Optional",
         d: "Non-technical machine learning & AI content: introduction to the subject, or inspiration / philosophy",
         pick: "any",
         v: [
@@ -19,12 +27,13 @@ export default {
         t: "Basics",
         d: "Machine learning Basics. Let the games begin!",
         pick: "all",
+        expand: true,
         v: [
           r.ng,
           r.fastai,
           r.handson_tensorflow,
           {
-            hide: "main_basics",
+            t: "Dive Deeper",
             pick: "any",
             v: [
               r.elements_of_stat_learning,
@@ -40,6 +49,7 @@ export default {
     t: "Math",
     d: "ML math learning track - 25% of your learning time",
     pick: "all",
+    expand: true,
     v: [
       {
         t: "Linear Algebra",
@@ -75,6 +85,7 @@ export default {
     t: "Audio",
     d: "Supplementary audio learning. For driving / chores / exercise",
     pick: "all",
+    expand: true,
     v: [
       {
         t: "Inspiration (optional)",

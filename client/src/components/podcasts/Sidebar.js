@@ -84,23 +84,25 @@ function Filters() {
       </ButtonGroup>
     </Card.Body>}
 
+    {/*
     <Card.Body>
-    <Card.Subtitle className='mb-1'>Learn Mode</Card.Subtitle>
-    <ButtonGroup className='w-100' vertical>
-      <Button {...btns.on}>Self-taught</Button>
-      <Button {...btns.off}>Degrees, Certificates</Button>
-    </ButtonGroup>
-    </Card.Body>
-    <Card.Footer className='small'>List learning resources for self-teaching, or resources for getting a degree</Card.Footer>
+      <Card.Subtitle className='mb-1'>Learn Mode</Card.Subtitle>
+      <ButtonGroup className='w-100' vertical>
+        <Button {...btns.on}>Self-taught</Button>
+        <Button {...btns.off}>Degrees, Certificates</Button>
+      </ButtonGroup>
+      </Card.Body>
+      <Card.Footer className='small'>List learning resources for self-teaching, or resources for getting a degree</Card.Footer>
 
-    <Card.Body>
-    <Card.Subtitle className='mb-1'>Audio</Card.Subtitle>
-    <ButtonGroup className='w-100' vertical>
-      <Button {...btns.on}>Hard-core</Button>
-      <Button {...btns.off}>Normal</Button>
-    </ButtonGroup>
+      <Card.Body>
+      <Card.Subtitle className='mb-1'>Audio</Card.Subtitle>
+      <ButtonGroup className='w-100' vertical>
+        <Button {...btns.on}>Hard-core</Button>
+        <Button {...btns.off}>Normal</Button>
+      </ButtonGroup>
     </Card.Body>
     <Card.Footer className='small'>In hard-core mode, video resources which can be effectively consumed audio-only are listed under audio. Else, they're listed in their normal spot. See Video->Audio below</Card.Footer>
+    */}
 
     {filterKeys.map(fk => <Filter fk={fk} key={fk} />)}
     </Card>
