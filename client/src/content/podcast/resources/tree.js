@@ -2,9 +2,9 @@ import {resources as r} from './index'
 
 export const picks = {
   ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},
-  all: {t: "Complete All", d: "Order doesn't matter, but I recommend all these resources."},
-  any: {t: "Pick Any", d: "All these resources are good. Pick as many as you like (or none)."},
-  one: {t: "Pick One", d: "These resources generally cover the same material. You only really need one, but up to you if you want more than one of these for learning-by-repetition."},
+  all: {t: "Complete All", d: "Order doesn't matter, but I recommend all these resources. Listed in descending order of my preference."},
+  any: {t: "Pick Any", d: "All these resources are good. Pick as many as you like (or none). Listed in descending order of my preference."},
+  one: {t: "Pick One", d: "These resources generally cover the same material. You only really need one, but up to you if you want more than one of these for learning-by-repetition. Listed in descending order of my preference."},
 }
 
 export default {
@@ -30,7 +30,6 @@ export default {
         expand: true,
         v: [
           r.ng,
-          r.fastai,
           r.handson_tensorflow,
           {
             t: "Dive Deeper",
@@ -38,6 +37,92 @@ export default {
             v: [
               r.elements_of_stat_learning,
               r.pattern_rec
+            ]
+          }
+        ]
+      },
+
+      {
+        t: "Programming",
+        d: "Eventually you'll need to be pretty good at Python. Not immediately (why I list this after Basics), but probably before going too far.",
+        pick: "any",
+        v: [
+            r.book_python,
+            r.python_data_analysis
+        ]
+      },
+
+      {
+        t: "Deep Learning",
+        d: "Deep Learning basics. Nothing specific on vision, NLP, etc - just the core concepts.",
+        pick: "one",
+        v: [
+            r.ng_deep_learning,
+            r.fastai,
+            r.dl_book,
+            {
+              t: "DL Topics (NLP, CV, RL)",
+              d: "Within deep learning, you'll want to specialize in something. Eventually you'll be exposed to most everything, but generally a good idea to pick something you like and master it.",
+              pick: "any",
+              v: [
+                {
+                  t: "Natural Language Processing",
+                  pick: "any",
+                  v: [
+                    r.speech_and_nlp,
+                    r.stanford_nlp,
+                    r.cs224n,
+                    {
+                      t: "Dive Deeper",
+                      d: "Misc books, articles, etc in NLP",
+                      pick: "any",
+                      v: [
+                        r.rnn_articles,
+                        r.tf_tuts_rnns,
+                        r.nltk,
+                      ]
+                    }
+                  ]
+                },
+
+                {
+                  t: "Computer Vision",
+                  pick: "any",
+                  v: [
+                    r.cs231n,
+                  ]
+                },
+
+                {
+                  t: "Reinforcement Learning",
+                  pick: "any",
+                  v: [
+                    r.aima,
+                    r.sutton_barto,
+                    r.cs294,
+                    r.david_silver,
+                  ]
+                }
+
+              ]
+            }
+        ]
+      },
+
+      {
+        t: "Degrees / Certificates",
+        d: "Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.",
+        pick: "one",
+        v: [
+          r.omscs,
+          {
+            t: "Others",
+            d: "Certificates & nano-degrees. I'm nesting it here since they're not widely respected yet in industry, prefer a traditional Masters (a la above list)",
+            pick: "one",
+            v: [
+              r.udacity_ml,
+              r.udacity_self_driving,
+              r.udacity_ai,
             ]
           }
         ]
@@ -92,12 +177,12 @@ export default {
         d: "Non-technical machine learning & AI content: introduction to the subject, or inspiration / philosophy",
         pick: "any",
         v: [
-          r.master_algorithm,
-          r.singularity_is_near,
           r.tgc_consciousness,
+          r.singularity_is_near,
+          r.feeling_of_life,
+          r.master_algorithm,
           r.superintelligence,
           r.machines_of_loving_grace,
-          r.feeling_of_life,
         ],
       },
 
@@ -106,6 +191,7 @@ export default {
         d: "General machine learning content",
         pick: "all",
         v: [
+          r.mlg,
           r.tgc_ml,
           r.tgc_math_decision_making
         ]

@@ -126,6 +126,6 @@ export default function About() {
         </Row>
       </Card.Body>
     </Card>
-    {renderPatreon()}
+    {/*renderPatreon()*/}
   </Col>
 }

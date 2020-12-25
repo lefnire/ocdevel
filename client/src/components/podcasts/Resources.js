@@ -203,7 +203,7 @@ function ResourceNode({node, filtered, level=0}) {
         <div>{node.d}</div>
         <div>
           <span className='section-pick pointer' onClick={() => setShowPick(!showPick)}>{picks[node.pick].t}</span>
-          {showPick && <span>{' | '}{picks[node.pick].d}</span>}
+          {showPick && <span>:{' '}{picks[node.pick].d}</span>}
         </div>
       </li>}
       {node.v.map(n => <>

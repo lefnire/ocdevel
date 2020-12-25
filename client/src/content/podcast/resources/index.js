@@ -199,6 +199,12 @@ const courses = _.mapValues({
     importance: "essential"
   },
 
+  ng_deep_learning: {
+    t: "Andrew Ng Deep Learning Course",
+    links: [{t: "Coursera", l: "https://www.coursera.org/specializations/deep-learning", p: "free"}],
+    importance: "essential"
+  },
+
   udacity_ml: {
     t: "Udacity Machine Learning",
     links: [{t: "Udacity", l: "https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009", p: "$$$"}],
@@ -439,7 +445,8 @@ const books = _.mapValues({
     t: `Speech and Language Processing`,
     d: `comprehensive classical-NLP bible`,
     links: [{t: "Amazon", l: "http://amzn.to/2uZaNyg", p: "$"}],
-    difficulty: "hard"
+    difficulty: "hard",
+    importance: "essential"
   },
 
   nltk: {
@@ -450,7 +457,8 @@ const books = _.mapValues({
 
   sutton_barto: {
     t:`Sutton & Barto 2nd Ed`,
-    links: [{t: "PDF", l: "http://incompleteideas.net/book/the-book-2nd.html", p: "free"}]
+    links: [{t: "PDF", l: "http://incompleteideas.net/book/the-book-2nd.html", p: "free"}],
+    importance: "essential"
   },
 
   aima: {
@@ -458,7 +466,8 @@ const books = _.mapValues({
     links: [
       {t: "Website", l: "http://aima.cs.berkeley.edu/", p: "free"},
       {t: "Amazon", l: "http://amzn.to/2E02dEr", p: "$"}
-    ]
+    ],
+    importance: "essential"
   }
 
 }, v => ({
