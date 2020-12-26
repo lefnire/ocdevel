@@ -41,8 +41,16 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
 }
 
 export const btns = {
-  on: {size: "sm", variant: "outline-dark", className: "font-weight-bold"},
-  off: {size: "sm", variant: "outline-secondary"},
+  on: {
+    size: "sm",
+    variant: "outline-dark",
+    className: "text-left filter-selected"
+  },
+  off: {
+    size: "sm",
+    variant: "outline-secondary",
+    className: "text-left"
+  },
   iconBtn: {
     variant: 'light',
     size: "sm",

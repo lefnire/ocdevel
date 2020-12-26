@@ -2,26 +2,42 @@ import {Button, ButtonGroup, Card, Col, Form, Modal, OverlayTrigger, Popover, Ro
 import React, {useState} from "react";
 import {btns} from './utils'
 import {useStoreActions, useStoreState} from "easy-peasy";
-import {filterKeys, filters} from "../../content/podcast/resources/filters";
+import {filterKeys, filters, learnStyles} from "../../content/podcast/resources/filters";
 import _ from "lodash";
 import About from './About'
-import {FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {FaCheckCircle, FaCheckSquare, FaCircle, FaSquare, FiMinusSquare, FiPlusSquare} from "react-icons/all";
 import {useLocation} from 'react-router-dom'
 
-const sidebarBtn = active => ({
-  size: "sm",
-  variant: active ? 'outline-dark' : 'outline-secondary',
-  className: active ? 'text-left filter-selected' : 'text-left'
-})
+let check = {size:20, className:'border-right pr-2 mr-2'}
+check = {
+  single: [<FaCircle {...check} />, <FaCheckCircle {...check} />],
+  multi: [<FaSquare {...check} />, <FaCheckSquare {...check} />]
+}
 
-function Filter({fk}) {
-  const selected = useStoreState(state => state.filters[fk])
-  const setSelected = useStoreActions(actions => actions.filters[`set_${fk}`])
-  const [show, setShow] = useState(false)
+function Option({k, opt, active, select, setHelp, multi=true}) {
+  const btn = active ? btns.on : btns.off
+  return <Button
+    {...btn}
+    onClick={() => select(k)}
+    onMouseEnter={() => setHelp(opt.d)}
+    onMouseLeave={() => setHelp(null)}
+  >
+    {check[multi ? 'multi' : 'single'][active ? 1 : 0]}
+    {opt.i && <span className='mr-2'>{opt.i}</span>}
+    {opt.t}
+  </Button>
+}
+
+function LearnStyle({k}) {
+  const active = useStoreState(state => state.learnStyles[k])
+  const select = useStoreActions(actions => actions.learnStyles[`set_${k}`])
+  const [show, setShow] = useState(true)
   const [help, setHelp] = useState()
 
-  const f = filters[fk]
+  const f = learnStyles[k]
   if (!f.opts) {return null}
+
+  // TODO refactor this with <Filter /> below
   return <>
     <Card.Body>
       <Card.Subtitle className='pointer' onClick={() => setShow(!show)}>
@@ -29,16 +45,49 @@ function Filter({fk}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {_.map(f.opts, (v,k) => <Button
-            key={k}
-            {...sidebarBtn(selected[k])}
-            onClick={() => setSelected({[k]: !selected[k]})}
-            onMouseEnter={() => setHelp(v.d)}
-            onMouseLeave={() => setHelp(null)}
-          >
-            {v.i && <span className='mr-2'>{v.i}</span>}
-            {v.t}
-        </Button>)}
+        {_.map(f.opts, (v, k) => <Option
+          key={k}
+          k={k}
+          opt={v}
+          active={active === k}
+          select={select}
+          setHelp={setHelp}
+          multi={false}
+        />)}
+      </ButtonGroup>}
+    </Card.Body>
+    {show && <Card.Footer className='small'>{help || f.d}</Card.Footer>}
+  </>
+}
+
+function Filter({k, section='filters'}) {
+  const active = useStoreState(state => state[section][k])
+  const select = useStoreActions(actions => actions[section][`set_${k}`])
+  const [show, setShow] = useState(false)
+  const [help, setHelp] = useState()
+
+  function select_(k) {
+    select({[k]: !active[k]})
+  }
+
+  const f = filters[k]
+  if (!f.opts) {return null}
+
+  return <>
+    <Card.Body>
+      <Card.Subtitle className='pointer' onClick={() => setShow(!show)}>
+        {show ? <FiMinusSquare /> : <FiPlusSquare />}{' '}
+        {f.t}
+      </Card.Subtitle>
+      {show && <ButtonGroup vertical className='w-100 mt-2'>
+        {_.map(f.opts, (v, k) => <Option
+          key={k}
+          k={k}
+          opt={v}
+          active={active[k]}
+          select={select_}
+          setHelp={setHelp}
+        />)}
       </ButtonGroup>}
     </Card.Body>
     {show && <Card.Footer className='small'>{help || f.d}</Card.Footer>}
@@ -46,65 +95,16 @@ function Filter({fk}) {
 }
 
 function Filters() {
-  const episodeOrder = useStoreState(state => state.episodeOrder)
-  const setEpisodeOrder = useStoreActions(actions => actions.setEpisodeOrder)
-  const mla = useStoreState(state => state.mla)
-  const setMla = useStoreActions(actions => actions.setMla)
-  const mlg = useStoreState(state => state.mlg)
-  const setMlg = useStoreActions(actions => actions.setMlg)
-
   return <Col className='sidebar-filters'>
     <Card>
       <Card.Header>
         <Card.Title className='mb-0 text-center'>Filters</Card.Title>
       </Card.Header>
 
-    {false && <Card.Body>
-      <Card.Subtitle className='mt-3 mb-1'>Podcast</Card.Subtitle>
-      <ButtonGroup className='w-100'>
-        <Button
-          {...sidebarBtn(mlg)}
-          onClick={() => setMlg(!mlg)}
-        >MLG</Button>
-        <Button
-          {...sidebarBtn(mla)}
-          onClick={() => setMla(!mla)}
-        >MLA</Button>
-      </ButtonGroup>
-      <Card.Subtitle className='mt-3 mb-1'>Sort</Card.Subtitle>
-      <ButtonGroup className='w-100'>
-        <Button
-          {...sidebarBtn(episodeOrder === 'old2new')}
-          onClick={() => setEpisodeOrder('old2new')}
-        >Old&rarr;New</Button>
-        <Button
-          {...sidebarBtn(episodeOrder === 'new2old')}
-          onClick={() => setEpisodeOrder('new2old')}
-        >New&rarr;Old</Button>
-      </ButtonGroup>
-    </Card.Body>}
+    {/* 71f9ea01: MLA/MLG filter & sorting */}
+    {['learn', 'audio'].map(k => <LearnStyle key={k} k={k} />)}
+    {filterKeys.map(k => <Filter key={k} k={k} />)}
 
-    {/*
-    <Card.Body>
-      <Card.Subtitle className='mb-1'>Learn Mode</Card.Subtitle>
-      <ButtonGroup className='w-100' vertical>
-        <Button {...btns.on}>Self-taught</Button>
-        <Button {...btns.off}>Degrees, Certificates</Button>
-      </ButtonGroup>
-      </Card.Body>
-      <Card.Footer className='small'>List learning resources for self-teaching, or resources for getting a degree</Card.Footer>
-
-      <Card.Body>
-      <Card.Subtitle className='mb-1'>Audio</Card.Subtitle>
-      <ButtonGroup className='w-100' vertical>
-        <Button {...btns.on}>Hard-core</Button>
-        <Button {...btns.off}>Normal</Button>
-      </ButtonGroup>
-    </Card.Body>
-    <Card.Footer className='small'>In hard-core mode, video resources which can be effectively consumed audio-only are listed under audio. Else, they're listed in their normal spot. See Video->Audio below</Card.Footer>
-    */}
-
-    {filterKeys.map(fk => <Filter fk={fk} key={fk} />)}
     </Card>
   </Col>
 }
@@ -112,7 +112,7 @@ function Filters() {
 
 export default function Sidebar() {
   const {pathname} = useLocation()
-  return <div className='sidebar'>
+  return <div className='sidebar mb-3'>
     <Row>
       {pathname === '/mlg/resources' ? <Filters /> : <About />}
     </Row>

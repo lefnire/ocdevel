@@ -1,31 +1,16 @@
 import { createStore, action, computed } from 'easy-peasy';
-import {eitherOr, resources} from './content/podcast/resources'
-import {filters as filters_, filterKeys} from './content/podcast/resources/filters'
+import {
+  eitherOr,
+  resources,
+} from './content/podcast/resources'
+import {
+  filters as filters_,
+  filterKeys,
+  learnStyles
+} from './content/podcast/resources/filters'
 import _ from 'lodash'
 
-// importance: {supplementary: true, valuable: true, essential: true}
-// set_importance: action()
-const filters = _.transform(filters_, (m, v, k) => {
-  m[k] = _.transform(v.opts, (m_, v_, k_) => {
-    m_[k_] = true
-    return m_
-  }, {})
-  m[`set_${k}`] = action((state, payload) => {
-    state[k] = {...state[k], ...payload}
-  })
-  return m
-}, {})
-
-const structure = {
-  audio: 'hardcore',
-  setAudio: action((state, payload) => {state.audio = payload}),
-
-  degrees: true,
-  setDegrees: action((state, payload) => {state.degrees = payload}),
-
-}
-
-export const store = createStore({
+const episodes = {
   mlg: true,
   setMlg: action((state, payload) => {
     state.mlg = payload
@@ -39,8 +24,34 @@ export const store = createStore({
   setEpisodeOrder: action((state, payload) => {
     state.episodeOrder = payload
   }),
+}
 
-  filters,
+// Transforms filters from ./filters.js to store attrs (getters/setters)
+// importance: {supplementary: true, valuable: true, essential: true}
+// set_importance: action()
+function filtersToStore(m, v, k) {
+  m[k] = _.transform(v.opts, (m_, v_, k_) => {
+    m_[k_] = true
+    return m_
+  }, {})
+  m[`set_${k}`] = action((state, payload) => {
+    state[k] = {...state[k], ...payload}
+  })
+  return m
+}
+
+export const store = createStore({
+  episodes,
+
+  // learnStyles: _.transform(learnStyles, filtersToStore, {}),
+  learnStyles: {
+    learn: 'selfTaught',
+    set_learn: action((s, p) => s.learn = p),
+    audio: 'hardCore',
+    set_audio: action((s, p) => s.audio = p)
+  },
+
+  filters: _.transform(filters_, filtersToStore, {}),
   filteredResources: computed(({filters}) => {
     return _.pickBy(resources, (r) => {
       return _.reduce(filterKeys, (m, fk) => {

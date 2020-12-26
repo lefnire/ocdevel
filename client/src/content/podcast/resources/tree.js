@@ -8,6 +8,26 @@ export const picks = {
 }
 
 export default {
+ degrees: {
+    t: "Degrees / Certificates",
+    d: "Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.",
+    pick: "one",
+   expand: true,
+    v: [
+      r.omscs,
+      {
+        t: "Others",
+        d: "Certificates & nano-degrees. I'm nesting it here since they're not widely respected yet in industry, prefer a traditional Masters (a la above list)",
+        pick: "one",
+        v: [
+          r.udacity_ml,
+          r.udacity_self_driving,
+          r.udacity_ai,
+        ]
+      }
+    ]
+  },
+
   main: {
     t: "Main",
     d: "Machine learning track - 75% of your learning time. If a resource is available in audio, I list it there instead.",
@@ -31,6 +51,7 @@ export default {
         v: [
           r.ng,
           r.handson_tensorflow,
+          r.hundred_page_ml,
           {
             t: "Dive Deeper",
             pick: "any",
@@ -108,25 +129,6 @@ export default {
             }
         ]
       },
-
-      {
-        t: "Degrees / Certificates",
-        d: "Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.",
-        pick: "one",
-        v: [
-          r.omscs,
-          {
-            t: "Others",
-            d: "Certificates & nano-degrees. I'm nesting it here since they're not widely respected yet in industry, prefer a traditional Masters (a la above list)",
-            pick: "one",
-            v: [
-              r.udacity_ml,
-              r.udacity_self_driving,
-              r.udacity_ai,
-            ]
-          }
-        ]
-      }
     ]
   },
 

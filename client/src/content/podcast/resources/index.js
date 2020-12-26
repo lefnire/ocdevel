@@ -378,6 +378,15 @@ const books = _.mapValues({
     ],
   },
 
+  hundred_page_ml: {
+    t: "The Hundred-Page Machine Learning Book",
+    links: [
+      {t: "Website", l: "http://themlbook.com/", p: "$"},
+      {t: "Amazon", l: "https://amzn.to/3aKAbQI", p: "$"}
+    ],
+    importance: "essential"
+  },
+
   book_linear_algebra: {
     t: "Introduction to Linear Algebra",
     links: [{t: "Amazon", l: "https://amzn.to/2wP8TWS", p: "$"}],

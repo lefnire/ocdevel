@@ -10,6 +10,27 @@ import {
   GiBattery100,
   GiBattery50, IoIosChatbubbles, MdWeb, TiSortAlphabetically
 } from "react-icons/all";
+import {action} from "easy-peasy";
+
+export const learnStyles = {
+  learn: {
+    t: 'Learn Mode',
+    d: "List learning resources for self-teaching, or resources for getting a degree",
+    opts: {
+      selfTaught: {t: "Self-Taught", d: "Lists all resources intended for self-learning ML, including math."},
+      degree: {t: "Degrees/Certificates", d: "Lists degrees/certificates, and hides resources you'd which teach you what you'll learn during the degree. Keeps supplementary material listed."}
+    }
+  },
+
+  audio: {
+    t: "Audio Mode",
+    d: "In hard-core mode, video resources which can be effectively consumed audio-only are listed under audio. Else, they're listed in their normal spot. See Video->Audio below",
+    opts: {
+      hardCore: {t: "Hard-Core", d: "Some video resources are well-orated, and can thus be listened to - saving your eye-time for other resources. These resources are moved to the audio section, with instructions on converting video to audio."},
+      normal: {t: "Normal", d: "If you prefer your audio time to be less intense, or simply prefer to watch video resources as they're intended to be consumed, choose this. It'll put video resources in their normal place."}
+    }
+  },
+}
 
 export const filters = {
   engagement: {

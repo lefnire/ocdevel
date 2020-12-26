@@ -107,7 +107,7 @@ export default function About() {
   }
 
   return <Col className='sidebar-podcasts'>
-    <Card className='mb-3'>
+    <Card>
       <Card.Header>
         <Card.Title className='text-center mb-0'>Machine Learning Podcasts</Card.Title>
       </Card.Header>

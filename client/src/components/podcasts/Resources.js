@@ -4,13 +4,10 @@ import {filterKeys, filters} from '../../content/podcast/resources/filters'
 import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {
-  FaChevronDown,
-  FaChevronUp,
   FaInfoCircle,
   FaQuestionCircle,
   FiMinusSquare,
   FiPlusSquare,
-  GiButtonFinger
 } from "react-icons/all";
 import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
@@ -199,12 +196,12 @@ function ResourceNode({node, filtered, level=0}) {
       </div>
     </div>
     {expanded && <ul className={`list-unstyled border-left pl-4`}>
-      {node.d && <li className='small section-description text-info'>
-        <div>{node.d}</div>
-        <div>
+      {(node.d || node.pick) && <li className='small section-description text-info'>
+        {node.d && <div>{node.d}</div>}
+        {node.pick && <div>
           <span className='section-pick pointer' onClick={() => setShowPick(!showPick)}>{picks[node.pick].t}</span>
           {showPick && <span>:{' '}{picks[node.pick].d}</span>}
-        </div>
+        </div>}
       </li>}
       {node.v.map(n => <>
         <li
@@ -219,11 +216,16 @@ function ResourceNode({node, filtered, level=0}) {
 
 export function ResourcesTree() {
   const filtered = useStoreState(state => state.filteredResources)
+  const degree = useStoreState(state => state.learnStyles.learn === 'degree')
   return <div className='resources resources-tree'>
     <Card className='mb-3'>
       <Card.Body>
-        <ResourceNode node={tree.main} filtered={filtered} />
-        <ResourceNode node={tree.math} filtered={filtered} />
+        {degree ? <>
+          <ResourceNode node={tree.degrees} filtered={filtered} />
+        </> : <>
+          <ResourceNode node={tree.main} filtered={filtered} />
+          <ResourceNode node={tree.math} filtered={filtered} />
+        </>}
         <ResourceNode node={tree.audio} filtered={filtered} />
       </Card.Body>
     </Card>
