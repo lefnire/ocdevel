@@ -7,6 +7,19 @@ export const picks = {
   one: {t: "Pick One", d: "These resources generally cover the same material. You only really need one, but up to you if you want more than one of these for learning-by-repetition. Listed in descending order of my preference."},
 }
 
+const sharedAudio = {
+  inspire: [
+    r.tgc_consciousness,
+    r.singularity_is_near,
+    r.feeling_of_life,
+    r.master_algorithm,
+    r.superintelligence,
+    r.machines_of_loving_grace,
+  ],
+
+
+}
+
 export default {
  degrees: {
     t: "Degrees / Certificates",
@@ -39,7 +52,8 @@ export default {
         d: "Non-technical machine learning & AI content: introduction to the subject, or inspiration / philosophy",
         pick: "any",
         v: [
-          r.society_of_mind
+          r.society_of_mind,
+          ...sharedAudio.inspire
         ]
       },
 
@@ -49,6 +63,7 @@ export default {
         pick: "all",
         expand: true,
         v: [
+          r.tgc_ml,
           r.ng,
           r.handson_tensorflow,
           r.hundred_page_ml,
@@ -90,16 +105,23 @@ export default {
                   t: "Natural Language Processing",
                   pick: "any",
                   v: [
-                    r.speech_and_nlp,
-                    r.stanford_nlp,
-                    r.cs224n,
                     {
-                      t: "Dive Deeper",
-                      d: "Misc books, articles, etc in NLP",
+                      t: "Primers | Optional",
+                      d: "Some quickie tutorials & articles introducing Deep NLP",
                       pick: "any",
                       v: [
                         r.rnn_articles,
                         r.tf_tuts_rnns,
+                      ]
+                    },
+                    r.speech_and_nlp,
+                    r.stanford_nlp,
+                    r.cs224n,
+                    {
+                      t: "Other | Optional",
+                      d: "Misc books, articles, etc in NLP",
+                      pick: "any",
+                      v: [
                         r.nltk,
                       ]
                     }
@@ -135,13 +157,22 @@ export default {
   math: {
     t: "Math",
     d: "ML math learning track - 25% of your learning time",
-    pick: "all",
+    pick: "ordered",
     expand: true,
     v: [
+      {
+        t: "Primers | Optional",
+        d: "Quick-fix primers to get you up and running (but eventually do the heavy learning!)",
+        pick: "any",
+        v: [
+          r.math_primer
+        ]
+      },
       {
         t: "Linear Algebra",
         pick: "one",
         v: [
+          r.tgc_linear_algebra,
           r.fastai_linear_algebra,
           r.book_linear_algebra,
           r.khan_linear_algebra,
@@ -151,6 +182,7 @@ export default {
         t: "Calculus",
         pick: "one",
         v: [
+          r.tgc_calc,
           r.book_calc,
           r.khan_calc,
           // TODO brown/blue
@@ -160,8 +192,17 @@ export default {
         t: "Statistics & Probability",
         pick: "one",
         v: [
+          r.tgc_stats,
           r.khan_stats,
           r.book_stats
+        ]
+      },
+      {
+        t: "Other",
+        d: "Misc topics valuable to ML, but not the core triumvirate",
+        v: [
+          r.tgc_math_decision_making,
+          r.tgc_info_theory,
         ]
       }
     ]
@@ -178,14 +219,7 @@ export default {
         t: "Inspiration (optional)",
         d: "Non-technical machine learning & AI content: introduction to the subject, or inspiration / philosophy",
         pick: "any",
-        v: [
-          r.tgc_consciousness,
-          r.singularity_is_near,
-          r.feeling_of_life,
-          r.master_algorithm,
-          r.superintelligence,
-          r.machines_of_loving_grace,
-        ],
+        v: sharedAudio.inspire,
       },
 
       {
@@ -198,6 +232,18 @@ export default {
           r.tgc_math_decision_making
         ]
 
+      },
+
+      {
+        t: "Deep Learning",
+        d: "Video series which can be listened to instead of watched, if you're really on your game. See Audio-mode in the filters",
+        v: [
+          r.stanford_nlp,
+          r.cs224n,
+          r.cs231n,
+          r.cs294,
+          r.david_silver,
+        ]
       },
 
       {
@@ -217,6 +263,7 @@ export default {
         d: "Once you've gotten your fill of the above resources, time to go into auto-pilot. Try a few of these podcasts, find your favorites, and coast.",
         pick: "any",
         v: [
+          r.mlg,
           r.lex_fridman,
           r.twiml_and_ai,
           r.linear_digressions,

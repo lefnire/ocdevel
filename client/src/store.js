@@ -63,21 +63,20 @@ function recurseTree(filters, learnStyles, node=null, section=null) {
   }
   
   // leaf node
-  if (!node.v) {
-    if (node.video2audio) {
-      if (learnStyles.audio === 'normal' && section === 'audio') {
-        return null
-      } else if (learnStyles.audio === 'hardCore' && section !== 'audio') {
-        return null
-      }
+  if (node.audioOption) {
+    if (learnStyles.audio === 'normal' && section === 'audio') {
+      return null
     }
-
-    const keep = _.reduce(filterKeys, (m, fk) => {
-      if (!node[fk]) {return m} // N/A attrs, like video2audio
-      return m && filters[fk][node[fk]]
-    }, true)
-    return keep ? node : null
+    if (learnStyles.audio === 'hardCore' && section !== 'audio') {
+      return null
+    }
   }
+
+  const keep = _.reduce(filterKeys, (m, fk) => {
+    if (!node[fk]) {return m} // N/A attrs, like video2audio
+    return m && filters[fk][node[fk]]
+  }, true)
+  return keep ? node : null
 }
 
 export const store = createStore({

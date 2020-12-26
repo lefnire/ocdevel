@@ -141,6 +141,7 @@ const tgc = _.mapValues({
   format: "video",
   video2audio: "good",
   importance: "essential",
+  audioOption: true,
   ...v
 }))
 
@@ -148,33 +149,38 @@ const fun = _.mapValues({
   singularity_is_near: {
     t: "The Singularity Is Near",
     links: [{t: "Amazon", l: "http://amzn.to/2lzCqKk", p: "$"}],
-    importance: "valuable"
+    importance: "valuable",
+    audioOption: true
   },
 
   superintelligence: {
     t: "Superintelligence",
     d: "Doom-and-gloom favorite of Musk, Gates, Hawking.",
-    links: [{t: "Amazon", l: "http://amzn.to/2lzLcrL", p: "$"}]
+    links: [{t: "Amazon", l: "http://amzn.to/2lzLcrL", p: "$"}],
+    audioOption: true
   },
 
   machines_of_loving_grace: {
     t: `Machines of Loving Grace`,
     d: "AI History",
-    links: [{t: "Amazon", l: "http://amzn.to/2kRcBWq", p: "$"}]
+    links: [{t: "Amazon", l: "http://amzn.to/2kRcBWq", p: "$"}],
+    audioOption: true
   },
 
   master_algorithm: {
     t: `The Master Algorithm`,
     d: 'Semi-technical overview of ML basics & main algorithms',
     links: [{t: "Amazon", l: "http://amzn.to/2kLOQjW", p: "$"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    audioOption: true
   },
 
   feeling_of_life: {
     t: "The Feeling of Life Itself: Why Consciousness Is Widespread but Can't Be Computed",
     d: 'Discusses _Integrated Information Theory_ (IIT), very popular framework in consciousness theory.',
     links: [{t: "Amazon", l: "https://amzn.to/3au4KtQ", p: "$"}],
-    difficulty: "easy"
+    difficulty: "easy",
+    audioOption: true
   },
 
   society_of_mind: {
@@ -279,32 +285,37 @@ const videos = _.mapValues({
     d: "If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).",
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL6397E4B26D00A269", p: "free"}],
     difficulty: "medium",
+    audioOption: true
   },
 
   cs224n: {
     t:`Stanford cs224n: Deep NLP`,
     d: "replaces cs224d",
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6", p: "free"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    audioOption: true
   },
 
   cs231n: {
     t:`Stanford cs231n: CNNs`,
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC", p: "free"}],
     difficulty: "medium",
+    audioOption: true
   },
 
   cs294: {
     t:`Berkeley cs294: Deep Reinforcement Learning`,
     links: [{t: "Website", l: "http://rll.berkeley.edu/deeprlcourse/", p: "free"}],
-    difficulty: "hard"
+    difficulty: "hard",
+    audioOption: true
   },
 
   david_silver: {
     t:`RL Course by David Silver`,
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-", p: "free"}],
     video2audio: "good",
-    difficulty: "hard"
+    difficulty: "hard",
+    audioOption: true
   }
 }, v => ({
   engagement: "passive",
