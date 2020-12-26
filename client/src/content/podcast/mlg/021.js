@@ -6,5 +6,5 @@ export default {
   file: {},
   libsynEpisode: 5585790,
   teaser: 'Introducing a new podcast series on Patreon: Machine Learning Applied',
-  body: `Keep this podcast going by donating $1/m on [Patreon](https://www.patreon.com/machinelearningguide), which gives you access to a new podcast series: Machine Learning Applied`
+  body: `Keep this podcast going by donating $5/m on [Patreon](https://www.patreon.com/machinelearningguide), which gives you access to a new podcast series: Machine Learning Applied`
 }

@@ -43,7 +43,7 @@ export default {
 
   main: {
     t: "Main",
-    d: "Machine learning track - 75% of your learning time. If a resource is available in audio, I list it there instead.",
+    d: "Machine learning track - 75% of your learning time.",
     pick: "ordered",
     expand: true,
     v: [
@@ -216,7 +216,7 @@ export default {
     expand: true,
     v: [
       {
-        t: "Inspiration (optional)",
+        t: "Inspiration | Optional",
         d: "Non-technical machine learning & AI content: introduction to the subject, or inspiration / philosophy",
         pick: "any",
         v: sharedAudio.inspire,
@@ -237,6 +237,7 @@ export default {
       {
         t: "Deep Learning",
         d: "Video series which can be listened to instead of watched, if you're really on your game. See Audio-mode in the filters",
+        pick: "any",
         v: [
           r.stanford_nlp,
           r.cs224n,

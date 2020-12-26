@@ -73,7 +73,7 @@ export default function FreeAccess() {
     <BackButton />
     <h3 className='h4'>Get Free MLA Access</h3>
     <p>
-      <em>Machine Learning Applied</em> is a $1/m exclusive podcast. <Button size='sm' href={patreonLink} target='_blank' className='patreon-btn'><FaPatreon /> Subscribe on Patreon</Button> for access, or get it for free below.
+      <em>Machine Learning Applied</em> is a $5/m exclusive podcast. <Button size='sm' href={patreonLink} target='_blank' className='patreon-btn'><FaPatreon /> Subscribe on Patreon</Button> for access, or get it for free below.
     </p>
 
     <Card className='mb-3 shadow-sm free-mla-card'>

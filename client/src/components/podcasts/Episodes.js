@@ -78,7 +78,7 @@ function EpisodeTeaser({e}) {
   let footer = null;
   if (e.mla) {
     footer = <>
-      <FaUnlock />  $1/m on <a href={patreonLink} target="_blank">Patreon</a> or <Link to="/mlg/free-access">get free access</Link>
+      <FaUnlock />  $5/m on <a href={patreonLink} target="_blank">Patreon</a> or <Link to="/mlg/free-access">get free access</Link>
     </>
   } else {
     title = <Link to={`/mlg/${e.episode}`}>{title}</Link>

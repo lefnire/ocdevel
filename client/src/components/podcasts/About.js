@@ -79,35 +79,32 @@ export default function About() {
         <Card.Title className='text-center mb-0'>Patreon</Card.Title>
       </Card.Header>
       <Card.Body>
-        <Row>
-          <Col>
-            <Card.Subtitle>MLA <span className='text-muted'>$5</span></Card.Subtitle>
-            <ul className='list-unstyled'>
-              <li>{check} Access to <em>Machine Learning Applied</em> podcast</li>
-              <li>{check} Premium account on Gnothi</li>
-              <li>{check} Ad-free MLG when I have ads</li>
-            </ul>
-          </Col>
-          <Col>
-            <Card.Subtitle>Discord <span className='text-muted'>$10</span></Card.Subtitle>
-            <ul className='list-unstyled'>
-              <li>{check} Rewards above</li>
-              <li>{check} Discord access, where I'll answer your ML questions</li>
-            </ul>
-          </Col>
-          <Col>
-            <Card.Subtitle>Office Hours <span className='text-muted'>$120</span></Card.Subtitle>
-          </Col>
-          <Col>
+          <Card.Title>MLA <span className='text-muted'>$5</span></Card.Title>
+          <ul className='list-unstyled'>
+            <li>{check} Access to <em>Machine Learning Applied</em> podcast</li>
+            <li>{check} Premium account on Gnothi</li>
+            <li>{check} Ad-free MLG when I have ads</li>
+          </ul>
+          <Card.Title>Slack <span className='text-muted'>$10</span></Card.Title>
+          <ul className='list-unstyled'>
+            <li>{check} Rewards above</li>
+            <li>{check} Slack access, where I'll answer your ML questions</li>
+          </ul>
+          <Card.Title>Office Hours <span className='text-muted'>$120</span></Card.Title>
+          <ul className='list-unstyled'>
+            <li>{check} Rewards above</li>
+            <li>{check} 1h live video session for subscribers, also acts as office hours where I'll answer ML questions and provide help / support.</li>
+          </ul>
+          {/*<Col>
             <Card.Subtitle>Job Hunter <span className='text-muted'>$200</span></Card.Subtitle>
-          </Col>
-        </Row>
+          </Col>*/}
+        <Button href={patreonLink} target='_blank' className='patreon-btn d-block mb-1'><FaPatreon /> More Info</Button>
       </Card.Body>
     </Card>
   }
 
   return <Col className='sidebar-podcasts'>
-    <Card>
+    <Card className='mb-2'>
       <Card.Header>
         <Card.Title className='text-center mb-0'>Machine Learning Podcasts</Card.Title>
       </Card.Header>
@@ -126,6 +123,6 @@ export default function About() {
         </Row>
       </Card.Body>
     </Card>
-    {/*renderPatreon()*/}
+    {renderPatreon()}
   </Col>
 }
