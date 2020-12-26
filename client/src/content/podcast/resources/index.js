@@ -509,31 +509,3 @@ export const resources = _.mapValues({
   ...defaults,
   ...v,
 }))
-// resources.books.ml_with_r = `${resources.books.handson_tensorflow} (replaced R book)`;
-
-export const eitherOr = {
-  practical_ml: [
-    resources.fastai,
-    resources.handson_tensorflow
-  ],
-  linear_algebra: [
-    resources.tgc_linear_algebra,
-    resources.book_linear_algebra,
-    resources.khan_linear_algebra,
-  ],
-  stats: [
-    resources.tgc_stats,
-    resources.book_stats,
-    resources.khan_stats,
-  ],
-  calc: [
-    resources.tgc_calc,
-    resources.book_calc,
-    resources.khan_calc,
-
-  ],
-}
-
-_.each(eitherOr, (arr, k) => {
-  _.each(arr, r => {r.eitherOr = k})
-})

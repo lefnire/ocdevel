@@ -111,10 +111,10 @@ function EpisodeTeaser({e}) {
 }
 
 export function Episodes() {
-  const mla = useStoreState(state => state.mla)
-  const mlg = useStoreState(state => state.mlg)
+  const mla = true // useStoreState(state => state.mla)
+  const mlg = true // useStoreState(state => state.mlg)
 
-  const episodeOrder = useStoreState(state => state.episodeOrder);
+  const episodeOrder = 'new2old' // useStoreState(state => state.episodeOrder);
   let episodes = episodeOrder === 'new2old' ? podcast.episodes.slice().reverse() : podcast.episodes
 
   episodes = _.filter(episodes, e => {

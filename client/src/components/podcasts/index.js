@@ -25,13 +25,6 @@ import {LinkContainer} from "react-router-bootstrap";
 // import {useQuery} from "../../utils";
 
 
-function Resources() {
-  const filtered = useStoreState(state => state.filteredResources)
-  const r = _.values(filtered)
-  return <ResourcesTree resources={r} />
-}
-
-
 function Series_() {
   const location = useLocation()
 
@@ -62,7 +55,7 @@ function Series_() {
         <Col {...col.right}>
           <Switch>
             <Route path="/mlg" exact><Episodes /></Route>
-            <Route path="/mlg/resources" exact><Resources /></Route>
+            <Route path="/mlg/resources" exact><ResourcesTree /></Route>
             <Route path="/mlg/recommend" exact><Recommend /></Route>
             <Route path="/mlg/free-access" exact><FreeAccess /></Route>
             <Route path="/mlg/:id"><EpisodeFull /></Route>

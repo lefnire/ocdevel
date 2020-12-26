@@ -134,26 +134,7 @@ function Resource({resource}) {
 }
 
 export function ResourcesFlat({resources}) {
-  const filtered = useStoreState(state => state.filteredResources)
   if (!resources) {return null}
-
-  const either = {}
-  resources = _.reduce(resources, (m, r) => {
-    if (!filtered[r.id]) {return m}
-    if (r.eitherOr) {
-      if (either[r.eitherOr]) { return m}
-      either[r.eitherOr] = true
-      r = _.filter(eitherOr[r.eitherOr], r_ => {
-        // are the other eitherOrs listed here too?
-        // are they filtered out?
-        return ~resources.indexOf(r_) && filtered[r_.id]
-      })
-      if (r.length === 0) { return m }
-      if (r.length === 1) { r = r[0] }
-    }
-    m.push(r)
-    return m
-  }, [])
 
   function renderResource(r){
     if (!_.isArray(r)) {

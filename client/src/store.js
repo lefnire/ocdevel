@@ -1,8 +1,4 @@
 import { createStore, action, computed } from 'easy-peasy';
-import {
-  eitherOr,
-  resources,
-} from './content/podcast/resources'
 import tree from './content/podcast/resources/tree'
 import {
   filters as filters_,
