@@ -3,6 +3,7 @@ import {
   eitherOr,
   resources,
 } from './content/podcast/resources'
+import tree from './content/podcast/resources/tree'
 import {
   filters as filters_,
   filterKeys,
@@ -40,6 +41,45 @@ function filtersToStore(m, v, k) {
   return m
 }
 
+function recurseTree(filters, learnStyles, node=null, section=null) {
+  if (!node) {
+    const sections = []
+    if (learnStyles.learn === 'selfTaught') {
+      sections.push('main')
+      sections.push('math')
+    } else {
+      sections.push('degrees')
+    }
+    sections.push('audio')
+    return sections.map(k => recurseTree(filters, learnStyles, tree[k], k))
+  }
+
+  // section
+  if (node.v) {
+    let v = node.v.map(n => recurseTree(filters, learnStyles, n, section=section))
+    v = _.compact(v)
+    if (v.length === 0) {return null}
+    return {...node, v}
+  }
+  
+  // leaf node
+  if (!node.v) {
+    if (node.video2audio) {
+      if (learnStyles.audio === 'normal' && section === 'audio') {
+        return null
+      } else if (learnStyles.audio === 'hardCore' && section !== 'audio') {
+        return null
+      }
+    }
+
+    const keep = _.reduce(filterKeys, (m, fk) => {
+      if (!node[fk]) {return m} // N/A attrs, like video2audio
+      return m && filters[fk][node[fk]]
+    }, true)
+    return keep ? node : null
+  }
+}
+
 export const store = createStore({
   episodes,
 
@@ -52,12 +92,5 @@ export const store = createStore({
   },
 
   filters: _.transform(filters_, filtersToStore, {}),
-  filteredResources: computed(({filters}) => {
-    return _.pickBy(resources, (r) => {
-      return _.reduce(filterKeys, (m, fk) => {
-        if (!r[fk]) {return m} // N/A attrs, like video2audio
-        return m && filters[fk][r[fk]]
-      }, true)
-    })
-  }),
+  filteredTree: computed(({filters, learnStyles}) => recurseTree(filters, learnStyles)),
 });

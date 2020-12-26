@@ -170,15 +170,19 @@ export function ResourcesFlat({resources}) {
   </div>
 }
 
-function ResourceNode({node, filtered, level=0}) {
+function ResourceNode({node, level=0}) {
   const [expanded, setExpanded] = useState(!!node.expand)
   const [showPick, setShowPick] = useState(false)
 
   if (!node.pick) {
-    if (filtered && !filtered[node.id]) {return null}
     return <div className='py-2'>
-        <Resource resource={node} />
-      </div>
+      <Resource resource={node} />
+    </div>
+  }
+
+  // pick is present, but no children; this section was filtered out
+  if (!node.v) {
+    return null
   }
 
   let header = <>{expanded ? <FiMinusSquare /> : <FiPlusSquare />} {node.t}</>
@@ -207,7 +211,7 @@ function ResourceNode({node, filtered, level=0}) {
         <li
           key={n.id || n.t}
         >
-          <ResourceNode node={n} filtered={filtered} level={level+1} />
+          <ResourceNode node={n} level={level+1} />
         </li>
       </>)}
     </ul>}
@@ -215,18 +219,11 @@ function ResourceNode({node, filtered, level=0}) {
 }
 
 export function ResourcesTree() {
-  const filtered = useStoreState(state => state.filteredResources)
-  const degree = useStoreState(state => state.learnStyles.learn === 'degree')
+  const sections = useStoreState(state => state.filteredTree)
   return <div className='resources resources-tree'>
     <Card className='mb-3'>
       <Card.Body>
-        {degree ? <>
-          <ResourceNode node={tree.degrees} filtered={filtered} />
-        </> : <>
-          <ResourceNode node={tree.main} filtered={filtered} />
-          <ResourceNode node={tree.math} filtered={filtered} />
-        </>}
-        <ResourceNode node={tree.audio} filtered={filtered} />
+        {sections.map(n => n && <ResourceNode node={n} key={n.t} />)}
       </Card.Body>
     </Card>
   </div>

@@ -12,7 +12,7 @@ export default {
     t: "Degrees / Certificates",
     d: "Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.",
     pick: "one",
-   expand: true,
+    expand: true,
     v: [
       r.omscs,
       {
