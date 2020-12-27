@@ -18,13 +18,15 @@ const TODO = {
 const podcasts = _.mapValues({
   mlg: {
     t: "Machine Learning Guide",
+    d: "Teaches the fundamentals of ML in podcast form. Importantly, guides users to deep-dive the concepts offline via curated resources (this website!)",
     links: [{t: "Website", l: "https://ocdevel.com/mlg", p: "free"}],
     topic: "basics",
+    importance: "essential"
   },
 
   twiml_and_ai: {
     t: "TWiML and AI",
-    // d: "News & interviews podcast",
+    d: "News & interviews experts in the field. This is a network of podcasts, not just one.",
     links: [{t: "Website", l: "https://twimlai.com", p: "free"}],
     topic: "news_interviews"
   },
@@ -44,6 +46,7 @@ const podcasts = _.mapValues({
   linear_digressions: {
     t: "Linear Digressions",
     links: [{t: "Website", l: "http://lineardigressions.com/", p: "free"}],
+    importance: "valuable"
   },
 
   data_skeptic: {
@@ -63,13 +66,15 @@ const podcasts = _.mapValues({
   learning_machines_101: {
     t: "Learning machines 101",
     links: [{t: "Website", l: "http://www.learningmachines101.com/", p: "free"}],
+    importance: "valuable"
   },
 
   lex_fridman: {
     t: "Lex Fridman Podcast",
     d: "My #1 favorite podcast of any kind ever. Lex interviews experts from every walk of futurology: AI, ML, philosophy, ethics, etc. Non-technical, very inspirational.",
     links: [{t: "Website", l: "https://lexfridman.com/podcast/", p: "free"}],
-    topic: "news_interviews"
+    topic: "news_interviews",
+    importance: "essential"
   }
 
 
@@ -81,15 +86,16 @@ const podcasts = _.mapValues({
 const tgc = _.mapValues({
   tgc_ml: {
     t: "TGC Machine Learning",
-    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fintroduction-to-machine-learning.html%3Fai%3D107119&intsrc=PUI1_1204"}],
+    d: "Basics of ML in video (highly amenable to audio-only listening). It's pretty rapid-pace, covering a lot of ground in relatively little time, so this won't be your bread-and-butter. But it does provide a phenomenal overview, so it's a great resource to start with in the beginning of your learning journey.",
+    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&intsrc=PUI1_1204"}],
     topic: "basics"
   },
 
   tgc_consciousness: {
     t: "Philosophy of Mind: Brains, Consciousness, and Thinking Machines",
     links: [
-      {t: "Amazon", l: "http://amzn.to/2kQGgk5", p: "$"},
-      {t: "TGC", l: "https://goo.gl/fDteyi", p: "$$"} // FIXME
+      {t: "Amazon", l: "https://amzn.to/38GHt5n", p: "$"},
+      {t: "TGC", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204", p: "$$"}
     ],
     topic: "fun",
     format: "audiobook",
@@ -100,8 +106,8 @@ const tgc = _.mapValues({
   tgc_stats: {
     t: `TGC Statistics & Probability`,
     links: [
-      {t: "TGC Statistics", l: "https://goo.gl/4vvXJs", p: "$$"},
-      {t: "TGC Probability", l: "https://goo.gl/Q4KwZ6", p: "$$"},
+      {t: "Learning Statistics: Concepts and Applications in R", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1480&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Flearning-statistics-concepts-and-applications-in-r&intsrc=PUI1_1204", p: "$$"},
+      {t: "What Are the Chances? Probability Made Clear", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1474&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fwhat-are-the-chances-probability-made-clear&intsrc=PUI1_1204", p: "$$"},
     ],
     topic: "math"
   },
@@ -109,9 +115,10 @@ const tgc = _.mapValues({
   tgc_calc: {
     t: "TGC Calculus",
     links: [
-      {t: "TGC Calc 1", l: "https://goo.gl/fcLP3l", p: "$$"},
-      {t: "TGC Calc 2", l: "https://goo.gl/sBpljN", p: "$$"},
-      {t: "TGC Calc 3", l: "https://goo.gl/8Hdwuh", p: "$$"}
+      // change in motion calc made
+      {t: "Calc 1 - Understanding Calculus: Problems, Solutions, and Tips", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1007&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Funderstanding-calculus-problems-solutions-and-tips&intsrc=PUI1_1204", p: "$$"},
+      {t: "Calc 2 - Understanding Calculus II: Problems, Solutions, and Tips", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1018&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Funderstanding-calculus-ii-problems-solutions-and-tips&intsrc=PUI1_1204", p: "$$"},
+      {t: "Calc 3 - Understanding Multivariable Calculus: Problems, Solutions, and Tips", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1023&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Funderstanding-multivariable-calculus-problems-solutions-and-tips&intsrc=PUI1_1204", p: "$$"}
     ],
     topic: "math"
   },
@@ -119,19 +126,19 @@ const tgc = _.mapValues({
   tgc_math_decision_making: {
     t: "TGC Mathematical Decision Making",
     d: "Course on \"Operations Research\", similar to ML",
-    links: [{t: "TGC", l: "https://goo.gl/V75I49"}],
+    links: [{t: "Mathematical Decision Making: Predictive Models and Optimization", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1342&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmathematical-optimization-techniques&intsrc=PUI1_1204"}],
     topic: "basics"
   },
 
   tgc_info_theory: {
     t: "TGC Information Theory",
-    links: [{t: "https://goo.gl/ugAi2m", l: "https://goo.gl/ugAi2m", p: "$$"}],
+    links: [{t: "The Science of Information: From Language to Black Holes", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1301&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fthe-science-of-information-from-language-to-black-holes&intsrc=PUI1_1204", p: "$$"}],
     topic: "math"
   },
 
   tgc_linear_algebra: {
-    t: "TGC Linear Algebra",
-    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=PD1056&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fmastering-linear-algebra-an-introduction-to-applications.html%3Fai%3D107119&intsrc=PUI1_1204"}],
+    t: "TGC - Mastering Linear Algebra: An Introduction with Applications 1056",
+    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&intsrc=PUI1_1204"}],
     topic: "math"
   }
 
@@ -148,6 +155,7 @@ const tgc = _.mapValues({
 const fun = _.mapValues({
   singularity_is_near: {
     t: "The Singularity Is Near",
+    d: "Kurzweil isn't the inventor of the concept 'singularity', but he's certainly the most known name attached to it. This is the foundational book of the religion of futurology, and it's a blast whether you believe it or not. Worth reading regardless.",
     links: [{t: "Amazon", l: "http://amzn.to/2lzCqKk", p: "$"}],
     importance: "valuable",
     audioOption: true
@@ -172,6 +180,7 @@ const fun = _.mapValues({
     d: 'Semi-technical overview of ML basics & main algorithms',
     links: [{t: "Amazon", l: "http://amzn.to/2kLOQjW", p: "$"}],
     difficulty: "medium",
+    importance: "valuable",
     audioOption: true
   },
 
@@ -187,7 +196,8 @@ const fun = _.mapValues({
     t: "The Society of Mind",
     d: "About the composability and independent agency of the parts of your mind. Valuable for those interested in Panpsychism. By one of the founding fathers of AI, Marvin Minsky.",
     links: [{t: "Amazon", l: "https://amzn.to/3mC6umS", p: "$"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    format: "book"
   }
 
 }, v => ({
@@ -221,6 +231,7 @@ const courses = _.mapValues({
   udacity_self_driving: {
     t: "Udacity Self Driving Cars",
     links: [{t: "Udacity", l: "https://www.udacity.com/drive", p: "$$$"}],
+    importance: "valuable",
     format: "degree"
   },
 
@@ -244,23 +255,27 @@ const courses = _.mapValues({
   khan_linear_algebra: {
     t: "KhanAcademy Linear Algebra",
     links: [{t: "Website", l: "https://www.khanacademy.org/math/linear-algebra", p: "free"}],
+    importance: "valuable",
     topic: "math"
   },
   fastai_linear_algebra: {
     t: "Fast.ai Linear Algebra",
     links: [{t: "Website", l: "http://www.fast.ai/2017/07/17/num-lin-alg/", p: "free"}],
+    importance: "valuable",
     topic: "math"
   },
 
   khan_stats: {
     t: "KhanAcademy Statistics",
     links: [{t: "Website", l: "https://www.khanacademy.org/math/statistics-probability", p: "free"}],
+    importance: "valuable",
     topic: "math"
   },
 
   khan_calc: {
     t: "KhanAcademy Calculus",
     links: [{t: "Website", l: "https://www.khanacademy.org/math/calculus-home", p: "free"}],
+    importance: "valuable",
     topic: "math"
   },
 
@@ -316,7 +331,29 @@ const videos = _.mapValues({
     video2audio: "good",
     difficulty: "hard",
     audioOption: true
+  },
+
+  bluebrown_calc: {
+    t: "3Blue1Brown - Essence of calculus",
+    links: [
+      {t: "YouTube - Basics", l: "https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr", p: "free"},
+      {t: "YouTube - Multivariate", l: "https://www.youtube.com/watch?v=TrcCbdWwCBc&list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7", p: "free"}
+    ],
+    video2audio: "good",
+    difficulty: "hard",
+    audioOption: true
+  },
+
+  bluebrown_linalg: {
+    t: "3Blue1Brown - Essence of linear algebra",
+    links: [
+      {t: "YouTube", l: "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab", p: "free"},
+    ],
+    video2audio: "good",
+    difficulty: "hard",
+    audioOption: true
   }
+
 }, v => ({
   engagement: "passive",
   format: "video",
@@ -384,9 +421,17 @@ const books = _.mapValues({
     t: "The Quest for Artificial Intelligence",
     d: "Textbook about the history of AI",
     links: [
-      {t: "Amazon", l: "http://amzn.to/2kRd4Ie", p: "$$"},
+      {t: "Amazon", l: "http://amzn.to/2kRd4Ie", p: "$"},
       {t: "PDF", l: "http://ai.stanford.edu/~nilsson/QAI/qai.pdf", p: "free"}
     ],
+  },
+
+  mml_book: {
+    t: "Mathematics for Machine Learning",
+    d: "Short and sweet textbook on ML math. Somewhere between a primer and the full deal. Highly lauded in the field.",
+    links: [
+      {t: "Website", l: "https://mml-book.github.io/", p: "free"}
+    ]
   },
 
   hundred_page_ml: {
@@ -419,6 +464,7 @@ const books = _.mapValues({
   // ml_with_r: `[Machine Learning with R](http://amzn.to/2n5fSUF) \`book:medium\``,
   handson_tensorflow: {
     t: "Hands-On Machine Learning with Scikit-Learn and TensorFlow",
+    d: "A phenomenal learning resource. Typically trade books like this aren't recommended as bread-n-butter for ML, as the Ng Coursera course is. But I'm not alone in giving this book a free pass - I've seen it recommended as core material elsewhere too. Teachs ML concepts along with Python programming essentials & ML library/framework usage.",
     links: [{t: "Amazon", l: "https://amzn.to/3nwGxqt", p: "$"}],
     difficulty: "medium",
     importance: "essential"
@@ -428,7 +474,7 @@ const books = _.mapValues({
     t: `Deep Learning Book`,
     d: "Comprehensive DL bible; highly mathematical",
     links: [
-      {t: "Amazon", l: "http://amzn.to/2tXgCiT", p: "$$"},
+      {t: "Amazon", l: "http://amzn.to/2tXgCiT", p: "$"},
       {t: "HTML", l: "http://www.deeplearningbook.org", p: "free"}
     ],
     importance: "essential"

@@ -108,9 +108,9 @@ export const filters = {
     d: "Cost of this resource (look for other links, there are sometimes free versions)",
     opts: {
       free: {t: "Free", d: "Free! Look for this on resources which have paid links (eg Amazon), sometimes professors release the PDF for free while continuing to sell elsewhere", i: <span>Free</span>},
-      "$": {t: "$", d: "Cheap. Under $10", i: <span>$</span>},
-      "$$": {t: "$$", d: "Medium-priced. $10-$300", i: <span>$$</span>},
-      "$$$": {t: "$$$", d: "Expensive. >$300", i: <span>$$$</span>},
+      "$": {t: "$", d: "Cheap. Tens of dollars.", i: <span>$</span>},
+      "$$": {t: "$$", d: "Medium-priced. Tens to hundreds of dollars.", i: <span>$$</span>},
+      "$$$": {t: "$$$", d: "Expensive. Hundreds to thousands of dollars.", i: <span>$$$</span>},
       [undefined]: ""
     }
   },

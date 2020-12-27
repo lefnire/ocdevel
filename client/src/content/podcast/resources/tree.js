@@ -165,7 +165,8 @@ export default {
         d: "Quick-fix primers to get you up and running (but eventually do the heavy learning!)",
         pick: "any",
         v: [
-          r.math_primer
+          r.math_primer,
+          r.mml_book
         ]
       },
       {
@@ -183,6 +184,7 @@ export default {
         pick: "one",
         v: [
           r.tgc_calc,
+          r.bluebrown_calc,
           r.book_calc,
           r.khan_calc,
           // TODO brown/blue
@@ -200,6 +202,7 @@ export default {
       {
         t: "Other",
         d: "Misc topics valuable to ML, but not the core triumvirate",
+        pick: "any",
         v: [
           r.tgc_math_decision_making,
           r.tgc_info_theory,
@@ -255,7 +258,9 @@ export default {
           r.tgc_linear_algebra,
           r.tgc_calc,
           r.tgc_stats,
-          r.tgc_info_theory
+          r.tgc_info_theory,
+          r.bluebrown_calc,
+          r.bluebrown_linalg
         ]
       },
 
