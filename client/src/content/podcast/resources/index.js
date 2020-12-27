@@ -323,8 +323,12 @@ const videos = _.mapValues({
   },
 
   cs231n: {
-    t:`Stanford cs231n: CNNs`,
-    links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC", p: "free"}],
+    t:`Stanford CS231n: Convolutional Neural Networks for Visual Recognition`,
+    d: "Visit the website for the most recent YouTube playlist; they record this every semester.",
+    links: [
+      {t: "Website", l: "http://cs231n.stanford.edu/index.html", p: "free"},
+      {t: "YouTube", l: "https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv", p: "free"}
+    ],
     difficulty: "medium",
     topic: "cv",
     audioOption: true
@@ -368,6 +372,15 @@ const videos = _.mapValues({
     difficulty: "hard",
     topic: "math",
     audioOption: true
+  },
+
+  yolo_class: {
+    t: "Joseph Redmond CV + YOLO class",
+    links: [
+      {t: "Website", l: "https://pjreddie.com/courses/computer-vision/", p: "free"}
+    ],
+    difficulty: "medium",
+    topic: "cv"
   }
 
 }, v => ({
@@ -569,6 +582,16 @@ const books = _.mapValues({
     ],
     importance: "essential",
     topic: "rl"
+  },
+
+  cv_algorithms_applications: {
+    t: "Computer Vision: Algorithms and Applications",
+    links: [
+      {t: "Website", l: "https://szeliski.org/Book/", p: "$"},
+      {t: "Amazon", l: "https://amzn.to/2WQ9RMQ", p: "$"}
+    ],
+    importance: "valuable",
+    topic: "cv"
   }
 
 }, v => ({

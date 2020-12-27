@@ -131,6 +131,8 @@ export default {
                   pick: "any",
                   v: [
                     r.cs231n,
+                    r.cv_algorithms_applications,
+                    r.yolo_class
                   ]
                 },
 
