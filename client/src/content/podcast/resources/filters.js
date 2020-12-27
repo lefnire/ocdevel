@@ -1,6 +1,7 @@
 import {
+  BiLaptop,
   CgMathPercent,
-  FaBook, FaChalkboardTeacher,
+  FaBook, FaBrain, FaChalkboardTeacher,
   FaCouch, FaEye, FaGraduationCap,
   FaHeadphones,
   FaMicrophone, FaNewspaper, FaRegSmile, FaRegStar, FaRobot,
@@ -98,9 +99,11 @@ export const filters = {
       basics: {t: "Basics", d: "ML basics, information, end-to-end stuff", i: <TiSortAlphabetically />},
       news_interviews: {t: "News & Interviews", d: "Latest news & interviews in ML, mostly non-technical", i: <FaNewspaper />},
       math: {t: "Math", d: "Fundamental math for ML", i: <CgMathPercent />},
+      dl: {t: "Deep Learning", d: "General deep learning material. Likely doesn't cover shallows/basics.", i: <FaBrain />},
       vision: {t: "CV", d: "Computer Vision", i: <FaEye />},
       nlp: {t: "NLP", d: "Natural Language Processing", i: <IoIosChatbubbles />},
-      rl: {t: "RL", d: "Reinforcement Learning / AI", i: <FaRobot />},
+      rl: {t: "RL", d: "AI and Reinforcement Learning", i: <FaRobot />},
+      tech: {t: "Technology", d: "Programming, languages, frameworks, data stuff", i: <BiLaptop />}
     }
   },
   price: {

@@ -46,12 +46,14 @@ const podcasts = _.mapValues({
   linear_digressions: {
     t: "Linear Digressions",
     links: [{t: "Website", l: "http://lineardigressions.com/", p: "free"}],
+    topic: "basics",
     importance: "valuable"
   },
 
   data_skeptic: {
     t: "Data Skeptic",
     links: [{t: "Website", l: "https://dataskeptic.com/", p: "free"}],
+    topic: "basics",
     importance: "valuable"
   },
 
@@ -66,6 +68,7 @@ const podcasts = _.mapValues({
   learning_machines_101: {
     t: "Learning machines 101",
     links: [{t: "Website", l: "http://www.learningmachines101.com/", p: "free"}],
+    topic: "basics",
     importance: "valuable"
   },
 
@@ -212,12 +215,14 @@ const courses = _.mapValues({
     d: "The most essential of all ML resources ever. It's an active course with assignments. Do note, it's VERY VERY dated. It uses Matlab and only teaches shallows. It's quite renowned and timeless, but see if you can find a more recent course. See [Coursera's ML listing](https://www.coursera.org/browse/computer-science?facets=skillNameMultiTag%3AMachine+Learning%2CcategoryMultiTag%3Acomputer-science), as well as Ng's [Deep Learning](https://www.coursera.org/specializations/deep-learning) Specialization.",
     links: [{t: "Coursera", l: "https://www.coursera.org/learn/machine-learning", p: "free"}],
     relevance: "dated",
+    topic: "basics",
     importance: "essential"
   },
 
   ng_deep_learning: {
     t: "Andrew Ng Deep Learning Course",
     links: [{t: "Coursera", l: "https://www.coursera.org/specializations/deep-learning", p: "free"}],
+    topic: "dl",
     importance: "essential"
   },
 
@@ -232,6 +237,7 @@ const courses = _.mapValues({
     t: "Udacity Self Driving Cars",
     links: [{t: "Udacity", l: "https://www.udacity.com/drive", p: "$$$"}],
     importance: "valuable",
+    topic: "rl",
     format: "degree"
   },
 
@@ -239,6 +245,7 @@ const courses = _.mapValues({
     t: "Udacity Artificial Intelligence",
     links: [{t: "Udacity", l: "https://www.udacity.com/ai", p: "$$$"}],
     importance: "valuable",
+    topic: "rl",
     format: "degree"
   },
 
@@ -247,6 +254,7 @@ const courses = _.mapValues({
     d: "Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.",
     links: [{t: "Website", l: "https://www.omscs.gatech.edu/", p: "$$$"}],
     importance: "essential",
+    topic: "basics",
     format: "degree"
 
   },
@@ -284,6 +292,7 @@ const courses = _.mapValues({
     d: `Practical DL for coders`,
     links: [{t: "Website", l: "http://course.fast.ai/", p: "free"}],
     difficulty: "medium",
+    topic: "dl",
     importance: "essential"
   },
 
@@ -300,6 +309,7 @@ const videos = _.mapValues({
     d: "If offline, skip to the Deep NLP playlist (see [tweet](https://twitter.com/jurafsky/status/972726681118023680)).",
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL6397E4B26D00A269", p: "free"}],
     difficulty: "medium",
+    topic: "nlp",
     audioOption: true
   },
 
@@ -308,6 +318,7 @@ const videos = _.mapValues({
     d: "replaces cs224d",
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6", p: "free"}],
     difficulty: "medium",
+    topic: "nlp",
     audioOption: true
   },
 
@@ -315,6 +326,7 @@ const videos = _.mapValues({
     t:`Stanford cs231n: CNNs`,
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC", p: "free"}],
     difficulty: "medium",
+    topic: "cv",
     audioOption: true
   },
 
@@ -322,6 +334,7 @@ const videos = _.mapValues({
     t:`Berkeley cs294: Deep Reinforcement Learning`,
     links: [{t: "Website", l: "http://rll.berkeley.edu/deeprlcourse/", p: "free"}],
     difficulty: "hard",
+    topic: "rl",
     audioOption: true
   },
 
@@ -330,6 +343,7 @@ const videos = _.mapValues({
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-", p: "free"}],
     video2audio: "good",
     difficulty: "hard",
+    topic: "rl",
     audioOption: true
   },
 
@@ -341,6 +355,7 @@ const videos = _.mapValues({
     ],
     video2audio: "good",
     difficulty: "hard",
+    topic: "math",
     audioOption: true
   },
 
@@ -351,6 +366,7 @@ const videos = _.mapValues({
     ],
     video2audio: "good",
     difficulty: "hard",
+    topic: "math",
     audioOption: true
   }
 
@@ -364,12 +380,14 @@ const videos = _.mapValues({
 const others = _.mapValues({
   tour_ml_algos: {
     t: `Tour of Machine Learning Algorithms`,
-    links: [{t: "Website", l: "http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms", p: "free"}]
+    links: [{t: "Website", l: "http://machinelearningmastery.com/a-tour-of-machine-learning-algorithms", p: "free"}],
+    topic: "basics",
   },
 
   wikipedia_ai: {
     t: `Wikipedia:AI`,
     links: [{t: "Wikipedia:AI", l: "https://en.wikipedia.org/wiki/Artificial_intelligence", p: "free"}],
+    topic: "fun"
   },
 
   math_primer: {
@@ -384,6 +402,7 @@ const others = _.mapValues({
     t: "Deep Learning Simplified",
     d: "Quick series to get a lay-of-the-land.",
     links: [{t: "YouTube", l: "https://www.youtube.com/watch?v=b99UVkWzYTQ", p: "free"}],
+    topic: "dl",
     format: "video"
   },
 
@@ -391,7 +410,8 @@ const others = _.mapValues({
     t: `TensorFlow Tutorials`,
     d: "Official TensorFlow tutorials, quick-start you into some hands-on code",
     links: [{t: "Website", l: "https://www.tensorflow.org/get_started/get_started", p: "free"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    topic: "tech"
   },
 
   rnn_articles: {
@@ -401,6 +421,7 @@ const others = _.mapValues({
       {t: "Deep Learning, NLP, and Representations", l: "http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/", p: "free"},
       {t: "Understanding LSTM Networks", l: "http://colah.github.io/posts/2015-08-Understanding-LSTMs/", p: "free"}
     ],
+    topic: "nlp",
     difficulty: "medium"
   },
 
@@ -408,7 +429,8 @@ const others = _.mapValues({
     t: `TensorFlow RNN Tutorials`,
     d: "start at Word2Vec + next 2 pages",
     links: [{t: "Website", l: "https://www.tensorflow.org/tutorials/word2vec", p: "free"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    topic: "tech"
   },
 
 }, v => ({
@@ -424,6 +446,7 @@ const books = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2kRd4Ie", p: "$"},
       {t: "PDF", l: "http://ai.stanford.edu/~nilsson/QAI/qai.pdf", p: "free"}
     ],
+    topic: "fun"
   },
 
   mml_book: {
@@ -431,7 +454,8 @@ const books = _.mapValues({
     d: "Short and sweet textbook on ML math. Somewhere between a primer and the full deal. Highly lauded in the field.",
     links: [
       {t: "Website", l: "https://mml-book.github.io/", p: "free"}
-    ]
+    ],
+    topic: "math"
   },
 
   hundred_page_ml: {
@@ -440,7 +464,8 @@ const books = _.mapValues({
       {t: "Website", l: "http://themlbook.com/", p: "$"},
       {t: "Amazon", l: "https://amzn.to/3aKAbQI", p: "$"}
     ],
-    importance: "essential"
+    importance: "essential",
+    topic: "basics"
   },
 
   book_linear_algebra: {
@@ -467,7 +492,8 @@ const books = _.mapValues({
     d: "A phenomenal learning resource. Typically trade books like this aren't recommended as bread-n-butter for ML, as the Ng Coursera course is. But I'm not alone in giving this book a free pass - I've seen it recommended as core material elsewhere too. Teachs ML concepts along with Python programming essentials & ML library/framework usage.",
     links: [{t: "Amazon", l: "https://amzn.to/3nwGxqt", p: "$"}],
     difficulty: "medium",
-    importance: "essential"
+    importance: "essential",
+    topic: "tech"
   },
 
   dl_book: {
@@ -477,25 +503,29 @@ const books = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2tXgCiT", p: "$"},
       {t: "HTML", l: "http://www.deeplearningbook.org", p: "free"}
     ],
-    importance: "essential"
+    importance: "essential",
+    topic: "dl"
   },
 
   book_python: {
     t: `Python Book`,
     links: [{t: "Amazon", l: "http://amzn.to/2mVgtJW", p: "$"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    topic: "tech"
   },
 
   python_data_analysis: {
     t: "Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition",
     links: [{t: "Amazon", l: "https://amzn.to/2IHFh2m", p: "$"}],
-    difficulty: "easy"
+    difficulty: "easy",
+    topic: "tech"
   },
 
   elements_of_stat_learning: {
     t: "Elements of Statistical Learning",
     links: [{t: "Amazon", l: "http://amzn.to/2tWW8He", p: "$"}],
-    importance: "valuable"
+    importance: "valuable",
+    topic: "basics"
   },
 
   pattern_rec: {
@@ -504,7 +534,8 @@ const books = _.mapValues({
       {t: "Amazon", l: "http://amzn.to/2sDIIfb", p: "$"},
       {t: "PDF", l: "https://goo.gl/aX038j", p: "free"}
     ],
-    importance: "valuable"
+    importance: "valuable",
+    topic: "basics"
   },
 
   speech_and_nlp: {
@@ -512,19 +543,22 @@ const books = _.mapValues({
     d: `comprehensive classical-NLP bible`,
     links: [{t: "Amazon", l: "http://amzn.to/2uZaNyg", p: "$"}],
     difficulty: "hard",
-    importance: "essential"
+    importance: "essential",
+    topic: "nlp"
   },
 
   nltk: {
     t:`NLTK Book`,
     links: [{t: "Website", l: "http://www.nltk.org/book", p: "free"}],
-    difficulty: "medium"
+    difficulty: "medium",
+    topic: "nlp"
   },
 
   sutton_barto: {
     t:`Sutton & Barto 2nd Ed`,
     links: [{t: "PDF", l: "http://incompleteideas.net/book/the-book-2nd.html", p: "free"}],
-    importance: "essential"
+    importance: "essential",
+    topic: "rl"
   },
 
   aima: {
@@ -533,7 +567,8 @@ const books = _.mapValues({
       {t: "Website", l: "http://aima.cs.berkeley.edu/", p: "free"},
       {t: "Amazon", l: "http://amzn.to/2E02dEr", p: "$"}
     ],
-    importance: "essential"
+    importance: "essential",
+    topic: "rl"
   }
 
 }, v => ({
