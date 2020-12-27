@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import scout from "../../assets/mlg_square.jpg";
 import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
-import {btns, patreonLink, ReactMarkdown_} from "./utils";
+import {btns, patreonLink, Popover_, ReactMarkdown_} from "./utils";
 import {
-  FaArrowLeft,
-  FaItunesNote,
+  FaArrowLeft, FaBriefcase, FaDollarSign, FaEnvelope, FaGithub,
+  FaItunesNote, FaLightbulb,
   FaPatreon,
   FaRegCheckCircle,
   RiGooglePlayLine,
@@ -16,10 +16,17 @@ import podcast from "../../content/podcast";
 import librarian from "../../assets/mla_square.jpg";
 import {LinkContainer} from "react-router-bootstrap";
 import {useStoreState} from "easy-peasy";
+import {Link} from "react-router-dom";
 
 export default function About() {
   const [showGetMLG, setShowGetMLG] = useState(false)
   const [showGetMLA, setShowGetMLA] = useState(false)
+
+  const [showHire, setShowHire] = useState(false)
+  const [showDonate, setShowDonate] = useState(false)
+  const enableHire = false
+  const enableDonate = false
+  // d75998bd cryptocurrency
 
   function renderMLG() {
     return <>
@@ -71,11 +78,74 @@ export default function About() {
     </>
   }
 
+  function miscResources() {
+    const li = {
+      className: 'list-inline-item mr-4'
+    }
+
+    return <div>
+      {showDonate && (
+        <Card className='mb-2'>
+          <Card.Header>Donate</Card.Header>
+          <Card.Body>
+            <p>The best way to show support is via Patreon (above), plus you'll receive perks like access to an exclusive podcast series on applied ML.</p>
+            <hr/>
+
+            Paypal:
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="9A9KRVTQFFLFC" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+              </form>
+            </div>
+          </Card.Body>
+        </Card>
+      )}
+
+      <ul className='list-inline w-100 text-center mb-0'>
+
+        {enableDonate && <li {...li} onClick={() => setShowDonate(true)}>
+          <FaDollarSign {...btns.icon} /> Donate
+        </li>}
+
+        {enableHire && <li
+          className={li.className + ' pointer'}
+          onClick={() => setShowHire(true)}
+        >
+          <FaBriefcase {...btns.icon} /> Hire Me
+        </li>}
+
+        <li {...li}>
+          <Link to="/mlg/recommend" className='text-dark'>
+            <FaLightbulb {...btns.icon} /> Suggest an Episode
+          </Link>
+        </li>
+
+        <li {...li}>
+          <Popover_ content="Get notified of new episodes / announcements" opts={{placement: 'bottom'}}>
+            <a href="http://eepurl.com/cUUWfD" target="_blank" className='text-dark'>
+              <FaEnvelope {...btns.icon} /> Mailing List
+            </a>
+          </Popover_>
+        </li>
+
+        <li className='list-inline-item'>
+          <a className='text-dark' href="https://github.com/lefnire/gnothi" target='_blank'>
+            <FaGithub {...btns.icon} /> Podcast Project
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  }
+
   const check = <FaRegCheckCircle className='text-primary' />
 
   function renderPatreon() {
     return <Card>
-      <Card.Header>
+      <Card.Header className='border-bottom-0'>
         <Card.Title className='text-center mb-0'>Patreon</Card.Title>
       </Card.Header>
       <Card.Body>
@@ -105,7 +175,7 @@ export default function About() {
 
   return <Col className='sidebar-podcasts'>
     <Card className='mb-2'>
-      <Card.Header>
+      <Card.Header className='border-bottom-0'>
         <Card.Title className='text-center mb-0'>Machine Learning Podcasts</Card.Title>
       </Card.Header>
       <Card.Body>
@@ -122,6 +192,9 @@ export default function About() {
           </Col>
         </Row>
       </Card.Body>
+      <Card.Footer className='border-top-0'>
+        {miscResources()}
+      </Card.Footer>
     </Card>
     {renderPatreon()}
   </Col>

@@ -16,8 +16,6 @@ const sharedAudio = {
     r.superintelligence,
     r.machines_of_loving_grace,
   ],
-
-
 }
 
 export default {
@@ -187,7 +185,6 @@ export default {
           r.bluebrown_calc,
           r.book_calc,
           r.khan_calc,
-          // TODO brown/blue
         ]
       },
       {

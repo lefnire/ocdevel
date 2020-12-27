@@ -10,25 +10,15 @@ import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {FaUnlock} from "react-icons/all";
 import {useStoreState} from "easy-peasy";
-import Banner from './Banner'
+
+function Player({episode}) {
+  // html5 custom player
+  const embedCode = `<iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/${episode.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/" height="90" width="640" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>`;
+  return <div dangerouslySetInnerHTML={{__html: embedCode}} />;
+}
 
 export function EpisodeFull() {
   const {id} = useParams()
-
-  function renderPlayer(podcast, episode) {
-    if (podcast.useLibsynPlayer) {
-      const embedCode = `<iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/${episode.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/" height="90" width="640" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>`;
-      return <div dangerouslySetInnerHTML={{__html: embedCode}} />;
-      // Tried massaging the embed-code to React-compliant props, but still getting `Unknown prop __` - so using dangerouslySetInnerHTML instead
-      // return <iframe src={`//html5-player.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/no/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/`} style={{border: "none"}} height="90" width="640" scrolling="no" allowFullScreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-    }
-    return (
-      <audio controls style={{width:'100%'}}>
-        <source src={episode.file.url} type={episode.file.type}/>
-        Your browser does not support the audio element.
-      </audio>
-    );
-  };
 
   const episode = _.find(podcast.episodes, {episode: parseInt(id)});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
@@ -50,7 +40,7 @@ export function EpisodeFull() {
         </Card.Subtitle>
       </Card.Header>
       <Card.Body>
-        {renderPlayer(podcast, episode)}
+        {!episode.mla && <Player podcast={podcast} episode={episode} />}
         {episode.resources && <>
           <Card.Title>Resources</Card.Title>
           <ResourcesFlat resources={episode.resources} />
@@ -94,6 +84,7 @@ function EpisodeTeaser({e}) {
           <span> (updated {moment(e.updated).format(dateFmt)})</span>
         </>}
       </Card.Subtitle>
+      {!e.mla && <Player episode={e} />}
       <div className='fade-post'>
         <ReactMarkdown_ source={body} />
         <div className='fade-post-bottom' />
@@ -124,7 +115,11 @@ export function Episodes() {
 
   // TODO filter episodes
   return <div>
-    <Banner />
+    <div className="mb-3 mlg-update pl-3">
+      <Card.Title className='mb-1'>2020-12-19 Update</Card.Title>
+      <p>I'm re-doing MLG from scratch! MLG 2nd edition, to refresh resources & concepts to 2020. Starting now use <Link to="/mlg/resources">the resources list</Link>, and ignore the ones I discuss in each episode. This allows me to keep resources up-to-date here without having to edit episodes.</p>
+    </div>
+
     {episodes.map(e => <EpisodeTeaser key={e.guid} e={e} />)}
   </div>
 }
