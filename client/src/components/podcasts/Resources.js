@@ -4,6 +4,7 @@ import {filterKeys, filters} from '../../content/podcast/resources/filters'
 import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {
+  BiChevronDown, BiChevronRight,
   FaInfoCircle,
   FaQuestionCircle,
   FiMinusSquare,
@@ -99,7 +100,7 @@ function Resource({resource}) {
     return <div className={`resource`}>
       <ResourceWrapper>
         <div onClick={toggle} className="pointer">
-          {show ? <FiMinusSquare /> : <FiPlusSquare />}
+          {show ? <BiChevronDown /> : <BiChevronRight />}
           <span className='mx-2 resource-title'>
             {resource.t}
           </span>

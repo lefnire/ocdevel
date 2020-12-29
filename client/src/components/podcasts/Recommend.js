@@ -1,5 +1,5 @@
 import {Card} from "react-bootstrap";
-import {BackButton} from "./utils";
+import {BackButton} from "../utils";
 import ReactDisqusComments from "react-disqus-comments";
 import podcast from "../../content/podcast";
 import React from "react";

@@ -9,12 +9,20 @@ export const picks = {
 
 const sharedAudio = {
   inspire: [
-    r.tgc_consciousness,
     r.singularity_is_near,
-    r.feeling_of_life,
     r.master_algorithm,
     r.superintelligence,
     r.machines_of_loving_grace,
+    {
+      t: "Consciousness",
+      d: "Great discussions on what consciousness is, and if/how AI can achieve it.",
+      pick: "any",
+      v: [
+        r.tgc_consciousness,
+        r.feeling_of_life,
+        r.tgc_mind_body
+      ]
+    },
   ],
 }
 

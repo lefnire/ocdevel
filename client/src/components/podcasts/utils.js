@@ -1,25 +1,11 @@
 import {
-  Button,
   Popover,
   OverlayTrigger,
-  ButtonGroup,
-  Nav
 } from "react-bootstrap";
-import {useLocation} from 'react-router-dom'
-import {FaArrowLeft} from "react-icons/all";
-import {LinkContainer} from "react-router-bootstrap";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
 export const dateFmt = 'MMM DD, YYYY';
-
-export function BackButton() {
-  return <LinkContainer to='/mlg'>
-    <Button className="text-dark mb-2" variant="link">
-      <FaArrowLeft /> All Episodes
-    </Button>
-  </LinkContainer>
-}
 
 export const patreonLink = 'https://www.patreon.com/machinelearningguide'
 

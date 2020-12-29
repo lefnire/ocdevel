@@ -22,17 +22,16 @@ check = {
   multi: [<FaRegSquare {...check} />, <FaCheckSquare {...check} />]
 }
 
-function Option({k, opt, active, select, setHelp, multi=true}) {
+function Option({opt, select, active, setHelp, multi=true}) {
   const btn = active ? btns.on : btns.off
 
   // perf tweaks since this re-rendered often
-  const select_ = useCallback(() => select(k), [k, active])
   const setHelp_ = useCallback(() => setHelp(opt.d), [])
   const clearHelp_ = useCallback(() => setHelp(null), [])
 
   return <Button
     {...btn}
-    onClick={select_}
+    onClick={select}
     onMouseEnter={setHelp_}
     onMouseLeave={clearHelp_}
   >
@@ -49,6 +48,9 @@ function LearnStyle({k}) {
   const [help, setHelp] = useState()
 
   const setShow_ = useCallback(() => setShow(!show), [show])
+  const select_ = useCallback(opt_k => () => {
+    select(opt_k)
+  }, [k, active])
 
   const f = learnStyles[k]
   if (!f.opts) {return null}
@@ -61,12 +63,11 @@ function LearnStyle({k}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {_.map(f.opts, (v, k) => <Option
-          key={k}
-          k={k}
+        {_.map(f.opts, (v, opt_k) => <Option
+          key={opt_k}
           opt={v}
-          active={active === k}
-          select={select}
+          active={active === opt_k}
+          select={select_(opt_k)}
           setHelp={setHelp}
           multi={false}
         />)}
@@ -82,9 +83,9 @@ function Filter({k, section='filters'}) {
   const [show, setShow] = useState(false)
   const [help, setHelp] = useState()
 
-  function select_(k) {
-    select({[k]: !active[k]})
-  }
+  const select_ = useCallback(opt_k => () => {
+    select({[opt_k]: !active[opt_k]})
+  })
   const setShow_ = useCallback(() => setShow(!show), [show])
 
   const f = filters[k]
@@ -97,12 +98,11 @@ function Filter({k, section='filters'}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {_.map(f.opts, (v, k) => <Option
+        {_.map(f.opts, (v, opt_k) => <Option
           key={k}
-          k={k}
           opt={v}
-          active={active[k]}
-          select={select_}
+          active={active[opt_k]}
+          select={select_(opt_k)}
           setHelp={setHelp}
         />)}
       </ButtonGroup>}

@@ -95,15 +95,26 @@ const tgc = _.mapValues({
   },
 
   tgc_consciousness: {
-    t: "Philosophy of Mind: Brains, Consciousness, and Thinking Machines",
+    t: "TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines",
     links: [
       {t: "Amazon", l: "https://amzn.to/38GHt5n", p: "$"},
-      {t: "TGC", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204", p: "$$"}
+      {t: "TGC", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204", p: "$$"},
     ],
     topic: "fun",
     format: "audiobook",
     difficulty: "easy",
     importance: "valuable"
+  },
+
+  tgc_mind_body: {
+    t: "TGC Mind-Body Philosophy",
+    links: [
+      {t: "Amazon", l: "https://amzn.to/2WWYliy", p: "$"},
+      {t: "TGC", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4932&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmind-body-philosophy&intsrc=PUI1_1204", p: "$$"},
+    ],
+    topic: "fun",
+    format: "audiobook",
+    difficulty: "easy",
   },
 
   tgc_stats: {

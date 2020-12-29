@@ -8,10 +8,11 @@ import {
   TwitterIcon,
   TwitterShareButton
 } from "react-share";
-import {BackButton, patreonLink} from "./utils";
+import {patreonLink} from "./utils";
 import {Button, Card, Col, Row} from "react-bootstrap";
 import {FaExternalLinkAlt, FaPatreon, FaRegEnvelope} from "react-icons/all";
 import React from "react";
+import {BackButton} from "../utils";
 
 export default function FreeAccess() {
   function shareButtons(dst) {

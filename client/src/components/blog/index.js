@@ -9,15 +9,10 @@ import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import _ from 'lodash'
 import {Helmet} from "react-helmet";
+import {BackButton} from "../utils";
 
 
 const fmt = 'MMM DD, YYYY';
-
-function BackButton() {
-  return <Button className="back-button mb-2 float-right" href="/" variant="outline-secondary" size="sm">
-    <FaArrowLeft /> All Posts
-  </Button>
-}
 
 function Post() {
   const {id} = useParams()
@@ -29,9 +24,9 @@ function Post() {
       {/* Should use teaser here */}
       {/*<meta name="description" content="Helmet application" />*/}
     </Helmet>
+    <BackButton />
     <Card>
       <Card.Body>
-        <BackButton />
         <Card.Title>{p.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {moment(p.date).format(fmt)}
