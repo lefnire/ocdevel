@@ -14,7 +14,7 @@ import Sidebar from './Sidebar'
 import {btns} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
-import podcast from '../../content/podcast';
+import {mlg, mla, episodes} from '../../content/podcast';
 import {EpisodeFull, Episodes} from './Episodes'
 
 import {StoreProvider, useStoreState, useStoreActions, useStore, useLocalStore} from "easy-peasy";
@@ -35,7 +35,7 @@ function Series_() {
   return <>
     <Helmet>
       <title>Machine Learning Guide Podcast</title>
-      <meta name="description" content={podcast.teaser} />
+      <meta name="description" content={mlg.teaser} />
     </Helmet>
     <Navbar bg='dark' variant='dark' className="border-bottom justify-content-center secondary-nav">
       <Nav>

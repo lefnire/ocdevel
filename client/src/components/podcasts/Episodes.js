@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, useParams} from "react-router-dom";
 import _ from "lodash";
-import podcast from "../../content/podcast";
+import {mlg, mla, episodes} from "../../content/podcast";
 import {Helmet} from "react-helmet";
 import {patreonLink, ReactMarkdown_, dateFmt} from "./utils";
 import {Card, Media, Alert} from "react-bootstrap";
@@ -21,7 +21,7 @@ function Player({episode}) {
 export function EpisodeFull() {
   const {id} = useParams()
 
-  const episode = _.find(podcast.episodes, {episode: parseInt(id)});
+  const episode = _.find(episodes, {episode: parseInt(id)});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
   const body = episode.body && episode.body.replace(/##/g, '###');
   return <div>
@@ -39,7 +39,7 @@ export function EpisodeFull() {
             <span> (updated {moment(episode.updated).format(dateFmt)})</span>
           </>}
         </Card.Subtitle>
-        {!episode.mla && <Player podcast={podcast} episode={episode} />}
+        {!episode.mla && <Player podcast={mlg} episode={episode} />}
         <hr />
         {body? (
           <ReactMarkdown_ source={body} />
@@ -57,7 +57,7 @@ export function EpisodeFull() {
         <ReactDisqusComments
           shortname="ocdevel"
           identifier={episode.guid}
-          title={`${episode.title} | ${podcast.title}`}
+          title={`${episode.title} | ${mlg.title}`}
           url={`https://ocdevel.com/mlg/${id}`}/>
       </Card.Footer>
     </Card>
@@ -102,9 +102,9 @@ export function Episodes() {
   const mlg = true // useStoreState(state => state.mlg)
 
   const episodeOrder = 'new2old' // useStoreState(state => state.episodeOrder);
-  let episodes = episodeOrder === 'new2old' ? podcast.episodes.slice().reverse() : podcast.episodes
+  let episodes_ = episodeOrder === 'new2old' ? episodes.slice().reverse() : episodes
 
-  episodes = _.filter(episodes, e => {
+  episodes_ = _.filter(episodes_, e => {
     if (mla && mlg) {return true}
     return mla ? e.mla : mlg ? e.mlg : false
   })
@@ -116,6 +116,6 @@ export function Episodes() {
       <p>I'm re-doing MLG from scratch! MLG 2nd edition, to refresh resources & concepts to 2020. Starting now use <Link to="/mlg/resources">the resources list</Link>, and ignore the ones I discuss in each episode. This allows me to keep resources up-to-date here without having to edit episodes.</p>
     </div>
 
-    {episodes.map(e => <EpisodeTeaser key={e.guid} e={e} />)}
+    {episodes_.map(e => <EpisodeTeaser key={e.guid} e={e} />)}
   </div>
 }

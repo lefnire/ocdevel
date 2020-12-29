@@ -1,7 +1,7 @@
 import {Card} from "react-bootstrap";
 import {BackButton} from "../utils";
 import ReactDisqusComments from "react-disqus-comments";
-import podcast from "../../content/podcast";
+import {mlg, mla, episodes} from "../../content/podcast";
 import React from "react";
 
 export default function Recommend() {
@@ -18,7 +18,7 @@ export default function Recommend() {
       <ReactDisqusComments
         shortname="ocdevel"
         identifier="machine-learning-recommend"
-        title={`Recommend an Episode | ${podcast.title}`}
+        title={`Recommend an Episode | ${mlg.title}`}
         url="https://ocdevel.com/mlg/recommend" />
     </Card.Footer>
   </Card>

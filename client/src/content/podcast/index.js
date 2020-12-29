@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const episodes = _.map([
+export const episodes = _.map([
   require('./mlg/001.js').default,
   require('./mlg/002.js').default,
   require('./mlg/003.js').default,
@@ -48,17 +48,25 @@ const episodes = _.map([
   require('./mlg/032.js').default,
 ], e => ({...e, mlg: !e.mla}))
 
-const podcast = {
+export const mlg = {
   title: "Machine Learning Guide",
-  link: "http://ocdevel.com/podcasts/machine-learning",
+  link: "http://ocdevel.com/mlg",
   feed: "http://ocdevel.com/files/podcasts/machine-learning/feed.xml",
   keywords: "machine,learning,ml,introduction,artificial,intelligence,ai",
   image: "http://ocdevel.com/files/podcasts/machine-learning/art.jpg",
   date: new Date('02/01/2017'),
-  teaser: "Introduction and intuition on machine learning principles, algorithms, and math. Your 'start here' ML resource.",
-  body: "Teaches the high level fundamentals of machine learning and artificial intelligence. I teach basic intuition, algorithms, and math. I discuss languages and frameworks, deep learning, and more. Audio may seem inferior, but it's a great supplement during exercise/commute/chores. Where your other resources provide the machine learning trees, I provide the forest. Consider me your syllabus. At the end of every episode I provide high-quality curated resources for learning each episode’s details.",
-  episodes: episodes,
+
+  teaser: "Machine learning audio course. Teaches ML fundamentals, models (shallow and deep), math, and more.",
+
+  body: "MLG teaches the fundamentals of machine learning and artificial intelligence. It covers intuition, models, math, languages, frameworks, etc. Where your other ML resources provide the trees, I provide the forest. Consider MLG your syllabus, with highly-curated resources for each episode's details at ocdevel.com. Audio is a great supplement during exercise, commute, chores, etc.",
+
   useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
 };
 
-export default podcast;
+export const mla = {
+  title: "Machine Learning Applied",
+
+  teaser: "Practical machine learning. Covers languages, frameworks, tech stacks, job-hunting, and more.",
+
+  body: "MLA is a Patreon-exclusive podcast for practical ML. Where MLG covers theory, MLA covers practice. Hands-on information about technology, industry, job-hunting & interviews, etc. Smaller, more frequent episodes, in more traditional podcast format (vs MLG's course style).",
+}
