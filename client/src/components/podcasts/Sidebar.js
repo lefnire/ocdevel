@@ -1,26 +1,40 @@
 import {Button, ButtonGroup, Card, Col, Form, Modal, OverlayTrigger, Popover, Row} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {btns} from './utils'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import {filterKeys, filters, learnStyles} from "../../content/podcast/resources/filters";
 import _ from "lodash";
 import About from './About'
-import {FaCheckCircle, FaCheckSquare, FaCircle, FaSquare, FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {
+  FaCheckCircle,
+  FaCheckSquare,
+  FaCircle,
+  FaRegCircle, FaRegSquare,
+  FaSquare,
+  FiMinusSquare,
+  FiPlusSquare
+} from "react-icons/all";
 import {useLocation} from 'react-router-dom'
 
 let check = {size:20, className:'border-right pr-2 mr-2'}
 check = {
-  single: [<FaCircle {...check} />, <FaCheckCircle {...check} />],
-  multi: [<FaSquare {...check} />, <FaCheckSquare {...check} />]
+  single: [<FaRegCircle {...check} />, <FaCheckCircle {...check} />],
+  multi: [<FaRegSquare {...check} />, <FaCheckSquare {...check} />]
 }
 
 function Option({k, opt, active, select, setHelp, multi=true}) {
   const btn = active ? btns.on : btns.off
+
+  // perf tweaks since this re-rendered often
+  const select_ = useCallback(() => select(k), [k, active])
+  const setHelp_ = useCallback(() => setHelp(opt.d), [])
+  const clearHelp_ = useCallback(() => setHelp(null), [])
+
   return <Button
     {...btn}
-    onClick={() => select(k)}
-    onMouseEnter={() => setHelp(opt.d)}
-    onMouseLeave={() => setHelp(null)}
+    onClick={select_}
+    onMouseEnter={setHelp_}
+    onMouseLeave={clearHelp_}
   >
     {check[multi ? 'multi' : 'single'][active ? 1 : 0]}
     {opt.i && <span className='mr-2'>{opt.i}</span>}
@@ -34,13 +48,15 @@ function LearnStyle({k}) {
   const [show, setShow] = useState(true)
   const [help, setHelp] = useState()
 
+  const setShow_ = useCallback(() => setShow(!show), [show])
+
   const f = learnStyles[k]
   if (!f.opts) {return null}
 
   // TODO refactor this with <Filter /> below
   return <>
     <Card.Body>
-      <Card.Subtitle className='pointer' onClick={() => setShow(!show)}>
+      <Card.Subtitle className='pointer' onClick={setShow_}>
         {show ? <FiMinusSquare /> : <FiPlusSquare />}{' '}
         {f.t}
       </Card.Subtitle>
@@ -69,13 +85,14 @@ function Filter({k, section='filters'}) {
   function select_(k) {
     select({[k]: !active[k]})
   }
+  const setShow_ = useCallback(() => setShow(!show), [show])
 
   const f = filters[k]
   if (!f.opts) {return null}
 
   return <>
     <Card.Body>
-      <Card.Subtitle className='pointer' onClick={() => setShow(!show)}>
+      <Card.Subtitle className='pointer' onClick={setShow_}>
         {show ? <FiMinusSquare /> : <FiPlusSquare />}{' '}
         {f.t}
       </Card.Subtitle>

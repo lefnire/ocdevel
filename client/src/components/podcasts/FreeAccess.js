@@ -27,8 +27,8 @@ export default function FreeAccess() {
       Gnothi: "https://gnothiai.com/logo192.png",
       MLG: "https://ocdevel.com/mlg_square.jpg"
     }
-    return <Col className='mb-2' xs={12} lg={6}>
-      <div><strong>{dst}</strong></div>
+    return <div className='text-center'>
+      <h6>{dst}</h6>
       <FacebookShareButton
         {...url}
         quote={shareText}
@@ -77,7 +77,7 @@ export default function FreeAccess() {
       >
         <EmailIcon size={32} round />
       </EmailShareButton>
-    </Col>
+    </div>
   }
   return <div>
     <BackButton />
@@ -89,15 +89,21 @@ export default function FreeAccess() {
     <Card className='mb-3 shadow-sm free-mla-card'>
       <Card.Body>
         <Card.Title>Share | 3 Months Free</Card.Title>
-        <Card.Text>
-          <p>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi <FaExternalLinkAlt /></a> or <a href="https://gnothiai.com">MLG <FaExternalLinkAlt /></a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
-          <Row>
+        <p>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi</a> <strong>or</strong> <a href="https://gnothiai.com">MLG</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
+        <Row>
+          <Col className='mb-2' xs={12} lg={5}>
             {shareButtons('Gnothi')}
+          </Col>
+          <Col
+            className='mb-2 d-flex align-items-center justify-content-center'
+            xs={12} lg={2}
+          >
+            <h6 className='text-muted'>-OR-</h6>
+          </Col>
+          <Col className='mb-2' xs={12} lg={5}>
             {shareButtons('MLG')}
-          </Row>
-
-
-        </Card.Text>
+          </Col>
+        </Row>
       </Card.Body>
     </Card>
 

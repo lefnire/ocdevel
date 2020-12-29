@@ -1,4 +1,5 @@
 import {
+  BiCode,
   BiLaptop,
   CgMathPercent,
   FaBook, FaBrain, FaChalkboardTeacher,
@@ -9,7 +10,7 @@ import {
   FaVideo,
   GiBattery0,
   GiBattery100,
-  GiBattery50, IoIosChatbubbles, MdWeb, TiSortAlphabetically
+  GiBattery50, GiSnake, IoIosChatbubbles, MdWeb, TiSortAlphabetically
 } from "react-icons/all";
 import {action} from "easy-peasy";
 
@@ -103,7 +104,7 @@ export const filters = {
       cv: {t: "CV", d: "Computer Vision", i: <FaEye />},
       nlp: {t: "NLP", d: "Natural Language Processing", i: <IoIosChatbubbles />},
       rl: {t: "RL", d: "AI and Reinforcement Learning", i: <FaRobot />},
-      tech: {t: "Technology", d: "Programming, languages, frameworks, data stuff", i: <BiLaptop />}
+      tech: {t: "Technology", d: "Programming, languages, frameworks, data stuff", i: <BiCode />}
     }
   },
   price: {

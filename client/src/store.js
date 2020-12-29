@@ -32,6 +32,7 @@ function filtersToStore(m, v, k) {
     return m_
   }, {})
   m[`set_${k}`] = action((state, payload) => {
+    console.log(payload)
     state[k] = {...state[k], ...payload}
   })
   return m
@@ -81,9 +82,9 @@ export const store = createStore({
   // learnStyles: _.transform(learnStyles, filtersToStore, {}),
   learnStyles: {
     learn: 'selfTaught',
-    set_learn: action((s, p) => s.learn = p),
+    set_learn: action((s, p) => {s.learn = p}),
     audio: 'hardCore',
-    set_audio: action((s, p) => s.audio = p)
+    set_audio: action((s, p) => {s.audio = p})
   },
 
   filters: _.transform(filters_, filtersToStore, {}),
