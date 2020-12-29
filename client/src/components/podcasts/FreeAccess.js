@@ -9,16 +9,26 @@ import {
   TwitterShareButton
 } from "react-share";
 import {BackButton, patreonLink} from "./utils";
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, Col, Row} from "react-bootstrap";
 import {FaExternalLinkAlt, FaPatreon, FaRegEnvelope} from "react-icons/all";
 import React from "react";
 
 export default function FreeAccess() {
-  const url = {url: "https://gnothiai.com"}
-  const shareText = "Gnothi - a journal that uses AI to provide insights & resources"
-  const shareImg = "https://gnothiai.com/logo192.png"
-  function shareButtons() {
-    return <>
+  function shareButtons(dst) {
+    const url = {
+      Gnothi: {url: "https://gnothiai.com"},
+      MLG: {url: "https://ocdevel.com/mlg"}
+    }[dst]
+    const shareText = {
+      Gnothi: "Gnothi - a journal that uses AI to provide insights & resources",
+      MLG: "Machine Learning Guide - a podcast that teaches machine learning"
+    }[dst]
+    const shareImg = {
+      Gnothi: "https://gnothiai.com/logo192.png",
+      MLG: "https://ocdevel.com/mlg_square.jpg"
+    }
+    return <Col className='mb-2' xs={12} lg={6}>
+      <div><strong>{dst}</strong></div>
       <FacebookShareButton
         {...url}
         quote={shareText}
@@ -67,7 +77,7 @@ export default function FreeAccess() {
       >
         <EmailIcon size={32} round />
       </EmailShareButton>
-    </>
+    </Col>
   }
   return <div>
     <BackButton />
@@ -80,8 +90,13 @@ export default function FreeAccess() {
       <Card.Body>
         <Card.Title>Share | 3 Months Free</Card.Title>
         <Card.Text>
-          <p>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi <FaExternalLinkAlt /></a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
-          {shareButtons()}
+          <p>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi <FaExternalLinkAlt /></a> or <a href="https://gnothiai.com">MLG <FaExternalLinkAlt /></a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
+          <Row>
+            {shareButtons('Gnothi')}
+            {shareButtons('MLG')}
+          </Row>
+
+
         </Card.Text>
       </Card.Body>
     </Card>

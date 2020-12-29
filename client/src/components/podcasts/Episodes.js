@@ -4,7 +4,7 @@ import _ from "lodash";
 import podcast from "../../content/podcast";
 import {Helmet} from "react-helmet";
 import {BackButton, patreonLink, ReactMarkdown_, dateFmt} from "./utils";
-import {Card, Media} from "react-bootstrap";
+import {Card, Media, Alert} from "react-bootstrap";
 import moment from "moment";
 import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
@@ -30,28 +30,29 @@ export function EpisodeFull() {
     </Helmet>
     <BackButton />
     <Card>
-      <Card.Header>
+      <Card.Body>
         <Card.Title>{episode.title}</Card.Title>
-        <Card.Subtitle className='text-muted mb-2'>
+        <Card.Subtitle className='text-muted mb-0'>
           {moment(episode.created).format(dateFmt)}
           {episode.updated && <>
             <span> (updated {moment(episode.updated).format(dateFmt)})</span>
           </>}
         </Card.Subtitle>
-      </Card.Header>
-      <Card.Body>
         {!episode.mla && <Player podcast={podcast} episode={episode} />}
-        {episode.resources && <>
-          <Card.Title>Resources</Card.Title>
-          <ResourcesFlat resources={episode.resources} />
-        </>}
-      </Card.Body>
-      <Card.Footer>
+        <hr />
         {body? (
           <ReactMarkdown_ source={body} />
         ): (
           <p>{episode.teaser}</p>
         )}
+        {episode.resources && <>
+          <hr/>
+          <Card.Title>Resources</Card.Title>
+          <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
+          <ResourcesFlat resources={episode.resources} />
+        </>}
+      </Card.Body>
+      <Card.Footer>
         <ReactDisqusComments
           shortname="ocdevel"
           identifier={episode.guid}
@@ -91,12 +92,6 @@ function EpisodeTeaser({e}) {
       </div>
       {!e.mla && <Link to={`/mlg/${e.episode}`}>Read More</Link>}
     </Card.Body>
-    {e.resources && <>
-      <Card.Footer>
-        <Card.Title>Resources</Card.Title>
-        <ResourcesFlat resources={e.resources} />
-      </Card.Footer>
-    </>}
     {footer && <Card.Footer>{footer}</Card.Footer>}
   </Card>
 }

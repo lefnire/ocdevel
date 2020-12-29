@@ -151,19 +151,19 @@ export default function About() {
       <Card.Body>
           <Card.Title>MLA <span className='text-muted'>$5</span></Card.Title>
           <ul className='list-unstyled'>
-            <li>{check} Access to <em>Machine Learning Applied</em> podcast</li>
-            <li>{check} Premium account on Gnothi</li>
-            <li>{check} Ad-free MLG when I have ads</li>
+            <li>{check} Machine Learning Applied <span className='text-muted'>podcast access</span></li>
+            <li>{check} Gnothi Premium <span className='text-muted'>account</span></li>
+            <li>{check} Ad-free MLG</li>
           </ul>
-          <Card.Title>Slack <span className='text-muted'>$10</span></Card.Title>
+          <Card.Title>Discord Q&A <span className='text-muted'>$10</span></Card.Title>
           <ul className='list-unstyled'>
+            <li>{check} Discord access, <span className='text-muted'>where I'll answer your ML questions</span></li>
             <li>{check} Rewards above</li>
-            <li>{check} Slack access, where I'll answer your ML questions</li>
           </ul>
-          <Card.Title>Office Hours <span className='text-muted'>$120</span></Card.Title>
+          <Card.Title>Office Hours <span className='text-muted'>$100</span></Card.Title>
           <ul className='list-unstyled'>
+            <li>{check} 1h live video session <span className='text-muted'>for subscribers, also acts as office hours where I'll answer ML questions and provide help / support.</span></li>
             <li>{check} Rewards above</li>
-            <li>{check} 1h live video session for subscribers, also acts as office hours where I'll answer ML questions and provide help / support.</li>
           </ul>
           {/*<Col>
             <Card.Subtitle>Job Hunter <span className='text-muted'>$200</span></Card.Subtitle>
