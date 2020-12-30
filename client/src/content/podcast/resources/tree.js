@@ -48,6 +48,7 @@ export default {
   },
 
   main: {
+    top: true,
     t: "Main",
     d: "Machine learning track - 75% of your learning time.",
     pick: "ordered",

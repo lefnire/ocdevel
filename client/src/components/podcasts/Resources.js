@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {filterKeys, filters} from '../../content/podcast/resources/filters'
 import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
@@ -13,6 +13,15 @@ import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap
 import {useStoreState} from "easy-peasy";
 import {ReactMarkdown_, btns, icons} from "./utils";
 import _ from "lodash";
+
+function ResourceWrapper({children, show}) {
+    if (!show) {return <div>{children}</div>}
+    return <Card className='shadow mb-2 pb-0'>
+      <Card.Body className='p-1'>
+        {children}
+      </Card.Body>
+    </Card>
+  }
 
 function Resource({resource}) {
   const [show, setShow] = useState(false)
@@ -86,18 +95,9 @@ function Resource({resource}) {
     </tr>
   }
 
-  function ResourceWrapper({children}) {
-    if (!show) {return <div>{children}</div>}
-    return <Card className='shadow mb-2 pb-0'>
-      <Card.Body className='p-1'>
-        {children}
-      </Card.Body>
-    </Card>
-  }
-
   function renderResource() {
     return <div className={`resource`}>
-      <ResourceWrapper>
+      <ResourceWrapper show={show}>
         <div onClick={toggle} className="pointer">
           {show ? icons.down : icons.right}
           <span className='mx-2 resource-title'>
@@ -155,18 +155,19 @@ export function ResourcesFlat({resources}) {
 }
 
 function TreeSectionWrapper({expanded, children}) {
-  if (expanded) {
-    return <Alert
-      variant='secondary'
-      className='py-1 pl-0 m-0 section-description section-description-expanded border-right-0 border-bottom-0 border-top-0'
-    >{children}</Alert>
-  }
-  return <div className='py-1 section-description'>{children}</div>
+  return <div className={expanded ? 'section-expanded border-left border-top' : ''}>
+    {expanded ? <div
+      className='pl-0 m-0 border-right-0 border-bottom-0 border-top-0'
+    >{children}</div>
+    : <div className=''>{children}</div>}
+  </div>
 }
 
 function ResourceNode({node, level=0}) {
   const [expanded, setExpanded] = useState(!!node.expand)
   const [showPick, setShowPick] = useState(false)
+
+  const showPick_ = useCallback(() => {setShowPick(!showPick)}, [showPick])
 
   if (!node.pick) {
     return <div className='py-2'>
@@ -187,24 +188,26 @@ function ResourceNode({node, level=0}) {
   function renderSectionInfo() {
     if (!expanded) {return null}
     if (!(node.d || node.pick)) {return null}
-    return <div className='m-0 small'>
-      {node.d && <div className='pl-4 text-muted'>
+    return <div className='small ml-2'>
+      {node.d && <div className='my-1 text-muted'>
         <ReactMarkdown_ source={node.d} />
       </div>}
       {node.pick && <div>
         <div
           className='pointer'
-          onClick={() => setShowPick(!showPick)}
+          onClick={showPick_}
         >
           {showPick ? icons.down : icons.right}{' '}
           {picks[node.pick].t}
         </div>
-        {showPick && <div className='ml-3'>{picks[node.pick].d}</div>}
+        {showPick && <div className='ml-3 text-muted'>{picks[node.pick].d}</div>}
       </div>}
     </div>
   }
 
-  return <>
+  const dontPad = level === 0 || expanded
+
+  return <div className={dontPad ? '' : 'py-2'}>
     <TreeSectionWrapper expanded={expanded}>
       <div
         onClick={() => setExpanded(!expanded)}
@@ -212,14 +215,14 @@ function ResourceNode({node, level=0}) {
       >{header}</div>
       {renderSectionInfo()}
     </TreeSectionWrapper>
-    {expanded && <ul className={`list-unstyled border-left pl-4`}>
+    {expanded && <ul className={`list-unstyled border-left pl-3 mb-0`}>
       {node.v.map(n => <>
         <li key={n.id || n.t}>
           <ResourceNode node={n} level={level+1} />
         </li>
       </>)}
     </ul>}
-  </>
+  </div>
 }
 
 export function ResourcesTree() {

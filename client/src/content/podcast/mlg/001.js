@@ -4,7 +4,7 @@ export default {
   title: "Introduction",
   episode: 1,
   created: "2017-02-01",
-  updated: "2020-12-01",
+  updated: "2020-12-29",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
     length: 11886227,

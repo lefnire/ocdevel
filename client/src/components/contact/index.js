@@ -57,19 +57,15 @@ export default function Contact() {
     <Helmet>
       <title>Contact Tyler Renelle</title>
     </Helmet>
-    <Card>
-      <Card.Body>
-        <Row>
-          <Col xs={12} lg={3} className='text-center'>
-            {img}
-            {links}
-          </Col>
-          <Col xs={12} lg={9}>
-            {about}
-            {projects}
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+    <Row>
+      <Col xs={12} lg={3} className='text-center'>
+        {img}
+        {links}
+      </Col>
+      <Col xs={12} lg={9}>
+        {about}
+        {projects}
+      </Col>
+    </Row>
   </Container>
 }

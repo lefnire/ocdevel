@@ -12,7 +12,7 @@ html {
 
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
-  background-color: #f6f9fc;
+  //background-color: #f6f9fc;
 }
 
 .footer {
@@ -163,16 +163,15 @@ body {
       text-decoration: underline;
       text-decoration-style: dotted;
     }
-    .section-description {
-      border-radius: 0;
-      &.section-description-expanded {
-        p {
-          margin-bottom: .5rem;
-        }
-        background-color: #eee;
+    .section-expanded {
+      p, ul {
+        margin-bottom: 0px;
+        margin-bottom: 0px;
       }
-      //border-left: 1px solid $info;
+      background-color: #f7f7f7;
+      padding: .5rem;
     }
+    //border-left: 1px solid $info;
 
     &.resources-tree {
       background-color: white;
