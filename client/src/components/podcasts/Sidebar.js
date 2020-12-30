@@ -1,6 +1,6 @@
 import {Button, ButtonGroup, Card, Col, Form, Modal, OverlayTrigger, Popover, Row} from "react-bootstrap";
 import React, {useCallback, useState} from "react";
-import {btns} from './utils'
+import {btns, icons} from './utils'
 import {useStoreActions, useStoreState} from "easy-peasy";
 import {filterKeys, filters, learnStyles} from "../../content/podcast/resources/filters";
 import _ from "lodash";
@@ -112,16 +112,23 @@ function Filter({k, section='filters'}) {
 }
 
 function Filters() {
+  const [show, setShow] = useState(true)
   return <Col className='sidebar-filters'>
-    <Card>
-      <Card.Header>
-        <Card.Title className='mb-0 text-center'>Filters</Card.Title>
+    <Card className='border-0'>
+      <Card.Header className='border-bottom-0 pointer'>
+        <Card.Title
+          className='mb-0 text-center'
+          onClick={() => setShow(!show)}
+        >
+          {show ? icons.down : icons.right}{' '}
+          Filters
+        </Card.Title>
       </Card.Header>
-
-    {/* 71f9ea01: MLA/MLG filter & sorting */}
-    {['learn', 'audio'].map(k => <LearnStyle key={k} k={k} />)}
-    {filterKeys.map(k => <Filter key={k} k={k} />)}
-
+    {show && <>
+      {/* 71f9ea01: MLA/MLG filter & sorting */}
+      {['learn', 'audio'].map(k => <LearnStyle key={k} k={k} />)}
+      {filterKeys.map(k => <Filter key={k} k={k} />)}
+    </>}
     </Card>
   </Col>
 }

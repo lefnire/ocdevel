@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import scout from "../../assets/mlg_square.jpg";
 import {Button, ButtonGroup, Card, Col, Row,
 FormGroup, InputGroup, FormControl, Form, Alert} from "react-bootstrap";
-import {btns, patreonLink, Popover_, ReactMarkdown_} from "./utils";
+import {btns, patreonLink, Popover_, ReactMarkdown_, icons} from "./utils";
 import {
   FaArrowLeft, FaBriefcase, FaDollarSign, FaEnvelope, FaGithub,
   FaItunesNote, FaLightbulb,
@@ -27,7 +27,10 @@ function AboutSection({children, title, top=false}) {
       className={`pointer border-bottom-0 ${top ? '' : 'border-top'}`}
       onClick={() => setShow(!show)}
     >
-      <Card.Title className='text-center mb-0'>{title}</Card.Title>
+      <Card.Title className='text-center mb-0'>
+        {show ? icons.down : icons.right}{' '}
+        {title}
+      </Card.Title>
     </Card.Header>
     {show && <Card.Body>{children}</Card.Body>}
   </>

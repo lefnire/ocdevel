@@ -111,8 +111,13 @@ body {
   }
 
   .episode-teaser {
-    .card-footer {
-      border: none;
+    &.episode-archived {
+      .card-title {
+        text-decoration: line-through;
+        a {
+          color: #6c757d;
+        }
+      }
     }
   }
 
@@ -168,6 +173,10 @@ body {
       }
       //border-left: 1px solid $info;
     }
+
+    &.resources-tree {
+      background-color: white;
+    }
   }
 
   .pick-one-resource {
@@ -193,7 +202,7 @@ body {
         background-color: white;
         border-top: none;
         color: #6c757d;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125)
+        //border-bottom: 1px solid rgba(0, 0, 0, 0.125)
       }
     }
     .filter-selected {

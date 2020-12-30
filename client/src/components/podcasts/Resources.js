@@ -11,16 +11,8 @@ import {
 } from "react-icons/all";
 import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
-import {ReactMarkdown_, btns} from "./utils";
+import {ReactMarkdown_, btns, icons} from "./utils";
 import _ from "lodash";
-
-// render once up here for perf
-const icons = {
-  plus: <FiPlusSquare />,
-  minus: <FiMinusSquare />,
-  down: <BiChevronDown />,
-  right: <BiChevronRight />
-}
 
 function Resource({resource}) {
   const [show, setShow] = useState(false)
@@ -166,7 +158,7 @@ function TreeSectionWrapper({expanded, children}) {
   if (expanded) {
     return <Alert
       variant='secondary'
-      className='py-1 pl-0 m-0 section-description section-description-expanded'
+      className='py-1 pl-0 m-0 section-description section-description-expanded border-right-0 border-bottom-0 border-top-0'
     >{children}</Alert>
   }
   return <div className='py-1 section-description'>{children}</div>
@@ -232,11 +224,7 @@ function ResourceNode({node, level=0}) {
 
 export function ResourcesTree() {
   const sections = useStoreState(state => state.filteredTree)
-  return <div className='resources resources-tree'>
-    <Card className='mb-3'>
-      <Card.Body>
-        {sections.map(n => n && <ResourceNode node={n} key={n.t} />)}
-      </Card.Body>
-    </Card>
+  return <div className='resources resources-tree mb-3'>
+    {sections.map(n => n && <ResourceNode node={n} key={n.t} />)}
   </div>
 }

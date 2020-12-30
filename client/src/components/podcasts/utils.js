@@ -4,6 +4,7 @@ import {
 } from "react-bootstrap";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import {BiChevronDown, BiChevronRight, FiMinusSquare, FiPlusSquare} from "react-icons/all";
 
 export const dateFmt = 'MMM DD, YYYY';
 
@@ -53,4 +54,11 @@ export function ReactMarkdown_({source}) {
     source={source}
     linkTarget="_blank"
   />
+}
+
+export const icons = {
+  plus: <FiPlusSquare />,
+  minus: <FiMinusSquare />,
+  down: <BiChevronDown />,
+  right: <BiChevronRight />
 }
