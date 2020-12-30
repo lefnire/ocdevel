@@ -164,9 +164,10 @@ export function ResourcesFlat({resources}) {
 
 function TreeSectionWrapper({expanded, children}) {
   if (expanded) {
-    return <Alert variant='secondary' className='py-1 pl-0 m-0 section-description section-description-expanded'>
-      {children}
-    </Alert>
+    return <Alert
+      variant='secondary'
+      className='py-1 pl-0 m-0 section-description section-description-expanded'
+    >{children}</Alert>
   }
   return <div className='py-1 section-description'>{children}</div>
 }
@@ -194,11 +195,13 @@ function ResourceNode({node, level=0}) {
   function renderSectionInfo() {
     if (!expanded) {return null}
     if (!(node.d || node.pick)) {return null}
-    return <div className='m-0 pl-4 small'>
-      {node.d && <ReactMarkdown_ source={node.d} />}
+    return <div className='m-0 small'>
+      {node.d && <div className='pl-4 text-muted'>
+        <ReactMarkdown_ source={node.d} />
+      </div>}
       {node.pick && <div>
         <div
-          className='pointer font-weight-bold'
+          className='pointer'
           onClick={() => setShowPick(!showPick)}
         >
           {showPick ? icons.down : icons.right}{' '}
@@ -219,9 +222,7 @@ function ResourceNode({node, level=0}) {
     </TreeSectionWrapper>
     {expanded && <ul className={`list-unstyled border-left pl-4`}>
       {node.v.map(n => <>
-        <li
-          key={n.id || n.t}
-        >
+        <li key={n.id || n.t}>
           <ResourceNode node={n} level={level+1} />
         </li>
       </>)}
