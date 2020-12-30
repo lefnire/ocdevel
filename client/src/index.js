@@ -11,12 +11,6 @@ import ReactGA from 'react-ga'
 ReactGA.initialize('UA-3128634-8')
 ReactGA.pageview(window.location.pathname)
 
-// redirect from old routes
-let match = window.location.href.match(/machine[\-]?learning(\/.*)?/);
-if (match) {
-  window.location.href = match[1] ? `/mlg${match[1]}` : '/mlg';
-}
-
 function Index() {
   const {listen} = useHistory()
 

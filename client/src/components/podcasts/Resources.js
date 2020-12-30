@@ -109,6 +109,9 @@ function Resource({resource}) {
           {resource.d && <div className='small text-muted my-2'>
             <ReactMarkdown_ source={resource.d} />
           </div>}
+          {resource.itunesu && <div className='small text-muted my-2'>
+            This is a recorded university course, what used be part of the iTunesU system. These courses can be listened to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do a great job orating, unlike TheGreatCourses teachers who orate wonderfully. So you'll likely want the visuals.
+          </div>}
           <div className='small'>
             <Table striped size='sm filters-table my-2'>
               <colgroup>

@@ -321,6 +321,7 @@ const videos = _.mapValues({
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL6397E4B26D00A269", p: "free"}],
     difficulty: "medium",
     topic: "nlp",
+    itunesu: true,
     audioOption: true
   },
 
@@ -330,6 +331,7 @@ const videos = _.mapValues({
     links: [{t: "YouTube", l: "https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6", p: "free"}],
     difficulty: "medium",
     topic: "nlp",
+    itunesu: true,
     audioOption: true
   },
 
@@ -342,6 +344,7 @@ const videos = _.mapValues({
     ],
     difficulty: "medium",
     topic: "cv",
+    itunesu: true,
     audioOption: true
   },
 
@@ -350,6 +353,7 @@ const videos = _.mapValues({
     links: [{t: "Website", l: "http://rll.berkeley.edu/deeprlcourse/", p: "free"}],
     difficulty: "hard",
     topic: "rl",
+    itunesu: true,
     audioOption: true
   },
 
@@ -359,6 +363,7 @@ const videos = _.mapValues({
     video2audio: "good",
     difficulty: "hard",
     topic: "rl",
+    itunesu: true,
     audioOption: true
   },
 

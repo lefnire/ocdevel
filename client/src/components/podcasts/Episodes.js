@@ -113,7 +113,7 @@ export function Episodes() {
   return <div>
     <div className="mb-3 mlg-update pl-3">
       <Card.Title className='mb-1'>2020-12-19 Update</Card.Title>
-      <p>I'm re-doing MLG from scratch! MLG 2nd edition, to refresh resources & concepts to 2020. Starting now use <Link to="/mlg/resources">the resources list</Link>, and ignore the ones I discuss in each episode. This allows me to keep resources up-to-date here without having to edit episodes.</p>
+      <p>I'm re-doing MLG (2nd edition) to refresh resources & concepts to 2021. Starting now use <Link to="/mlg/resources">Resources</Link>, and ignore the resources discussed in the episodes. Then I can to keep resources updated without editing episodes. I'm removing checkpoints and irrelevant episodes to make room for new ones - so if you see see "holes" that's normal. I'll keep the Bitcoin Trading episode, as it's info-packed, but the podcast project is now <a href='https://gnothiai.com' target='_blank'>Gnothi</a>.</p>
     </div>
 
     {episodes_.map(e => <EpisodeTeaser key={e.guid} e={e} />)}

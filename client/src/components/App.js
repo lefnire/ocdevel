@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import CookieConsent from "react-cookie-consent";
 import Home from "./home"
 import Blog from "./blog"
@@ -35,7 +35,7 @@ export default function App() {
       <Route path="/blog"><Blog /></Route>
       <Route path="/mlg"><Podcasts /></Route>
       <Route path="/contact"><Contact /></Route>
-      {/*<Redirect from="*" to="/mlg"/>*/}
+      <Redirect from="/podcasts(.*)" to="/mlg"/>
     </Switch>
 
     <footer className='footer text-center mt-auto shadow'>

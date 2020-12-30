@@ -86,7 +86,7 @@ export default {
 
       {
         t: "Programming",
-        d: "Eventually you'll need to be pretty good at Python. Not immediately (why I list this after Basics), but probably before going too far.",
+        d: "Eventually you'll need to be pretty good at Python. Not immediately (why I list this after Basics), but probably before going too far. Scikit-Learn will be your main shallow-learning library; Tensorflow or Pytorch your deep-learning framework(s); and Numpy/Pandas your utility belt.",
         pick: "any",
         v: [
             r.book_python,
