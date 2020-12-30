@@ -159,7 +159,14 @@ body {
       text-decoration-style: dotted;
     }
     .section-description {
-      //border-left: 2px solid $info;
+      border-radius: 0;
+      &.section-description-expanded {
+        p {
+          margin-bottom: .5rem;
+        }
+        background-color: #eee;
+      }
+      //border-left: 1px solid $info;
     }
   }
 

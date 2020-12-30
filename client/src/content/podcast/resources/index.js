@@ -537,7 +537,7 @@ const books = _.mapValues({
   },
 
   book_python: {
-    t: `Python Book`,
+    t: `Learning Python, 5th Edition`,
     links: [{t: "Amazon", l: "http://amzn.to/2mVgtJW", p: "$"}],
     difficulty: "medium",
     topic: "tech"

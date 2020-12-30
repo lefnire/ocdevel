@@ -4,7 +4,7 @@ import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {
   BiChevronDown, BiChevronRight,
-  FaInfoCircle,
+  FaInfoCircle, FaMinusSquare, FaPlusSquare,
   FaQuestionCircle,
   FiMinusSquare,
   FiPlusSquare,
@@ -13,6 +13,14 @@ import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap
 import {useStoreState} from "easy-peasy";
 import {ReactMarkdown_, btns} from "./utils";
 import _ from "lodash";
+
+// render once up here for perf
+const icons = {
+  plus: <FiPlusSquare />,
+  minus: <FiMinusSquare />,
+  down: <BiChevronDown />,
+  right: <BiChevronRight />
+}
 
 function Resource({resource}) {
   const [show, setShow] = useState(false)
@@ -99,7 +107,7 @@ function Resource({resource}) {
     return <div className={`resource`}>
       <ResourceWrapper>
         <div onClick={toggle} className="pointer">
-          {show ? <BiChevronDown /> : <BiChevronRight />}
+          {show ? icons.down : icons.right}
           <span className='mx-2 resource-title'>
             {resource.t}
           </span>
@@ -154,6 +162,15 @@ export function ResourcesFlat({resources}) {
   </div>
 }
 
+function TreeSectionWrapper({expanded, children}) {
+  if (expanded) {
+    return <Alert variant='secondary' className='py-1 pl-0 m-0 section-description section-description-expanded'>
+      {children}
+    </Alert>
+  }
+  return <div className='py-1 section-description'>{children}</div>
+}
+
 function ResourceNode({node, level=0}) {
   const [expanded, setExpanded] = useState(!!node.expand)
   const [showPick, setShowPick] = useState(false)
@@ -169,28 +186,38 @@ function ResourceNode({node, level=0}) {
     return null
   }
 
-  let header = <>{expanded ? <FiMinusSquare /> : <FiPlusSquare />} {node.t}</>
+  let header = <>{expanded ? icons.minus : icons.plus} {node.t}</>
   header = level === 0 ?
       <h4 className='resource-header mb-0'>{header}</h4> :
       <div>{header}</div>
 
+  function renderSectionInfo() {
+    if (!expanded) {return null}
+    if (!(node.d || node.pick)) {return null}
+    return <div className='m-0 pl-4 small'>
+      {node.d && <ReactMarkdown_ source={node.d} />}
+      {node.pick && <div>
+        <div
+          className='pointer font-weight-bold'
+          onClick={() => setShowPick(!showPick)}
+        >
+          {showPick ? icons.down : icons.right}{' '}
+          {picks[node.pick].t}
+        </div>
+        {showPick && <div className='ml-3'>{picks[node.pick].d}</div>}
+      </div>}
+    </div>
+  }
+
   return <>
-    <div className='py-1'>
+    <TreeSectionWrapper expanded={expanded}>
       <div
         onClick={() => setExpanded(!expanded)}
         className={`pointer`}
-      >
-        {header}
-      </div>
-    </div>
+      >{header}</div>
+      {renderSectionInfo()}
+    </TreeSectionWrapper>
     {expanded && <ul className={`list-unstyled border-left pl-4`}>
-      {(node.d || node.pick) && <li className='small section-description text-info'>
-        {node.d && <div>{node.d}</div>}
-        {node.pick && <div>
-          <span className='section-pick pointer' onClick={() => setShowPick(!showPick)}>{picks[node.pick].t}</span>
-          {showPick && <span>:{' '}{picks[node.pick].d}</span>}
-        </div>}
-      </li>}
       {node.v.map(n => <>
         <li
           key={n.id || n.t}

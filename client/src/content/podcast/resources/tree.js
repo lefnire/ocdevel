@@ -86,17 +86,22 @@ export default {
 
       {
         t: "Programming",
-        d: "Eventually you'll need to be pretty good at Python. Not immediately (why I list this after Basics), but probably before going too far. Scikit-Learn will be your main shallow-learning library; Tensorflow or Pytorch your deep-learning framework(s); and Numpy/Pandas your utility belt.",
+        d: `
+Eventually you'll need to know Python. Not immediately (why I list this after Basics), but before going too far. This is your tech stack:
+* [Scikit-learn](https://scikit-learn.org/stable/) as your shallow-learning library
+* [Tensorflow](https://www.tensorflow.org/) or [Pytorch](https://pytorch.org/) as your deep-learning framework(s)
+* [Numpy](https://numpy.org/) and [Pandas](https://pandas.pydata.org/) as your utility belt`,
         pick: "any",
         v: [
-            r.book_python,
-            r.python_data_analysis
+          r.book_python,
+          r.python_data_analysis,
+          r.handson_tensorflow,
         ]
       },
 
       {
         t: "Deep Learning",
-        d: "Deep Learning basics. Nothing specific on vision, NLP, etc - just the core concepts.",
+        // d: "Deep Learning basics. Nothing specific on vision, NLP, etc - just the core concepts.",
         pick: "one",
         v: [
             r.ng_deep_learning,
