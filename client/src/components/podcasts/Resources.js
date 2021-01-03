@@ -34,6 +34,7 @@ function Resource({resource}) {
   })
 
   function renderIcon(filterKey) {
+    if (resource.card) {return null}
     // if (!resource[filterKey]) {return null} // FIXME due to old resources?
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
@@ -107,6 +108,26 @@ function Resource({resource}) {
     </tr>
   }
 
+  function renderTable() {
+    if (resource.card) {return null}
+    return <div className='small'>
+      <Table striped size='sm filters-table my-2'>
+        <colgroup>
+          <col className='ft-col1' />
+          <col className='ft-col2' />
+        </colgroup>
+        <tbody>
+          {renderLinks()}
+          {filterKeys.map(renderDetails)}
+        </tbody>
+      </Table>
+      {showHelp ?
+        <Alert variant='info mb-0'>{showHelp}</Alert> :
+        <Alert variant='info mb-0'><FaInfoCircle /> Hover over a key/value for information</Alert>
+      }
+    </div>
+  }
+
   function renderResource() {
     return <div className={`resource`}>
       <ResourceWrapper show={show}>
@@ -118,28 +139,13 @@ function Resource({resource}) {
           {filterKeys.map(renderIcon)}
         </div>
         {show && <div className='px-2 pb-1'>
-          {resource.d && <div className='small text-muted my-2'>
+          {resource.d && <div className={'my-2 ' + (resource.card ? 'resource-card' : 'small text-muted')}>
             <ReactMarkdown_ source={resource.d} />
           </div>}
           {resource.itunesu && <div className='small text-muted my-2'>
             This is a recorded university course, what used be part of the iTunesU system. These courses can be listened to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do a great job orating, unlike TheGreatCourses teachers who orate wonderfully. So you'll likely want the visuals.
           </div>}
-          <div className='small'>
-            <Table striped size='sm filters-table my-2'>
-              <colgroup>
-                <col className='ft-col1' />
-                <col className='ft-col2' />
-              </colgroup>
-              <tbody>
-                {renderLinks()}
-                {filterKeys.map(renderDetails)}
-              </tbody>
-            </Table>
-            {showHelp ?
-              <Alert variant='info mb-0'>{showHelp}</Alert> :
-              <Alert variant='info mb-0'><FaInfoCircle /> Hover over a key/value for information</Alert>
-            }
-          </div>
+          {renderTable()}
         </div>}
       </ResourceWrapper>
     </div>

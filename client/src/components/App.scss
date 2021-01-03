@@ -176,6 +176,16 @@ body {
     &.resources-tree {
       background-color: white;
     }
+
+    .resource-card {
+      p {margin-bottom: .5rem;}
+      ul {
+        list-style-type: disc !important;
+      }
+      ul, ol {
+        margin-bottom: .5rem;
+      }
+    }
   }
 
   .pick-one-resource {

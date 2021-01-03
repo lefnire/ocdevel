@@ -165,6 +165,21 @@ Eventually you'll need to know Python. Not immediately (why I list this after Ba
             }
         ]
       },
+
+      {
+        t: "Technology Stack",
+        d: "A guide for building your ML project, and what technology to use",
+        pick: "any",
+        v: [
+          r.dev_environment,
+          r.client_stack,
+          r.server_stack,
+          r.db_stack,
+          r.ml_stack
+        ]
+      },
+
+      r.get_job
     ]
   },
 
