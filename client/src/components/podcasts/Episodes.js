@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useHistory} from "react-router-dom";
 import _ from "lodash";
 import {mlg, mla, episodes} from "../../content/podcast";
 import {Helmet} from "react-helmet";
@@ -16,22 +16,53 @@ import scout from "../../assets/mlg_square.jpg";
 import librarian from "../../assets/mla_square.jpg";
 import {LinkContainer} from "react-router-bootstrap";
 
-function Player({episode}) {
-  // html5 custom player
-  const embedCode = `<iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/${episode.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/" height="90" width="640" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>`;
-  return <div dangerouslySetInnerHTML={{__html: embedCode}} />;
+const mlaBanner = <div className='d-flex align-items-center'>
+  <img src={librarian} width={90} className='mr-2'/>
+  <div>
+    <div className='d-flex justify-content-center'>
+      <Button size="sm" href={patreonLink} target='_blank' className='patreon-btn mb-1'><FaPatreon /> Get it on Patreon</Button>
+    </div>
+    <div className='d-flex justify-content-center'>
+      <LinkContainer to='/mlg/free-access'>
+        <Button size="sm" variant="link" className='patreon-btn-free mb-1'>Get it free</Button>
+      </LinkContainer>
+    </div>
+  </div>
+</div>
+
+function Player({e}) {
+  return e.mla ? mlaBanner :
+    <iframe
+      style={{border: "none"}}
+      src={`//html5-player.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/`}
+      height="90"
+      width="640"
+      scrolling="no"
+      allowfullscreen
+      webkitallowfullscreen
+      mozallowfullscreen
+      oallowfullscreen
+      msallowfullscreen
+    />
 }
 
 export function EpisodeFull() {
   const {id} = useParams()
+  const isMla = _.startsWith(id, 'mla-')
 
-  const episode = _.find(episodes, {episode: parseInt(id)});
+  const episodes_ =  isMla ? mla.episodes : mlg.episodes
+  const findId = parseInt(isMla ? id.split('-')[1] : id)
+
+  const episode = _.find(episodes_, {episode: findId});
   // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
-  const body = episode.body && episode.body.replace(/##/g, '###');
+  let body = episode.body ? episode.body.replace(/##/g, '###')
+    : episode.teaser
+
+
   return <div>
     <Helmet>
       <title>{episode.title} | Machine Learning Guide</title>
-      <meta name="description" content={episode.teaser} />
+      {episode.teaser && <meta name="description" content={episode.teaser} />}
     </Helmet>
     <BackButton />
     <Card>
@@ -43,13 +74,9 @@ export function EpisodeFull() {
             <span> (updated {moment(episode.updated).format(dateFmt)})</span>
           </>}
         </Card.Subtitle>
-        {!episode.mla && <Player podcast={mlg} episode={episode} />}
+        <Player e={episode} />
         <hr />
-        {body? (
-          <ReactMarkdown_ source={body} />
-        ): (
-          <p>{episode.teaser}</p>
-        )}
+        <ReactMarkdown_ source={body} />
         {episode.resources && <>
           <hr/>
           <Card.Title>Resources</Card.Title>
@@ -70,57 +97,32 @@ export function EpisodeFull() {
 
 function EpisodeTeaser({e}) {
   let num = _.padStart(e.episode, 3, '0');
-  let title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
-  if (!e.mla) {
-    title = <Link to={`/mlg/${e.episode}`}>{title}</Link>
-  }
+  const title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
   const body = e.body && e.teaser ? `${e.teaser}\n\n${e.body}` :
     e.body || e.teaser
-
-  function renderMLG() {
-    return <>
-      <Player episode={e} />
-      {e.archived ? <>
-        <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
-      </> : <>
-        <div className='fade-post'>
-          <ReactMarkdown_ source={body} />
-          <div className='fade-post-bottom' />
-        </div>
-        <Link to={`/mlg/${e.episode}`}>Read More</Link>
-      </>}
-    </>
-  }
-
-  function renderMLA() {
-    return <>
-      <div className='d-flex align-items-center'>
-        <img src={librarian} width={90} className='mr-2'/>
-        <div>
-          <div className='d-flex justify-content-center'>
-            <Button size="sm" href={patreonLink} target='_blank' className='patreon-btn mb-1'><FaPatreon /> Get it on Patreon</Button>
-          </div>
-          <div className='d-flex justify-content-center'>
-            <LinkContainer to='/mlg/free-access'>
-              <Button size="sm" variant="link" className='patreon-btn-free mb-1'>Get it free</Button>
-            </LinkContainer>
-          </div>
-        </div>
-      </div>
-      <ReactMarkdown_ source={body} />
-    </>
-  }
+  const link = `/mlg/${e.mla ? 'mla-' : ''}${e.episode}`
 
   return <Card className={`episode-teaser mb-3 card-post ${e.archived ? 'episode-archived' : ''}`}>
     <Card.Body>
-      <Card.Title>{title}</Card.Title>
+      <Card.Title>
+        <Link to={link}>{title}</Link>
+      </Card.Title>
       <Card.Subtitle className='text-muted mb-2'>
         {moment(e.created).format(dateFmt)}
         {e.updated && <>
           <span> (updated {moment(e.updated).format(dateFmt)})</span>
         </>}
       </Card.Subtitle>
-      {e.mla ? renderMLA() : renderMLG()}
+      <Player e={e} />
+      {e.archived ? <>
+        <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
+      </> : e.body ? <>
+        <div className='fade-post'>
+          <ReactMarkdown_ source={body} />
+          <div className='fade-post-bottom' />
+        </div>
+        <Link to={link}>Read More</Link>
+      </> : <ReactMarkdown_ source={body} />}
     </Card.Body>
   </Card>
 }

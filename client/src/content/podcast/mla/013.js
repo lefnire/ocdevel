@@ -4,7 +4,7 @@ export default {
   mla: true,
   date: "2021-01-02",
   guid: "45741538",
-  teaser: `
+  body: `
 My recommended stack for web client / mobile, app server, and database.
 * Client: React + React Native
 * Server: Node.js, Go, or FastAPI (Python)

@@ -57,6 +57,7 @@ export const mlg = {
   keywords: "machine,learning,ml,introduction,artificial,intelligence,ai",
   image: "http://ocdevel.com/files/podcasts/machine-learning/art.jpg",
   date: new Date('02/01/2017'),
+  episodes: _.filter(episodes, e => !e.mla),
 
   teaser: "Machine learning audio course. Teaches ML fundamentals, models (shallow and deep), math, and more.",
 
@@ -67,6 +68,7 @@ export const mlg = {
 
 export const mla = {
   title: "Machine Learning Applied",
+  episodes: _.filter(episodes, e => e.mla),
 
   teaser: "Practical machine learning. Covers languages, frameworks, tech stacks, job-hunting, and more.",
 

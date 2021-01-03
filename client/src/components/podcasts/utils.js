@@ -2,6 +2,7 @@ import {
   Popover,
   OverlayTrigger,
 } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import {BiChevronDown, BiChevronRight, FiMinusSquare, FiPlusSquare} from "react-icons/all";
@@ -46,11 +47,24 @@ export const btns = {
   },
 }
 
+const renderers = {
+  // TODO convert h2 to h3
+  // heading: (props) => {
+  //   return createElement(`h${props.level}`, getCoreProps(props), props.children)
+  // },
+  link: ({href, children}) => {
+    if (href[0] === '/') {
+      return <Link to={href}>{children}</Link>
+    }
+    return <a href={href} target='_blank'>{children}</a>
+  }
+}
+
 export function ReactMarkdown_({source}) {
   // TODO turn h2s into h3s
   return <ReactMarkdown
+    renderers={renderers}
     source={source}
-    linkTarget="_blank"
   />
 }
 
