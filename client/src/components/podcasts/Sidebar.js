@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, Card, Col, Form, Modal, OverlayTrigger, Popover, Row} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Col, Form, Modal, Row} from "react-bootstrap";
 import React, {useCallback, useState} from "react";
 import {btns, icons} from './utils'
 import {useStoreActions, useStoreState} from "easy-peasy";
@@ -8,9 +8,7 @@ import About from './About'
 import {
   FaCheckCircle,
   FaCheckSquare,
-  FaCircle,
   FaRegCircle, FaRegSquare,
-  FaSquare,
   FiMinusSquare,
   FiPlusSquare
 } from "react-icons/all";
@@ -126,7 +124,10 @@ function Filters() {
       </Card.Header>
     {show && <>
       {/* 71f9ea01: MLA/MLG filter & sorting */}
-      {['learn', 'audio'].map(k => <LearnStyle key={k} k={k} />)}
+      {[
+        'learn',
+        //'audio'
+      ].map(k => <LearnStyle key={k} k={k} />)}
       {filterKeys.map(k => <Filter key={k} k={k} />)}
     </>}
     </Card>

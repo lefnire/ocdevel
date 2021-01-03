@@ -11,20 +11,18 @@ export const dateFmt = 'MMM DD, YYYY';
 export const patreonLink = 'https://www.patreon.com/machinelearningguide'
 
 export function Popover_({children, content, id=null, title=null, opts={}}) {
-  const popover = (
-    <Popover id={id || +new Date}>
-      {title && <Popover.Title as="h3">Popover right</Popover.Title>}
-      <Popover.Content>
-        {content}
-      </Popover.Content>
-    </Popover>
-  );
+  opts = {placement: "right", ...opts}
 
-  return (
-    <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} {...opts}>
-      {children}
-    </OverlayTrigger>
-  );
+  const popover = <Popover id={id || +new Date}>
+    {title && <Popover.Title as={typeof title === "string" ? "h3" : "div"}>
+      {title}
+    </Popover.Title>}
+    <Popover.Content>{content}</Popover.Content>
+  </Popover>
+
+  return <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} {...opts}>
+    {children}
+  </OverlayTrigger>
 }
 
 export const btns = {

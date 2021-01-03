@@ -198,13 +198,15 @@ function MoreLinks() {
           </Link>
         </div>
 
-        <div>
-          <Popover_ content="Get notified of new episodes / announcements" opts={{placement: 'bottom'}}>
-            <a {...link} href="http://eepurl.com/cUUWfD" target="_blank" className='text-dark'>
+        <Popover_
+          content={<div>Get notified of new episodes / announcements</div>}
+        >
+          <div>
+            <a {...link} href="http://eepurl.com/cUUWfD" target="_blank">
               <FaEnvelope {...btns.icon} /> Mailing List
             </a>
-          </Popover_>
-        </div>
+          </div>
+        </Popover_>
 
         <div>
           <a {...link} className='text-dark' href="https://github.com/lefnire/gnothi" target='_blank'>

@@ -96,7 +96,7 @@ Eventually you'll need to know Python. Not immediately (why I list this after Ba
         v: [
           r.book_python,
           r.python_data_analysis,
-          r.handson_tensorflow,
+          //r.handson_tensorflow,
         ]
       },
 

@@ -3,15 +3,11 @@ import {filterKeys, filters} from '../../content/podcast/resources/filters'
 import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {
-  BiChevronDown, BiChevronRight,
-  FaInfoCircle, FaMinusSquare, FaPlusSquare,
-  FaQuestionCircle,
-  FiMinusSquare,
-  FiPlusSquare,
+  FaInfoCircle,
 } from "react-icons/all";
 import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
-import {ReactMarkdown_, btns, icons} from "./utils";
+import {ReactMarkdown_, btns, icons, Popover_} from "./utils";
 import _ from "lodash";
 
 function ResourceWrapper({children, show}) {
@@ -45,7 +41,23 @@ function Resource({resource}) {
     let className = "mr-2 text-muted"
     className += ` icon-${filterKey}-${resource[filterKey]}`
     // if (filterKey !== 'importance') {className += ' text-muted'}
-    return <span key={filterKey} className={className}>{resourceFilter.i}</span>
+    return <Popover_
+      id={`${filter.t}-${filterKey}`}
+      opts={{placement: "bottom"}}
+      content={<>
+        <h6>{filter.t}</h6>
+        <div className='small'>
+          <ReactMarkdown_ source={filter.d} />
+        </div>
+        <h6>{resourceFilter.i} {resourceFilter.t}</h6>
+        <div className='small'>
+          <ReactMarkdown_ source={resourceFilter.d} />
+        </div>
+        <div className='text-primary'>Click item for details</div>
+      </>}
+    >
+      <span key={filterKey} className={className}>{resourceFilter.i}</span>
+    </Popover_>
   }
 
   function renderDetails(filterKey) {
@@ -215,7 +227,7 @@ function ResourceNode({node, level=0}) {
       >{header}</div>
       {renderSectionInfo()}
     </TreeSectionWrapper>
-    {expanded && <ul className={`list-unstyled border-left pl-3 mb-0`}>
+    {expanded && <ul className={`list-unstyled border-left pl-4 mb-0`}>
       {node.v.map(n => <>
         <li key={n.id || n.t}>
           <ResourceNode node={n} level={level+1} />

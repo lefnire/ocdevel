@@ -49,7 +49,7 @@ function Series_() {
     </Navbar>
 
     <Container fluid className="podcasts">
-      {isResources && <div className='mb-3 mlg-update pl-3'>These are resources to learn machine learning & artificial intelligence. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search, especially handy is the "Audio Preference" filter. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>, or submit a PR against <a href="https://github.com/lefnire/ocdevel/tree/master/client/src/content/podcast/resources" target="_blank">resources.js</a></div>}
+      {isResources && <div className='mb-3 mlg-update pl-3'>These are resources to learn machine learning & artificial intelligence. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>, or submit a PR against <a href="https://github.com/lefnire/ocdevel/tree/master/client/src/content/podcast/resources" target="_blank">resources.js</a></div>}
       <Row>
         <Col {...col.left} className='sidebar'>
           <Sidebar />
