@@ -1,11 +1,12 @@
 export default {
-  title: 'New Series: Machine Learning Applied',
+  title: 'Podcast Update',
   episode: 30,
-  date: "2018-05-24",
+  created: "2018-05-24",
+  updated: "2020-12-30",
   guid: "d03cc1d947684f3ab6337033d194090d",
   file: {},
   libsynEpisode: 6632262,
-  teaser: 'Introducing a new podcast series on Patreon: Machine Learning Applied',
+  teaser: 'Re-doing MLG. New podcast: Machine Learning Applied (MLA). New resources page. A Patreon page with various perks. ',
   body: `
 MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian methods, Tree methods, etc). 
 
