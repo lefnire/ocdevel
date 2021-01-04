@@ -15,7 +15,7 @@ import {btns} from './utils'
 import FreeAccess from './FreeAccess'
 import Recommend from './Recommend'
 import {mlg, mla, episodes} from '../../content/podcast';
-import {EpisodeFull, Episodes} from './Episodes'
+import {EpisodeRoute, Episodes} from './Episodes'
 
 import {StoreProvider, useStoreState, useStoreActions, useStore, useLocalStore} from "easy-peasy";
 import { store } from '../../store';
@@ -60,7 +60,7 @@ function Series_() {
             <Route path="/mlg/resources" exact><ResourcesTree /></Route>
             <Route path="/mlg/recommend" exact><Recommend /></Route>
             <Route path="/mlg/free-access" exact><FreeAccess /></Route>
-            <Route path="/mlg/:id"><EpisodeFull /></Route>
+            <Route path="/mlg/:id"><EpisodeRoute /></Route>
           </Switch>
         </Col>
       </Row>

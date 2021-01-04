@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import {BiChevronDown, BiChevronRight, FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {render} from "@testing-library/react";
 
 export const dateFmt = 'MMM DD, YYYY';
 
@@ -60,12 +61,12 @@ const renderers = {
   }
 }
 
-export function ReactMarkdown_({source}) {
-  // TODO turn h2s into h3s
-  return <ReactMarkdown
-    renderers={renderers}
-    source={source}
-  />
+export function ReactMarkdown_(props) {
+  const props_ = {
+    ...props,
+    renderers: props.renderers? {...renderers, ...props.renderers} : renderers
+  }
+  return <ReactMarkdown {...props_}/>
 }
 
 export const icons = {
