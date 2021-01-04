@@ -10,16 +10,17 @@ import _ from 'lodash'
 const episodes = {
   mlg: true,
   setMlg: action((state, payload) => {
-    state.mlg = payload
+    state.mlg = !state.mlg
   }),
   mla: true,
   setMla: action((state, payload) => {
-    state.mla = payload
+    state.mla = !state.mla
   }),
 
-  episodeOrder: 'new2old',
-  setEpisodeOrder: action((state, payload) => {
-    state.episodeOrder = payload
+  newFirst: false,
+  toggleNewFirst: action((state, payload) => {
+    console.log(state.newFirst)
+    state.newFirst = !state.newFirst
   }),
 }
 

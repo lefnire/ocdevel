@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useMemo} from "react";
 import {Link, useParams, useHistory} from "react-router-dom";
 import _ from "lodash";
 import {mlg, mla, episodes, episodesObj} from "../../content/podcast";
@@ -9,7 +9,7 @@ import moment from "moment";
 import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {FaPatreon, FaUnlock} from "react-icons/all";
-import {useStoreState} from "easy-peasy";
+import {useStoreActions, useStoreState} from "easy-peasy";
 import {BackButton} from "../utils";
 
 import scout from "../../assets/mlg_square.jpg";
@@ -30,20 +30,26 @@ const mlaBanner = <div className='d-flex align-items-center'>
   </div>
 </div>
 
-function Player({e}) {
-  return e.mla ? mlaBanner :
-    <iframe
-      style={{border: "none"}}
-      src={`//html5-player.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/`}
-      height="90"
-      width="640"
-      scrolling="no"
-      allowfullscreen
-      webkitallowfullscreen
-      mozallowfullscreen
-      oallowfullscreen
-      msallowfullscreen
-    />
+// 8d7997de switched from component to returning memoized JSX, since iframe being
+// re-rendered slowly each time. This trick doesn't seem to work either, figure out later
+const players = {}
+function player(e) {
+  if (e.mla) {return mlaBanner}
+  const id = e.libsynEpisode
+  if (players[id]) {return players[id]}
+  players[id] = <iframe
+    style={{border: "none"}}
+    src={`//html5-player.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/`}
+    height="90"
+    width="640"
+    scrolling="no"
+    allowFullScreen
+    webkitallowfullscreen
+    mozallowfullscreen
+    oallowfullscreen
+    msallowfullscreen
+  />
+  return players[id]
 }
 
 const teaserRenderers = {
@@ -88,7 +94,7 @@ export function Episode({e, teaser}) {
           <Link to={link}>{title}</Link>
         </Card.Title>
         {renderDate()}
-        <Player e={e} />
+        {player(e)}
         {e.archived ? <>
           <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
         </> : e.body ? <>
@@ -113,7 +119,7 @@ export function Episode({e, teaser}) {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           {renderDate()}
-          <Player e={e} />
+          {player(e)}
           <hr />
           <ReactMarkdown_ source={body} />
           {e.resources && <>
@@ -143,16 +149,52 @@ export function EpisodeRoute() {
 }
 
 export function Episodes() {
-  const mla = true // useStoreState(state => state.mla)
-  const mlg = true // useStoreState(state => state.mlg)
+  const mla = useStoreState(state => state.episodes.mla)
+  const mlg = useStoreState(state => state.episodes.mlg)
+  const newFirst = useStoreState(state => state.episodes.newFirst);
 
-  const episodeOrder = 'new2old' // useStoreState(state => state.episodeOrder);
-  let episodes_ = episodeOrder === 'new2old' ? episodes.slice().reverse() : episodes
+  const toggleNewFirst = useStoreActions(actions => actions.episodes.toggleNewFirst);
+  const setMla = useStoreActions(actions => actions.episodes.setMla);
+  const setMlg = useStoreActions(actions => actions.episodes.setMlg);
 
+  const toggleNewFirst_ = useCallback(() => toggleNewFirst(), [])
+  const setMla_ = useCallback(() => setMla(), [])
+  const setMlg_ = useCallback(() => setMlg(), [])
+
+  let episodes_ = newFirst ? episodes : episodes.slice().reverse()
   episodes_ = _.filter(episodes_, e => {
     if (mla && mlg) {return true}
     return mla ? e.mla : mlg ? e.mlg : false
   })
+
+  function btns_(active) {
+    return {
+      size: "sm",
+      variant: active ? "dark" : "outline-dark",
+      className: "mb-2 mr-1"
+    }
+  }
+
+  function renderButtons() {
+    return <div>
+      <Button
+        {...btns_()}
+        onClick={toggleNewFirst_}>
+        {newFirst ? <>New&rarr;Old</> : <>Old&rarr;New</>}
+      </Button>
+      <Button
+        {...btns_(mlg)}
+        onClick={setMlg_}>
+        MLG
+      </Button>
+      <Button
+        {...btns_(mla)}
+        onClick={setMla_}>
+        MLA
+      </Button>
+    </div>
+
+  }
 
   // TODO filter episodes
   return <div>
@@ -160,7 +202,7 @@ export function Episodes() {
       <Card.Title className='mb-1'>2020-12-19 Update</Card.Title>
       <p>I'm re-doing MLG (2nd edition) to refresh resources & concepts to 2021. Starting now use <Link to="/mlg/resources">Resources</Link>, and ignore the resources discussed in the episodes. Then I can to keep resources updated without editing episodes. I'm removing checkpoints and irrelevant episodes to make room for new ones - so if you see see "holes" that's normal. I'll keep the Bitcoin Trading episode, as it's info-packed, but the podcast project is now <a href='https://gnothiai.com' target='_blank'>Gnothi</a>.</p>
     </div>
-
+    {renderButtons()}
     {episodes_.map(e => <Episode key={e.guid} e={e} teaser={true} />)}
   </div>
 }
