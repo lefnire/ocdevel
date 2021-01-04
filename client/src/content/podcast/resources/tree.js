@@ -172,9 +172,7 @@ Eventually you'll need to know Python. Not immediately (why I list this after Ba
         pick: "any",
         v: [
           r.dev_environment,
-          r.client_stack,
-          r.server_stack,
-          r.db_stack,
+          r.frontend_stack,
           r.ml_stack
         ]
       },

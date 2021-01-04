@@ -9,19 +9,15 @@ export default {
   libsynEpisode: 5816352,
   teaser: 'TensorFlow, Pandas, Numpy, Scikit-Learn, Keras, TensorForce.',
   body: `
-See resources on [Deep Learning episode](/mlg/9).
-  
-**Custom PC Build**. Temporarily removed since the [Titan V](https://www.nvidia.com/en-us/titan/titan-v/) was released, which succeeds my prior 1080ti build recommend. Keep an eye on https://pcpartpicker.com/builds/ for builds with that card (currently none).
+For your local dev environment, use a PC (not Mac, see [mla/12](/mlg/mla-12)). Desktop if you're mostly stationary, as you'll get the best performance bang-for-buck and improved longevity; laptop if you're mostly mobile.
 
-- [Looking for work](https://www.linkedin.com/in/lefnire/)
-- Autodiff frameworks
-  - TensorFlow
-  - PyTorch (Theano dead!)
-  - GPU: Nvidia + Ubuntu
-  - AWS v GCP v Azure (see AWS spot instances)
-- Pandas, Numpy, ScikitLearn, TensorFlow
-- Celery (RabbitMQ)
-- Higher
-  - Keras
-  - TensorForce`
+Desktops. Build your own PC, better value than pre-built. See [PC Part Picker](https://pcpartpicker.com/), make sure to use an Nvidia graphics card. Generally shoot for 2nd-best of CPUs/GPUs. Eg, RTX 3070 currently (2020-01); better value-to-price than 3080+.   
+
+For laptops, I like the MSI Stealth series. Buy from a reseller like [Gentech](https://www.gentechpc.com/), Xotic, HIDevolution (I prefer Gentech) - not Amazon / Newegg. This because only resellers offer thermal pasting, and that is a _must_ have for performance & longevity. Make sure to get GPU & CPU thermal pasting at checkout, I used Conductonaut on my last purchase - do your research.
+
+Programming tech-stack:
+* Deep-learning frameworks: (a) Tensorflow (and/or Keras); (b) PyTorch (and/or Lightning). You'll use both TF & PT eventually, so don't get hung up. [mlg/9](/mlg/9) for details.
+* Shallow-learning / utilities: ScikitLearn, Pandas, Numpy
+* Cloud-hosting: AWS / GCP / Azure. [mla/13](/mlg/mla-13) for details.
+`
 }

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import {defaults} from './filters'
 
-
 const TODO = {
   audio: {
     how_to_create_mind: `[How to Create a Mind](http://amzn.to/2tXLvUm) \`audio:easy\``,
@@ -616,75 +615,32 @@ const books = _.mapValues({
   ...v
 }))
 
-const cards = _.mapValues({
-  dev_environment: {
-    t: "Development Environment",
-    d: `
-For your local development environment, I recommend using Windows. You can't effectively use Mac because, due to their use of AMD rather than Nvidia, GPU-based ML frameworks can't optimize to Mac. You _could_ use Ubuntu Desktop, but it's not for the weak-of-heart due to various software compatibilities; and when it comes to laptops, drivers aren't as up-to-snuff as Windows drivers (especially with battery lifetime & wifi). So use Windows.
-* Setup Windows Dev Channel and WSL2 with nvidia-docker support. [Instructions here](/blog/20201207-wsl2-gpu-docker)
-* Odds-and-ends with WSL2 & Docker [here](/blog/20201208-wsl-docker-misc)
-* I recommend using pre-fab Docker containers to save time, [I have some here](https://github.com/lefnire/ml-tools).
-
-For desktops, build your own PC. See [PC Part Picker](https://pcpartpicker.com/) - make sure you use an Nvidia graphics card. For laptops, I like the MSI Stealth series. Buy from a reseller like [Gentech](https://www.gentechpc.com/), Xotic, HIDevolution (I prefer Gentech) - not Amazon / Newegg. This because only resellers offer thermal pasting, and that is a _must_ have for performance & longevity. Make sure to get GPU & CPU thermal pasting at checkout, I used Conductonaut on my last purchase - do your research.
-
-[mla-012](https://www.patreon.com/posts/012-docker-43678922) for more information. 
-`
-  },
-  client_stack: {
-    t: "Client",
-    d: `
-There are many popular front-end frameworks (Angular, Vue, etc), but I recommend React. See [mla-013](https://www.patreon.com/posts/013-customer-45741538) for details.
-* Web front-end
-  * [React](https://reactjs.org/) for web client
-  * [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html): quick-start React setup
-  * [React Bootstrap](https://react-bootstrap.github.io/): quick-start CSS framework (explore others like Tailwind, Chakra, and MaterialUI)
-  * Useful plugins: [react-router](https://reactrouter.com/), [easy-peasy](https://easy-peasy.now.sh/).
-* Mobile apps
-  * [React Native](https://reactnative.dev/)
-`
-  },
-  server_stack: {
-    t: "Server",
-    d: `
-First, get as _far_ as you possibly can with serverless frameworks, like [AWS Amplify](https://aws.amazon.com/amplify/) or [GCP Firebase](https://firebase.google.com/). Or if you prefer to use individual serverless components rather than an all-in-one package, see [AWS Serverless](https://aws.amazon.com/serverless/) (which are the components used underneath Amplify's hood). 
-
-When you've hit the ceiling on Amplify and need custom server code, _still_ try serverless. [AWS Lambda](https://aws.amazon.com/lambda) lets you write individual routes as Node/Python functions. 
-
-Finally, after you've hit the serverless ceiling (Amplify handling most leg-work, Cognito handling authentication, Lambda for one-off routes) and you _really_ need custom server code for edge-cases, do the following. 
-1. Pick a server framework. I recommend Node.js + Express.js (JavaScript, strong concurrency & performance, super popular); or FastAPI (if you prefer to stick to Python; but it's less popular / performant). 
-1. Containerize your server code in Docker. Deploy this Dockerfile to [ECR](https://aws.amazon.com/ecr/)
-1. Use that container to run a [Fargate cluster](https://aws.amazon.com/fargate/). You may also need [Route53](https://aws.amazon.com/fargate/) (domains) and [ELB](https://aws.amazon.com/elasticloadbalancing/) (domain->fargate load balancing).
-
-[mla-012](https://www.patreon.com/posts/012-docker-43678922) for more information. 
-`
-  },
-  db_stack: {
-    t: "Database, Job-Queues, Sessions",
-    d: `
-1. Popular databases are Postgres, MySQL, SQL Server, and MongoDB. I recommend [Postgres](https://www.postgresql.org/).
-1. For in-memory session-management, and real-time pub/sub, use [Redis](https://redis.io/).
-1. For job-queueing (sending work-orders to your ML server), use either [RabbitMQ](https://www.rabbitmq.com/) or [SQS](https://aws.amazon.com/sqs/); I recommend SQS. Use the wrapper library [Celery](https://docs.celeryproject.org/en/stable/getting-started/introduction.html) to interface with these technologies.
-
-All that said, the main reason I like Postgres over its competition is it can replace 2 & 3 for you. You can run a job-queue via Postgres's \`select for update\` feature, and pub/sub via \`listen/notify\`.
-
-[mla-012](https://www.patreon.com/posts/012-docker-43678922) for more information.
-`
-  },
+const ocdevel = _.mapValues({
   ml_stack: {
-    t: "ML Stack",
-    d: `
-After you train an ML model and need to deploy it to production, you have a number of options. If your model runs rarely (1-50x / day), you can set it up as a batch job through various services. In this case it will run to completion, then take itself offline. If your model needs to always be available, via a customer-facing product with constant usage, then you'll deploy it as an endpoint through various services.
-
-Batch models
-* [AWS Batch](https://aws.amazon.com/batch/). Lets you run a model deployed as a Docker container (eg via [ECR](https://aws.amazon.com/batch/)) to completion, using price-saving features like spot instances. Much cheaper than Sagemaker, but at cost of spin-up time.
-
-Endpoint models
-* [AWS SageMaker](https://aws.amazon.com/batch/) lets you deploy trained models to a REST endpoint. Also lets you train models & view analytics and various training insights.
-* [GCP Cloud ML](https://cloud.google.com/ai-platform). GCP's equivalent to SageMaker.
-* [Cortex](https://www.cortex.dev/) is similar to SageMaker, with many added benefits. It's free and open source, using your AWS stack to deploy services (like SageMaker) but allowing cost-savings via spot instances, better than SageMaker's 40% EC2 added cost. Soon they'll support scale-to-0 instances, for when your ML server doesn't have traffic; a huge cost saving. 
-* Other competitors include [PaperSpace Gradient](https://gradient.paperspace.com/), [FloydHub](https://www.floydhub.com/), and more. 
-`
+    t: "Machine Learning Server",
+    d: `Cloud hosting services for serving your machine learning model`,
+    links: [{t: "Article", l: "/mlg/mla-014", p: "free"}]
   },
+  frontend_stack: {
+    t: "Client, Server, Database",
+    d: `Tech stack and cloud services to use for your front-end (web/mobile), app server, and database. As well as some database-ish things like in-memory session management, pub/sub, and job-queues.`,
+    links: [
+      {t: "Article", l: "/mlg/mla-13", p: "free"}
+    ]
+  },
+
+  dev_environment: {
+      t: "Development Environment",
+      d: `Use Windows (dev channel), WSL2, Docker, nvidia-docker for your dev environment`,
+      links: [{t: "Article", l: "/mlg/24", p: "free"}]
+    },
+}, v => ({
+  topic: "tech",
+  ...v
+}))
+
+const cards = _.mapValues({
+
 
   get_job: {
     t: "Get a Job",
@@ -716,7 +672,8 @@ export const resources = _.mapValues({
   ...others,
   ...courses,
   ...videos,
-  ...cards
+  ...cards,
+  ...ocdevel
 }, (v, k) => ({
   id: k,
   ...defaults,

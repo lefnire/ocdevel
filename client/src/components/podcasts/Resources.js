@@ -86,23 +86,27 @@ function Resource({resource}) {
     // <Popover_ /> showing at random pages on page
   }
 
+  function renderLink(l) {
+    const opts = {
+      ...helpAttrs(filters.price.opts[l.p].d),
+      key: l.l,
+      className: 'd-block',
+      target: "_blank"
+    }
+    const txt = `${l.t} (${l.p})`
+    if (_.startsWith(l.l, '/')) {
+      return <Link to={l.l} {...opts}>{txt}</Link>
+    }
+    return <a href={l.l} {...opts}>{txt}</a>
+  }
+
   function renderLinks() {
     return <tr>
       <td {...helpAttrs("Where to get this resource", 'pointer')}>
         Links
       </td>
       <td>
-        {resource.links.map(l => (
-          <a
-            {...helpAttrs(filters.price.opts[l.p].d)}
-            className='d-block'
-            href={l.l}
-            key={l.l}
-            target="_blank"
-          >
-            {l.t} ({l.p})
-          </a>
-        ))}
+        {resource.links.map(renderLink)}
         {resource.tgc && <Link to='/blog/20201213-tgc' className='d-block'>Get it cheaper</Link>}
       </td>
     </tr>

@@ -97,7 +97,10 @@ export function EpisodeFull() {
 
 function EpisodeTeaser({e}) {
   let num = _.padStart(e.episode, 3, '0');
-  const title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
+  let title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
+  if (!(e.date || e.created)) {
+    title += " - NOT YET RELEASED"
+  }
   const body = e.body && e.teaser ? `${e.teaser}\n\n${e.body}` :
     e.body || e.teaser
   const link = `/mlg/${e.mla ? 'mla-' : ''}${e.episode}`
