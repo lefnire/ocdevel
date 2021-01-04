@@ -62,15 +62,8 @@ export function Episode({e, teaser}) {
   const num = _.padStart(e.episode, 3, '0');
   const title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
 
-  let body
-  if (teaser) {
-    body = e.body && e.teaser ? `${e.teaser}\n\n${e.body}` :
-      e.body || e.teaser
-  } else {
-    // Turn h2s into h3s (h2s make sense standalone, not inlined the website)
-    body = e.body ? e.body.replace(/##/g, '###')
-      : e.teaser
-  }
+  const body = e.body && e.teaser ? `${e.teaser}\n\n---\n\n${e.body}` :
+    e.body || e.teaser
   const link = `/mlg/${e.id}`
 
   function renderDate() {
@@ -120,10 +113,10 @@ export function Episode({e, teaser}) {
           <Card.Title>{title}</Card.Title>
           {renderDate()}
           {player(e)}
-          <hr />
+          {!e.teaser && <hr/> /* hr already added at top of component */}
           <ReactMarkdown_ source={body} />
           {e.resources && <>
-            <hr/>
+            <hr />
             <Card.Title>Resources</Card.Title>
             <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
             <ResourcesFlat resources={e.resources} />
