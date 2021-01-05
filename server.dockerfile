@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
 RUN apt-get update -y && apt-get install -y wget
-RUN pip install \
+RUN pip install --no-cache \
     sqlalchemy \
     sqlalchemy_utils \
     # mutagen \
@@ -8,7 +8,10 @@ RUN pip install \
     requests \
     python-box \
     pytest \
-    dynaconf
+    dynaconf \
+    fastapi-sqlalchemy \
+    psycopg2-binary \
+    fastapi-jwt-auth
 
 COPY ./server/app /app/app
 WORKDIR /app

@@ -1,11 +1,9 @@
 import datetime as dt
-from sqlalchemy import text, String, Column, Integer, ForeignKey, TIMESTAMP, or_, and_
+from sqlalchemy import text, String, Unicode, Column, Integer, ForeignKey, TIMESTAMP, or_, and_
 from sqlalchemy.dialects.postgresql import UUID
 from .database import Base
 
-# use this in explicit sql queries instead of "now()". SQLAlchemy models will handle
-# it automatically via datetime.utcnow, but engine.execute("now()") will not be utc
-utcnow = "TIMEZONE('utc', CURRENT_TIMESTAMP)"
+
 # https://dev.to/zchtodd/sqlalchemy-cascading-deletes-8hk
 parent_cascade = dict(cascade="all, delete", passive_deletes=True)
 child_cascade = dict(ondelete="cascade")
@@ -14,8 +12,8 @@ child_cascade = dict(ondelete="cascade")
 # TODO should all date-cols be index=True? (eg sorting, filtering)
 def DateCol(default=True, update=False):
     args = {}
-    if default: args['server_default'] = text(utcnow)
-    if update: args['onupdate'] = text(utcnow)
+    if default: args['server_default'] = text("now()")
+    if update: args['onupdate'] = text("now()")
     return Column(TIMESTAMP(timezone=True), index=True, **args)
 
 
@@ -50,5 +48,30 @@ class MLAUrl(Base):
     __tablename__ = "mla_urls"
     id = Column(String, primary_key=True)
     url = Column(String, nullable=False)
+    created_at = DateCol()
+    updated_at = DateCol(update=True)
+
+
+### MLG Resources
+
+class Filter(Base):
+    __tablename__ = "filters"
+    name = Column(Unicode, nullable=False)
+    description = Column(Unicode)
+    # don't cascade-delete
+    default_opt = Column(UUID(as_uuid=True), ForeignKey("filter_opts"))
+
+
+class FilterOpt(Base):
+    __tablename__ = "filter_opts"
+    filter_id = FKCol("filters")
+    name = Column(Unicode, nullable=False)
+    description = column(Unicode)
+    icon = Column(Unicode)
+
+
+class Resource(Base):
+    __tablename__ = "resources"
+    id = IDCol()
     created_at = DateCol()
     updated_at = DateCol(update=True)
