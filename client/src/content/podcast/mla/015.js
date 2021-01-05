@@ -3,7 +3,7 @@ export default {
   episode: 15,
   mla: true,
   date: null,
-  guid: "mla-015",
+  guid: null,
   body: `
 Increasingly, higher degrees are important: Masters at a minimum. But you _can_ get by with a Bachelors, I did, it just won't be easy. Either way, it's important to have hands-on experience or a portfolio to show. Some options:
 1. Compete in a [Kaggle](https://kaggle.com) competition. This can result in prize money, and often direct employment. Those are incredible perks! But even if you don't win or get money / jobs, employers absolutely _love_ Kaggle experience on your resume. Take this very seriously.

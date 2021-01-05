@@ -8,7 +8,7 @@ let teaser = <p>There are hundreds, if not thousands, of online job boards - and
 
 let body = <div>
   {teaser}
-  <p>First, if you haven't read <Link to="/0">Find Tech Jobs</Link> yet, do so. You wanna try in-person networking first (if you can) and setup a strong LinkedIn profile. Then return here.</p>
+  <p>First, if you haven't read <Link to="/blog/21204489-34a6-4d56-8299-0e6d3f446d53">Find Tech Jobs</Link> yet, do so. You wanna try in-person networking first (if you can) and setup a strong LinkedIn profile. Then return here.</p>
   <h4>General</h4>
   <h5>The Good</h5>
   <ul>

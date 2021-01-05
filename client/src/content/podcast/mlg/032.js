@@ -7,8 +7,6 @@ export default {
   libsynEpisode: 16722518,
   teaser: 'L1/L2 norm, Manhattan, Euclidean, cosine distances, dot product',
   body: `
-Social media [Gnothi](https://gnothiai.com/) and email me a screenshot/link for 3-month access to [Machine Learning Applied](https://www.patreon.com/machinelearningguide); commit code to the [Github repository](https://github.com/lefnire/gnothi) for life-access.
-
 Normed distances [link](https://medium.com/@kunal_gohrani/different-types-of-distance-metrics-used-in-machine-learning-e9928c5e26c7)
 
 *   A norm is a function that assigns a strictly positive length to each vector in a vector space. [link](https://towardsdatascience.com/how-to-measure-distances-in-machine-learning-13a396aa34ce)

@@ -3,7 +3,7 @@ export default {
   episode: 14,
   mla: true,
   date: null,
-  guid: "mla-014",
+  guid: null,
   body: `
 After you train an ML model and need to deploy it to production, you have a number of options. If your model runs rarely (1-50x / day), you can set it up as a batch job through various services. In this case it will run to completion, then take itself offline. If your model needs to always be available, via a customer-facing product with constant usage, then you'll deploy it as an endpoint through various services.
 
