@@ -37,7 +37,7 @@ export default function Contact() {
 
   const about = <div>
     <Card.Title className='text-center'>Tyler Renelle</Card.Title>
-    <Alert variant='info'>I'm looking for work! Machine learning engineering or web/mobile development, ideally part-time contracting (1099), my rate is $100/h. Open to discussing full-time roles. Contact me via email or LinkedIn.</Alert>
+    <Alert variant='info'>I'm looking for work! Machine learning engineering or web/mobile development, ideally part-time. Open to discussing full-time roles. Contact me via email or LinkedIn.</Alert>
     <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameter optimization, etc. Devops with AWS & Docker. Full-stack with Python/FastAPI, Postgres, and React / React Native. I offer NLP services using robust tooling I maintain at <a href="https://github.com/lefnire/ml-tools" target="_blank">lefnire/ml-tools</a>.</p>
   </div>
 

@@ -5,11 +5,6 @@ export default {
   episode: 3,
   date: "2017-02-10",
   guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
-  file: {
-    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-3.mp3",
-    length: 16382362,
-    duration: "17:41",
-  },
   libsynEpisode: 5440756,
   teaser: "Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.",
   resources: [

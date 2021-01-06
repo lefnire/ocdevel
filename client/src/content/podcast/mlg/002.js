@@ -5,11 +5,6 @@ export default {
   episode: 2,
   created: "2017-02-09",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
-  file: {
-    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-2-fixed.mp3",
-    length: 29646598,
-    duration: "32:05",
-  },
   libsynEpisode: 5440757,
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
   resources: [resources.qai, resources.wikipedia_ai, resources.machines_of_loving_grace],

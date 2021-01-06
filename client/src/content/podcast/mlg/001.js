@@ -5,14 +5,8 @@ export default {
   episode: 1,
   created: "2017-02-01",
   updated: "2020-12-29",
-  file: {
-    url: "http://ocdevel.com/files/podcasts/machine-learning/ml-1.mp3",
-    length: 11886227,
-    duration: "12:34",
-  },
   libsynEpisode: 5440758,
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
-  teaser: "Introduction to the Machine Learning Guide",
   resources: [
     resources.tgc_ml,
 
@@ -24,11 +18,11 @@ export default {
     resources.data_skeptic,
     resources.learning_machines_101,
   ],
-  body: String.raw`
-- [OCDevel Website](https://ocdevel.com)
-- [Show notes](https://ocdevel.com/mlg/1)
+  teaser: "Introduction to the Machine Learning Guide",
+  body: `
 - Gnothi (podcast project): [website](https://gnothiai.com), [Github](https://github.com/lefnire/gnothi)
 - [Machine Learning Applied](https://www.patreon.com/machinelearningguide), [get free access](http://ocdevel.com/mlg/free-access)
+- [Resources Guide](/mlg/resources)
 
 What is this podcast? 
 - "Middle" level overview (deeper than a bird's eye view of machine learning; higher than math equations)

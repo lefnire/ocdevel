@@ -88,7 +88,7 @@ const podcasts = _.mapValues({
 const tgc = _.mapValues({
   tgc_ml: {
     t: "TGC Machine Learning",
-    d: "Basics of ML in video (highly amenable to audio-only listening). It's pretty rapid-pace, covering a lot of ground in relatively little time, so this won't be your bread-and-butter. But it does provide a phenomenal overview, so it's a great resource to start with in the beginning of your learning journey.",
+    d: "Video overview of ML basics, highly amenable to audio-only listening. It's rapid-pace, covering a lot of ground in relatively little time. I recommend this be your very first resource, since it will give you an overview of everything. It covers fresh (2020) material like GANs and RL; and material not often covered in ML-basics resources like Andrew Ng (things like Bayesian methods). Watch or listen to this before anything, don't worry if it didn't stick - it's just the overview. _Then_ begin your journey.",
     links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&intsrc=PUI1_1204"}],
     topic: "basics"
   },
