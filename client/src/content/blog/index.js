@@ -1,4 +1,5 @@
 export default [
+  require('./20210108-how-to-use-habitica').default,
   require('./20201218-alb-ecs').default,
   require('./20201213-tgc').default,
   require('./20201213-video2audio').default,

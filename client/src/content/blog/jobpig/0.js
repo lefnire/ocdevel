@@ -30,4 +30,6 @@ let body =
 
 export default {
   id: '21204489-34a6-4d56-8299-0e6d3f446d53',
-  title, date, teaser, body};
+  title, date, teaser, body,
+  jsx: true
+};

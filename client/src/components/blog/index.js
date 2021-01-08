@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import _ from 'lodash'
 import {Helmet} from "react-helmet";
 import {BackButton} from "../utils";
+import {ReactMarkdown_} from "../podcasts/utils";
 
 
 const fmt = 'MMM DD, YYYY';
@@ -32,10 +33,7 @@ function Post() {
           {moment(p.date).format(fmt)}
         </Card.Subtitle>
         <Card.Text>
-          {typeof(p.body) === 'string'
-            ? <ReactMarkdown source={p.body} linkTarget="_blank" />
-            : p.body
-          }
+          {p.jsx ? p.body : <ReactMarkdown_ source={p.body}  />}
         </Card.Text>
       </Card.Body>
       <Card.Footer>
@@ -61,10 +59,7 @@ function Posts() {
           {moment(p.date).format(fmt)}
         </Card.Subtitle>
         <div className='fade-post'>
-          {typeof(p.body) === 'string'
-            ? <ReactMarkdown source={p.body} linkTarget="_blank" />
-            : p.body
-          }
+          {p.jsx ? p.body : <ReactMarkdown_ source={p.body} />}
           <div className='fade-post-bottom'></div>
         </div>
         <Link to={'/blog/' + p.id}>Read More</Link>

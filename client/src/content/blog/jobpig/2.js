@@ -28,4 +28,6 @@ let body = <div>
 
 export default {
   id: '038e5143-3dd4-4291-afb7-8d156478b9d8',
-  title, date, teaser, body};
+  title, date, teaser, body,
+  jsx: true
+};
