@@ -14,20 +14,23 @@ import {FaExternalLinkAlt, FaPatreon, FaRegEnvelope} from "react-icons/all";
 import React from "react";
 import {BackButton} from "../utils";
 
+const dsts = {
+  Gnothi: {
+    url: "https://gnothiai.com",
+    text: "Gnothi - a journal that uses AI to provide insights & resources",
+    img: "https://gnothiai.com/logo192.png",
+  },
+  MLG: {
+    url: "https://ocdevel.com/mlg",
+    text: "Machine Learning Guide - a podcast that teaches machine learning",
+    img: "https://ocdevel.com/mlg_square.jpg"
+  }
+}
+
 export default function FreeAccess() {
   function shareButtons(dst) {
-    const url = {
-      Gnothi: {url: "https://gnothiai.com"},
-      MLG: {url: "https://ocdevel.com/mlg"}
-    }[dst]
-    const shareText = {
-      Gnothi: "Gnothi - a journal that uses AI to provide insights & resources",
-      MLG: "Machine Learning Guide - a podcast that teaches machine learning"
-    }[dst]
-    const shareImg = {
-      Gnothi: "https://gnothiai.com/logo192.png",
-      MLG: "https://ocdevel.com/mlg_square.jpg"
-    }
+    const d = dsts[dst]
+    const [url, shareText, shareImg] = [{url: d.url}, d.text, d.img]
     return <div className='text-center'>
       <h6>{dst}</h6>
       <FacebookShareButton
@@ -90,7 +93,7 @@ export default function FreeAccess() {
     <Card className='mb-3 shadow-sm free-mla-card'>
       <Card.Body>
         <Card.Title>Share | 3 Months Free</Card.Title>
-        <p>Get 3 months of free access by posting a link to <a href="https://gnothiai.com">Gnothi</a> <strong>or</strong> <a href="https://gnothiai.com">MLG</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
+        <p>Get 3 months of free access by posting a link to <a href={dsts.Gnothi.url} target='_blank'>Gnothi</a> <strong>or</strong> <a href={dsts.MLG.url} target='_blank'>MLG</a> on your social media, then <a href="mailto:tylerrenelle@gmail.com">email me <FaRegEnvelope /></a> the link or screenshot. Helper buttons below, but post wherever you want.</p>
         <Row>
           <Col className='mb-2' xs={12} lg={5}>
             {shareButtons('Gnothi')}
@@ -112,7 +115,7 @@ export default function FreeAccess() {
       <Card.Body>
         <Card.Title>Contribute | Lifetime Free</Card.Title>
         <Card.Text>
-          <p>Get free access for life by contributing to Gnothi. Submit a Pull Request on Github (see <a href="https://github.com/lefnire/ocdevel/issues" target='_blank'>active issues</a>) and ping me in the PR or email that you want MLA access.</p>
+          <p>Get free access for life by contributing to Gnothi. Submit a Pull Request on Github (see <a href="https://github.com/lefnire/gnothi/projects/1" target='_blank'>active issues</a>) and ping me in the PR or email that you want MLA access.</p>
           <a className='zocial github' href="https://github.com/lefnire/gnothi" target='_blank'>Github</a>
         </Card.Text>
       </Card.Body>

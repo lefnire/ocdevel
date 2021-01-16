@@ -126,6 +126,8 @@ const body = <>
       <li>Mage levels fast & deals high boss damage. Perfectionists, a bad thing. Keeps colors, consistent GP - proper play-style</li>
       <li>Rogue finds lots of loot.</li>
     </ul>
+
+    TODO post to https://www.reddit.com/r/habitica/comments/kt8j3n/whats_the_best_class_to_choose_if_im_playing/
   </Accordion_>
 </Accordion>
 </>
