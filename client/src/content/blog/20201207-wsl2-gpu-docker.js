@@ -45,6 +45,7 @@ Full details for this post at [docs.nvidia.com/cuda/wsl-user-guide](https://docs
     curl -s -L https://nvidia.github.io/libnvidia-container/experimental/$distribution/libnvidia-container-experimental.list | sudo tee /etc/apt/sources.list.d/libnvidia-container-experimental.list
     sudo apt-get update
     sudo apt-get install -y nvidia-docker2
+    sudo usermod -aG docker $USER
     \`\`\`
 1. Edit \`/etc/docker/daemon.json\`, add \`"default-runtime"\`
     \`\`\`
