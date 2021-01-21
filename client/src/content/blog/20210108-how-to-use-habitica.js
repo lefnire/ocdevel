@@ -1,4 +1,5 @@
-import {Accordion, Card, Alert} from 'react-bootstrap'
+import React, {useState, useEffect} from 'react'
+import {Accordion, Card, Alert, Form} from 'react-bootstrap'
 import {
   FaBrain,
   FaCalendar,
@@ -10,6 +11,7 @@ import {
   FaPlusSquare,
   FaRegBell, FaSwatchbook
 } from "react-icons/all";
+import _ from 'lodash'
 
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
@@ -26,6 +28,160 @@ function Accordion_({title, eventKey, children}) {
 
 function TLDR({children}) {
   return <Alert variant='info'><b>TL;DR</b> {children}</Alert>
+}
+
+const questions = [{
+    k: 'conditioning',
+    t: "Conditioning",
+    d: <>What style(s) of behavior-conditioning do you think work best for you? Check all that apply, but try to limit it. Ask yourself: "I'm likely to repeat behavior if _". See <a target="_blank" href="https://bcotb.com/the-difference-between-positivenegative-reinforcement-and-positivenegative-punishment/">this</a> for more. Think hard, all but the first option are worded "negatively", but everyone is different - think about your personal experiences and the results. Eg, I'm "negative reinforcement", because I'm more attune to fear than gain; and that's ok.</> ,
+    opts: [{
+      k: 'pr',
+      t: 'Positive Reinforcement',
+      d: "Motivation: good things happen. A bonus makes makes you perform, \"good job!\" makes you tick. As a kid, dessert after dinner; video games after homework drove you.",
+      classes: {warrior: 1, rogue: 2, mage: 1, healer: 0}
+    }, {
+      k: 'nr',
+      t: 'Negative Reinforcement',
+      d: "Motivation: bad things being removed. As a kid, any way to make time-out end drove you.",
+      classes: {warrior: 1, healer: 2, mage: 1, rogue: 0}
+    }, {
+      k: 'pp',
+      t: 'Positive Punishment',
+      d: "Motivation: bad things happening. A hand-slap ensures you won't do it again. As a kid, punishment drove you.",
+      classes: {healer: 2, warrior: 1, mage: 1, rogue: 0}
+    }, {
+      k: 'np',
+      t: 'Negative Punishment',
+      d: "Motivation: not getting a good thing, because you've done a bad thing. Your toy is taken away makes you want to earn it back. As a kid, grounding (removal from friends, hobbies) drove you.",
+      classes: {healer: 2, warrior: 1, mage: 1, rogue: 0} // TODO ???
+    }]
+  }, {
+    k: "rewards",
+    t: "Rewards",
+    d: <>Which style of rewards do you think motivates you more?</>,
+    opts: [{
+      k: "predictable",
+      t: "Predictable",
+      d: "Predictable (static) rewards. More motivated by salary than bonuses. Prefer games with a steady grind and study-able build-guides.",
+      classes: {warrior: 2, mage: 2, healer: 1, rogue: 0}
+    }, {
+      k: "random",
+      t: "Random",
+      d: "Random (stochastic) rewards. More motivated by bonuses than salary. Prefer games of chance, might play lottery.",
+      classes: {warrior: 1, mage: 1, rogue: 2, healer: 0}
+    }]
+  }, {
+    k: "social",
+    t: "Social",
+    d: <>How do you work in groups?</>,
+    opts: [{
+      k: 'center',
+      t: "You like being the center of attention",
+      d: "You LIKE groups! And you like to shine in those situations, you're a leader and like your value to be seen.",
+      classes: {healer: 0, mage: 2, warrior: 2, rogue: 1}
+    }, {
+      k: 'help',
+      t: "You're social, but don't want to be the center of attention",
+      d: "You do like groups, but you don't want to lead - you want to HELP.",
+      classes: {healer: 2, rogue: 1, mage: 0, warrior: 0}
+    }, {
+      k: "solo",
+      t: "You don't like groups",
+      d: "You're a freelancer professionally, or a solo in games. You want to be responsible only to yourself with your actions.",
+      classes: {mage: 2, rogue: 1, warrior: 1, healer: 1}
+    }]
+  }, {
+    k: "rp",
+    t: "Role Play",
+    d: <>What kind of person are you in real life?</>,
+    opts: [{
+      k: "warrior",
+      t: "Physically active",
+      d: "Gym-rat, out-doorsy, physical person.",
+      classes: {warrior: 2, rogue: 0, mage: 0, healer: 0}
+    }, {
+      k: "healer",
+      t: "Healer",
+      d: "A nurse, doctor, or other medical professional. Or just a person who loves to be there for their friends; feels you have a solid social gauge (social IQ), etc. A socialite.",
+      classes: {healer: 2, rogue: 0, mage: 0, warrior: 0}
+    }, {
+      k: "mage",
+      t: "Smart",
+      d: "Intelligence-focused. A student, scientist, or someone otherwise very focused on education. You love books.",
+      classes: {mage: 2, rogue: 0, healer: 0,  warrior: 0}
+    }, {
+      k: "rogue",
+      t: "Independent",
+      d: "You value freedom highly. You may be a freelancer / contractor. You play 1-player games, or you pick classes that are soloist classes. A free-thinker.",
+      classes: {rogue: 2, mage: 0, healer: 0, warrior: 0}
+    }]
+  }, {
+    k: "other",
+    t: "Other",
+    d: <>What of the following is most important to you?</>,
+    opts: [{
+      k: 'right_play',
+      t: "Improving my life",
+      d: "You like this guide, and you want to use Habitica correctly - that is, in a way that improves your habits and life balance.",
+      classes: {warrior: 1, mage: 2, rogue: 1, healer: 0}
+    }, {
+      k: "rp",
+      t: "Role Play",
+      d: "You like the idea of being in-game who you are IRL. A mage is a studier; a healer is a socialite or medical professional; a warrior is active; a rogue is independent.",
+      other: (k) => {} // TODO multiply if present, nothing otherwise
+    }]
+  }]
+
+function ClassCalculator() {
+  const [form, setForm] = useState(_.transform(questions, (m, v, k) => {
+    m[v.k] = _.transform(v.opts, (m_, v_, k_) => {m_[k_] = false; return m}, {})
+    return m
+  }, {}))
+  const [updated, setUpdated] = useState(true)
+  const [klass, setKlass] = useState({mage: 1, warrior: 0, rogue: 0, healer: 0})
+
+  const setForm_ = (k, k2) => e => {
+    setForm({...form, [k]: {...form[k], [k2]: !form[k][k2]}})
+    setUpdated(+new Date)
+  }
+
+  useEffect(() => {
+    setKlass(_.transform(form, (m, v, k) => {
+      console.log(k, v)
+    }, {
+      warrior: 0,
+      healer: 0,
+      rogue: 0,
+      mage: 0
+    }))
+  }, [updated, form])
+
+  return <>
+    {questions.map(q => <div>
+      <h5>{q.t}</h5>
+      <p className='small text-muted'>{q.d}</p>
+      <Form>
+        {q.opts.map(o => <>
+          <div key={q.k} className="mb-3">
+            <Form.Check
+              type='checkbox'
+              id={`${q.k}-${o.k}`}
+              label={o.t}
+              value={o.k}
+              onChange={setForm_(q.k, o.k)}
+            />
+            <Form.Text muted>{o.d}</Form.Text>
+          </div>
+        </>)}
+      </Form>
+    </div>)}
+    <ul>
+      <li>Mage: {klass.mage}</li>
+      <li>Warrior: {klass.warrior}</li>
+      <li>Rogue: {klass.rogue}</li>
+      <li>Healer: {klass.healer}</li>
+    </ul>
+  </>
 }
 
 const body = <>
@@ -122,9 +278,9 @@ const body = <>
     <p>Personally I dislike streaks & perfect-day bonuses. I think it encourages perfectionism, and perfectionism stunts big-goal pursuit. As I said, perfectionism often stays a player's hand from adding a Daily they worry is too big for their perfect-day plate. Forget about perfect days, forget about streaks. Do yellows & reds; any time left over (if you're not spent for the day) do greens. And do this for me: don't <em>ever</em> do blues. What do you think of that? Unless it's a basic reminder (like medication), I challenge you to go through the discomfort of never completing blues. What you'll find is you'll end up challenging yourself more towards bigger-picture goals (steps towards a job, degree, or travel) since you're learning first-hand how to handle short-term discomfort for long-term gain. Your health will be fine, the boss will bearly nick your party. Try it!</p>
   </Accordion_>
   <Accordion_ eventKey="6" title={<><FaHatWizard /> Classes</>}>
-    <TLDR>Pick Mage</TLDR>
     <div className='text-danger'>Incomplete</div>
-    <p>At level 10 you unlock the class system, where you choose Warrior, Mage, Healer, or Rogue. See each class's {l("https://habitica.fandom.com/wiki/Skills", "skills here")}, it plays into discussion below. Here's the skinny.</p>
+    <ClassCalculator />
+    {/*<p>At level 10 you unlock the class system, where you choose Warrior, Mage, Healer, or Rogue. See each class's {l("https://habitica.fandom.com/wiki/Skills", "skills here")}, it plays into discussion below. Here's the skinny.</p>
     <ul>
       <li><b>Warrior</b> high boss damage, high defense. Warriors max STR & CON, dealing high DPS & taking low DMG. Warrior is the default class before you unlock the class system, but I consider it the default class besides - it's a good class for those who don't know what to pick. Importantly, warriors have the <em>Brutal Smash</em> skill, which is how they deal boss damage. Here's the problem. BS reduces a task's redness, making it too easy on yourself. If you're not punished for bad habits, you won't improve. Reducing the punishment reduces your chances of change. Nonetheless, if you need a bit of forgiveness in your life, BS can be handy in a pinch.</li>
       <li><b>Healer</b> takes lots of damage, and can heal self and party.</li>
@@ -139,7 +295,7 @@ const body = <>
       - what classes to play / why
       - My rec: mage or warrior. Warrior problem: BS changes colors. Mage problem: freezing streaks encourages perfectionism.
       - important: proper play style (keep colors, consistent GP)
-    </blockquote>
+    </blockquote>*/}
   </Accordion_>
 </Accordion>
 </>
