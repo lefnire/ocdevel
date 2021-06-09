@@ -5,11 +5,13 @@ pip install ffmpeg-python
 
 import pdb, re, ffmpeg, shutil
 from pathlib import Path
+from joblib import Parallel, delayed
 
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", required=True)
 parser.add_argument("-o", required=True)
+parser.add_argument("-t", "--threads", default=2, type=int)
 args = parser.parse_args()
 
 in_path = Path(args.i).expanduser()
@@ -21,15 +23,14 @@ if out_path.exists():
     shutil.rmtree(out_path)
 out_path.mkdir()
 
+
 def sort_fnames(fname):
     nums = re.findall(r"/([0-9]+)", fname)
     if not nums: return fname
     return float('.'.join(nums))
 
-files = in_path.glob('**/*.mp4')
-files = [str(f) for f in files]
-files = sorted(files, key=sort_fnames)
-for fname_in in files:
+
+def convert(fname_in):
     fname_out = fname_in.replace(in_str, '')
     # Get rid of leading /, for next command
     if fname_out.startswith('/'):
@@ -37,3 +38,11 @@ for fname_in in files:
     fname_out = fname_out.replace('/', ' - ').replace('mp4', 'mp3')
     fname_out = str(Path(out_path, fname_out))
     ffmpeg.input(fname_in).output(fname_out).run()
+
+
+files = in_path.glob('**/*.mp4')
+files = [str(f) for f in files]
+files = sorted(files, key=sort_fnames)
+
+for f in files: convert(f)
+# Parallel(n_jobs=args.threads)(delayed(convert)(fname_in) for fname_in in files)
