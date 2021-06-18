@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  tensorflowtts:
+    build:
+      context: .
+      dockerfile: ./tensorflowtts.dockerfile
+    container_name: tensorflowtts
+    entrypoint: /bin/bash
+    stdin_open: true
+    volumes:
+      - ./:/workspace
+    device_requests:
+      - capabilities:
+          - "gpu"
