@@ -21,3 +21,14 @@ services:
     stdin_open: true
     volumes:
       - ./client:/app
+
+  utils:
+    build:
+      context: .
+      dockerfile: ./utils.dockerfile
+    container_name: ocdevel-utils
+    entrypoint: /bin/bash
+    stdin_open: true
+    volumes:
+      - "/Users/lefnire/My Drive/Podcasts:/podcasts"
+      - ./server/utils:/app

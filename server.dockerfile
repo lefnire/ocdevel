@@ -8,9 +8,7 @@ RUN pip install \
     requests \
     python-box \
     pytest \
-    dynaconf \
-    pdfminer.six \
-    google-cloud-texttospeech
+    dynaconf
 
 COPY ./server/app /app/app
 WORKDIR /app
