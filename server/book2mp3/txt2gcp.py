@@ -13,7 +13,7 @@ parser.add_argument('--mp3', action='store_true')
 parser.add_argument('--wipe', action='store_true')
 parser.add_argument('--clean', action='store_true')
 parser.add_argument('--start-at', type=int, default=0)
-parser.add_argument('--name', type=str, default='frogs')
+parser.add_argument('--name', type=str, default='reframing')
 args = parser.parse_args()
 
 PDF = f"{os.getcwd()}/{args.name}.pdf"
@@ -71,7 +71,7 @@ with open(PKL, "rb") as pkl:
 GCP TTS
 """
 if not args.mp3: exit(0)
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/lefnire/.ssh/personal-gcp.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/app/book2mp3/personal-gcp.json"
 # from google.cloud import texttospeech
 from google.cloud import texttospeech_v1beta1 as texttospeech
 
