@@ -61,9 +61,16 @@ body {
 
 
 .sidebar {
-  div.logo img {
-    width: 100%;
-    max-width: 290px;
+  .logo {
+    $logoMax: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      flex: 1;
+      max-width: $logoMax;
+    }
   }
   &.sidebar-profile {
     .card {border: none;}
@@ -100,8 +107,32 @@ body {
   }
 }
 
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .podcasts {
   // 3108d595: .logo-and-sub, .sub-button-container, .sub-button */
+
+  .episodes-links {
+    a {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+
+      span {
+        margin-left: .5em;
+      }
+    }
+  }
+
+  .episodes-btn-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
   .row {
     div[class^="col-"], .col {
@@ -119,15 +150,6 @@ body {
         }
       }
     }
-  }
-
-  .patreon-btn {
-    background-color: #ff424d;
-    border: none;
-  }
-
-  .patreon-btn-free {
-    color: #ff424d;
   }
 
   .zocial {

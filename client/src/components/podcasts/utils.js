@@ -10,8 +10,6 @@ import {render} from "@testing-library/react";
 
 export const dateFmt = 'MMM DD, YYYY';
 
-export const patreonLink = 'https://www.patreon.com/machinelearningguide'
-
 export function Popover_({children, content, id=null, title=null, opts={}}) {
   opts = {placement: "right", ...opts}
 

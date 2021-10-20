@@ -1,18 +1,10 @@
-import {Button, ButtonGroup, Card, Col, Form, Modal, Row} from "react-bootstrap";
+import {FaCheckCircle, FaCheckSquare, FaRegCircle, FaRegSquare, FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {btns, icons} from "../utils";
 import React, {useCallback, useState} from "react";
-import {btns, icons} from './utils'
+import {Button, ButtonGroup, Card, Col} from "react-bootstrap";
 import {useStoreActions, useStoreState} from "easy-peasy";
-import {filterKeys, filters, learnStyles} from "../../content/podcast/resources/filters";
+import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
 import _ from "lodash";
-import About from './About'
-import {
-  FaCheckCircle,
-  FaCheckSquare,
-  FaRegCircle, FaRegSquare,
-  FiMinusSquare,
-  FiPlusSquare
-} from "react-icons/all";
-import {useLocation} from 'react-router-dom'
 
 let check = {size:20, className:'border-right pr-2 mr-2'}
 check = {
@@ -83,7 +75,7 @@ function Filter({k, section='filters'}) {
 
   const select_ = useCallback(opt_k => () => {
     select({[opt_k]: !active[opt_k]})
-  })
+  }, [])
   const setShow_ = useCallback(() => setShow(!show), [show])
 
   const f = filters[k]
@@ -109,7 +101,7 @@ function Filter({k, section='filters'}) {
   </>
 }
 
-function Filters() {
+export default function Filters() {
   const [show, setShow] = useState(true)
   return <Col className='sidebar-filters'>
     <Card className='border-0'>
@@ -132,14 +124,4 @@ function Filters() {
     </>}
     </Card>
   </Col>
-}
-
-
-export default function Sidebar() {
-  const {pathname} = useLocation()
-  return <div className='sidebar mb-3'>
-    <Row>
-      {pathname === '/mlg/resources' ? <Filters /> : <About />}
-    </Row>
-  </div>
 }

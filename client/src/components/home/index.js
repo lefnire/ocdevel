@@ -28,7 +28,7 @@ export default function Home() {
           <Link to='/blog'>Blog</Link>
         </Card.Subtitle>
         <p>OCDevel is just me, Tyler (single-member LLC). I'm an ex-web/mobile developer gone machine learning engineer. I've worked with high-profile clients, mostly part-time contracting. I teach ML and work on fun ML side-projects (see below).</p>
-        <Alert variant='info'><FaSuitcase /> Hire me! See <Link to='/contact'>Contact/Hire page.</Link></Alert>
+        {/*<Alert variant='info'><FaSuitcase /> Hire me! See <Link to='/contact'>Contact/Hire page.</Link></Alert>*/}
       </Col>
     </Row>
     <hr />

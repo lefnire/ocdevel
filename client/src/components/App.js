@@ -22,10 +22,10 @@ export default function App() {
           <Nav.Link>Blog</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/mlg" exact>
-          <Nav.Link>Podcasts</Nav.Link>
+          <Nav.Link>Podcast</Nav.Link>
         </LinkContainer>
         <LinkContainer to='/contact' exact>
-          <Nav.Link>Contact/Hire</Nav.Link>
+          <Nav.Link>Contact</Nav.Link>
         </LinkContainer>
       </Nav>
     </Navbar>

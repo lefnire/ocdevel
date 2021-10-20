@@ -1,8 +1,8 @@
-import {Card} from "react-bootstrap";
-import {BackButton} from "../utils";
-import ReactDisqusComments from "react-disqus-comments";
-import {mlg, mla, episodes} from "../../content/podcast";
 import React from "react";
+import {Card} from "react-bootstrap";
+import ReactDisqusComments from "react-disqus-comments";
+import {BackButton} from "../../utils";
+import {mlg, mla, episodes} from "../../../content/podcast";
 
 export default function Recommend() {
   return <Card>

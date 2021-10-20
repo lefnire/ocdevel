@@ -1,14 +1,15 @@
 import React, {useCallback, useState} from "react";
-import {filterKeys, filters} from '../../content/podcast/resources/filters'
-import tree, {picks} from '../../content/podcast/resources/tree'
 import {Link} from "react-router-dom";
 import {
   FaInfoCircle,
 } from "react-icons/all";
 import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
 import {useStoreState} from "easy-peasy";
-import {ReactMarkdown_, btns, icons, Popover_} from "./utils";
 import _ from "lodash";
+
+import {ReactMarkdown_, btns, icons, Popover_} from "../utils";
+import {filterKeys, filters} from '../../../content/podcast/resources/filters'
+import tree, {picks} from '../../../content/podcast/resources/tree'
 
 function ResourceWrapper({children, show}) {
     if (!show) {return <div>{children}</div>}
