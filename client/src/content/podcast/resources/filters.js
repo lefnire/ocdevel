@@ -12,7 +12,6 @@ import {
   GiBattery100,
   GiBattery50, GiSnake, IoIosChatbubbles, MdWeb, TiSortAlphabetically
 } from "react-icons/all";
-import {action} from "easy-peasy";
 
 export const learnStyles = {
   learn: {

@@ -1,12 +1,27 @@
-# https://github.com/jiaaro/pydub
+"""
+https://github.com/jiaaro/pydub
+Recording
+- Set mic volume for between [-12,-6] dB
+- Record as mono
+- Export as wav (16-bit PCM, default)
+"""
+
 from pydub import AudioSegment, effects
 
 dir_ = "/podcasts"
 
 def clean_voice(seg):
+    peak_amp = 3.
     res = seg[:5000]
-    res = effects.compress_dynamic_range(res)
-    res = effects.normalize(res, 4.)
+    res = effects.compress_dynamic_range(
+        res,
+        threshold=-12,  # -12db
+        ratio=2.0,  # 2:1
+        attack=.2 * 1000,  # .20 seconds
+        release=1 * 1000,
+        # noise_floor=-40  # need this!
+    )
+    res = effects.normalize(res, peak_amp)
     return res
 
 music = AudioSegment.from_wav(f"{dir_}/assets/061387196-corporate-technology-hi-tech-e.wav")

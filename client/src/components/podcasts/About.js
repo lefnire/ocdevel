@@ -16,7 +16,6 @@ import {
 import {mlg, mla, episodes} from "../../content/podcast";
 import librarian from "../../assets/mla_square.jpg";
 import {LinkContainer} from "react-router-bootstrap";
-import {useStoreState} from "easy-peasy";
 import {Link} from "react-router-dom";
 
 function AboutSection({children, title, top=false}) {

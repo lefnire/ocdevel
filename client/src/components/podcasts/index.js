@@ -17,7 +17,7 @@ import Recommend from './Recommend'
 import {mlg, mla, episodes} from '../../content/podcast';
 import {EpisodeRoute, Episodes} from './Episodes'
 
-import {StoreProvider, useStoreState, useStoreActions, useStore, useLocalStore} from "easy-peasy";
+import {StoreProvider} from "easy-peasy";
 import { store } from '../../store';
 import {ResourcesTree} from './Resources'
 import About from './About'
