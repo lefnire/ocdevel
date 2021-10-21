@@ -116,7 +116,7 @@ function Dept() {
   const [showLinks, setShowLinks] = useState(false)
 
   const dept = {
-    teaser: "MLG is now part of Dept, who will sponsor its resurrection. Dept is looking for talent and clients, work with us!",
+    teaser: "MLG is now part of Dept, who's resurrecting the podcast. Dept works in data / ML, and is looking for talent and clients. Work with us!",
     body: `Dept is a digital agency of more than 2,000 thinkers and makers spread all across the globe who specialize in technology, design, strategy, data, and everything in between. Over the course of MLG, I’ll be drawing on a bunch of examples of real-life work that Dept has completed for our clients. As always, if you’re interested in working with us, click above.`
   }
 
@@ -168,7 +168,12 @@ function Podcasts() {
 function Updates() {
   return <AboutSection title='Updates'>
     <div className="mb-3 mlg-update pl-3">
-      <Card.Title className='mb-1'>2020-12-19 Update</Card.Title>
+      <Card.Title className='mb-1'>2021-10-20: Dept acquisition</Card.Title>
+      <p><a target="_blank" href="https://deptagency.com">Dept</a> has acquired MLG, to allow me to finish the re-do! They're sponsoring merging MLA into the main feed, so the Patreon is going away - expect that content soon!</p>
+    </div>
+    <hr />
+    <div className="text-muted mb-3 pl-3">
+      <Card.Title className='mb-1'>2020-12-19: Podcast re-do</Card.Title>
       <p>I'm re-doing MLG (2nd edition) to refresh resources & concepts to 2021. Starting now use <Link to="/mlg/resources">Resources</Link>, and ignore the resources discussed in the episodes. Then I can to keep resources updated without editing episodes. I'm removing checkpoints and irrelevant episodes to make room for new ones - so if you see see "holes" that's normal. I'll keep the Bitcoin Trading episode, as it's info-packed, but the podcast project is now <a href='https://gnothiai.com' target='_blank'>Gnothi</a>.</p>
     </div>
   </AboutSection>

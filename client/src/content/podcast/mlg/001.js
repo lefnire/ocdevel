@@ -4,7 +4,7 @@ export default {
   title: "Introduction",
   episode: 1,
   created: "2017-02-01",
-  updated: "2020-12-29",
+  updated: "2021-10-20",
   libsynEpisode: 5440758,
   guid: "a9bf6e09-aa7e-4126-9e36-22b152419c8f",
   resources: [
@@ -20,9 +20,8 @@ export default {
   ],
   teaser: "Introduction to the Machine Learning Guide",
   body: `
+- [MLG](https://ocdevel.com/mlg), [Resources Guide](https://ocdevel.com/mlg/resources)
 - Gnothi (podcast project): [website](https://gnothiai.com), [Github](https://github.com/lefnire/gnothi)
-- [Machine Learning Applied](https://www.patreon.com/machinelearningguide), [get free access](http://ocdevel.com/mlg/free-access)
-- [Resources Guide](/mlg/resources)
 
 What is this podcast? 
 - "Middle" level overview (deeper than a bird's eye view of machine learning; higher than math equations)
