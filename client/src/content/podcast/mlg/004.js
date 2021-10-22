@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Algorithms - Intuition",
   episode: 4,
-  date: "2017-02-12",
+  created: "2017-02-12",
   guid: "a7d9b86e-d3aa-4384-a854-792bfcf36e24",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-4.mp3",

@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Shallow Algos 1",
   episode: 12,
-  date: "2017-03-19",
+  created: "2017-03-19",
   guid: "1074a375-6831-456d-9bbc-d28c8f85a557",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-12.mp3",

@@ -1,7 +1,7 @@
 export default {
   title: 'The Podcasts Return',
   episode: 31,
-  date: "2020-10-27",
+  created: "2020-10-27",
   guid: "e6bb5c68-fb53-44fd-bbcc-5c5f25aa8e48",
   file: {},
   libsynEpisode: 16575524,

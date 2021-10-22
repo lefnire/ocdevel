@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Languages & Frameworks",
   episode: 10,
-  date: "2017-03-07",
+  created: "2017-03-07",
   guid: "c613d746-0916-448e-8315-5ac4323389e2",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-10.mp3",

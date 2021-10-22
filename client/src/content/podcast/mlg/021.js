@@ -2,7 +2,7 @@ export default {
   title: 'New Series: Machine Learning Applied',
   episode: 21,
   archived: true,
-  date: "2017-07-27",
+  created: "2017-07-27",
   guid: "30566e73f0346fd82c174e2931a39a97",
   file: {},
   libsynEpisode: 5585790,

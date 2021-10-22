@@ -2,7 +2,7 @@ export default {
   title: 'Get a Job in ML',
   episode: 15,
   mla: true,
-  date: null,
+  created: null,
   guid: null,
   body: `
 Increasingly, higher degrees are important: Masters at a minimum. But you _can_ get by with a Bachelors, I did, it just won't be easy. Either way, it's important to have hands-on experience or a portfolio to show. Some options:

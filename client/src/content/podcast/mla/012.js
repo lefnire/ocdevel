@@ -1,9 +1,11 @@
 export default {
   title: 'Docker',
   episode: 12,
+  mergeEpisode: 42,
   mla: true,
-  date: "2020-11-08",
-  guid: "43678922",
+  created: "2020-11-08",
+  guid: "dea2c40c-42a7-45e8-9561-6e71bf0dbc5b",
+  libsynEpisode: 16726955,
   teaser: "Use Docker for env setup on localhost & cloud deployment, instead of pyenv / Anaconda. I recommend Windows for your desktop.",
   body: `
 For your local development environment, I recommend using Windows. You can't effectively use Mac because, due to their use of AMD rather than Nvidia, GPU-based ML frameworks can't optimize to Mac. You _could_ use Ubuntu Desktop, but it's not for the weak-of-heart due to various software compatibilities; and when it comes to laptops, drivers aren't as up-to-snuff as Windows drivers (especially with battery lifetime & wifi). So use Windows.

@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Logistic Regression",
   episode: 7,
-  date: "2017-02-19",
+  created: "2017-02-19",
   guid: "36b6133d-3018-4be0-a36c-61904aa80a1a",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-7.mp3",

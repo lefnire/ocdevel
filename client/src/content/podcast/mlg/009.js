@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Deep Learning",
   episode: 9,
-  date: "2017-03-04",
+  created: "2017-03-04",
   guid: "d842fe61-7cf2-4209-9cb3-d29be6c4d1a8",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-9.mp3",

@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Math",
   episode: 8,
-  date: "2017-02-23",
+  created: "2017-02-23",
   guid: "a5c01d38-5242-4b63-b265-81fc53d38ad3",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-8.mp3",

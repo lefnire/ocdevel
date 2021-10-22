@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: 'Convolutional Neural Networks',
   episode: 25,
-  date: "2017-10-30",
+  created: "2017-10-30",
   guid: "91bf8a0266bc22088c897eb756cc97d3",
   file: {},
   libsynEpisode: 5890712,

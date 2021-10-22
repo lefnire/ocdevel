@@ -1,9 +1,11 @@
 export default {
   title: 'Practical Clustering',
   episode: 11,
+  mergeEpisode: 41,
   mla: true,
-  date: "2020-11-07",
-  guid: "43675078",
+  created: "2020-11-07",
+  guid: "d8a36847-c1f2-4d8f-adf8-da32d7d0a12d",
+  libsynEpisode: 16725809,
   teaser: "Kmeans (sklearn vs FAISS), finding n_clusters via inertia/silhouette, Agglomorative, DBSCAN/HDBSCAN",
   body: `
 Clustering via Kmeans, Agglomorative, or DBSCAN/HDBSCAN.

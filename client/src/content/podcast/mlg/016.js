@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Consciousness",
   episode: 16,
-  date: "2017-05-21",
+  created: "2017-05-21",
   guid: "c2db5df8-936b-4404-8f0f-7eb188bfe9ab",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-16.mp3",

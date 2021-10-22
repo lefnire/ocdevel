@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: 'Deep NLP 2',
   episode: 23,
-  date: "2017-08-20",
+  created: "2017-08-20",
   guid: "1346120e3e578b15c8f34b31bc21ef78",
   file: {},
   libsynEpisode: 5660423,

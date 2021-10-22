@@ -1,9 +1,11 @@
 export default {
   title: 'Machine Learning Server',
   episode: 14,
+  mergeEpisode: 44,
   mla: true,
-  date: "2020-01-17",
-  guid: "46332574",
+  created: "2021-01-17",
+  guid: "434a0677-4265-4c34-9cb0-62ca92c80ed0",
+  libsynEpisode: 17581607,
   teaser: "Server-side ML. Training & hosting for inference, with a goal towards serverless. AWS SageMaker, Batch, Lambda, EFS, Cortex.dev",
   body: `
 After you train an ML model and need to deploy it to production, you have a number of options. If your model runs rarely (1-50x / day), you can set it up as a batch job through various services. In this case it will run to completion, then take itself offline. If your model needs to always be available, via a customer-facing product with constant usage, then you'll deploy it as an endpoint through various services.

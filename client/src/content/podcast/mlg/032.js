@@ -1,7 +1,8 @@
 export default {
   title: 'Cartesian Similarity Metrics',
   episode: 32,
-  date: "2020-11-07",
+  // mergeEpisode:
+  created: "2020-11-07",
   guid: "7f335339-1e45-4ab1-99de-20a9bda41fca",
   file: {},
   libsynEpisode: 16722518,

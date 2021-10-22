@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Inspiration",
   episode: 3,
-  date: "2017-02-10",
+  created: "2017-02-10",
   guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
   libsynEpisode: 5440756,
   teaser: "Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.",

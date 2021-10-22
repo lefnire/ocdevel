@@ -3,7 +3,7 @@ import resources from "../resources";
 export default {
   title: 'Project Bitcoin Trader',
   episode: 26,
-  date: "2018-01-26",
+  created: "2018-01-26",
   guid: "e704eb47d4280a7abc9bb6f0895a7b26",
   file: {},
   libsynEpisode: 6194090,

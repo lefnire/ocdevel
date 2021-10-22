@@ -1,9 +1,11 @@
 export default {
   title: 'NLP packages: transformers, spaCy, Gensim, NLTK',
   episode: 10,
+  mergeEpisode: 40,
   mla: true,
-  date: "2020-10-27",
-  guid: "43234402",
+  created: "2020-10-27",
+  guid: "6f17dd73-0ef7-4cc0-b0a4-16b95924d020",
+  libsynEpisode: 16621373,
   teaser: "NLTK: swiss army knife. Gensim: LDA topic modeling, n-grams. spaCy: linguistics. transformers: high-level business NLP tasks.",
   body: `
 [NLTK](https://www.nltk.org/) - swiss army knife / catch-all for anything and everything NLP.

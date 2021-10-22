@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: 'Natural Language Processing 2',
   episode: 19,
-  date: "2017-07-10",
+  created: "2017-07-10",
   guid: "e05e640ba2f99105f52c4eef0c5cabfb",
   file: {},
   libsynEpisode: 5525243,

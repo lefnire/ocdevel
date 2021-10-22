@@ -3,7 +3,7 @@ import {resources} from "../resources";
 export default {
   title: "Certificates & Degrees",
   episode: 6,
-  date: "2017-02-17",
+  created: "2017-02-17",
   guid: "a8bd671f-100f-42ff-a68a-cff7763298f6",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-6.mp3",

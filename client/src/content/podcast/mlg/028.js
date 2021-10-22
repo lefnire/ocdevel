@@ -1,7 +1,7 @@
 export default {
   title: 'Hyperparameters 2',
   episode: 28,
-  date: "2018-02-04",
+  created: "2018-02-04",
   guid: "8671d415236e9a9394a0c4aaa383e1ba",
   file: {},
   libsynEpisode: 6222761,

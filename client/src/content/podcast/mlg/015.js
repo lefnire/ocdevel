@@ -1,7 +1,7 @@
 export default {
   title: "Performance",
   episode: 15,
-  date: "2017-05-07",
+  created: "2017-05-07",
   guid: "7da253aa-b035-4702-8475-55b8d3eeeebd",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-15.mp3",

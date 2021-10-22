@@ -1,4 +1,4 @@
-import librarian from "../../../assets/mla_square.jpg";
+import React, {useState, useEffect} from "react";
 import {Alert, Button, Card} from "react-bootstrap";
 import {dateFmt, ReactMarkdown_} from "../utils";
 import {LinkContainer} from "react-router-bootstrap";
@@ -10,14 +10,14 @@ import {BackButton} from "../../utils";
 import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {episodesObj, mlg} from "../../../content/podcast";
-import React from "react";
+import {BiChevronDown, BiChevronRight} from "react-icons/all";
 
 
 // 8d7997de switched from component to returning memoized JSX, since iframe being
 // re-rendered slowly each time. This trick doesn't seem to work either, figure out later
 const players = {}
 function player(e) {
-  if (e.mla) {return <div>TODO move to MLG</div>}
+  // if (e.mla) {return <div>TODO move to MLG</div>}
   const id = e.libsynEpisode
   if (players[id]) {return players[id]}
   players[id] = <iframe
@@ -41,9 +41,29 @@ const teaserRenderers = {
   }
 }
 
+function Transcript({e}) {
+  const [show, setShow] = useState(false);
+
+  if (!e.transcript?.length) {return null}
+
+  const style = show ? {} : {display: 'none'};
+  return <div>
+    <Card.Title
+      className='pointer'
+      onClick={() => setShow(!show)}
+    >
+      <span className='mr-2'>{show ? "Hide" : "Show"} Transcript</span>
+      {show ? <BiChevronDown /> : <BiChevronRight />}
+    </Card.Title>
+    <div style={style}>
+      <ReactMarkdown_ source={e.transcript} />
+    </div>
+  </div>
+}
+
 export function Episode({e, teaser}) {
   const num = _.padStart(e.episode, 3, '0');
-  const title = `${e.mla ? 'MLA' : 'MLG'} ${num}: ${e.title}`;
+  const title = `${e.mla ? 'MLA' : 'MLG'} ${num} ${e.title}`;
 
   const body = e.body && e.teaser ? `${e.teaser}\n\n---\n\n${e.body}` :
     e.body || e.teaser
@@ -93,17 +113,25 @@ export function Episode({e, teaser}) {
       <BackButton />
       <Card>
         <Card.Body>
+
           <Card.Title>{title}</Card.Title>
           {renderDate()}
           {player(e)}
           {!e.teaser && <hr/> /* hr already added at top of component */}
           <ReactMarkdown_ source={body} />
+
+          {e.transcript?.length && <div>
+            <hr />
+            <Transcript e={e} />
+          </div>}
+
           {e.resources && <>
             <hr />
             <Card.Title>Resources</Card.Title>
             <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
             <ResourcesFlat resources={e.resources} />
           </>}
+
         </Card.Body>
         {e.guid && <Card.Footer>
           <ReactDisqusComments

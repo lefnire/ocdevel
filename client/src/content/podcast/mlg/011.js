@@ -4,7 +4,7 @@ export default {
   title: 'Checkpoint',
   episode: 11,
   archived: true,
-  date: "2017-03-08",
+  created: "2017-03-08",
   guid: "fe205bbc-b9d4-4df5-b840-c6f5b728903f",
   file: {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-11.mp3",
