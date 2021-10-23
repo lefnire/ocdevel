@@ -19,18 +19,18 @@ from pydub import AudioSegment, effects
 dir_ = "/podcasts"
 
 ####### TODO Edit these!
-EPISODE = f"{dir_}/mla/14/dept.filtered.wav"
-OUTPUT = f"{dir_}/mp3s/mla.014.20201021.mp3"
+EPISODE = f"{dir_}/mlg/32/descript.wav"
+OUTPUT = f"{dir_}/mp3s/mlg.032.20201022.mp3"
 meta = dict(
-    title='MLA 014 Machine Learning Server',
-    track=44,
-    year=2021,
+    title='MLg 032 MLG 032 Cartesian Similarity Metrics',
+    track=32,
+    year=2020,
 #############
     artist='OCDevel',
     album='Machine Learning Guide',
 )
 music = AudioSegment.from_wav(f"{dir_}/misc/intro/061387196-corporate-technology-hi-tech-e.wav")
-intro = AudioSegment.from_wav(f"{dir_}/misc/intro/filtered.wav")
+intro = AudioSegment.from_wav(f"{dir_}/misc/intro/descript.wav")
 episode = AudioSegment.from_wav(EPISODE)
 outro = None
 

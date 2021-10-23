@@ -41,22 +41,21 @@ const teaserRenderers = {
   }
 }
 
-function Transcript({e}) {
-  const [show, setShow] = useState(false);
+function ShowHide({title, children, show=false}) {
+  const [show_, setShow] = useState(show);
 
-  if (!e.transcript?.length) {return null}
-
-  const style = show ? {} : {display: 'none'};
+  // display:none for SEO (don't exclude from html)
+  const style = show_ ? {} : {display: 'none'};
   return <div>
     <Card.Title
       className='pointer'
-      onClick={() => setShow(!show)}
+      onClick={() => setShow(!show_)}
     >
-      <span className='mr-2'>{show ? "Hide" : "Show"} Transcript</span>
-      {show ? <BiChevronDown /> : <BiChevronRight />}
+      {show_ ? <BiChevronDown /> : <BiChevronRight />}
+      <span className='mr-2'>{title}</span>
     </Card.Title>
     <div style={style}>
-      <ReactMarkdown_ source={e.transcript} />
+      {children}
     </div>
   </div>
 }
@@ -64,10 +63,6 @@ function Transcript({e}) {
 export function Episode({e, teaser}) {
   const num = _.padStart(e.episode, 3, '0');
   const title = `${e.mla ? 'MLA' : 'MLG'} ${num} ${e.title}`;
-
-  const body = e.body && e.teaser ? `${e.teaser}\n\n---\n\n${e.body}` :
-    e.body || e.teaser
-  const link = `/mlg/${e.id}`
 
   function renderDate() {
     if (!(e.created || e.date)) {
@@ -84,6 +79,10 @@ export function Episode({e, teaser}) {
   }
 
   function renderTeaser() {
+    const combined = e.body && e.teaser ? `${e.teaser}\n\n---\n\n${e.body}` :
+      e.body || e.teaser
+    const link = `/mlg/${e.id}`
+
     return <Card className={`episode-teaser mb-3 card-post ${e.archived ? 'episode-archived' : ''}`}>
       <Card.Body>
         <Card.Title>
@@ -95,11 +94,11 @@ export function Episode({e, teaser}) {
           <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
         </> : e.body ? <>
           <div className='fade-post'>
-            <ReactMarkdown_ source={body} renderers={teaserRenderers} />
+            <ReactMarkdown_ source={combined} renderers={teaserRenderers} />
             <div className='fade-post-bottom' />
           </div>
           <Link to={link}>Read More</Link>
-        </> : <ReactMarkdown_ source={body} />}
+        </> : <ReactMarkdown_ source={combined} />}
       </Card.Body>
     </Card>
   }
@@ -117,19 +116,30 @@ export function Episode({e, teaser}) {
           <Card.Title>{title}</Card.Title>
           {renderDate()}
           {player(e)}
-          {!e.teaser && <hr/> /* hr already added at top of component */}
-          <ReactMarkdown_ source={body} />
 
-          {e.transcript?.length && <div>
+          {e.teaser && <>
+            <ReactMarkdown_ source={e.teaser} />
+          </>}
+
+          {e.teaser && e.body && <hr />}
+
+          {e.body && <ShowHide title="Show Notes" show={true}>
+            <ReactMarkdown_ source={e.body} />
+          </ShowHide>}
+
+          {e.transcript?.length && <>
             <hr />
-            <Transcript e={e} />
-          </div>}
+            <ShowHide title="Transcript">
+              <ReactMarkdown_ source={e.transcript} />
+            </ShowHide>
+          </>}
 
           {e.resources && <>
             <hr />
-            <Card.Title>Resources</Card.Title>
-            <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
-            <ResourcesFlat resources={e.resources} />
+            <ShowHide title="Resources">
+              <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
+              <ResourcesFlat resources={e.resources} />
+            </ShowHide>
           </>}
 
         </Card.Body>

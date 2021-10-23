@@ -3,7 +3,6 @@ import {resources} from "../resources";
 export default {
   title: 'Checkpoint',
   episode: 11,
-  archived: true,
   created: "2017-03-08",
   guid: "fe205bbc-b9d4-4df5-b840-c6f5b728903f",
   file: {

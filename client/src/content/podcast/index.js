@@ -21,7 +21,7 @@ export const episodes = _.map([
   require('./mlg/018.js').default,
   require('./mlg/019.js').default,
   require('./mlg/020.js').default,
-  require('./mlg/021.js').default,
+  // require('./mlg/021.js').default,
   require('./mlg/022.js').default,
   require('./mlg/023.js').default,
   require('./mlg/024.js').default,
@@ -30,7 +30,7 @@ export const episodes = _.map([
   require('./mlg/027.js').default,
   require('./mlg/028.js').default,
   require('./mlg/029.js').default,
-  require('./mlg/030.js').default,
+  // require('./mlg/030.js').default,
   //
   require('./mla/001.js').default,
   require('./mla/002.js').default,
@@ -44,12 +44,12 @@ export const episodes = _.map([
   require('./mla/011.js').default,
   require('./mla/012.js').default,
 
-  require('./mlg/031.js').default,
+  // require('./mlg/031.js').default,
   require('./mlg/032.js').default,
 
   require('./mla/013.js').default,
   require('./mla/014.js').default,
-  require('./mla/015.js').default,
+  // require('./mla/015.js').default,
 ], e => ({
   mlg: !e.mla,
   id: e.mla ? `mla-${e.episode}` : e.episode,
