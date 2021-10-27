@@ -85,6 +85,15 @@ export default _.mapValues({
     topic: "cv"
   },
 
+  yt_aws_sagemaker: {
+    t: "Amazon SageMaker Technical Deep Dive Series",
+    links: [
+      {t: "YouTube", l: "https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz", p: "free"}
+    ],
+    difficulty: "easy",
+    topic: "tech"
+  }
+
 
 
 }, v => ({

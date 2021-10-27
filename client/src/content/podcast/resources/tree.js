@@ -173,7 +173,8 @@ Eventually you'll need to know Python. Not immediately (why I list this after Ba
         v: [
           r.dev_environment,
           r.frontend_stack,
-          r.ml_stack
+          r.ml_stack,
+          r.yt_aws_sagemaker
         ]
       },
 
