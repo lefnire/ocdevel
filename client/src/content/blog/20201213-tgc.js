@@ -1,4 +1,4 @@
-import {resources} from '../podcast/resources'
+import resources from '../podcast/resources'
 
 
 function l(resource, text=null) {

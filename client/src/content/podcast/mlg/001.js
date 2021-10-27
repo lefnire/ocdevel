@@ -1,4 +1,4 @@
-import {resources} from '../resources'
+import resources from '../resources'
 
 export default {
   title: "Introduction",

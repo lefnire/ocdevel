@@ -1,4 +1,4 @@
-import {resources as r} from './index'
+import r from './index'
 
 export const picks = {
   ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},
