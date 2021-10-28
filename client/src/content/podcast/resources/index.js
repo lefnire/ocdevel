@@ -1,47 +1,15 @@
-import _ from 'lodash'
-import {defaults} from './filters'
-import podcasts from './podcasts'
-import tgc from './tgc'
-import fun from './fun'
-import courses from './courses'
-import videos from './videos'
-import others from './others'
-import books from './books'
-import ocdevel from './ocdevel'
-
-const TODO = {
-  audio: {
-    how_to_create_mind: `[How to Create a Mind](http://amzn.to/2tXLvUm) \`audio:easy\``,
-    cs229: `(removed CS229 - very heavy chalkboard use lends poorly to audio)`,
-
+// so I don't have to refactor everything after moving to workflowy.
+// TODO add per-episode resources later
+export default {
+  tgc_ml: {
+    t: "TGC Machine Learning",
+    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&intsrc=PUI1_1204"}],
   },
-  other: {
-    // nns_and_dl: `[Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) \`book:medium\` shorter online "book"`,
-    kaggle: `[Kaggle.com](https://www.kaggle.com/)`,
-    patreon: `[Patreon](https://www.patreon.com/machinelearningguide)`,
-  }
+  tgc_consciousness: {
+    t: "TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines",
+    links: [
+      {t: "Amazon", l: "https://amzn.to/38GHt5n", p: "$"},
+      {t: "TGC", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204", p: "$$"},
+    ],
+  },
 }
-
-const cards = _.mapValues({
-
-}, v => ({
-  card: true,
-  topic: "tech",
-  ...v
-}))
-
-export default _.mapValues({
-  ...books,
-  ...podcasts,
-  ...tgc,
-  ...fun,
-  ...others,
-  ...courses,
-  ...videos,
-  ...cards,
-  ...ocdevel
-}, (v, k) => ({
-  id: k,
-  ...defaults,
-  ...v,
-}))

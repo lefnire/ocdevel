@@ -134,13 +134,13 @@ export function Episode({e, teaser}) {
             </ShowHide>
           </>}
 
-          {e.resources && <>
+          {/*e.resources && <>
             <hr />
             <ShowHide title="Resources">
               <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
               <ResourcesFlat resources={e.resources} />
             </ShowHide>
-          </>}
+          </>*/}
 
         </Card.Body>
         {e.guid && <Card.Footer>
