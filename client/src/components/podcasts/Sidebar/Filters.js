@@ -2,7 +2,7 @@ import {FaCheckCircle, FaCheckSquare, FaRegCircle, FaRegSquare, FiMinusSquare, F
 import {btns, icons} from "../utils";
 import React, {useCallback, useState} from "react";
 import {Button, ButtonGroup, Card, Col} from "react-bootstrap";
-import {useStoreActions, useStoreState} from "easy-peasy";
+import {useStore} from "../../../store/resources";
 import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
 import _ from "lodash";
 
@@ -32,8 +32,8 @@ function Option({opt, select, active, setHelp, multi=true}) {
 }
 
 function LearnStyle({k}) {
-  const active = useStoreState(state => state.learnStyles[k])
-  const select = useStoreActions(actions => actions.learnStyles[`set_${k}`])
+  const active = useStore(state => state.learnStyles[k])
+  const select = useStore(actions => actions.learnStyles[`set_${k}`])
   const [show, setShow] = useState(true)
   const [help, setHelp] = useState()
 
@@ -68,14 +68,14 @@ function LearnStyle({k}) {
 }
 
 function Filter({k, section='filters'}) {
-  const active = useStoreState(state => state[section][k])
-  const select = useStoreActions(actions => actions[section][`set_${k}`])
+  const active = useStore(state => state[section][k])
+  const select = useStore(state => state[section][`set_${k}`])
   const [show, setShow] = useState(false)
   const [help, setHelp] = useState()
 
-  const select_ = useCallback(opt_k => () => {
-    select({[opt_k]: !active[opt_k]})
-  }, [])
+  const select_ = opt_k => () => {
+    select([opt_k, !active[opt_k]])
+  }
   const setShow_ = useCallback(() => setShow(!show), [show])
 
   const f = filters[k]

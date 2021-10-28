@@ -17,8 +17,6 @@ import Recommend from './Content/Recommend'
 import {Episodes} from './Content/Episodes'
 import {EpisodeRoute} from './Content/Episode'
 
-import {StoreProvider} from "easy-peasy";
-import { store } from '../../store';
 import {ResourcesTree} from './Content/Resources'
 import {LinkContainer} from "react-router-bootstrap";
 import Filters from "./Sidebar/Filters";
@@ -26,7 +24,7 @@ import About from "./Sidebar/About";
 // import {useQuery} from "../../utils";
 
 
-function Series_() {
+export default function Series() {
   const location = useLocation()
   const isResources = location.pathname === '/mlg/resources'
 
@@ -71,8 +69,4 @@ function Series_() {
       </Row>
     </Container>
   </>
-}
-
-export default function Series() {
-  return <StoreProvider store={store}><Series_ /></StoreProvider>
 }

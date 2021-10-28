@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.5.3",
     "css-social-buttons": "^1.1.1",
-    "easy-peasy": "^5.0.4",
+    "immer": "^9.0.6",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "node-sass": "^6.0.1",
@@ -25,7 +25,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-share": "^4.3.1",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "zustand": "^3.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "xml-js": "^1.6.11"
   }
 }

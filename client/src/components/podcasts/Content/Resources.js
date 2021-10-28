@@ -4,7 +4,7 @@ import {
   FaInfoCircle,
 } from "react-icons/all";
 import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
-import {useStoreState} from "easy-peasy";
+import {useFilteredTree} from "../../../store/resources";
 import _ from "lodash";
 
 import {ReactMarkdown_, btns, icons, Popover_} from "../utils";
@@ -249,7 +249,7 @@ function ResourceNode({node, level=0}) {
 }
 
 export function ResourcesTree() {
-  const sections = useStoreState(state => state.filteredTree)
+  const sections = useFilteredTree()
   return <div className='resources resources-tree mb-3'>
     {sections.map(n => n && <ResourceNode node={n} key={n.t} />)}
   </div>

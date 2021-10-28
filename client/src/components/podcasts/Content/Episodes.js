@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import _ from "lodash";
 import {Button, ButtonGroup} from "react-bootstrap";
 import {FaEnvelope, FaGithub, FaLightbulb} from "react-icons/all";
-import {useStoreActions, useStoreState} from "easy-peasy";
+import useStore from "../../../store/episodes";
 
 import {episodes} from "../../../content/podcast";
 import {btns, Popover_} from "../utils";
@@ -12,13 +12,13 @@ import {Episode} from './Episode';
 export function Episodes() {
   const [page, setPage] = useState(0)
 
-  const showMla = useStoreState(state => state.episodes.mla)
-  const showMlg = useStoreState(state => state.episodes.mlg)
-  const newFirst = useStoreState(state => state.episodes.newFirst);
+  const showMla = useStore(state => state.mla)
+  const showMlg = useStore(state => state.mlg)
+  const newFirst = useStore(state => state.newFirst);
 
-  const toggleNewFirst = useStoreActions(actions => actions.episodes.toggleNewFirst);
-  const setMla = useStoreActions(actions => actions.episodes.setMla);
-  const setMlg = useStoreActions(actions => actions.episodes.setMlg);
+  const toggleNewFirst = useStore(actions => actions.toggleNewFirst);
+  const setMla = useStore(actions => actions.setMla);
+  const setMlg = useStore(actions => actions.setMlg);
 
   const toggleNewFirst_ = useCallback(() => toggleNewFirst(), [])
   const setMla_ = useCallback(() => setMla(), [])

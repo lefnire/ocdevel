@@ -1,4 +1,5 @@
 import r from './index'
+import workflowy from './workflowy'
 
 export const picks = {
   ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},
@@ -26,7 +27,7 @@ const sharedAudio = {
   ],
 }
 
-export default {
+const oldTree = {
  degrees: {
     t: "Degrees / Certificates",
     d: "Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.",
@@ -310,3 +311,12 @@ Eventually you'll need to know Python. Not immediately (why I list this after Ba
   }
 }
 
+const newTree = {
+  // degrees: {id: "degrees", ...workflowy.v[0]},
+  degrees: workflowy.v[0],
+  main: workflowy.v[1],
+  math: workflowy.v[2],
+  audio: workflowy.v[3]
+}
+console.log(newTree)
+export default newTree
