@@ -118,7 +118,7 @@ export default function Filters() {
       {/* 71f9ea01: MLA/MLG filter & sorting */}
       {[
         'learn',
-        //'audio'
+        'audio'
       ].map(k => <LearnStyle key={k} k={k} />)}
       {filterKeys.map(k => <Filter key={k} k={k} />)}
     </>}

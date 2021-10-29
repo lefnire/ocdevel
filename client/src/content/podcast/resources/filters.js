@@ -131,7 +131,7 @@ export const filterKeys = [
   'difficulty',
   'engagement',
   'topic',
-  'relevance',
+  // 'relevance',
   // Extra keys added per resource
   // 'price',
   // 'updated',

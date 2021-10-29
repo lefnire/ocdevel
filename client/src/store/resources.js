@@ -32,9 +32,9 @@ function recurseTree(filters, learnStyles, node=null, section=null) {
     if (learnStyles.audio === 'normal' && section === 'audio') {
       return null
     }
-    // if (learnStyles.audio === 'hardCore' && section !== 'audio') {
-    //   return null
-    // }
+    if (learnStyles.audio === 'hardCore' && section !== 'audio') {
+      return null
+    }
   }
 
   const keep = reduce(filterKeys, (m, fk) => {
@@ -50,9 +50,11 @@ export const useStore = create((set, get) => ({
     learn: 'selfTaught',
     set_learn: (learn) => set(produce(state => {
       state.learnStyles.learn = learn
-    }))
-    // audio: 'hardCore',
-    // set_audio: action((s, p) => {s.audio = p})
+    })),
+    audio: 'hardCore',
+    set_audio: (audio) => set(produce(state => {
+      state.learnStyles.audio = audio
+    })),
   },
 
   filters: reduce(filters_, (m,v,k) => ({
