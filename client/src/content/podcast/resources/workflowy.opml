@@ -225,21 +225,21 @@
               </outline>
             </outline>
           </outline>
-          <outline text="The Hundred-Page Machine Learning Book">
-            <outline text="@attrs">
-              <outline text="#importance:essential " />
-              <outline text="#topic:basics" />
-              <outline text="#format:book" />
-              <outline text="#difficulty:hard" />
-              <outline text="links">
-                <outline text="Website #$" _note="&lt;a href=&quot;http://themlbook.com/&quot;&gt;http://themlbook.com/&lt;/a&gt;" />
-                <outline text="Amazon #$" _note="&lt;a href=&quot;https://amzn.to/3aKAbQI&quot;&gt;https://amzn.to/3aKAbQI&lt;/a&gt;" />
-              </outline>
-            </outline>
-          </outline>
           <outline text="Dive Deeper">
             <outline text="@attrs ">
               <outline text="#pick:any" />
+            </outline>
+            <outline text="The Hundred-Page Machine Learning Book">
+              <outline text="@attrs">
+                <outline text="#importance:essential " />
+                <outline text="#topic:basics" />
+                <outline text="#format:book" />
+                <outline text="#difficulty:hard" />
+                <outline text="links">
+                  <outline text="Website #$" _note="&lt;a href=&quot;http://themlbook.com/&quot;&gt;http://themlbook.com/&lt;/a&gt;" />
+                  <outline text="Amazon #$" _note="&lt;a href=&quot;https://amzn.to/3aKAbQI&quot;&gt;https://amzn.to/3aKAbQI&lt;/a&gt;" />
+                </outline>
+              </outline>
             </outline>
             <outline text="Elements of Statistical Learning">
               <outline text="@attrs ">
@@ -261,6 +261,31 @@
                 <outline text="links">
                   <outline text="Amazon #$ " _note="&lt;a href=&quot;http://amzn.to/2sDIIfb&quot;&gt;http://amzn.to/2sDIIfb&lt;/a&gt;" />
                   <outline text="PDF #free" _note="&lt;a href=&quot;http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf&quot;&gt;http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf&lt;/a&gt;" />
+                </outline>
+              </outline>
+            </outline>
+            <outline text="StatQuest - Machine Learning" _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
+              <outline text="@attrs">
+                <outline text="#format:video" />
+                <outline text="#difficulty:medium " />
+                <outline text="#audioOption " />
+                <outline text="#video2audio:good" />
+                <outline text="#relevance:fresh " />
+                <outline text="#topic:basics" />
+                <outline text="#importance:essential " />
+                <outline text="links">
+                  <outline text="YouTube - All Playlists #free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
+                  <outline text="Machine Learning #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&lt;/a&gt;" />
+                  <outline text="XGBoost #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLULU0irPgs1SnKO6wqVjKUsQ&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLULU0irPgs1SnKO6wqVjKUsQ&lt;/a&gt;" />
+                  <outline text="Data #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJUNlfvCNhJMNjNNpt5ljcR&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJUNlfvCNhJMNjNNpt5ljcR&lt;/a&gt;" />
+                  <outline text="Neural Networks #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIxGDQs4LFFD--41Vzf-ME1&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIxGDQs4LFFD--41Vzf-ME1&lt;/a&gt;" />
+                  <outline text="SVMs #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUL3IJ4-yor0HzkqDQ3JmJkc&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUL3IJ4-yor0HzkqDQ3JmJkc&lt;/a&gt;" />
+                  <outline text="Gradient Boost #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJjeXUvUE0maghNuY2_5fY6&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJjeXUvUE0maghNuY2_5fY6&lt;/a&gt;" />
+                  <outline text="CART #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUKAtDViTvRGFpphEc24M-QH&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUKAtDViTvRGFpphEc24M-QH&lt;/a&gt;" />
+                  <outline text="Random Forests #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIE96dI3U7oxHaCAbZgfhHk&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIE96dI3U7oxHaCAbZgfhHk&lt;/a&gt;" />
+                  <outline text="Logistic Regression #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUKxzEP5HA2d-Li7IJkHfXSe&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUKxzEP5HA2d-Li7IJkHfXSe&lt;/a&gt;" />
+                  <outline text="Linear Models #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIzaEkCLIUxQFjPIlapw8nU&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIzaEkCLIUxQFjPIlapw8nU&lt;/a&gt;" />
+                  <outline text="Sequencing #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJo2Q6xK4tZElbIvAACEykp&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJo2Q6xK4tZElbIvAACEykp&lt;/a&gt;" />
                 </outline>
               </outline>
             </outline>
@@ -287,6 +312,17 @@
               <outline text="#format:book" />
               <outline text="links">
                 <outline text="Amazon #$" _note="&lt;a href=&quot;https://amzn.to/2IHFh2m&quot;&gt;https://amzn.to/2IHFh2m&lt;/a&gt;" />
+              </outline>
+            </outline>
+          </outline>
+          <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines" _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
+            <outline text="@attrs">
+              <outline text="#format:book" />
+              <outline text="#difficulty:medium " />
+              <outline text="#topic:tech" />
+              <outline text="#importance:essential " />
+              <outline text="links">
+                <outline text="Amazon #$" _note="&lt;a href=&quot;https://amzn.to/3CqJ9xo&quot;&gt;https://amzn.to/3CqJ9xo&lt;/a&gt;" />
               </outline>
             </outline>
           </outline>
@@ -339,33 +375,6 @@
               <outline text="@attrs ">
                 <outline text="#pick:any" />
               </outline>
-              <outline text="Primers | Optional" _note="Some quickie tutorials &amp;amp; articles introducing Deep NLP">
-                <outline text="@attrs">
-                  <outline text="#pick:any" />
-                </outline>
-                <outline text="RNN Overview Articles">
-                  <outline text="@attrs">
-                    <outline text="#topic:nlp" />
-                    <outline text="#difficulty:medium" />
-                    <outline text="#format:other" />
-                    <outline text="links">
-                      <outline text="Unreasonable Effectiveness of RNNs #free" _note="&lt;a href=&quot;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&quot;&gt;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&lt;/a&gt;" />
-                      <outline text="Deep Learning, NLP, and Representations #free" _note="&lt;a href=&quot;http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/&quot;&gt;http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/&lt;/a&gt;" />
-                      <outline text="Understanding LSTM Networks #free" _note="&lt;a href=&quot;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&quot;&gt;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&lt;/a&gt;" />
-                    </outline>
-                  </outline>
-                </outline>
-                <outline text="TensorFlow RNN Tutorials" _note="start at Word2Vec + next 2 pages">
-                  <outline text="@attrs ">
-                    <outline text="#format:other" />
-                    <outline text="#difficulty:medium" />
-                    <outline text="#topic:tech" />
-                    <outline text="links">
-                      <outline text="Website #free" _note="&lt;a href=&quot;https://www.tensorflow.org/tutorials/word2vec&quot;&gt;https://www.tensorflow.org/tutorials/word2vec&lt;/a&gt;" />
-                    </outline>
-                  </outline>
-                </outline>
-              </outline>
               <outline text="Speech and Language Processing" _note="comprehensive classical-NLP bible">
                 <outline text="@attrs">
                   <outline text="#format:book" />
@@ -400,21 +409,6 @@
                   <outline text="#video2audio:medium" />
                   <outline text="links">
                     <outline text="YouTube #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&quot;&gt;https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&lt;/a&gt;" />
-                  </outline>
-                </outline>
-              </outline>
-              <outline text="Other | Optional" _note="Misc books, articles, etc in NLP">
-                <outline text="@attrs ">
-                  <outline text="#pick:any" />
-                </outline>
-                <outline text="NLTK Book">
-                  <outline text="@attrs ">
-                    <outline text="#format:book" />
-                    <outline text="#difficulty:medium" />
-                    <outline text="#topic:nlp" />
-                    <outline text="links">
-                      <outline text="Website #free" _note="&lt;a href=&quot;http://www.nltk.org/book&quot;&gt;http://www.nltk.org/book&lt;/a&gt;" />
-                    </outline>
                   </outline>
                 </outline>
               </outline>
@@ -477,7 +471,7 @@
                   </outline>
                 </outline>
               </outline>
-              <outline text="Sutton &amp;amp; Barto 2nd Ed">
+              <outline text="Sutton and Barto 2nd Ed">
                 <outline text="@attrs ">
                   <outline text="#importance:essential " />
                   <outline text="#topic:rl" />
@@ -562,28 +556,23 @@
           <outline text="#pick:ordered " />
           <outline text="#expand " />
         </outline>
-        <outline text="Primers | Optional" _note="Quick-fix primers to get you up and running (but eventually do the heavy learning!)">
+        <outline text="Math Primer PDF | Optional" _note="Fast primer. Skip to below if you're ready to dive in whole-sale, only read if you're knee-deep in ML and struggling with the math, need a quick-fix. See &quot;Section Notes&quot; of [cs229](&lt;a href=&quot;http://cs229.stanford.edu/materials.html&quot;&gt;http://cs229.stanford.edu/materials.html&lt;/a&gt;)">
           <outline text="@attrs ">
-            <outline text="#pick:any " />
-          </outline>
-          <outline text="Math Primer PDF" _note="See &quot;Section Notes&quot; of [cs229](&lt;a href=&quot;http://cs229.stanford.edu/materials.html&quot;&gt;http://cs229.stanford.edu/materials.html&lt;/a&gt;)">
-            <outline text="@attrs ">
-              <outline text="#difficulty:medium " />
-              <outline text="#topic:math" />
-              <outline text="#format:other" />
-              <outline text="links">
-                <outline text="Website #free" _note="&lt;a href=&quot;http://cs229.stanford.edu/materials.html&quot;&gt;http://cs229.stanford.edu/materials.html&lt;/a&gt;" />
-              </outline>
+            <outline text="#difficulty:medium " />
+            <outline text="#topic:math" />
+            <outline text="#format:other" />
+            <outline text="links">
+              <outline text="Website #free" _note="&lt;a href=&quot;http://cs229.stanford.edu/materials.html&quot;&gt;http://cs229.stanford.edu/materials.html&lt;/a&gt;" />
             </outline>
           </outline>
-          <outline text="Mathematics for Machine Learning" _note="Short and sweet textbook on ML math. Somewhere between a primer and the full deal. Highly lauded in the field.">
-            <outline text="@attrs ">
-              <outline text="#topic:math" />
-              <outline text="#difficulty:hard " />
-              <outline text="#format:book " />
-              <outline text="links">
-                <outline text="Website #free" _note="&lt;a href=&quot;https://mml-book.github.io/&quot;&gt;https://mml-book.github.io/&lt;/a&gt;" />
-              </outline>
+        </outline>
+        <outline text="Mathematics for Machine Learning" _note="Short and sweet textbook on ML math. Somewhere between a primer and the full deal. Highly lauded in the field.">
+          <outline text="@attrs ">
+            <outline text="#topic:math" />
+            <outline text="#difficulty:hard " />
+            <outline text="#format:book " />
+            <outline text="links">
+              <outline text="Website #free" _note="&lt;a href=&quot;https://mml-book.github.io/&quot;&gt;https://mml-book.github.io/&lt;/a&gt;" />
             </outline>
           </outline>
         </outline>
@@ -696,11 +685,11 @@
             </outline>
           </outline>
         </outline>
-        <outline text="Statistics &amp;amp; Probability">
+        <outline text="Statistics and Probability">
           <outline text="@attrs">
             <outline text="#pick:one" />
           </outline>
-          <outline text="TGC Statistics &amp;amp; Probability">
+          <outline text="TGC Statistics and Probability">
             <outline text="@attrs">
               <outline text="#topic:math " />
               <outline text="#tgc" />
@@ -987,6 +976,23 @@
           <outline text="@attrs ">
             <outline text="#pick:all" />
           </outline>
+          <outline text="StatQuest - Math" _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
+            <outline text="@attrs">
+              <outline text="#format:video" />
+              <outline text="#difficulty:medium " />
+              <outline text="#audioOption " />
+              <outline text="#video2audio:good" />
+              <outline text="#relevance:fresh " />
+              <outline text="#topic:math" />
+              <outline text="#importance:essential " />
+              <outline text="links">
+                <outline text="YouTube - All Playlists #free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
+                <outline text="StatQuest main #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&lt;/a&gt;" />
+                <outline text="Stats and ML #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&lt;/a&gt;" />
+                <outline text="Stats #free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9&lt;/a&gt;" />
+              </outline>
+            </outline>
+          </outline>
           <outline text="TGC - Mastering Linear Algebra: An Introduction with Applications 1056">
             <outline text="@attrs ">
               <outline text="#tgc" />
@@ -1017,7 +1023,7 @@
               </outline>
             </outline>
           </outline>
-          <outline text="TGC Statistics &amp;amp; Probability">
+          <outline text="TGC Statistics and Probability">
             <outline text="@attrs">
               <outline text="#topic:math " />
               <outline text="#tgc" />
@@ -1085,6 +1091,16 @@
               </outline>
             </outline>
           </outline>
+          <outline text="Data Skeptic">
+            <outline text="@attrs">
+              <outline text="#topic:basics" />
+              <outline text="#importance:valuable " />
+              <outline text="#format:podcast" />
+              <outline text="links">
+                <outline text="Website #free" _note="&lt;a href=&quot;https://dataskeptic.com/&quot;&gt;https://dataskeptic.com/&lt;/a&gt;" />
+              </outline>
+            </outline>
+          </outline>
           <outline text="Lex Fridman Podcast" _note="My #1 favorite podcast of any kind ever. Lex interviews experts from every walk of futurology: AI, ML, philosophy, ethics, etc. Non-technical, very inspirational.">
             <outline text="@attrs ">
               <outline text="#topic:news_interviews" />
@@ -1105,41 +1121,12 @@
               </outline>
             </outline>
           </outline>
-          <outline text="Linear Digressions">
-            <outline text="@attrs ">
-              <outline text="#format:podcast " />
-              <outline text="#topic:basics" />
-              <outline text="#importance:valuable " />
-              <outline text="links">
-                <outline text="Website #free" _note="&lt;a href=&quot;http://lineardigressions.com/&quot;&gt;http://lineardigressions.com/&lt;/a&gt;" />
-              </outline>
-            </outline>
-          </outline>
-          <outline text="O'Reilly Data Show">
-            <outline text="@attrs ">
-              <outline text="#format:podcast " />
-              <outline text="#topic:news_interviews " />
-              <outline text="links">
-                <outline text="Website #free" _note="&lt;a href=&quot;https://www.oreilly.com/topics/oreilly-data-show-podcast&quot;&gt;https://www.oreilly.com/topics/oreilly-data-show-podcast&lt;/a&gt;" />
-              </outline>
-            </outline>
-          </outline>
           <outline text="Talking machines">
             <outline text="@attrs ">
               <outline text="#topic:news_interviews " />
               <outline text="#format:podcast" />
               <outline text="links">
                 <outline text="Website #free" _note="&lt;a href=&quot;http://www.thetalkingmachines.com/&quot;&gt;http://www.thetalkingmachines.com/&lt;/a&gt;" />
-              </outline>
-            </outline>
-          </outline>
-          <outline text="Data Skeptic">
-            <outline text="@attrs">
-              <outline text="#topic:basics" />
-              <outline text="#importance:valuable " />
-              <outline text="#format:podcast" />
-              <outline text="links">
-                <outline text="Website #free" _note="&lt;a href=&quot;https://dataskeptic.com/&quot;&gt;https://dataskeptic.com/&lt;/a&gt;" />
               </outline>
             </outline>
           </outline>
@@ -1150,6 +1137,46 @@
               <outline text="#format:podcast " />
               <outline text="links">
                 <outline text="Website #free" _note="&lt;a href=&quot;http://www.learningmachines101.com/&quot;&gt;http://www.learningmachines101.com/&lt;/a&gt;" />
+              </outline>
+            </outline>
+          </outline>
+          <outline text="AWS Podcast" _note="Not ML proper, but AWS (or Azure, GCP, etc) will eventually be your bread-and-butter for training, tuning, deploying your models. AWS is the most popular of the cloud providers, especially in ML, so start familiarizing yourself with SageMaker, Batch, EMR, and all that good stuff.">
+            <outline text="@attrs">
+              <outline text="#format:podcast" />
+              <outline text="links">
+                <outline text="Website #free" _note="&lt;a href=&quot;https://aws.amazon.com/podcasts/aws-podcast/&quot;&gt;https://aws.amazon.com/podcasts/aws-podcast/&lt;/a&gt;" />
+              </outline>
+            </outline>
+          </outline>
+          <outline text="Dead, were great" _note="These podcasts are no longer in biz, but they were great in their time. If you're less concerned about cutting-edge, these will still hold high catch-up value">
+            <outline text="@attrs">
+              <outline text="#pick:any" />
+            </outline>
+            <outline text="O'Reilly Data Show">
+              <outline text="@attrs ">
+                <outline text="#format:podcast " />
+                <outline text="#topic:news_interviews " />
+                <outline text="links">
+                  <outline text="Website #free" _note="&lt;a href=&quot;https://www.oreilly.com/topics/oreilly-data-show-podcast&quot;&gt;https://www.oreilly.com/topics/oreilly-data-show-podcast&lt;/a&gt;" />
+                </outline>
+              </outline>
+            </outline>
+            <outline text="Linear Digressions">
+              <outline text="@attrs ">
+                <outline text="#format:podcast " />
+                <outline text="#topic:basics" />
+                <outline text="#importance:valuable " />
+                <outline text="links">
+                  <outline text="Website #free" _note="&lt;a href=&quot;http://lineardigressions.com/&quot;&gt;http://lineardigressions.com/&lt;/a&gt;" />
+                </outline>
+              </outline>
+            </outline>
+            <outline text="Partially Derivative">
+              <outline text="@attrs">
+                <outline text="links">
+                  <outline text="#format:podcast" />
+                  <outline text="Website #free" _note="&lt;a href=&quot;http://partiallyderivative.com/&quot;&gt;http://partiallyderivative.com/&lt;/a&gt;" />
+                </outline>
               </outline>
             </outline>
           </outline>
