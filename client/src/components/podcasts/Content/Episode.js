@@ -21,16 +21,17 @@ function player(e) {
   const id = e.libsynEpisode
   if (players[id]) {return players[id]}
   players[id] = <iframe
-    style={{border: "none"}}
-    src={`//html5-player.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/90/width/640/theme/custom/autonext/no/thumbnail/yes/autoplay/no/preload/no/no_addthis/no/direction/backward/render-playlist/no/custom-color/87A93A/`}
-    height="90"
-    width="640"
+    title="Embed Player"
+    src={`//play.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/128/theme/modern/size/standard/thumbnail/yes/custom-color/111111/time-start/00:00:00/download/no/hide-show/no/direction/backward/hide-playlist/no/hide-subscribe/no/hide-share/no`}
+    height="128"
+    width="100%"
     scrolling="no"
-    allowFullScreen
-    webkitallowfullscreen
-    mozallowfullscreen
-    oallowfullscreen
-    msallowfullscreen
+    allowFullScreen=""
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    oallowfullscreen="true"
+    msallowfullscreen="true"
+    style={{border: "none"}}
   />
   return players[id]
 }
