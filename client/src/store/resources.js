@@ -51,7 +51,7 @@ export const useStore = create((set, get) => ({
     set_learn: (learn) => set(produce(state => {
       state.learnStyles.learn = learn
     })),
-    audio: 'hardCore',
+    audio: 'normal',
     set_audio: (audio) => set(produce(state => {
       state.learnStyles.audio = audio
     })),

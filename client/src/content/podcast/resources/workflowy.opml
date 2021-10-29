@@ -6,7 +6,7 @@
     </ownerEmail>
   </head>
   <body>
-    <outline text="MLG Resources #pick">
+    <outline text="MLG Resources #pick" _note="Export this doc as opml, copy/paste to content/podcast/resources/workflowy.opml. Sections must have #pick; that's the only strict requirement">
       <outline text="Degrees / Certificates #pick:one #expand" _note="Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.">
         <outline text="OMSCS #engagement:active #difficulty:hard #format:degree #importance:essential #topic:basics #price:$$$" _note="Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.&#10;">
           <outline text="Website #price:$$$" _note="&lt;a href=&quot;https://www.omscs.gatech.edu/&quot;&gt;https://www.omscs.gatech.edu/&lt;/a&gt;" />
@@ -62,7 +62,7 @@
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3BoR0u5&quot;&gt;https://amzn.to/3BoR0u5&lt;/a&gt;" />
           </outline>
           <outline text="Dive Deeper #pick:any">
-            <outline text="StatQuest - Machine Learning #format:video #difficulty:medium #audioOption #video2audio:good #relevance:fresh  #topic:basics #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
+            <outline text="StatQuest - Machine Learning #format:video #difficulty:medium #audioOption #video2audio:good  #topic:basics #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
               <outline text="YouTube - All Playlists #price:free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
               <outline text="Machine Learning #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&lt;/a&gt;" />
               <outline text="XGBoost #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLULU0irPgs1SnKO6wqVjKUsQ&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLULU0irPgs1SnKO6wqVjKUsQ&lt;/a&gt;" />
@@ -114,13 +114,14 @@
           <outline text="DL Topics (NLP, CV, RL) #pick:any" _note="Within deep learning, you'll want to specialize in something. Eventually you'll be exposed to most everything, but generally a good idea to pick something you like and master it.">
             <outline text="Natural Language Processing #pick:any">
               <outline text="Speech and Language Processing #format:book #difficulty:hard #topic:nlp #importance:essential " _note="comprehensive classical-NLP bible">
-                <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2uZaNyg&quot;&gt;http://amzn.to/2uZaNyg&lt;/a&gt;" />
+                <outline text="PDF (3rd Ed Draft) #free" _note="&lt;a href=&quot;https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf&quot;&gt;https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf&lt;/a&gt;" />
+                <outline text="Amazon (2nd Ed Complete) #price:$" _note="&lt;a href=&quot;http://amzn.to/2uZaNyg&quot;&gt;http://amzn.to/2uZaNyg&lt;/a&gt;" />
               </outline>
-              <outline text="Stanford NLP YouTube #itunesu #audioOption #topic:nlp #difficulty:medium #format:video  #video2audio:medium" _note="If offline, skip to the Deep NLP playlist (see [tweet](&lt;a href=&quot;https://twitter.com/jurafsky/status/972726681118023680)&quot;&gt;https://twitter.com/jurafsky/status/972726681118023680)&lt;/a&gt;).">
-                <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL6397E4B26D00A269&quot;&gt;https://www.youtube.com/playlist?list=PL6397E4B26D00A269&lt;/a&gt;" />
+              <outline text="Natural Language Processing - Stanford University #itunesu #audioOption #topic:nlp #difficulty:medium #format:video  #video2audio:medium">
+                <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLLssT5z_DsK8HbD2sPcUIDfQ7zmBarMYv&quot;&gt;https://www.youtube.com/playlist?list=PLLssT5z_DsK8HbD2sPcUIDfQ7zmBarMYv&lt;/a&gt;" />
               </outline>
-              <outline text="Stanford cs224n: Deep NLP #difficulty:medium #topic:nlp #itunesu #audioOption #format:video #video2audio:medium" _note="replaces cs224d&#10;">
-                <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&quot;&gt;https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&lt;/a&gt;" />
+              <outline text="CS224N: Natural Language Processing with Deep Learning | Winter 2019 #difficulty:medium #topic:nlp #itunesu #audioOption #format:video #video2audio:medium" _note="replaces cs224d&#10;">
+                <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&quot;&gt;https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&lt;/a&gt;" />
               </outline>
             </outline>
             <outline text="Computer Vision #pick:any">
@@ -144,8 +145,8 @@
               <outline text="Sutton and Barto 2nd Ed #importance:essential  #topic:rl #format:book  #difficulty:hard ">
                 <outline text="PDF #price:free" _note="&lt;a href=&quot;http://incompleteideas.net/book/the-book-2nd.html&quot;&gt;http://incompleteideas.net/book/the-book-2nd.html&lt;/a&gt;" />
               </outline>
-              <outline text="Berkeley cs294: Deep Reinforcement Learning #difficulty:hard #topic:rl #itunesu #audioOption  #format:video #video2audio:medium ">
-                <outline text="Website #price:free " _note="&lt;a href=&quot;http://rll.berkeley.edu/deeprlcourse/&quot;&gt;http://rll.berkeley.edu/deeprlcourse/&lt;/a&gt;" />
+              <outline text="Deep Reinforcement Learning: CS 285 Fall 2020 #difficulty:hard #topic:rl #itunesu #audioOption  #format:video #video2audio:medium ">
+                <outline text="Website #price:free " _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL_iWQOsE6TfURIIhCrlt-wj9ByIVpbfGc&quot;&gt;https://www.youtube.com/playlist?list=PL_iWQOsE6TfURIIhCrlt-wj9ByIVpbfGc&lt;/a&gt;" />
               </outline>
               <outline text="RL Course by David Silver #video2audio:good #difficulty:hard #topic:rl #itunesu #audioOption #format:video">
                 <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&quot;&gt;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&lt;/a&gt;" />
@@ -176,7 +177,7 @@
           <outline text="Website #price:free" _note="&lt;a href=&quot;https://mml-book.github.io/&quot;&gt;https://mml-book.github.io/&lt;/a&gt;" />
         </outline>
         <outline text="Linear Algebra #pick:one">
-          <outline text="TGC - Mastering Linear Algebra: An Introduction with Applications 1056 #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption #topic:math">
+          <outline text="TGC - Mastering Linear Algebra: An Introduction with Applications #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption #topic:math">
             <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
           <outline text="&lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; Linear Algebra #importance:valuable #topic:math #engagement:active #difficulty:hard #format:course ">
@@ -219,7 +220,7 @@
           </outline>
         </outline>
         <outline text="Other #pick:any " _note="Misc topics valuable to ML, but not the core triumvirate">
-          <outline text="StatQuest - Math #format:video #difficulty:medium #audioOption #video2audio:good #relevance:fresh #topic:math #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
+          <outline text="StatQuest - Math #format:video #difficulty:medium #audioOption #video2audio:good #topic:math #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
             <outline text="YouTube - All Playlists #price:free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
             <outline text="StatQuest main #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&lt;/a&gt;" />
             <outline text="Stats and ML #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&lt;/a&gt;" />
@@ -260,7 +261,7 @@
           <outline text="TGC Machine Learning #topic:basics #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption" _note="Video overview of ML basics, highly amenable to audio-only listening. It's rapid-pace, covering a lot of ground in relatively little time. I recommend this be your very first resource, since it will give you an overview of everything. It covers fresh (2020) material like GANs and RL; and material not often covered in ML-basics resources like Andrew Ng (things like Bayesian methods). Watch or listen to this before anything, don't worry if it didn't stick - it's just the overview. _Then_ begin your journey.">
             <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
-          <outline text="StatQuest - Machine Learning #format:video #difficulty:medium #audioOption #video2audio:good #relevance:fresh  #topic:basics #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
+          <outline text="StatQuest - Machine Learning #format:video #difficulty:medium #audioOption #video2audio:good  #topic:basics #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
             <outline text="YouTube - All Playlists #price:free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
             <outline text="Machine Learning #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&lt;/a&gt;" />
             <outline text="XGBoost #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLULU0irPgs1SnKO6wqVjKUsQ&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLULU0irPgs1SnKO6wqVjKUsQ&lt;/a&gt;" />
@@ -279,31 +280,31 @@
           </outline>
         </outline>
         <outline text="Deep Learning #pick:any" _note="Video series which can be listened to instead of watched, if you're really on your game. See Audio-mode in the filters">
-          <outline text="Stanford NLP YouTube #itunesu #audioOption #topic:nlp #difficulty:medium #format:video  #video2audio:medium" _note="If offline, skip to the Deep NLP playlist (see [tweet](&lt;a href=&quot;https://twitter.com/jurafsky/status/972726681118023680)&quot;&gt;https://twitter.com/jurafsky/status/972726681118023680)&lt;/a&gt;).">
-            <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL6397E4B26D00A269&quot;&gt;https://www.youtube.com/playlist?list=PL6397E4B26D00A269&lt;/a&gt;" />
+          <outline text="Natural Language Processing - Stanford University #itunesu #audioOption #topic:nlp #difficulty:medium #format:video  #video2audio:medium">
+            <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLLssT5z_DsK8HbD2sPcUIDfQ7zmBarMYv&quot;&gt;https://www.youtube.com/playlist?list=PLLssT5z_DsK8HbD2sPcUIDfQ7zmBarMYv&lt;/a&gt;" />
           </outline>
-          <outline text="Stanford cs224n: Deep NLP #difficulty:medium #topic:nlp #itunesu #audioOption #format:video #video2audio:medium" _note="replaces cs224d&#10;">
-            <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&quot;&gt;https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&lt;/a&gt;" />
+          <outline text="CS224N: Natural Language Processing with Deep Learning | Winter 2019 #difficulty:medium #topic:nlp #itunesu #audioOption #format:video #video2audio:medium" _note="replaces cs224d&#10;">
+            <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&quot;&gt;https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&lt;/a&gt;" />
           </outline>
           <outline text="Stanford CS231n: Convolutional Neural Networks for Visual Recognition #difficulty:medium #topic:cv #itunesu #audioOption #format:video #video2audio:medium " _note="Visit the website for the most recent YouTube playlist; they record this every semester.">
             <outline text="Website #price:free" _note="&lt;a href=&quot;http://cs231n.stanford.edu/index.html&quot;&gt;http://cs231n.stanford.edu/index.html&lt;/a&gt;" />
             <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&quot;&gt;https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&lt;/a&gt;" />
           </outline>
-          <outline text="Berkeley cs294: Deep Reinforcement Learning #difficulty:hard #topic:rl #itunesu #audioOption  #format:video #video2audio:medium ">
-            <outline text="Website #price:free " _note="&lt;a href=&quot;http://rll.berkeley.edu/deeprlcourse/&quot;&gt;http://rll.berkeley.edu/deeprlcourse/&lt;/a&gt;" />
+          <outline text="Deep Reinforcement Learning: CS 285 Fall 2020 #difficulty:hard #topic:rl #itunesu #audioOption  #format:video #video2audio:medium ">
+            <outline text="Website #price:free " _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL_iWQOsE6TfURIIhCrlt-wj9ByIVpbfGc&quot;&gt;https://www.youtube.com/playlist?list=PL_iWQOsE6TfURIIhCrlt-wj9ByIVpbfGc&lt;/a&gt;" />
           </outline>
           <outline text="RL Course by David Silver #video2audio:good #difficulty:hard #topic:rl #itunesu #audioOption #format:video">
             <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&quot;&gt;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&lt;/a&gt;" />
           </outline>
         </outline>
         <outline text="Math #pick:all" _note="Video series which can be effectively consumed in audio format, without losing too much value. Prefer to watch these, but since you'll have a lot on your visual-learning plate, I've listed resources which you can listen to and save time">
-          <outline text="StatQuest - Math #format:video #difficulty:medium #audioOption #video2audio:good #relevance:fresh #topic:math #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
+          <outline text="StatQuest - Math #format:video #difficulty:medium #audioOption #video2audio:good #topic:math #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
             <outline text="YouTube - All Playlists #price:free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
             <outline text="StatQuest main #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&lt;/a&gt;" />
             <outline text="Stats and ML #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&lt;/a&gt;" />
             <outline text="Stats #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9&lt;/a&gt;" />
           </outline>
-          <outline text="TGC - Mastering Linear Algebra: An Introduction with Applications 1056 #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption #topic:math">
+          <outline text="TGC - Mastering Linear Algebra: An Introduction with Applications #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption #topic:math">
             <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
           <outline text="TGC Calculus #topic:math #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption ">
