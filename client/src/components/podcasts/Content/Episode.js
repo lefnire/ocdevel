@@ -41,6 +41,28 @@ const teaserRenderers = {
   }
 }
 
+const teaserMDX = {
+  components: {
+    h1: props => <><strong {...props} /><br/></>
+  }
+}
+
+function Section({Content, header, show, hr=false, teaser=false}) {
+  if (!Content) {return null}
+  // Switching to new MDX setup, away from ReactMarkdown
+  const isMdx = typeof Content !== "string";
+  const opts = teaser ? (isMdx ? teaserMDX : teaserRenderers) : {}
+  const rendered = typeof Content === "string" ?
+    <ReactMarkdown_ source={Content} {...opts} />
+    : <Content {...opts} />;
+  return <>
+    {hr && <hr />}
+    {header ? <>
+      <ShowHide title={header} show={show}>{rendered}</ShowHide>
+    </> : rendered}
+  </>
+}
+
 function ShowHide({title, children, show=false}) {
   const [show_, setShow] = useState(show);
 
@@ -79,8 +101,6 @@ export function Episode({e, teaser}) {
   }
 
   function renderTeaser() {
-    const combined = e.body && e.teaser ? `${e.teaser}\n\n---\n\n${e.body}` :
-      e.body || e.teaser
     const link = `/mlg/${e.id}`
 
     return <Card className={`episode-teaser mb-3 card-post ${e.archived ? 'episode-archived' : ''}`}>
@@ -94,11 +114,14 @@ export function Episode({e, teaser}) {
           <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
         </> : e.body ? <>
           <div className='fade-post'>
-            <ReactMarkdown_ source={combined} renderers={teaserRenderers} />
+            <Section Content={e.teaser} teaser/>
+            <Section Content={e.body} hr={e.teaser} teaser />
             <div className='fade-post-bottom' />
           </div>
           <Link to={link}>Read More</Link>
-        </> : <ReactMarkdown_ source={combined} />}
+        </> : <>
+          <Section Content={e.teaser} teaser />
+        </>}
       </Card.Body>
     </Card>
   }
@@ -107,7 +130,7 @@ export function Episode({e, teaser}) {
     return <div>
       <Helmet>
         <title>{e.title} | Machine Learning Guide</title>
-        {e.teaser && <meta name="description" content={e.teaser} />}
+        {e.teaser && <meta name="description" Content={e.teaser} />}
       </Helmet>
       <BackButton />
       <Card>
@@ -117,22 +140,9 @@ export function Episode({e, teaser}) {
           {renderDate()}
           {player(e)}
 
-          {e.teaser && <>
-            <ReactMarkdown_ source={e.teaser} />
-          </>}
-
-          {e.teaser && e.body && <hr />}
-
-          {e.body && <ShowHide title="Show Notes" show={true}>
-            <ReactMarkdown_ source={e.body} />
-          </ShowHide>}
-
-          {e.transcript?.length && <>
-            <hr />
-            <ShowHide title="Transcript">
-              <ReactMarkdown_ source={e.transcript} />
-            </ShowHide>
-          </>}
+          <Section Content={e.teaser} />
+          <Section Content={e.body} header="Show Notes" show={true} hr={e.teaser && e.body} />
+          <Section Content={e.transcript} header="Transcript" />
 
           {/*e.resources && <>
             <hr />

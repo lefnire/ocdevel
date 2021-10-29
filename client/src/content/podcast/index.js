@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 export const episodes = _.map([
-  require('./mlg/001.js').default,
+  require('./mlg/001').default,
   require('./mlg/002.js').default,
   require('./mlg/003.js').default,
   require('./mlg/004.js').default,

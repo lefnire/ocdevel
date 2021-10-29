@@ -54,6 +54,8 @@
     ]
   },
   "devDependencies": {
+    "mdx.macro": "^0.2.9",
+    "@mdx-js/tag": "^0.20.3",
     "xml-js": "^1.6.11"
   }
 }
