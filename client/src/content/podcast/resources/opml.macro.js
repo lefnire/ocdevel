@@ -30,19 +30,18 @@ function opmlMacro({ references, state }) {
     const fullPath = require.resolve(argPath, { paths: [dirname] })
     const fileContent = fs.readFileSync(fullPath, { encoding: 'utf-8' })
 
-    // const options = Object.assign({}, argOptions, { keepBlobsInJSON: false })
-    // const res = YAML.parse(fileContent, options)
     const res = xmlJs.xml2js(fileContent, {compact: true});
     const wf = parseWorkflowy(res.opml.body.outline)
     const exp = parseExpression(JSON.stringify(wf))
+    // const exp = parseExpression(JSON.stringify(res))
     parentPath.replaceWith(exp)
   }
 }
 
-// https://dev.to/mraza007/using-regex-to-extract-links-45fg
-const linkRegex = /(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+/
+// aecd0d0c reLink
 // https://giuliachiola.dev/posts/how-to-remove-all-links-in-javascript/
-const stripTagsRegex = /<[^>]+>/g
+const reStripHtml= /<[^>]+>/g
+const reTags = /\#\S+/g
 const defaults = {
   importance: "supplementary",
   format: "other",
@@ -52,60 +51,35 @@ const defaults = {
   relevance: "fresh",
 }
 
-function parseWorkflowy(tree, opts = {}) {
+function parseWorkflowy(tree, isLink = false) {
   if (!tree) {return {}}
 
-  const text = tree._attributes?.text?.trim().replace(stripTagsRegex, '')
-  const _note = tree._attributes?._note?.trim().replace(stripTagsRegex, '')
-  const outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]
+  let text = tree._attributes?.text?.replace(reStripHtml, '').replace('&amp;', '&')
+  let _note = tree._attributes?._note?.replace(reStripHtml, '').trim()
+  let outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]
+  let tags = text.match(reTags)
 
-  // Attributes child
-  if (text === "links") {
-    const links = reduce(outline, (m,v,k) => ([
-      ...m,
-      parseWorkflowy(v, {link: true})
-    ]), [])
-    return {links}
-  }
-
-  if (text === "@attrs") {
-    const attrs = reduce(outline, (m,v,k) => ({
-      ...m,
-      ...parseWorkflowy(v, {attr: true})
-    }), {})
-    return {attrs}
-  }
-
-  if (opts.attr) {
-    let [k, v] = text.split(':')
-    k = k.replace('#','')
+  // pull out tags
+  tags = reduce(tags, (m,tag) => {
+    let [k, v] = tag.split(':')
+    k = k.substr(1)
     v = v || true
-    return {[k]: v}
+    return {...m, [k]: v}
+  }, {})
+  text = text.replace(/\#\S+/g, '').trim()
+
+  if (isLink) {
+    return {t: text, l: _note, p: tags.price}
   }
 
-  if (opts.link) {
-    const price = text.match(/(?<=\#)\S+/g)
-    return {
-      t: text.replace(/\#\S+/g, ""),
-      l: _note,
-      p: price?.[0]
-    }
-  }
-
-  // Main content
-  return reduce(outline, (m,v,k) => {
-    const child = parseWorkflowy(v)
-    // Merge attributes
-    if (child.attrs) {
-      return {...m, ...child.attrs}
-    }
-    // Append children
-    return {...m, v: [...m.v, child]}
-  }, {
-    ...defaults,
+  let isResource = !tags.pick
+  const children = outline.map(o => parseWorkflowy(o, isResource))
+  return {
+    ...(isResource ? {...defaults} : {}),
+    ...tags,
     t: text,
-    id: crypto.createHash('md5').update(text).digest("hex"),
     d: _note,
-    v: []
-  })
+    id: crypto.createHash('md5').update(text).digest("hex"),
+    [isResource ? 'links' : 'v']: children
+  }
 }
