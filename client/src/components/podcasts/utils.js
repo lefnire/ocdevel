@@ -1,12 +1,13 @@
 import {
   Popover,
-  OverlayTrigger,
+  OverlayTrigger, Accordion,
 } from "react-bootstrap";
 import {Link} from 'react-router-dom'
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import {BiChevronDown, BiChevronRight, FiMinusSquare, FiPlusSquare} from "react-icons/all";
 import {render} from "@testing-library/react";
+import compact from 'lodash/compact'
 
 export const dateFmt = 'MMM DD, YYYY';
 
@@ -72,4 +73,14 @@ export const icons = {
   minus: <FiMinusSquare />,
   down: <BiChevronDown />,
   right: <BiChevronRight />
+}
+
+export function Accordion_({items}) {
+  if (!items?.length) {return null}
+  return <Accordion defaultActiveKey="0">
+    {compact(items).map((item, i) => <Accordion.Item key={""+i} eventKey={""+i}>
+      <Accordion.Header>{item.title}</Accordion.Header>
+      <Accordion.Body>{item.body}</Accordion.Body>
+    </Accordion.Item>)}
+  </Accordion>
 }

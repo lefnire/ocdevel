@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Inspiration",
   episode: 3,
@@ -7,12 +5,6 @@ export default {
   guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
   libsynEpisode: 5440756,
   teaser: "Why should you care about AI? Inspirational topics about economic revolution, the singularity, consciousness, and fear.",
-  resources: [
-    resources.singularity_is_near,
-
-    resources.tgc_consciousness,
-    resources.superintelligence,
-  ],
   body: String.raw`
 Economics / Automation
 - Mental automation (Tax prep; x-rays, surgeons; cars; law; programmers, designers, logos; music, art)

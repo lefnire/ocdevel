@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Convolutional Neural Networks',
   episode: 25,
@@ -7,9 +5,6 @@ export default {
   guid: "91bf8a0266bc22088c897eb756cc97d3",
   file: {},
   libsynEpisode: 5890712,
-  resources: [
-    resources.cs231n,
-  ],
   teaser: 'Convnets or CNNs. Filters, feature maps, window/stride/padding, max-pooling.',
   body: `
 See resources on [Deep Learning episode](/mlg/9).

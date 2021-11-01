@@ -54,7 +54,7 @@ function Posts() {
   function renderPost(p) {
     return <Card key={p.id} className='mb-3 card-post'>
       <Card.Body>
-        <Card.Title><Link to={'/blog/' + p.id} className='text-decoration-none'>{p.title}</Link></Card.Title>
+        <Card.Title><Link to={'/blog/' + p.id}>{p.title}</Link></Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {moment(p.date).format(fmt)}
         </Card.Subtitle>
@@ -62,7 +62,7 @@ function Posts() {
           {p.jsx ? p.body : <ReactMarkdown_ source={p.body} />}
           <div className='fade-post-bottom'></div>
         </div>
-        <Link to={'/blog/' + p.id} className='text-decoration-none'>Read More</Link>
+        <Link to={'/blog/' + p.id}>Read More</Link>
       </Card.Body>
     </Card>
   }

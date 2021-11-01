@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Deep NLP 2',
   episode: 23,
@@ -7,11 +5,6 @@ export default {
   guid: "1346120e3e578b15c8f34b31bc21ef78",
   file: {},
   libsynEpisode: 5660423,
-  resources: [
-    resources.rnn_articles,
-    resources.cs224n,
-    resources.tf_tuts_rnns
-  ],
   teaser: 'RNN review, bi-directional RNNs, LSTM & GRU cells.',
   body: `
 See resources on [Deep Learning episode](/mlg/9).

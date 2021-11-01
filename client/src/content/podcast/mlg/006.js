@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Certificates & Degrees",
   episode: 6,
@@ -11,12 +9,6 @@ export default {
     duration: "15:36"
   },
   libsynEpisode: 5440753,
-  resources: [
-    resources.udacity_ml,
-    resources.udacity_ai,
-    resources.udacity_self_driving,
-    resources.omscs
-  ],
   teaser: "Discussion on certificates and degrees from Udacity to a Masters degree.",
   body: `
 See online discussions about degrees/certifications: [1](http://canyon289.github.io/DSGuide.html#DSGuide) [2](https://news.ycombinator.com/item?id=13654127) [3](http://cole-maclean.github.io/blog/Self%20Taught%20AI/) [4](https://news.ycombinator.com/item?id=12516441)

@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Languages & Frameworks",
   episode: 10,
@@ -11,12 +9,6 @@ export default {
     duration: "44:17"
   },
   libsynEpisode: 5440748,
-  resources: [
-    resources.book_python,
-    resources.python_data_analysis,
-    resources.tensorflow_tuts,
-    resources.handson_tensorflow
-  ],
   teaser: "Languages & frameworks comparison. Languages: Python, R, MATLAB/Octave, Julia, Java/Scala, C/C++. Frameworks: Hadoop/Spark, Deeplearning4J, Theano, Torch, TensorFlow.",
   body: `
 Languages

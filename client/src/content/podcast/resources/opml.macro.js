@@ -6,6 +6,7 @@ const xmlJs = require('xml-js');
 const reduce = require('lodash/reduce')
 const crypto = require('crypto')
 const last = require('lodash/last')
+const find = require('lodash/find')
 
 module.exports = createMacro(opmlMacro)
 
@@ -31,7 +32,7 @@ function opmlMacro({ references, state }) {
     const fileContent = fs.readFileSync(fullPath, { encoding: 'utf-8' })
 
     const res = xmlJs.xml2js(fileContent, {compact: true});
-    const wf = parseWorkflowy(res.opml.body.outline)
+    const wf = parseWorkflowy(res)
     const exp = parseExpression(JSON.stringify(wf))
     // const exp = parseExpression(JSON.stringify(res))
     parentPath.replaceWith(exp)
@@ -51,7 +52,17 @@ const defaults = {
   relevance: "fresh",
 }
 
-function parseWorkflowy(tree, isLink = false) {
+let episodes = {mlg: {} ,mla: {}}
+function addEpisode(podcast, number, node) {
+  const p = episodes[podcast]
+  if (!p[number]) {
+    p[number] = []
+  }
+  if (find(p[number], {id: node.id})) {return}
+  p[number].push(node)
+}
+
+function parseTree(tree, isLink = false) {
   if (!tree) {return {}}
 
   let text = tree._attributes?.text?.replace(reStripHtml, '').replace('&amp;', '&')
@@ -61,9 +72,11 @@ function parseWorkflowy(tree, isLink = false) {
 
   // pull out tags
   tags = reduce(tags, (m,tag) => {
-    let [k, v] = tag.split(':')
+    let [k, ...v] = tag.split(':')
     k = k.substr(1)
-    v = v || true
+    if (!~['mlg', 'mla'].indexOf(k)) {
+      v = v?.[0] || true
+    }
     return {...m, [k]: v}
   }, {})
   text = text.replace(/\#\S+/g, '').trim()
@@ -73,8 +86,8 @@ function parseWorkflowy(tree, isLink = false) {
   }
 
   let isResource = !tags.pick
-  const children = outline.map(o => parseWorkflowy(o, isResource))
-  return {
+  const children = outline.map(o => parseTree(o, isResource))
+  const node = {
     ...(isResource ? {...defaults} : {}),
     ...tags,
     t: text,
@@ -82,4 +95,14 @@ function parseWorkflowy(tree, isLink = false) {
     id: crypto.createHash('md5').update(text).digest("hex"),
     [isResource ? 'links' : 'v']: children
   }
+  tags.mlg?.forEach(ep => addEpisode('mlg', ep, node))
+  tags.mla?.forEach(ep => addEpisode('mla', ep, node))
+  return node
+}
+
+function parseWorkflowy(res) {
+  const outline = res.opml.body.outline
+  const tree = parseTree(outline, false)
+  console.log(episodes)
+  return {tree, episodes}
 }

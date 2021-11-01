@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Deep Learning",
   episode: 9,
@@ -11,15 +9,6 @@ export default {
     duration: "51:09"
   },
   libsynEpisode: 5440749,
-  resources: [
-    resources.dl_simplified,
-    resources.tensorflow_tuts,
-
-    resources.fastai,
-    resources.handson_tensorflow,
-
-    resources.dl_book
-  ],
   teaser: "Deep learning and neural networks. How to stack our logisitic regression units into a multi-layer perceptron.",
   body:`
 - Value

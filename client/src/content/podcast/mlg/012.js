@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Shallow Algos 1",
   episode: 12,
@@ -10,11 +8,6 @@ export default {
     length: 50030574,
     duration: "53:17"
   },
-  resources: [
-    resources.ng,
-    resources.tour_ml_algos,
-    resources.handson_tensorflow,
-  ],
   libsynEpisode: 5440746,
   teaser: "Speed-run of some shallow algorithms: K Nearest Neighbors (KNN); K-means; Apriori; PCA; Decision Trees",
   body: `

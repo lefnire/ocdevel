@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Natural Language Processing 3',
   episode: 20,
@@ -7,11 +5,6 @@ export default {
   guid: "556b3779a8f8546de9457002a19e63b2",
   file: {},
   libsynEpisode: 5566766,
-  resources: [
-    resources.speech_and_nlp,
-    resources.stanford_nlp,
-    resources.nltk,
-  ],
   teaser: 'Natural Language Processing classical/shallow algorithms.',
   body:`
 - Parsing

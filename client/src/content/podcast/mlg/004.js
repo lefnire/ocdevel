@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Algorithms - Intuition",
   episode: 4,
@@ -12,10 +10,6 @@ export default {
   },
   libsynEpisode: 5440755,
   teaser: "Overview of machine learning algorithms. Infer/predict -> error/loss -> train/learn. Supervised, unsupervised, reinforcement learning.",
-  resources: [
-    resources.tour_ml_algos,
-    resources.master_algorithm
-  ],
   body: `
 Learning (ML)
 - 3-step process

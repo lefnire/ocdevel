@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Natural Language Processing 2',
   episode: 19,
@@ -7,11 +5,6 @@ export default {
   guid: "e05e640ba2f99105f52c4eef0c5cabfb",
   file: {},
   libsynEpisode: 5525243,
-  resources: [
-    resources.speech_and_nlp,
-    resources.stanford_nlp,
-    resources.nltk
-  ],
   teaser: 'Natural Language Processing classical/shallow algorithms.',
   body: `
 - Edit distance: Levenshtein distance

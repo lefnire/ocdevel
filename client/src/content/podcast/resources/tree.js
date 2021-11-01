@@ -1,6 +1,7 @@
 import opml from './opml.macro'
 const wf = opml('./workflowy.opml')
-// console.log(wf)
+
+console.log(wf)
 
 export const picks = {
   ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},
@@ -9,9 +10,11 @@ export const picks = {
   one: {t: "Pick One", d: "These resources generally cover the same material. You only really need one, but up to you if you want more than one of these for learning-by-repetition. Listed in descending order of my preference."},
 }
 
+export const episodes = wf.episodes
+export const tree = wf.tree
 export default {
-  degrees: wf.v[0],
-  main: wf.v[1],
-  math: wf.v[2],
-  audio: wf.v[3]
+  degrees: tree.v[0],
+  main: tree.v[1],
+  math: tree.v[2],
+  audio: tree.v[3]
 }

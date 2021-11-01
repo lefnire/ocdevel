@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Shallow Algos 2",
   episode: 13,
@@ -11,11 +9,6 @@ export default {
     duration: "55:12"
   },
   libsynEpisode: 5440745,
-  resources: [
-    resources.ng,
-    resources.handson_tensorflow,
-    resources.tgc_math_decision_making,
-  ],
   teaser: "Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier.",
   body: `
 See [Andrew Ng Week 7](https://www.coursera.org/learn/machine-learning/resources/Es9Qo)

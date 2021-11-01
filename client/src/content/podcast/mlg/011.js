@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Checkpoint',
   episode: 11,

@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Tech Stack',
   episode: 24,

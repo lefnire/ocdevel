@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Math",
   episode: 8,
@@ -11,23 +9,6 @@ export default {
     duration: "27:23"
   },
   libsynEpisode: 5440751,
-  resources: [
-    resources.tgc_linear_algebra,
-    resources.book_linear_algebra,
-    resources.khan_linear_algebra,
-
-    resources.tgc_stats,
-    resources.book_stats,
-    resources.khan_stats,
-
-    resources.tgc_calc,
-    resources.book_calc,
-    resources.khan_calc,
-
-    resources.tgc_math_decision_making,
-    resources.tgc_info_theory,
-    resources.math_primer,
-  ],
   teaser: "Introduction to the branches of mathematics used in machine learning. Linear algebra, statistics, calculus.",
   body: `
 Come back here after you've finished Ng's course; or learn these resources in tandem with ML (say 1 day a week).

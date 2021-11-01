@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Reinforcement Learning Intro',
   episode: 29,
@@ -7,13 +5,6 @@ export default {
   guid: "fc7802de8fb4d4f609fd11db9afb2189",
   file: {},
   libsynEpisode: 6226276,
-  resources: [
-    resources.handson_tensorflow,
-    resources.sutton_barto,
-    resources.aima,
-    resources.cs294,
-    resources.david_silver
-  ],
   teaser: 'Introduction to reinforcement learning concepts',
   body: `
 - RL definition: goal, rewards, actions

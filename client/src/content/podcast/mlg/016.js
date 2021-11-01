@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Consciousness",
   episode: 16,
@@ -11,9 +9,6 @@ export default {
     duration: "01:14:57"
   },
   libsynEpisode: 5440742,
-  resources: [
-    resources.tgc_consciousness
-  ],
   teaser: "Can AI be conscious?",
   body: `
 Inspirations for AI

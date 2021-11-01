@@ -1,5 +1,3 @@
-import resources from '../resources'
-
 export default {
   title: "What is AI / ML",
   episode: 2,
@@ -7,7 +5,6 @@ export default {
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   libsynEpisode: 5440757,
   teaser: "What is artificial intelligence and machine learning? What's the difference? How about compared to statistics and data science? AI history.",
-  resources: [resources.qai, resources.wikipedia_ai, resources.machines_of_loving_grace],
   body: String.raw`
 What is AI?
 - Simulate any intellectual task

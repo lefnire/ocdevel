@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Natural Language Processing 1',
   episode: 18,
@@ -7,11 +5,6 @@ export default {
   guid: "d8ebdbe6640d0d34f12778f90b91db8d",
   file: {},
   libsynEpisode: 5479957,
-  resources: [
-    resources.speech_and_nlp,
-    resources.stanford_nlp,
-    resources.nltk
-  ],
   teaser: 'Introduction to Natural Language Processing (NLP) topics.',
   body: `
 _Errata_: 22:21 "cat & car different by one word" should be "different by one letter"

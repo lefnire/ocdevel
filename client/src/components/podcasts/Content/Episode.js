@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from "react";
-import {Alert, Button, Card} from "react-bootstrap";
-import {dateFmt, ReactMarkdown_} from "../utils";
+import {Accordion, Alert, Button, Card} from "react-bootstrap";
+import {Accordion_, dateFmt, ReactMarkdown_} from "../utils";
 import {LinkContainer} from "react-router-bootstrap";
 import _ from "lodash";
 import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {BackButton} from "../../utils";
-import {ResourcesFlat} from "./Resources";
+import {ResourcesFlat, InlineTree} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {episodesObj, mlg} from "../../../content/podcast";
 import {BiChevronDown, BiChevronRight} from "react-icons/all";
+import {episodes as episodeResources} from '../../../content/podcast/resources/tree'
 
 
 // 8d7997de switched from component to returning memoized JSX, since iframe being
@@ -48,39 +49,14 @@ const teaserMDX = {
   }
 }
 
-function Section({Content, header, show, hr=false, teaser=false}) {
+function Markdown_({Content, teaser=false}) {
   if (!Content) {return null}
   // Switching to new MDX setup, away from ReactMarkdown
   const isMdx = typeof Content !== "string";
   const opts = teaser ? (isMdx ? teaserMDX : teaserRenderers) : {}
-  const rendered = typeof Content === "string" ?
+  return typeof Content === "string" ?
     <ReactMarkdown_ source={Content} {...opts} />
     : <Content {...opts} />;
-  return <>
-    {hr && <hr />}
-    {header ? <>
-      <ShowHide title={header} show={show}>{rendered}</ShowHide>
-    </> : rendered}
-  </>
-}
-
-function ShowHide({title, children, show=false}) {
-  const [show_, setShow] = useState(show);
-
-  // display:none for SEO (don't exclude from html)
-  const style = show_ ? {} : {display: 'none'};
-  return <div>
-    <Card.Title
-      className='pointer'
-      onClick={() => setShow(!show_)}
-    >
-      {show_ ? <BiChevronDown /> : <BiChevronRight />}
-      <span className='me-2'>{title}</span>
-    </Card.Title>
-    <div style={style}>
-      {children}
-    </div>
-  </div>
 }
 
 export function Episode({e, teaser}) {
@@ -107,7 +83,7 @@ export function Episode({e, teaser}) {
     return <Card className={`episode-teaser mb-3 card-post ${e.archived ? 'episode-archived' : ''}`}>
       <Card.Body>
         <Card.Title>
-          <Link to={link} className='text-decoration-none'>{title}</Link>
+          <Link to={link}>{title}</Link>
         </Card.Title>
         {renderDate()}
         {player(e)}
@@ -115,19 +91,39 @@ export function Episode({e, teaser}) {
           <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
         </> : e.body ? <>
           <div className='fade-post'>
-            <Section Content={e.teaser} teaser/>
-            <Section Content={e.body} hr={e.teaser} teaser />
+            <Markdown_ Content={e.teaser} teaser/>
+            {e.teaser && <hr />}
+            <Markdown_ Content={e.body} teaser />
             <div className='fade-post-bottom' />
           </div>
-          <Link to={link} className='text-decoration-none'>Read More</Link>
+          <Link to={link}>Read More</Link>
         </> : <>
-          <Section Content={e.teaser} teaser />
+          <Markdown_ Content={e.teaser} teaser />
         </>}
       </Card.Body>
     </Card>
   }
 
   function renderFull() {
+    const resources = episodeResources[e.mla ? 'mla' : 'mlg']?.[e.episode]
+    const items = [
+      (e.body && {
+        title: "Show Notes",
+        body: <Markdown_ Content={e.body} />
+      }),
+      (e.transcript && {
+        title: "Transcript",
+        body: <Markdown_ Content={e.transcript} />
+      }),
+      (resources && {
+        title: "Resources",
+        body: <>
+          <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
+          <InlineTree resources={resources} />
+        </>
+      })
+    ]
+
     return <div>
       <Helmet>
         <title>{e.title} | Machine Learning Guide</title>
@@ -141,17 +137,8 @@ export function Episode({e, teaser}) {
           {renderDate()}
           {player(e)}
 
-          <Section Content={e.teaser} />
-          <Section Content={e.body} header="Show Notes" show={true} hr={e.teaser && e.body} />
-          <Section Content={e.transcript} header="Transcript" />
-
-          {/*e.resources && <>
-            <hr />
-            <ShowHide title="Resources">
-              <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
-              <ResourcesFlat resources={e.resources} />
-            </ShowHide>
-          </>*/}
+          <Markdown_ Content={e.teaser} />
+          <Accordion_ items={items} />
 
         </Card.Body>
         {e.guid && <Card.Footer>

@@ -159,23 +159,23 @@ function Resource({resource}) {
   return renderResource()
 }
 
-export function ResourcesFlat({resources}) {
-  if (!resources) {return null}
-
-  function renderResource(r){
-    if (!_.isArray(r)) {
-      return <Resource resource={r} key={r.id}/>
-    }
-    return <Alert className='pick-one-resource' key={r.id}>
-      <h6>Pick One</h6>
-      {r.map(r_ => <Resource resource={r_} key={r_.id}/>)}
-    </Alert>
-  }
-
-  return <div className='resources resources-flat'>
-    {resources.map(renderResource)}
-  </div>
-}
+// export function ResourcesFlat({resources}) {
+//   if (!resources) {return null}
+//
+//   function renderResource(r){
+//     if (!_.isArray(r)) {
+//       return <Resource resource={r} key={r.id}/>
+//     }
+//     return <Alert className='pick-one-resource' key={r.id}>
+//       <h6>Pick One</h6>
+//       {r.map(r_ => <Resource resource={r_} key={r_.id}/>)}
+//     </Alert>
+//   }
+//
+//   return <div className='resources'>
+//     {resources.map(renderResource)}
+//   </div>
+// }
 
 function TreeSectionWrapper({expanded, children}) {
   return <div className={expanded ? 'section-expanded border-start border-top' : ''}>
@@ -252,5 +252,15 @@ export function ResourcesTree() {
   const sections = useFilteredTree()
   return <div className='resources resources-tree mb-3'>
     {sections.map(n => n && <ResourceNode node={n} key={n.t} />)}
+  </div>
+}
+
+export function InlineTree({resources}) {
+  if (resources?.length === 1 && resources[0].pick) {
+    // just a section, explode it inline
+    resources = resources[0].v
+  }
+  return <div className='resources'>
+    {resources.map(n => n && <ResourceNode node={n} key={n.t}/>)}
   </div>
 }

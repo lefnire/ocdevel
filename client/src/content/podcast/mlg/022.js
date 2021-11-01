@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Deep NLP 1',
   episode: 22,
@@ -7,11 +5,6 @@ export default {
   guid: "d9e15cfe501a8f0c6e3c075c09f7e682",
   file: {},
   libsynEpisode: 5589161,
-  resources: [
-    resources.rnn_articles,
-    resources.cs224n,
-    resources.tf_tuts_rnns
-  ],
   teaser: 'Recurrent Neural Networks (RNNs) and Word2Vec.',
   body: `
 See resources on [Deep Learning episode](/mlg/9).

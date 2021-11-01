@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: "Logistic Regression",
   episode: 7,
@@ -11,9 +9,6 @@ export default {
     duration: "34:19"
   },
   libsynEpisode: 5440752,
-  resources: [
-    resources.ng
-  ],
   teaser: "Your first classifier: Logistic Regression. That plus Linear Regression, and you're a 101 supervised learner!",
   body: `
 See [Andrew Ng Week 3 Lecture Notes](https://www.coursera.org/learn/machine-learning/resources/Zi29t)`

@@ -8,36 +8,40 @@
   <body>
     <outline text="MLG Resources #pick" _note="Export this doc as opml, copy/paste to content/podcast/resources/workflowy.opml. Sections must have #pick; that's the only strict requirement">
       <outline text="Degrees / Certificates #pick:one #expand" _note="Consider this mutually-exclusive to the above list of self-learning resources. No point in burning yourself out if you're going to get a Masters in ML anyway.">
-        <outline text="OMSCS #engagement:active #difficulty:hard #format:degree #importance:essential #topic:basics #price:$$$" _note="Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.&#10;">
+        <outline text="OMSCS #engagement:active #difficulty:hard #format:degree #importance:essential #topic:basics #price:$$$ #mlg:6" _note="Online Masters of Computer Science at Georgia Tech. Pretty renowned, very cheap. However, getting somewhat mixed-reviews on outcome (learned skills, hireability). Look at this degree first, then do your own research. If you find something better, please contact me so I can update this.&#10;">
           <outline text="Website #price:$$$" _note="&lt;a href=&quot;https://www.omscs.gatech.edu/&quot;&gt;https://www.omscs.gatech.edu/&lt;/a&gt;" />
         </outline>
         <outline text="Certificates #pick:one" _note="Certificates &amp;amp; nano-degrees. I'm nesting it here since they're not widely respected yet in industry, prefer a traditional Masters (a la above list)">
-          <outline text="Udacity Machine Learning #importance:valuable #difficulty:hard #engagement:active #format:degree #topic:basics #price:$$$">
+          <outline text="Udacity Machine Learning #importance:valuable #difficulty:hard #engagement:active #format:degree #topic:basics #price:$$$ #mlg:6">
             <outline text="Website #price:$$$" _note="&lt;a href=&quot;https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009&quot;&gt;https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009&lt;/a&gt;" />
           </outline>
-          <outline text="Udacity Artificial Intelligence #importance:valuable  #difficulty:hard #engagement:active #format:degree #topic:rl #price:$$$">
+          <outline text="Udacity Artificial Intelligence #importance:valuable  #difficulty:hard #engagement:active #format:degree #topic:rl #price:$$$ #mlg:6">
             <outline text="Website #price:$$$" _note="&lt;a href=&quot;https://www.udacity.com/ai&quot;&gt;https://www.udacity.com/ai&lt;/a&gt;" />
           </outline>
         </outline>
       </outline>
       <outline text="Main #pick:ordered #expand" _note="Machine learning track - 75% of your learning time.">
         <outline text="Inspiration | Optional #pick:any" _note="Non-technical machine learning &amp;amp; AI content: introduction to the subject, or inspiration / philosophy">
+          <outline text="The Quest for Artificial Intelligence #format:book #topic:fun #difficulty:medium #mlg:2">
+            <outline text="PDF #price:free" _note="&lt;a href=&quot;https://ai.stanford.edu/~nilsson/QAI/qai.pdf&quot;&gt;https://ai.stanford.edu/~nilsson/QAI/qai.pdf&lt;/a&gt;" />
+            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3Eyezmb&quot;&gt;https://amzn.to/3Eyezmb&lt;/a&gt;" />
+          </outline>
           <outline text="The Society of Mind #format:book #topic:fun #difficulty:medium #price:$" _note="About the composability and independent agency of the parts of your mind. Valuable for those interested in Panpsychism. By one of the founding fathers of AI, Marvin Minsky.">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3mC6umS&quot;&gt;https://amzn.to/3mC6umS&lt;/a&gt;" />
           </outline>
-          <outline text="The Singularity Is Near #format:audiobook #topic:fun #audioOption #importance:valuable #price:$" _note="Kurzweil isn't the inventor of the concept 'singularity', but he's certainly the most known name attached to it. This is the foundational book of the religion of futurology, and it's a blast whether you believe it or not. Worth reading regardless.">
+          <outline text="The Singularity Is Near #format:audiobook #topic:fun #audioOption #importance:valuable #price:$ #mlg:3" _note="Kurzweil isn't the inventor of the concept 'singularity', but he's certainly the most known name attached to it. This is the foundational book of the religion of futurology, and it's a blast whether you believe it or not. Worth reading regardless.">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2lzCqKk&quot;&gt;http://amzn.to/2lzCqKk&lt;/a&gt;" />
           </outline>
-          <outline text="The Master Algorithm #format:audiobook #topic:fun #difficulty:medium #importance:valuable  #audioOption" _note="Semi-technical overview of ML basics &amp;amp; main algorithms">
+          <outline text="The Master Algorithm #format:audiobook #topic:fun #difficulty:medium #importance:valuable  #audioOption #mlg:4" _note="Semi-technical overview of ML basics &amp;amp; main algorithms">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2kLOQjW&quot;&gt;http://amzn.to/2kLOQjW&lt;/a&gt;" />
           </outline>
-          <outline text="Superintelligence #format:audiobook #topic:fun #audioOption" _note="Doom-and-gloom favorite of Musk, Gates, Hawking.">
+          <outline text="Superintelligence #format:audiobook #topic:fun #audioOption #mlg:3" _note="Doom-and-gloom favorite of Musk, Gates, Hawking.">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2lzLcrL&quot;&gt;http://amzn.to/2lzLcrL&lt;/a&gt;" />
           </outline>
-          <outline text="Machines of Loving Grace #format:audiobook #topic:fun #audioOption" _note="AI History">
+          <outline text="Machines of Loving Grace #format:audiobook #topic:fun #audioOption #mlg:2" _note="AI History">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2kRcBWq&quot;&gt;http://amzn.to/2kRcBWq&lt;/a&gt;" />
           </outline>
-          <outline text="Consciousness #pick:any" _note="Great discussions on what consciousness is, and if/how AI can achieve it.">
+          <outline text="Consciousness #pick:any #mlg:3:16" _note="Great discussions on what consciousness is, and if/how AI can achieve it.">
             <outline text="TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines #topic:fun #format:audiobook #difficulty:easy #importance:valuable #tgc #video2audio:good #audioOption">
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/38GHt5n&quot;&gt;https://amzn.to/38GHt5n&lt;/a&gt;" />
               <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
@@ -52,13 +56,13 @@
           </outline>
         </outline>
         <outline text="Basics #pick:all #expand" _note="Machine learning Basics. Let the games begin!">
-          <outline text="TGC Machine Learning #topic:basics #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption" _note="Video overview of ML basics, highly amenable to audio-only listening. It's rapid-pace, covering a lot of ground in relatively little time. I recommend this be your very first resource, since it will give you an overview of everything. It covers fresh (2020) material like GANs and RL; and material not often covered in ML-basics resources like Andrew Ng (things like Bayesian methods). Watch or listen to this before anything, don't worry if it didn't stick - it's just the overview. _Then_ begin your journey.">
-            <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
-          </outline>
-          <outline text="Andrew Ng Coursera Course #relevance:dated #topic:basics #importance:essential #engagement:active #difficulty:hard #format:course" _note="The most essential of all ML resources ever. It's an active course with assignments. Do note, it's VERY VERY dated. It uses Matlab and only teaches shallows. It's quite renowned and timeless, but see if you can find a more recent course. See [Coursera's ML listing](&lt;a href=&quot;https://www.coursera.org/browse/computer-science?facets=skillNameMultiTag%3AMachine+Learning%2CcategoryMultiTag%3Acomputer-science&quot;&gt;https://www.coursera.org/browse/computer-science?facets=skillNameMultiTag%3AMachine+Learning%2CcategoryMultiTag%3Acomputer-science&lt;/a&gt;), as well as Ng's [Deep Learning](&lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;https://www.coursera.org/specializations/deep-learning&lt;/a&gt;) Specialization.">
+          <outline text="Andrew Ng Coursera Course #relevance:dated #topic:basics #importance:essential #engagement:active #difficulty:hard #format:course #mlg:5:7:12:13:14" _note="The most essential of all ML resources ever. It's an active course with assignments. Do note, it's VERY VERY dated. It uses Matlab and only teaches shallows. It's quite renowned and timeless, but see if you can find a more recent course. See [Coursera's ML listing](&lt;a href=&quot;https://www.coursera.org/browse/computer-science?facets=skillNameMultiTag%3AMachine+Learning%2CcategoryMultiTag%3Acomputer-science&quot;&gt;https://www.coursera.org/browse/computer-science?facets=skillNameMultiTag%3AMachine+Learning%2CcategoryMultiTag%3Acomputer-science&lt;/a&gt;), as well as Ng's [Deep Learning](&lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;https://www.coursera.org/specializations/deep-learning&lt;/a&gt;) Specialization.">
             <outline text="Coursera #price:free" _note="&lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot;&gt;https://www.coursera.org/learn/machine-learning&lt;/a&gt;" />
           </outline>
-          <outline text="Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems 2nd Edition #difficulty:medium #importance:essential  #topic:tech #format:book" _note="A phenomenal learning resource. Typically trade books like this aren't recommended as bread-n-butter for ML, as the Ng Coursera course is. But I'm not alone in giving this book a free pass - I've seen it recommended as core material elsewhere too. Teachs ML concepts along with Python programming essentials &amp;amp; ML library/framework usage.">
+          <outline text="TGC Machine Learning #topic:basics #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption #mlg:1" _note="Video overview of ML basics, highly amenable to audio-only listening. It's rapid-pace, covering a lot of ground in relatively little time. I recommend this be your very first resource, since it will give you an overview of everything. It covers fresh (2020) material like GANs and RL; and material not often covered in ML-basics resources like Andrew Ng (things like Bayesian methods). Watch or listen to this before anything, don't worry if it didn't stick - it's just the overview. _Then_ begin your journey.">
+            <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
+          </outline>
+          <outline text="Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems 2nd Edition #difficulty:medium #importance:essential  #topic:tech #format:book #mlg:9:10:12:13:29" _note="A phenomenal learning resource. Typically trade books like this aren't recommended as bread-n-butter for ML, as the Ng Coursera course is. But I'm not alone in giving this book a free pass - I've seen it recommended as core material elsewhere too. Teachs ML concepts along with Python programming essentials &amp;amp; ML library/framework usage.">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3BoR0u5&quot;&gt;https://amzn.to/3BoR0u5&lt;/a&gt;" />
           </outline>
           <outline text="Dive Deeper #pick:any">
@@ -90,10 +94,10 @@
           </outline>
         </outline>
         <outline text="Programming #pick:any" _note="Eventually you'll need to know Python. Not immediately (why I list this after Basics), but before going too far. This is your tech stack:&#10;* [Scikit-learn](&lt;a href=&quot;https://scikit-learn.org/stable/&quot;&gt;https://scikit-learn.org/stable/&lt;/a&gt;) as your shallow-learning library&#10;* [Tensorflow](&lt;a href=&quot;https://www.tensorflow.org/&quot;&gt;https://www.tensorflow.org/&lt;/a&gt;) or [Pytorch](&lt;a href=&quot;https://pytorch.org/&quot;&gt;https://pytorch.org/&lt;/a&gt;) as your deep-learning framework(s)&#10;* [Numpy](&lt;a href=&quot;https://numpy.org/&quot;&gt;https://numpy.org/&lt;/a&gt;) and [Pandas](&lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;https://pandas.pydata.org/&lt;/a&gt;) as your utility belt">
-          <outline text="Learning Python, 5th Edition #difficulty:medium #topic:tech #format:book">
+          <outline text="Learning Python, 5th Edition #difficulty:medium #topic:tech #format:book #mlg:10">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2mVgtJW&quot;&gt;http://amzn.to/2mVgtJW&lt;/a&gt;" />
           </outline>
-          <outline text="Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition #topic:tech #difficulty:easy #format:book">
+          <outline text="Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition #topic:tech #difficulty:easy #format:book #mlg:10">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2IHFh2m&quot;&gt;https://amzn.to/2IHFh2m&lt;/a&gt;" />
           </outline>
           <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:essential " _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
@@ -101,18 +105,18 @@
           </outline>
         </outline>
         <outline text="Deep Learning #pick:one">
-          <outline text="Andrew Ng Deep Learning Course #topic:dl #importance:essential  #difficulty:hard #format:course #engagement:active ">
+          <outline text="Andrew Ng Deep Learning Course #topic:dl #importance:essential  #difficulty:hard #format:course #engagement:active #mlg:9">
             <outline text="Coursera #price:free" _note="&lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;https://www.coursera.org/specializations/deep-learning&lt;/a&gt;" />
           </outline>
-          <outline text="&lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; #difficulty:medium  #format:course #topic:dl #importance:essential  #engagement:active" _note="Practical DL for coders&#10;">
+          <outline text="&lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; #difficulty:medium  #format:course #topic:dl #importance:essential  #engagement:active #mlg:9" _note="Practical DL for coders&#10;">
             <outline text="Website #price:free" _note="&lt;a href=&quot;http://course.fast.ai/&quot;&gt;http://course.fast.ai/&lt;/a&gt;" />
           </outline>
-          <outline text="Deep Learning Book #topic:dl #importance:essential #format:book #difficulty:hard" _note="Comprehensive DL bible; highly mathematical">
+          <outline text="Deep Learning Book #topic:dl #importance:essential #format:book #difficulty:hard #mlg:9" _note="Comprehensive DL bible; highly mathematical">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2tXgCiT&quot;&gt;http://amzn.to/2tXgCiT&lt;/a&gt;" />
             <outline text="HTML #price:free" _note="&lt;a href=&quot;http://www.deeplearningbook.org&quot;&gt;http://www.deeplearningbook.org&lt;/a&gt;" />
           </outline>
           <outline text="DL Topics (NLP, CV, RL) #pick:any" _note="Within deep learning, you'll want to specialize in something. Eventually you'll be exposed to most everything, but generally a good idea to pick something you like and master it.">
-            <outline text="Natural Language Processing #pick:any">
+            <outline text="Natural Language Processing #pick:any #mlg:18:19:20:22:23">
               <outline text="Speech and Language Processing #format:book #difficulty:hard #topic:nlp #importance:essential " _note="comprehensive classical-NLP bible">
                 <outline text="PDF (3rd Ed Draft) #free" _note="&lt;a href=&quot;https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf&quot;&gt;https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf&lt;/a&gt;" />
                 <outline text="Amazon (2nd Ed Complete) #price:$" _note="&lt;a href=&quot;http://amzn.to/2uZaNyg&quot;&gt;http://amzn.to/2uZaNyg&lt;/a&gt;" />
@@ -124,7 +128,7 @@
                 <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&quot;&gt;https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z&lt;/a&gt;" />
               </outline>
             </outline>
-            <outline text="Computer Vision #pick:any">
+            <outline text="Computer Vision #pick:any #mlg:25">
               <outline text="Stanford CS231n: Convolutional Neural Networks for Visual Recognition #difficulty:medium #topic:cv #itunesu #audioOption #format:video #video2audio:medium " _note="Visit the website for the most recent YouTube playlist; they record this every semester.">
                 <outline text="Website #price:free" _note="&lt;a href=&quot;http://cs231n.stanford.edu/index.html&quot;&gt;http://cs231n.stanford.edu/index.html&lt;/a&gt;" />
                 <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&quot;&gt;https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&lt;/a&gt;" />
@@ -137,7 +141,7 @@
                 <outline text="Website #price:free" _note="&lt;a href=&quot;https://pjreddie.com/courses/computer-vision/&quot;&gt;https://pjreddie.com/courses/computer-vision/&lt;/a&gt;" />
               </outline>
             </outline>
-            <outline text="Reinforcement Learning #pick:any">
+            <outline text="Reinforcement Learning #pick:any #mlg:29">
               <outline text="AI a Modern Approach #importance:essential  #topic:rl #format:book #difficulty:hard ">
                 <outline text="Website #price:free" _note="&lt;a href=&quot;http://aima.cs.berkeley.edu/&quot;&gt;http://aima.cs.berkeley.edu/&lt;/a&gt;" />
                 <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2E02dEr&quot;&gt;http://amzn.to/2E02dEr&lt;/a&gt;" />
@@ -226,7 +230,7 @@
             <outline text="Stats and ML #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJJpBNfk8_YadPwDTO2SCbx&lt;/a&gt;" />
             <outline text="Stats #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9&lt;/a&gt;" />
           </outline>
-          <outline text="TGC Mathematical Decision Making #tgc #topic:basics #difficulty:hard #video2audio:good #importance:essential #audioOption " _note="Course on &quot;Operations Research&quot;, similar to ML">
+          <outline text="TGC Mathematical Decision Making #tgc #topic:basics #difficulty:hard #video2audio:good #importance:essential #audioOption #mlg:13" _note="Course on &quot;Operations Research&quot;, similar to ML">
             <outline text="Mathematical Decision Making: Predictive Models and Optimization #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1342&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmathematical-optimization-techniques&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1342&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmathematical-optimization-techniques&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
           <outline text="TGC Information Theory #topic:math #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption ">
@@ -236,29 +240,17 @@
       </outline>
       <outline text="Audio #pick:all #expand" _note="Supplementary audio learning. For driving / chores / exercise">
         <outline text="Inspiration | Optional #pick:any" _note="Non-technical machine learning &amp;amp; AI content: introduction to the subject, or inspiration / philosophy">
-          <outline text="The Singularity Is Near #format:audiobook #topic:fun #audioOption #importance:valuable #price:$" _note="Kurzweil isn't the inventor of the concept 'singularity', but he's certainly the most known name attached to it. This is the foundational book of the religion of futurology, and it's a blast whether you believe it or not. Worth reading regardless.">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2lzCqKk&quot;&gt;http://amzn.to/2lzCqKk&lt;/a&gt;" />
-          </outline>
-          <outline text="The Master Algorithm #format:audiobook #topic:fun #difficulty:medium #importance:valuable  #audioOption" _note="Semi-technical overview of ML basics &amp;amp; main algorithms">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2kLOQjW&quot;&gt;http://amzn.to/2kLOQjW&lt;/a&gt;" />
-          </outline>
-          <outline text="Superintelligence #format:audiobook #topic:fun #audioOption" _note="Doom-and-gloom favorite of Musk, Gates, Hawking.">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2lzLcrL&quot;&gt;http://amzn.to/2lzLcrL&lt;/a&gt;" />
-          </outline>
-          <outline text="Machines of Loving Grace #format:audiobook #topic:fun #audioOption" _note="AI History">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2kRcBWq&quot;&gt;http://amzn.to/2kRcBWq&lt;/a&gt;" />
-          </outline>
-          <outline text="Consciousness #pick:any" _note="Great discussions on what consciousness is, and if/how AI can achieve it.">
-            <outline text="TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines #topic:fun #format:audiobook #difficulty:easy #importance:valuable #tgc #video2audio:good #audioOption" />
-            <outline text="The Feeling of Life Itself: Why Consciousness Is Widespread but Can't Be Computed #difficulty:easy #audioOption #format:audiobook #topic:fun" _note="Discusses _Integrated Information Theory_ (IIT), very popular framework in consciousness theory." />
-            <outline text="TGC Mind-Body Philosophy #topic:fun #tgc #format:audiobook #difficulty:easy #video2audio:good #importance:essential #audioOption" />
-          </outline>
+          <outline text="The Singularity Is Near #format:audiobook #topic:fun #audioOption #importance:valuable #price:$ #mlg:3" _note="Kurzweil isn't the inventor of the concept 'singularity', but he's certainly the most known name attached to it. This is the foundational book of the religion of futurology, and it's a blast whether you believe it or not. Worth reading regardless." />
+          <outline text="The Master Algorithm #format:audiobook #topic:fun #difficulty:medium #importance:valuable  #audioOption #mlg:4" _note="Semi-technical overview of ML basics &amp;amp; main algorithms" />
+          <outline text="Superintelligence #format:audiobook #topic:fun #audioOption #mlg:3" _note="Doom-and-gloom favorite of Musk, Gates, Hawking." />
+          <outline text="Machines of Loving Grace #format:audiobook #topic:fun #audioOption #mlg:2" _note="AI History" />
+          <outline text="Consciousness #pick:any #mlg:3:16" _note="Great discussions on what consciousness is, and if/how AI can achieve it." />
         </outline>
         <outline text="Basics #pick:all" _note="General machine learning content">
           <outline text="Machine Learning Guide #importance:essential #format:podcast" _note="Teaches the fundamentals of ML in podcast form. Importantly, guides users to deep-dive the concepts offline via curated resources (this website!)">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://ocdevel.com/mlg&quot;&gt;https://ocdevel.com/mlg&lt;/a&gt;" />
           </outline>
-          <outline text="TGC Machine Learning #topic:basics #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption" _note="Video overview of ML basics, highly amenable to audio-only listening. It's rapid-pace, covering a lot of ground in relatively little time. I recommend this be your very first resource, since it will give you an overview of everything. It covers fresh (2020) material like GANs and RL; and material not often covered in ML-basics resources like Andrew Ng (things like Bayesian methods). Watch or listen to this before anything, don't worry if it didn't stick - it's just the overview. _Then_ begin your journey.">
+          <outline text="TGC Machine Learning #topic:basics #tgc #difficulty:hard #format:video #video2audio:good #importance:essential #audioOption #mlg:1" _note="Video overview of ML basics, highly amenable to audio-only listening. It's rapid-pace, covering a lot of ground in relatively little time. I recommend this be your very first resource, since it will give you an overview of everything. It covers fresh (2020) material like GANs and RL; and material not often covered in ML-basics resources like Andrew Ng (things like Bayesian methods). Watch or listen to this before anything, don't worry if it didn't stick - it's just the overview. _Then_ begin your journey.">
             <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
           <outline text="StatQuest - Machine Learning #format:video #difficulty:medium #audioOption #video2audio:good  #topic:basics #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
@@ -275,7 +267,7 @@
             <outline text="Linear Models #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIzaEkCLIUxQFjPIlapw8nU&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIzaEkCLIUxQFjPIlapw8nU&lt;/a&gt;" />
             <outline text="Sequencing #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUJo2Q6xK4tZElbIvAACEykp&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUJo2Q6xK4tZElbIvAACEykp&lt;/a&gt;" />
           </outline>
-          <outline text="TGC Mathematical Decision Making #tgc #topic:basics #difficulty:hard #video2audio:good #importance:essential #audioOption " _note="Course on &quot;Operations Research&quot;, similar to ML">
+          <outline text="TGC Mathematical Decision Making #tgc #topic:basics #difficulty:hard #video2audio:good #importance:essential #audioOption #mlg:13" _note="Course on &quot;Operations Research&quot;, similar to ML">
             <outline text="Mathematical Decision Making: Predictive Models and Optimization #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1342&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmathematical-optimization-techniques&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1342&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmathematical-optimization-techniques&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
         </outline>
@@ -297,7 +289,7 @@
             <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&quot;&gt;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&lt;/a&gt;" />
           </outline>
         </outline>
-        <outline text="Math #pick:all" _note="Video series which can be effectively consumed in audio format, without losing too much value. Prefer to watch these, but since you'll have a lot on your visual-learning plate, I've listed resources which you can listen to and save time">
+        <outline text="Math #pick:all #mlg:8" _note="Video series which can be effectively consumed in audio format, without losing too much value. Prefer to watch these, but since you'll have a lot on your visual-learning plate, I've listed resources which you can listen to and save time">
           <outline text="StatQuest - Math #format:video #difficulty:medium #audioOption #video2audio:good #topic:math #importance:essential " _note="StatQuest is very popular in the math &amp;amp; ML communities. There are multiple playlists for various topics, so I'll break out a few in their relevant locations in the resources subtrees.">
             <outline text="YouTube - All Playlists #price:free" _note="&lt;a href=&quot;https://www.youtube.com/c/joshstarmer/playlists&quot;&gt;https://www.youtube.com/c/joshstarmer/playlists&lt;/a&gt;" />
             <outline text="StatQuest main #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&quot;&gt;https://www.youtube.com/playlist?list=PLblh5JKOoLUIcdlgu78MnlATeyx4cEVeR&lt;/a&gt;" />
@@ -331,19 +323,19 @@
           <outline text="Machine Learning Guide #importance:essential #format:podcast" _note="Teaches the fundamentals of ML in podcast form. Importantly, guides users to deep-dive the concepts offline via curated resources (this website!)">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://ocdevel.com/mlg&quot;&gt;https://ocdevel.com/mlg&lt;/a&gt;" />
           </outline>
-          <outline text="Data Skeptic #topic:basics #importance:valuable #format:podcast">
+          <outline text="Data Skeptic #topic:basics #importance:valuable #format:podcast #mlg:1">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://dataskeptic.com/&quot;&gt;https://dataskeptic.com/&lt;/a&gt;" />
           </outline>
-          <outline text="Lex Fridman Podcast #topic:news_interviews #importance:essential #format:podcast #difficulty:easy" _note="My #1 favorite podcast of any kind ever. Lex interviews experts from every walk of futurology: AI, ML, philosophy, ethics, etc. Non-technical, very inspirational.">
+          <outline text="Lex Fridman Podcast #topic:news_interviews #importance:essential #format:podcast #difficulty:easy #mlg:1" _note="My #1 favorite podcast of any kind ever. Lex interviews experts from every walk of futurology: AI, ML, philosophy, ethics, etc. Non-technical, very inspirational.">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://lexfridman.com/podcast/&quot;&gt;https://lexfridman.com/podcast/&lt;/a&gt;" />
           </outline>
-          <outline text="TWiML &amp;amp; AI #topic:news_interviews #format:podcast" _note="News &amp;amp; interviews experts in the field. This is a network of podcasts, not just one.">
+          <outline text="TWiML &amp;amp; AI #topic:news_interviews #format:podcast #mlg:1" _note="News &amp;amp; interviews experts in the field. This is a network of podcasts, not just one.">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://twimlai.com&quot;&gt;https://twimlai.com&lt;/a&gt;" />
           </outline>
-          <outline text="Talking machines #topic:news_interviews #format:podcast">
+          <outline text="Talking machines #topic:news_interviews #format:podcast #mlg:1">
             <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.thetalkingmachines.com/&quot;&gt;http://www.thetalkingmachines.com/&lt;/a&gt;" />
           </outline>
-          <outline text="Learning machines 101 #topic:basics #importance:valuable  #format:podcast ">
+          <outline text="Learning machines 101 #topic:basics #importance:valuable  #format:podcast  #mlg:1">
             <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.learningmachines101.com/&quot;&gt;http://www.learningmachines101.com/&lt;/a&gt;" />
           </outline>
           <outline text="AWS Podcast #format:podcast" _note="Not ML proper, but AWS (or Azure, GCP, etc) will eventually be your bread-and-butter for training, tuning, deploying your models. AWS is the most popular of the cloud providers, especially in ML, so start familiarizing yourself with SageMaker, Batch, EMR, and all that good stuff.">

@@ -38,7 +38,7 @@ function ShowMoreLess({podcast}) {
   return <div className="mt-2">
     {showMore ? podcast.body : podcast.teaser}
     <a
-      className='ms-2 text-primary text-underline pointer'
+      className='ms-2 text-primary text-decoration-underline pointer'
       onClick={() => setShowMore(!showMore)}
     >Show {showMore ? "less" : "more"}</a>
   </div>
@@ -47,7 +47,7 @@ function ShowMoreLess({podcast}) {
 function Links() {
   const common = {
     div: {xs: 12, sm: 6, xxl: 3, className: 'center-content'},
-    a: {className: 'text-decoration-none text-dark pointer text-center'},
+    a: {className: 'text-dark pointer text-center'},
   }
 
   return <Row className='episodes-links'>
