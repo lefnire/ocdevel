@@ -52,14 +52,14 @@ export function Episodes() {
 
   function renderButtons() {
     return <div className='mb-3 episodes-btn-container'>
-      <Button variant='link' disabled className='text-dark'>Filters</Button>
+      <Button variant='light' disabled className='text-dark'>Filters</Button>
       <Button
         {...btns_()}
         className='mx-2'
         onClick={toggleNewFirst_}>
         {newFirst ? <>New&rarr;Old</> : <>Old&rarr;New</>}
       </Button>
-      <ButtonGroup className='mr-2'>
+      <ButtonGroup className='me-2'>
         <Button
           {...btns_(showMlg)}
           onClick={setMlg_}>

@@ -14,10 +14,10 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
   opts = {placement: "right", ...opts}
 
   const popover = <Popover id={id || +new Date}>
-    {title && <Popover.Title as={typeof title === "string" ? "h3" : "div"}>
+    {title && <Popover.Header as={typeof title === "string" ? "h3" : "div"}>
       {title}
-    </Popover.Title>}
-    <Popover.Content>{content}</Popover.Content>
+    </Popover.Header>}
+    <Popover.Body>{content}</Popover.Body>
   </Popover>
 
   return <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} {...opts}>
@@ -29,12 +29,12 @@ export const btns = {
   on: {
     size: "sm",
     variant: "outline-dark",
-    className: "text-left filter-selected"
+    className: "text-start filter-selected"
   },
   off: {
     size: "sm",
     variant: "outline-secondary",
-    className: "text-left"
+    className: "text-start"
   },
   iconBtn: {
     variant: 'light',

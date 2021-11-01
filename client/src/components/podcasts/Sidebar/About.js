@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Col, Row, Stack} from "react-bootstrap";
 import {
+  FaDiscord,
   FaEnvelope, FaGithub,
   FaItunesNote, FaLightbulb,
   RiGooglePlayLine,
@@ -37,7 +38,7 @@ function ShowMoreLess({podcast}) {
   return <div className="mt-2">
     {showMore ? podcast.body : podcast.teaser}
     <a
-      className='ml-2 text-primary text-underline pointer'
+      className='ms-2 text-primary text-underline pointer'
       onClick={() => setShowMore(!showMore)}
     >Show {showMore ? "less" : "more"}</a>
   </div>
@@ -45,21 +46,21 @@ function ShowMoreLess({podcast}) {
 
 function Links() {
   const common = {
-    div: {className: 'center-content'},
-    a: {className: 'text-dark pointer text-center'},
+    div: {xs: 12, sm: 6, xxl: 3, className: 'center-content'},
+    a: {className: 'text-decoration-none text-dark pointer text-center'},
   }
 
   return <Row className='episodes-links'>
     <Col {...common.div}>
       <Link to="/mlg/recommend" {...common.a}>
         <FaLightbulb {...btns.icon} />
-        <span {...common.span}>Suggest an Episode</span>
+        <span {...common.span}>Suggest Episode</span>
       </Link>
     </Col>
 
     <Col {...common.div}>
       <Popover_
-        content={<div>Get notified of new episodes / announcements</div>}
+        content={<div>Get notified of new episodes and announcements</div>}
         opts={{placement: 'bottom'}}
       >
         <a {...common.a} href="http://eepurl.com/cUUWfD" target="_blank">
@@ -70,10 +71,27 @@ function Links() {
     </Col>
 
     <Col {...common.div}>
-      <a {...common.a} className='text-dark' href="https://github.com/lefnire/gnothi" target='_blank'>
-        <FaGithub {...btns.icon} />
-        <span {...common.span}>Podcast Project</span>
-      </a>
+      <Popover_
+        content={<div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>}
+        opts={{placement: 'bottom'}}
+      >
+        <a {...common.a} href="https://github.com/lefnire/gnothi" target='_blank'>
+          <FaGithub {...btns.icon} />
+          <span {...common.span}>Podcast Project</span>
+        </a>
+      </Popover_>
+    </Col>
+
+    <Col {...common.div}>
+      <Popover_
+        content={<div>Join fellow learners on Discord to ask questions and network</div>}
+        opts={{placement: 'bottom'}}
+      >
+        <a {...common.a} href="https://discord.gg/2j2RUVbu" target='_blank'>
+          <FaDiscord {...btns.icon} />
+          <span {...common.span}>Community</span>
+        </a>
+      </Popover_>
     </Col>
   </Row>
 }
@@ -167,12 +185,12 @@ function Podcasts() {
 
 function Updates() {
   return <AboutSection title='Updates'>
-    <div className="mb-3 mlg-update pl-3">
+    <div className="mb-3 mlg-update ps-3">
       <Card.Title className='mb-1'>2021-10-20: Dept acquisition</Card.Title>
       <p><a target="_blank" href="https://deptagency.com">Dept</a> has acquired MLG, to allow me to finish the re-do! They're sponsoring merging MLA into the main feed, so the Patreon is going away - expect that content soon!</p>
     </div>
     <hr />
-    <div className="text-muted mb-3 pl-3">
+    <div className="text-muted mb-3 ps-3">
       <Card.Title className='mb-1'>2020-12-19: Podcast re-do</Card.Title>
       <p>I'm re-doing MLG (2nd edition) to refresh resources & concepts to 2021. Starting now use <Link to="/mlg/resources">Resources</Link>, and ignore the resources discussed in the episodes. Then I can to keep resources updated without editing episodes. I'm removing checkpoints and irrelevant episodes to make room for new ones - so if you see see "holes" that's normal. I'll keep the Bitcoin Trading episode, as it's info-packed, but the podcast project is now <a href='https://gnothiai.com' target='_blank'>Gnothi</a>.</p>
     </div>

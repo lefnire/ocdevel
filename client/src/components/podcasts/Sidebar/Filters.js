@@ -6,7 +6,7 @@ import {useStore} from "../../../store/resources";
 import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
 import _ from "lodash";
 
-let check = {size:20, className:'border-right pr-2 mr-2'}
+let check = {size:20, className:'border-end pe-2 me-2'}
 check = {
   single: [<FaRegCircle {...check} />, <FaCheckCircle {...check} />],
   multi: [<FaRegSquare {...check} />, <FaCheckSquare {...check} />]
@@ -26,7 +26,7 @@ function Option({opt, select, active, setHelp, multi=true}) {
     onMouseLeave={clearHelp_}
   >
     {check[multi ? 'multi' : 'single'][active ? 1 : 0]}
-    {opt.i && <span className='mr-2'>{opt.i}</span>}
+    {opt.i && <span className='me-2'>{opt.i}</span>}
     {opt.t}
   </Button>
 }

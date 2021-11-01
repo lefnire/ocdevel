@@ -48,7 +48,7 @@ export default function Series() {
     </Navbar>
 
     <Container fluid className="podcasts">
-      {isResources && <div className='mb-3 mlg-update pl-3'>These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. [Updated 2020-10-28]</div>}
+      {isResources && <div className='mb-3 mlg-update ps-3'>These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. [Updated 2020-10-28]</div>}
       <Row>
         <Col {...col.left} className='sidebar'>
           <Row>

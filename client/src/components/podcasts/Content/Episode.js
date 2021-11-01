@@ -75,7 +75,7 @@ function ShowHide({title, children, show=false}) {
       onClick={() => setShow(!show_)}
     >
       {show_ ? <BiChevronDown /> : <BiChevronRight />}
-      <span className='mr-2'>{title}</span>
+      <span className='me-2'>{title}</span>
     </Card.Title>
     <div style={style}>
       {children}
@@ -107,7 +107,7 @@ export function Episode({e, teaser}) {
     return <Card className={`episode-teaser mb-3 card-post ${e.archived ? 'episode-archived' : ''}`}>
       <Card.Body>
         <Card.Title>
-          <Link to={link}>{title}</Link>
+          <Link to={link} className='text-decoration-none'>{title}</Link>
         </Card.Title>
         {renderDate()}
         {player(e)}
@@ -119,7 +119,7 @@ export function Episode({e, teaser}) {
             <Section Content={e.body} hr={e.teaser} teaser />
             <div className='fade-post-bottom' />
           </div>
-          <Link to={link}>Read More</Link>
+          <Link to={link} className='text-decoration-none'>Read More</Link>
         </> : <>
           <Section Content={e.teaser} teaser />
         </>}

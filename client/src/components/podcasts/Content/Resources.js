@@ -40,7 +40,7 @@ function Resource({resource}) {
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[resource[filterKey]]
     if (!resourceFilter || !resourceFilter.i) {return null}
-    let className = "mr-2 text-muted"
+    let className = "me-2 text-muted"
     className += ` icon-${filterKey}-${resource[filterKey]}`
     // if (filterKey !== 'importance') {className += ' text-muted'}
     return <Popover_
@@ -77,7 +77,7 @@ function Resource({resource}) {
 
         {/*TODO put this in resources.js somewhere */}
         {filterKey === 'video2audio' && resourceFilter && <>
-          <span className='ml-2'>
+          <span className='ms-2'>
             <Link to='/blog/20201213-video2audio'>How to do this?</Link>
           </span>
         </>}
@@ -178,9 +178,9 @@ export function ResourcesFlat({resources}) {
 }
 
 function TreeSectionWrapper({expanded, children}) {
-  return <div className={expanded ? 'section-expanded border-left border-top' : ''}>
+  return <div className={expanded ? 'section-expanded border-start border-top' : ''}>
     {expanded ? <div
-      className='pl-0 m-0 border-right-0 border-bottom-0 border-top-0'
+      className='ps-0 m-0 border-end-0 border-bottom-0 border-top-0'
     >{children}</div>
     : <div className=''>{children}</div>}
   </div>
@@ -211,7 +211,7 @@ function ResourceNode({node, level=0}) {
   function renderSectionInfo() {
     if (!expanded) {return null}
     if (!(node.d || node.pick)) {return null}
-    return <div className='small ml-2'>
+    return <div className='small ms-2'>
       {node.d && <div className='my-1 text-muted'>
         <ReactMarkdown_ source={node.d} />
       </div>}
@@ -223,7 +223,7 @@ function ResourceNode({node, level=0}) {
           {showPick ? icons.down : icons.right}{' '}
           {picks[node.pick].t}
         </div>
-        {showPick && <div className='ml-3 text-muted'>{picks[node.pick].d}</div>}
+        {showPick && <div className='ms-3 text-muted'>{picks[node.pick].d}</div>}
       </div>}
     </div>
   }
@@ -238,7 +238,7 @@ function ResourceNode({node, level=0}) {
       >{header}</div>
       {renderSectionInfo()}
     </TreeSectionWrapper>
-    {expanded && <ul className={`list-unstyled border-left pl-4 mb-0`}>
+    {expanded && <ul className={`list-unstyled border-start ps-4 mb-0`}>
       {node.v.map(n => <>
         <li key={n.id || n.t}>
           <ResourceNode node={n} level={level+1} />

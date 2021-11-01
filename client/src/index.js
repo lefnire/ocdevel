@@ -4,7 +4,9 @@ import {BrowserRouter as Router, useHistory} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 import ReactGA from 'react-ga'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+// don't need bootstrap, imported in my scss
+// import 'bootstrap/dist/css/bootstrap.min.css'
+
 import 'css-social-buttons/css/zocial.css'
 
 import App from './components/App'

@@ -16,14 +16,14 @@ import _ from 'lodash'
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
 function Accordion_({title, eventKey, children}) {
-  return <Card className='mx-0'>
-    <Accordion.Toggle as={Card.Header} eventKey={eventKey} className='pointer'>
+  return <Accordion.Item eventKey={eventKey}>
+    <Accordion.Header>
       {title}
-    </Accordion.Toggle>
-    <Accordion.Collapse eventKey={eventKey}>
-      <Card.Body>{children}</Card.Body>
-    </Accordion.Collapse>
-  </Card>
+    </Accordion.Header>
+    <Accordion.Body eventKey={eventKey}>
+      {children}
+    </Accordion.Body>
+  </Accordion.Item>
 }
 
 function TLDR({children}) {
