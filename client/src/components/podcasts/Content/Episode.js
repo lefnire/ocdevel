@@ -7,7 +7,7 @@ import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {BackButton} from "../../utils";
-import {ResourcesFlat, InlineTree} from "./Resources";
+import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {episodesObj, mlg} from "../../../content/podcast";
 import {BiChevronDown, BiChevronRight} from "react-icons/all";
@@ -119,7 +119,7 @@ export function Episode({e, teaser}) {
         title: "Resources",
         body: <>
           <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
-          <InlineTree resources={resources} />
+          <ResourcesFlat resources={resources} />
         </>
       })
     ]

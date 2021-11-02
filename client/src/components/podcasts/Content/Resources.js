@@ -255,12 +255,17 @@ export function ResourcesTree() {
   </div>
 }
 
-export function InlineTree({resources}) {
-  if (resources?.length === 1 && resources[0].pick) {
-    // just a section, explode it inline
-    resources = resources[0].v
+export function ResourcesFlat({resources}) {
+  let seen = {}
+  function render(node) {
+    if (!node.pick) {
+      if (seen[node.id]) {return null}
+      seen[node.id] = true
+      return <ResourceNode node={node} key={node.id} />
+    }
+    return node.v.map(render)
   }
   return <div className='resources'>
-    {resources.map(n => n && <ResourceNode node={n} key={n.t}/>)}
+    {resources.map(render)}
   </div>
 }
