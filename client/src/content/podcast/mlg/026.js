@@ -1,5 +1,3 @@
-import resources from "../resources";
-
 export default {
   title: 'Project Bitcoin Trader',
   episode: 26,

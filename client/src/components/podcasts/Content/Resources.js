@@ -9,7 +9,7 @@ import _ from "lodash";
 
 import {ReactMarkdown_, btns, icons, Popover_} from "../utils";
 import {filterKeys, filters} from '../../../content/podcast/resources/filters'
-import tree, {picks} from '../../../content/podcast/resources/tree'
+import {flat, picks} from '../../../content/podcast/resources'
 
 function ResourceWrapper({children, show}) {
     if (!show) {return <div>{children}</div>}
@@ -20,10 +20,11 @@ function ResourceWrapper({children, show}) {
     </Card>
   }
 
-function Resource({resource}) {
+function Resource({node}) {
   const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
 
+  const resource = flat[node?.id]
   if (!resource) {return null} // FIXME
 
   function toggle() {setShow(!show)}
@@ -159,24 +160,6 @@ function Resource({resource}) {
   return renderResource()
 }
 
-// export function ResourcesFlat({resources}) {
-//   if (!resources) {return null}
-//
-//   function renderResource(r){
-//     if (!_.isArray(r)) {
-//       return <Resource resource={r} key={r.id}/>
-//     }
-//     return <Alert className='pick-one-resource' key={r.id}>
-//       <h6>Pick One</h6>
-//       {r.map(r_ => <Resource resource={r_} key={r_.id}/>)}
-//     </Alert>
-//   }
-//
-//   return <div className='resources'>
-//     {resources.map(renderResource)}
-//   </div>
-// }
-
 function TreeSectionWrapper({expanded, children}) {
   return <div className={expanded ? 'section-expanded border-start border-top' : ''}>
     {expanded ? <div
@@ -187,48 +170,57 @@ function TreeSectionWrapper({expanded, children}) {
 }
 
 function ResourceNode({node, level=0}) {
-  const [expanded, setExpanded] = useState(!!node.expand)
+  const full = flat[node.id]
+  const [expanded, setExpanded] = useState(!!full.expand)
   const [showPick, setShowPick] = useState(false)
 
   const showPick_ = useCallback(() => {setShowPick(!showPick)}, [showPick])
 
-  if (!node.pick) {
+  if (!node?.id) {return null}
+  if (!full.pick) {
     return <div className='py-2'>
-      <Resource resource={node} />
+      <Resource node={node} />
     </div>
   }
 
   // pick is present, but no children; this section was filtered out
-  if (!node.v) {
+  if (!full.v?.length) {
     return null
   }
 
-  let header = <>{expanded ? icons.minus : icons.plus} {node.t}</>
+  let header = <>{expanded ? icons.minus : icons.plus} {full.t}</>
   header = level === 0 ?
       <h4 className='resource-header mb-0'>{header}</h4> :
       <div>{header}</div>
 
   function renderSectionInfo() {
     if (!expanded) {return null}
-    if (!(node.d || node.pick)) {return null}
+    if (!(full.d || full.pick)) {return null}
     return <div className='small ms-2'>
-      {node.d && <div className='my-1 text-muted'>
-        <ReactMarkdown_ source={node.d} />
+      {full.d && <div className='my-1 text-muted'>
+        <ReactMarkdown_ source={full.d} />
       </div>}
-      {node.pick && <div>
+      {full.pick && <div>
         <div
           className='pointer'
           onClick={showPick_}
         >
           {showPick ? icons.down : icons.right}{' '}
-          {picks[node.pick].t}
+          {picks[full.pick].t}
         </div>
-        {showPick && <div className='ms-3 text-muted'>{picks[node.pick].d}</div>}
+        {showPick && <div className='ms-3 text-muted'>{picks[full.pick].d}</div>}
       </div>}
     </div>
   }
 
   const dontPad = level === 0 || expanded
+
+  function renderLi(v) {
+    const full = flat[v.id]
+    return <li key={v.id || full.t}>
+      <ResourceNode node={v} level={level+1} />
+    </li>
+  }
 
   return <div className={dontPad ? '' : 'py-2'}>
     <TreeSectionWrapper expanded={expanded}>
@@ -239,11 +231,7 @@ function ResourceNode({node, level=0}) {
       {renderSectionInfo()}
     </TreeSectionWrapper>
     {expanded && <ul className={`list-unstyled border-start ps-4 mb-0`}>
-      {node.v.map(n => <>
-        <li key={n.id || n.t}>
-          <ResourceNode node={n} level={level+1} />
-        </li>
-      </>)}
+      {full.v.map(renderLi)}
     </ul>}
   </div>
 }
@@ -251,21 +239,23 @@ function ResourceNode({node, level=0}) {
 export function ResourcesTree() {
   const sections = useFilteredTree()
   return <div className='resources resources-tree mb-3'>
-    {sections.map(n => n && <ResourceNode node={n} key={n.t} />)}
+    {sections.map(n => <ResourceNode node={n} key={n.id} />)}
   </div>
 }
 
-export function ResourcesFlat({resources}) {
+export function ResourcesFlat({nids}) {
   let seen = {}
   function render(node) {
-    if (!node.pick) {
-      if (seen[node.id]) {return null}
-      seen[node.id] = true
-      return <ResourceNode node={node} key={node.id} />
+    const {id} = node
+    const full = flat[id]
+    if (!full.pick) {
+      if (seen[id]) {return null}
+      seen[id] = true
+      return <ResourceNode node={{id}} key={id} />
     }
-    return node.v.map(render)
+    return full.v.map(render)
   }
   return <div className='resources'>
-    {resources.map(render)}
+    {nids.map(id => render({id}))}
   </div>
 }

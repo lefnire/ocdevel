@@ -52,14 +52,15 @@ const defaults = {
   relevance: "fresh",
 }
 
+let flat = {}
 let episodes = {mlg: {} ,mla: {}}
-function addEpisode(podcast, number, node) {
+function addEpisode(podcast, number, id) {
   const p = episodes[podcast]
   if (!p[number]) {
     p[number] = []
   }
-  if (find(p[number], {id: node.id})) {return}
-  p[number].push(node)
+  if (~p[number].indexOf(id)) {return}
+  p[number].push(id)
 }
 
 function parseTree(tree, isLink = false) {
@@ -69,6 +70,8 @@ function parseTree(tree, isLink = false) {
   let _note = tree._attributes?._note?.replace(reStripHtml, '').trim()
   let outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]
   let tags = text.match(reTags)
+
+  const id = crypto.createHash('md5').update(text).digest("hex")
 
   // pull out tags
   tags = reduce(tags, (m,tag) => {
@@ -87,22 +90,33 @@ function parseTree(tree, isLink = false) {
 
   let isResource = !tags.pick
   const children = outline.map(o => parseTree(o, isResource))
-  const node = {
-    ...(isResource ? {...defaults} : {}),
-    ...tags,
-    t: text,
-    d: _note,
-    id: crypto.createHash('md5').update(text).digest("hex"),
-    [isResource ? 'links' : 'v']: children
+  if (!flat[id]) {
+    const node = {
+      ...(isResource ? {...defaults} : {}),
+      id,
+      t: text,
+      d: _note,
+      ...tags,
+      [isResource ? 'links' : 'v']: children
+    }
+    flat[id] = node
+    tags.mlg?.forEach(ep => addEpisode('mlg', ep, id))
+    tags.mla?.forEach(ep => addEpisode('mla', ep, id))
   }
-  tags.mlg?.forEach(ep => addEpisode('mlg', ep, node))
-  tags.mla?.forEach(ep => addEpisode('mla', ep, node))
-  return node
+  return {
+    id,
+    ...(isResource ? {} : {v: children})
+  }
 }
 
 function parseWorkflowy(res) {
   const outline = res.opml.body.outline
-  const tree = parseTree(outline, false)
-  console.log(episodes)
-  return {tree, episodes}
+  const {v} = parseTree(outline, false)
+  const top = {
+    degrees: {id: v[0].id},
+    main: {id: v[1].id},
+    math: {id: v[2].id},
+    audio: {id: v[3].id}
+  }
+  return {flat, top, episodes}
 }

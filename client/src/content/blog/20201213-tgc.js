@@ -1,27 +1,19 @@
-import resources from '../podcast/resources'
-
-
-function l(resource, text=null) {
-  const r = resource.links[0]
-  return `[${text || r.t}](${r.l})`
-}
+const tgcML = "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&intsrc=PUI1_1204"
+const tgcConsciousness = "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204"
 
 export default {
   id: "20201213-tgc",
   title: "The Great Courses - Find it Cheaper",
   date: "2020-12-13",
   body: `
-I'm a _huge_ fan of [The Great Courses](https://thegreatcourses.7eer.net/mlg); have been from a young age, back when it was _The Teaching Company_. My [podcast series](/mlg) is inspired after their structure, which I only created because (a) back then ${l(resources.tgc_ml, "TGC:ML")} didn't exist; (b) to provide something free - TGC is quite expensive. Now with TGC:ML out, MLG & TGC:ML effectively scratch the same itch. You could choose one or the other, or both, depending on your budget / time.
+I'm a _huge_ fan of [The Great Courses](https://thegreatcourses.7eer.net/mlg); have been from a young age, back when it was _The Teaching Company_. My [podcast series](/mlg) is inspired after their structure, which I only created because (a) back then [TGC:ML](${tgcML}) didn't exist; (b) to provide something free - TGC is quite expensive. Now with TGC:ML out, MLG & TGC:ML effectively scratch the same itch. You could choose one or the other, or both, depending on your budget / time.
 
 As I said, TGC can be quite expensive. Here are ways to find it cheaper:
 1. Check your library. That's how I used to get their courses.
-1. If it's an audio course (like ${l(resources.tgc_consciousness, "TGC:Consciousness")}), check Audible first. TGC posts their audio courses to Audible for much cheaper than their website.
+1. If it's an audio course (like [TGC:Consciousness](${tgcConsciousness})), check Audible first. TGC posts their audio courses to Audible for much cheaper than their website.
 1. If you plan on using TGC often, subscribe to their Plus service. First ensure all the courses you want are _in_ the Plus service (not full parity, last I checked).
 1. If you use Plus or just buy a course, check all the coupon sites like RetailMeNot or Honey. TGC, like Udemy, is super coupon-heavy. The "original" price may in fact be one of those time-pressure sales bits, with the discount prices being the intended revenue.
 
 If you _do_ buy a course, I'd be pleased if you did so via a link on this website, as I'm setup with their affiliate program. I do **not** recommend them for the money, I'm a life-long fan of theirs and am only adding affiliate links because they provide it - I'd be recommending them anyway. 
 `
-// My favorite courses are:
-// 1. ${l(resources.tgc_ml)}
-// 1. ${l(resources.tgc_consciousness)}
 }

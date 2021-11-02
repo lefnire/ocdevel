@@ -1,15 +1,15 @@
-// so I don't have to refactor everything after moving to workflowy.
-// TODO add per-episode resources later
-export default {
-  tgc_ml: {
-    t: "TGC Machine Learning",
-    links: [{t: "TGC", p: "$$", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&intsrc=PUI1_1204"}],
-  },
-  tgc_consciousness: {
-    t: "TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines",
-    links: [
-      {t: "Amazon", l: "https://amzn.to/38GHt5n", p: "$"},
-      {t: "TGC", l: "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204", p: "$$"},
-    ],
-  },
+import opml from './opml.macro'
+const wf = opml('./workflowy.opml')
+
+console.log(wf)
+
+export const picks = {
+  ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},
+  all: {t: "Complete All", d: "Order doesn't matter, but I recommend all these resources. Listed in descending order of my preference."},
+  any: {t: "Pick Any", d: "All these resources are good. Pick as many as you like (or none). Listed in descending order of my preference."},
+  one: {t: "Pick One", d: "These resources generally cover the same material. You only really need one, but up to you if you want more than one of these for learning-by-repetition. Listed in descending order of my preference."},
 }
+
+export const flat = wf.flat
+export const episodes = wf.episodes
+export const top = wf.top

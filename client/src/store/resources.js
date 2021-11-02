@@ -2,7 +2,7 @@ import React from 'react'
 import create from "zustand";
 import compact from "lodash/compact";
 import reduce from "lodash/reduce";
-import tree from "../content/podcast/resources/tree";
+import {flat, top} from "../content/podcast/resources";
 import {filterKeys, filters as filters_} from "../content/podcast/resources/filters";
 import produce from 'immer'
 
@@ -16,19 +16,21 @@ function recurseTree(filters, learnStyles, node=null, section=null) {
       sections.push('degrees')
     }
     sections.push('audio')
-    return sections.map(k => recurseTree(filters, learnStyles, tree[k], k))
+    return sections.map(k => recurseTree(filters, learnStyles, top[k], k))
   }
 
+  const full = flat[node.id]
+
   // section
-  if (node.v?.length) {
-    let v = node.v.map(n => recurseTree(filters, learnStyles, n, section=section))
+  if (full.v?.length) {
+    let v = full.v.map(n => recurseTree(filters, learnStyles, n, section=section))
     v = compact(v)
     if (v.length === 0) {return null}
     return {...node, v}
   }
 
   // leaf node
-  if (node.audioOption) {
+  if (full.audioOption) {
     if (learnStyles.audio === 'normal' && section === 'audio') {
       return null
     }
@@ -38,8 +40,8 @@ function recurseTree(filters, learnStyles, node=null, section=null) {
   }
 
   const keep = reduce(filterKeys, (m, fk) => {
-    if (!node[fk]) {return m} // N/A attrs, like video2audio
-    return m && filters[fk][node[fk]]
+    if (!full[fk]) {return m} // N/A attrs, like video2audio
+    return m && filters[fk][full[fk]]
   }, true)
   return keep ? node : null
 }

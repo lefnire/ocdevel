@@ -11,7 +11,7 @@ import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {episodesObj, mlg} from "../../../content/podcast";
 import {BiChevronDown, BiChevronRight} from "react-icons/all";
-import {episodes as episodeResources} from '../../../content/podcast/resources/tree'
+import {episodes as episodeResources} from '../../../content/podcast/resources'
 
 
 // 8d7997de switched from component to returning memoized JSX, since iframe being
@@ -119,7 +119,7 @@ export function Episode({e, teaser}) {
         title: "Resources",
         body: <>
           <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
-          <ResourcesFlat resources={resources} />
+          <ResourcesFlat nids={resources} />
         </>
       })
     ]
