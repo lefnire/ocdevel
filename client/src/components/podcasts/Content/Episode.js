@@ -23,7 +23,7 @@ function player(e) {
   if (players[id]) {return players[id]}
   players[id] = <iframe
     title="Embed Player"
-    src={`//play.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/128/theme/modern/size/standard/thumbnail/yes/custom-color/111111/time-start/00:00:00/download/no/hide-show/no/direction/backward/hide-playlist/no/hide-subscribe/no/hide-share/no`}
+    src={`//play.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/128/theme/modern/size/standard/thumbnail/no/custom-color/111111/time-start/00:00:00/download/no/hide-show/no/direction/backward/hide-playlist/no/hide-subscribe/no/hide-share/no`}
     height="128"
     width="100%"
     scrolling="no"
