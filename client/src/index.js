@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import ReactDom from 'react-dom'
 import {BrowserRouter as Router, useHistory} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 // don't need bootstrap, imported in my scss
 // import 'bootstrap/dist/css/bootstrap.min.css'
@@ -15,8 +15,8 @@ let usingGA = false;
 if (process.env.NODE_ENV === "production") {
   console.log("using GA")
   usingGA = true;
-  ReactGA.initialize('UA-3128634-8')
-  ReactGA.pageview(window.location.pathname)
+  ReactGA.initialize('G-0YR1STKJS3')
+  ReactGA.send({hitType: "pageview", page: window.location.pathname})
 }
 
 function Index() {
@@ -26,7 +26,7 @@ function Index() {
   useEffect(() => {
     if (!usingGA) {return}
     return listen((location) => {
-      ReactGA.pageview(location.pathname) //  + location.search);
+      ReactGA.send({hitType: "pageview", page: location.pathname}) //  + location.search);
       window.scrollTo(0, 0);
     })
   }, [])
