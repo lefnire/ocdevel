@@ -12,8 +12,8 @@ import {
 } from "react-icons/all";
 import {btns, icons, Popover_} from "../utils";
 import {mlg, mla} from "../../../content/podcast";
-import scout from "../../../assets/mlg_w_txt.jpg";
-import deptLogo from "./dept-logo.png";
+import scout from "../../../assets/MLG-Option-1.jpg";
+import deptLogo from "../../../assets/dept.jpg";
 
 function AboutSection({children, title, top=false}) {
   const [show, setShow] = useState(true)
@@ -99,8 +99,8 @@ function Links() {
 function MLG() {
   const [showLinks, setShowLinks] = useState(false)
 
-  return <>
-    <div className="logo">
+  return <div>
+    <div className="logo mb-3">
       <img src={scout} alt="Machine Learning Guide" />
     </div>
 
@@ -127,7 +127,7 @@ function MLG() {
     </>}
 
     <ShowMoreLess podcast={mlg} />
-  </>
+  </div>
 }
 
 function Dept() {
@@ -143,7 +143,7 @@ function Dept() {
   }
 
   return <>
-    <div className="logo logo-dept">
+    <div className="logo mb-3">
       <img src={deptLogo} alt="Dept Agency"/>
     </div>
     {showLinks ? <>

@@ -3,7 +3,7 @@ import {Alert, Card, Col, Media, Row, Container} from "react-bootstrap";
 import {FaSuitcase} from "react-icons/all";
 import {Link} from "react-router-dom";
 import avatar from '../../assets/avatar.jfif'
-import mlg from '../../assets/mlg_square.jpg'
+import mlg from '../../assets/MLG-Option-1.jpg'
 import gnothi from '../../assets/gnothi192.png'
 import {Helmet} from "react-helmet";
 

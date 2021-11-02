@@ -62,24 +62,23 @@ body {
 
 .sidebar {
   .logo {
-    $logoMax: 250px;
+    $logoMax: 290px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     img {
       flex: 1;
-      max-width: $logoMax;
+      max-width: 290px;
     }
   }
   &.sidebar-profile {
     .card {border: none;}
-    div.log img {
-      max-width: 250px;
+    div.logo img {
+      max-width: 290px;
     }
   }
   .sidebar-podcasts {
-    div.logo img {max-width: 250px;}
     p {
       font-size: .95rem;
     }
