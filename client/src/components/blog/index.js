@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
-import {Row, Col, Button, Card, Container} from 'react-bootstrap';
+import React from 'react';
+import {Card, Container} from 'react-bootstrap';
 import {Link, Route, Switch, useParams} from 'react-router-dom'
 
-import {FaArrowLeft, } from "react-icons/all";
 import blog from '../../content/blog'
 import ReactDisqusComments from "react-disqus-comments";
 import moment from "moment";
-import ReactMarkdown from "react-markdown";
-import _ from 'lodash'
+import find from 'lodash/find'
 import {Helmet} from "react-helmet";
 import {BackButton} from "../utils";
 import {ReactMarkdown_} from "../podcasts/utils";
@@ -18,7 +16,7 @@ const fmt = 'MMM DD, YYYY';
 function Post() {
   const {id} = useParams()
 
-  const p = _.find(blog, {id});
+  const p = find(blog, {id});
   return <div>
     <Helmet>
       <title>{p.title} | OCDevel</title>

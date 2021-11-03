@@ -1,18 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   Row,
   Col,
-  Modal,
-  Card,
-  Container, Navbar, Nav, Alert
+  Container, Navbar, Nav
 } from 'react-bootstrap';
-import {Switch, Route, useHistory, useLocation} from 'react-router-dom';
-import _ from 'lodash';
+import {Switch, Route, useLocation} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
-import {mlg, mla, episodes} from '../../content/podcast';
+import {mlg} from '../../content/podcast';
 
-import {btns} from './utils'
 import Recommend from './Content/Recommend'
 import {Episodes} from './Content/Episodes'
 import {EpisodeRoute} from './Content/Episode'

@@ -3,11 +3,11 @@ import {Link} from "react-router-dom";
 import {
   FaInfoCircle,
 } from "react-icons/all";
-import {Alert, Button, ButtonGroup, Card, Col, Row, Table} from "react-bootstrap";
+import {Alert, Card, Table} from "react-bootstrap";
 import {useFilteredTree} from "../../../store/resources";
-import _ from "lodash";
+import {startsWith} from "lodash";
 
-import {ReactMarkdown_, btns, icons, Popover_} from "../utils";
+import {ReactMarkdown_, icons, Popover_} from "../utils";
 import {filterKeys, filters} from '../../../content/podcast/resources/filters'
 import {flat, picks} from '../../../content/podcast/resources'
 
@@ -96,7 +96,7 @@ function Resource({node}) {
       target: "_blank"
     }
     const txt = `${l.t} (${l.p})`
-    if (_.startsWith(l.l, '/')) {
+    if (startsWith(l.l, '/')) {
       return <Link to={l.l} {...opts}>{txt}</Link>
     }
     return <a href={l.l} {...opts}>{txt}</a>

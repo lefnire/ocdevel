@@ -1,34 +1,29 @@
-import React, {useState, useEffect} from 'react'
-import {Card, Col, Row, Container, Media, Button, Alert} from "react-bootstrap";
+import React from 'react'
+import {Card, Col, Row, Container, Button, Stack} from "react-bootstrap";
+import {IconButton} from "../../utils";
 import avatar from "../../assets/avatar.jfif";
-import {FaCouch, FaDragon, FaGithub, FaLinkedin, FaMicrophone} from "react-icons/all";
-import {Link, Route, Switch} from "react-router-dom";
+import {FaCouch, FaDragon, FaEnvelope, FaGithub, FaLinkedin, FaMicrophone} from "react-icons/all";
+import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 
 export default function Contact() {
   const links = <>
-    <ul className="list-unstyled w-100">
-      <li className='mb-1'>
-        <a
-          className='zocial linkedin w-100'
-          target="_blank"
-          href="https://www.linkedin.com/in/lefnire"
-        >LinkedIn</a>
-      </li>
-      <li className='mb-1'>
-        <a
-          className='zocial github w-100'
-          target="_blank"
-          href="https://github.com/lefnire"
-        >Github</a>
-      </li>
-      <li className='mb-1'>
-        <a
-          className='zocial email w-100'
-          href="mailto:tylerrenelle@gmail.com"
-        >Email</a>
-      </li>
-    </ul>
+    <Stack direction="vertical" gap={2}>
+      <IconButton
+        target="_blank"
+        href="https://www.linkedin.com/in/lefnire"
+        Icon={FaLinkedin}
+      >LinkedIn</IconButton>
+      <IconButton
+        target="_blank"
+        href="https://github.com/lefnire"
+        Icon={FaGithub}
+      >Github</IconButton>
+      <IconButton
+        href="mailto:tylerrenelle@gmail.com"
+        Icon={FaEnvelope}
+      >Email</IconButton>
+    </Stack>
   </>
 
   const about = <div>

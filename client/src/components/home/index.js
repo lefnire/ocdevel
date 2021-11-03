@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {Alert, Card, Col, Media, Row, Container} from "react-bootstrap";
-import {FaSuitcase} from "react-icons/all";
+import React from 'react'
+import {Card, Col, Row, Container} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import avatar from '../../assets/avatar.jfif'
 import mlg from '../../assets/MLG-Option-1.jpg'

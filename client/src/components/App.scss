@@ -85,12 +85,6 @@ body {
   }
 }
 
-.zocial {
-  background-image: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
-
 .icon-btn {
   position: relative;
   svg, span {
@@ -114,18 +108,6 @@ body {
 
 .podcasts {
   // 3108d595: .logo-and-sub, .sub-button-container, .sub-button */
-
-  .episodes-links {
-    a {
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-
-      span {
-        margin-left: .5em;
-      }
-    }
-  }
 
   .episodes-btn-container {
     display: flex;

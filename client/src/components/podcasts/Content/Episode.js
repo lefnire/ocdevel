@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from "react";
-import {Accordion, Alert, Button, Card} from "react-bootstrap";
+import React from "react";
+import {Alert, Card} from "react-bootstrap";
 import {Accordion_, dateFmt, ReactMarkdown_} from "../utils";
-import {LinkContainer} from "react-router-bootstrap";
-import _ from "lodash";
+import {padStart} from "lodash";
 import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet";
@@ -10,7 +9,6 @@ import {BackButton} from "../../utils";
 import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
 import {episodesObj, mlg} from "../../../content/podcast";
-import {BiChevronDown, BiChevronRight} from "react-icons/all";
 import {episodes as episodeResources} from '../../../content/podcast/resources'
 
 
@@ -60,7 +58,7 @@ function Markdown_({Content, teaser=false}) {
 }
 
 export function Episode({e, teaser}) {
-  const num = _.padStart(e.episode, 3, '0');
+  const num = padStart(e.episode, 3, '0');
   const title = `${e.mla ? 'MLA' : 'MLG'} ${num} ${e.title}`;
 
   function renderDate() {

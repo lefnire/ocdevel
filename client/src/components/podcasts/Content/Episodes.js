@@ -1,12 +1,9 @@
 import React, {useCallback, useLayoutEffect, useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import _ from "lodash";
+import {filter, times} from "lodash";
 import {Button, ButtonGroup} from "react-bootstrap";
-import {FaEnvelope, FaGithub, FaLightbulb} from "react-icons/all";
 import useStore from "../../../store/episodes";
 
 import {episodes} from "../../../content/podcast";
-import {btns, Popover_} from "../utils";
 import {Episode} from './Episode';
 
 export function Episodes() {
@@ -34,7 +31,7 @@ export function Episodes() {
   }, [page])
 
   let eps = newFirst ? episodes : episodes.slice().reverse()
-  eps = _.filter(eps, e => {
+  eps = filter(eps, e => {
     if (showMla && showMlg) {return true}
     return showMla ? e.mla : showMlg ? e.mlg : false
   })
@@ -82,7 +79,7 @@ export function Episodes() {
         onClick={() => setPage(page-1)}
         disabled={page === 0}
       >&larr;</Button>
-      {_.times(numPages, p => <>
+      {times(numPages, p => <>
         <Button
           {...btns_(p === page)}
           onClick={() => setPage(p)}

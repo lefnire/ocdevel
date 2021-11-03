@@ -4,7 +4,7 @@ import React, {useCallback, useState} from "react";
 import {Button, ButtonGroup, Card, Col} from "react-bootstrap";
 import {useStore} from "../../../store/resources";
 import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
-import _ from "lodash";
+import {map} from "lodash";
 
 let check = {size:20, className:'border-end pe-2 me-2'}
 check = {
@@ -53,7 +53,7 @@ function LearnStyle({k}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {_.map(f.opts, (v, opt_k) => <Option
+        {map(f.opts, (v, opt_k) => <Option
           key={opt_k}
           opt={v}
           active={active === opt_k}
@@ -88,7 +88,7 @@ function Filter({k, section='filters'}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {_.map(f.opts, (v, opt_k) => <Option
+        {map(f.opts, (v, opt_k) => <Option
           key={k}
           opt={v}
           active={active[opt_k]}

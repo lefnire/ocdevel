@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {Button, ButtonGroup, Card, Col, Row, Stack} from "react-bootstrap";
+import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
 import {
   FaDiscord,
   FaEnvelope, FaGithub,
@@ -11,9 +11,10 @@ import {
   SiStitcher
 } from "react-icons/all";
 import {btns, icons, Popover_} from "../utils";
-import {mlg, mla} from "../../../content/podcast";
+import {mlg} from "../../../content/podcast";
 import scout from "../../../assets/MLG-Option-1.jpg";
 import deptLogo from "../../../assets/dept.jpg";
+import {IconButton} from "../../../utils";
 
 function AboutSection({children, title, top=false}) {
   const [show, setShow] = useState(true)
@@ -46,53 +47,50 @@ function ShowMoreLess({podcast}) {
 
 function Links() {
   const common = {
-    div: {xs: 12, sm: 6, xxl: 3, className: 'center-content'},
-    a: {className: 'text-dark pointer text-center'},
+    div: {xs: 12, md: 6, className: 'p-1'},
   }
 
-  return <Row className='episodes-links'>
+  return <Row>
     <Col {...common.div}>
-      <Link to="/mlg/recommend" {...common.a}>
-        <FaLightbulb {...btns.icon} />
-        <span {...common.span}>Suggest Episode</span>
-      </Link>
+      <IconButton
+        href="/mlg/recommend"
+        variant='light'
+        Icon={FaLightbulb}
+        >Suggest Episode</IconButton>
     </Col>
 
-    <Col {...common.div}>
-      <Popover_
-        content={<div>Get notified of new episodes and announcements</div>}
-        opts={{placement: 'bottom'}}
-      >
-        <a {...common.a} href="http://eepurl.com/cUUWfD" target="_blank">
-          <FaEnvelope {...btns.icon} />
-          <span {...common.span}>Mailing List</span>
-        </a>
-      </Popover_>
-    </Col>
+    <Popover_
+      content={<div>Get notified of new episodes and announcements</div>}
+      opts={{placement: 'bottom'}}
+    >
+      <Col {...common.div}>
+        <IconButton href="http://eepurl.com/cUUWfD" target="_blank" Icon={FaEnvelope} variant='light'>
+          Mailing List
+        </IconButton>
+      </Col>
+    </Popover_>
 
-    <Col {...common.div}>
-      <Popover_
-        content={<div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>}
-        opts={{placement: 'bottom'}}
-      >
-        <a {...common.a} href="https://github.com/lefnire/gnothi" target='_blank'>
-          <FaGithub {...btns.icon} />
-          <span {...common.span}>Podcast Project</span>
-        </a>
-      </Popover_>
-    </Col>
+    <Popover_
+      content={<div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>}
+      opts={{placement: 'bottom'}}
+    >
+      <Col {...common.div}>
+        <IconButton href="https://github.com/lefnire/gnothi" target='_blank' Icon={FaGithub} variant="light">
+          Podcast Project
+        </IconButton>
+      </Col>
+    </Popover_>
 
-    <Col {...common.div}>
-      <Popover_
-        content={<div>Join fellow learners on Discord to ask questions and network</div>}
-        opts={{placement: 'bottom'}}
-      >
-        <a {...common.a} href="https://discord.gg/2j2RUVbu" target='_blank'>
-          <FaDiscord {...btns.icon} />
-          <span {...common.span}>Community</span>
-        </a>
-      </Popover_>
-    </Col>
+    <Popover_
+      content={<div>Join fellow learners on Discord to ask questions and network</div>}
+      opts={{placement: 'bottom'}}
+    >
+      <Col {...common.div}>
+        <IconButton href="https://discord.gg/2j2RUVbu" target='_blank' variant="light" Icon={FaDiscord}>
+          Community
+        </IconButton>
+      </Col>
+    </Popover_>
   </Row>
 }
 

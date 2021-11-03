@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Accordion, Card, Alert, Form, Row, Col, Badge} from 'react-bootstrap'
 import {
-  FaBrain,
   FaCalendar,
-  FaCheckSquare, FaCouch, FaDog,
-  FaEyeDropper,
+  FaCheckSquare,
   FaGift,
   FaHatWizard,
-  FaPallet,
   FaPlusSquare,
-  FaRegBell, FaSwatchbook
+  FaSwatchbook
 } from "react-icons/all";
 import _ from 'lodash'
 
