@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -18,7 +19,7 @@
     "react-dom": "^17.0.2",
     "react-ga4": "^1.4.0",
     "react-helmet": "^6.1.0",
-    "react-icons": "^3.11.0",
+    "react-icons": "^4.3.1",
     "react-markdown": "^5.0.2",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",

@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Accordion, Card, Alert, Form, Row, Col, Badge} from 'react-bootstrap'
-import {
-  FaCalendar,
-  FaCheckSquare,
-  FaGift,
-  FaHatWizard,
-  FaPlusSquare,
-  FaSwatchbook
-} from "react-icons/all";
-import _ from 'lodash'
+import {FaCalendar} from '@react-icons/all-files/fa/FaCalendar'
+import {FaCheckSquare} from '@react-icons/all-files/fa/FaCheckSquare'
+import {FaGift} from '@react-icons/all-files/fa/FaGift'
+import {FaHatWizard} from '@react-icons/all-files/fa/FaHatWizard'
+import {FaPlusSquare} from '@react-icons/all-files/fa/FaPlusSquare'
+import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
+import {each, keyBy, transform} from 'lodash'
 
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
@@ -126,19 +124,19 @@ const questions = [{
     t: "Role Play",
     d: "You like the idea of being in-game who you are IRL. A mage is a studier; a healer is a socialite or medical professional; a warrior is active; a rogue is independent.",
     classesFn: (m, form) => {
-      _.each(questionsObj.rp.opts, opt => {
+      each(questionsObj.rp.opts, opt => {
         if (form.rp[opt.k]) {m[opt.k] += 1}
       })
     }
   }]
 }]
 
-questions.forEach(q => {q.optsObj = _.keyBy(q.opts, 'k')})
-const questionsObj = _.keyBy(questions, 'k')
+questions.forEach(q => {q.optsObj = keyBy(q.opts, 'k')})
+const questionsObj = keyBy(questions, 'k')
 
 function ClassCalculator() {
-  const [form, setForm] = useState(_.transform(questions, (m, section, sectionId) => {
-    m[section.k] = _.transform(section.opts, (m_, opt) => {
+  const [form, setForm] = useState(transform(questions, (m, section, sectionId) => {
+    m[section.k] = transform(section.opts, (m_, opt) => {
       m_[opt.k] = false
       return m
     }, {})
@@ -153,14 +151,14 @@ function ClassCalculator() {
   }
 
   function calculateScores(form) {
-    setKlass(_.transform(form, (m, section, sectionId) => {
+    setKlass(transform(form, (m, section, sectionId) => {
       const qo = questionsObj
       qo[sectionId].opts.forEach(opt => {
         if (section[opt.k]) {
           if (opt.classesFn) {
             opt.classesFn(m, form)
           } else {
-            _.each(opt.classes, (pts, c) => {m[c] += pts})
+            each(opt.classes, (pts, c) => {m[c] += pts})
           }
         }
       })

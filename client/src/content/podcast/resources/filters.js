@@ -1,17 +1,27 @@
-import {
-  BiCode,
-  BiLaptop,
-  CgMathPercent,
-  FaBook, FaBrain, FaChalkboardTeacher,
-  FaCouch, FaEye, FaGraduationCap,
-  FaHeadphones,
-  FaMicrophone, FaNewspaper, FaRegSmile, FaRegStar, FaRobot,
-  FaRunning, FaStar, FaStarHalfAlt,
-  FaVideo,
-  GiBattery0,
-  GiBattery100,
-  GiBattery50, GiSnake, IoIosChatbubbles, MdWeb, TiSortAlphabetically
-} from "react-icons/all";
+import {FaBook} from '@react-icons/all-files/fa/FaBook'
+import {FaBrain} from '@react-icons/all-files/fa/FaBrain'
+import {FaChalkboardTeacher} from '@react-icons/all-files/fa/FaChalkboardTeacher'
+import {FaCouch} from '@react-icons/all-files/fa/FaCouch'
+import {FaEye} from '@react-icons/all-files/fa/FaEye'
+import {FaGraduationCap} from '@react-icons/all-files/fa/FaGraduationCap'
+import {FaHeadphones} from '@react-icons/all-files/fa/FaHeadphones'
+import {FaMicrophone} from '@react-icons/all-files/fa/FaMicrophone'
+import {FaNewspaper} from '@react-icons/all-files/fa/FaNewspaper'
+import {FaRegSmile} from '@react-icons/all-files/fa/FaRegSmile'
+import {FaRegStar} from '@react-icons/all-files/fa/FaRegStar'
+import {FaRobot} from '@react-icons/all-files/fa/FaRobot'
+import {FaRunning} from '@react-icons/all-files/fa/FaRunning'
+import {FaStar} from '@react-icons/all-files/fa/FaStar'
+import {FaStarHalfAlt} from '@react-icons/all-files/fa/FaStarHalfAlt'
+import {FaVideo} from '@react-icons/all-files/fa/FaVideo'
+import {GiBattery0} from '@react-icons/all-files/gi/GiBattery0'
+import {GiBattery100} from '@react-icons/all-files/gi/GiBattery100'
+import {GiBattery50} from '@react-icons/all-files/gi/GiBattery50'
+import {IoIosChatbubbles} from '@react-icons/all-files/io/IoIosChatbubbles'
+import {MdWeb} from '@react-icons/all-files/md/MdWeb'
+import {TiSortAlphabetically} from '@react-icons/all-files/ti/TiSortAlphabetically'
+import {BiCode} from '@react-icons/all-files/bi/BiCode'
+import {CgMathPercent} from '@react-icons/all-files/cg/CgMathPercent'
 
 export const learnStyles = {
   learn: {

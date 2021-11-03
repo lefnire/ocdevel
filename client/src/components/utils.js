@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import {Button} from "react-bootstrap";
-import {FaArrowLeft} from "react-icons/all";
+import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import React from "react";
 
 export const BackButton = () => {

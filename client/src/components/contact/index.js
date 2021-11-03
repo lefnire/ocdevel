@@ -1,8 +1,13 @@
 import React from 'react'
-import {Card, Col, Row, Container, Button, Stack} from "react-bootstrap";
+import {Card, Col, Row, Container, Stack} from "react-bootstrap";
 import {IconButton} from "../../utils";
 import avatar from "../../assets/avatar.jfif";
-import {FaCouch, FaDragon, FaEnvelope, FaGithub, FaLinkedin, FaMicrophone} from "react-icons/all";
+import {FaCouch} from '@react-icons/all-files/fa/FaCouch';
+import {FaDragon} from '@react-icons/all-files/fa/FaDragon';
+import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope';
+import {FaGithub} from '@react-icons/all-files/fa/FaGithub';
+import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
+import {FaMicrophone} from '@react-icons/all-files/fa/FaMicrophone';
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 

@@ -1,4 +1,9 @@
-import {FaCheckCircle, FaCheckSquare, FaRegCircle, FaRegSquare, FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {FaCheckCircle} from '@react-icons/all-files/fa/FaCheckCircle'
+import {FaCheckSquare} from '@react-icons/all-files/fa/FaCheckSquare'
+import {FaRegCircle} from '@react-icons/all-files/fa/FaRegCircle'
+import {FaRegSquare} from '@react-icons/all-files/fa/FaRegSquare'
+import {FiMinusSquare} from '@react-icons/all-files/fi/FiMinusSquare'
+import {FiPlusSquare} from '@react-icons/all-files/fi/FiPlusSquare'
 import {btns, icons} from "../utils";
 import React, {useCallback, useState} from "react";
 import {Button, ButtonGroup, Card, Col} from "react-bootstrap";

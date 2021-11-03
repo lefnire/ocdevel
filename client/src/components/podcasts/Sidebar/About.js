@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
-import {
-  FaDiscord,
-  FaEnvelope, FaGithub,
-  FaItunesNote, FaLightbulb,
-  RiGooglePlayLine,
-  RiSpotifyLine,
-  SiRss,
-  SiStitcher
-} from "react-icons/all";
+import {FaDiscord} from '@react-icons/all-files/fa/FaDiscord'
+import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope'
+import {FaGithub} from '@react-icons/all-files/fa/FaGithub'
+import {FaItunesNote} from '@react-icons/all-files/fa/FaItunesNote'
+import {FaLightbulb} from '@react-icons/all-files/fa/FaLightbulb'
+import {RiGooglePlayLine} from '@react-icons/all-files/ri/RiGooglePlayLine'
+import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
+import {SiRss} from '@react-icons/all-files/si/SiRss'
+import {SiStitcher} from '@react-icons/all-files/si/SiStitcher'
 import {btns, icons, Popover_} from "../utils";
 import {mlg} from "../../../content/podcast";
 import scout from "../../../assets/MLG-Option-1.jpg";

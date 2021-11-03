@@ -5,7 +5,10 @@ import {
 import {Link} from 'react-router-dom'
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import {BiChevronDown, BiChevronRight, FiMinusSquare, FiPlusSquare} from "react-icons/all";
+import {BiChevronDown} from '@react-icons/all-files/bi/BiChevronDown'
+import {BiChevronRight} from '@react-icons/all-files/bi/BiChevronRight'
+import {FiMinusSquare} from '@react-icons/all-files/fi/FiMinusSquare'
+import {FiPlusSquare} from '@react-icons/all-files/fi/FiPlusSquare'
 import compact from 'lodash/compact'
 
 export const dateFmt = 'MMM DD, YYYY';
