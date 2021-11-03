@@ -1,7 +1,8 @@
 import React from "react";
-import {Alert, Card} from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert'
+import Card from 'react-bootstrap/Card'
 import {Accordion_, dateFmt, ReactMarkdown_} from "../utils";
-import {padStart} from "lodash";
+import padStart from "lodash/padStart";
 import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet";

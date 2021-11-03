@@ -1,6 +1,7 @@
-import _ from 'lodash'
+import map from 'lodash/map'
+import keyBy from 'lodash/keyBy'
 
-export const episodes = _.map([
+export const episodes = map([
   require('./mlg/001').default,
   require('./mlg/002.js').default,
   require('./mlg/003.js').default,
@@ -56,7 +57,7 @@ export const episodes = _.map([
   ...e,
 }))
 
-export const episodesObj = _.keyBy(episodes, 'id')
+export const episodesObj = keyBy(episodes, 'id')
 
 export const mlg = {
   title: "Machine Learning Guide",

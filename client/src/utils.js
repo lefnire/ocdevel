@@ -1,7 +1,7 @@
 import {
   useLocation,
 } from "react-router-dom";
-import {Button} from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
 export function useQuery() {
   return new URLSearchParams(useLocation().search);

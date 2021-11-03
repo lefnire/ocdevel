@@ -3,9 +3,11 @@ import {Link} from "react-router-dom";
 import {
   FaInfoCircle,
 } from "@react-icons/all-files/fa/FaInfoCircle";
-import {Alert, Card, Table} from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert'
+import Card from 'react-bootstrap/Card'
+import Table from 'react-bootstrap/Table'
 import {useFilteredTree} from "../../../store/resources";
-import {startsWith} from "lodash";
+import startsWith from "lodash/startsWith";
 
 import {ReactMarkdown_, icons, Popover_} from "../utils";
 import {filterKeys, filters} from '../../../content/podcast/resources/filters'

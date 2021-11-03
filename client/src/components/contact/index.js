@@ -1,5 +1,9 @@
 import React from 'react'
-import {Card, Col, Row, Container, Stack} from "react-bootstrap";
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
+import Stack from 'react-bootstrap/Stack'
 import {IconButton} from "../../utils";
 import avatar from "../../assets/avatar.jfif";
 import {FaCouch} from '@react-icons/all-files/fa/FaCouch';

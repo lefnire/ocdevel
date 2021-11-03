@@ -6,10 +6,13 @@ import {FiMinusSquare} from '@react-icons/all-files/fi/FiMinusSquare'
 import {FiPlusSquare} from '@react-icons/all-files/fi/FiPlusSquare'
 import {btns, icons} from "../utils";
 import React, {useCallback, useState} from "react";
-import {Button, ButtonGroup, Card, Col} from "react-bootstrap";
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
 import {useStore} from "../../../store/resources";
 import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
-import {map} from "lodash";
+import map from "lodash/map";
 
 let check = {size:20, className:'border-end pe-2 me-2'}
 check = {

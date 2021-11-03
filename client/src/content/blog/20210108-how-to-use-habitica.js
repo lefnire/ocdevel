@@ -1,12 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import {Accordion, Card, Alert, Form, Row, Col, Badge} from 'react-bootstrap'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import Alert from 'react-bootstrap/Alert'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Badge from 'react-bootstrap/Badge'
 import {FaCalendar} from '@react-icons/all-files/fa/FaCalendar'
 import {FaCheckSquare} from '@react-icons/all-files/fa/FaCheckSquare'
 import {FaGift} from '@react-icons/all-files/fa/FaGift'
 import {FaHatWizard} from '@react-icons/all-files/fa/FaHatWizard'
 import {FaPlusSquare} from '@react-icons/all-files/fa/FaPlusSquare'
 import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
-import {each, keyBy, transform} from 'lodash'
+import each from 'lodash/each'
+import keyBy from 'lodash/keyBy'
+import transform from 'lodash/transform'
 
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 

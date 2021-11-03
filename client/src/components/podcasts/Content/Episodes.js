@@ -1,6 +1,8 @@
 import React, {useCallback, useLayoutEffect, useEffect, useState} from "react";
-import {filter, times} from "lodash";
-import {Button, ButtonGroup} from "react-bootstrap";
+import filter from 'lodash/filter'
+import times from 'lodash/times'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import useStore from "../../../store/episodes";
 
 import {episodes} from "../../../content/podcast";

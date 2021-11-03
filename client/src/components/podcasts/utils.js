@@ -1,7 +1,6 @@
-import {
-  Popover,
-  OverlayTrigger, Accordion,
-} from "react-bootstrap";
+import Popover from 'react-bootstrap/Popover'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Accordion from 'react-bootstrap/Accordion'
 import {Link} from 'react-router-dom'
 import React from "react";
 import ReactMarkdown from "react-markdown";

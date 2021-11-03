@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {Button, ButtonGroup, Card, Col, Row} from "react-bootstrap";
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 import {FaDiscord} from '@react-icons/all-files/fa/FaDiscord'
 import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope'
 import {FaGithub} from '@react-icons/all-files/fa/FaGithub'

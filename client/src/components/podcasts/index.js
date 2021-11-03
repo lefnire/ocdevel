@@ -1,9 +1,9 @@
 import React from 'react';
-import {
-  Row,
-  Col,
-  Container, Navbar, Nav
-} from 'react-bootstrap';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 import {Switch, Route, useLocation} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
@@ -18,7 +18,6 @@ import {LinkContainer} from "react-router-bootstrap";
 import Filters from "./Sidebar/Filters";
 import About from "./Sidebar/About";
 // import {useQuery} from "../../utils";
-
 
 export default function Series() {
   const location = useLocation()
