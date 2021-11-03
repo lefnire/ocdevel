@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Accordion, Card, Alert, Form, Row, Col} from 'react-bootstrap'
+import {Accordion, Card, Alert, Form, Row, Col, Badge} from 'react-bootstrap'
 import {
   FaBrain,
   FaCalendar,
@@ -289,11 +289,11 @@ const body = <>
     <p>Some more points. Consider adding real-life purchaseables as rewards. Eg, 100gp for a new book or game. Again, it relieves the guilt when earned. Also, if you fall off the horse (eg, if you do something without earning it) - that's ok, take note and try to stick to the system next time. Habitica is a constant lesson in momentary failures, self-forgiveness, then trying again to stick to the system. Finally, prices will vary per person. It depends on the number of Tasks you have, and your Perception (the attribute, usually focused on by Rogues, which maximizes in-game rewards). Below are some prices which work for me, start with that then alter the prices over time as you see fit based on your goals.</p>
 
     <ul>
-      <li><span className='badge badge-warning'>10GP</span> Read for 30m</li>
-      <li><span className='badge badge-warning'>15GP</span> Junk food</li>
-      <li><span className='badge badge-warning'>30GP</span> 1 TV episode</li>
-      <li><span className='badge badge-warning'>75GP</span> 1 hour gaming</li>
-      <li><span className='badge badge-warning'>100GP</span> Buy a new video game</li>
+      <li><Badge variant="warning">10GP</Badge> Read for 30m</li>
+      <li><Badge variant="warning">15GP</Badge> Junk food</li>
+      <li><Badge variant="warning">30GP</Badge> 1 TV episode</li>
+      <li><Badge variant="warning">75GP</Badge> 1 hour gaming</li>
+      <li><Badge variant="warning">100GP</Badge> Buy a new video game</li>
     </ul>
     <p>And again, I still continue to use in-game rewards (gear & items), but usually do so with excess gold. I prioritize custom rewards. Find the balance that works.</p>
 

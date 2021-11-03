@@ -31,26 +31,26 @@ export default function Contact() {
     </ul>
   </>
 
-  const img = <>
-    <img src={avatar} className='rounded mb-3'/>
-  </>
-
   const about = <div>
-    <Card.Title className='text-center'>Tyler Renelle</Card.Title>
-    {/*<Alert variant='info'>I'm looking for work! Machine learning engineering or web/mobile development, ideally part-time. Open to discussing full-time roles. Contact me via email or LinkedIn.</Alert>*/}
-    <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameter optimization, etc. Devops with AWS & Docker. Full-stack with Python/FastAPI, Postgres, and React / React Native. I offer NLP services using robust tooling I maintain at <a href="https://github.com/lefnire/ml-tools" target="_blank">lefnire/ml-tools</a>.</p>
+    <Card.Title>Tyler Renelle</Card.Title>
+    <Card.Body>
+      <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameters, etc. Devops with AWS, Docker, SageMaker. Full-stack with Python, Postgres, and React / React Native.</p>
+      <p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? Contact <a target="_blank" href="https://www.deptagency.com/en-us/contact/">Dept Agency</a>, tell them you want Tyler on your project!</p>
+    </Card.Body>
   </div>
 
   const projects = <div>
-    <Card.Title className='text-center'>Projects</Card.Title>
-    <Card.Subtitle><FaCouch /> <a href="https://gnothiai.com" target="_blank">Gnothi</a></Card.Subtitle>
-    <p>An personal journal that uses AI to provide insights & resources. I created and maintain this open source project.</p>
-    <Card.Subtitle><FaDragon /> <a href="https://habitica.com" target="_blank">Habitica</a></Card.Subtitle>
-    <p>A gamified habit tracker. I created Habitica, but am no longer with the company.</p>
-    <Card.Subtitle><FaMicrophone /> <Link to="/mlg">Machine Learning Guide</Link></Card.Subtitle>
-    <p>I teach the fundamentals of machine learning and artificial intelligence over a podcast.</p>
-    <Card.Subtitle><FaGithub /> More</Card.Subtitle>
-    <p>See my Github and LinkedIn profiles for more projects.</p>
+    <Card.Title>Projects</Card.Title>
+    <Card.Body>
+      <h6><FaCouch /> <a href="https://gnothiai.com" target="_blank">Gnothi</a></h6>
+      <p>An personal journal that uses AI to provide insights & resources. I created and maintain this open source project.</p>
+      <h6><FaDragon /> <a href="https://habitica.com" target="_blank">Habitica</a></h6>
+      <p>A gamified habit tracker. I created Habitica, but am no longer with the company.</p>
+      <h6><FaMicrophone /> <Link to="/mlg">Machine Learning Guide</Link></h6>
+      <p>I teach the fundamentals of machine learning and artificial intelligence over a podcast.</p>
+      <h6><FaGithub /> More</h6>
+      <p>See my Github and LinkedIn profiles for more projects.</p>
+    </Card.Body>
   </div>
 
   return <Container className='contact-hire'>
@@ -59,7 +59,7 @@ export default function Contact() {
     </Helmet>
     <Row>
       <Col xs={12} lg={3} className='text-center'>
-        {img}
+        <img src={avatar} className='rounded mb-3'/>
         {links}
       </Col>
       <Col xs={12} lg={9}>
