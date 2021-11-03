@@ -4,11 +4,12 @@ import Nav from 'react-bootstrap/Nav'
 import {LinkContainer} from 'react-router-bootstrap';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import CookieConsent from "react-cookie-consent";
-import Home from "./home"
-import Blog from "./blog"
-import Podcasts from "./podcasts";
-import Contact from "./contact"
-import './App.scss'
+import {Lazy} from "./utils";
+const Home = () => import("./home")
+const Blog = () => import("./blog")
+const Podcasts = () => import("./podcasts")
+const Contact = () => import("./contact")
+require('./App.scss')
 
 export default function App() {
   return <div>
@@ -32,10 +33,10 @@ export default function App() {
     </Navbar>
 
     <Switch>
-      <Route path="/" exact><Home /></Route>
-      <Route path="/blog"><Blog /></Route>
-      <Route path="/mlg"><Podcasts /></Route>
-      <Route path="/contact"><Contact /></Route>
+      <Route path="/" exact><Lazy c={Home} /></Route>
+      <Route path="/blog"><Lazy c={Blog} /></Route>
+      <Route path="/mlg"><Lazy c={Podcasts} /></Route>
+      <Route path="/contact"><Lazy c={Contact} /></Route>
       <Redirect from="/podcasts(.*)" to="/mlg"/>
     </Switch>
 

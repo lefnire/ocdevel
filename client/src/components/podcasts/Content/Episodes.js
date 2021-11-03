@@ -8,7 +8,7 @@ import useStore from "../../../store/episodes";
 import {episodes} from "../../../content/podcast";
 import {Episode} from './Episode';
 
-export function Episodes() {
+export default function Episodes() {
   const [page, setPage] = useState(0)
 
   const showMla = useStore(state => state.mla)

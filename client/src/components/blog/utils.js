@@ -1,0 +1,1 @@
+export const fmt = 'MMM DD, YYYY';

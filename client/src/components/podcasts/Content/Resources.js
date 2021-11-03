@@ -171,7 +171,7 @@ function TreeSectionWrapper({expanded, children}) {
   </div>
 }
 
-function ResourceNode({node, level=0}) {
+export function ResourceNode({node, level=0}) {
   const full = flat[node.id]
   const [expanded, setExpanded] = useState(!!full.expand)
   const [showPick, setShowPick] = useState(false)
@@ -238,26 +238,10 @@ function ResourceNode({node, level=0}) {
   </div>
 }
 
-export function ResourcesTree() {
+export default function ResourcesTree() {
   const sections = useFilteredTree()
   return <div className='resources resources-tree mb-3'>
     {sections.map(n => <ResourceNode node={n} key={n.id} />)}
   </div>
 }
 
-export function ResourcesFlat({nids}) {
-  let seen = {}
-  function render(node) {
-    const {id} = node
-    const full = flat[id]
-    if (!full.pick) {
-      if (seen[id]) {return null}
-      seen[id] = true
-      return <ResourceNode node={{id}} key={id} />
-    }
-    return full.v.map(render)
-  }
-  return <div className='resources'>
-    {nids.map(id => render({id}))}
-  </div>
-}

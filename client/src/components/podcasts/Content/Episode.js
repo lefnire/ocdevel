@@ -7,11 +7,27 @@ import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {BackButton} from "../../utils";
-import {ResourcesFlat} from "./Resources";
 import ReactDisqusComments from "react-disqus-comments";
+import {ResourceNode} from './Resources'
 import {episodesObj, mlg} from "../../../content/podcast";
-import {episodes as episodeResources} from '../../../content/podcast/resources'
+import {episodes as episodeResources, flat} from '../../../content/podcast/resources'
 
+function ResourcesFlat({nids}) {
+  let seen = {}
+  function render(node) {
+    const {id} = node
+    const full = flat[id]
+    if (!full.pick) {
+      if (seen[id]) {return null}
+      seen[id] = true
+      return <ResourceNode node={{id}} key={id} />
+    }
+    return full.v.map(render)
+  }
+  return <div className='resources'>
+    {nids.map(id => render({id}))}
+  </div>
+}
 
 // 8d7997de switched from component to returning memoized JSX, since iframe being
 // re-rendered slowly each time. This trick doesn't seem to work either, figure out later
@@ -153,7 +169,7 @@ export function Episode({e, teaser}) {
   return teaser ? renderTeaser() : renderFull()
 }
 
-export function EpisodeRoute() {
+export default function EpisodeRoute() {
   const {id} = useParams()
   const e = episodesObj[id];
   return <Episode e={e} teaser={false} />

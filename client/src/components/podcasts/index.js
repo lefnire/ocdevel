@@ -9,14 +9,15 @@ import {Helmet} from "react-helmet";
 
 import {mlg} from '../../content/podcast';
 
-import Recommend from './Content/Recommend'
-import {Episodes} from './Content/Episodes'
-import {EpisodeRoute} from './Content/Episode'
 
-import {ResourcesTree} from './Content/Resources'
 import {LinkContainer} from "react-router-bootstrap";
-import Filters from "./Sidebar/Filters";
-import About from "./Sidebar/About";
+import {Lazy} from "../utils"
+const Recommend = () => import('./Content/Recommend')
+const EpisodeRoute = () => import('./Content/Episode')
+const ResourcesTree = () => import('./Content/Resources')
+const Episodes = () => import('./Content/Episodes')
+const Filters = () => import("./Sidebar/Filters")
+const About = () => import("./Sidebar/About")
 // import {useQuery} from "../../utils";
 
 export default function Series() {
@@ -48,17 +49,17 @@ export default function Series() {
         <Col {...col.left} className='sidebar'>
           <Row>
             <Switch>
-              <Route path="/mlg/resources" exact><Filters /></Route>
-              <Route path="/mlg"><About /></Route>
+              <Route path="/mlg/resources" exact><Lazy c={Filters} /></Route>
+              <Route path="/mlg"><Lazy c={About} /></Route>
             </Switch>
           </Row>
         </Col>
         <Col {...col.right}>
           <Switch>
-            <Route path="/mlg" exact><Episodes /></Route>
-            <Route path="/mlg/resources" exact><ResourcesTree /></Route>
-            <Route path="/mlg/recommend" exact><Recommend /></Route>
-            <Route path="/mlg/:id"><EpisodeRoute /></Route>
+            <Route path="/mlg" exact><Lazy c={Episodes} /></Route>
+            <Route path="/mlg/resources" exact><Lazy c={ResourcesTree} /></Route>
+            <Route path="/mlg/recommend" exact><Lazy c={Recommend} /></Route>
+            <Route path="/mlg/:id"><Lazy c={EpisodeRoute} /></Route>
           </Switch>
         </Col>
       </Row>
