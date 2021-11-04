@@ -126,17 +126,17 @@ export function Episode({e, teaser}) {
         title: "Show Notes",
         body: <Markdown_ Content={e.body} />
       }),
-      (e.transcript && {
-        title: "Transcript",
-        body: <Markdown_ Content={e.transcript} />
-      }),
       (resources && {
         title: "Resources",
         body: <>
           <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
           <ResourcesFlat nids={resources} />
         </>
-      })
+      }),
+      (e.transcript && {
+        title: "Transcript",
+        body: <Markdown_ Content={e.transcript} />
+      }),
     ]
 
     return <div>
