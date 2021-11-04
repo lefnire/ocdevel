@@ -4,6 +4,8 @@ import times from 'lodash/times'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import useStore from "../../../store/episodes";
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 import {episodes} from "../../../content/podcast";
 import {Episode} from './Episode';
@@ -15,32 +17,28 @@ export default function Episodes() {
   const showMlg = useStore(state => state.mlg)
   const newFirst = useStore(state => state.newFirst);
 
-  const toggleNewFirst = useStore(actions => actions.toggleNewFirst);
-  const setMla = useStore(actions => actions.setMla);
-  const setMlg = useStore(actions => actions.setMlg);
-
-  const toggleNewFirst_ = useCallback(() => toggleNewFirst(), [])
-  const setMla_ = useCallback(() => setMla(), [])
-  const setMlg_ = useCallback(() => setMlg(), [])
-
-  useEffect(() => {
-    setPage(0)
-  }, [showMla, showMlg, newFirst])
+  const toggleNewFirst = useCallback(useStore(actions => actions.toggleNewFirst), []);
+  const setMla = useCallback(useStore(actions => actions.setMla), []);
+  const setMlg = useCallback(useStore(actions => actions.setMlg), []);
 
   useLayoutEffect(() => {
     // window.scrollTo(0, document.body.scrollHeight);
     window.scrollTo(0, 0);
-  }, [page])
+  }, [])
 
+  function next() {
+    setPage(page + 1)
+  }
+
+  const pageSize = 3
   let eps = newFirst ? episodes : episodes.slice().reverse()
   eps = filter(eps, e => {
     if (showMla && showMlg) {return true}
     return showMla ? e.mla : showMlg ? e.mlg : false
   })
-
-  const pageSize = 10
-  const epsPage = eps.slice(page*pageSize, (page+1)*pageSize)
-  const numPages = Math.ceil(eps.length / pageSize)
+  const fullLen = eps.length
+  eps = eps.slice(0, (page+1)*pageSize)
+  const hasMore = eps.length < fullLen
 
   function btns_(active=false) {
     return {
@@ -55,50 +53,36 @@ export default function Episodes() {
       <Button
         {...btns_()}
         className='mx-2'
-        onClick={toggleNewFirst_}>
+        onClick={toggleNewFirst}>
         {newFirst ? <>New&rarr;Old</> : <>Old&rarr;New</>}
       </Button>
       <ButtonGroup className='me-2'>
         <Button
           {...btns_(showMlg)}
-          onClick={setMlg_}>
+          onClick={setMlg}>
           MLG
         </Button>
         <Button
           {...btns_(showMla)}
-          onClick={setMla_}>
+          onClick={setMla}>
           MLA
         </Button>
       </ButtonGroup>
-      {renderPager()}
     </div>
-  }
-  
-  function renderPager() {
-    return <ButtonGroup>
-      <Button
-        {...btns_()}
-        onClick={() => setPage(page-1)}
-        disabled={page === 0}
-      >&larr;</Button>
-      {times(numPages, p => <>
-        <Button
-          {...btns_(p === page)}
-          onClick={() => setPage(p)}
-        >{p}</Button>
-      </>)}
-      <Button
-        {...btns_(false)}
-        onClick={() => setPage(page+1)}
-        disabled={page === numPages - 1}
-      >&rarr;</Button>
-    </ButtonGroup>
   }
 
   // TODO filter episodes
   return <div>
     {renderButtons()}
-    {epsPage.map(e => <Episode key={e.id} e={e} teaser={true} />)}
-    {renderPager()}
+
+    <InfiniteScroll
+      dataLength={eps.length} //This is important field to render the next data
+      next={next}
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+      endMessage={<></>}
+    >
+      {eps.map(e => <Episode key={e.id} e={e} teaser={true} />)}
+    </InfiniteScroll>
   </div>
 }
