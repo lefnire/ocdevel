@@ -93,17 +93,6 @@
             </outline>
           </outline>
         </outline>
-        <outline text="Programming #pick:any" _note="Eventually you'll need to know Python. Not immediately (why I list this after Basics), but before going too far. This is your tech stack:&#10;* [Scikit-learn](&lt;a href=&quot;https://scikit-learn.org/stable/&quot;&gt;https://scikit-learn.org/stable/&lt;/a&gt;) as your shallow-learning library&#10;* [Tensorflow](&lt;a href=&quot;https://www.tensorflow.org/&quot;&gt;https://www.tensorflow.org/&lt;/a&gt;) or [Pytorch](&lt;a href=&quot;https://pytorch.org/&quot;&gt;https://pytorch.org/&lt;/a&gt;) as your deep-learning framework(s)&#10;* [Numpy](&lt;a href=&quot;https://numpy.org/&quot;&gt;https://numpy.org/&lt;/a&gt;) and [Pandas](&lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;https://pandas.pydata.org/&lt;/a&gt;) as your utility belt">
-          <outline text="Learning Python, 5th Edition #difficulty:medium #topic:tech #format:book #mlg:10">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2mVgtJW&quot;&gt;http://amzn.to/2mVgtJW&lt;/a&gt;" />
-          </outline>
-          <outline text="Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition #topic:tech #difficulty:easy #format:book #mlg:10">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2IHFh2m&quot;&gt;https://amzn.to/2IHFh2m&lt;/a&gt;" />
-          </outline>
-          <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:essential " _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3CqJ9xo&quot;&gt;https://amzn.to/3CqJ9xo&lt;/a&gt;" />
-          </outline>
-        </outline>
         <outline text="Deep Learning #pick:one">
           <outline text="Andrew Ng Deep Learning Course #topic:dl #importance:essential  #difficulty:hard #format:course #engagement:active #mlg:9">
             <outline text="Coursera #price:free" _note="&lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;https://www.coursera.org/specializations/deep-learning&lt;/a&gt;" />
@@ -158,7 +147,23 @@
             </outline>
           </outline>
         </outline>
-        <outline text="Technology Stack #pick:any " _note="A guide for building your ML project, and what technology to use">
+        <outline text="Technology #pick:any " _note="A guide for building your ML project, and what technology to use">
+          <outline text="Programming #pick:any" _note="Eventually you'll need to know Python. Not immediately (why I list this after Basics), but before going too far. This is your tech stack:&#10;* [Scikit-learn](&lt;a href=&quot;https://scikit-learn.org/stable/&quot;&gt;https://scikit-learn.org/stable/&lt;/a&gt;) as your shallow-learning library&#10;* [Tensorflow](&lt;a href=&quot;https://www.tensorflow.org/&quot;&gt;https://www.tensorflow.org/&lt;/a&gt;) or [Pytorch](&lt;a href=&quot;https://pytorch.org/&quot;&gt;https://pytorch.org/&lt;/a&gt;) as your deep-learning framework(s)&#10;* [Numpy](&lt;a href=&quot;https://numpy.org/&quot;&gt;https://numpy.org/&lt;/a&gt;) and [Pandas](&lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;https://pandas.pydata.org/&lt;/a&gt;) as your utility belt">
+            <outline text="Learning Python, 5th Edition #difficulty:medium #topic:tech #format:book #mlg:10">
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2mVgtJW&quot;&gt;http://amzn.to/2mVgtJW&lt;/a&gt;" />
+            </outline>
+            <outline text="Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 2nd Edition #topic:tech #difficulty:easy #format:book #mlg:10">
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2IHFh2m&quot;&gt;https://amzn.to/2IHFh2m&lt;/a&gt;" />
+            </outline>
+          </outline>
+          <outline text="MLOps #pick:all">
+            <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:essential #mla:15" _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3CqJ9xo&quot;&gt;https://amzn.to/3CqJ9xo&lt;/a&gt;" />
+            </outline>
+            <outline text="Amazon SageMaker Technical Deep Dive Series #difficulty:easy #topic:tech #format:video #video2audio:good #audioOption #mla:15">
+              <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&quot;&gt;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&lt;/a&gt;" />
+            </outline>
+          </outline>
           <outline text="Development Environment" _note="Use Windows (dev channel), WSL2, Docker, nvidia-docker for your dev environment">
             <outline text="Article #price:free" _note="/mlg/24" />
           </outline>
@@ -167,9 +172,6 @@
           </outline>
           <outline text="Machine Learning Server" _note="Cloud hosting services for serving your machine learning model">
             <outline text="Article #price:free" _note="/mlg/mla-14" />
-          </outline>
-          <outline text="Amazon SageMaker Technical Deep Dive Series #difficulty:easy #topic:tech #format:video #video2audio:good #audioOption ">
-            <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&quot;&gt;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&lt;/a&gt;" />
           </outline>
         </outline>
       </outline>
