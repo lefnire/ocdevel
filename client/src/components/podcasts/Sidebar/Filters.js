@@ -89,6 +89,17 @@ function Filter({k, section='filters'}) {
   const f = filters[k]
   if (!f.opts) {return null}
 
+  function renderOpt(v, opt_k) {
+    const id = `${k}-${opt_k}`
+    return <Option
+      key={id}
+      opt={v}
+      active={active[opt_k]}
+      select={select_(opt_k)}
+      setHelp={setHelp}
+    />
+  }
+
   return <>
     <Card.Body>
       <Card.Subtitle className='pointer' onClick={setShow_}>
@@ -96,13 +107,7 @@ function Filter({k, section='filters'}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {map(f.opts, (v, opt_k) => <Option
-          key={k}
-          opt={v}
-          active={active[opt_k]}
-          select={select_(opt_k)}
-          setHelp={setHelp}
-        />)}
+        {map(f.opts, renderOpt)}
       </ButtonGroup>}
     </Card.Body>
     {show && <Card.Footer className='small'>{help || f.d}</Card.Footer>}

@@ -25,9 +25,7 @@ function ResourceWrapper({children, show}) {
 function Resource({node}) {
   const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
-
-  const resource = flat[node?.id]
-  if (!resource) {return null} // FIXME
+  const full = flat[node.id]
 
   function toggle() {setShow(!show)}
   function resetHelp() {setShowHelp(null)}
@@ -38,16 +36,17 @@ function Resource({node}) {
   })
 
   function renderIcon(filterKey) {
-    if (resource.card) {return null}
     // if (!resource[filterKey]) {return null} // FIXME due to old resources?
     const filter = filters[filterKey]
-    const resourceFilter = filter.opts[resource[filterKey]]
+    const resourceFilter = filter.opts[full[filterKey]]
     if (!resourceFilter || !resourceFilter.i) {return null}
     let className = "me-2 text-muted"
-    className += ` icon-${filterKey}-${resource[filterKey]}`
+    className += ` icon-${filterKey}-${full[filterKey]}`
     // if (filterKey !== 'importance') {className += ' text-muted'}
+    const id = `${filter.t}-${filterKey}`
     return <Popover_
-      id={`${filter.t}-${filterKey}`}
+      id={id}
+      key={id}
       opts={{placement: "bottom"}}
       content={<>
         <h6>{filter.t}</h6>
@@ -68,7 +67,7 @@ function Resource({node}) {
   function renderDetails(filterKey) {
     // if (!resource[filterKey]) {return } // FIXME due to old resources?
     const filter = filters[filterKey]
-    const resourceFilter = filter.opts[resource[filterKey]]
+    const resourceFilter = filter.opts[full[filterKey]]
     if (!resourceFilter) {return null}
     return <tr key={filterKey}>
       <td {...helpAttrs(filter.d, 'pointer')}>
@@ -110,14 +109,13 @@ function Resource({node}) {
         Links
       </td>
       <td>
-        {resource.links.map(renderLink)}
-        {resource.tgc && <Link to='/blog/20201213-tgc' className='d-block'>Get it cheaper</Link>}
+        {full.links.map(renderLink)}
+        {full.tgc && <Link to='/blog/20201213-tgc' className='d-block'>Get it cheaper</Link>}
       </td>
     </tr>
   }
 
   function renderTable() {
-    if (resource.card) {return null}
     return <div className='small'>
       <Table striped size='sm filters-table my-2'>
         <colgroup>
@@ -142,15 +140,15 @@ function Resource({node}) {
         <div onClick={toggle} className="pointer">
           {show ? icons.down : icons.right}
           <span className='mx-2 resource-title'>
-            {resource.t}
+            {full.t}
           </span>
           {filterKeys.map(renderIcon)}
         </div>
         {show && <div className='px-2 pb-1'>
-          {resource.d && <div className={'my-2 ' + (resource.card ? 'resource-card' : 'small text-muted')}>
-            <ReactMarkdown_ source={resource.d} />
+          {full.d && <div className={'my-2 small text-muted'}>
+            <ReactMarkdown_ source={full.d} />
           </div>}
-          {resource.itunesu && <div className='small text-muted my-2'>
+          {full.itunesu && <div className='small text-muted my-2'>
             This is a recorded university course, what used be part of the iTunesU system. These courses can be listened to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do a great job orating, unlike TheGreatCourses teachers who orate wonderfully. So you'll likely want the visuals.
           </div>}
           {renderTable()}
@@ -172,13 +170,18 @@ function TreeSectionWrapper({expanded, children}) {
 }
 
 export function ResourceNode({node, level=0}) {
+  // Wrapper component to error-catch missing value
+  if (!flat[node?.id]) {return null}
+  return <ResourceNode_ node={node} level={level} />
+}
+
+function ResourceNode_({node, level=0}) {
   const full = flat[node.id]
   const [expanded, setExpanded] = useState(!!full.expand)
   const [showPick, setShowPick] = useState(false)
 
   const showPick_ = useCallback(() => {setShowPick(!showPick)}, [showPick])
 
-  if (!node?.id) {return null}
   if (!full.pick) {
     return <div className='py-2'>
       <Resource node={node} />
@@ -186,7 +189,7 @@ export function ResourceNode({node, level=0}) {
   }
 
   // pick is present, but no children; this section was filtered out
-  if (!full.v?.length) {
+  if (!node.v?.length) {
     return null
   }
 
@@ -218,8 +221,8 @@ export function ResourceNode({node, level=0}) {
   const dontPad = level === 0 || expanded
 
   function renderLi(v) {
-    const full = flat[v.id]
-    return <li key={v.id || full.t}>
+    const key = `${level}-${v.id}`
+    return <li key={key}>
       <ResourceNode node={v} level={level+1} />
     </li>
   }
@@ -233,15 +236,16 @@ export function ResourceNode({node, level=0}) {
       {renderSectionInfo()}
     </TreeSectionWrapper>
     {expanded && <ul className={`list-unstyled border-start ps-4 mb-0`}>
-      {full.v.map(renderLi)}
+      {node.v.map(renderLi)}
     </ul>}
   </div>
 }
 
 export default function ResourcesTree() {
   const sections = useFilteredTree()
+
   return <div className='resources resources-tree mb-3'>
-    {sections.map(n => <ResourceNode node={n} key={n.id} />)}
+    {sections.map(n => n && <ResourceNode node={n} key={n.id} />)}
   </div>
 }
 

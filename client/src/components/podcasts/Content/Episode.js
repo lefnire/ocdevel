@@ -14,18 +14,18 @@ import {episodes as episodeResources, flat} from '../../../content/podcast/resou
 
 function ResourcesFlat({nids}) {
   let seen = {}
-  function render(node) {
-    const {id} = node
+  function render(id) {
     const full = flat[id]
     if (!full.pick) {
       if (seen[id]) {return null}
       seen[id] = true
       return <ResourceNode node={{id}} key={id} />
     }
+    // using full.v instead of node.v, since we don't want filters
     return full.v.map(render)
   }
   return <div className='resources'>
-    {nids.map(id => render({id}))}
+    {nids.map(render)}
   </div>
 }
 

@@ -198,7 +198,7 @@
             <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=1056&amp;amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmastering-linear-algebra-an-introduction-to-applications&amp;amp;intsrc=PUI1_1204&lt;/a&gt;" />
           </outline>
           <outline text="&lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; Linear Algebra #importance:valuable #topic:math #engagement:active #difficulty:hard #format:course">
-            <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.fast.ai/2017/07/17/num-lin-alg/&quot;&gt;http://www.fast.ai/2017/07/17/num-lin-alg/&lt;/a&gt;" />
+            <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.fast.ai/2017/07/17/num-lin-alg/&quot;&gt;http://www.&lt;/a&gt;&lt;a href=&quot;http://www.fast.ai/2017/07/17/num-lin-alg/&quot;&gt;fast.ai&lt;/a&gt;&lt;a href=&quot;http://www.fast.ai/2017/07/17/num-lin-alg/&quot;&gt;/2017/07/17/num-lin-alg/&lt;/a&gt;" />
             <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLtmWHNX-gukIc92m1K0P6bIOnZb-mg0hY&quot;&gt;https://www.youtube.com/playlist?list=PLtmWHNX-gukIc92m1K0P6bIOnZb-mg0hY&lt;/a&gt;" />
           </outline>
           <outline text="Introduction to Linear Algebra #topic:math #format:book #difficulty:hard #importance:valuable">
@@ -233,7 +233,7 @@
           <outline text="KhanAcademy Statistics #importance:valuable #topic:math #engagement:active #difficulty:hard #format:course ">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://www.khanacademy.org/math/statistics-probability&quot;&gt;https://www.khanacademy.org/math/statistics-probability&lt;/a&gt;" />
           </outline>
-          <outline text="All of statistics #topic:math #format:book #difficulty:hard #impor">
+          <outline text="All of statistics #topic:math #format:book #difficulty:hard #importance:valuable ">
             <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2t2dOwg&quot;&gt;http://amzn.to/2t2dOwg&lt;/a&gt;" />
           </outline>
         </outline>

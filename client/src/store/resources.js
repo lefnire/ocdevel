@@ -6,8 +6,8 @@ import {flat, top} from "../content/podcast/resources";
 import {filterKeys, filters as filters_} from "../content/podcast/resources/filters";
 import produce from 'immer'
 
-function recurseTree(filters, learnStyles, node=null, section=null) {
-  if (!node) {
+function recurseTree(filters, learnStyles, id=null, section=null) {
+  if (!id) {
     const sections = []
     if (learnStyles.learn === 'selfTaught') {
       sections.push('main')
@@ -16,17 +16,17 @@ function recurseTree(filters, learnStyles, node=null, section=null) {
       sections.push('degrees')
     }
     sections.push('audio')
-    return sections.map(k => recurseTree(filters, learnStyles, top[k], k))
+    return sections.map(section => recurseTree(filters, learnStyles, top[section].id, section))
   }
 
-  const full = flat[node.id]
+  const full = flat[id]
 
   // section
   if (full.v?.length) {
-    let v = full.v.map(n => recurseTree(filters, learnStyles, n, section=section))
+    let v = full.v.map(({id}) => recurseTree(filters, learnStyles, id, section=section))
     v = compact(v)
     if (v.length === 0) {return null}
-    return {...node, v}
+    return {id, v}
   }
 
   // leaf node
@@ -43,7 +43,7 @@ function recurseTree(filters, learnStyles, node=null, section=null) {
     if (!full[fk]) {return m} // N/A attrs, like video2audio
     return m && filters[fk][full[fk]]
   }, true)
-  return keep ? node : null
+  return keep ? {id} : null
 }
 
 export const useStore = create((set, get) => ({
