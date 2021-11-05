@@ -1,6 +1,7 @@
 const ep = {
   title: 'Hyperparameters 1',
   episode: 27,
+  mergeEpisode: 27,
   created: "2018-01-27",
   guid: "f5a903d68c1ed04bd37a31175d456fc0",
   file: {},

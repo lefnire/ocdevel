@@ -1,6 +1,7 @@
 const ep =  {
   title: "Deep Learning",
   episode: 9,
+  mergeEpisode: 9,
   created: "2017-03-04",
   guid: "d842fe61-7cf2-4209-9cb3-d29be6c4d1a8",
   file: {

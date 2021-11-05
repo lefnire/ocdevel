@@ -1,6 +1,8 @@
 const ep =  {
   title: 'Checkpoint',
   episode: 11,
+  mergeEpisode: 11,
+  archived: true,
   created: "2017-03-08",
   guid: "fe205bbc-b9d4-4df5-b840-c6f5b728903f",
   file: {

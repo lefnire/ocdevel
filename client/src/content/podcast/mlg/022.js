@@ -1,6 +1,7 @@
 const ep = {
   title: 'Deep NLP 1',
   episode: 22,
+  mergeEpisode: 22,
   created: "2017-07-28",
   guid: "d9e15cfe501a8f0c6e3c075c09f7e682",
   file: {},

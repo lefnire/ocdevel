@@ -1,6 +1,7 @@
 const ep = {
   title: "Consciousness",
   episode: 16,
+  mergeEpisode: 16,
   created: "2017-05-21",
   guid: "c2db5df8-936b-4404-8f0f-7eb188bfe9ab",
   file: {

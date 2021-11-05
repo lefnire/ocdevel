@@ -1,6 +1,7 @@
 const ep =  {
   title: "Languages & Frameworks",
   episode: 10,
+  mergeEpisode: 10,
   created: "2017-03-07",
   guid: "c613d746-0916-448e-8315-5ac4323389e2",
   file: {

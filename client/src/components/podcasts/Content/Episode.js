@@ -11,6 +11,7 @@ import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from './Resources'
 import {episodesObj, mlg} from "../../../content/podcast";
 import {episodes as episodeResources, flat} from '../../../content/podcast/resources'
+import Badge from "react-bootstrap/Badge";
 
 function ResourcesFlat({nids}) {
   let seen = {}
@@ -35,10 +36,12 @@ const players = {}
 function player(e) {
   // if (e.mla) {return <div>TODO move to MLG</div>}
   const id = e.libsynEpisode
+  if (!id) {return null}
+  const color = e.archived ? '6c757d' : '111111';
   if (players[id]) {return players[id]}
   players[id] = <iframe
     title="Embed Player"
-    src={`//play.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/128/theme/modern/size/standard/thumbnail/no/custom-color/111111/time-start/00:00:00/download/no/hide-show/no/direction/backward/hide-playlist/no/hide-subscribe/no/hide-share/no`}
+    src={`//play.libsyn.com/embed/episode/id/${e.libsynEpisode}/height/128/theme/modern/size/standard/thumbnail/no/custom-color/${color}/time-start/00:00:00/download/no/hide-show/no/direction/backward/hide-playlist/no/hide-subscribe/no/hide-share/no`}
     height="128"
     width="100%"
     scrolling="no"
@@ -74,7 +77,7 @@ function Markdown_({Content, teaser=false}) {
     : <Content {...opts} />;
 }
 
-export function Episode({e, teaser}) {
+export function Episode({e, teaser, i=null}) {
   const num = padStart(e.episode, 3, '0');
   const title = `${e.mla ? 'MLA' : 'MLG'} ${num} ${e.title}`;
 
@@ -95,15 +98,20 @@ export function Episode({e, teaser}) {
   function renderTeaser() {
     const link = `/mlg/${e.id}`
 
-    return <Card className={`episode-teaser mb-3 card-post ${e.archived ? 'episode-archived' : ''}`}>
+    return <Card className={`mb-3 card-post`}>
       <Card.Body>
         <Card.Title>
-          <Link to={link}>{title}</Link>
+          <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
         </Card.Title>
         {renderDate()}
         {player(e)}
+        {process.env.NODE_ENV === "development" && <div>
+          {e.episode && <Badge className='me-2'>Original {e.episode}</Badge>}
+          {e.mergeEpisode && <Badge className='me-2'>Merge {e.mergeEpisode}</Badge>}
+          <Badge className='me-2'>i {i+1}</Badge>
+        </div>}
         {e.archived ? <>
-          <div>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
+          <div className='text-muted'>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
         </> : e.body ? <>
           <div className='fade-post'>
             <Markdown_ Content={e.teaser} teaser/>

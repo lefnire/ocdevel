@@ -1,6 +1,7 @@
 const ep = {
   title: 'Convolutional Neural Networks',
   episode: 25,
+  mergeEpisode: 25,
   created: "2017-10-30",
   guid: "91bf8a0266bc22088c897eb756cc97d3",
   file: {},

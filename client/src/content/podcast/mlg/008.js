@@ -1,6 +1,7 @@
 const ep = {
   title: "Math",
   episode: 8,
+  mergeEpisode: 8,
   created: "2017-02-23",
   guid: "a5c01d38-5242-4b63-b265-81fc53d38ad3",
   file: {

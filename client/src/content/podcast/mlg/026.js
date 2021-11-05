@@ -1,6 +1,7 @@
 const ep = {
   title: 'Project Bitcoin Trader',
   episode: 26,
+  mergeEpisode: 26,
   created: "2018-01-26",
   guid: "e704eb47d4280a7abc9bb6f0895a7b26",
   file: {},

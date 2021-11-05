@@ -1,6 +1,7 @@
 const ep = {
   title: "What is AI / ML",
   episode: 2,
+  mergeEpisode: 2,
   created: "2017-02-09",
   guid: "129d0157-fbda-4cc6-aaae-1c96745c12c9",
   libsynEpisode: 5440757,

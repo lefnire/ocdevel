@@ -1,6 +1,7 @@
 const ep = {
   title: "Logistic Regression",
   episode: 7,
+  mergeEpisode: 7,
   created: "2017-02-19",
   guid: "36b6133d-3018-4be0-a36c-61904aa80a1a",
   file: {

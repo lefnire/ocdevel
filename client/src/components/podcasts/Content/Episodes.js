@@ -5,10 +5,12 @@ import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import useStore from "../../../store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import sortBy from "lodash/sortBy";
 
 import {episodes} from "../../../content/podcast";
 import {Episode} from './Episode';
+
+const sortedEps = sortBy(episodes, e => e.created)
 
 export default function Episodes() {
   const [page, setPage] = useState(0)
@@ -31,7 +33,7 @@ export default function Episodes() {
   }
 
   const pageSize = 3
-  let eps = newFirst ? episodes : episodes.slice().reverse()
+  let eps = newFirst ? sortedEps : sortedEps.slice().reverse()
   eps = filter(eps, e => {
     if (showMla && showMlg) {return true}
     return showMla ? e.mla : showMlg ? e.mlg : false
@@ -82,7 +84,7 @@ export default function Episodes() {
       loader={<h4>Loading...</h4>}
       endMessage={<></>}
     >
-      {eps.map(e => <Episode key={e.id} e={e} teaser={true} />)}
+      {eps.map((e, i) => <Episode key={e.id} e={e} teaser={true} i={i} />)}
     </InfiniteScroll>
   </div>
 }

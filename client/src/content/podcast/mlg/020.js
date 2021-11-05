@@ -1,6 +1,7 @@
 const ep = {
   title: 'Natural Language Processing 3',
   episode: 20,
+  mergeEpisode: 20,
   created: "2017-07-23",
   guid: "556b3779a8f8546de9457002a19e63b2",
   file: {},

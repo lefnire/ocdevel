@@ -1,7 +1,7 @@
 const ep = {
   title: 'Practical Clustering',
   episode: 11,
-  mergeEpisode: 41,
+  mergeEpisode: 42,
   mla: true,
   created: "2020-11-07",
   guid: "d8a36847-c1f2-4d8f-adf8-da32d7d0a12d",

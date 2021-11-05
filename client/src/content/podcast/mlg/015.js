@@ -1,6 +1,7 @@
 const ep = {
   title: "Performance",
   episode: 15,
+  mergeEpisode: 15,
   created: "2017-05-07",
   guid: "7da253aa-b035-4702-8475-55b8d3eeeebd",
   file: {

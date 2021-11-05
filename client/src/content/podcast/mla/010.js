@@ -1,7 +1,7 @@
 const ep = {
   title: 'NLP packages: transformers, spaCy, Gensim, NLTK',
   episode: 10,
-  mergeEpisode: 40,
+  mergeEpisode: 41,
   mla: true,
   created: "2020-10-27",
   guid: "6f17dd73-0ef7-4cc0-b0a4-16b95924d020",

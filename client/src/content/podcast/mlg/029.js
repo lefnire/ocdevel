@@ -1,6 +1,7 @@
 const ep = {
   title: 'Reinforcement Learning Intro',
   episode: 29,
+  mergeEpisode: 29,
   created: "2018-02-05",
   guid: "fc7802de8fb4d4f609fd11db9afb2189",
   file: {},

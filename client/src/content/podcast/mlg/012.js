@@ -1,6 +1,7 @@
 const ep = {
   title: "Shallow Algos 1",
   episode: 12,
+  mergeEpisode: 12,
   created: "2017-03-19",
   guid: "1074a375-6831-456d-9bbc-d28c8f85a557",
   file: {

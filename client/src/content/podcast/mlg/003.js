@@ -1,6 +1,7 @@
 const ep = {
   title: "Inspiration",
   episode: 3,
+  mergeEpisode: 3,
   created: "2017-02-10",
   guid: "a0b24583-e253-492c-addc-ee0c0aeb1765",
   libsynEpisode: 5440756,

@@ -120,17 +120,6 @@ body {
     }
   }
 
-  .episode-teaser {
-    &.episode-archived {
-      .card-title {
-        text-decoration: line-through;
-        a {
-          color: #6c757d;
-        }
-      }
-    }
-  }
-
   .resources {
     dd, dt {
       &:hover {

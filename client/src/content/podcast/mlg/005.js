@@ -1,6 +1,7 @@
 const ep = {
   title: "Linear Regression",
   episode: 5,
+  mergeEpisode: 5,
   created: "2017-02-16",
   guid: "2d2e66dd-d100-4e05-afba-a948de1c956d",
   file: {

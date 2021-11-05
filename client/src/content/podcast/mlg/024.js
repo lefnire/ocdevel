@@ -1,6 +1,7 @@
 const ep = {
   title: 'Tech Stack',
   episode: 24,
+  mergeEpisode: 24,
   created: "2017-10-06",
   guid: "11e604992dcd4f124cb4d3897c81056f",
   file: {},

@@ -1,6 +1,7 @@
 const ep = {
   title: "Algorithms - Intuition",
   episode: 4,
+  mergeEpisode: 4,
   created: "2017-02-12",
   guid: "a7d9b86e-d3aa-4384-a854-792bfcf36e24",
   file: {
