@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   useLocation,
 } from "react-router-dom";
@@ -10,23 +11,30 @@ export function useQuery() {
 export function IconButton({
   Icon,
   children,
+  Icon2=null,
   left=false,
   vr=true,
   size="",
+  className="",
   ...rest
 }) {
+  // Can pass Icon/Icon2 as either un-rendered component or rendered component (for performance). Currently
+  // testing if is-rendered via $$typeof; is that right?
   const size_ = {"sm": 16, "lg": 20, "": 20}[size]
   return <Button
     variant='outline-dark'
-    className={`d-flex align-items-center ${left ? 'justify-content-start' : 'justify-content-center'}`}
+    className={`d-flex align-items-center ${left ? 'justify-content-start' : 'justify-content-center'} ${className}`}
     size={size}
     {...rest}
   >
-    <span className={`btn-pad-${size} ${vr ? 'border-end' : ''}`}>
-      <Icon size={size_} />
+    <span className={`btn-pad-${size} ps-0 ${vr ? 'border-end' : ''}`}>
+      {Icon.$$typeof ? Icon : <Icon size={size_} />}
     </span>
+    {Icon2 && <span className={`btn-pad-${size}`}>
+      {Icon2.$$typeof ? Icon2 : <Icon2 size={size_} />}
+    </span>}
     <span
-      className={left ? '' : ' flex-grow-1'}
+      className={`btn-pad-${size} ${left ? '' : 'flex-grow-1'}`}
     >{children}</span>
   </Button>
 }

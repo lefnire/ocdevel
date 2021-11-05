@@ -13,24 +13,21 @@ import Col from 'react-bootstrap/Col'
 import {useStore} from "../../../store/resources";
 import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
 import map from "lodash/map";
+import {IconButton} from "../../../utils";
 
 const btns = {
   on: {
-    size: "sm",
     variant: "outline-dark",
-    className: "text-start filter-selected"
+    className: "filter-selected"
   },
   off: {
-    size: "sm",
     variant: "outline-secondary",
-    className: "text-start"
   },
 }
 
-let check = {size:20, className:'border-end pe-2 me-2'}
-check = {
-  single: [<FaRegCircle {...check} />, <FaCheckCircle {...check} />],
-  multi: [<FaRegSquare {...check} />, <FaCheckSquare {...check} />]
+const check = {
+  single: [<FaRegCircle />, <FaCheckCircle />],
+  multi: [<FaRegSquare />, <FaCheckSquare />]
 }
 
 function Option({opt, select, active, setHelp, multi=true}) {
@@ -40,16 +37,18 @@ function Option({opt, select, active, setHelp, multi=true}) {
   const setHelp_ = useCallback(() => setHelp(opt.d), [])
   const clearHelp_ = useCallback(() => setHelp(null), [])
 
-  return <Button
+  return <IconButton
     {...btn}
+    size="sm"
+    left
     onClick={select}
     onMouseEnter={setHelp_}
     onMouseLeave={clearHelp_}
+    Icon={check[multi ? 'multi' : 'single'][active ? 1 : 0]}
+    Icon2={opt.i}
   >
-    {check[multi ? 'multi' : 'single'][active ? 1 : 0]}
-    {opt.i && <span className='me-2'>{opt.i}</span>}
     {opt.t}
-  </Button>
+  </IconButton>
 }
 
 function LearnStyle({k}) {

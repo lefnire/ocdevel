@@ -85,23 +85,17 @@ body {
   }
 }
 
-.btn-pad- {padding-right: $btn-padding-x}
-.btn-pad-sm {padding-right: $btn-padding-x-sm}
-.btn-pad-lg {padding-right: $btn-padding-x-lg}
-
-.icon-btn {
-  position: relative;
-  svg, span {
-    position: absolute;
-
-    // from .btn{padding}. Make sure to adjust icon size (24, 16)
-    // normal
-    //left: 12px;
-    //bottom: 6px;
-    // small
-    left: 8px;
-    bottom: 4px;
-  }
+.btn-pad- {
+  padding-right: $btn-padding-x;
+  padding-left: $btn-padding-x;
+}
+.btn-pad-sm {
+  padding-right: $btn-padding-x-sm;
+  padding-left: $btn-padding-x-sm;
+}
+.btn-pad-lg {
+  padding-right: $btn-padding-x-lg;
+  padding-left: $btn-padding-x-lg;
 }
 
 .center-content {
