@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Salary',
   episode: 6,
   mergeEpisode: 36,
@@ -8,3 +8,4 @@ export default {
   libsynEpisode: 16622978,
   teaser: "Salary based on location, gender, age, tech... from O'Reilly. Get full survey report: [2017 Data Science Salary Survey](https://www.oreilly.com/data/free/2017-data-science-salary-survey.csp)"
 }
+export default ep

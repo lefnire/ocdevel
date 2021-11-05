@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Tech Stack',
   episode: 24,
   created: "2017-10-06",
@@ -28,3 +28,4 @@ Shallow-learning / utilities: ScikitLearn, Pandas, Numpy
 Cloud-hosting: AWS / GCP / Azure. [mla/13](/mlg/mla-13) for details.
 `
 }
+export default ep

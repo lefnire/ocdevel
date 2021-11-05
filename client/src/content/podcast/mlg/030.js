@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Podcast Update',
   episode: 30,
   created: "2018-05-24",
@@ -14,3 +14,4 @@ MLG: I'm rebooting this series to fix mistakes & add more shallows (Bayesian met
 I'm adding Patreon rewards, including access to a new podcast series: Machine Learning Applied, discussing applied/practical 10-20m frequent episodes.
 `
 }
+export default ep

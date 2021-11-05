@@ -1,4 +1,4 @@
-export default {
+const ep =  {
   title: "Languages & Frameworks",
   episode: 10,
   created: "2017-03-07",
@@ -62,3 +62,4 @@ Frameworks
   - [Evaluation of Deep Learning Toolkits](https://github.com/zer0n/deepframeworks/blob/master/README.md)
   - [Comparing Frameworks: Deeplearning4j, Torch, Theano, TensorFlow, Caffe, Paddle, MxNet, Keras & CNTK](https://deeplearning4j.org/compare-dl4j-torch7-pylearn) - grain of salt, it's super heavy DL4J propaganda (written by them)`
 }
+export default ep

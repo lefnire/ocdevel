@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Natural Language Processing 3',
   episode: 20,
   created: "2017-07-23",
@@ -17,3 +17,4 @@ export default {
 - Automatic summarization (TF-IDF; TextRank)
 - Machine Translation ([details here](https://www.youtube.com/watch?v=QuELiw8tbx8&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&index=9))`
 }
+export default ep

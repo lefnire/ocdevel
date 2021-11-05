@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Numpy & Pandas',
   episode: 2,
   mergeEpisode: 32,
@@ -8,3 +8,4 @@ export default {
   libsynEpisode: 16623014,
   teaser: 'Some numerical data nitty-gritty in Python.'
 }
+export default ep

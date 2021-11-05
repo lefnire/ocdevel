@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Shallow Algos 3",
   episode: 14,
   created: "2017-04-23",
@@ -16,3 +16,4 @@ See [Andrew Ng Week 9](https://www.coursera.org/learn/machine-learning/resources
 - Recommender Systems (Content Filtering, Collaborative Filtering)
 - Markov Chains & Monte Carlo`
 }
+export default ep

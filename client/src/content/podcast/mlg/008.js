@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Math",
   episode: 8,
   created: "2017-02-23",
@@ -17,3 +17,4 @@ Come back here after you've finished Ng's course; or learn these resources in ta
 - Stats = Probability/inference, the heart of machine learning. Recipes/cookbook.
 - Calculus = Learning. Moving our error dot to the bottom of the valley. Baking, the actual "cook" step.`
 }
+export default ep

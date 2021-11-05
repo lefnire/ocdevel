@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Docker',
   episode: 12,
   mergeEpisode: 42,
@@ -19,3 +19,4 @@ Use [Docker](https://www.docker.com/). You'll need it eventually for cloud-deplo
 [Details](/mlg/24) on buying / building a good PC desktop or laptop for machine learning. Details on [front-end stack + cloud-hosting](/mlg/mla-13) and [ML cloud-hosting](/mlg/mla-14). 
 `
 }
+export default ep

@@ -1,4 +1,4 @@
-export default {
+const ep =  {
   title: "Certificates & Degrees",
   episode: 6,
   created: "2017-02-17",
@@ -25,3 +25,5 @@ Self-edify
 
 Portfolio: Most important for getting a job`
 }
+
+export default ep

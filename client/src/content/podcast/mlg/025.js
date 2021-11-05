@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Convolutional Neural Networks',
   episode: 25,
   created: "2017-10-30",
@@ -25,3 +25,4 @@ See resources on [Deep Learning episode](/mlg/9).
   - Resnet
   - etc..`
 }
+export default ep

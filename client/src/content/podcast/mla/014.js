@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Machine Learning Server',
   episode: 14,
   mergeEpisode: 44,
@@ -20,3 +20,4 @@ Endpoint models
 * Other competitors include [PaperSpace Gradient](https://gradient.paperspace.com/), [FloydHub](https://www.floydhub.com/), and more.
 `
 }
+export default ep

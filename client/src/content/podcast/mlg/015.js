@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Performance",
   episode: 15,
   created: "2017-05-07",
@@ -25,3 +25,4 @@ Performance improvement
 - Data: collect more, fill in missing cells, normalize fields
 - Regularize: reduce overfitting (high variance) and underfitting (high bias)
 `}
+export default ep

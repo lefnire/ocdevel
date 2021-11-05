@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Shallow Algos 1",
   episode: 12,
   created: "2017-03-19",
@@ -27,3 +27,4 @@ Unsupervised
 Decision Trees (supervised, classify/regress)
 - Random Forests
 - Gradient Boost`}
+export default ep

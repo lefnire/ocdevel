@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Jupyter Notebooks',
   episode: 7,
   mergeEpisode: 37,
@@ -8,3 +8,4 @@ export default {
   libsynEpisode: 16622969,
   teaser: "Run your code + visualizations in the browser: iPython / Jupyter Notebooks."
 }
+export default ep

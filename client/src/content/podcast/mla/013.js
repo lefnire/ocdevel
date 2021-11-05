@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Customer Facing Tech Stack',
   episode: 13,
   mergeEpisode: 43,
@@ -40,3 +40,4 @@ Finally, after you've hit the serverless ceiling (Amplify handling most leg-work
 All that said, the main reason I like Postgres over its competition is it can replace 2 & 3 for you. You can run a job-queue via Postgres's \`select for update\` feature, and pub/sub via \`listen/notify\`.
 `
 }
+export default ep

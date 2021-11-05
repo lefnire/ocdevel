@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Algorithms - Intuition",
   episode: 4,
   created: "2017-02-12",
@@ -34,3 +34,4 @@ Categories
 - Reinforcement & Semi-Supervised
   - Planning (DQN): Games (chess, Mario); Robot movement`
 }
+export default ep

@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Logistic Regression",
   episode: 7,
   created: "2017-02-19",
@@ -13,3 +13,5 @@ export default {
   body: `
 See [Andrew Ng Week 3 Lecture Notes](https://www.coursera.org/learn/machine-learning/resources/Zi29t)`
 }
+
+export default ep

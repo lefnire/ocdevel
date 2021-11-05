@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Checkpoint',
   episode: 17,
   created: "2017-06-04",
@@ -12,3 +12,4 @@ export default {
   teaser: "Checkpoint - learn the material offline!",
   body: `At this point, browse #importance:essential on [/mlg/resources] with the 45m/d ML, 15m/d Math breakdown.`
 }
+export default ep

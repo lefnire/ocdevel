@@ -69,11 +69,12 @@ export const useStore = create((set, get) => ({
     [k]: reduce(v.opts, (m_,v_,k_) => ({
       ...m_,
       [k_]: true
-    }), {}),
+    }), {all: true}),
 
     // set_* actions for all filters (eg set_importance())
     [`set_${k}`]: ([opt, v]) => set(produce(state => {
       state.filters[k][opt] = v
+      state.filters[k].all = reduce(state.filters[k], (m, v) => m && v, true)
     })),
   }), {}),
 }))
@@ -81,6 +82,8 @@ export const useStore = create((set, get) => ({
 export function useFilteredTree() {
   const filters = useStore(state => state.filters)
   const learnStyles = useStore(state => state.learnStyles)
+
+  console.log(filters)
 
   return recurseTree(filters, learnStyles)
 }

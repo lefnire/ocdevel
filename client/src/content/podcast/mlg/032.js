@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Cartesian Similarity Metrics',
   episode: 32,
   // mergeEpisode:
@@ -212,3 +212,4 @@ Cosine (normalized dot)`,
 [00:40:41] I'll see you in the next.
 `
 }
+export default ep

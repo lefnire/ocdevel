@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Deep NLP 1',
   episode: 22,
   created: "2017-07-28",
@@ -43,3 +43,4 @@ RNNs
   - Pros (?): faster, more accurate, incremental fitting. Cons (?): data hungry, more RAM. [More info](http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/)
 - DNN for POS, NER (or RNNs)`
 }
+export default ep

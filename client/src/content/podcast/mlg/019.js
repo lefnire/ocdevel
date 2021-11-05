@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Natural Language Processing 2',
   episode: 19,
   created: "2017-07-10",
@@ -25,3 +25,4 @@ export default {
 - Search / relevance / document-similarity: Bag-of-words, TF-IDF
 - Similarity: Jaccard, Cosine, Euclidean`
 }
+export default ep

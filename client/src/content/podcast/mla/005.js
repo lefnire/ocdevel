@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Shapes & Sizes',
   episode: 5,
   mergeEpisode: 35,
@@ -8,3 +8,4 @@ export default {
   libsynEpisode: 16622984,
   teaser: 'Dimensions, size, and shape of Numpy ndarrays / TensorFlow tensors, and methods for transforming those. All functions discussed re: Numpy arrays are available on TF tensors too.'
 }
+export default ep

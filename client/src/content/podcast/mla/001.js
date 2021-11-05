@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Certificates & Degrees',
   episode: 1,
   mergeEpisode: 30,
@@ -8,3 +8,4 @@ export default {
   libsynEpisode: 16623032,
   teaser: 'Reboot on the MLG episode, with more confident recommends. Specifically: get a masters, and get it from OMSCS Georgia Tech.',
 }
+export default ep

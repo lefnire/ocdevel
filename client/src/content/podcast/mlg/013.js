@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Shallow Algos 2",
   episode: 13,
   created: "2017-04-09",
@@ -19,3 +19,4 @@ Which algo to use?
 - Support Vector Machines (SVM)
 - Naive Bayes Classifier`
 }
+export default ep

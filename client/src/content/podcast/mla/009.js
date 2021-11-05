@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Charting tools',
   episode: 9,
   mergeEpisode: 39,
@@ -13,3 +13,4 @@ export default {
 - Tableau, Power BI, QlikView, Excel, ...
 `
 }
+export default ep

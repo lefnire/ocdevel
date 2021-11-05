@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Project Bitcoin Trader',
   episode: 26,
   created: "2018-01-26",
@@ -33,3 +33,4 @@ export default {
   - Supervised v Reinforcement
   - Obvious net architectures (indicators, time-series, tanh v relu)`
 }
+export default ep

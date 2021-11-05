@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Exploratory Data Analysis',
   episode: 8,
   mergeEpisode: 38,
@@ -20,3 +20,4 @@ Outliers: histogram, box plots
 Correlation matrices
 `
 }
+export default ep

@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Practical Clustering',
   episode: 11,
   mergeEpisode: 41,
@@ -16,3 +16,4 @@ Clustering via Kmeans, Agglomorative, or DBSCAN/HDBSCAN.
 * [DBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html) / [HDBSCAN](https://hdbscan.readthedocs.io/en/latest/index.html) 
 `
 }
+export default ep

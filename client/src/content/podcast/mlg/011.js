@@ -1,4 +1,4 @@
-export default {
+const ep =  {
   title: 'Checkpoint',
   episode: 11,
   created: "2017-03-08",
@@ -14,3 +14,4 @@ export default {
 Try mixing your learning time 75/25 machine learning vs Math, and shoot for 1h per day. See resources list on the [math episode](/mlg/8) and the [deep learning episode](/ml/9).
 `
 }
+export default ep

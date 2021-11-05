@@ -1,4 +1,4 @@
-export default {
+const ep =  {
   title: "Deep Learning",
   episode: 9,
   created: "2017-03-04",
@@ -44,3 +44,4 @@ export default {
   - Activation units / neurons (hidden layer)
   - Relu, TanH, Sigmoid`
 }
+export default ep

@@ -3,7 +3,7 @@ import { importMDX } from 'mdx.macro'
 const Body = importMDX.sync('./body.mdx')
 const Transcript = importMDX.sync('./transcript.mdx')
 
-export default {
+const ep = {
   title: "Introduction",
   episode: 1,
   mergeEpisode: 1,
@@ -15,3 +15,4 @@ export default {
   body: Body,
   transcript: Transcript
 }
+export default ep

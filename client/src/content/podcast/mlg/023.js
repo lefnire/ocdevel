@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Deep NLP 2',
   episode: 23,
   created: "2017-08-20",
@@ -27,3 +27,4 @@ Train: backprop through time
   - Tanh layer: creates new candidate values
   - Output layer`
 }
+export default ep

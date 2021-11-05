@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Inspiration",
   episode: 3,
   created: "2017-02-10",
@@ -19,3 +19,5 @@ The Scare
 - Superintelligence by Nick Bostrom
 - Bill Gates, Stephen Hawking, Elon Musk ^`
 }
+
+export default  ep

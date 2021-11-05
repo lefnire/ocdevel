@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Storage: HDF, Pickle, Postgres',
   episode: 3,
   mergeEpisode: 33,
@@ -8,3 +8,4 @@ export default {
   libsynEpisode: 16622999,
   teaser: "Comparison of different data storage options when working with your ML models. You'll ingest your dataset (CSV, TSV, JSON API, ..) via Pandas. Then you munge the data / Pandas, convert to Numpy & send to your model. Model saves intermediate steps as Numpy->HDF. Publish results of your model's predictions (whether for use in app/website, or for researchers, etc) in a SQL database or CSV."
 }
+export default ep

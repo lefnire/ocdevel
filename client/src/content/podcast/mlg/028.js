@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Hyperparameters 2',
   episode: 28,
   created: "2018-02-04",
@@ -20,3 +20,4 @@ export default {
   - Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
   - Features + inter-layer: Batch Normalization`
 }
+export default ep

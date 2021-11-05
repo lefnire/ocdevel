@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "What is AI / ML",
   episode: 2,
   created: "2017-02-09",
@@ -69,3 +69,4 @@ History
 - AlphaGo & DeepMind
 `
 }
+export default ep

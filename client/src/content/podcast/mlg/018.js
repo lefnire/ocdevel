@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Natural Language Processing 1',
   episode: 18,
   created: "2017-06-25",
@@ -44,3 +44,4 @@ Goals
   - Optical character recognition (OCR)
   - Speech (TTS, STT, Segmentation, Diarization)`
 }
+export default ep

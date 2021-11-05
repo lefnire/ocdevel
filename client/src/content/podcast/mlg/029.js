@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Reinforcement Learning Intro',
   episode: 29,
   created: "2018-02-05",
@@ -27,3 +27,4 @@ export default {
 ** [rll/rllab](https://github.com/rll/rllab)
 `
 }
+export default ep

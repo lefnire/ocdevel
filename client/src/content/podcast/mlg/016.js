@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: "Consciousness",
   episode: 16,
   created: "2017-05-21",
@@ -45,3 +45,4 @@ Biological plausibility
 - planes, brains
 - sans bio-plaus, functionalism; zombies; turing test; searle's chinese room`
 }
+export default ep

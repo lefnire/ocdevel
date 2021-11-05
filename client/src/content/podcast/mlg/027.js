@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'Hyperparameters 1',
   episode: 27,
   created: "2018-01-27",
@@ -35,3 +35,4 @@ export default {
   - Relu family (Leaky Relu, Elu, Selu, ...) = vanishing gradient (gradient is constant), performance, usually better
   - Tanh = classification between two classes, mean 0 important`
 }
+export default ep

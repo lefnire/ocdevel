@@ -1,4 +1,4 @@
-export default {
+const ep = {
   title: 'NLP packages: transformers, spaCy, Gensim, NLTK',
   episode: 10,
   mergeEpisode: 40,
@@ -23,3 +23,4 @@ To cover later: Approximate Nearest Neighbor (ANN). Eg, cosine similarity, but f
 See [Analytics Steps Top 10 Libraries](https://www.analyticssteps.com/blogs/top-10-natural-processing-languages-nlp-libraries-python)
 `
 }
+export default ep
