@@ -20,6 +20,8 @@ import scout from "../../../assets/MLG-Option-1.jpg";
 import deptLogo from "../../../assets/dept.jpg";
 import {IconButton} from "../../../utils";
 import useStore from "../../../store/episodes";
+import {FaBusinessTime} from "@react-icons/all-files/fa/FaBusinessTime";
+import {FaUserPlus} from "@react-icons/all-files/fa/FaUserPlus";
 
 function AboutSection({children, title, show, toggle, top=false}) {
   return <>
@@ -152,22 +154,22 @@ function Dept() {
     body: `Dept is a digital agency of more than 2,000 thinkers and makers spread all across the globe who specialize in technology, design, strategy, data, and everything in between. Over the course of MLG, I’ll be drawing on a bunch of examples of real-life work that Dept has completed for our clients. As always, if you’re interested in working with us, click above.`
   }
 
-  const common = {
-    btn: {variant: "outline-primary", target: "_blank"}
-  }
-
   return <>
     <div className="logo mb-3">
       <img src={deptLogo} alt="Dept Agency"/>
     </div>
     {showLinks ? <>
       <ButtonGroup className='d-block' vertical>
-        <Button {...common.btn} href="https://www.deptagency.com/contact/">
-          Hire Dept
-        </Button>
-        <Button {...common.btn} href="https://www.deptagency.com/careers/">
-          Get Hired
-        </Button>
+        <IconButton
+          variant='light'
+          Icon={FaBusinessTime}
+          href="https://www.deptagency.com/contact/"
+        >Hire Dept</IconButton>
+        <IconButton
+          variant='light'
+          Icon={FaUserPlus}
+          href="https://www.deptagency.com/careers/"
+        >Get Hired</IconButton>
       </ButtonGroup>
 
     </> : <>
