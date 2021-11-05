@@ -115,13 +115,15 @@ function Filter({k, section='filters'}) {
 }
 
 export default function Filters() {
-  const [show, setShow] = useState(true)
+  const show = useStore(s => s.showFilters)
+  const toggle = useStore(s => s.toggleFilters)
+
   return <Col className='sidebar-filters'>
     <Card className='border-0'>
       <Card.Header className='border-bottom-0 pointer'>
         <Card.Title
           className='mb-0 text-center'
-          onClick={() => setShow(!show)}
+          onClick={toggle}
         >
           {show ? icons.down : icons.right}{' '}
           Filters

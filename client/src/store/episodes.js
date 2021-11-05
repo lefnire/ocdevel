@@ -8,5 +8,11 @@ export default create(set => ({
   setMla: () => set(state => ({ mla: !state.mla })),
 
   newFirst: false,
-  toggleNewFirst: () => set(state => ({ newFirst: !state.newFirst}))
+  toggleNewFirst: () => set(state => ({ newFirst: !state.newFirst})),
+
+  showAbout: true,
+  toggleAbout: () => set(state => ({showAbout: !state.showAbout})),
+
+  showUpdates: true,
+  toggleUpdates: () => set(state => ({showUpdates: !state.showUpdates}))
 }))

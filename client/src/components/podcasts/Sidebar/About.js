@@ -19,14 +19,13 @@ import {mlg} from "../../../content/podcast";
 import scout from "../../../assets/MLG-Option-1.jpg";
 import deptLogo from "../../../assets/dept.jpg";
 import {IconButton} from "../../../utils";
+import useStore from "../../../store/episodes";
 
-function AboutSection({children, title, top=false}) {
-  const [show, setShow] = useState(true)
-
+function AboutSection({children, title, show, toggle, top=false}) {
   return <>
     <Card.Header
       className={`pointer border-bottom-0 ${top ? '' : 'border-top'}`}
-      onClick={() => setShow(!show)}
+      onClick={toggle}
     >
       <Card.Title className='text-center mb-0'>
         {show ? icons.down : icons.right}{' '}
@@ -171,7 +170,10 @@ function Dept() {
 }
 
 function Podcasts() {
-  return <AboutSection title='About' top={true}>
+  const show = useStore(s => s.showAbout)
+  const toggle = useStore(s => s.toggleAbout)
+
+  return <AboutSection title='About' top={true} show={show} toggle={toggle}>
     <Row>
       <Col>
         <MLG />
@@ -186,7 +188,10 @@ function Podcasts() {
 }
 
 function Updates() {
-  return <AboutSection title='Updates'>
+  const show = useStore(s => s.showUpdates)
+  const toggle = useStore(s => s.toggleUpdates)
+
+  return <AboutSection title='Updates' show={show} toggle={toggle}>
     <div className="mb-3 mlg-update ps-3">
       <Card.Title className='mb-1'>2021-10-20: Dept acquisition</Card.Title>
       <p><a target="_blank" href="https://deptagency.com">Dept</a> has acquired MLG, to allow me to finish the re-do! They're sponsoring merging MLA into the main feed, so the Patreon is going away - expect that content soon!</p>

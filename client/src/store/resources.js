@@ -47,6 +47,9 @@ function recurseTree(filters, learnStyles, id=null, section=null) {
 }
 
 export const useStore = create((set, get) => ({
+  showFilters: true,
+  toggleFilters: () => set(state => ({showFilters: !state.showFilters})),
+
   // learnStyles: _.transform(learnStyles, filtersToStore, {}),
   learnStyles: {
     learn: 'selfTaught',
