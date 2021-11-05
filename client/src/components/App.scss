@@ -85,13 +85,9 @@ body {
   }
 }
 
-.btn-pad-sm {
-  padding: $btn-padding-y-sm $btn-padding-x-sm;
-}
-
-.btn-pad-lg {
-  padding: $btn-padding-y-lg $btn-padding-x-lg;
-}
+.btn-pad- {padding-right: $btn-padding-x}
+.btn-pad-sm {padding-right: $btn-padding-x-sm}
+.btn-pad-lg {padding-right: $btn-padding-x-lg}
 
 .icon-btn {
   position: relative;

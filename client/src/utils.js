@@ -7,21 +7,26 @@ export function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export function IconButton({Icon, children, left=false, vr=false, size="lg", ...rest}) {
-  const size_ = {"sm": 16, "lg": 20}[size]
-  const spanClass = "me-2 " +
-    (vr ? 'border-end ' : '') +
-    (size === "sm" ? "btn-pad-sm" : "btn-pad-lg")
+export function IconButton({
+  Icon,
+  children,
+  left=false,
+  vr=true,
+  size="",
+  ...rest
+}) {
+  const size_ = {"sm": 16, "lg": 20, "": 20}[size]
   return <Button
     variant='outline-dark'
-    className={`p-0 d-flex align-items-center ${left ? 'justify-content-start' : 'justify-content-center'}`}
+    className={`d-flex align-items-center ${left ? 'justify-content-start' : 'justify-content-center'}`}
+    size={size}
     {...rest}
   >
-    <span className={spanClass}>
+    <span className={`btn-pad-${size} ${vr ? 'border-end' : ''}`}>
       <Icon size={size_} />
     </span>
     <span
-      className={left ? 'ms-2' : 'flex-grow-1'}
+      className={left ? '' : ' flex-grow-1'}
     >{children}</span>
   </Button>
 }

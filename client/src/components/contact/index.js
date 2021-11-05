@@ -19,19 +19,16 @@ export default function Contact() {
   const links = <>
     <Stack direction="vertical" gap={2}>
       <IconButton
-        vr
         target="_blank"
         href="https://www.linkedin.com/in/lefnire"
         Icon={FaLinkedin}
       >LinkedIn</IconButton>
       <IconButton
-        vr
         target="_blank"
         href="https://github.com/lefnire"
         Icon={FaGithub}
       >Github</IconButton>
       <IconButton
-        vr
         href="mailto:tylerrenelle@gmail.com"
         Icon={FaEnvelope}
       >Email</IconButton>

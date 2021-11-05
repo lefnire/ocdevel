@@ -52,7 +52,7 @@ function Links() {
   const common = {
     div: {xs: 12, md: 6, className: 'p-1'},
   }
-  const btn = {vr: true, variant: 'light'}
+  const btn = {variant: 'light'}
 
   return <Row>
     <Col {...common.div}>
