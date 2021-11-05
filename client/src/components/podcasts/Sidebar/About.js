@@ -14,7 +14,7 @@ import {RiGooglePlayLine} from '@react-icons/all-files/ri/RiGooglePlayLine'
 import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
 import {SiRss} from '@react-icons/all-files/si/SiRss'
 import {SiStitcher} from '@react-icons/all-files/si/SiStitcher'
-import {btns, icons, Popover_} from "../utils";
+import {icons, Popover_} from "../utils";
 import {mlg} from "../../../content/podcast";
 import scout from "../../../assets/MLG-Option-1.jpg";
 import deptLogo from "../../../assets/dept.jpg";
@@ -52,12 +52,13 @@ function Links() {
   const common = {
     div: {xs: 12, md: 6, className: 'p-1'},
   }
+  const btn = {vr: true, variant: 'light'}
 
   return <Row>
     <Col {...common.div}>
       <IconButton
+        {...btn}
         href="/mlg/recommend"
-        variant='light'
         Icon={FaLightbulb}
         >Suggest Episode</IconButton>
     </Col>
@@ -67,7 +68,7 @@ function Links() {
       opts={{placement: 'bottom'}}
     >
       <Col {...common.div}>
-        <IconButton href="http://eepurl.com/cUUWfD" target="_blank" Icon={FaEnvelope} variant='light'>
+        <IconButton {...btn} href="http://eepurl.com/cUUWfD" target="_blank" Icon={FaEnvelope}>
           Mailing List
         </IconButton>
       </Col>
@@ -78,7 +79,7 @@ function Links() {
       opts={{placement: 'bottom'}}
     >
       <Col {...common.div}>
-        <IconButton href="https://github.com/lefnire/gnothi" target='_blank' Icon={FaGithub} variant="light">
+        <IconButton {...btn} href="https://github.com/lefnire/gnothi" target='_blank' Icon={FaGithub}>
           Podcast Project
         </IconButton>
       </Col>
@@ -89,7 +90,7 @@ function Links() {
       opts={{placement: 'bottom'}}
     >
       <Col {...common.div}>
-        <IconButton href="https://discord.gg/2j2RUVbu" target='_blank' variant="light" Icon={FaDiscord}>
+        <IconButton {...btn} href="https://discord.gg/2j2RUVbu" target='_blank' Icon={FaDiscord}>
           Community
         </IconButton>
       </Col>
@@ -100,6 +101,8 @@ function Links() {
 function MLG() {
   const [showLinks, setShowLinks] = useState(false)
 
+  const btn = {size: 'sm', variant: 'light', target: '_blank'}
+
   return <div>
     <div className="logo mb-3">
       <img src={scout} alt="Machine Learning Guide" />
@@ -107,21 +110,31 @@ function MLG() {
 
     {showLinks ? <>
       <ButtonGroup className='d-block' vertical>
-        <Button {...btns.iconBtn} href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130">
-          <FaItunesNote {...btns.icon} target="_blank" /> iTunes
-        </Button>
-        <Button {...btns.iconBtn} href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9">
-          <RiSpotifyLine {...btns.icon} target="_blank" /> Spotify
-        </Button>
-        <Button {...btns.iconBtn} href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='>
-          <RiGooglePlayLine {...btns.icon} target="_blank" /> Google Podcasts
-        </Button>
-        <Button {...btns.iconBtn} href="http://www.stitcher.com/s?fid=130679&refid=stpr">
-          <SiStitcher {...btns.icon} target="_blank" /> Stitcher
-        </Button>
-        <Button {...btns.iconBtn} href="http://machinelearningguide.libsyn.com/rss"rel="nofollow">
-          <SiRss {...btns.icon} target="_blank" /> Custom (RSS)
-        </Button>
+        <IconButton
+          {...btn}
+          href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130"
+          Icon={FaItunesNote}
+        >iTunes</IconButton>
+        <IconButton
+          {...btn}
+          href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9"
+          Icon={RiSpotifyLine}
+        >Spotify</IconButton>
+        <IconButton
+          {...btn}
+          href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='
+          Icon={RiGooglePlayLine}
+        >Google Podcasts</IconButton>
+        <IconButton
+          {...btn}
+          href="http://www.stitcher.com/s?fid=130679&refid=stpr"
+          Icon={SiStitcher}
+        >Stitcher</IconButton>
+        <IconButton
+          {...btn}
+          href="http://machinelearningguide.libsyn.com/rss"rel="nofollow"
+          Icon={SiRss}
+        >Custom (RSS)</IconButton>
       </ButtonGroup>
     </> : <>
       <Button variant='outline-primary w-100' onClick={() => setShowLinks(true)}>Get It</Button>

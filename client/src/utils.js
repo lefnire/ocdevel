@@ -7,16 +7,21 @@ export function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export function IconButton(props) {
-  const {Icon, children, ...rest} = props;
+export function IconButton({Icon, children, left=false, vr=false, size="lg", ...rest}) {
+  const size_ = {"sm": 16, "lg": 20}[size]
+  const spanClass = "me-2 " +
+    (vr ? 'border-end ' : '') +
+    (size === "sm" ? "btn-pad-sm" : "btn-pad-lg")
   return <Button
-    className='d-flex align-items-center'
     variant='outline-dark'
+    className={`p-0 d-flex align-items-center ${left ? 'justify-content-start' : 'justify-content-center'}`}
     {...rest}
   >
-    <span>
-      <Icon size={20} />
+    <span className={spanClass}>
+      <Icon size={size_} />
     </span>
-    <span className='flex-grow-1'>{children}</span>
+    <span
+      className={left ? 'ms-2' : 'flex-grow-1'}
+    >{children}</span>
   </Button>
 }

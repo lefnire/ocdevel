@@ -85,6 +85,14 @@ body {
   }
 }
 
+.btn-pad-sm {
+  padding: $btn-padding-y-sm $btn-padding-x-sm;
+}
+
+.btn-pad-lg {
+  padding: $btn-padding-y-lg $btn-padding-x-lg;
+}
+
 .icon-btn {
   position: relative;
   svg, span {
@@ -130,14 +138,6 @@ body {
           color: #6c757d;
         }
       }
-    }
-  }
-
-  .zocial {
-    border: none !important;
-
-    &.github {
-      border: 1px solid #050505 !important;
     }
   }
 

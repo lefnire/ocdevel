@@ -4,7 +4,7 @@ import {FaRegCircle} from '@react-icons/all-files/fa/FaRegCircle'
 import {FaRegSquare} from '@react-icons/all-files/fa/FaRegSquare'
 import {FiMinusSquare} from '@react-icons/all-files/fi/FiMinusSquare'
 import {FiPlusSquare} from '@react-icons/all-files/fi/FiPlusSquare'
-import {btns, icons} from "../utils";
+import {icons} from "../utils";
 import React, {useCallback, useState} from "react";
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
@@ -13,6 +13,19 @@ import Col from 'react-bootstrap/Col'
 import {useStore} from "../../../store/resources";
 import {filterKeys, filters, learnStyles} from "../../../content/podcast/resources/filters";
 import map from "lodash/map";
+
+const btns = {
+  on: {
+    size: "sm",
+    variant: "outline-dark",
+    className: "text-start filter-selected"
+  },
+  off: {
+    size: "sm",
+    variant: "outline-secondary",
+    className: "text-start"
+  },
+}
 
 let check = {size:20, className:'border-end pe-2 me-2'}
 check = {

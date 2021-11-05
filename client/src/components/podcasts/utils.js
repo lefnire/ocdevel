@@ -27,27 +27,6 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
   </OverlayTrigger>
 }
 
-export const btns = {
-  on: {
-    size: "sm",
-    variant: "outline-dark",
-    className: "text-start filter-selected"
-  },
-  off: {
-    size: "sm",
-    variant: "outline-secondary",
-    className: "text-start"
-  },
-  iconBtn: {
-    variant: 'light',
-    size: "sm",
-    className: 'icon-btn'
-  },
-  icon: {
-    size: 20
-  },
-}
-
 const renderers = {
   // TODO convert h2 to h3
   // heading: (props) => {
