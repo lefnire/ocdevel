@@ -1,0 +1,330 @@
+[00:00:00] Machine learning applied SageMaker two. So we're still exploring SageMaker features. We left off in the train and tune phase of the SageMaker tooling as all part of a data and machine learning pipeline.
+
+[00:00:13] Let's spend a little bit more time discussing training because training is sort of going to be the bread and butter of a machine learning engineer's day-to-day role training your machine learning model. In the past. We might write our model Keras TensorFlow Pytorch train that model on local host may be in a Docker container Using our systems GPU, well, a benefit of training in SageMaker is that your model will be part of the pipeline. Part of the stack. It will be receiving data downstream from what you've already built out in your pipeline, using data Wrangler and feature store and all these things. And if you build out your model into SageMaker so that when you're training your model on SageMaker, it's able to be deployed through Sage maker.
+
+[00:00:58] Then you don't have to take that extra step. When you're ready to deploy your model of transferring the concept of a local host trained model to the cloud, it'll all be ready for you to just run a deploy script or click a button, whatever the case.
+
+[00:01:12] And of course in the training phase, SageMaker offers all that tooling around training or model things like model debugger, which allows you to peak into your neural network by way of a tensor board, or keep an eye on the objective metrics or model drift or bias.
+
+[00:01:29] All these things through a graphical user interface in SageMaker studio, or email or text message alerts in CloudWatch. And so on another benefit of training your model in SageMaker, as opposed to do it on localhost Is that this whole process you're going to be spinning up a SageMaker studio project.
+
+[00:01:49] Remember that SageMaker studio is their IDE on their web console, where you will be writing your code in an IPython notebook in SageMaker studio. You write your code in an IPython notebook, and you can share that code with your team, with other people, with different AWS accounts and you can collaboratively edit and manage your model and the training of your model and all these things.
+
+[00:02:14] And finally another huge benefit of using SageMaker to train your models as opposed to localhost is that you can do distributed parallelized training of your model across multiple EC2 instances so that you can train your model faster than on local host. And you can use these specialized chips on SageMaker.
+
+[00:02:33] AWS now has all these EC2instances where they have hand-crafted their own chips, their own types of CPU's and GPU's that are specially crafted for machine learning model training, as well as chips for machine learning model inference. When you actually get to that step of the inference, the model deployment.
+
+[00:02:53] In fact, I just opened up to the SageMaker website right now, so I can look at the features again, as I do this episode And right at the top, there's a banner. They say they just released the EC2 DL1 instance, which delivers up to 40% better price performance for training deep learning models.
+
+[00:03:10] So remember way back when, when I talked about GCPS special sauce being their TPU tensor processing units, well. AWS certainly did not sit on their hands while Google was creating these chips. They did not twiddle their thumbs. No, they created a whole bunch of chips that are dedicated to fast cheap machine learning, model training and separately, fast, cheap machine learning model inference chips, So a whole slew of benefits developing your model in an I Python notebook on SageMaker studio, and then kicking off a training job in that I Python notebook, which may be making use of specialized chips, handling distributed training across multiple EC2 instances, and consuming from the data pipelining you've already set up.
+
+[00:03:59] One final benefit to mention is that you don't have to set up a local environment for your machine learning development. You can keep your SageMaker studio project on SageMaker and your code is then ready for you day to day.
+
+[00:04:12] If your computer dies, you can switch to a new computer and your environment is still up in the cloud. so you don't have to spend the time setting up your local environment or be transferring to a different local environment. If you're on a different computer, in a different workspace, whatever.
+
+[00:04:25] now a little bit more about SageMaker studio and this Jupiter notebook, you're going to be spinning up your SageMaker studio project Is a project environment that gets created for your account. And then you reuse that environment for development of your model, day-to-day at your workplace at home.
+
+[00:04:42] And that studio project is not actually going to be using the resources that you will use when you kick off your SageMaker jobs, it's just your development environment. So you can spin this thing up on a T1 micro instance, either a free or cheap
+
+[00:05:00] EC2 instance to host your project. And you're you're writing code and your I Python notebook. And when you get to the point where you're actually going to submit a training job, using a script in Bodo three, using the SageMaker tooling, it won't run it in your studio project environment. It'll actually spin up separate EC2 instances to run your machine learning model against, And then maybe report those results back to studio stuff, them into some charts and graphs and some CloudWatch logs and alerts and all these things. So the environment of your project itself is either free or cheap, running in SageMaker studio. It's not actually using a lot of resources on AWS.
+
+[00:05:43] It's only when you kick off SageMaker jobs like train and infer that will actually be running SageMaker on instances.
+
+[00:05:52] Now there are various ways to write and train your model in SageMaker these different approaches like script mode and bring your own model. Basically you can either use Sage makers, default environment set up for you that comes with Amazon Linux two and a handful of tools for data science, like TensorFlow, Keras, PyTorch and all these things.
+
+[00:06:14] These may be pre-installed tool chains, including the Cuda and CuDNN installation at the operating system level. Or you can bring your own Docker file that you're going to be running your training model inside of that environment. Or you can use one of their prefab environments and specify some small amount of extra requirements that you may have by way of a PIP requirement's dot text file so that it will use a prefab SageMaker environment meant for TensorFlow, for example, but we'll still install a small number of packages that you need in addition to the prefab environment.
+
+[00:06:55] so there's a lot of flexibility around hitting the ground, running with the default environments that they provide for you Or taking it to the next level of customization by bringing your own Docker container and everything in between an example of which is just providing requirements dot text file for installing miscellaneous pip packages.
+
+[00:07:14] And in that gray area, that in-between area is also something called SageMaker jump start. Jumpstart gives you any number of models out of the box that you can choose from. So for example, hugging face transformers, some of their summarization models, their question, answering models, some convolutional neural networks, res net, and various other computer vision models.
+
+[00:07:39] You can go to SageMaker jumpstart, Click one of these pre-setup environments, a model that's pre-trained on maybe image net or Coco image, data sets, whatever the case may be. And it will generate a whole bunch of code for you.
+
+[00:07:53] That's optimized to run within the Sage maker environment based on their hardware and the packages available at the environment level, some sample script for lopping off the head of your model, and then fine tuning it on your own data. And then you can run your training job and then deploy it when you're done.
+
+[00:08:11] And it's highly recommended that if you're not going to be using an off the shelf SageMaker solution, like. Autopilot or one of the cloud native machine learning end points that I'll talk about in a bit like recognition and comprehend that rather than writing your own model from scratch, you start with a jumpstart project on Sage maker that gets you a head start on your project, whether it's in computer vision or natural language processing, because the SageMaker tooling, the environment setup the operating system, the packages that are installed Kuda, KU DNN, the versions of things, and such by using one of these jump start projects, you get all of that dialed in.
+
+[00:08:55] So you don't have to go through the trial and error of finding the right packages. And what other versions they're compatible or incompatible with at the operating system level and so on. So if you're going to write a training job, you're starting from scratch, but it's a somewhat common machine learning situation.
+
+[00:09:13] Like computer vision, natural language processing, use one of their jumpstart projects to get you started.
+
+[00:09:19] okay. So when it comes to training your model and then deploying your model, you can write it from scratch. You can bring your own Docker container. you can get a sample project set up for you by way of jumpstart, or you can bypass this whole process and use autopilot, which will train and deploy your model for you based on your data.
+
+[00:09:39] Sage maker experiments. SageMaker experiments is for hyper parameter optimization. You can train your model against different hyper-parameters. In the past, I've mentioned using tools like Optuna or hyper opt will. SageMaker provides a bunch of recommended prefab hyper parameters to try against various models.
+
+[00:10:03] And you can also specify your own hyper parameters to try against, and it will kick off a Bayesian optimization hyper parameters search job running multiple model training instances. You designate how many instances to run in parallel and how many hyper parameter training jobs to try total. you might want models to run in parallel for parallelization. So you might want to try five or 10 models running at once, but you don't want to do your hyperoptic. all in parallel all at once, because the way Bayesian optimization works is it looks at prior runs sees what worked and what didn't, and then uses that to inform the next trials.
+
+[00:10:47] It tries. So if you run five or 10 in parallel, it now has 10 different random searches in its back pocket. when it's done with those it looks at all 10 says, okay, based on this, let's try some other angles here up until let's say a hundred or 200 trials that you want to try
+
+[00:11:05] SageMaker will handle all the tooling for kicking off these experiments. Giving you monitoring and charts and graphs about what seems to work, what doesn't, what features are important, what hyper parameters outperform, what other hyper parameters and then locks these sort of into a repository that you can then reuse in the future.
+
+[00:11:25] Let's say you add new data. Now you don't want to change the data structure. You don't want to add new columns because that will require a new hyper parameter optimization setup.
+
+[00:11:34] But if your data structure is the same, but maybe your model is slightly tweaked and the data is augmented, you have more data or less data or whatever, you can then pick up where you left off through SageMaker experiments to then continue your hyper parameter optimization. Finally, let's get into SageMaker deployments, SageMaker deployment. So eventually you have a trained model and you want to deploy it to the cloud. You can deploy it to a rest endpoint and it's all just so easy. You can kick it off by running a script, either Bodo three, or doing some clicking around in the AWS console.
+
+[00:12:12] And it will create for you a REST endpoint that hosts your model. And then all you have to do is send up a JSON object to that rest endpoint with whatever it is you want to run inference on. And then it will send back a response with the predictions, the inferences based on the data you sent it.
+
+[00:12:31] And what's important about the way SageMaker handles deployments is that it's scalable. You specify the type of EC2 instances that you want to run these models on, and it will scale up and scale down as necessary for handling traffic as traffic increases or decreases
+
+[00:12:50] further, you can use one of these optimized chips that I mentioned previously to reduce costs and increase throughput or increase inference speed. And in the case of inference, there is an I N F chip or EC2 instance the chip is called Inferentia.
+
+[00:13:08] And the instances are, are tagged as these inf instance types. And you can also, rather than specify the type of instance, maybe one that has the inf instance type, you could specify a smaller instance. Let's say, if you're not using a whole lot of CPU or Ram, you can use elastic inference to attach a GPU or an inf chip to your instance.
+
+[00:13:31] So you can have more fine grained control over the type of environment that you set up. You can cut costs by being really stingy with the way you set up your environment, specifying the CPU and Ram and the type of inference, chip, or GPU that gets attached to that instance. Now Two episodes ago.
+
+[00:13:51] I said that one bummer about deploying your SageMaker model to a REST endpoint is that it's always on. And that there's no way to scale to zero. Let's say, if you don't get any traffic during one day, or if you only run a machine learning inference job once every hour or once every two hours, well you don't have to deploy your model, you don't have to use a stage maker deployment.
+
+[00:14:13] You can use something called batch transform batch transform. Now the word transform, it sounds like you're transforming your data. This is a common use case of batch transform is to load up a whole bunch of data from your pipeline and then run a bunch of transformations on it, and then kick off a sequence of steps in a pipeline, but you don't have to use it that way.
+
+[00:14:35] You can kickoff a single SageMaker batch transform job. For inference using an inferentia chip that then exits once it's done running that inference and you'll either be returning the result of that inference call from batch transform to your calling script, or you might stuff it away in a database somewhere, or you might call a Lambda function from there and then maybe CloudWatch can send it off somewhere else using SQS or SNS, however you want to handle it.
+
+[00:15:08] But when I was talking about Gnothi since I have so few users, that machine learning jobs are called maybe once an hour, once every half hour, I don't want to deploy a SageMaker model to the cloud on a GPU. I want to just kick off a quick inference job as the case may be ad hoc as needed PRN. And I can do this by way of SageMaker batch transform jobs.
+
+[00:15:31] It's very similar to using AWS batch. AWS batch is a dedicated service for running one-off jobs, using a Docker container on whatever EC2 instance you want. It's very similar to that, but it's all tied into the SageMaker tooling. So you get all of the other features that I've mentioned before
+
+[00:15:50] now. What's so cool about all this is if you're writing a Python script, let's say you have a server on AWS Lambda. You have your application server, you have a web client it's react. It's sending HTTP requests to your server. Your server is running on AWS Lambda, all behind API gateway. So it's a rest server and that server is written in Python.
+
+[00:16:11] And you want to kick off a machine learning job? Well, you can say boto3 dot client parentheses SageMaker. however, you construct the client in Python and then you kick off a batch transform job or a training job or whatever in Python in Python. And it does all of This ML ops stuff for you in the background. So the way you might write a line of boto3 code to kick off a machine learning inference task is by saying dot batch transform parentheses. And then in the arguments list of that function, call you'll specify the Python script that you want to run for this inference job.
+
+[00:16:55] And it will send that Python script to the inference. Or the ECR Docker image that you're going to be running this inference job inside and the instance type and all these things. you run that line of code and it can return back a result into your Python script. So it's as if you're running machine learning code within your Python script, but hidden from you is that it's actually running this machine learning code in the cloud on AWS SageMaker before it returns the result back to your script, almost as if it was a background job, like you had called os.popen or kicking off some background script.
+
+[00:17:37] On your local host and getting the result back well with SageMaker, you can kick off the script to the cloud and get your result back to your calling script. or if it's a long running script, if this inference job may take a while, then maybe you want the result of the inference to get stuffed away into an SQS or SNS or database somewhere.
+
+[00:17:57] And you can handle that in the inference Python file itself.
+
+[00:18:02] Okay. The next feature In the deployment section listed on Sage maker's website is called SageMaker pipelines. A lot of that we've already covered so far in pipelining, the various steps of your tasks. Thus far, we have the data stuff in the data, Wrangler, the feature store,
+
+[00:18:18] managing the data, labeling with GroundTruth, keeping an eye on that data with clarify, kicking it off to the machine, learning training stuff, autopilot, jumpstart, bring your own Docker file script mode, all in a SageMaker studio. I Python notebook, and then everything gets deployed And the dedicated pipeline feature is sort of for managing the steps of this pipeline.
+
+[00:18:41] It also has some other functionality. For example, CI / CD. Continuous integration slash continuous delivery or continuous deployment. This is a common concept in dev ops in, in web app development. when you're writing your server code or your client code as a web developer, You want to get commit your code. Push that commit up as a pull request on Github or to your code commit repository on AWS that commit will then run through a series of unit tests. It will be running these unit tests on a backend environment. If you're doing this on AWS, you might use something like code deploy to run this stuff, maybe using Travis CI or circle CI or whatever on an AWS EC2 instance.
+
+[00:19:29] If those unit tests pass, it may kick off a deployment into a staging environment or production environment and if the tests fail, you'll want it to email the administrator or the owner of the repository and say those tests failed and not kick off a deployment.
+
+[00:19:47] Well built into the SageMaker pipelines. Tooling is handling of CI / CD fo r ML ops, not just for the code deployment, but also for the training of your models and then the deploying of those models. If they pass whatever tests you want them to pass. And in machine learning unit tests is a different kind of concept than is the case in web development unit tests.
+
+[00:20:13] Yeah, you can actually unit test your machine learning model code in Python. You do want to run unit tests against your Python code, but maybe that's a little bit less interesting than ensuring that your model is not drifting or that bias is not being introduced.
+
+[00:20:28] Or that your objective metrics meet a certain threshold. You want to have greater than 80% accuracy and whatnot. And so the CI / CD component of the pipelines feature tool chain handles keeping track of these aspects of machine learning model post train. In order to determine if a model is a candidate for deployment to the cloud.
+
+[00:20:51] And so it won't just be using, GitOps git operations. It won't just be using a notification that a git commit has been pushed. It will also potentially be using notifications that new data has been added to your data set to your data lake. A new CSV has been added to S3. A whole bunch of new rows have been added to your RDS database that will kick off a CloudWatch notification that CloudWatch notification will inform the pipeline's feature of SageMaker the CIC D suite, which will then run a training job.
+
+[00:21:25] Check those metrics. Everything's good. Maybe we'll automate a deployment everything's bad email and administrator.
+
+[00:21:32] The next feature is called SageMaker model monitor. And we'll skip past this feature because most of the tooling here is stuff that I've discussed already in the past monitoring, model bias, drift data changes over time and all these things.
+
+[00:21:48] The next feature listed is SageMaker Kubernetes. Okay. I'm going to talk about Kubernetes in a later episode. Let me do a small bit of distinguishing here. we're talking about using the whole SageMaker stack in this episode, in the last episode, using SageMaker for everything, using AWS for everything well, there's a universal dev ops framework out there called Kubernetes.
+
+[00:22:15] It was developed by Google Kubernetes, orchestrates your Docker containers into a whole bunch of microservices. That includes your database. That includes your job queue a bunch of servers, even the client. It's an orchestration service using Docker files for deploying your tech stack to the cloud.
+
+[00:22:35] But it doesn't assume that you're using AWS. In fact, since it was developed by Google kind of it's first class citizen as GCP, Google cloud platform, but all of the cloud providers, Microsoft Azure, Amazon AWS and GCP, they all support Kubernetes. So Kubernetes allows you to orchestrate your tech stack, using Docker files in a universal fashion. That's compatible across all cloud providers. And in fact can run on your local host in that way. it is kind of mutually exclusive to the way I'm suggesting you use SageMaker, which is to sort of trust fall on the entire AWS tooling.
+
+[00:23:16] So if you're going to be using AWS for everything, you'd use SQS for their message queue, you'd use SNS for their notifications, CloudWatch for their logging Lambda for your server, S3 and CloudFront for your client. So this is using all of the AWS tooling, their services. But alternatively, you could use Kubernetes.
+
+[00:23:37] And instead of using these backend services, you would use Docker files, orchestrate the deployment of these Docker files to EC2 instances on AWS. And rather than using these AWS native services, it will be using services in these Docker containers that you're running on. AWS EC2 instances, all orchestrated by Kubernetes.
+
+[00:23:59] AWS has a Kubernetes orchestration service called E K S. There are a lot of ways you can do ML ops. Of course, we're talking about SageMaker here, but there are competing solutions on GCP and Azure. Well, there are universal machine learning, pipelining training and deployment solutions out there.
+
+[00:24:21] One of the most popular of which is called. KubeFlow or cube flow. K U B E flow. As in flow of data on Kubernetes and SageMaker is compatible with this by way of the SageMaker Kubernetes integration. There are some other popular universal ML ops orchestration services out there.
+
+[00:24:43] It was one called ML flow. And I'll talk about this all in future episodes.
+
+[00:24:49] And then finally, the last service listed on SageMaker is called SageMaker Neo N E O. Now you can run your machine learning models in the cloud using the SageMaker deploy feature, rest end point or Bodo three calls. Or you can package up that model on SageMaker and have it optimized and exported to a chip set or hardware environment of your choice and have it deployed on that hardware.
+
+[00:25:21] So let's say you want to run your face recognition model on your phone, on the front facing camera of some mobile app that you're deploying to the Google play or the apple app store. You make an app, you have a face recognition model. That's part of it. And you want that thing to be blazing fast and in order for it to be really fast. So it's consistently detecting a face from the front facing camera. Well, you don't want this machine learning model to be running in the cloud where you're making a rest request from the mobile device to the cloud.
+
+[00:25:57] Once every 100, 200 milliseconds, there's too much latency there
+
+[00:26:01] and there's too much strain on your servers. So SageMaker Neo has some tooling that packages your model to be deployed to the mobile app. You specify the hardware. You want to run this on. You might specify, an iOS device and an Android device, and it will package up your model. Optimize it.
+
+[00:26:22] Remember when I mentioned Onyx, O N N X a model optimization framework will SageMaker has built their own model optimization tooling, and it is called SageMaker Neo, and it will export your model So slimmed down that it can be ran efficiently on a mobile device.
+
+[00:26:43] They also support hardware like cameras. It's very common to run your image recognition or object detection. Models on a camera at the edge edge means it's on the device. It's very common that cameras do object detection, bounding boxes, intrusion alerts. They're looking for intruders. Okay. You have a camera sitting outside your house.
+
+[00:27:04] And if it sees somebody walking up to your door, that it doesn't recognize, and it doesn't look like a ups person, that it may alert you from a mobile notification and you want that computer vision model to be running on the camera. SageMaker Neo can optimize your model, export it so that it can be run on camera hardware.
+
+[00:27:23] You specify the chip that is going to be running on that camera. And then whether it's your mobile app or your camera, you tie your physical device or your app up to Neo, and it will sync the model to the device. As new model deployments become available. So you train your model using SageMaker autopilot, a bring your own model, a jumpstart model, whatever and the last phase of your pipeline is Neo.
+
+[00:27:53] After the model has been trained, it runs through Neo to optimize it to some device. You specify that device. And then you specify where it's actually being deployed. Maybe on the mobile app, inside the code, you have it tied up using the AWS SDK to the a R N of this Neo deployment, the mobile app and the Neo service will communicate with each other.
+
+[00:28:18] Neo will download a packaged up optimized model to that device, making sure that it runs well on that device. And any time new models become available because you retrain your model. Maybe you got some CloudWatch notification with model monitor, and then it kicked off a new training job because there's been new data made available whatever a new model is trained.
+
+[00:28:41] Neo notices that repackages and optimize model, syncs that model down to that mobile device. Very cool tooling. And remember, in the past, I said, what if you wanted to skip all the SageMaker stuff and you just wanted to run your machine learning model on an AWS Lambda function. Lambda is really cheap.
+
+[00:29:03] Now the hardware is limited. I think it's a 10 gigabyte Ram cap, and I don't know what the CPU cap is, but these things are intended not to run your usual machine learning models, especially not the heavy stuff like hugging face transformers models.
+
+[00:29:17] It's meant to be run quick snippets of Python script, or node.js script. Great for deploying your server code at scale or running one-off function calls in your AWS tech stack, less great for machine learning, just due to the nature of the heaviness of inference jobs, but that doesn't have to be the case.
+
+[00:29:36] I mentioned previously, you could use Onyx to export an optimized machine learning model And then put that on Lambda, which then may be within the hardware constraints of the Lambda function. But instead of using Onyx, you can use Neo.
+
+[00:29:50] So at the end of your trained model, step the pipeline, you can export your model using Neo to be optimized on Lambda hardware. And then now you can run that model on AWS Lambda and it will probably run within the hardware constraints of that Lambda function.
+
+[00:30:08] So that is the overview of SageMaker. It is a pipelining tool set on AWS that lets you take in your data, transform your data, train your model, monitor your model, deploy your model, and then a whole bunch of bells and whistles in between. Now SageMaker is done. We're done with SageMaker. We're going to talk about AWS.
+
+[00:30:32] Cloud native machine learning offerings. And I'm not going to talk about all of these. I'm going to leave it to you to go to Sage makers website and look at the services available in the machine learning category. if I'm in my AWS console and I click the services dropdown under the machine learning category, there is a big old list of services.
+
+[00:30:55] and before I list some of these services, let me tell you what a cloud native service is. SageMaker is intended for you training and deploying your own models. Now, some of those models may be off the shelf either by way of SageMaker autopilot Some of those models might not be off the shelf, but they may have handheld you through the process. It that gives you a headstart like jumpstart, for example, but these are intended for you to write your own model or use somebody else's model and then deploy it to the cloud.
+
+[00:31:28] This is what's called managing a service. You're managing a service or AWS is managing a service on your behalf. If you're just calling some AWS service, you're just calling a service. You're not actually hosting any instances, whether those are ephemeral like a batch transform job or permanent, like a rest end point.
+
+[00:31:47] If you're not actually running Any instances in the cloud, and you're simply making a rest call a quick fire and forget call against some AWS service. We call this cloud native cloud native. So for example, AWS has a cloud native service called Amazon Polly, Polly, P O L L Y. It's a text-to-speech speech service.
+
+[00:32:11] You send it text as a rest call against the rest end point. you put in the headers of your rest, call your Amazon key, and then you, you know, the body of the text of the rest call to a post request or something returns back to you, an MP3 file of the text that you had submitted to that end point.
+
+[00:32:31] So rather than writing your own code, To do text to speech. You should instead use poly Amazon, Polly. You should send a rest request or make a boto3 three call submitting up the text. You want turned into speech. Like let's say you wanted to convert an entire book into an audio book. You just submit the dot TXT file up to the service and then outcomes an MP3.
+
+[00:32:54] Maybe it's going to store it on S3, or maybe it will actually return a streaming file that you then handle in JavaScript or Python. That's one example, poly for text to speech, but there are a whole bunch of services here. So I'm going to just go top to bottom and list these services. And then I'll do a little bit of coverage on some of the ones I'm familiar with Augmented AI. Code guru dev ops guru comprehend forecast fraud detector, Kendra Lex personalize, Polly recognition, text tract, transcribe translate, deep composer, deep lens, deep racer Panorama Monitron health. Like look out for vision. Look out for equipment, look out for metrics.
+
+[00:33:43] That's a lot of services. these are all services that are pre-trained model to the cloud that you make rest calls to so that you don't have to deploy your own model, thus saving time saving money, because you're not going to be deploying a model to REST endpoint.
+
+[00:33:59] and these services improve with time, Amazon is constantly retraining these models. They're swapping out some old model with the latest and greatest. some white paper comes out, says we've improved on the transformers architecture They experiment with that new transformers architecture. Yes, it looks a lot better than our old model swap out the old in with the new. And so you don't have to maintain your model in the cloud. you don't have to keep tabs on the latest and greatest technology in very common use cases of machine learning.
+
+[00:34:29] they'll do all this for you. Let's talk about some of the services I'm familiar with. Amazon comprehend comprehend is their NLP tooling.
+
+[00:34:40] So there's a whole bunch of NLP tasks built into the comprehend service that you can perform on a paragraph on a document So listed, here are some examples. We have syntax, tree construction,
+
+[00:34:54] you can do topic modeling of your documents. Okay. You can label documents and cluster them into various topics. Sentiment analysis, determine if a, if a sentiment of a document or a phrase as positive or negative, pull out named entities named entity recognition.
+
+[00:35:11] Document classification, all these things. So before you decide to either bring a pre-trained hugging face transformers model to SageMaker and then deploy that to the cloud or train your own hugging face transformers model. Before you do that, go to AWS comprehend, look at all the features that are available on that service and see if, instead of bringing your own model to the cloud, you can just use one of these services prefab.
+
+[00:35:44] Save yourself some time and money. Up to date with the latest and greatest and machine learning by using AWS cloud native functions, instead of bringing your own model.
+
+[00:35:56] The next one is forecast forecast is for time series analysis,
+
+[00:36:00] historic data. maybe you want to do budget forecast or a cost forecast, or you're doing stock market stuff or weather prediction before doing your own recurrent neural network. see, if instead you could use AWS forecasts as a cloud native service Fraud detector. So AWS offers fraud detection out of the box. Lex, Lex is a chat bot. You can set up this whole system. It has a graphical user interface building a conversation flow with a bot. So if you wanted to have, so if you wanted a mobile app that chats with you or a customer service triaging pipeline, chat feature of your website before they get kicked off to customer service.
+
+[00:36:42] And it just wants to go through some quick dialogue flow to make sure they've tried all the 1 0 1 stuff. First, Lex, Lex, the chat bot personalize, Amazon personalizes for personalized recommendations. So if you're trying to recommend products or you're trying to recommend articles or movies or music based on What this user has listened to or purchased in the past and what other users have listened to or purchase in the past, it will use machine learning to generate personalized recommendations, Textract T E X, T R a C T. OCR of PDFs. Let's say you have a tax document or a receipt.
+
+[00:37:24] Or a contract or some PDF where it's a bunch of fields and those fields are all over the place. So you wouldn't be able to just use simple OCR to transcribe this document into just a blob of text. Instead you want to actually pull out the fields and their values in text format and Textract
+
+[00:37:44] will take this PDF or this PNG file, and it will determine what are the fields and what are the values for those fields using optical character recognition, OCR, it's actually pretty accurate. I've used it in the past. It's pretty handy.
+
+[00:38:00] Translate Translate languages, English to Spanish, Spanish to Italian, all that stuff. So you can use Google translate API, or you can use AWS translate
+
+[00:38:09] Panorama Panorama is a whole suite of tooling around cameras on your premises. So if I look at the use cases here, it says optimize in-store experiences, gather critical supply chain inputs, improve restaurant operations. So it's a suite of tooling for computer vision at the edge on cameras for your shop.
+
+[00:38:31] And I'm not going to go into all these services. So let's just stop there.
+
+[00:38:35] Now that was a lot of stuff to cover. We cover SageMaker and then we covered some of these cloud native services.
+
+[00:38:41] So in order to bring this all together, let me discuss how I might use this for no fee. Now I am in currently in the process of moving everything from no-fee over to SageMaker currently no fee trains on a single instance, running on AWS, batch it trains, and it runs inference jobs.
+
+[00:38:57] Now there are a handful of hugging face transformers models for NLP. We've got summarization question answering. Document clustering for the themes feature
+
+[00:39:08] text similarity. That's used for the book recommendations feature, and I'll also be deploying a groups feature here in the near future so that you can join mental health groups, people of like mind, it will take your journal entries and determine what groups you are similar to based on things you've said in the past, and then suggest that you join those groups using cosine similarity of the document embeddings.
+
+[00:39:29] And then I'm using XG boost currently for the fields feature. So you can track certain fields in your day-to-day life. alcohol consumption, sleep quality. Work quality, all these things, and it will tell you sort of what things are affecting, what other things, what fields maybe sleep, for example, have the highest impact in your life as a whole.
+
+[00:39:48] And the recommender system is actually currently a hand-crafted neural network. for book recommendations in this process of moving everything from handcrafted code to SageMaker, here's how I'm going to do it. The first thing you do is, ask yourself, is there already a cloud native AWS service I can use for this. So that I don't have to deploy my own machine learning model.
+
+[00:40:13] That means cheaper, easier. And as the technology and models improve. So too, does the backend improve and therefore your app. Well, indeed for most of the NLP stuff, there's already cloud native NLP offerings.
+
+[00:40:29] My bread and butter here is probably going to be AWS comprehend, comprehend has document topic modeling. Now, one thing I do is I take all of your journal entries and I cluster them into themes categories, common recurring patterns. Well, I can use comprehend to do that for me. I just send up a bunch of documents and it will auto cluster them for me using topic modeling.
+
+[00:40:52] So I will gut that custom section of Python code from my project. And I will defer instead to kicking this off as a comprehend job. Another thing offered on comprehend is question answering. You ask a question. It takes in all of those journal entries as documents, and it answers the question for you currently.
+
+[00:41:12] This is a pre-trained hugging face transformers model that I'm running myself in Python on AWS batch. I'm going to gut that code and I'm instead going to kick it off as a comprehend service. Question and answering summarization. Okay. Well, I was poking around eight of those comprehend. I didn't see summarization there, so I might have to keep that custom.
+
+[00:41:36] So now we go to SageMaker, how am I going to handle this? Well, currently I'm storing everything in an RDS database, so I might make that database, my data store or data lake that then gets ingested to
+
+[00:41:52] data, Wrangler and feature store. Now these are coming in as text, so there's not a lot of transformation I needed to do. So we're just going to pipeline it onto the next step, the next phase generally. And we're going to d eploy this as a SageMaker model to the cloud. Now I also don't need to train this model.
+
+[00:42:08] This is a pre-trained model. That's coming straight from hugging face transformers. So I can skip the training phase. And again, just deploy this thing and I can either deploy this as a rest endpoint. So it's always available therefore it has low latency, high throughput, or since these summarization jobs are actually somewhat rare, I'm actually instead going to be kicking off a SageMaker batch transform job, which will run inference using an inferentia chip
+
+[00:42:36] with hugging face transformers deployed as a Docker container to Sage maker. Run that script. Boom. We have our summarization stuff that away into the database we're done. What about the document embeddings? This one's a little bit more interesting. When you write a journal entry on Gnothi and then you click save. One thing it does is it embeds the entire document into a vector of dimensions one by 7 68. And those are all floating point values. that is essentially a dot in a sphere, And now that you have that point, that vector, as you embed other journal entries or other users, journal entries, or book blurbs, you can find books that are similar to stuff that you talk about. so that I can make book recommendations, any book that is near your dot for that journal entry can get recommended to you.
+
+[00:43:32] And that similarity is by way of cosine similarity, or as I'm creating the groups feature where you may want to find people of like-mind their journal entries. We turn those into dots. We average their vectors together, so that there's sort of single vector that essentially represents that user average, all those users within a group together.
+
+[00:43:53] So that there's an average vector representing users of a group. And then we cosine similarity your averaged vectors to that group to determine what are the groups whose users are the most similar to you, based on the types of things you talk about. I'm using a library called UK P lab sentence transformers. How will I go about this? Well, comprehend does not offer tooling for embedding your documents into vector space.
+
+[00:44:23] However, something I do want to explore is an AWS service called Elasticache which is basically using elastic search. And either I can store these documents in Elasticache elastic search has a whole bunch of tooling for similarity matching of documents to other documents, including, and I don't quote me on this.
+
+[00:44:46] This is something I've heard that I'm going to do a little bit of research on. As I understand it, there is some tooling for embedding documents into vector space in Elasticache. And that will allow me to scale the storage and the similarity search functionality of the document embeddings, which is something of an Achilles heel of Gnothi at present.
+
+[00:45:07] these vectors, one vector per journal entry are very large to store. so deferring to Elasticache feature. may offer me a lot in way of scalability, but I haven't quite done the research yet.
+
+[00:45:20] I may be wrong about this service. So if that doesn't work out, if I can't do this all by way of Elasticache, what I will do is this
+
+[00:45:29] take all my embeddings,
+
+[00:45:31] create a SageMaker pipeline. the entry point is going to be the journal entries, the raw text That will go into data Wrangler. One step of the feature engineering process, for a feature store is going to be to transform those journal entries into an embedding using UK P lab sentenced transformers.
+
+[00:45:55] So this will be one step of a SageMaker pipeline. take the raw text and to transform that into a feature. And that feature is going to be the embeddings and that job is going to be running as a SageMaker batch transform job. Now, I don't actually have to kick off that job from my app server script, per se.
+
+[00:46:20] Instead, I can have some cloud watch monitoring either the journal entries. Put into the RDS database or maybe an alternative would be that when a journal entry gets put into the RDS database, it also gets saved as a text file in S3 and S3 kicks off a notification to ingest this into the data pipeline and then that step of the pipeline we'll do the embedding of the document.
+
+[00:46:48] Save that embedding as a file in S3, whether that's parquet or a CSV, then the next step of the pipeline, which gets kicked off by some other notification during this process, we'll take that embedding and compare those embeddings using cosine similarity to other embeddings.
+
+[00:47:10] So one step of the pipeline is to embed the journal entry. And then the next step of the pipeline is to take that embedding and compare it to a bunch of other embeddings to see what books we want to recommend to this user or what groups we want to recommend to this user.
+
+[00:47:28] now each of these steps will effectively be SageMaker batch transform jobs, but rather than running everything in a single Python script, each step is operating independently And only listening to changes in the data pipeline that it is concerned about.
+
+[00:47:46] So the embedding
+
+[00:47:48] SageMaker job is listening for journal entries that get put into the database, or that get put on S3. When it sees a new one, it kicks off the job. That's going to run UK P lab sentence transformers, embed the document and then put it somewhere. Now let's say 10 users come online and they all submit journal entries at once 10 SageMaker instances.
+
+[00:48:11] will then come online and embed separately. so this is scalable microservice. And then separately is going to be a SageMaker batch transform job that is listening to embeddings that become available.
+
+[00:48:24] Either those get saved to a database or those get saved to S3 as CSV files or parquet files, and then scalably. It does its job. Now you'll note nothing here is training yet. so far, everything I'm talking about in my tool chain are pre-trained model. How about a training job? Well, like I said, the fields feature of Gnothi, wi ll look at your fields and see how they impact each other.
+
+[00:48:51] consider this table data Eventually I'm actually going to be moving this feature into the causal modeling, machine learning models that are available out there.
+
+[00:49:00] a library available DoWhy which I will do a separate episode on, but for now, I'm just going to be working with it as if it's table data I'm using XG boost. And how do I determine the feature importances of one field upon another? How is it that I determined that alcohol has the highest impact on your sleep?
+
+[00:49:21] Well, I run the whole thing through an XG boost model. I determine
+
+[00:49:25] where sleep quality is the label and all the other fields all are the features I train an XG boost model per field, whether that's sleep quality, productivity, quality, and so on. And I pull two things out of that model. The first is the feature importances.
+
+[00:49:43] The feature importances is what determines how much impact other fields have on the field under consideration. So for sleep quality, I trained an XG boost model where sleep quality is the label and everything else are the features Rank all the other fields in order of feature importance, using the feature importances capability of XG boost.
+
+[00:50:10] And then I also then use that XG boost model to predict tomorrows values for those fields, which is actually kind of a cool feature. You should check that out. So the XG boost model is tracking my sleep quality.
+
+[00:50:22] It tells me what things impact my sleep quality, whether that's caffeine intake or alcohol intake, et cetera. And that it also predicts today what my sleep quality is going to be as well as tomorrow. I don't know what we think of that. I kind of like it. so what am I going to do with this is all exists currently in a Python file, running XGBoost in a Docker container. Well, I'm going to send this all to autopilot. I'm going to take your fields coming from the RDS database.
+
+[00:50:47] And I'm going to pipe that right on through to autopilot. Autopilot is going to give me those feature importances and the predictive model out of the box. And it will do some of the necessary feature transformations that I'm currently manually doing in code in pandas. one important of which is imputation.
+
+[00:51:06] There's a lot of days for which I do not record my sleep quality. And it's important to impute that smartly. And so I'm going to defer to autopilot to handle that on my behalf.
+
+[00:51:16] And then finally, the book recommender system, it uses cosine similarity to match your journal entries to relevant books. So if I talk a lot about dealing with stress, it might recommend me books on stress management, cognitive behavioral therapy, and the like, well, there's an upvote and downvote feature on Gnothi
+
+[00:51:35] you can thumb up a book or thumb down a book. Yes. That was close to what I'm talking about. But I'm personally not interested in that book. I'm using a neural network that pre trains on the cosine similarity. So the first thing it learns in the training phase is simply the cosine function.
+
+[00:51:55] It takes all your journal entries and all of the cosine similar book recommendations. And then those similarities are now the pre-training data for that neural network. It's simply learns the cosine
+
+[00:52:08] function. And then I fine tune that model, that neural network on your own personal preferences on your thumbs up, thumbs down.
+
+[00:52:17] and this concept here that I'm discussing, is called metric learning. There are better ways to handling metric learning. I'm not really using metric learning the way it's supposed to be used, but it's working great for now And I'll deal with swapping out that model later.
+
+[00:52:30] But as you can see, there's a lot of custom code that I can't really get away with calling a AWS cloud native service. There's nothing out there for that nor really autopilot or jumpstart here. so instead I'm actually going to be using the real raw power of the SageMaker pipeline.
+
+[00:52:48] So this is why I saved this one for last. What am I going to do well in. A journal entry, a user journal entry as a text blob it's in the database, or it's a text file on S3 data Wrangler pulls that data into the data pipeline. One of the steps of the feature transformation phase in feature store is to embed that document into a vector using sentence transformers.
+
+[00:53:15] that embedding is saved in the feature store. so there in shows some value in data Wrangler and feature store, because now I want that. That embedding is used elsewhere.
+
+[00:53:27] Also, it was used for the cosine similarity matching of users, to groups and users to books. But now I also want to use that embedding. So I am another consumer of the feature store at this phase in SageMaker to train a neural network that is pre-trained on the cosine similarity function. It's simply learning the cosine similarity function and then fine tuning on a user's preferences, whether there's a thumbs up or thumbs down on book recommendations.
+
+[00:53:53] And so this part, this phase of the pipeline, this Sage maker batch transform job can get kicked off either by a new embedding becoming available in the data pipeline or a new thumbs up thumbs down action it will be listening to these events.
+
+[00:54:12] And will kick off a training job on stage maker. I will kick off a training job, scalable. I can have multiple of these training jobs running at once for different users. And that training job is going to plug into all the tooling of SageMaker. And so it is going to monitor the model performance. It's going to keep an eye on data, drift bias.
+
+[00:54:32] It's going to keep an eye on the model. Metrics is the accuracy of learning that cosine similarity function within the healthy range. Is it where I want it to be And then once we go to the fine tuning phase and we train it some more on that user's individual preferences, it will continue to monitor objective metrics.
+
+[00:54:51] Now this will be very handy for me because if the model is pre-trained on some cosine similarity of journal entries to book blurbs. And it comes up with some metric score. And that seems to be fine and dandy according to model monitor and model debugger. yes. It seems to have accurately learned the cosine function and then the user's preferences, thumbs up, thumbs down, actually Take us way far away from the recommendations that we were previously giving from that model. In other words, there was a huge drift. The previously trained model is so different than the fine tuned model because the user did not like any of the books that Gnothi was recommending them. That means my model sucks.
+
+[00:55:38] That means I'm not giving that user recommendations that that user would expect, And I should reconsider how I'm pre-training this model. Maybe I should be switching to a different model and using. Metric learning the right way or maybe that cosine similarity.
+
+[00:55:55] Isn't what I thought it was. And so I will get a notification on CloudWatch. It may email me, it may text message me and tell me there's a lot of drift in your model. You may want to look into this and then I will have insight and I won't have to sort of keep an eye on this model. Myself SageMaker will keep an eye on it for me
+
+[00:56:14] now those are a whole bunch of the features of no-fee and how they can lend well to SageMaker and AWS cloud native services.
+
+[00:56:21] one feature I want to add to no-fee is dream interpretation, automatic dream interpretation. If you have a journal and that journals tag is dream or dreams or dreaming, it will auto interpret your dream by matching the elements of your dream and their definitions in a dream dictionary, This will be a new feature. I don't have to worry about the current tech stack of my machine learning deployment, because I can write a one-off microservice SageMaker model that is independent of all the other machine learning in my tech stack. currently, Gnothi runs all of its machine learning in one.
+
+[00:57:03] Docker container that runs on batch. And if I want to change one machine learning model, improve one model, then that might affect all the other models. So by using SageMaker, I can write a microservice, a single machine learning model. Then I can then add into Gnothi's feature set without worrying about how it may affect the rest of the stack.
+
+[00:57:26] There you go. Sage maker and AWS cloud native services. There are a lot before you write your own code. See if you can do it on a cloud native service. If not see if you could do it on autopilot, if not see if you can get started with SageMaker jumpstart. And if you can't do that, then you can fall back on the dedicated SageMaker
+
+[00:57:49] tooling, and it is powerful. It is magical and I recommend moving away from local host development into developing and training your models on SageMaker studio in an I Python notebook so that you could become acquainted with the tooling and SageMaker, and so that when you're ready to deploy your model, it's already all baked into the pipeline.
+
+[00:58:12] So you don't have to do that mental translation of taking your local model on Docker to the cloud. It's all ready to go for your customer at scale in coming episodes I'm going to talk a little bit more about AWS and sort of developing against AWS by way of something called local stack.
+
+[00:58:31] so you can become steeped in the AWS tech stack. And I'm also going to talk about some alternatives to Sage maker, like Kubeflow and ML flow and all these things. I'll see you later.
+

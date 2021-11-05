@@ -19,11 +19,11 @@ from pydub import AudioSegment, effects
 dir_ = "/podcasts"
 
 ####### TODO Edit these!
-EPISODE = f"{dir_}/mla/15/descript.wav"
-OUTPUT = f"{dir_}/mp3s/mla.015.20211103.mp3"
+EPISODE = f"{dir_}/mla/16/descript.wav"
+OUTPUT = f"{dir_}/mp3s/mla.016.20211104.mp3"
 meta = dict(
-    title='MLA 015 SageMaker 1',
-    track=15,
+    title='MLA 016 SageMaker 1',
+    track=16,
     year=2021,
 #############
     artist='OCDevel',

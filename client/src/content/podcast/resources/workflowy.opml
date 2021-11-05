@@ -168,10 +168,10 @@
             </outline>
           </outline>
           <outline text="MLOps #pick:all">
-            <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:valuable #mla:15" _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
+            <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:valuable #mla:15:16" _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3CqJ9xo&quot;&gt;https://amzn.to/3CqJ9xo&lt;/a&gt;" />
             </outline>
-            <outline text="Amazon SageMaker Technical Deep Dive Series #difficulty:easy #topic:tech #format:video #video2audio:good #audioOption #mla:15">
+            <outline text="Amazon SageMaker Technical Deep Dive Series #difficulty:easy #topic:tech #format:video #video2audio:good #audioOption #mla:15:16">
               <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&quot;&gt;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&lt;/a&gt;" />
             </outline>
           </outline>
