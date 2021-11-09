@@ -3,8 +3,13 @@ services:
   vid2aud:
     build: .
     container_name: vid2aud
-    entrypoint: /bin/bash
-    stdin_open: true
+    ports:
+      - 9000:8080
+    #entrypoint: /bin/bash
+    #stdin_open: true
     volumes:
       - ~/.aws:/root/.aws
-      - .:/app
+      - ./task:/var/task
+
+# docker-compose up -d vid2aud
+# curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"url": "https://www.youtube.com/watch?v=Oi1r3e8y2jg"}'
