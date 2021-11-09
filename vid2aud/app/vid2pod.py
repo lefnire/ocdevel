@@ -1,29 +1,46 @@
-import glob, re, uuid, pdb, os
+import glob, re, uuid, os, subprocess, boto3, hashlib
 import urllib.parse
 from email.utils import format_datetime
 from datetime import datetime, timedelta
 from mutagen.mp3 import MP3  # pip install mutagen
 
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("-d", "--dir", required=True)
-args = parser.parse_args()
+URL = "https://www.youtube.com/watch?v=1iEYrHiHpRY&list=PLbpi6ZahtOH7WFEYxB4kUB2QwsshALAwy"
+BUCKET = "lefnire-scratch"
+DOMAIN = "https://ocdevel.com/custom_casts"
+
+def run_cmd(cmd):
+    if type(cmd) is list:
+        cmd = ' '.join(cmd)
+    print(cmd)
+    res = os.popen(cmd).readlines()
+    return [r.replace('\n', '') for r in res]
+
+
+def hash(s):
+    return hashlib.md5(s.encode('utf-8')).hexdigest()
+
 
 def rfc2822(d):
     # Podcasts use rfc2822?  'ddd, DD MMM YYYY 00:00:00' => "Wed, 07 Nov 2018 00:00:00"
     # https://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
     return format_datetime(d)
+
+
 def cleanstr(s):
     # return re.sub('[^0-9a-zA-Z ]+', '', s)
     return re.sub('[<>&]', '', s)
+
+
 def urlencode(s):
     # Better way?
     return urllib.parse.quote(s)
 
+
+ptitle = run_cmd(f"yt-dlp -e {URL}")[0]
+pid = hash(ptitle)
 today = datetime.today()
-ptitle = cleanstr(args.dir)
-purl = f"http://ocdevel.com/custom_casts"
-plink = f"{purl}/{urlencode(args.dir)}/feed.xml"
+purl = DOMAIN
+plink = f"{purl}/{pid}/feed.xml"
 pfeed = plink
 pdate = rfc2822(today)
 # TODO
@@ -62,15 +79,22 @@ xml = f"""<?xml version="1.0" encoding="utf-8"?>
         </itunes:category>
         <pubDate>{pdate}</pubDate>
 """
-
+cmd = [
+    "yt-dlp",
+    "-f worstaudio",  # don't need quality
+    "--extract-audio",
+    "--audio-format mp3",
+    "--keep-video",  # deletion takes forever for some reason. Files will go with server-death anyway
+    "--restrict-filenames"  # ascii
+    '-o "%(autonumber)s-%(title)s.%(ext)s',
+    URL
+]
+run_cmd(cmd)
 i = 0
-for fname in sorted(glob.glob(f"{args.dir}/*.mp3")):
-    ftitle = cleanstr(fname[
-        len(args.dir)+1:  # comes with directory in fname, remove
-        -4  # remove '.mp3'
-    ])
+for fname in run_cmd("ls *.mp3"):
+    ftitle = cleanstr(fname[:-4])  # remove '.mp3'
     fdate = rfc2822(today - timedelta(days=i))
-    fguid = uuid.uuid4()
+    fguid = hash(ftitle)
     audio = MP3(fname)
     ffileurl = f"{purl}/{urlencode(fname)}"
     ffilelen = os.path.getsize(fname)
@@ -95,11 +119,13 @@ for fname in sorted(glob.glob(f"{args.dir}/*.mp3")):
         <itunes:explicit>no</itunes:explicit>
     </item>"""
     i += 1
+    run_cmd(f'aws s3 cp "{fname}" "s3://{BUCKET}/{pid}/{fname}"')
 
 xml += f"""
     </channel>
 </rss>
 """
 
-with open(f"{args.dir}/feed.xml", "w", encoding='utf-8') as f:
+with open(f"feed.xml", "w", encoding='utf-8') as f:
     f.write(xml)
+run_cmd(f"aws s3 cp feed.xml s3://{BUCKET}/{pid}/feed.xml")

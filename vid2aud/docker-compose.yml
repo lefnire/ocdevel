@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  vid2aud:
+    build: .
+    container_name: vid2aud
+    entrypoint: /bin/bash
+    stdin_open: true
+    volumes:
+      - ~/.aws:/root/.aws
+      - .:/app
