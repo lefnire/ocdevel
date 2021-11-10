@@ -167,22 +167,24 @@
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2IHFh2m&quot;&gt;https://amzn.to/2IHFh2m&lt;/a&gt;" />
             </outline>
           </outline>
-          <outline text="MLOps #pick:all">
+          <outline text="Server, Database, Deployment #pick:all" _note="Rather than writing your own server-code with FastAPI (the traditional ML deployment path), learn AWS nuts-to-bolts. They offer not only hosted server modules (like auth via Cognito, storage via S3, and security via IAM / VPC) - but also the full end-to-end machine learning data-prep, training, and deployment lifecycle. I recommend aCloudGuru. Follow the certification paths, even if you don't take the cert tests.">
+            <outline text="aCloudGuru #format:other">
+              <outline text="Getting started tutorial #price:free" _note="&lt;a href=&quot;https://acloudguru.com/blog/engineering/which-aws-certification-should-i-take&quot;&gt;https://acloudguru.com/blog/engineering/which-aws-certification-should-i-take&lt;/a&gt;&lt;a href=&quot;https://acloudguru.com/blog/engineering/which-aws-certification-should-i-take&quot;&gt;&#10;&#10;&lt;/a&gt;" />
+              <outline text="Membership #price:$$$" _note="&lt;a href=&quot;https://acloudguru.com/pricing&quot;&gt;https://acloudguru.com/pricing&lt;/a&gt;" />
+            </outline>
+            <outline text="MLG Episodes #format:podcast">
+              <outline text="MLA 015 SageMaker 1 #price:free " _note="&lt;a href=&quot;https://ocdevel.com/mlg/mla-15&quot;&gt;https://ocdevel.com&lt;/a&gt;&lt;a href=&quot;https://ocdevel.com/mlg/mla-15&quot;&gt;/mlg&lt;/a&gt;&lt;a href=&quot;https://ocdevel.com/mlg/mla-15&quot;&gt;/mla-15&lt;/a&gt;" />
+              <outline text="MLA 016 SageMaker 2 #price:free " _note="&lt;a href=&quot;https://ocdevel.com/mlg/mla-16&quot;&gt;https://ocdevel.com&lt;/a&gt;&lt;a href=&quot;https://ocdevel.com/mlg/mla-16&quot;&gt;/mlg&lt;/a&gt;&lt;a href=&quot;https://ocdevel.com/mlg/mla-16&quot;&gt;/mla-16&lt;/a&gt;" />
+              <outline text="MLA 017 AWS Local Development #price:free " _note="&lt;a href=&quot;https://ocdevel.com/mlg/mla-17&quot;&gt;https://ocdevel.com&lt;/a&gt;&lt;a href=&quot;https://ocdevel.com/mlg/mla-17&quot;&gt;/mlg&lt;/a&gt;&lt;a href=&quot;https://ocdevel.com/mlg/mla-17&quot;&gt;/mla-17&lt;/a&gt;" />
+            </outline>
+          </outline>
+          <outline text="MLOps (hosted machine learning) #pick:all">
             <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:valuable #mla:15:16" _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3CqJ9xo&quot;&gt;https://amzn.to/3CqJ9xo&lt;/a&gt;" />
             </outline>
             <outline text="Amazon SageMaker Technical Deep Dive Series #difficulty:easy #topic:tech #format:video #video2audio:good #audioOption #mla:15:16">
               <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&quot;&gt;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&lt;/a&gt;" />
             </outline>
-          </outline>
-          <outline text="Development Environment" _note="Use Windows (dev channel), WSL2, Docker, nvidia-docker for your dev environment">
-            <outline text="Article #price:free" _note="/mlg/24" />
-          </outline>
-          <outline text="Client, Server, Database" _note="Tech stack and cloud services to use for your front-end (web/mobile), app server, and database. As well as some database-ish things like in-memory session management, pub/sub, and job-queues.">
-            <outline text="Article #price:free" _note="/mlg/mla-13" />
-          </outline>
-          <outline text="Machine Learning Server" _note="Cloud hosting services for serving your machine learning model">
-            <outline text="Article #price:free" _note="/mlg/mla-14" />
           </outline>
         </outline>
       </outline>
