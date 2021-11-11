@@ -13,6 +13,7 @@ For your local development environment, I recommend using Windows. You can't eff
 Use [Docker](https://www.docker.com/). You'll need it eventually for cloud-deploy anyway, so might as well start now and gain the dev environment benefits.  To use Docker with GPU on Windows, follow these instructions.
 
 * Setup Windows Dev Channel and WSL2 with nvidia-docker support. [Instructions here](/blog/20201207-wsl2-gpu-docker)
+  * Alternatively: [Nvidia's guide for CUDA on WSL2](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
 * Odds-and-ends with WSL2 & Docker [here](/blog/20201208-wsl-docker-misc)
 * Create a Dockerfile inheriting from a popular pre-vetted ML setups like [nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04](https://hub.docker.com/layers/nvidia/cuda/10.1-cudnn7-runtime-ubuntu18.04/images/sha256-a24cf3e988666a634937c9a8b856ecc77d5afe25b636fa3141fe089f440ed370?context=explore), [huggingface/transformers-gpu](https://hub.docker.com/r/huggingface/transformers-gpu/dockerfile), or Gnothi's [ml-tools](https://github.com/lefnire/ml-tools) kitchen-sink.
 
