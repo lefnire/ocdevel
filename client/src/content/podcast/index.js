@@ -3,7 +3,7 @@ import keyBy from 'lodash/keyBy'
 
 export const episodes = map([
   require('./mlg/001').default,
-  require('./mlg/002.js').default,
+  require('./mlg/002').default,
   require('./mlg/003.js').default,
   require('./mlg/004.js').default,
   require('./mlg/005.js').default,
