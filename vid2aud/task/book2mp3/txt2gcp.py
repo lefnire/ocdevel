@@ -6,6 +6,9 @@ pip install google-cloud-texttospeech pdfminer.six
 Args & constants
 """
 import pdb, os, shutil, re, argparse, pickle
+from pdfminer.high_level import extract_text
+from PyPDF2 import PdfFileReader, PdfFileWriter
+from pdfminer.high_level import extract_text, extract_pages
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--pdf', action='store_true')
@@ -30,7 +33,11 @@ if args.wipe:
 """
 Parse PDF
 """
-from pdfminer.high_level import extract_text
+PDF = f"{os.getcwd()}/social_influence.pdf"
+OUT = f"{os.getcwd()}/p1.pdf"
+
+n_pages = PdfFileReader(PDF).getNumPages()
+
 pages_before = []
 pages = []
 

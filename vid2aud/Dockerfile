@@ -18,8 +18,13 @@ RUN mkdir -v -p /usr/local/bin/ffmpeg && \
     ln -snf /usr/local/bin/ffmpeg/ffmpeg /usr/bin/ffmpeg && \
     ln -snf /usr/local/bin/ffmpeg/ffpropbe /usr/bin/ffpropbe
 
-RUN pip install yt-dlp mutagen boto3
+RUN pip install yt-dlp mutagen boto3 pdfminer.six pypdf2
 #    ffmpeg-python
+
+#RUN yum install -y git && \
+#    cd /tmp && \
+#    git clone https://github.com/r0oth3x49/acloud-dl.git && \
+#    cd acloud-dl && pip install -r requirements.txt
 
 COPY ./task ${LAMBDA_TASK_ROOT}
 CMD [ "app.handler" ]

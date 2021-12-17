@@ -4,7 +4,7 @@ const Body = importMDX.sync('./body.mdx')
 const Transcript = importMDX.sync('./transcript.mdx')
 
 const ep = {
-  title: "What is AI / ML",
+  title: "What is AI, ML, DS",
   episode: 2,
   mergeEpisode: 2,
   created: "2017-02-09",
