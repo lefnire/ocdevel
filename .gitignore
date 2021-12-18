@@ -2,3 +2,4 @@
 **/config.json
 **/feed.xml
 tmp/
+**/.DS_Store
