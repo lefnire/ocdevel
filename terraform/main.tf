@@ -25,7 +25,8 @@ provider "aws" {
 locals {
   name = "ocdevel-general"
   region = "us-east-1"
-  availability_zone = "us-east-1a"
+  main_az = "us-east-1a"
+  mount_path = "/home/ec2-user/efs"
   tags = {
     app = local.name
     Name = local.name
@@ -44,6 +45,12 @@ module "vpc" {
   private_subnets  = ["10.98.3.0/24", "10.98.4.0/24", "10.98.5.0/24"]
   database_subnets = ["10.98.7.0/24", "10.98.8.0/24", "10.98.9.0/24"]
 
+  # These 3 required for dns-resolution of EFS mount URL. https://bit.ly/33v239F , https://github.com/aws/efs-utils/issues/21
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  # At least this definitely is, but the above 2 seemed required too? (Don't move a muscle!)
+  enable_dhcp_options = true
+
   tags = local.tags
 }
 
@@ -56,54 +63,68 @@ module "security_group" {
   vpc_id      = module.vpc.vpc_id
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
+  # nfs-tcp required for EFS
   ingress_rules       = ["ssh-tcp", "nfs-tcp"]
   egress_rules        = ["all-all"]
 
   tags = local.tags
 }
 
-locals {
-  subnet_id = element(module.vpc.public_subnets, 0)  
-}
-
 resource "aws_efs_file_system" "efs" {
   creation_token = "${local.name}-efs"
+  encrypted = true
   tags = local.tags
 }
 
 resource "aws_efs_mount_target" "mount" {
   file_system_id = aws_efs_file_system.efs.id
-  subnet_id      = local.subnet_id
+  subnet_id      = element(module.vpc.private_subnets, 0)  
   security_groups = [module.security_group.security_group_id]
 }
 
+locals {
+  # As local so I can print the commands as output, to debug via SSH.
+  # Using Amazon Linux 2 AMI (yum) since it was easier to get working with amazon-efs-utils / nfs-utils than Ubuntu
+  user_data = <<EOF
+#!/bin/bash
+yum install amazon-efs-utils -y
+mkdir -p ${local.mount_path}
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${aws_efs_file_system.efs.dns_name}:/ ${local.mount_path}
+echo ${aws_efs_file_system.efs.dns_name}:/ ${local.mount_path} nfs4 defaults,_netdev 0 0  | cat >> /etc/fstab
+chmod go+rw ${local.mount_path}
+
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
+yum install git-lfs -y
+git lfs install
+
+yum update -y && yum upgrade -y && reboot now
+EOF
+}
+
+# EFS setup: https://github.com/Apeksh742/EFS_with_terraform/blob/master/main.tf
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
   name = "ocdevel-general"
 
-  ami                    = "ami-04505e74c0741db8d"
-  instance_type          = "t2.medium"
+  ami                    = "ami-0ed9277fb7eb570c9"
+  instance_type          = "t2.micro"
   key_name = "aws-general"
-  availability_zone           = local.availability_zone
-  subnet_id                   = local.subnet_id
+  availability_zone           = local.main_az
+  subnet_id                   = element(module.vpc.public_subnets, 0)
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
 
   tags = local.tags
 
-  user_data = <<EOF
-#cloud-config
-package_update: true
-package_upgrade: true
-runcmd:
-- apt-get -y install amazon-efs-utils
-- apt-get -y install nfs-common
-- mkdir -p "/mnt/efs/fs1"
-- test -f "/sbin/mount.efs" && printf "\n${aws_efs_file_system.efs.id}:/ /mnt/efs/fs1 efs tls,_netdev\n" >> /etc/fstab || printf "\n${aws_efs_file_system.efs.id}.efs.${local.region}.amazonaws.com:/ /mnt/efs/fs1 nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0\n" >> /etc/fstab
-- test -f "/sbin/mount.efs" && grep -ozP 'client-info]\nsource' '/etc/amazon/efs/efs-utils.conf'; if [[ $? == 1 ]]; then printf "\n[client-info]\nsource=liw\n" >> /etc/amazon/efs/efs-utils.conf; fi;
-- retryCnt=15; waitTime=30; while true; do mount -a -t efs,nfs4 defaults; if [ $? = 0 ] || [ $retryCnt -lt 1 ]; then echo File system mounted successfully; break; fi; echo File system not available, retrying to mount.; ((retryCnt--)); sleep $waitTime; done;
-EOF
+  user_data = local.user_data
+}
 
+output "ec2_ip" {
+  value = "ssh -i ~/.ssh/aws-general.pem ec2-user@${module.ec2_instance.public_ip}"
+}
+
+output "efs_dns" {
+  value = local.user_data
 }
