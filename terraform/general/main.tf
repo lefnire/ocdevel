@@ -109,7 +109,7 @@ module "ec2_instance" {
   name = "ocdevel-general"
 
   ami                    = "ami-0ed9277fb7eb570c9"
-  instance_type          = "t2.micro"
+  instance_type          = "t2.large"
   key_name = "aws-general"
   availability_zone           = local.main_az
   subnet_id                   = element(module.vpc.public_subnets, 0)
