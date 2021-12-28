@@ -125,10 +125,6 @@ mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=
 echo ${aws_efs_file_system.efs.dns_name}:/ ${local.mount_path} nfs4 defaults,_netdev 0 0  | cat >> /etc/fstab
 chmod go+rw ${local.mount_path}
 
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash
-yum install git-lfs -y
-git lfs install
-
 yum update -y && yum upgrade -y && reboot now
 EOF
 }
@@ -138,7 +134,7 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
-  name = "ocdevel-general"
+  name = local.name
 
   ami                    = "ami-0ed9277fb7eb570c9"
   instance_type          = "t2.medium"
