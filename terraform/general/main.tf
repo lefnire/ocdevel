@@ -22,11 +22,16 @@ provider "aws" {
   skip_requesting_account_id = false
 }
 
+data "http" "myip" {
+  url = "http://ipv4.icanhazip.com"
+}
+
 locals {
   name = "ocdevel-general"
   region = "us-east-1"
   main_az = "us-east-1a"
   mount_path = "/home/ec2-user/efs"
+  myip = ["${chomp(data.http.myip.body)}/32"]
   tags = {
     app = local.name
     Name = local.name
@@ -54,20 +59,47 @@ module "vpc" {
   tags = local.tags
 }
 
-module "security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
-
-  name        = local.name
-  description = "OCDevel general development security group (ssh, efs, etc)"
+resource "aws_security_group" "sg_ec2" {
+  name        = "${local.name}-sg-ec2"
+  description = "${local.name} dev SG (ssh)"
   vpc_id      = module.vpc.vpc_id
-
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-  # nfs-tcp required for EFS
-  ingress_rules       = ["ssh-tcp", "nfs-tcp"]
-  egress_rules        = ["all-all"]
-
   tags = local.tags
+
+  ingress {
+    description = "SSH from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = local.myip
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+resource "aws_security_group" "sg_efs" {
+  name        = "${local.name}-sg-efs"
+  description = "${local.name} dev SG (efs)"
+  vpc_id      = module.vpc.vpc_id
+  tags = local.tags
+
+  ingress {
+    description = "EFS mount target"
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "tcp"
+    security_groups = [aws_security_group.sg_ec2.id]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_efs_file_system" "efs" {
@@ -79,7 +111,7 @@ resource "aws_efs_file_system" "efs" {
 resource "aws_efs_mount_target" "mount" {
   file_system_id = aws_efs_file_system.efs.id
   subnet_id      = element(module.vpc.private_subnets, 0)  
-  security_groups = [module.security_group.security_group_id]
+  security_groups = [aws_security_group.sg_efs.id]
 }
 
 locals {
@@ -109,11 +141,11 @@ module "ec2_instance" {
   name = "ocdevel-general"
 
   ami                    = "ami-0ed9277fb7eb570c9"
-  instance_type          = "t2.large"
+  instance_type          = "t2.medium"
   key_name = "aws-general"
   availability_zone           = local.main_az
   subnet_id                   = element(module.vpc.public_subnets, 0)
-  vpc_security_group_ids      = [module.security_group.security_group_id]
+  vpc_security_group_ids      = [aws_security_group.sg_ec2.id]
   associate_public_ip_address = true
 
   tags = local.tags
@@ -121,8 +153,13 @@ module "ec2_instance" {
   user_data = local.user_data
 }
 
+resource "aws_eip" "eip" {
+  instance = module.ec2_instance.id
+  vpc      = true
+}
+
 output "ec2_ip" {
-  value = "ssh -i ~/.ssh/aws-general.pem ec2-user@${module.ec2_instance.public_ip}"
+  value = "ssh -i ~/.ssh/aws-general.pem ec2-user@${aws_eip.eip.public_ip}"
 }
 
 output "efs_dns" {
