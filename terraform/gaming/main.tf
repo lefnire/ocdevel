@@ -1,20 +1,20 @@
-# https://aws.amazon.com/blogs/gametech/enabling-quest-2-ar-vr-on-ec2-with-nice-dcv/
-# Can't setup EC2 instance by AMI unfortunately
+terraform {
+  backend "s3" {
+    bucket = "lefnire-private"
+    key    = "ocdevel/diy-gaming.tfstate"
+    region = "us-east-1"
+    profile = "terraform"
+  }
+}
 
-## Keeping in EFS
-# terraform {
-#   backend "s3" {
-#     bucket = "lefnire-private"
-#     key    = "gaming/terraform.tfstate"
-#     region = "us-west-2"
-#     profile = "terraform"
-#   }
-# }
+
+locals {
+  region = "us-west-2"
+  namespace = "diy-cloud-gaming"
+}
 
 provider "aws" {
   region  = local.region
-  shared_credentials_file = "/home/ec2-user/.aws/credentials"
-  profile                 = "terraform"
 
   # Make it faster by skipping some things
   skip_get_ec2_platforms      = true
@@ -26,82 +26,37 @@ provider "aws" {
   skip_requesting_account_id = false
 }
 
-locals {
-  name = "ocdevel-gaming"
-  region = "us-west-2"
-  main_az = "us-west-2a"
+module "diy-gaming" {
+  source = "../terraform"
+
+  # Namespace & tags will help you identify your resources later (know what to terminate, observe AWS costs by this service, etc)
+  namespace = local.namespace
   tags = {
-    app = local.name
-    Name = local.name
+    Name = local.namespace
   }
 
-  tcp = 6
-  udp = 17
-  myip = "166.70.182.82/32"
+  # This is required, and you'll need to do it through AWS-console. Go to console.aws.com, create a keypair for EC2 connections in the region specified below
+  # Download it, run `chmod 400 <my-key>.pem`, and fill in these values
+  key_name = "my-pem"
+  pem_file = "/Users/lefnire/.ssh/my-pem.pem"
+
+  # Where to launch your VPC & instance. Make sure it's the on closest too you!
+  region = local.region
+
+  # g4dn.2xlarge for cheaper (about $.70/h); g5.2xlarge for stronger (about $1.4/h). See https://aws.amazon.com/ec2/pricing/on-demand/
+  # *.xlarge for 4vcpu/16gb RAM; *.2xlarge for 8vcpu/32gb RAM. IMO, 2xlarge is the sweet spot; less is too little, more is too much.
+  instance_type = "g5.2xlarge"
+
+  # This is important! If spot_price is null, it will create an on-demand EC2 instance. This is more expensive, but more stable. Spot instances
+  # can save you up to 90% on-demand prices; but they can be pulled out from under you (killing your gaming session). It's a bidding model, the 
+  # higher your bid, the more likely you are to keep your instance online. I suggest setting the price higher than the price of the on-demand instance
+  # ($2 instead of $1.5 in this case). So MOST of the time you'll be at the cost-saving; but when demand is pushing you, your high-bid is likely
+  # to keep you online. Set this to null (or don't include it) if you don't ever want a gaming session killed; and you're willing to pay a premium
+  # for that. Set it to a number if you're willing to have sessions killed, with the benefit of $$$ savings.
+  spot_price = null
+  # spot_price = "2.0"
 }
 
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
-
-  name = local.name
-  cidr = "10.97.0.0/18"
-
-  azs              = ["${local.region}a", "${local.region}b", "${local.region}c"]
-  public_subnets   = ["10.97.0.0/24", "10.97.1.0/24", "10.97.2.0/24"]
-
-  tags = local.tags
+output "connection-info" {
+  value = module.diy-gaming.connection-info
 }
-
-module "security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
-
-  name        = local.name
-  description = "Gaming security group (NICE DCV, Remote Desktop, etc)"
-  vpc_id      = module.vpc.vpc_id
-
-  egress_rules        = ["all-all"]
-
-  ingress_with_cidr_blocks = [
-    {
-      rule        = "ssh-tcp"
-      cidr_blocks = local.myip
-    },
-    {
-      rule        = "rdp-tcp"
-      cidr_blocks = local.myip
-    },
-    {
-      from_port   = 38810
-      to_port     = 38840
-      protocol    = local.udp
-      description = "Virtual Desktop VR"
-      cidr_blocks = local.myip
-    },
-    {
-      from_port   = 38810
-      to_port     = 38840
-      protocol    = local.tcp
-      description = "Virtual Desktop VR"
-      cidr_blocks = local.myip
-    },
-    {
-      from_port   = 8443
-      to_port     = 8443
-      protocol    = local.udp
-      description = "NiceDCV QUIC"
-      cidr_blocks = local.myip
-    },
-    {
-      from_port   = 8443
-      to_port     = 8443
-      protocol    = local.tcp
-      description = "NiceDCV QUIC"
-      cidr_blocks = local.myip
-    },
-  ]
-
-  tags = local.tags
-}
-
