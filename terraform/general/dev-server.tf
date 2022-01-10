@@ -122,6 +122,7 @@ module "ec2_instance" {
   subnet_id                   = element(module.vpc.public_subnets, 0)
   vpc_security_group_ids      = [aws_security_group.ec2.id]
   associate_public_ip_address = true
+  iam_instance_profile = aws_iam_instance_profile.ec2.name
 
   tags = local.tags
 
