@@ -1,4 +1,11 @@
 locals {
+  ## Normal Dev
+  ami = "ami-0ed9277fb7eb570c9"
+  instance_type = "t2.large"
+  ## Deep Learning Dev
+  # ami = "ami-0192cf25bf5367cc8" # Deep Learning Base AMI (Amazon Linux 2) Version 48.0. Also see Deep Learning AMI - "ami-0b331a9baeb8467ca" 
+  # instance_type = "g4dn.2xlarge"
+
   myip = ["${chomp(data.http.myip.body)}/32"]
   mnt = "/home/ec2-user/efs"
   mnt_gnothi = "/home/ec2-user/gnothi"
@@ -24,17 +31,28 @@ mkdir -p ${local.mnt_gnothi}
 # efs-utils style
 #mount -t efs -o tls,iam file-system-id efs-mount-point
 #file-system-id:/ efs-mount-point efs _netdev,noresvport,tls,iam 0 0 # <-- I don't need IAM?
+mount -t efs -o tls ${aws_efs_file_system.efs.id} ${local.mnt}
 echo ${aws_efs_file_system.efs.id}:/ ${local.mnt} efs _netdev,noresvport,tls 0 0 | cat >> /etc/fstab
 echo ${data.aws_efs_file_system.gnothi.id}:/ ${local.mnt_gnothi} efs _netdev,noresvport,tls 0 0 | cat >> /etc/fstab
+cp -r ${local.mnt}/configs/.ssh /home/ec2-user
+cp -r ${local.mnt}/configs/.aws /home/ec2-user
+cp -r ${local.mnt}/configs/.gitconfig /home/ec2-user
 
 # ----------
 # Install Docker, data-dir at ~/efs/docker
-mkdir -p ${local.mnt}/docker
+mkdir ${local.mnt}/docker
+rm -rf ${local.mnt}/docker/*
 amazon-linux-extras install docker
 yum install docker -y
 echo "{\"data-root\":\"${local.mnt}/docker\"}" > /etc/docker/daemon.json
 usermod -a -G docker ec2-user
 pip3 install docker-compose
+
+# ----------
+# Terraform
+yum install -y yum-utils
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+yum -y install terraform
 
 # ----------
 # Update & restart
@@ -114,9 +132,9 @@ module "ec2_instance" {
   version = "~> 3.0"
 
   name = local.name
+  ami = local.ami
+  instance_type = local.instance_type
 
-  ami                    = "ami-0ed9277fb7eb570c9"
-  instance_type          = "t2.large"
   key_name = "aws-general"
   availability_zone           = local.main_az
   subnet_id                   = element(module.vpc.public_subnets, 0)
