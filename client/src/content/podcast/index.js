@@ -55,6 +55,7 @@ export const episodes = map([
   require('./mla/016').default,
   require('./mla/017').default,
   require('./mla/018').default,
+  require('./mla/019').default,
 ], e => ({
   mlg: !e.mla,
   id: e.mla ? `mla-${e.episode}` : e.episode,

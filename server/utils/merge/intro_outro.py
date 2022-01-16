@@ -19,12 +19,12 @@ from pydub import AudioSegment, effects
 dir_ = "/podcasts"
 
 ####### TODO Edit these!
-EPISODE = f"{dir_}/mla/17/descript.wav"
-OUTPUT = f"{dir_}/mp3s/mla.017.20211105.mp3"
+EPISODE = f"{dir_}/mla/19/descript.wav"
+OUTPUT = f"{dir_}/mp3s/mla.019.20220113.mp3"
 meta = dict(
-    title='MLA 017 AWS Local Development',
-    track=17,
-    year=2021,
+    title='MLA 019 DevOps',
+    track=19,
+    year=2022,
 #############
     artist='OCDevel',
     album='Machine Learning Guide',
