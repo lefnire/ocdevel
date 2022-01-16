@@ -1,63 +1,30 @@
 locals {
-  ## Normal Dev
-  ami = "ami-0ed9277fb7eb570c9"
-  instance_type = "t2.large"
-  ## Deep Learning Dev
-  # ami = "ami-0192cf25bf5367cc8" # Deep Learning Base AMI (Amazon Linux 2) Version 48.0. Also see Deep Learning AMI - "ami-0b331a9baeb8467ca" 
-  # instance_type = "g4dn.2xlarge"
+  gpu = true
 
+  # Instances
+  # ami-0192cf25bf5367cc8 - Deep Learning Base AMI (Amazon Linux 2) Version 48.0. 
+  # ami-0b331a9baeb8467ca - Deep Learning AMI
+  # ami-0ed9277fb7eb570c9 - Amazon Linux basic
+  # TODO data.aws_ami to search latest (how do I find AMI names for xx-*-yy?)
+  ami = local.gpu ? "ami-0c95d2cdfa25bfd0b" : "ami-08e4e35cccc6189f4"
+  instance_type = local.gpu ? "g4dn.2xlarge" : "t3.2xlarge" # m6i.2xlarge
+  
   myip = ["${chomp(data.http.myip.body)}/32"]
-  mnt = "/home/ec2-user/efs"
-  mnt_gnothi = "/home/ec2-user/gnothi"
+
   # As local so I can print the commands as output, to debug via SSH.
   # Using Amazon Linux 2 AMI (yum) since it was easier to get working with amazon-efs-utils / nfs-utils than Ubuntu
-  user_data = <<EOF
-#!/bin/bash
-yum update -y
-yum install emacs git -y
-
-# ----------
-# Mount EFS
-# https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html
-yum install amazon-efs-utils -y
-mkdir -p ${local.mnt}
-mkdir -p ${local.mnt_gnothi}
-
-# NFS style
-#mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${aws_efs_file_system.efs.dns_name}:/ ${local.mnt}
-#echo ${aws_efs_file_system.efs.dns_name}:/ ${local.mnt} nfs4 defaults,_netdev 0 0  | cat >> /etc/fstab
-#chmod go+rw ${local.mnt}
-
-# efs-utils style
-#mount -t efs -o tls,iam file-system-id efs-mount-point
-#file-system-id:/ efs-mount-point efs _netdev,noresvport,tls,iam 0 0 # <-- I don't need IAM?
-mount -t efs -o tls ${aws_efs_file_system.efs.id} ${local.mnt}
-echo ${aws_efs_file_system.efs.id}:/ ${local.mnt} efs _netdev,noresvport,tls 0 0 | cat >> /etc/fstab
-echo ${data.aws_efs_file_system.gnothi.id}:/ ${local.mnt_gnothi} efs _netdev,noresvport,tls 0 0 | cat >> /etc/fstab
-cp -r ${local.mnt}/configs/.ssh /home/ec2-user
-cp -r ${local.mnt}/configs/.aws /home/ec2-user
-cp -r ${local.mnt}/configs/.gitconfig /home/ec2-user
-
-# ----------
-# Install Docker, data-dir at ~/efs/docker
-mkdir ${local.mnt}/docker
-rm -rf ${local.mnt}/docker/*
-amazon-linux-extras install docker
-yum install docker -y
-echo "{\"data-root\":\"${local.mnt}/docker\"}" > /etc/docker/daemon.json
-usermod -a -G docker ec2-user
-pip3 install docker-compose
-
-# ----------
-# Terraform
-yum install -y yum-utils
-yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-yum -y install terraform
-
-# ----------
-# Update & restart
-yum upgrade -y && reboot now
-EOF
+  home="/home/ec2-user"
+  ebs_src="/dev/sdh"
+  user_data = templatefile("${path.module}/user_data.sh", { 
+    home=local.home,
+    gpu=local.gpu
+    ebs_src=local.ebs_src, 
+    ebs_dst="${local.home}/ebs",
+    efs_src=aws_efs_file_system.efs.id, 
+    efs_dst="${local.home}/efs",
+    gnothi_src=data.aws_efs_file_system.gnothi.id, 
+    gnothi_dst="${local.home}/gnothi"
+  })
 }
 
 data "http" "myip" {
@@ -142,9 +109,44 @@ module "ec2_instance" {
   associate_public_ip_address = true
   iam_instance_profile = aws_iam_instance_profile.ec2.name
 
+  # create_spot_instance = true
+  # spot_price = "0.5"
+  # spot_wait_for_fulfillment = true
+  # spot_instance_interruption_behavior	= "terminate"
+  # spot_type = "one-time"
+
   tags = local.tags
 
   user_data = local.user_data
+
+  root_block_device = [
+    {
+      encrypted   = true
+      volume_type = "gp3"
+      volume_size = 64
+      delete_on_termination = true
+
+      # iops                  = lookup(root_block_device.value, "iops", null)
+      # kms_key_id            = lookup(root_block_device.value, "kms_key_id", null)
+      # throughput            = lookup(root_block_device.value, "throughput", null)
+      # tags                  = lookup(root_block_device.value, "tags", null)
+    },
+  ]
+}
+
+resource "aws_volume_attachment" "this" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.this.id
+  instance_id = module.ec2_instance.id
+  stop_instance_before_detaching = true
+}
+
+resource "aws_ebs_volume" "this" {
+  availability_zone = local.main_az
+  size              = 30
+  encrypted = true
+  type = "gp3"
+  tags = local.tags
 }
 
 resource "aws_eip" "eip" {
@@ -156,6 +158,6 @@ output "ec2_ip" {
   value = "ssh -i ~/.ssh/aws-general.pem ec2-user@${aws_eip.eip.public_ip}"
 }
 
-# output "efs_dns" {
-#   value = local.user_data
-# }
+output "efs_dns" {
+  value = local.user_data
+}
