@@ -1,5 +1,5 @@
 locals {
-  gpu = true
+  gpu = false
 
   # Instances
   # ami-0192cf25bf5367cc8 - Deep Learning Base AMI (Amazon Linux 2) Version 48.0. 
@@ -21,9 +21,7 @@ locals {
     ebs_src=local.ebs_src, 
     ebs_dst="${local.home}/ebs",
     efs_src=aws_efs_file_system.efs.id, 
-    efs_dst="${local.home}/efs",
-    gnothi_src=data.aws_efs_file_system.gnothi.id, 
-    gnothi_dst="${local.home}/gnothi"
+    efs_dst="${local.home}/efs"
   })
 }
 

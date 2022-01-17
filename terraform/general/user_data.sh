@@ -6,11 +6,9 @@ yum install emacs git -y
 # Mount EFS
 # https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html
 mkdir -p ${efs_dst}
-mkdir -p ${gnothi_dst}
 yum install amazon-efs-utils -y
 mount -t efs ${efs_src} ${efs_dst}
 echo "${efs_src}:/ ${efs_dst} efs _netdev,noresvport,tls,iam 0 0" | cat >> /etc/fstab
-echo "${gnothi_src}:/ ${gnothi_dst} efs _netdev,noresvport,tls,iam 0 0" | cat >> /etc/fstab
 cp -r ${efs_dst}/configs/.ssh ${home}
 cp -r ${efs_dst}/configs/.aws ${home}
 cp -r ${efs_dst}/configs/.gitconfig ${home}
