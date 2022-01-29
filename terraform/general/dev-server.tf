@@ -44,8 +44,8 @@ resource "aws_security_group" "ec2" {
   }
   ingress {
     description = "Web from VPC"
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8000
+    to_port     = 8000
     protocol    = "tcp"
     cidr_blocks = local.myip
   }
@@ -115,6 +115,10 @@ module "ec2_instance" {
 
   tags = local.tags
 
+  # TODO 
+  # nvm
+  # localtunnel
+  # inotify https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached
   user_data = local.user_data
 
   root_block_device = [
