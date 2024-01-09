@@ -1,0 +1,17 @@
+{
+  "name": "@ocdevel/core",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "sst bind vitest",
+    "typecheck": "tsc -noEmit"
+  },
+  "devDependencies": {
+    "vitest": "^1.1.3",
+    "@types/node": "^20.10.8",
+    "sst": "^2.39.2"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}
