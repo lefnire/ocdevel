@@ -42,7 +42,7 @@ let body = <div>
     */}
 
   <ul>
-    <li>See <em>General > The Good</em> from above - these double as quality remote-work sites. The jobs indicate whether they're remote-friendly.</li>
+    <li>See <em>General {'>'} The Good</em> from above - these double as quality remote-work sites. The jobs indicate whether they're remote-friendly.</li>
     <li>{l('Authentic Jobs', 'https://authenticjobs.com')}</li>
     <li>{l('Behance','https://www.behance.net/joblist')} (for designers)</li>
     <li>{l('Dribbble','https://dribbble.com/jobs')} (for designers)</li>

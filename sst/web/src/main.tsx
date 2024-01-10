@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import React, {useEffect} from 'react'
 import ReactDom from 'react-dom'
