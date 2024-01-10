@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import {Switch, Route, useLocation} from 'react-router-dom';
+import {Switch, Route, useLocation, Outlet} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
 import {mlg} from '../../content/podcast';
@@ -19,6 +19,15 @@ const Episodes = () => import('./Content/Episodes')
 const Filters = () => import("./Sidebar/Filters")
 const About = () => import("./Sidebar/About")
 // import {useQuery} from "../../utils";
+
+function FiltersRouter() {
+  const location = useLocation()
+
+  if (location.pathname.startsWith("/mlg/resource")) {
+    return <Lazy c={Filters} />
+  }
+  return <Lazy c={About} />
+}
 
 export default function Series() {
   const location = useLocation()
@@ -48,19 +57,11 @@ export default function Series() {
       <Row>
         <Col {...col.left} className='sidebar'>
           <Row>
-            <Switch>
-              <Route path="/mlg/resources" exact><Lazy c={Filters} /></Route>
-              <Route path="/mlg"><Lazy c={About} /></Route>
-            </Switch>
+            <FiltersRouter />
           </Row>
         </Col>
         <Col {...col.right}>
-          <Switch>
-            <Route path="/mlg" exact><Lazy c={Episodes} /></Route>
-            <Route path="/mlg/resources" exact><Lazy c={ResourcesTree} /></Route>
-            <Route path="/mlg/recommend" exact><Lazy c={Recommend} /></Route>
-            <Route path="/mlg/:id"><Lazy c={EpisodeRoute} /></Route>
-          </Switch>
+          <Outlet />
         </Col>
       </Row>
     </Container>

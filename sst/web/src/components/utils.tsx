@@ -1,15 +1,15 @@
 import React, {Suspense} from "react";
-import { useHistory } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 
 export const BackButton = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   return <Button
     className="text-dark mb-2"
     variant="link"
-    onClick={() => history.goBack()}
+    onClick={() => navigate(-1)}
   >
     <FaArrowLeft /> Back
   </Button>

@@ -41,9 +41,12 @@ const renderers = {
 }
 
 export function ReactMarkdown_(props) {
+  const {children, source, ...rest} = props
+
   const props_ = {
-    ...props,
-    renderers: props.renderers? {...renderers, ...props.renderers} : renderers
+    ...rest,
+    children: children || source,
+    components: props.renderers? {...renderers, ...props.renderers} : renderers
   }
   return <ReactMarkdown {...props_}/>
 }
