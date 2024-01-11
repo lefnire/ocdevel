@@ -1,13 +1,13 @@
 import {l} from './helpers';
 import {Link} from 'react-router-dom';
 
-let title = 'Please Learn to Code';
+export let title = 'Please Learn to Code';
 
-let date = '2016-05-11';
+export let date = '2016-05-11';
 
 //Photography © via Splitshare
 
-let teaser = <p>It pays great money and is easy to learn.</p>;
+export let teaser = <p>It pays great money and is easy to learn.</p>;
 
 let body = <div>
   {/*<img className="pic" src="/blog/program.jpg" />*/}
@@ -41,9 +41,7 @@ let body = <div>
   <p>You {l("don't have to be great to succeed","https://medium.com/@WordcorpGlobal/programming-doesnt-require-talent-or-even-passion-11422270e1e4#.suwg09mo1")} in this industry. Not everyone needs be an engineer; some can be coders. You don't need countless years' experience in substack languages, understanding pointers and registers or a framework's history to succeed. Those nuggets will help you absolutely, but they're not strictly necessary. Am I encouraging mediocrity? Of course not, but the barrier to entry is lower than the nay-sayers say. You'll learn what you need as you go, and you have to start somewhere. <Link to="/2">Start here!</Link>.</p>
 
 </div>;
+export default body
 
-export default {
-  id: '0ea907ad-f062-428d-a452-293ff16f072c',
-  title, date, teaser, body,
-  jsx: true
-};
+export const id = '0ea907ad-f062-428d-a452-293ff16f072c'
+export const jsx = true

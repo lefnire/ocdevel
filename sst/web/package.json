@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.0",
     "@mdx-js/rollup": "^3.0.0",
     "@react-icons/all-files": "^4.1.0",
     "bootstrap": "^5.3.2",

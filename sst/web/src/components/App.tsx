@@ -12,12 +12,12 @@ import './App.scss'
 
 let usingGA = false;
 // FIXME use import.VITE_APP_*
-// if (process?.env?.NODE_ENV === "production") {
-//   console.log("using GA")
-//   usingGA = true;
-//   ReactGA.initialize('G-0YR1STKJS3')
-//   ReactGA.send({hitType: "pageview", page: window.location.pathname})
-// }
+if (import.meta.env.PROD) {
+  console.log("using GA")
+  usingGA = true;
+  ReactGA.initialize('G-0YR1STKJS3')
+  ReactGA.send({hitType: "pageview", page: window.location.pathname})
+}
 
 function LocationListener() {
   const location = useLocation()

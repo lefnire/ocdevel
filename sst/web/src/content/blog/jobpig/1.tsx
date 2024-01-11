@@ -1,12 +1,12 @@
 import {l} from './helpers';
 import {Link} from 'react-router-dom';
 
-let title = 'Best Tech & Remote Job Boards';
-let date = '2016-04-20';
+export const title = 'Best Tech & Remote Job Boards';
+export const date = '2016-04-20';
 
-let teaser = <p>There are hundreds, if not thousands, of online job boards - and many (most?) for tech. They vary in quality (by which I mean serious, well-paying employers). In this post I'll cover the best boards from my experience. I'll edit this post periodically, and eventually take comments so people can recommend their favorites / correct me.</p>;
+export const teaser = <p>There are hundreds, if not thousands, of online job boards - and many (most?) for tech. They vary in quality (by which I mean serious, well-paying employers). In this post I'll cover the best boards from my experience. I'll edit this post periodically, and eventually take comments so people can recommend their favorites / correct me.</p>;
 
-let body = <div>
+const body = <div>
   {teaser}
   <p>First, if you haven't read <Link to="/blog/21204489-34a6-4d56-8299-0e6d3f446d53">Find Tech Jobs</Link> yet, do so. You wanna try in-person networking first (if you can) and setup a strong LinkedIn profile. Then return here.</p>
   <h4>General</h4>
@@ -82,9 +82,7 @@ let body = <div>
   {/*<h4>Jobpig</h4>
   <p>{l('Jobpig','https://jobpigapp.com')} is my favorite, but I'm biased. It aggregates the highest quality boards above, so you only have to look in one location. And instead of using search, you <em>rate</em> jobs (thumbs up/down, like Pandora) which teaches it your search preferences so it can find the best-matching posts. If you're a digital nomad, be sure to seed it with the "Remote" tag. {l('Give it a shot!','https://jobpigapp.com')}</p>*/}
 </div>;
+export default body
 
-export default {
-  id: '0b06cd49-a9d7-4c0a-8390-950a58e8da95',
-  title, date, teaser, body,
-  jsx: true
-};
+export const id = '0b06cd49-a9d7-4c0a-8390-950a58e8da95'
+export const jsx = true

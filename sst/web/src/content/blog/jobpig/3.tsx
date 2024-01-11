@@ -1,10 +1,10 @@
 import {l} from './helpers';
 import {Link} from 'react-router-dom';
 
-let title = 'Do I Need to Program to Work Remotely?';
-let date = '2016-04-20';
+export let title = 'Do I Need to Program to Work Remotely?';
+export let date = '2016-04-20';
 
-let teaser = <p>A common question from aspiring digital nomads: "do I have to be a programmer?" The answer is of course no, not technically; but you should strongly consider it.</p>;
+export let teaser = <p>A common question from aspiring digital nomads: "do I have to be a programmer?" The answer is of course no, not technically; but you should strongly consider it.</p>;
 
 let body = <div>
   {teaser}
@@ -37,9 +37,7 @@ let body = <div>
   <p>Here's the thing about code - it's a lot easier than you think; you're psyching yourself out! I've read many accounts of waiter-gone-iOS-apps who put in 1-3 months' learning before cold-turkey. I've personally converted and coached code newbies, seeing 3 months as a standard turnaround; one month in cases where people dedicated 40h/wk learning. You don't need school ({l("don't do school!",'https://www.reddit.com/r/digitalnomad/comments/2zhlmt/what_kind_of_webdev_is_better_for_a_nomad/cpvqjxd')}), just dedication. A common starting web dev rate I see is $40/h 1099. {l('iOS Developer, $80k median','http://www.payscale.com/research/US/Job=iOS_Developer/Salary')}. That's double the best positions above! You're not limited by any factor save wifi (more than can be said for most remote jobs). You can hop countries as often as you want - you're working for home-based companies. It's the most liberating digital nomad arrangement.</p>
   <p>A common retort is "no way, you're competing against 10yr professionals at $5/h" - you're using the wrong job boards, see <Link to="/1">"the ugly"</Link>. Additionally, backend-engineer jobs tend to be more "hard core"; target front-end development / design, it has a very low barrier to entry. <Link to="/2">Start here!</Link></p>
 </div>;
+export default body
 
-export default {
-  id: '87b7f847-5397-4910-8b29-e17647854d94',
-  title, date, teaser, body,
-  jsx: true
-};
+export const id = '87b7f847-5397-4910-8b29-e17647854d94'
+export const jsx = true

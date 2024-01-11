@@ -1,8 +1,8 @@
-export default {
-  id: '20201218-ecs-alb',
-  date: '2020-12-18',
-  title: "ECS with Route53, SSL, ALB",
-  body: `
+export const id = '20201218-ecs-alb'
+export const date = '2020-12-18'
+export const title = "ECS with Route53, SSL, ALB"
+
+
 To setup ECS with a domain + SSL, you _need_ ALB. I've researched and couldn't find alternatives that weren't wild. This sucks, because ALB is expensive. If this ECS service is your bread-and-butter service, then you'll want ALB eventually anyway, great. If not, suck it up buttercup.
 
 The order of steps you take to set this up are important, you can't easily mix/match these steps, which is why I'm creating this post. I've found other tutorials, but they didn't peg the order exactly and I hit snags.
@@ -43,6 +43,4 @@ The order of steps you take to set this up are important, you can't easily mix/m
    1. Container to load balance. Select your-container:80:80 from drop-down. Click "Add to load balancer". 
    1. Production listener port = (dropdown > 443:HTTPS) > Target group name = create new (name it something good), Target group protocol = HTTP, Path pattern = / (if it gives you beef, set Evaluation order = 1), Health check path = your server's health route.
    1. Next Next Next 
-1. Delete throw-away TG at [EC2 > Target Groups](https://console.aws.amazon.com/ec2/v2/home#TargetGroups) > delete the dummy from (3.1) 
-`
-}
+1. Delete throw-away TG at [EC2 > Target Groups](https://console.aws.amazon.com/ec2/v2/home#TargetGroups) > delete the dummy from (3.1)

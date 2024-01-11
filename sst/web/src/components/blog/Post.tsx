@@ -9,6 +9,7 @@ import {ReactMarkdown_} from "../podcasts/utils";
 import ReactDisqusComments from "react-disqus-comments";
 import React from "react";
 import {fmt} from './utils'
+import {components, renderBlogPost} from '../utils/markdown.tsx'
 
 export default function Post() {
   const {id} = useParams()
@@ -28,7 +29,7 @@ export default function Post() {
           {moment(p.date).format(fmt)}
         </Card.Subtitle>
         <Card.Text>
-          {p.jsx ? p.body : <ReactMarkdown_ source={p.body}  />}
+          {renderBlogPost(p)}
         </Card.Text>
       </Card.Body>
       <Card.Footer>

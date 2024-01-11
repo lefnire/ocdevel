@@ -5,6 +5,7 @@ import moment from "moment";
 import {ReactMarkdown_} from "../podcasts/utils";
 import React from "react";
 import {fmt} from './utils'
+import {components, renderBlogPost} from "../utils/markdown.tsx";
 
 export default function Posts() {
   // const posts = _.sortBy(blog, e => -moment(e.date));
@@ -18,7 +19,7 @@ export default function Posts() {
           {moment(p.date).format(fmt)}
         </Card.Subtitle>
         <div className='fade-post'>
-          {p.jsx ? p.body : <ReactMarkdown_ source={p.body} />}
+          {renderBlogPost(p)}
           <div className='fade-post-bottom'></div>
         </div>
         <Link to={'/blog/' + p.id}>Read More</Link>

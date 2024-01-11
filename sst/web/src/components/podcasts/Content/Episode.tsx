@@ -105,12 +105,11 @@ export function Episode({e, teaser, i=null}) {
         </Card.Title>
         {renderDate()}
         {player(e)}
-        {/* FIXME */}
-        {/*{process?.env?.NODE_ENV === "development" && <div>*/}
-        {/*  {e.episode && <Badge className='me-2'>Original {e.episode}</Badge>}*/}
-        {/*  {e.mergeEpisode && <Badge className='me-2'>Merge {e.mergeEpisode}</Badge>}*/}
-        {/*  <Badge className='me-2'>i {i+1}</Badge>*/}
-        {/*</div>}*/}
+        {import.meta.env.DEV && <div>
+          {e.episode && <Badge className='me-2'>Original {e.episode}</Badge>}
+          {e.mergeEpisode && <Badge className='me-2'>Merge {e.mergeEpisode}</Badge>}
+          <Badge className='me-2'>i {i+1}</Badge>
+        </div>}
         {e.archived ? <>
           <div className='text-muted'>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
         </> : e.body ? <>

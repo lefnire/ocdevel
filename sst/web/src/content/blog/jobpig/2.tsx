@@ -1,10 +1,10 @@
 import {l} from './helpers';
 import {Link} from 'react-router-dom';
 
-let title = 'Learn to Code - Shortcut for Digital Nomads';
-let date = '2016-04-20';
+export let title = 'Learn to Code - Shortcut for Digital Nomads';
+export let date = '2016-04-20';
 
-let teaser = <p>Your friends are making a killing computer programming; or they're traveling with road-work, and it's making you green. You keep meaning to pick it up, but don't know where to start (so many languages... should I go to school?). There are many opinions on the languages / frameworks / learning-methods; here's mine. I think it's well informed, having converted my fair share to the dark side :)</p>;
+export let teaser = <p>Your friends are making a killing computer programming; or they're traveling with road-work, and it's making you green. You keep meaning to pick it up, but don't know where to start (so many languages... should I go to school?). There are many opinions on the languages / frameworks / learning-methods; here's mine. I think it's well informed, having converted my fair share to the dark side :)</p>;
 
 let body = <div>
 {teaser}
@@ -25,9 +25,7 @@ let body = <div>
 <h4>Much later</h4>
 <p>Notice my focus on front-end jobs. Clients are more amenable to entry-level (and remote) front-end developers / designers than they are to backend. You'll have more success starting on front-end. Eventually you may find yourself wanting to learn server & database programming. Pick Node.js & MongoDB. One reason: they're both JavaScript technologies, meaning they'll be easy to learn. Heck, I prefer Python & PostgreSQL personally; but if you can keep your entire tech stack in one language, you'll get further faster. Additionally, JavaScript is {l('the most popular language','http://githut.info/')} meaning more job opportunities.</p>
 </div>;
+export default body
 
-export default {
-  id: '038e5143-3dd4-4291-afb7-8d156478b9d8',
-  title, date, teaser, body,
-  jsx: true
-};
+export const id = '038e5143-3dd4-4291-afb7-8d156478b9d8'
+export const jsx = true

@@ -1,13 +1,15 @@
 import {l} from './helpers';
 import {Link} from 'react-router-dom';
 
-let title = 'Find Tech Jobs';
-let date = '2016-04-19';
+export const id = '21204489-34a6-4d56-8299-0e6d3f446d53'
+export const jsx = true;
+export const title = 'Find Tech Jobs';
+export const date = '2016-04-19';
 
-let teaser =
+export const teaser =
 <p>This is the first of a blog on all things job-finding. It'll be tech-focused in the beginning (web & mobile development, design, content, etc); though I'll expand that as {l('Jobpig','https://jobpigapp.com')} finds broader audience. It'll also lean strongly towards remote work / contracting, as {l('my wife and I','http://ocdevel.com')} are digital nomads. This post in particular is for tech jobs.</p>;
 
-let body =
+const body =
 <div>
   {teaser}
   <h4>Finding Tech Jobs</h4>
@@ -25,11 +27,6 @@ let body =
   <p>Finally, job boards. LinkedIn is passive; it works for you in the background. Networking is active, and will land your highest-quality jobs; but there's only so many local events (say once a week). Job boards are your daily shotgun to fill the gaps. <Link to='/1'>Continue reading here</Link> (job boards warrant their own post).</p>
 
 </div>;
+export default body
 
 // Next post on job boards
-
-export default {
-  id: '21204489-34a6-4d56-8299-0e6d3f446d53',
-  title, date, teaser, body,
-  jsx: true
-};
