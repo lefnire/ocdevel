@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "sst dev",
-    "build": "sst build",
-    "deploy": "sst deploy",
-    "remove": "sst remove",
-    "console": "sst console",
+    "dev": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst dev",
+    "build": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst build",
+    "deploy": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst deploy --stage=prod",
+    "remove": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove",
+    "console": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst console",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

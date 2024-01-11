@@ -1,6 +1,22 @@
-import { StackContext, Api, EventBus } from "sst/constructs";
+import { StackContext, Api, EventBus, StaticSite } from "sst/constructs";
+
+export function Web({ stack }: StackContext) {
+  const web = new StaticSite(stack, "web", {
+    path: "packages/web",
+    buildOutput: "dist",
+    buildCommand: "npm run build",
+    environment: {
+      // VITE_APP_API_URL: api.url,
+    },
+    customDomain: {
+      domainName: "ocdevel.com",
+      domainAlias: "www.ocdevel.com",
+    },
+  });
+}
 
 export function API({ stack }: StackContext) {
+  return; // TODO
   const bus = new EventBus(stack, "bus", {
     defaults: {
       retries: 10,
