@@ -1,41 +1,28 @@
-const { parseExpression } = require('@babel/parser')
-const { createMacro, MacroError } = require('babel-plugin-macros')
-const fs = require('fs')
-const path = require('path')
-const xmlJs = require('xml-js');
-const reduce = require('lodash/reduce')
-const crypto = require('crypto')
-const last = require('lodash/last')
-const find = require('lodash/find')
+import fs from 'fs'
+import path from 'path'
+import xmlJs from 'xml-js'
+import reduce from 'lodash/reduce'
+import crypto from 'crypto'
+import last from 'lodash/last'
+import find from 'lodash/find'
 
-module.exports = createMacro(opmlMacro)
-
-function opmlMacro({ references, state }) {
-  for (const { parentPath } of references.default) {
-    if (parentPath.type !== 'CallExpression')
-      throw new MacroError('yaml.macro only supports usage as a function call')
-
-    let argPath, argOptions
-    try {
-      const args = parentPath.get('arguments')
-      argPath = args[0].evaluate().value
-      if (args.length > 1) argOptions = args[1].evaluate().value
-    } catch (error) {
-      error.message = `yaml.macro argument evaluation failed: ${error.message}`
-      throw error
+export const vitePluginOpml = {
+  name: 'vite-plugin-opml',
+  transform(code, id) {
+    if (id.endsWith('.opml')) {
+      return transform(code,id);
     }
-    /* istanbul ignore if */
-    if (!argPath) throw new MacroError('yaml.macro argument evaluation failed')
+  }
+}
 
-    const dirname = path.dirname(state.file.opts.filename)
-    const fullPath = require.resolve(argPath, { paths: [dirname] })
-    const fileContent = fs.readFileSync(fullPath, { encoding: 'utf-8' })
-
-    const res = xmlJs.xml2js(fileContent, {compact: true});
-    const wf = parseWorkflowy(res)
-    const exp = parseExpression(JSON.stringify(wf))
-    // const exp = parseExpression(JSON.stringify(res))
-    parentPath.replaceWith(exp)
+// export function opmlPlugin({ references, state }) {
+function transform(code, id) {
+  const fileContent = fs.readFileSync(id, 'utf8');
+  const res = xmlJs.xml2js(fileContent, {compact: true});
+  const wf = parseWorkflowy(res)
+  return {
+    code: `export default ${JSON.stringify(wf)}`,
+    map: null
   }
 }
 

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import xml2js from 'xml2js';
+import {vitePluginOpml} from "./src/content/podcast/resources/opml.vite-plugin";
 import fs from 'fs';
 import mdx from '@mdx-js/rollup'
 import react from '@vitejs/plugin-react'
@@ -11,25 +11,7 @@ export default defineConfig({
     {enforce: 'pre', ...mdx(/* jsxImportSource: …, otherOptions… */)},
 
     // OPML
-    {
-      name: 'vite-plugin-opml',
-      transform(code, id) {
-        if (id.endsWith('.opml')) {
-          const xml = fs.readFileSync(id, 'utf8');
-          let jsObject;
-          xml2js.parseString(xml, (err, result) => {
-            if (err) {
-              throw new Error(`Error parsing OPML file: ${id}`);
-            }
-            jsObject = result;
-          });
-          return {
-            code: `export default ${JSON.stringify(jsObject)}`,
-            map: null
-          };
-        }
-      }
-    },
+    vitePluginOpml,
 
     // React
     react(),

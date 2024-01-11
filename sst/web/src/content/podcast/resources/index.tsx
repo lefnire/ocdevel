@@ -1,5 +1,3 @@
-// 
-// const wf = opml('./workflowy.opml')
 import wf from './workflowy.opml'
 
 console.log(wf)
