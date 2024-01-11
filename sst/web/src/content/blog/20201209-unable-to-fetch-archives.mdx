@@ -10,7 +10,7 @@ Most public Dockerfiles which you'll be inheriting from add `rm -rf /var/lib/apt
 So your Dockerfile might look like this:
 ```
 FROM nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04
-RUN apt-get update && \\
-    apt-get install -y wget && \\
+RUN apt-get update && \
+    apt-get install -y wget && \
     rm -rf /var/lib/apt/lists  # follow their lead, create small/clean images
 ``` 

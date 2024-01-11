@@ -6,10 +6,10 @@ export const title = "WSL2 + Docker odds & ends"
 #### Use more than 8GB RAM
 [[Details]](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig). Docker + WSL2 defaults to only use 8GB system RAM. Bump it up to max. 
 
-1. Edit `C:\\Users\\yourUserName\\.wslconfig`
+1. Edit `C:\Users\yourUserName\.wslconfig`
    ```
    [wsl2]
-   #kernel=C:\\\\temp\\\\myCustomKernel
+   #kernel=C:\\temp\\myCustomKernel
    memory=4GB # Limits VM memory in WSL 2 to 4 GB
    #processors=2 # Makes the WSL 2 VM use two virtual processors
    ```
@@ -34,7 +34,7 @@ Docker on WSL2 has a memory leak. Periodically clear the cache
 #### Install Python
 1. Download [Anaconda for Linux](https://www.anaconda.com/products/individual#linux)
 1. `sh ./Anaconda-whatever.sh`
-1. If `conda` command not recognized after shell restart, try moving whatever it added to `~\\.bashrc` to `~\\.profile` 
+1. If `conda` command not recognized after shell restart, try moving whatever it added to `~\.bashrc` to `~\.profile`
 
 #### docker-compose w GPU support
 [[Details]](https://github.com/docker/compose/issues/6691#issuecomment-670700674)

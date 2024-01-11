@@ -8,7 +8,7 @@ Windows security is no joke. UNIX-based systems have stronger intrinsic security
 There's a hack. Taken from [answers.microsoft.com](https://answers.microsoft.com/en-us/windows/forum/windows_10-other_settings/disable-windows-10-automatic-restart-after-updates/16f1826d-a796-4de8-ac99-1d625420d265?page=11), you configure a setting in RegEdit.
 
 1. Click Start > type "Registry Editor" and click that
-1. Navigate to `\\HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows`
-1. For some, there might already be a `\\WindowsUpdate\\AU` key. There wasn't for me, so I had to create that path. Right-click "Windows" > New > Key > "WindowsUpdate" > Save. Within that, New > Key > AU
+1. Navigate to `\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows`
+1. For some, there might already be a `\WindowsUpdate\AU` key. There wasn't for me, so I had to create that path. Right-click "Windows" > New > Key > "WindowsUpdate" > Save. Within that, New > Key > AU
 1. Right-click in AU > New > DWORD (32-bit) value > "AUOptions" > Save
 1. Right click AUOptions > Modify > Value data: 2 > OK. That is, set the value to 2; doesn't matter if Hex or Decimal, but I'm using Hex for what it's worth. 
