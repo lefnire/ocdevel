@@ -4,7 +4,7 @@ import compact from "lodash/compact";
 import reduce from "lodash/reduce";
 import {flat, top} from "../content/podcast/resources";
 import {filterKeys, filters as filters_} from "../content/podcast/resources/filters";
-import produce from 'immer'
+import {produce} from 'immer'
 
 function recurseTree(filters, learnStyles, id=null, section=null) {
   if (!id) {

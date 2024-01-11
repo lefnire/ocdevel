@@ -1,5 +1,6 @@
-import opml from './opml.macro'
-const wf = opml('./workflowy.opml')
+// 
+// const wf = opml('./workflowy.opml')
+import wf from './workflowy.opml'
 
 console.log(wf)
 

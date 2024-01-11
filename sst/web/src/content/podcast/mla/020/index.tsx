@@ -1,6 +1,6 @@
-import { importMDX } from 'mdx.macro'
-const Body = importMDX.sync('./body.mdx')
-//const Transcript = importMDX.sync('./transcript.mdx')
+
+import Body from './body.mdx'
+//import Transcript from './transcript.mdx'
 
 const ep = {
   title: 'Kubeflow',
