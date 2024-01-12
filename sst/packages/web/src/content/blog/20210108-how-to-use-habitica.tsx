@@ -15,6 +15,7 @@ import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
 import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
+import {TLDR} from './utils'
 
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
@@ -27,10 +28,6 @@ function Accordion_({title, eventKey, children}) {
       {children}
     </Accordion.Body>
   </Accordion.Item>
-}
-
-function TLDR({children}) {
-  return <Alert variant='info'><b>TL;DR</b> {children}</Alert>
 }
 
 const questions = [{

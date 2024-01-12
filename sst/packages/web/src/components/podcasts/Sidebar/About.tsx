@@ -56,16 +56,20 @@ function Links() {
   }
   const btn = {variant: 'light'}
 
-  return <Row>
-    <Col {...common.div}>
+  function SuggestEpisode() {
+    // no longer working
+    return null;
+    return <Col {...common.div}>
       <IconButton
         {...btn}
         href="/mlg/recommend"
         Icon={FaLightbulb}
         >Suggest Episode</IconButton>
     </Col>
+  }
 
-    <Popover_
+  function MailingList() {
+    return <Popover_
       content={<div>Get notified of new episodes and announcements</div>}
       opts={{placement: 'bottom'}}
     >
@@ -75,8 +79,10 @@ function Links() {
         </IconButton>
       </Col>
     </Popover_>
+  }
 
-    <Popover_
+  function PodcastProject() {
+    return <Popover_
       content={<div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>}
       opts={{placement: 'bottom'}}
     >
@@ -86,8 +92,12 @@ function Links() {
         </IconButton>
       </Col>
     </Popover_>
+  }
 
-    <Popover_
+  function Community() {
+    // Discord gone after Dept
+    return null;
+    return <Popover_
       content={<div>Join fellow learners on Discord to ask questions and network</div>}
       opts={{placement: 'bottom'}}
     >
@@ -97,92 +107,61 @@ function Links() {
         </IconButton>
       </Col>
     </Popover_>
+  }
+
+  return <Row>
+    <SuggestEpisode />
+    <MailingList />
+    <PodcastProject />
+    <Community />
   </Row>
 }
 
-function MLG() {
-  const [showLinks, setShowLinks] = useState(false)
-
+function MLGLinks() {
   const btn = {size: 'sm', variant: 'light', target: '_blank'}
+  return <>
+    <ButtonGroup className='d-block' vertical>
+      <IconButton
+        {...btn}
+        href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130"
+        Icon={FaItunesNote}
+      >iTunes</IconButton>
+      <IconButton
+        {...btn}
+        href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9"
+        Icon={RiSpotifyLine}
+      >Spotify</IconButton>
+      <IconButton
+        {...btn}
+        href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='
+        Icon={RiGooglePlayLine}
+      >Google Podcasts</IconButton>
+      <IconButton
+        {...btn}
+        href="http://www.stitcher.com/s?fid=130679&refid=stpr"
+        Icon={SiStitcher}
+      >Stitcher</IconButton>
+      <IconButton
+        {...btn}
+        href="http://machinelearningguide.libsyn.com/rss"rel="nofollow"
+        Icon={SiRss}
+      >Custom (RSS)</IconButton>
+    </ButtonGroup>
+    <ShowMoreLess podcast={mlg} />
+  </>
+}
 
+function MLGImage() {
+  // git-blame: links underneath; click to show
   return <div>
     <div className="logo mb-3">
       <img src={scout} alt="Machine Learning Guide" />
     </div>
-
-    {showLinks ? <>
-      <ButtonGroup className='d-block' vertical>
-        <IconButton
-          {...btn}
-          href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130"
-          Icon={FaItunesNote}
-        >iTunes</IconButton>
-        <IconButton
-          {...btn}
-          href="https://open.spotify.com/show/5M9yZpSyF1jc7uFp2MlhP9"
-          Icon={RiSpotifyLine}
-        >Spotify</IconButton>
-        <IconButton
-          {...btn}
-          href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='
-          Icon={RiGooglePlayLine}
-        >Google Podcasts</IconButton>
-        <IconButton
-          {...btn}
-          href="http://www.stitcher.com/s?fid=130679&refid=stpr"
-          Icon={SiStitcher}
-        >Stitcher</IconButton>
-        <IconButton
-          {...btn}
-          href="http://machinelearningguide.libsyn.com/rss"rel="nofollow"
-          Icon={SiRss}
-        >Custom (RSS)</IconButton>
-      </ButtonGroup>
-    </> : <>
-      <Button variant='outline-primary w-100' onClick={() => setShowLinks(true)}>Get It</Button>
-    </>}
-
-    <ShowMoreLess podcast={mlg} />
+    {/*<MLGLinks />*/}
   </div>
 }
 
-function Dept() {
-  const [showLinks, setShowLinks] = useState(false)
-
-  const dept = {
-    teaser: "MLG is now part of Dept, who's resurrecting the podcast. Dept works in data / ML, and is looking for talent and clients. Work with us!",
-    body: `Dept is a digital agency of more than 2,000 thinkers and makers spread all across the globe who specialize in technology, design, strategy, data, and everything in between. Over the course of MLG, I’ll be drawing on a bunch of examples of real-life work that Dept has completed for our clients. As always, if you’re interested in working with us, click above.`
-  }
-
-  return <>
-    <div className="logo mb-3">
-      <img src={deptLogo} alt="Dept Agency"/>
-    </div>
-    {showLinks ? <>
-      <ButtonGroup className='d-block' vertical>
-        <IconButton
-          variant='light'
-          Icon={FaBusinessTime}
-          href="https://www.deptagency.com/contact/"
-        >Hire Dept</IconButton>
-        <IconButton
-          variant='light'
-          Icon={FaUserPlus}
-          href="https://www.deptagency.com/careers/"
-        >Get Hired</IconButton>
-      </ButtonGroup>
-
-    </> : <>
-      <Button
-        variant='outline-primary'
-        className='w-100'
-        onClick={() => setShowLinks(true)}>
-        Work with us
-      </Button>
-    </>}
-    <ShowMoreLess podcast={dept}/>
-  </>
-}
+// git-blame: dept links
 
 function Podcasts() {
   const show = useStore(s => s.showAbout)
@@ -191,10 +170,10 @@ function Podcasts() {
   return <AboutSection title='About' top={true} show={show} toggle={toggle}>
     <Row>
       <Col>
-        <MLG />
+        <MLGImage />
       </Col>
       <Col>
-        <Dept />
+        <MLGLinks />
       </Col>
     </Row>
     <hr />
@@ -205,12 +184,13 @@ function Podcasts() {
 function Updates() {
   const show = useStore(s => s.showUpdates)
   const toggle = useStore(s => s.toggleUpdates)
-
+  
   return <AboutSection title='Updates' show={show} toggle={toggle}>
     <div className="mb-3 mlg-update ps-3">
-      <Card.Title className='mb-1'>2021-10-20: Dept acquisition</Card.Title>
-      <p><a target="_blank" href="https://deptagency.com">Dept</a> has acquired MLG, to allow me to finish the re-do! They're sponsoring merging MLA into the main feed, so the Patreon is going away - expect that content soon!</p>
+      <Card.Title className='mb-1'>2024-01-11: Battle Station</Card.Title>
+      <p>See Tyler's workstation recommendations: <Link to="/blog/20240109-fitness-desk">walking desk</Link> and <Link to="/blog/20240110-ergo-mouse-keyboard">keyboard + mouse.</Link></p>
     </div>
+    {/* git-blame dept */}
     <hr />
     <div className="text-muted mb-3 ps-3">
       <Card.Title className='mb-1'>2020-12-19: Podcast re-do</Card.Title>
