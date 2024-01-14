@@ -28,6 +28,16 @@ import Badge from "react-bootstrap/Badge";
 //   }
 // })))
 
+function Tag({name}: {name: string}) {
+  if (name === 'c') {return null}
+  return <Badge
+    className='me-1'
+    bg="secondary"
+  >
+    {name}
+  </Badge>
+}
+
 interface Node {
   id: string
   text: string
@@ -39,6 +49,8 @@ interface Node {
 function Node({id, text, note, tags, children, depth}: Node) {
   const [open, setOpen] = useState(!tags?.c)
 
+  const hasChildren = children?.length > 0
+
   const toggle = useCallback((event) => {
     event.preventDefault()
     event.stopPropagation()
@@ -46,7 +58,7 @@ function Node({id, text, note, tags, children, depth}: Node) {
   }, [open])
 
   const chevron = useMemo(() => {
-    if (!children.length) { return <div>•</div> }
+    if (!hasChildren) { return <div>•</div> }
     if (open) {return <FaChevronUp />}
     return <FaChevronDown />
   }, [open, children])
@@ -55,7 +67,7 @@ function Node({id, text, note, tags, children, depth}: Node) {
     className="ps-2"
   >
     <div
-      className="gap-2 d-flex flex-row"
+      className={`gap-2 d-flex flex-row`}
     >
       <div
         className="pointer"
@@ -63,7 +75,7 @@ function Node({id, text, note, tags, children, depth}: Node) {
       >{chevron}</div>
       <div className='fs-5' dangerouslySetInnerHTML={{__html: text}} />
       <div className='fs-5'>
-        {Object.entries(tags).map(([k, v]) => (<Badge>#{k}</Badge>))}
+        {Object.entries(tags).map(([k, v]) => <Tag name={k} />)}
       </div>
     </div>
     <div className="text-muted ms-1" dangerouslySetInnerHTML={{__html: note}} />

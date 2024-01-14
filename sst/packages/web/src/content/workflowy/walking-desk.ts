@@ -2,6 +2,7 @@ import fs from 'fs'
 import xmlJs from 'xml-js'
 import reduce from 'lodash/reduce'
 import crypto from 'crypto'
+import {decode} from 'html-entities'
 
 // export function opmlPlugin({ references, state }) {
 export function transform(code, id) {
@@ -11,9 +12,9 @@ export function transform(code, id) {
   return parseTree(outline)
 }
 
-// aecd0d0c reLink
-// https://giuliachiola.dev/posts/how-to-remove-all-links-in-javascript/
-const reTags = /\#\S+/g
+// const reTags = /(\s|^)\#\S+/g
+// FIXME this regex came from chatgpt, and is absolutely bonkers. There's gotta be something simpler
+const reTags = /(?<!:\/\/|\w)\#(\S+?)(?=\s|$|\.|,|;|\?|!)/g
 
 function addTargetBlank(html) {
   return html.replace(/<a\s+(?!.*?target=['"]_blank['"])([^>]+)>/gi, '<a $1 target="_blank">');
@@ -23,14 +24,11 @@ function parseTree(tree) {
   if (!tree) {return {}}
 
   let text = tree._attributes?.text || ""
+  text = decode(text)
   text = addTargetBlank(text)
 
   let note = tree._attributes?._note || ""
   note = addTargetBlank(note)
-
-  let outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]
-
-  const id = crypto.createHash('md5').update(text).digest("hex")
 
   // pull out tags
   let tags = text.match(reTags)
@@ -46,8 +44,11 @@ function parseTree(tree) {
       [tag.substr(1)]: true
     }
   }, {})
-  text = text.replace(/\#\S+/g, '').trim()
+  text = text.replace(reTags, '').trim()
 
+  let outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]
+
+  const id = crypto.createHash('md5').update(text).digest("hex")
 
   const children = outline.map(o => parseTree(o))
   return {
