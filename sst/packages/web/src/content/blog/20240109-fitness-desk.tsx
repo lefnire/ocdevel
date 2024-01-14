@@ -12,6 +12,21 @@ export const title = "Fitness Desk"
 export const jsx = true
 import wf from '../workflowy/walking-desk.opml'
 import {useCallback, useMemo, useState} from "react";
+import create from "zustand";
+import {immer} from "zustand/middleware/immer";
+import Badge from "react-bootstrap/Badge";
+
+// TODO
+// const useStore = create()(immer((set, get) => ({
+//   tags: {},
+//   anyTags: false,
+//   toggleTag: (tag: string) => {
+//     set(state => {
+//       state.tags[tag] = !get().tags[tag]
+//
+//     })
+//   }
+// })))
 
 interface Node {
   id: string
@@ -22,7 +37,7 @@ interface Node {
   depth: number
 }
 function Node({id, text, note, tags, children, depth}: Node) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(!tags?.c)
 
   const toggle = useCallback((event) => {
     event.preventDefault()
@@ -37,16 +52,21 @@ function Node({id, text, note, tags, children, depth}: Node) {
   }, [open, children])
 
   return <div
-    onClick={toggle}
     className="ps-2"
   >
     <div
-      className="pointer gap-2 d-flex flex-row"
+      className="gap-2 d-flex flex-row"
     >
-      <div>{chevron}</div>
-      <div className='fs-5'>{text}</div>
+      <div
+        className="pointer"
+        onClick={toggle}
+      >{chevron}</div>
+      <div className='fs-5' dangerouslySetInnerHTML={{__html: text}} />
+      <div className='fs-5'>
+        {Object.entries(tags).map(([k, v]) => (<Badge>#{k}</Badge>))}
+      </div>
     </div>
-    <div className="text-muted ms-1">{note}</div>
+    <div className="text-muted ms-1" dangerouslySetInnerHTML={{__html: note}} />
     <div
       className={open ? "" : "visually-hidden"}
       style={{
@@ -67,44 +87,18 @@ function Node({id, text, note, tags, children, depth}: Node) {
 }
 
 function Body() {
-  return wf.children.map((child) => (
+  const tree = wf.children.map((child) => (
     <Node
       key={child.id}
       {...child}
       depth={0}
     />
   ))
+  return <div>
+    <p>Severe ADHD, broke, and busy. Had to stop taking Adderall a while back, found that a fitness desk did as much to help as the meds. Treadmills in particular, where you set a speed and it "moves you" (you just keep up) occupy a jitters part of your brain, like a fidget-spinner. One of the only things that works for me (along with the Pomodoro Technique). Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. My caffeine intake is significantly reduced when I'm at fitness desk. Weight-loss: At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time. Excessive - should probably be reconsidered - but suffice it eliminates the gym, saving time and money. At my worst, I do 5 miles in a day; that's the 10k steps minimum recommendation. Further, your posture is improved while walking. Obviously compared to sitting desks; but I've found posture is better walking than standing, even.</p>
+    {tree}
+  </div>
 
 }
 const body = <Body />
 export default body
-
-const content = `
-Severe ADHD, broke, and busy. Had to stop taking Adderall a while back, found that a fitness desk did as much to help as the meds. Treadmills in particular, where you set a speed and it "moves you" (you just keep up) occupy a jitters part of your brain, like a fidget-spinner. One of the only things that works for me (along with the Pomodoro Technique). Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. My caffeine intake is significantly reduced when I'm at fitness desk. Weight-loss: At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time. Excessive - should probably be reconsidered - but suffice it eliminates the gym, saving time and money. At my worst, I do 5 miles in a day; that's the 10k steps minimum recommendation. Further, your posture is improved while walking. Obviously compared to sitting desks; but I've found posture is better walking than standing, even.
-
-- Pick 1 (I use GoYouth & Xiser, and I alternate)
-  - High budget, high quality: [Lifespan 5000](https://www.lifespanfitness.com/products/tr5000-dt3-under-desk-treadmill?variant=40953101648053) $1600-2200
-  - Low budget, good quality: [GoYouth](https://amzn.to/3H75BzJ) $340 or [GoPlus](https://amzn.to/3vxMSuh) $300
-  - Something different: [Xiser](https://xiser.com/product/pro-trainer-black/) $400
-    - Pros: small / portable, non-electric, no maintenance
-    - Cons: worse for focus, intense workout
-- [A desk](https://amzn.to/41R8g9X) $100-200 & arms $50-100
-- [FluidStance PlaneCloud](https://fluidstance.com/pages/the-plane-cloud) $200
-- [Slimblade Pro](https://amzn.to/3RQERbv) $120 & [Glove80](https://www.moergo.com/) $350
-
-### Summary
-
-I've been dialing the perfect fitness desk since 2016, and I think I finally landed a generalist. For budget, GoYouth and GoPlus. GoPlus *had* some major quality issues, yet was the most popular budget buy forever. They recently released a new version which mitigates most of the issues (treadmill size, max speed, weight limit); though it does still appear to have belt-drift issues. Because of that, I still swear by GoYouth, which I've had for 1.5yrs+ without any issues (except the controller, which is minor). The budget mills can be more loud, and deal less effectively with heat. To mitigate this, reduce the amount of at-one-time walking (eg 30-45 min on, 2-5 min break). Expect to get around 2 years out of these mills; compared to the non-budgets which could last a life-time. Personally I take the trade-off; I don't know where I'll be in 2 years, and I also have an extended warranty. The non-budget ones can bear more weight, and can run continuously for much longer. They're quieter, and they're likely to need less servicing (though I haven't needed to service my GoYouth yet, and I contend that the budget picks are less an issue in terms of quality; and more an issue in terms of using them smartly, like non-continuous use).
-
-Then there's Xiser. $400 invincible stepper. Pros: no electricity (save on bills, outlets); small & portable (constrained space, travel with it); invincible (will last a life-time and require little-to-no maintenance); better stability on your arms/hands for computing. Cons: more mental engagement than a treadmill (you "move it", rather than it "moves you"); physically hardcore. Like, 5-6mph running-equivalent hardcore. 120bpm on my Fitbit; 1-1 minute / active-zone-minute (as in moderate to intense exercise). Interestingly, I've been moving away from my GoYouth over time and towards my Xiser. I think it's just a fitness and "used to it" thing. Since "hardcore" is the main issue with Xiser, getting past that hump means I get all the other benefits of the thing. So I recommend: if you're new to this, go GoYouth. If you're an Olympian, or are willing to become one, go Xiser. Do NOT buy any other stepper or bike. I've owned many steppers, including the most popularly-recommended Sunny Health steppers. None of them have lasted more than a few months.
-
-Fluidstance. You can't walk/step all day, you'll need a break sometimes. There's a middle-ground between sitting and walking: wobbling. Standing on a hard surface for prolonged periods is not good for you (even with good shoes). Fluidstance is better than other wobble-boards because it's wide rather than circular or short, allowing for proper a shoulder-width stance weight-distribution; and it has a cushioned top, which is essential. The board itself while wobbling a bit, creates another layer of pseudo-cushion on the legs and body. I've tried a lot of mats and wobble-boards, and this one is end-game.
-
-Ergo mouse and keyboard. Since you're moving a lot, you're moving your arms (shoulders, elbows, wrists) which makes you more vulnerable to RSI. You'll want a finger-ball trackball mouse (Slimblade, trust me) and ideally a split mechanical keyboard. I like the MD770; but I'll buy the Glove80 when I have the money. I have a LOT to say on this topic, but I'll let someone ask me in the comments since this a post about treadmills.
-
-Ironically I don't have a recommendation on the desk itself. I bought Flexispot, but it wasn't thoroughly researched. Just make sure you get an electric one which allows you to sit; and ideally 55inches width or more, so you can fit both the treadmill and the chair side-by-side (you'll need to figure out something clever with the monitor arms in terms of switching sides). I personally never sit anymore, Fluidstance is lazy enough; so I just swap out the GoYouth, Xiser, or Fluidstance.
-
-### Full details
-
-[https://workflowy.com/s/fitness-desk/q3fLd1MgWXEIGUgd](https://workflowy.com/s/fitness-desk/q3fLd1MgWXEIGUgd). If you're seriously considering any of this, read the full details (I'll add some embedded videos in there later).
-`
