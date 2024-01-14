@@ -1,0 +1,18 @@
+export const id = '20240108-ml-gaming-laptop'
+export const date = '2024-01-08'
+export const title = "Laptop for machine learning and gaming"
+
+
+I've updated my laptop recommendation since my last post (which you can see at the bottom, in case it's useful). I now recommend the [Legion Pro series](https://www.lenovo.com/us/en/c/laptops/legion-laptops/legion-pro-series), and after-market thermal paste is optional. I got my Legion via [Antonline | Ebay](https://www.ebay.com/str/antonline) for $1400 on 2022-11-11.
+
+If you're buying it for gaming, get as high a GPU as you can afford in the 40-series (eg 4080, 4090, etc). Always target Nvidia and Intel, never AMD. I've faced niche AMD CPU compatibility issues. And for GPU, the 40-series has DLSS which offers AI upscaling (DLSS2) and frame interpolation (DLSS3), which improve gaming performance significantly. It also opens up performance improvements to software (AI) instead of hardware, so your laptop can continue to improve as Nvidia drivers release. You'll be limited to DLSS2-only if you buy a 30-series Nvidia; so if you plan to game, get a 40-series.
+
+If you're buying the laptop for ML training AND gaming, follow the above advice as well.
+
+If you're buying the laptop *only* for work in ML, then you can downgrade and save lots of money. Go with a Legion Pro with the 30-series Nvidia (eg 3070, 3080). Not only is it cheaper since it's prior-gen, but those cards have more VRAM, which is vital for ML. Stay again with Intel and Nvidia; ML frameworks are Nvidia-first, through CUDA and CuDNN. Use WSL2 (Ubuntu) + Docker for your ML work, see [mla/12](/mlg/mla-12) for details.
+
+Why not Mac? For gamers it's obvious. But for ML, while strides are being taken in the M2/M3 territory (eg with LLMs), it's still not first-class. If you plan to do heavy ML work, you're much safer with a PC.
+
+
+#### Original post (2017-10-06)
+For laptops, I like the MSI Stealth series. Buy from a reseller like [Gentech](https://www.gentechpc.com/), Xotic, HIDevolution (I prefer Gentech) - not Amazon / Newegg. This because only resellers offer thermal pasting, and that is a _must_ have for performance & longevity. Make sure to get GPU & CPU thermal pasting at checkout, I used Conductonaut on my last purchase - do your research.

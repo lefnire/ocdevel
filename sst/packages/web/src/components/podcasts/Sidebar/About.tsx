@@ -182,6 +182,8 @@ function Podcasts() {
 }
 
 function Updates() {
+  // hiding for now; bring bakc later
+  return null;
   const show = useStore(s => s.showUpdates)
   const toggle = useStore(s => s.toggleUpdates)
   

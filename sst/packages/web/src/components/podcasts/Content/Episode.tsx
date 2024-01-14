@@ -132,7 +132,12 @@ export function Episode({e, teaser, i=null}) {
     const items = [
       (e.body && {
         title: "Show Notes",
-        body: <Markdown_ Content={e.body} />
+        body: <>
+          <Alert variant="light">
+            <Link to="/blog/20240111-tylers-setup">Tyler's battle station</Link>
+          </Alert>
+          <Markdown_ Content={e.body} />
+        </>
       }),
       (resources && {
         title: "Resources",

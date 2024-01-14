@@ -6,24 +6,10 @@ import crypto from 'crypto'
 import last from 'lodash/last'
 import find from 'lodash/find'
 
-export const vitePluginOpml = {
-  name: 'vite-plugin-opml',
-  transform(code, id) {
-    if (id.endsWith('.opml')) {
-      return transform(code,id);
-    }
-  }
-}
-
-// export function opmlPlugin({ references, state }) {
-function transform(code, id) {
+export function transform(code, id) {
   const fileContent = fs.readFileSync(id, 'utf8');
   const res = xmlJs.xml2js(fileContent, {compact: true});
-  const wf = parseWorkflowy(res)
-  return {
-    code: `export default ${JSON.stringify(wf)}`,
-    map: null
-  }
+  return parseWorkflowy(res)
 }
 
 // aecd0d0c reLink

@@ -1,5 +1,7 @@
-import * as b18 from './20240110-ergo-mouse-keyboard.mdx';
-import * as b17 from './20240109-fitness-desk.mdx';
+import * as b20 from './20240111-tylers-setup.mdx';
+import * as b19 from './20240110-ergo-mouse-keyboard.mdx';
+import * as b18 from './20240109-fitness-desk.tsx';
+import * as b17 from './20240108-ml-gaming-laptop.mdx';
 import * as b16 from './20200118-prevent-windows-auto-restart.mdx';
 import * as b15 from './20210108-how-to-use-habitica.tsx'
 import * as b14 from './20201218-alb-ecs.mdx'
@@ -18,6 +20,8 @@ import * as b2 from './jobpig/1'
 import * as b1 from './jobpig/0'
 
 export default [
+  b20,
+  b19,
   b18,
   b17,
   b16,

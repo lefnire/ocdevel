@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<opml version="2.0">
+  <head>
+    <ownerEmail>
+      tylerrenelle@gmail.com
+    </ownerEmail>
+  </head>
+  <body>
+    <outline text="Fitness Desk">
+      <outline text="TL;DR">
+        <outline text="Pick 1" _note="Personally: I have GoYouth &amp; Xiser, and I alternate">
+          <outline text="High budget, high quality: &lt;a href=&quot;https://www.lifespanfitness.com/products/tr5000-dt3-under-desk-treadmill?variant=40953101648053&quot;&gt;Lifespan 5000&lt;/a&gt; $1600-2200" />
+          <outline text="Low budget, good quality: &lt;a href=&quot;https://amzn.to/3H75BzJ&quot;&gt;GoYouth&lt;/a&gt; $340 or &lt;a href=&quot;https://amzn.to/3vxMSuh&quot;&gt;GoPlus&lt;/a&gt; $300" />
+          <outline text="Something different: &lt;a href=&quot;https://xiser.com/product/pro-trainer-black/&quot;&gt;Xiser&lt;/a&gt; $400">
+            <outline text="Pros: small / portable, non-electric, no maintenance, more stable" />
+            <outline text="Cons: worse for focus, intense workout" />
+          </outline>
+        </outline>
+        <outline text="A &lt;a href=&quot;https://amzn.to/41R8g9X&quot;&gt;desk&lt;/a&gt; ($100-200) &amp; arms ($50-100)" />
+        <outline text="&lt;a href=&quot;https://fluidstance.com/pages/the-plane-cloud&quot;&gt;FluidStance PlaneCloud&lt;/a&gt; ($200)" />
+        <outline text="Ergo peripherals: &lt;a href=&quot;https://amzn.to/3RQERbv&quot;&gt;Slimblade Pro&lt;/a&gt; ($120) &amp; keyboard ($100-300)" />
+      </outline>
+      <outline text="Why fitness desk">
+        <outline text="ADHD" _note="Treadmills in particular, where you set a speed and it &quot;moves you&quot; (you just keep up) occupy a jitters part of your brain, like a fidget-spinner. It &lt;i&gt;really&lt;/i&gt; helps with ADHD; one of the only things that works for me (along with the Pomodoro Technique). I've read many similar experiences.&#10;" />
+        <outline text="Energy" _note="Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. My caffeine intake is significantly reduced when I'm at a walking desk.&#10;" />
+        <outline text="Health" _note="Calories and heart-rate. At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time. Excessive likely - should probably be re-evaluated - but suffice it eliminates the gym, saving time and money. At my worst, I go around 5 miles in a day; that's the 10k steps minimum recommendation. That is: my worst day is still the minimum recommended. Further, your posture is improved while walking. Obviously compared to sitting; but I've found posture is better walking than standing. &#10;" />
+      </outline>
+      <outline text="Machine">
+        <outline text="Filters &amp; info">
+          <outline text="Click some of these based on requirements: (#electric:yes | #electric:no) (#sweat:light #sweat:hard) (#budget:low #&lt;u&gt;budget:high&lt;/u&gt;&lt;u&gt;) (#size:small #size:large) (#picked-by:op #picked-by:public) (#speed:high #speed:low)&lt;/u&gt;">
+            <outline text="Electric" _note="Yes if it plugs into the wall / uses electricity. The benefit is that it &quot;moves you&quot; (you set a speed an keep up), rather than you &quot;moving it&quot;. When the machine moves you, there's a lot less mental load to engage the machine while you're working. This is especially a problem with sit-down under-desk mini bikes; the distraction is pretty significant. The distraction is medium with a stepper (Xiser). The distraction is not only gone, but &lt;i&gt;improved&lt;/i&gt;, with an electric treadmill; since the automation of it occupies the jittery part of your brain. If distraction is a big issue for you, you should consider an electric treadmill. But the downside, of course, is that it uses electricity, thus money. And requires an available outlet, which maybe your circumstances don't allow. Nor are these devices portable, compared to the Xiser which you can pack into check-in luggage. As for me, I alternate between the two. When very mentally off, I use the treadmill. When I have energy, I use the Xiser." />
+            <outline text="Sweat" _note="This basically just decides between Xiser and the rest. Xiser's lowest intensity has me at around 120 BPM (beats per minute), which is moderate-to-intense exercise. I wear gym clothes while I work, and I go through around 5 towels a day. So Xiser is hardcore-mode. For this to work, you need to work from home and not care how you appear in meetings. The upside is you get the benefits of Xiser: portable, durable, non-electric. You can also remove the gym from your life entirely, this is well beyond enough. The downside of course is the barrier that sweating all day at work presents.&#10;" />
+            <outline text="Budget" _note="This is the price-to-quality trade-off. The budget picks (eg GoYouth), you'll see I describe as &quot;surprisingly good&quot; - which means relative to the price. If price (and other factors like size, portability) aren't an issue, you should go for the more expensive machines, like LifeSpan; they will definitely last longer and need less maintenance. If this has you anxious (you want to save money, but you want quality) then click budget:low, the budget picks are still quite good.&#10;" />
+            <outline text="Size" _note="Xiser is a mini stepper, and so portable you can stuff it in a suitcase and fly. That's one extreme. For the treadmills though, there's quite a range in WxHxL dimensions which could make a difference with (a) how much space you have at your home; (b) how much space is available between the legs of a desk you may already own. Most standard 1-person desks won't fit all the treadmills on this list, so measure the space between your desk legs and look at the product listings' dimensions before purchasing.&#10;" />
+            <outline text="Picked-by" _note="OP (&quot;original poster&quot;, aka me) or the public. By public I mean, from what I've seen these are popular picks; sometimes not aligning with what I'd personally choose. Eg, the iMovr is usually considered higher quality than Lifespan, but I'd pick Lifespan personally given the limiting specs on the iMovR.&#10;" />
+            <outline text="Speed" _note="Some of the treadmills cap at 2-2.5mph, which is a good average (a speed I'd recommend for most people). I personally walk at 3.5mph, though it did take a year to build up the working stability at that speed. If you're relatively fit and want to get some oomph, make sure you pick one that goes beyond 2.5mph (pick speed:high)&#10;" />
+          </outline>
+          <outline text="Notes">
+            <outline text="Ratings" _note="I personally find 1-star skews to be the best indicator of review-based quality (along with reading those 1-stars). A huge 1-star bar often indicates fake positive reviews, or at least big quality control issues. Also use Fakespot Chrome plugin to see the fakeness score (A-F)." />
+            <outline text="Age" _note="Newer devices are better. A great example is the GoPlus; it's the most popular budget treadmill, but I chose against it in my prior review due to limitations in size, speed, and weight capacity. The latest one fixes all that. Clearly they've made enough money from the prior product's popularity to pour into development against its main complaints. So take note of the age in the &quot;specs&quot; sections; and before you buy anything, make sure to go to that company's store page on Amazon, and find the most recent version of the same product, in case my link is for an older version.&#10;" />
+            <outline text="Max-weight" _note="If you're 220 or over, look at the max-weight! I think only GoYouth has that limitation on this list, but those that didn't make my list have the limitation as well. If you're under 220, selection doesn't matter; that tends to be the minimum max-weight I see around. Are you exactly 220? Don't do risk it; get the next weight-class up. &#10;" />
+            <outline text="Assembly" _note="None of the machines require assembly, so that's awesome. Even with Xiser, it's more &quot;unflattening&quot; it, which takes less than a minute. The standing desks are another story... I hated assembling my Flexispot.&#10;" />
+          </outline>
+        </outline>
+        <outline text="Treadmills">
+          <outline text="Budget" _note="The budget mills can be more loud, and deal less effectively with heat. To deal with this, reduce the amount of at-one-time walking (eg 30-45 min on, 2-5 min break). Generally expect to get around 2 years out of these mills; compared to the non-budgets which could last a life-time. Personally I take the trade-off; I don't know where I'll be in 2 years, and I also have an extended warranty. You can buy a new budget-mill every 2 years for 12 years before you hit the cost of the non-budgets.&#10;">
+            <outline text="&lt;a href=&quot;https://amzn.to/3H75BzJ&quot;&gt;GoYouth&lt;/a&gt; #budget:low #size:small #electric:yes #picked-by:op #sweat:light #speed:high #speed:high" _note="I chose this one and love it. If you choose GoYouth, go to their &lt;a href=&quot;https://amzn.to/4aKjql7&quot;&gt;store page&lt;/a&gt; just to make sure there's nothing newer than the link I posted. These budget brands often release newer versions quite frequently; and newer is better with these.&#10;">
+              <outline text="Specs">
+                <outline text="$340" _note="There's currently a $40 Amazon &quot;Apply Coupon&quot; = $300 total&#10;" />
+                <outline text="49&quot;D x 21.6&quot;W x 5.9&quot;H" />
+                <outline text="Max Speed: 6mph" />
+                <outline text="Horsepower: 2.25" _note="Always look for 2.25 HP or more. Treadmills lower than this won't last (heat build-up, inability to handle the walking load). Everything in my picks has 2.25HP or more, many of those I mention without review, or didn't even include (like Treadly), had less (eg 1HP).&#10;" />
+                <outline text="Max weight: 220 pounds" />
+                <outline text="Age: &lt;time startYear=&quot;2022&quot; startMonth=&quot;5&quot; startDay=&quot;9&quot;&gt;Mon, May 9, 2022&lt;/time&gt; " />
+                <outline text="Rating: 4.3/5">
+                  <outline text="Fakespot: A" />
+                  <outline text="5=66% | 4=17% | 3=5% | 2=5% | 1=7%" />
+                </outline>
+              </outline>
+              <outline text="&lt;a href=&quot;https://amzn.to/48MxKYv&quot;&gt;Possibly newer edition?&lt;/a&gt;" _note="I just saw this, released &lt;time startYear=&quot;2023&quot; startMonth=&quot;6&quot; startDay=&quot;20&quot;&gt;Tue, Jun 20, 2023&lt;/time&gt;, 4 reviews. #TODO I've asked them, if so I'll replace the original link / details. There's also some incline options and a with-desk option; but those ones have poor reviews. So I'd go with this or my above link.&#10;">
+                <outline text="$390 with a $120 coupon (=$270)" />
+                <outline text="Otherwise same specs" />
+              </outline>
+              <outline text="Pros">
+                <outline text="Surprisingly durable" _note="I've been using it for 1.5yrs, around 6hrs per day 5 days a week. I'm 220lbs and I walk 3.5mph. That's &lt;i&gt;very&lt;/i&gt; intense usage to have lasted this long. Just recently it started to develop creaks and groans, which I believe is due to damage I put on the walking pad from the usage. But I think it has another 6 months left in it before I need to use the extended warranty.&#10;" />
+                <outline text="Smaller than many others" _note="Making it fit under more desks. No rails.&#10;" />
+                <outline text="Up to 6mph" _note="I like to walk 3.5mph while working; faster than most walking treadmills allow. I wouldn't recommend using this to run/sprint though, unless you absolutely must (no nearby gym, bad weather, etc). While it's quite durable, I fear my 220lbs landing too hard on the pad would cause cracks.&#10;" />
+              </outline>
+              <outline text="Cons">
+                <outline text="Controller sucks" _note="But can easily be replaced for free. Just deal with it. The first one will have button-presses miss-firing (as in, activating a different button's action). To fix this, buy a compatible controller battery along with the treadmill and replace the one in the controller immediately. I think they just run out while sitting in the warehouse. After 1.5yrs, I nonetheless had to do a hard replacement, which GoYouth did for free via Amazon messaging center. It was easy, came fast, and didn't phase me. This isn't a fluke; you'll see in the reviews many have experienced this scenario. &#10;" />
+              </outline>
+              <outline text="Considerations">
+                <outline text="&lt;a href=&quot;https://amzn.to/4aKYDhi&quot;&gt;Lube&lt;/a&gt;" _note="Every so often, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. The instructions are &quot;once every 3-6 months, or every 130 miles&quot; - but I do this every Monday morning to be on the safe side. This is the core maintenance task; one you should take fairly seriously. A perk of Xiser is it requires no maintenance, unlike treadmills.&#10;" />
+                <outline text="&lt;a href=&quot;https://amzn.to/4aJnyBV&quot;&gt;Controller batteries&lt;/a&gt;" _note="If you get a treadmill with a mini controller (like GoYouth or GoPlus), get some batteries. In fact, replace the batteries as soon as you can. With GoYouth at least, it seems many of the controller complaints are a spent battery upon arrival. &#10;" />
+                <outline text="Get the extended warranty!" _note="Asurion or whatever it is. With the budget treadmills, since YYMV and the reviews are fairly inconsistent, you'll want the peace of mind. I'd estimate the lifespan of them to be 2 years, based on my own experience (I'm 1.5yrs in with &lt;i&gt;very heavy&lt;/i&gt; usage / abuse, and it's only now starting to show slight issues which will likely get worse in the next 6 months).&#10;" />
+                <outline text="Adjusting the belt" _note="If the belt starts to drift one way or another, you take an Alan wrench and tighten &lt;i&gt;the side which is too tight / close (not not the side with slack)&lt;/i&gt;. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it's fixed). Then you just leave it - it's something I don't understand, not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.&#10;" />
+                <outline text="Walk 30-45 min, break 1-5 min" _note="Budget mills deal less effectively with heat. To deal with this, reduce the amount of at-one-time walking. I recommend 30-45 minutes of walking, and a 1-5 minute break (turn off via remote). The occasional hour or two won't kill these machines; but running the belt for 8hrs a day might. I'm a fan of the Pomodoro Technique for focus management. You work for 25 minutes (don't check emails / texts / Slack, nothing - pure hardcore work) and then take a break for 5 minutes to catch up on everything, or just de-steam. This fits perfectly with the treadmill. Work for 25-30, turn it off and go check your texts in the bathroom or whatever for 5 min, repeat. &#10;" />
+              </outline>
+            </outline>
+            <outline text="&lt;a href=&quot;https://amzn.to/3vxMSuh&quot;&gt;GoPlus&lt;/a&gt; #budget:low  #size:small #electric:yes #picked-by:public #sweat:light  #speed:high" _note="I actually hadn't seen this version of the product before starting this post. The one I knew was &lt;a href=&quot;https://amzn.to/3vsjtC1&quot;&gt;this one&lt;/a&gt;, which I had in reference to shit on GoPlus in this post. So I've nested the original product assessment below, and will just dump some specs for the new product here. Frankly, if this new GoPlus holds up, it could be more compelling than the GoYouth since the main gripes seem gone (size, speed, etc) - plus it's cheaper. If you go with GoPlus, I recommend ignoring my specific links and manually going through their &lt;a href=&quot;https://amzn.to/3S8VDnA&quot;&gt;store page&lt;/a&gt; to find whatever's newest, which fits your bill. &#10;">
+              <outline text="Pros">
+                <outline text="Most popular budget-pick" _note="This is the go-to when people are researching budget treadmills. Also the most popular pick from my Amazon Affiliate page, when people click from the GoYouth link! Meaning, they heard me, saw my research, did their own, and chose GoPlus.&#10;" />
+                <outline text="New release. Smaller, faster, cheaper, and bears more weight." _note="If it weren't for this new product (the link above), I would NOT recommend GoPlus. All the issues it had in specs though are mitigated with this new one. Strangely there's two in their store with the same title but different prices: &lt;a href=&quot;https://amzn.to/3H6Ix42&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;https://amzn.to/3HaJ6Kc&quot;&gt;2&lt;/a&gt;. My main link points to the one I think is the &quot;correct&quot; one; but double check.&#10;" />
+              </outline>
+              <outline text="Cons">
+                <outline text="Belt drift" _note="One of the biggest reasons I chose GoYouth over GoPlus was how many complaints against belt drift there were in the comments. Belt drift is fixable via an Alan wrench, but unfortunately once it starts, it won't stop (you have to continue to adjust once a week or so). The GoYouth took me a full 1.5yrs to develop drift; but the GoPlus users experience it right away. So this was a big problem in the original product - the new product has only 12 reviews (as of &lt;time startYear=&quot;2024&quot; startMonth=&quot;1&quot; startDay=&quot;7&quot;&gt;Sun, Jan 7, 2024&lt;/time&gt;, between the two duplicate listings) but one of the reviews is a 1-star about belt-drift. This tells me they haven't fixed this issue yet.&#10;" />
+              </outline>
+              <outline text="Specs">
+                <outline text="$250" _note="Double check the &quot;Apply Coupon&quot;" />
+                <outline text="Motor Power: 2.25HP" />
+                <outline text="48&quot;D x 21&quot;W x 6&quot;H" />
+                <outline text="Maximum Speed: 3.8mph" _note="Plenty fast for walking desks, you'll never want to go over this anyway&#10;" />
+                <outline text="Max weight: 265 pounds" />
+                <outline text="Age: &lt;time startYear=&quot;2023&quot; startMonth=&quot;9&quot; startDay=&quot;19&quot;&gt;Tue, Sep 19, 2023&lt;/time&gt; " />
+                <outline text="Rating: 5/5">
+                  <outline text="Fakespot: &quot;Caution&quot;" />
+                  <outline text="5=100%" />
+                </outline>
+              </outline>
+              <outline text="Considerations">
+                <outline text="&lt;a href=&quot;https://amzn.to/4aKYDhi&quot;&gt;Lube&lt;/a&gt;" _note="Every so often, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. The instructions are &quot;once every 3-6 months, or every 130 miles&quot; - but I do this every Monday morning to be on the safe side. This is the core maintenance task; one you should take fairly seriously. A perk of Xiser is it requires no maintenance, unlike treadmills.&#10;" />
+                <outline text="&lt;a href=&quot;https://amzn.to/4aJnyBV&quot;&gt;Controller batteries&lt;/a&gt;" _note="If you get a treadmill with a mini controller (like GoYouth or GoPlus), get some batteries. In fact, replace the batteries as soon as you can. With GoYouth at least, it seems many of the controller complaints are a spent battery upon arrival. &#10;" />
+                <outline text="Get the extended warranty!" _note="Asurion or whatever it is. With the budget treadmills, since YYMV and the reviews are fairly inconsistent, you'll want the peace of mind. I'd estimate the lifespan of them to be 2 years, based on my own experience (I'm 1.5yrs in with &lt;i&gt;very heavy&lt;/i&gt; usage / abuse, and it's only now starting to show slight issues which will likely get worse in the next 6 months).&#10;" />
+                <outline text="Adjusting the belt" _note="If the belt starts to drift one way or another, you take an Alan wrench and tighten &lt;i&gt;the side which is too tight / close (not not the side with slack)&lt;/i&gt;. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it's fixed). Then you just leave it - it's something I don't understand, not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.&#10;" />
+                <outline text="Walk 30-45 min, break 1-5 min" _note="Budget mills deal less effectively with heat. To deal with this, reduce the amount of at-one-time walking. I recommend 30-45 minutes of walking, and a 1-5 minute break (turn off via remote). The occasional hour or two won't kill these machines; but running the belt for 8hrs a day might. I'm a fan of the Pomodoro Technique for focus management. You work for 25 minutes (don't check emails / texts / Slack, nothing - pure hardcore work) and then take a break for 5 minutes to catch up on everything, or just de-steam. This fits perfectly with the treadmill. Work for 25-30, turn it off and go check your texts in the bathroom or whatever for 5 min, repeat. &#10;" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://amzn.to/3tB1g4H&quot;&gt;Original product&lt;/a&gt;">
+                <outline text="Pros">
+                  <outline text="Very popular" />
+                  <outline text="Cheaper than GoYouth, higher weight capacity" />
+                </outline>
+                <outline text="Cons">
+                  <outline text="Strong 1-star skew, indicating quality control issues" />
+                  <outline text="No faster than 2.5mph unless siderails raised (then it's 7.5mph)" _note="Raising the side-rails activates &quot;fast&quot; mode. this is a nuisance for treadmill desks though, since you won't be able to raise the rails while this is under a desk (and don't bother trying to affix a pseudo-desk to the raised handles, it's not a long-term approach). So this means: the max speed is 2.5mph." />
+                  <outline text="Too big for many standard desks" />
+                </outline>
+                <outline text="Specs">
+                  <outline text="$300" />
+                  <outline text="Max Speed: 2.5mph / 7.5mph" />
+                  <outline text="Max weight: 265 pounds" />
+                  <outline text="Dimensions: 52.5&quot;D x 29&quot;W x 44.5&quot;H" />
+                  <outline text="Age: &lt;time startYear=&quot;2020&quot; startMonth=&quot;12&quot; startDay=&quot;5&quot;&gt;Sat, Dec 5, 2020&lt;/time&gt; " />
+                  <outline text="Rating: 4/5">
+                    <outline text="Fakespot: A" />
+                    <outline text="5=57% | 4=17% | 3=8% | 2=5% | 1=13%" />
+                  </outline>
+                </outline>
+              </outline>
+            </outline>
+            <outline text="Others" _note="If it's not here, I likely &lt;i&gt;have &lt;/i&gt;seen it, but didn't feel it made the cut based on reviews or other considerations. I'll flesh this out over time as I find need&#10;">
+              <outline text="&lt;a href=&quot;https://amzn.to/41SiuHs&quot;&gt;UREVO&lt;/a&gt;" _note="#TODO analyze this. In my original assessment I ruled it out, but I can't remember why now. From my Amazon Affiliate, it seems a lot of people who read my old post end up buying this one instead, which is interesting to me. I recommend exploring it some, I'd love it if you reply on the Reddit post with thoughts if you do explore this.&#10;" />
+              <outline text="&lt;a href=&quot;https://amzn.to/3S9s2dS&quot;&gt;WalkingPad&lt;/a&gt;">
+                <outline text="Pros: Folds up nicely for storage." />
+                <outline text="Cons: reviews indicate lots of quality issues, including motor issues and frequent belt drift. Looks rough to me" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://amzn.to/3tLYvgQ&quot;&gt;Egofit&lt;/a&gt;" _note="#TODO analyze this. I can't remember why I ruled it out; I think because it's so tall (6.89&quot;H, it has a permanent incline) which would place me at an uncomfortable height relative to my desk's max-height&#10;">
+                <outline text="$400" />
+                <outline text="38.39&quot;D x 21.85&quot;W x 6.89&quot;H" />
+                <outline text="Max weight: 254lbs" />
+                <outline text="Max speed 3.1mph" />
+              </outline>
+              <outline _complete="true" text="Treadly (discontinued!)" _note="In my original comoparison, this was a top contender. I'm glad to exclude it form the list due to discontinuation though, because it was hard to assess its ratings as it was only sold from their website (meaning ratings can be fudged), and external blog posts all looked like paid advertisements. It had 1 horsepower, which sounded sketch.&#10;" />
+            </outline>
+          </outline>
+          <outline text="Non-budget" _note="These can bear more weight than the budget picks, and can run continuously for much longer. They're quieter, and they're likely to need less servicing (though I haven't needed to service my GoYouth yet, and I contend that the budget picks are less an issue in terms of quality; and more an issue in terms of using them smartly, like non-continuous use)&#10;">
+            <outline text="Note" _note="1" />
+            <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/pages/treadmill-desks#treadmillDesk&quot;&gt;LifeSpan&lt;/a&gt; #electric:yes #size:large #budget:high #picked-by:public #sweat:light #picked-by:public #picked-by:op #speed:high" _note="Each iteration is just an upgrade of the one before it. So just pick whichever price point you're most comfortable with. They're also increasingly heavy / large, and accommodate increasing weight. So factor that into your decision. Note: I'm not sure what the difference between the models GlowUp, Classic, Power, and Omni. I think the GlowUp means &quot;just the treadmill&quot; where the other ones are different spins on the &quot;and also the desk&quot; - but you'll want to research some.&#10;">
+              <outline text="Pros">
+                <outline text="Commercial use" _note="I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.&#10;" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/products/tr1000-dt3-under-desk-treadmill?variant=42506296164533&quot;&gt;TR1000&lt;/a&gt;">
+                <outline text="$1600" />
+                <outline text="Max speed: 4mph" />
+                <outline text="Max weight: 350 pounds" />
+                <outline text="Dimensions: 58&quot; L x 28.5&quot; W x 7.25&quot; H" />
+                <outline text="Recommend Use: 6 Hours per Day" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/products/tr1200-dt3-under-desk-treadmill?variant=40953056198837&quot;&gt;TR1200&lt;/a&gt;">
+                <outline text="$1800" />
+                <outline text="Max speed: 4mph" />
+                <outline text="Max weight: 350 pounds" />
+                <outline text="Dimensions: 63&quot; L x 28.5&quot; W x 7.25&quot; H" />
+                <outline text="Recommended Use: 6 Hours per Day" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/products/tr5000-dt3-under-desk-treadmill?variant=40953101648053&quot;&gt;TR5000&lt;/a&gt;">
+                <outline text="$2200" />
+                <outline text="Max speed: 4mph" />
+                <outline text="Max weight: 400 pounds" />
+                <outline text="Dimensions: 63&quot; L x 28.5&quot; W x 7.25&quot; H" />
+                <outline text="Recommended Use: 9 Hours per Day" />
+              </outline>
+            </outline>
+            <outline text="&lt;a href=&quot;https://www.imovr.com/treadmill-desk-workstations.html&quot;&gt;iMovR&lt;/a&gt; #electric:yes #size:large #budget:high #picked-by:public #sweat:light #picked-by:public #speed:low ">
+              <outline text="Specs">
+                <outline text="$2500" />
+                <outline text="Dimensions: 39″ wide × 56″ long" />
+                <outline text="Max speed: 2mph" />
+                <outline text="Max Weight: 300 lbs" />
+              </outline>
+              <outline text="Pros">
+                <outline text="Considered on the internet the highest quality underdesk treadmill" _note="Often over Lifespan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer Lifespan based on what I've seen" />
+              </outline>
+              <outline text="Cons">
+                <outline text="Wide, heavy" />
+                <outline text="Expensive" />
+                <outline text="Slow" />
+              </outline>
+            </outline>
+          </outline>
+        </outline>
+        <outline text="Steppers">
+          <outline text="&lt;a href=&quot;https://xiser.com/product/pro-trainer-black/&quot;&gt;Xiser Pro Trainer&lt;/a&gt; #electric:no #sweat:hard #budget:low #size:small #picked-by:op #speed:high" _note="Get the &quot;Pro Trainer&quot;, not the &quot;Personal Trainer&quot;. The Pro Trainer is meant for extended use, which you'll be doing at a fitness desk. I don't know what would happen to the Personal Trainer under duress, but I wouldn't risk it. Buy it on their website, not Amazon / other. It's cheaper, more reliable re: newest iteration, and has 5 year warranty.&#10;">
+            <outline text="Specs">
+              <outline text="$400 ($409 for black)" />
+              <outline text="Max weight: 400 pounds" />
+              <outline text="Weight: 14 pounds" />
+              <outline text="Dimensions: 21 × 14 × 4 in" />
+              <outline text="Age / rating unknown" _note="They've been making steppers since 1977, and they really only make two steppers (pro / personal); so I assume this product is an iterated-on version since 1977, but don't know how new the latest iteration is.&#10;" />
+            </outline>
+            <outline text="Pros">
+              <outline text="No electricity" _note="Save on your electric bill. Or if you don't have a handy outlet near your desk. Or if you want to use Xiser away from desk (outside, traveling, etc).&#10;">
+                <outline text="No ESD" _note="Plus, no electricity is &lt;i&gt;generated&lt;/i&gt;. You'll find on treadmills you'll frequently static-shock your components; some people use an ESD wrist-strap for this reason. Not an issue with Xiser. BTW, don't worry about ESD with treadmills if you use my keyboard/mouse recommends; the touch parts are plastic (even if they're connected via USB), and I've only experienced shock when I touch the laptop directly.&#10;" />
+              </outline>
+              <outline text="Small / portable" _note="Not only is it small enough to fit under any desk, or within a confined setup; but it's small enough to put into a suitcase and travel with (I've done this over the holidays). It breaks down and folds flat. &#10;" />
+              <outline text="Invincible" _note="I know it's cringy I keep using this word, but I've seen others use it; and having validated this, I'm parroting. I've left it in the rain on accident. I've spilled a soft drink in around the pistons. At first it lost resistance and made bad sounds, I could smell the sugar burning; then it just burned it off and went back to normal. When I first assembled it, the head wasn't aligned on the piston correctly; had an &quot;oh shit&quot; moment after days like that, fixed it - never seen any negative effect. It went through check-in ruffage. I've used it for multiple hours at a time without a break (something I wouldn't do with my GoYouth). I don't know why I treat this thing so poorly; likely just because I trust it so much. &#10;" />
+              <outline text="Stability" _note="Surprisingly, stepping is a more stable motion for computing than is walking. Walking creates a back and forth motion that you have less control over; where stepping you fully control the motion, and it's up and down. And if you do it right, it's not your whole body going up and down; but just your legs. So you'll have less trouble getting precise mouse-clicks on a stepper than on a treadmill. Though, unless you're going 3.5mph or more on a treadmill, this shouldn't be an issue anyway; just a small point.&#10;">
+                <outline text="Better for gaming" _note="Since precision on mouse and keyboard is essential while gaming, a Xiser is better than a treadmill. The main trade-off is focus; but let's be honest - you won't have difficulty focusing while gaming - that's only a struggle during work. I step more consistently when gaming, since I'm in the zone, so I get a better workout.&#10;" />
+              </outline>
+              <outline text="No shoes needed" _note="Though highly recommended, just for foot health (cushioning). But a treadmill will absolutely eat through your shoes, a cost you haven't thought of.&#10;" />
+            </outline>
+            <outline text="Cons">
+              <outline text="Hardcore" _note="The easiest setting (you turn a dial) on the Xiser is still the equivalent, I'd guess, of running 5-6mph. There's nothing lower than that. My Fitbit clocks me at 120bpm, and 30 active-zone minutes per 30 stepping minutes. It's a real workout. Note: unlike a treadmill at 6mph, which would be too unstable to work (from the bouncing and keeping up); there's no loss in stability or precision when stepping, since it's all localized motion. So this added physical effort doesn't translate to more difficult computing; it's purely for consideration in what level of physical effort you're willing to exert while working. Think about face-time meetings, whether you want to wear gym clothes while working, etc. I personally do use the Xiser many days of the week (when I have good energy), because my coworkers don't care and I like the exercise. &#10;" />
+              <outline text="Mental effort" _note="This is the biggest difference between electric and non-electric machines. Electric machines (like treadmills) &quot;move you&quot;, and you just have to keep up. this actually improves your focus since it gets the jitters out. But machines you manually engage (like the Xiser) require some mental effort to remember to push. I find I still focus better on a Xiser than while standing or sitting; my thinking is the endorphins and blood-flow make up for the loss. But of all the manual machines I've used for fitness desks, Xiser requires the least mental effort, since there's a certain amount of required momentum and consistency to keep the thing going; compared to Sunny Health or under-desk bikes, where the resistance 1-1 tied to the push.&#10;" />
+            </outline>
+            <outline text="Considerations">
+              <outline text="&lt;a href=&quot;https://amzn.to/48IAIx1&quot;&gt;Silicone Teflon Spray&lt;/a&gt;" _note="If you hear creaking sounds, it's not mechanical - it's metal on metal. This is the response I got from Xiser support; which when implemented fixed the sound issue. Surprisingly the sounds never returned, so it doesn't seem like a maintenance issue but a fix:&#10;&quot;If a clicking or creaking sound is coming from your machine while in use, it is not damaging your machine.  Most likely, one of the connecting bolts needs a little lubrication.  Use a silicone spray.  One with Teflon is superior.  Do not use WD40.  Spray where the cables connect to the pedals and where the cables connect to the cap that fits on top of the pistons.  You can also lubricate inside the cap before placing it on the piston.  Do not spray the piston or try and manipulate the piston in any way.&quot;&#10;" />
+            </outline>
+          </outline>
+          <outline text="Other steppers and bikes - DON'T DO IT" _note="If you don't go with a treadmill, buy the Xiser. Do NOT buy any other stepper or bike. I've owned many steppers, including the most popularly-recommended Sunny Health steppers. None of them have lasted more than a few months. &#10;">
+            <outline text="Steppers" _note="They can't handle extended use. Heat builds up in the pistons, and you'll start to hear loud wheezing on each down-push; followed shortly after with a loss of all resistance. It's called &quot;leaky cylinders&quot;, and they don't recover from this - they're toast. I don't know what it is about Xiser, but every review I've read pegs it for durability and extended use. I've used mine for 1.5 years, for hours at a time. I haven't used it as much as the GoYouth, but definitely enough to prove its durability. I've also abused the hell out of it traveling, and the thing just won't break. Plus they have a 5 year warranty (because they're so confident).&#10;" />
+            <outline text="Bikes" _note="Under-desk bikes are also very prone to break, I've owned a few of these. More importantly though, by sitting and pedaling, you're manually engaging the bike in a way requiring more mental effort than a standing stepper (which grants some &quot;automation&quot; just in the down push). A standing stepper like Xiser already has the con of mental effort as you have to &quot;move it&quot;, compared to treadmills &quot;moving you&quot; (which removes the mental effort). Under-desk cyclers effectively double that mental effort. So you'll find that when you're thinking about cycling, you'll engage it; but now you're not thinking about work. When you're in the zone working, you'll totally stop cycling. It defeats the purpose. I haven't met someone who's owned an under-desk cycler who used it longer than a week.&#10;" />
+          </outline>
+        </outline>
+      </outline>
+      <outline text="Standing board" _note="Sometimes you don't feel like walking or stepping. In an effort to minimize sitting, I spent a long time researching the perfect standing setup. Standing on a hard surface for prolonged periods is NOT good for you (even with good shoes); it's better to just sit. So my next move was standing-specific mats. When things really changed was in exploring wobble boards (Yes4All, Fezibo, Gymba, etc). By wobbling, you're exerting a sort of added &quot;cushion&quot; which lets your body alleviate tension here then there. It's less effort, and more comfort, than you'd think. Plus this improves posture, and evidently burns some 200-300 calories extra per 8hr standing day. I went through quite a few of these, but they all suffered from a lack of good angle or weight distribution. Eg, Yes4All is too &quot;ballerina pose&quot;. Fezibo has you over-pronating, which is terrible for your ankles. Revbalance is too hard-core, there's no way you'll focus while surfing. So the end-game was Fluidstance. &#10;">
+        <outline text="&lt;a href=&quot;https://fluidstance.com/pages/the-plane-cloud&quot;&gt;FluidStance PlaneCloud&lt;/a&gt;" _note="You'll want the cushioned one specifically (PlaneCloud). Prolonged standing is so hard on your feet, that you need all the cushion you can get. The top is cushioned, the wobbling aspect itself provides a pseudo &quot;cushion&quot; (you're sort of floating around), and I recommend also wearing shoes. Cushion!&#10;" />
+      </outline>
+      <outline text="Desk setup">
+        <outline text="Standing Desk" _note="I don't remember my research, so unless anyone wants me to dig into pros/cons I'll just roll with what I landed on back then: Flexispot. You'll definitely want an electric desk which can sit or stand, because after walking or standing all day, you'll need a break sometimes. You'll also want a wide one which can accommodate any sized treadmill, and maybe even keeping the treadmill on one side permanently and the chair or board on the other side (though you'll have to be thoughtful of the monitor placement).  If you want that double-side setup, target 55&quot; width or more.&#10;">
+          <outline text="&lt;a href=&quot;https://amzn.to/41R8g9X&quot;&gt;Flexispot&lt;/a&gt; ($100-200)" />
+        </outline>
+        <outline text="Monitor Arms" _note="I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors. This allows you to position the monitors in a tighter cluster, since you have flexibility to angle them without worry of the base leaning over the edge. It also allows you to pull the monitors closer to your face, just above your mouse and keyboard, in a way you couldn't do with a stand. I'm a fan of &lt;a href=&quot;https://amzn.to/3H8j6Pl&quot;&gt;HUANUO&lt;/a&gt;, &lt;a href=&quot;https://amzn.to/3TUjjNN&quot;&gt;VIVO&lt;/a&gt;, and &lt;a href=&quot;https://www.amazon.com/stores/page/7F8A4DE8-64A8-43DA-BFB1-A3869CCB15CA?ingress=2&amp;visitId=50bb82e0-cb9d-4194-9bc6-b5e081c89875&amp;ref_=ast_bln&quot;&gt;MountUp&lt;/a&gt;. I'm currently using HUANUO.&#10;">
+          <outline text="&lt;a href=&quot;https://amzn.to/3H8j6Pl&quot;&gt;HUANUO&lt;/a&gt;, &lt;a href=&quot;https://amzn.to/3TUjjNN&quot;&gt;VIVO&lt;/a&gt;, or &lt;a href=&quot;https://www.amazon.com/stores/page/7F8A4DE8-64A8-43DA-BFB1-A3869CCB15CA?ingress=2&amp;visitId=50bb82e0-cb9d-4194-9bc6-b5e081c89875&amp;ref_=ast_bln&quot;&gt;MountUp&lt;/a&gt;" _note="Or anything, do your research - I just like these ones.&#10;" />
+        </outline>
+        <outline text="Ergo keyboard &amp; mouse" _note="When you're walking or stepping, you're moving your arms more than usual. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion - that type of wrist motion is bad for you. This is amplified big-time on fitness desks, due to the fitness motion. It could take 6 months, it could take a 5 years, but almost everyone I've talked to who have fitness desks have experienced an RSI uptick. Ergo peripherals solve this definitively. &#10;">
+          <outline text="Mouse: &lt;a href=&quot;https://amzn.to/3tIE30e&quot;&gt;Slimblade Pro&lt;/a&gt;" _note="Trust me on this one. There are other strong contenders, but Slimblade is end-game and I'll die on that hill. Elecom Huge &amp; Deft Pro are more traditional right-hand trackballs, easier to ease into. But the bearings are bad enough that most people mod and replace them; a difficult task. Further, the right-hand setup sounds good; but you'll be grateful for the ambidextrous flexibility of the Slimblade. In case you develop RSI on your right, you can just switch hands. Thumb usage for scroll &amp; click in the Elecom can put strain on your thumb joints, which the Slimblade alleviates with the ball-scroll approach. Logitech MX Ergo. The thumballs put too much strain on the thumb, you'll develop RSI there instead of the wrist. Your index and middle finger can withstand a lot more movement than the thumb. You also have less precision with the thumb than your index or middle finger. And don't even bother with vertical mice like the Logitech Lift; it doesn't do jack for your wrist RSI. Get the Slimblade Pro. Full &lt;a href=&quot;https://ocdevel.com/blog/20240110-ergo-mouse-keyboard&quot;&gt;deep-dive comparison here&lt;/a&gt;&#10;" />
+          <outline text="Keyboard" _note="I personally use the MD770 with legs, but my next purchase will be Glove80. See the &lt;a href=&quot;https://ocdevel.com/blog/20240110-ergo-mouse-keyboard&quot;&gt;comparison deep-dive here&lt;/a&gt;&#10;">
+            <outline text="&lt;a href=&quot;https://amzn.to/3tOHB0Y&quot;&gt;MD770&lt;/a&gt; $150 #budget:low " _note="You'll want to raise these with &quot;&lt;a href=&quot;https://amzn.to/48pzVRX&quot;&gt;kickstands&lt;/a&gt;&quot;, see &lt;a href=&quot;https://www.reddit.com/r/ErgoMechKeyboards/comments/10jtaf3/cheap_kick_stands_to_tent_keyboards/&quot;&gt;my post&lt;/a&gt;." />
+            <outline text="&lt;a href=&quot;https://www.moergo.com/&quot;&gt;Glove80&lt;/a&gt; $365 #budget:high " _note="Man I want this. There's not a lot of great-quality pre-builts out there, it's kind of a makers space (build your own keyboard from a kit). But this one is blowing up.&#10;" />
+          </outline>
+        </outline>
+        <outline text="Optional" _note="Just a bit of extra stuff I use, which may you'll find handy too&#10;">
+          <outline text="&lt;a href=&quot;https://amzn.to/48oewbX&quot;&gt;Fingerless gloves&lt;/a&gt;" _note="Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands themselves.&#10;" />
+          <outline text="&lt;a href=&quot;https://amzn.to/3RVMY6y&quot;&gt;Phone arm&lt;/a&gt;" _note="Using arms / clips / holders as much as possible frees up desk-space. Eg, the phone now hovers rather than taking up desk space. Makes your phone more ergonomic / hands-free too. &#10;" />
+          <outline text="&lt;a href=&quot;https://amzn.to/3TVfIyZ&quot;&gt;USB-C Hub&lt;/a&gt;" _note="If your computer's USB-C is close-enough (eg on the desk), a hub / docking-station is great for plugging in all the monitors and peripherals to a single USB-C port on your computer. If it's a laptop, you can then just unplug one thing to go portable. I'm a huge fan of WAVLINK and NewQ; they're new-ish off-brands, compared to Anker which has gotten too big for its britches as an off-brand and is now too expensive (the AirBnB effect)&#10;" />
+          <outline text="&lt;a href=&quot;https://www.aliexpress.us/item/3256805469050057.html?gatewayAdapt=glo2usa4itemAdapt&quot;&gt;IETS laptop stand&lt;/a&gt;" _note="If you're using a laptop, especially a PC (Macs have better thermals) and especially with multiple monitors connected, you'll want to add extra airflow. IETS stands are widely known as virtually &lt;b&gt;the only&lt;/b&gt; fan bases which work! This is coming from me who doesn't even own one (I have a different fan base, and I have buyer's remorse). I saved this link a while back, so search AliExpress for a newer model from the same brand. I &lt;i&gt;think&lt;/i&gt; GT5000 might be the latest?&#10;">
+            <outline text="Or &lt;a href=&quot;https://amzn.to/48N3pcb&quot;&gt;laptop tray&lt;/a&gt;" _note="Alternatively, if you want your laptop on one of the monitor arms (say you only have one monitor, but two arms), then you could use a laptop tray to get the laptop positioned a bit better. But I personally prefer: two monitors on the arms, stacked height-wise (both portrait layout) on the right-side; my laptop on a fan base on the left side. The fan base adds a lot of height to the monitor, so it's positioned where I want it eye-wise.&#10;" />
+          </outline>
+        </outline>
+      </outline>
+    </outline>
+  </body>
+</opml>

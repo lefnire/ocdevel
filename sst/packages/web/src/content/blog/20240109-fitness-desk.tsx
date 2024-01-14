@@ -1,7 +1,85 @@
+import Accordion from "react-bootstrap/Accordion";
+
+import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
+import { FaCircle } from "react-icons/fa";
+
+
+
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
 export const title = "Fitness Desk"
+export const jsx = true
+import wf from '../workflowy/walking-desk.opml'
+import {useCallback, useMemo, useState} from "react";
 
+interface Node {
+  id: string
+  text: string
+  note: string
+  tags: Record<string, string | true>
+  children: Node[]
+  depth: number
+}
+function Node({id, text, note, tags, children, depth}: Node) {
+  const [open, setOpen] = useState(true)
+
+  const toggle = useCallback((event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setOpen(!open)
+  }, [open])
+
+  const chevron = useMemo(() => {
+    if (!children.length) { return <div>•</div> }
+    if (open) {return <FaChevronUp />}
+    return <FaChevronDown />
+  }, [open, children])
+
+  return <div
+    onClick={toggle}
+    className="ps-2"
+  >
+    <div
+      className="pointer gap-2 d-flex flex-row"
+    >
+      <div>{chevron}</div>
+      <div className='fs-5'>{text}</div>
+    </div>
+    <div className="text-muted ms-1">{note}</div>
+    <div
+      className={open ? "" : "visually-hidden"}
+      style={{
+        borderLeft: '1px solid grey',
+        marginLeft: `1rem`
+      }}
+    >
+
+      {children.map((child) => (
+        <Node
+          key={child.id}
+          {...child}
+          depth={depth+1}
+        />
+      ))}
+    </div>
+  </div>
+}
+
+function Body() {
+  return wf.children.map((child) => (
+    <Node
+      key={child.id}
+      {...child}
+      depth={0}
+    />
+  ))
+
+}
+const body = <Body />
+export default body
+
+const content = `
 Severe ADHD, broke, and busy. Had to stop taking Adderall a while back, found that a fitness desk did as much to help as the meds. Treadmills in particular, where you set a speed and it "moves you" (you just keep up) occupy a jitters part of your brain, like a fidget-spinner. One of the only things that works for me (along with the Pomodoro Technique). Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. My caffeine intake is significantly reduced when I'm at fitness desk. Weight-loss: At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time. Excessive - should probably be reconsidered - but suffice it eliminates the gym, saving time and money. At my worst, I do 5 miles in a day; that's the 10k steps minimum recommendation. Further, your posture is improved while walking. Obviously compared to sitting desks; but I've found posture is better walking than standing, even.
 
 - Pick 1 (I use GoYouth & Xiser, and I alternate)
@@ -12,7 +90,7 @@ Severe ADHD, broke, and busy. Had to stop taking Adderall a while back, found th
     - Cons: worse for focus, intense workout
 - [A desk](https://amzn.to/41R8g9X) $100-200 & arms $50-100
 - [FluidStance PlaneCloud](https://fluidstance.com/pages/the-plane-cloud) $200
-- [Slimblade Pro](https://amzn.to/3RQERbv) $120 & ergo keyboard $100-300
+- [Slimblade Pro](https://amzn.to/3RQERbv) $120 & [Glove80](https://www.moergo.com/) $350
 
 ### Summary
 
@@ -29,3 +107,4 @@ Ironically I don't have a recommendation on the desk itself. I bought Flexispot,
 ### Full details
 
 [https://workflowy.com/s/fitness-desk/q3fLd1MgWXEIGUgd](https://workflowy.com/s/fitness-desk/q3fLd1MgWXEIGUgd). If you're seriously considering any of this, read the full details (I'll add some embedded videos in there later).
+`

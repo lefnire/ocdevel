@@ -9,11 +9,11 @@ const ep = {
   teaser: 'TensorFlow, Pandas, Numpy, Scikit-Learn, Keras, TensorForce.',
   body: `
 ### Hardware
-Use a PC (not Mac, see [mla/12](/mlg/mla-12)). Desktop if you're mostly stationary, as you'll get the best performance bang-for-buck and improved longevity; laptop if you're mostly mobile.
+Desktop if you're stationary, as you'll get the best performance bang-for-buck and improved longevity; laptop if you're mobile.
 
-Desktops. Build your own PC, better value than pre-built. See [PC Part Picker](https://pcpartpicker.com/), make sure to use an Nvidia graphics card. Generally shoot for 2nd-best of CPUs/GPUs. Eg, RTX 3070 currently (2020-01); better value-to-price than 3080+.   
+Desktops. Build your own PC, better value than pre-built. See [PC Part Picker](https://pcpartpicker.com/), make sure to use an Nvidia graphics card. Generally shoot for 2nd-best of CPUs/GPUs. Eg, RTX 4070 currently (2024-01); better value-to-price than 4080+.   
 
-For laptops, I like the MSI Stealth series. Buy from a reseller like [Gentech](https://www.gentechpc.com/), Xotic, HIDevolution (I prefer Gentech) - not Amazon / Newegg. This because only resellers offer thermal pasting, and that is a _must_ have for performance & longevity. Make sure to get GPU & CPU thermal pasting at checkout, I used Conductonaut on my last purchase - do your research.
+For laptops, see [this post (updated)](/blog/20240108-ml-gaming-laptop). 
 
 ### OS / Software
 
