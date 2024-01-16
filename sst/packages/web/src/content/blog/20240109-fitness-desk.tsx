@@ -73,7 +73,7 @@ function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
   }, [open])
 
   const chevron = useMemo(() => {
-    if (!hasChildren) { return <div>•</div> }
+    if (!hasChildren) { return <span>-</span> }
     if (open) {return <FaChevronUp />}
     return <FaChevronDown />
   }, [open, children])
@@ -84,6 +84,7 @@ function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
     <div
       className={`${show ? "" : "visually-hidden"}`}
     >
+      {/* FIXME use flex-box instead of floats */}
       <div
         className="pointer me-2 float-start"
         onClick={toggle}
@@ -154,6 +155,7 @@ function Body() {
             title="YouTube video player" frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen></iframe>
+    <hr />
     <AppliedTags />
     {tree}
   </div>
