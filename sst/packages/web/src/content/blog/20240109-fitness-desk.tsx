@@ -1,10 +1,6 @@
-import Accordion from "react-bootstrap/Accordion";
 
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
-import { FaCircle } from "react-icons/fa";
-
-
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
@@ -15,24 +11,34 @@ import {useCallback, useMemo, useState} from "react";
 import create from "zustand";
 import {immer} from "zustand/middleware/immer";
 import Badge from "react-bootstrap/Badge";
+import {shallow} from "zustand/shallow";
 
-// TODO
-// const useStore = create()(immer((set, get) => ({
-//   tags: {},
-//   anyTags: false,
-//   toggleTag: (tag: string) => {
-//     set(state => {
-//       state.tags[tag] = !get().tags[tag]
-//
-//     })
-//   }
-// })))
+interface UseStore {
+  tags: Record<string, boolean>
+  anyTags: boolean
+  toggleTag: (tag: string) => void
+}
+const useStore = create<UseStore>()(immer((set, get) => ({
+  tags: {},
+  anyTags: false,
+  toggleTag: (tag: string) => {
+    set(state => {
+      state.tags[tag] = !get().tags[tag]
+      state.anyTags = Object.values(state.tags).filter(Boolean).length > 0
+    })
+  }
+})))
 
 function Tag({name}: {name: string}) {
+  const clickFilter = () => {
+    useStore.getState().toggleTag(name)
+  }
+
   if (name === 'c') {return null}
   return <Badge
     className='me-1'
-    bg="secondary"
+    bg="secondary pointer"
+    onClick={clickFilter}
   >
     {name}
   </Badge>
@@ -45,11 +51,19 @@ interface Node {
   tags: Record<string, string | true>
   children: Node[]
   depth: number
+  passesFilter: boolean
 }
-function Node({id, text, note, tags, children, depth}: Node) {
+function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
+  const [anyTags, appliedTags] = useStore(store => [store.anyTags, store.tags], shallow)
   const [open, setOpen] = useState(!tags?.c)
 
   const hasChildren = children?.length > 0
+  let show = true
+  if (anyTags) {
+    if (!passesFilter) {
+      show = Object.keys(tags).some(key => tags[key] === true && appliedTags[key] === true);
+    }
+  }
 
   const toggle = useCallback((event) => {
     event.preventDefault()
@@ -67,18 +81,21 @@ function Node({id, text, note, tags, children, depth}: Node) {
     className="ps-2"
   >
     <div
-      className={`gap-2 d-flex flex-row`}
+      className={`gap-2 d-flex flex-row ${show ? "" : "visually-hidden"}`}
     >
       <div
         className="pointer"
         onClick={toggle}
       >{chevron}</div>
-      <div className='fs-5' dangerouslySetInnerHTML={{__html: text}} />
-      <div className='fs-5'>
-        {Object.entries(tags).map(([k, v]) => <Tag name={k} />)}
+      <div className='' dangerouslySetInnerHTML={{__html: text}} />
+      <div className=''>
+        {Object.keys(tags).map(k => <Tag name={k} />)}
       </div>
     </div>
-    <div className="text-muted ms-1" dangerouslySetInnerHTML={{__html: note}} />
+    <div
+      className={`text-muted lh-sm fw-light ms-1 ${show ? "" : "visually-hidden"}`}
+      dangerouslySetInnerHTML={{__html: note}}
+    />
     <div
       className={open ? "" : "visually-hidden"}
       style={{
@@ -86,15 +103,28 @@ function Node({id, text, note, tags, children, depth}: Node) {
         marginLeft: `1rem`
       }}
     >
-
       {children.map((child) => (
         <Node
           key={child.id}
           {...child}
           depth={depth+1}
+          passesFilter={show}
         />
       ))}
     </div>
+  </div>
+}
+
+function AppliedTags() {
+  const [anyTags, tags] = useStore(store => [store.anyTags, store.tags], shallow)
+  if (!anyTags) { return null }
+  const appliedTags = Object.entries(tags).filter(([k, v]) => v).map(([k, v]) => (
+    <Tag name={k} />
+  ))
+  return <div>
+    <div>Applied tags (click to remove)</div>
+    {appliedTags}
+    <hr/>
   </div>
 }
 
@@ -120,9 +150,11 @@ function Body() {
             title="YouTube video player" frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen></iframe>
+    <AppliedTags />
     {tree}
   </div>
 
 }
-const body = <Body />
+
+const body = <Body/>
 export default body
