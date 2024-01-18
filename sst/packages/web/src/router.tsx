@@ -1,4 +1,4 @@
-import {createBrowserRouter, Route} from "react-router-dom";
+import {createBrowserRouter, Route, Navigate } from "react-router-dom";
 import {Lazy} from "./components/utils.tsx";
 import React from "react";
 
@@ -27,6 +27,8 @@ export const router = createBrowserRouter([
       { index: true, element: <Lazy c={Home} />},
       { path: "blog", element: <Lazy c={Blog} />, children: [
           { index: true, element: <Lazy c={Posts} />},
+          // previous mistake
+          { path: "20240110-fitness-desk", element: <Navigate to="/blog/20240109-fitness-desk" />},
           { path: ":id", element: <Lazy c={Post} />},
       ]},
       { path: "mlg", element: <Lazy c={Podcasts} />, children: [

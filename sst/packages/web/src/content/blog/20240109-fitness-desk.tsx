@@ -86,15 +86,18 @@ function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
     >
       {/* FIXME use flex-box instead of floats */}
       <div
-        className="pointer me-2 float-start"
+        className="pointer me-2 d-inline"
         onClick={toggle}
       >{chevron}</div>
-      <div className='float-start me-2' dangerouslySetInnerHTML={{__html: text}} />
-      <div className=''>
+      <div
+        className='me-2 d-inline'
+        dangerouslySetInnerHTML={{__html: text}}
+        // style={{wordWrap: "break-word", whiteSpace: "normal"}}
+      />
+      <div className='d-inline'>
         {Object.keys(tags).map(k => <Tag name={k} />)}
       </div>
     </div>
-    <div className='clearfix'></div>
     <div
       className={`text-muted lh-sm ms-1 ${show ? "" : "visually-hidden"}`}
       style={{fontSize: '0.85rem'}}
