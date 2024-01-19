@@ -24,6 +24,6 @@ const Modal_ = <Modal show={true} animation={false}>
 export function Lazy ({c}) {
   const C = React.lazy(c)
   return <Suspense fallback={Modal_}>
-    <C/>
+    <C />
   </Suspense>
 }

@@ -6,12 +6,11 @@ export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
 export const title = "Fitness Desk"
 export const jsx = true
-import wf from '../workflowy/walking-desk.opml'
-import {useCallback, useMemo, useState} from "react";
-import create from "zustand";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {create} from "zustand";
 import {immer} from "zustand/middleware/immer";
-import Badge from "react-bootstrap/Badge";
 import {shallow} from "zustand/shallow";
+import wf from "../../content/workflowy/walking-desk.opml";
 
 interface UseStore {
   tags: Record<string, boolean>
@@ -42,6 +41,20 @@ function Tag({name}: {name: string}) {
   >
     #{name}
   </span>
+}
+
+function AppliedTags() {
+  const [anyTags, tags] = useStore(store => [store.anyTags, store.tags], shallow)
+  if (!anyTags) { return null }
+  const appliedTags = Object.entries(tags).filter(([k, v]) => v).map(([k, v]) => (
+    <Tag name={k} />
+  ))
+  return <div className="card">
+    <div className="card-body">
+      <h6>Applied tags (click to remove)</h6>
+      {appliedTags}
+    </div>
+  </div>
 }
 
 interface Node {
@@ -122,48 +135,21 @@ function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
   </div>
 }
 
-function AppliedTags() {
-  const [anyTags, tags] = useStore(store => [store.anyTags, store.tags], shallow)
-  if (!anyTags) { return null }
-  const appliedTags = Object.entries(tags).filter(([k, v]) => v).map(([k, v]) => (
-    <Tag name={k} />
-  ))
-  return <div className="card">
-    <div className="card-body">
-      <h6>Applied tags (click to remove)</h6>
-      {appliedTags}
-    </div>
-  </div>
+interface Workflowy {
+  wf: Node
 }
+export function Workflowy({wf}: Workflowy) {
+  useEffect(() => {
+    // in case they navigate to another workflowy tree
+    useStore.setState({tags: {}, anyTags: false})
+  }, [wf])
 
-function Body() {
-  const tree = wf.children.map((child) => (
-    <Node
+  return <>
+    <AppliedTags />
+    {wf.children.map((child) => <Node
       key={child.id}
       {...child}
       depth={0}
-    />
-  ))
-  return <div>
-    <p>Severe ADHD, broke, and busy. Had to stop taking Adderall a while back, found that a fitness desk did as much to
-      help as the meds. Treadmills in particular, where you set a speed and it "moves you" (you just keep up) occupy a
-      jitters part of your brain, like a fidget-spinner. One of the only things that works for me (along with the
-      Pomodoro Technique). Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and
-      endorphins help not just with energy, but focus. My caffeine intake is significantly reduced when I'm at fitness
-      desk. Weight-loss: At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time.
-      Excessive - should probably be reconsidered - but suffice it eliminates the gym, saving time and money. At my
-      worst, I do 5 miles in a day; that's the 10k steps minimum recommendation. Further, your posture is improved while
-      walking. Obviously compared to sitting desks; but I've found posture is better walking than standing, even.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/-YFrgeEK4lU?si=oFjG8CeWAjquj9HH"
-            title="YouTube video player" frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen></iframe>
-    <hr />
-    <AppliedTags />
-    {tree}
-  </div>
-
+    />)}
+  </>
 }
-
-const body = <Body/>
-export default body

@@ -39,8 +39,8 @@ export const router = createBrowserRouter([
       ]},
       { path: "contact", element: <Lazy c={Contact} />},
 
-      // FIXME
-      // <Redirect from="/podcasts(.*)" to="/mlg"/>
+      { path: "podcasts/*", element: <Navigate to="/mlg" />},
+      { path: "*", element: <Navigate to="/" />}
     ]
   }
 ])
