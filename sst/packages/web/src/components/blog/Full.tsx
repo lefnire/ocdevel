@@ -11,7 +11,7 @@ import React from "react";
 import {fmt} from './utils'
 import {components, renderBlogPost} from '../utils/markdown.tsx'
 
-export default function Post() {
+export default function Full() {
   const {id} = useParams()
 
   const p = find(blog, {id});

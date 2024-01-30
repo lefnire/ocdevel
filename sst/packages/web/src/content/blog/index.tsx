@@ -19,6 +19,7 @@ import * as b4 from './jobpig/3'
 import * as b3 from './jobpig/2'
 import * as b2 from './jobpig/1'
 import * as b1 from './jobpig/0'
+import {BlogPost} from "../../components/blog/utils.tsx";
 
 export default [
   b21,
@@ -42,4 +43,4 @@ export default [
   b3,
   b2,
   b1,
-]
+] as unknown as BlogPost[]

@@ -17,6 +17,8 @@ import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
 import {TLDR} from './utils'
 
+export const teaser = "As Habitica's creator, I've refined my approach to using the system over 10 years. This post teaches you how to get the most out of improving your habits and behavior through Habitica. It includes a calculator for choosing the best class (warrior, rogue, mage, healer) for your play-style."
+
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
 function Accordion_({title, eventKey, children}) {

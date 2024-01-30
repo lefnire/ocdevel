@@ -1,5 +1,6 @@
 import { MDXProvider } from '@mdx-js/react';
 import { Link } from 'react-router-dom';
+import {BlogPost} from "../blog/utils.tsx";
 
 const CustomLink = ({ href, children }) => {
   if (href.startsWith('/')) {
@@ -28,7 +29,7 @@ export function MyMDXProvider({children}) {
   </MDXProvider>
 }
 
-export function renderBlogPost(p) {
+export function renderBlogPost(p: BlogPost) {
   if (p.jsx) {
     return p.default
   }
