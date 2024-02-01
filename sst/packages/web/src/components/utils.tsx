@@ -1,15 +1,27 @@
-import React, {Suspense} from "react";
+import React, {Suspense, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 
-export const BackButton = () => {
+interface BackButton {
+  to?: string
+}
+export const BackButton = ({to}: BackButton) => {
   const navigate = useNavigate();
+
+  const onClick = useCallback(() => {
+    if (to) {
+      navigate(to);
+    } else {
+      navigate(-1);
+    }
+  }, [to])
+
   return <Button
     className="text-dark mb-2"
     variant="link"
-    onClick={() => navigate(-1)}
+    onClick={onClick}
   >
     <FaArrowLeft /> Back
   </Button>

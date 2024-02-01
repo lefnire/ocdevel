@@ -7,5 +7,6 @@ export interface BlogPost {
   date: string;
   jsx?: boolean
   teaser?: string
+  affiliate?: boolean
   default: any
 }

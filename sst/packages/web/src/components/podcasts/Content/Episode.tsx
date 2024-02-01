@@ -157,7 +157,7 @@ export function Episode({e, teaser, i=null}) {
         <title>{e.title} | Machine Learning Guide</title>
         {e.teaser && <meta name="description" Content={e.teaser} />}
       </Helmet>
-      <BackButton />
+      <BackButton to="/mlg" />
       <Card>
         <Card.Body>
 

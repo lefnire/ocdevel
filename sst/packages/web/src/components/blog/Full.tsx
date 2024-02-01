@@ -21,13 +21,16 @@ export default function Full() {
       {/* Should use teaser here */}
       {/*<meta name="description" content="Helmet application" />*/}
     </Helmet>
-    <BackButton />
+    <BackButton to="/blog" />
     <Card>
       <Card.Body>
         <Card.Title>{p.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {moment(p.date).format(fmt)}
         </Card.Subtitle>
+        {p.affiliate ? <Card.Subtitle className="mb-2 text-muted small">
+          This post may contain affiliate links
+        </Card.Subtitle> : null}
         <Card.Text>
           {renderBlogPost(p)}
         </Card.Text>
