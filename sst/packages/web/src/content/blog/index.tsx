@@ -1,3 +1,4 @@
+import * as b22 from './20240131-vr-ar-work.mdx';
 import * as b21 from './20240117-pomodoro-thinkers.mdx';
 import * as b20 from './20240111-tylers-setup.mdx';
 import * as b19 from './20240110-ergo-mouse-keyboard.mdx';
@@ -22,6 +23,7 @@ import * as b1 from './jobpig/0'
 import {BlogPost} from "../../components/blog/utils.tsx";
 
 export default [
+  b22,
   b21,
   b20,
   b19,
