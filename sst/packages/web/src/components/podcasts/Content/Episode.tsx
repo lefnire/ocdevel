@@ -5,7 +5,7 @@ import {Accordion_, dateFmt, ReactMarkdown_} from "../utils";
 import padStart from "lodash/padStart";
 import moment from "moment";
 import {Link, useParams} from "react-router-dom";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 import {BackButton} from "../../utils";
 import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from './Resources'

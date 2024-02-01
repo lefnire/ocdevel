@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import avatar from '../../assets/avatar.jfif'
 import mlg from '../../assets/MLG-Option-1.jpg'
 import gnothi from '../../assets/gnothi192.png'
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 
 export default function Home() {
   const img = {

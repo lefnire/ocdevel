@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import {Switch, Route, useLocation, Outlet, Link} from 'react-router-dom';
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 
 import {mlg} from '../../content/podcast';
 

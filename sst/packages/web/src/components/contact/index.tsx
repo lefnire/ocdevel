@@ -13,7 +13,7 @@ import {FaGithub} from '@react-icons/all-files/fa/FaGithub';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaMicrophone} from '@react-icons/all-files/fa/FaMicrophone';
 import {Link} from "react-router-dom";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 
 export default function Contact() {
   const links = <>

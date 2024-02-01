@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
 import {Outlet} from 'react-router-dom'
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 
 export default function Home() {
   return <Container className="home">
