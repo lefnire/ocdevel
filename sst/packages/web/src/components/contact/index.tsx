@@ -32,6 +32,8 @@ export default function Contact() {
         href="mailto:tylerrenelle@gmail.com"
         Icon={FaEnvelope}
       >Email</IconButton>
+      <a className="btn btn-primary" href="https://calendly.com/lefnire/60min" target="_blank">Schedule a 60-minute
+        consultation</a>
     </Stack>
   </>
 
