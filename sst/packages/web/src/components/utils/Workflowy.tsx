@@ -1,6 +1,6 @@
 
-import { FaChevronDown } from "react-icons/fa";
-import { FaChevronUp } from "react-icons/fa";
+import { FaRegPlusSquare as ExpandIcon } from "react-icons/fa";
+import { FaRegMinusSquare as CollapseIcon } from "react-icons/fa";
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
@@ -10,7 +10,6 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {create} from "zustand";
 import {immer} from "zustand/middleware/immer";
 import {shallow} from "zustand/shallow";
-import wf from "../../content/workflowy/walking-desk.opml";
 
 interface UseStore {
   tags: Record<string, boolean>
@@ -86,9 +85,9 @@ function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
   }, [open])
 
   const chevron = useMemo(() => {
-    if (!hasChildren) { return <span>-</span> }
-    if (open) {return <FaChevronUp />}
-    return <FaChevronDown />
+    if (!hasChildren) { return <span>•</span> }
+    if (open) {return <CollapseIcon />}
+    return <ExpandIcon />
   }, [open, children])
 
   return <div
