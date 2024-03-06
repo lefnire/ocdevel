@@ -9,6 +9,7 @@ import ReactGA from "react-ga4";
 // don't need bootstrap, imported in my scss
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.scss'
+import './v2.scss'
 
 let usingGA = false;
 // FIXME use import.VITE_APP_*
