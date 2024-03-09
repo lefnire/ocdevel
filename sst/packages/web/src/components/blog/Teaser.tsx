@@ -18,7 +18,7 @@ export function Teaser({p}: BlogPost) {
     </div>
   }
 
-  return <Card key={p.id} className='mb-3 card-post'>
+  return <Card key={p.id} className='mb-3 card-post teaser'>
     <Card.Body>
       <Card.Title><Link to={'/blog/' + p.id}>{p.title}</Link></Card.Title>
       <Card.Subtitle className="mb-2 text-muted">

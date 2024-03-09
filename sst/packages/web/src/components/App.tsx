@@ -9,6 +9,9 @@ import ReactGA from "react-ga4";
 // don't need bootstrap, imported in my scss
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.scss'
+import './v2.scss'
+import logo from '../assets/OCDevel_WordLogo.png'
+import Container from "react-bootstrap/Container";
 
 let usingGA = false;
 // FIXME use import.VITE_APP_*
@@ -31,12 +34,16 @@ function LocationListener() {
   return null
 }
 
+
 export default function App() {
   return <div>
     <LocationListener />
     <CookieConsent buttonText="Accept">This website uses cookies to enhance the user experience.</CookieConsent>
 
-    <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
+    <Navbar bg='#f3f5ff' variant='light' className="navbar justify-content-center">
+
+      {/*Had border-bottom property but removed it*/}
+
       <LinkContainer to="/" exact>
         <Navbar.Brand>OCDevel</Navbar.Brand>
       </LinkContainer>
