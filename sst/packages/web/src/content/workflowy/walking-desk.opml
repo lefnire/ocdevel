@@ -20,8 +20,8 @@
       <outline text="Treadmill">
         <outline text="&lt;a href=&quot;https://egofitwalker.com/products/egofit-comfortdeck-m2-under-desk-treadmill?sca_ref=5484370.9SQi3qcg7q&amp;sca_source=blog&quot;&gt;Egofit ComfortDeck-M2&lt;/a&gt; #picked-by:public #picked-by:op #electric:yes #speed:low #budget:low #incline:yes " _note="My &lt;b&gt;definite&lt;/b&gt; top-pick. Buy this if (1) your budget allows; (2) you're ok buying off Amazon; (3) you're ok without extended warranty&#10;">
           <outline text="Specs">
-            <outline text="$500" />
-            <outline text="41.5&quot;D x 22.8&quot;W x 7&quot;H" />
+            <outline text="Price: $500" />
+            <outline text="Dimensions: 41.5&quot;D x 22.8&quot;W x 7&quot;H" />
             <outline text="Max weight: 245lbs" />
             <outline text="Motor Power: 2.5HP" />
             <outline text="Max Speed: 3.1mph" />
@@ -57,23 +57,56 @@
             </outline>
           </outline>
         </outline>
-        <outline text="&lt;a href=&quot;https://amzn.to/3wCSfsV&quot;&gt;UREVO&lt;/a&gt; #budget:low #electric:yes #picked-by:public #picked-by:op #speed:low #speed:high #incline:yes " _note="My second pick. Buy this if the &quot;buy this&quot; points for EGOFIT don't suite you.&#10;">
-          <outline text="Specs" _note="I'll list specs based on &lt;a href=&quot;https://amzn.to/3wCSfsV&quot;&gt;this model&lt;/a&gt;, the one I'd buy. But there are lots of options, so visit their store page and find one that suits your budget, speed, weight, etc; just make sure it has an incline option.&#10;">
-            <outline text="$200" />
-            <outline text="50&quot;D x 20.9&quot;W x 4.72&quot;H" />
-            <outline text="Max Speed: 4mph" />
-            <outline text="Motor power: 2.25HP" />
-            <outline text="Max weight: 265lbs" />
-            <outline text="Age &lt;time startYear=&quot;2024&quot; startMonth=&quot;7&quot; startDay=&quot;21&quot;&gt;Sun, Jul 21, 2024&lt;/time&gt; " />
-            <outline text="Rating 4.4/5" _note="Fakespot B. 5=70% 4=16% 3=6% 2=4% 1=4%&#10;" />
+        <outline text="&lt;a href=&quot;https://amzn.to/3VLFsio&quot;&gt;UREVO&lt;/a&gt; #budget:low #electric:yes #picked-by:public #picked-by:op #speed:low #speed:high #incline:yes " _note="My second pick. Very highly regarded on Amazon and Reddit. Buy Urevo if (1) you only want to buy on Amazon; (2) you need an extended warranty; (3) you want cheaper than $500. I recommend the S2 Lite, which has the fewest trade-offs (similar to Egofit). Their other models have some combination of good price, shock absorption, incline, good motor; but rarely all together. Expand the &quot;Other models&quot; section to compare (eg $200 models, models which allow running, etc)&#10;">
+          <outline text="&lt;a href=&quot;https://amzn.to/3VLFsio&quot;&gt;2S Lite&lt;/a&gt; (recommended)" _note="This is my one-size-fits-all Urevo recommendation. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than Egofit M2. I still prefer Egofit due to sturdiness and static 3%; but this is a very close 2nd.&#10;">
+            <outline text="Specs">
+              <outline text="Price: $400" />
+              <outline text="Dimensions: 48.6&quot;D x 20&quot;W x 6.06&quot;H" />
+              <outline text="Max weight: 265lbs" />
+              <outline text="Motor Power: 2.5HP" />
+              <outline text="Max speed: 4mph" />
+              <outline text="Age: Oct 19th 2023" />
+              <outline text="Rating 4.4/5" _note="5=69% 4=15% 3=6% 2=3% 1=7%&#10;" />
+            </outline>
+            <outline text="Pros">
+              <outline text="Incline" />
+              <outline text="Shock absorption" />
+              <outline text="Available on Amazon" />
+            </outline>
           </outline>
-          <outline text="Pros">
-            <outline text="Incline" _note="Some (most) of their models offer a manual (adjustable, with your hands) incline; even as steep as 9%. &#10;" />
-            <outline text="Price" _note="Some of their models are VERY cheap, lowest end of the budget spectrum. And with such high ratings, there seems to be little in terms of quality issues, making these a fantastic starter mill.&#10;" />
-          </outline>
-          <outline text="Cons">
-            <outline text="Very deep" _note="The depth (how far out from your desk it extends) 58&quot;; on the one hand, more natural walking surface. On the other, it takes a lot of space while in use.&#10;" />
-            <outline text="Not as sturdy as EGOFIT" _note="EGOFIT's body is triangular, with a shock absorption meant for heavy use. UREVO has great quality ratings, but it's unlikely to be quite as strong as EGOFIT in the long-term&#10;" />
+          <outline text="Other models #c">
+            <outline text="Choosing the right model" _note="There are multiple options, each with trade-offs. Budget=Spacewalk, Mid&#10;">
+              <outline text="1. Go to &lt;a href=&quot;https://www.urevo.com/collections/under-desk-treadmill?sort_by=created-descending&quot;&gt;their website, sort by Date: new-&amp;gt;old&lt;/a&gt;" _note="Their website is easier to compare models than Amazon. Newer models are better, since Urevo iterates fast based on user complains. Eg, the SpaceWalk E3 had motor heat complaints; so they improved that with E4; then again with E5 (adding vents). &#10;" />
+              <outline text="2. Find one based on needs" _note="Spacewalks are the budget options; &quot;S&quot; models are the mid-range; and Strols allow running (max speeds around 7.5mph). So if you need running, choose Strol; if you can spend a bit more, choose S (2S Lite or 3S); if you want budget, choose Spacewalk&#10;" />
+              <outline text="3. Then copy/paste the model name into Amazon" _note="Some of the newest models, eg Spacewalk E5, aren't there yet; but most the others are. Then you can get the Asurion extended warranty and all that.&#10;" />
+            </outline>
+            <outline text="Spacewalk: budget (~$200)" _note="Best price, no incline (except E3), less durable (but still very good)&#10;">
+              <outline text="&lt;a href=&quot;https://www.urevo.com/products/urevo-spacewalk-e5-treadmill&quot;&gt;E5&lt;/a&gt; (newest)" _note="This has the most hardware improvements of the bunch, being the newest. Eg, improved motor, and vents to dissipate heat. But it's not on Amazon (only their website), and doesn't have an incline. I don't know why they removed the incline after E3... real bummer.&#10;">
+                <outline text="Pros: better tech (eg motor vents); shock absorption; cheap" />
+                <outline text="Cons: not on Amazon; no incline" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://amzn.to/3xxWWV9&quot;&gt;E4&lt;/a&gt;" _note="Motor improvement over E3 (which had a lot of overheating complaints); but removed incline.&#10;">
+                <outline text="Pros: on Amazon; improved motor heat from E3; shock absorption, cheap" />
+                <outline text="Cons: no incline" />
+              </outline>
+              <outline text="&lt;a href=&quot;https://amzn.to/3VMSmfP&quot;&gt;E3&lt;/a&gt;" _note="Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.&#10;">
+                <outline text="Pros: incline; on Amazon" />
+                <outline text="Cons: motor overheating complaints" />
+              </outline>
+              <outline text="Specs (E4)">
+                <outline text="$200" />
+                <outline text="50&quot;D x 20.9&quot;W x 4.72&quot;H" />
+                <outline text="Max Speed: 4mph" />
+                <outline text="Motor power: 2.25HP" />
+                <outline text="Max weight: 265lbs" />
+                <outline text="Rating 4.4/5" _note="Fakespot B. 5=70% 4=16% 3=6% 2=4% 1=4%&#10;" />
+              </outline>
+            </outline>
+            <outline text="S: mid-tier (~$400)">
+              <outline text="S2 Lite (above)" />
+              <outline text="&lt;a href=&quot;https://amzn.to/3JqUIdf&quot;&gt;3S&lt;/a&gt;" _note="I'm only adding this because I see it recommended a lot. It's older than 2S Lite, so I'd personally prefer the latter, but it's worth looking into.&#10;" />
+            </outline>
+            <outline text="Strol: running ($300-550)" _note="I don't need to run, so I haven't researched the different Strol models much. You'll want to do your own research comparing Strole Elite, Strole 2E, Strol 1 Pro, etc. Remember - newer is usually better.&#10;" />
           </outline>
         </outline>
         <outline text="Considerations">
@@ -103,7 +136,7 @@
           </outline>
         </outline>
       </outline>
-      <outline text="Previous research: UREVO, GoYouth, GoPlus, WalkingPad, LifeSpan, Xiser #c" _note="I've completely overhauled this post. I previously recommended GoYouth, which is still a fantastic treadmill. But after 2 years of full-time walking, my knees hurt. Researching, I found a 3% incline is recommended in sports medicine; EGOFIT's hard-set incline, they did their research. EGOFIT also has shock absorption, easier access to under-belt lubing, tricks for reduced depth to save space, and a larger weight capacity. GoYouth served me very well; but Egofit has a lot of well-thought alterations. You can stop here if that's all you care to know; or expand this section to see my previous research, to compare other products you may have heard about. If you don't chose EGOFIT, I highly recommend UREVO, which has 3% incline options and are very affordable.">
+      <outline text="Previous research: GoYouth, GoPlus, WalkingPad, LifeSpan, Xiser #c" _note="I've completely overhauled this post. I previously recommended GoYouth, which is still a fantastic treadmill. But after 2 years of full-time walking, my knees hurt. Researching, I found a 3% incline is recommended in sports medicine; EGOFIT's hard-set incline, they did their research. EGOFIT also has shock absorption, easier access to under-belt lubing, tricks for reduced depth to save space, and a larger weight capacity. GoYouth served me very well; but Egofit has a lot of well-thought alterations. You can stop here if that's all you care to know; or expand this section to see my previous research, to compare other products you may have heard about. If you don't chose EGOFIT, I highly recommend UREVO, which has 3% incline options and are very affordable.">
         <outline text="Machine">
           <outline text="Filters &amp; info">
             <outline text="Click some of these based on requirements #electric:yes #electric:no #budget:low #budget:high #size:small #size:large #picked-by:op #picked-by:public #speed:high #speed:low #incline:yes">
@@ -219,21 +252,21 @@
                 <outline text="Pros">
                   <outline text="Commercial use" _note="I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.&#10;" />
                 </outline>
-                <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/products/tr1000-dt3-under-desk-treadmill?variant=42506296164533&quot;&gt;TR1000&lt;/a&gt; #c">
+                <outline text="&lt;a href=&quot;https://lifespan-fitness.e9ppfh.net/eK0k5j&quot;&gt;TR1000&lt;/a&gt; #c">
                   <outline text="$1600" />
                   <outline text="Max speed: 4mph" />
                   <outline text="Max weight: 350 pounds" />
                   <outline text="Dimensions: 58&quot; L x 28.5&quot; W x 7.25&quot; H" />
                   <outline text="Recommend Use: 6 Hours per Day" />
                 </outline>
-                <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/products/tr1200-dt3-under-desk-treadmill?variant=40953056198837&quot;&gt;TR1200&lt;/a&gt; #c">
+                <outline text="&lt;a href=&quot;https://lifespan-fitness.e9ppfh.net/GmyR4k&quot;&gt;TR1200&lt;/a&gt; #c">
                   <outline text="$1800" />
                   <outline text="Max speed: 4mph" />
                   <outline text="Max weight: 350 pounds" />
                   <outline text="Dimensions: 63&quot; L x 28.5&quot; W x 7.25&quot; H" />
                   <outline text="Recommended Use: 6 Hours per Day" />
                 </outline>
-                <outline text="&lt;a href=&quot;https://www.lifespanfitness.com/products/tr5000-dt3-under-desk-treadmill?variant=40953101648053&quot;&gt;TR5000&lt;/a&gt;">
+                <outline text="&lt;a href=&quot;https://lifespan-fitness.e9ppfh.net/LXLRYZ&quot;&gt;TR5000&lt;/a&gt;">
                   <outline text="$2200" />
                   <outline text="Max speed: 4mph" />
                   <outline text="Max weight: 400 pounds" />
