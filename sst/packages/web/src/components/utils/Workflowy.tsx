@@ -56,6 +56,7 @@ function AppliedTags() {
   </div>
 }
 
+
 interface Node {
   id: string
   text: string
@@ -63,20 +64,35 @@ interface Node {
   tags: Record<string, string | true>
   children: Node[]
   depth: number
-  passesFilter: boolean
 }
-function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
+
+
+// Recursively check if any descendant passes the filter
+type AnyDescendantPassesFilter = {
+  node: Node,
+  anyTags: boolean,
+  appliedTags: object
+};
+function anyDescendantPassesFilter({node, anyTags, appliedTags}: AnyDescendantPassesFilter): boolean {
+  if (!anyTags) return true;
+
+  const myTagsPass = Object.keys(node.tags).some(key => node.tags[key] === true && appliedTags[key] === true);
+  const descendantTagsPass = node
+    .children
+    .some(node => anyDescendantPassesFilter({node, anyTags, appliedTags}))
+  return myTagsPass || descendantTagsPass;
+}
+
+function Node(node: Node) {
+  const {id, text, note, tags, children, depth} = node
   const [anyTags, appliedTags] = useStore(store => [store.anyTags, store.tags], shallow)
   const [open, setOpen] = useState(!tags?.c)
 
   const hasChildren = children?.length > 0
-  let show = true
-  if (anyTags) {
-    // FIXME filters are OR, not AND. Should be AND
-    if (!passesFilter) {
-      show = Object.keys(tags).some(key => tags[key] === true && appliedTags[key] === true);
-    }
-  }
+  
+  const show = useMemo(() => {
+    return anyDescendantPassesFilter({node, anyTags, appliedTags});
+  }, [node, anyTags, appliedTags])
 
   const toggle = useCallback((event) => {
     event.preventDefault()
@@ -127,7 +143,6 @@ function Node({id, text, note, tags, children, depth, passesFilter}: Node) {
           key={child.id}
           {...child}
           depth={depth+1}
-          passesFilter={show}
         />
       ))}
     </div>
