@@ -10,6 +10,7 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {create} from "zustand";
 import {immer} from "zustand/middleware/immer";
 import {shallow} from "zustand/shallow";
+import {useShallow} from "zustand/react/shallow";
 
 interface UseStore {
   tags: Record<string, boolean>
@@ -71,21 +72,23 @@ interface Node {
 type AnyDescendantPassesFilter = {
   node: Node,
   anyTags: boolean,
-  appliedTags: object
+  appliedTags: Record<string, boolean>
 };
 function anyDescendantPassesFilter({node, anyTags, appliedTags}: AnyDescendantPassesFilter): boolean {
   if (!anyTags) return true;
 
-  const myTagsPass = Object.keys(node.tags).some(key => node.tags[key] === true && appliedTags[key] === true);
-  const descendantTagsPass = node
-    .children
-    .some(node => anyDescendantPassesFilter({node, anyTags, appliedTags}))
+  const myTagsPass = Object.entries(appliedTags)
+    .filter(([tag, applied]) => applied)
+    .every(([tag]) => node.tags[tag] === true);
+  const descendantTagsPass = node.children.some(node =>
+    anyDescendantPassesFilter({node, anyTags, appliedTags})
+  );
   return myTagsPass || descendantTagsPass;
 }
 
 function Node(node: Node) {
   const {id, text, note, tags, children, depth} = node
-  const [anyTags, appliedTags] = useStore(store => [store.anyTags, store.tags], shallow)
+  const [anyTags, appliedTags] = useStore(useShallow(state => [state.anyTags, state.tags]))
   const [open, setOpen] = useState(!tags?.c)
 
   const hasChildren = children?.length > 0
