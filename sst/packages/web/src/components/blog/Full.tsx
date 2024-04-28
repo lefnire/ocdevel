@@ -8,7 +8,7 @@ import moment from "moment";
 import {ReactMarkdown_} from "../podcasts/utils";
 import ReactDisqusComments from "react-disqus-comments";
 import React from "react";
-import {fmt} from './utils'
+import {fmt, PostDate} from './utils'
 import {components, renderBlogPost} from '../utils/markdown.tsx'
 
 export default function Full() {
@@ -26,7 +26,7 @@ export default function Full() {
       <Card.Body>
         <Card.Title>{p.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          {moment(p.date).format(fmt)}
+          <PostDate p={p} />
         </Card.Subtitle>
         {p.affiliate ? <Card.Subtitle className="mb-2 text-muted small">
           This post may contain affiliate links

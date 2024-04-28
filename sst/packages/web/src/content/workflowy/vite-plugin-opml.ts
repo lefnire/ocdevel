@@ -8,6 +8,10 @@ export const vitePluginOpml = {
     if (id.endsWith('walking-desk.opml')) {
       obj = walkingDesk(code,id);
     }
+    if (id.endsWith('code-ai.opml')) {
+      // FIXME make something more general
+      obj = walkingDesk(code,id);
+    }
     if (id.endsWith('mlg-resources.opml')) {
       obj = mlgResources(code,id);
     }

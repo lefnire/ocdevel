@@ -1,3 +1,4 @@
+// import * as b24 from './20240424-code-ai-for-adhd.mdx';
 import * as b23 from './20240228-walking-desks-incline.mdx';
 import * as b22 from './20240131-vr-ar-work.mdx';
 import * as b21 from './20240117-pomodoro-thinkers.mdx';
@@ -24,12 +25,15 @@ import * as b1 from './jobpig/0'
 import {BlogPost} from "../../components/blog/utils.tsx";
 
 export default [
+  // pinned
+  b18,
+  b19,
+
+  // b24,
   b23,
   b22,
   b21,
   b20,
-  b19,
-  b18,
   b17,
   b16,
   b15,

@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
 import moment from "moment/moment";
-import {BlogPost, fmt} from "./utils.tsx";
+import {BlogPost, fmt, PostDate} from "./utils.tsx";
 import {renderBlogPost} from "../utils/markdown.tsx";
 
 interface Teaser {
@@ -18,11 +18,17 @@ export function Teaser({p}: BlogPost) {
     </div>
   }
 
-  return <Card key={p.id} className='mb-3 card-post'>
+  return <Card
+    key={p.id}
+    className={`mb-3 card-post ${p.pinned ? 'card-pinned' : ''}`}
+  >
     <Card.Body>
-      <Card.Title><Link to={'/blog/' + p.id}>{p.title}</Link></Card.Title>
+      <Card.Title>
+        {p.pinned && <span className='float-end'>📌</span>}
+        <Link to={'/blog/' + p.id}>{p.title}</Link>
+      </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">
-        {moment(p.date).format(fmt)}
+        <PostDate p={p} />
       </Card.Subtitle>
       {renderContent()}
       <Link to={'/blog/' + p.id}>Read More</Link>
