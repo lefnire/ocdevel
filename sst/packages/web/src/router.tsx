@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
         { path: "recommend", element: <Lazy c={Recommend} />},
         { path: ":id", element: <Lazy c={EpisodeRoute} />},
       ]},
+      { path: "llh", element: <Lazy c={Podcasts} />, children: [
+        { index: true, element: <Lazy c={Episodes} />},
+        { path: ":id", element: <Lazy c={EpisodeRoute} />},
+      ]},
       { path: "contact", element: <Lazy c={Contact} />},
 
       { path: "podcasts/*", element: <Navigate to="/mlg" />},

@@ -43,9 +43,9 @@ export default function Home() {
         <Card.Title>Podcasts</Card.Title>
         <Card.Subtitle className='mb-2'>
           <Link to='/mlg'>MLG</Link>&nbsp;&bull;&nbsp;
-          <Link to='/mlg'>MLA</Link>
+          <Link to='/mlg'>LLH</Link>
         </Card.Subtitle>
-        <p>I teach machine learning fundamental concepts / theory via a popular podcast <Link to='/mlg'>Machine Learning Guide</Link>. I also teach the applied / practicals via an exclusive podcast <Link to='/mlg'>Machine Learning Applied.</Link></p>
+        <p>I teach machine learning fundamental concepts, theory, and practicals via a popular podcast <Link to='/mlg'>Machine Learning Guide</Link>. I teach life hacks - tips and tricks that have helped me succeed - in my new podcast <Link to="/llh">Lefnire's Life Hacks</Link>.</p>
       </Col>
     </Row>
     <hr />

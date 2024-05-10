@@ -6,10 +6,10 @@ import padStart from "lodash/padStart";
 import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
-import {BackButton} from "../../utils";
+import {BackButton, usePodcastKey} from "../../utils";
 import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from './Resources'
-import {episodesObj, mlg} from "../../../content/podcast";
+import {episodesObj, llhEpisodesObj, mlg} from "../../../content/podcast";
 import {episodes as episodeResources, flat} from '../../../content/podcast/resources'
 import Badge from "react-bootstrap/Badge";
 
@@ -78,8 +78,10 @@ function Markdown_({Content, teaser=false}) {
 }
 
 export function Episode({e, teaser, i=null}) {
+  const podcastKey = usePodcastKey()
   const num = padStart(e.episode, 3, '0');
-  const title = `${e.mla ? 'MLA' : 'MLG'} ${num} ${e.title}`;
+  const titleStart = podcastKey === "llh" ? "LLH" : e.mla ? "MLA" : "MLG"
+  const title = `${titleStart} ${num} ${e.title}`;
 
   function renderDate() {
     if (!(e.created || e.date)) {
@@ -96,7 +98,7 @@ export function Episode({e, teaser, i=null}) {
   }
 
   function renderTeaser() {
-    const link = `/mlg/${e.id}`
+    const link = `/${podcastKey}/${e.id}`
 
     return <Card className={`mb-3 card-post`}>
       <Card.Body>
@@ -128,14 +130,17 @@ export function Episode({e, teaser, i=null}) {
   }
 
   function renderFull() {
-    const resources = episodeResources[e.mla ? 'mla' : 'mlg']?.[e.episode]
+    const resources = (
+        podcastKey === "llh" ? null
+        : episodeResources[e.mla ? 'mla' : 'mlg']?.[e.episode]
+    )
     const items = [
       (e.body && {
         title: "Show Notes",
         body: <>
-          <Alert variant="light">
-            <Link to="/blog/20240111-tylers-setup">Tyler's battle station</Link>
-          </Alert>
+          {podcastKey !== "llh" && <Alert variant="success">
+            Support my new podcast: <Link to="/llh">Lefnire's Life Hacks</Link>
+          </Alert>}
           <Markdown_ Content={e.body} />
         </>
       }),
@@ -157,7 +162,7 @@ export function Episode({e, teaser, i=null}) {
         <title>{e.title} | Machine Learning Guide</title>
         {e.teaser && <meta name="description" Content={e.teaser} />}
       </Helmet>
-      <BackButton to="/mlg" />
+      <BackButton to={podcastKey === "llh" ? "/llh" : "/mlg"} />
       <Card>
         <Card.Body>
 
@@ -184,6 +189,7 @@ export function Episode({e, teaser, i=null}) {
 
 export default function EpisodeRoute() {
   const {id} = useParams()
-  const e = episodesObj[id];
+  const podcastKey = usePodcastKey()
+  const e = podcastKey === "llh" ? llhEpisodesObj[id] : episodesObj[id]
   return <Episode e={e} teaser={false} />
 }

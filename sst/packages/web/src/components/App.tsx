@@ -45,7 +45,10 @@ export default function App() {
           <Nav.Link>Blog</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/mlg" exact>
-          <Nav.Link>Podcast</Nav.Link>
+          <Nav.Link>MLG</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/llh" exact>
+          <Nav.Link>LLH</Nav.Link>
         </LinkContainer>
         <LinkContainer to='/contact' exact>
           <Nav.Link>Contact</Nav.Link>

@@ -1,4 +1,4 @@
-import React, {useCallback, useLayoutEffect, useEffect, useState} from "react";
+import React, {useCallback, useLayoutEffect, useEffect, useState, useMemo} from "react";
 import filter from 'lodash/filter'
 import times from 'lodash/times'
 import Button from 'react-bootstrap/Button'
@@ -7,12 +7,17 @@ import useStore from "../../../store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
 
-import {episodes} from "../../../content/podcast";
+import {episodes, llhEpisodes} from "../../../content/podcast";
 import {Episode} from './Episode';
-
-const sortedEps = sortBy(episodes, e => e.created)
+import {usePodcastKey} from "../../utils.tsx";
 
 export default function Episodes() {
+  const podcastKey = usePodcastKey()
+  const sortedEps = useMemo(() => {
+    const episodes_ = podcastKey === "llh" ? llhEpisodes : episodes
+    return sortBy(episodes_, e => e.created)
+  }, [podcastKey])
+
   const [page, setPage] = useState(0)
 
   const showMla = useStore(state => state.mla)
@@ -58,7 +63,7 @@ export default function Episodes() {
         onClick={toggleNewFirst}>
         {newFirst ? <>New&rarr;Old</> : <>Old&rarr;New</>}
       </Button>
-      <ButtonGroup className='me-2'>
+      {podcastKey === "mlg" && <ButtonGroup className='me-2'>
         <Button
           {...btns_(showMlg)}
           onClick={setMlg}>
@@ -69,7 +74,7 @@ export default function Episodes() {
           onClick={setMla}>
           MLA
         </Button>
-      </ButtonGroup>
+      </ButtonGroup>}
     </div>
   }
 

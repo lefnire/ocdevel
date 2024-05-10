@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -11,7 +11,7 @@ import {mlg} from '../../content/podcast';
 
 
 import {LinkContainer} from "react-router-bootstrap";
-import {Lazy} from "../utils"
+import {Lazy, usePodcastKey} from "../utils"
 const Recommend = () => import('./Content/Recommend')
 const EpisodeRoute = () => import('./Content/Episode')
 const ResourcesTree = () => import('./Content/Resources')
@@ -20,30 +20,21 @@ const Filters = () => import("./Sidebar/Filters")
 const About = () => import("./Sidebar/About")
 // import {useQuery} from "../../utils";
 
-function FiltersRouter() {
-  const location = useLocation()
-
-  if (location.pathname.startsWith("/mlg/resource")) {
-    return <Lazy c={Filters} />
-  }
-  return <Lazy c={About} />
-}
 
 export default function Series() {
+  const podcastKey = usePodcastKey()
   const location = useLocation()
-  const isResources = location.pathname === '/mlg/resources'
 
-  const col = isResources ?
-    {left: {xs:12, md:4}, right: {xs:12, md:8}} :
-    {left: {xs:12, md:5}, right: {xs:12, md:7}}
-  return <>
-    <Helmet>
-      <title>Machine Learning Guide Podcast</title>
-      <meta name="description" content={mlg.teaser} />
-    </Helmet>
-    <Navbar bg='dark' variant='dark' className="border-bottom justify-content-center secondary-nav">
+  const isResources = location.pathname === '/mlg/resources'
+    const col = isResources ?
+      {left: {xs:12, md:4}, right: {xs:12, md:8}} :
+      {left: {xs:12, md:5}, right: {xs:12, md:7}}
+
+  function renderNavBar() {
+    if (podcastKey === "llh") { return null; }
+    return <Navbar bg='dark' variant='dark' className="border-bottom justify-content-center secondary-nav">
       <Nav>
-        <LinkContainer to="/mlg" exact>
+        <LinkContainer to={"/" + podcastKey} exact>
           <Nav.Link>Episodes</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/mlg/resources">
@@ -51,13 +42,36 @@ export default function Series() {
         </LinkContainer>
       </Nav>
     </Navbar>
+  }
+
+  function renderSidebar() {
+    if (location.pathname.startsWith("/mlg/resource")) {
+      return <Lazy c={Filters} />
+    }
+    return <Lazy c={About} />
+  }
+
+  return <>
+    <Helmet>
+      { podcastKey === "mlg" ? <title>Machine Learning Guide Podcast</title>
+      : podcastKey === "llh" ? <title>Lefnire's Life Hacks</title>
+      : null }
+
+      <meta name="description" content={mlg.teaser} />
+    </Helmet>
+
+    {renderNavBar()}
 
     <Container fluid className="podcasts">
-      {isResources && <div className='mb-3 mlg-update ps-3 small'>These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. Also see <Link to="/blog/20240111-tylers-setup">hardware / software picks</Link>. [Updated 2020-10-28]</div>}
+      {isResources && (
+        <div className='mb-3 mlg-update ps-3 small'>
+          These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. Also see <Link to="/blog/20240111-tylers-setup">hardware / software picks</Link>. [Updated 2020-10-28]
+        </div>
+      )}
       <Row>
         <Col {...col.left} className='sidebar'>
           <Row>
-            <FiltersRouter />
+            {renderSidebar()}
           </Row>
         </Col>
         <Col {...col.right}>

@@ -15,13 +15,14 @@ import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
 import {SiRss} from '@react-icons/all-files/si/SiRss'
 import {SiStitcher} from '@react-icons/all-files/si/SiStitcher'
 import {icons, Popover_} from "../utils";
-import {mlg} from "../../../content/podcast";
+import {mlg, llh} from "../../../content/podcast";
 import scout from "../../../assets/MLG-Option-1.jpg";
 import deptLogo from "../../../assets/dept.jpg";
 import {IconButton} from "../../../utils";
 import useStore from "../../../store/episodes";
 import {FaBusinessTime} from "@react-icons/all-files/fa/FaBusinessTime";
 import {FaUserPlus} from "@react-icons/all-files/fa/FaUserPlus";
+import {usePodcastKey} from "../../utils.tsx";
 
 function AboutSection({children, title, show, toggle, top=false}) {
   return <>
@@ -51,6 +52,8 @@ function ShowMoreLess({podcast}) {
 }
 
 function Links() {
+  const key = usePodcastKey()
+  if (key === "llh") { return null; }
   const common = {
     div: {xs: 12, md: 6, className: 'p-1'},
   }
@@ -109,16 +112,44 @@ function Links() {
     </Popover_>
   }
 
-  return <Row>
-    <SuggestEpisode />
-    <MailingList />
-    <PodcastProject />
-    <Community />
-  </Row>
+  return <>
+    <hr />
+    <Row>
+      <SuggestEpisode />
+      <MailingList />
+      <PodcastProject />
+      <Community />
+    </Row>
+  </>
 }
 
-function MLGLinks() {
+function PodcastLinks() {
   const btn = {size: 'sm', variant: 'light', target: '_blank'}
+  const key = usePodcastKey()
+
+  if (key === "llh") {
+    return <>
+      <ButtonGroup className='d-block' vertical>
+        <IconButton
+          {...btn}
+          href="https://podcasts.apple.com/us/podcast/lefnires-life-hacks/id1745611207"
+          Icon={FaItunesNote}
+        >iTunes</IconButton>
+        <IconButton
+          {...btn}
+          href="https://open.spotify.com/show/1tb7GRSH9m6OyP93M0xZAg?si=ced0307bfcb64ade"
+          Icon={RiSpotifyLine}
+        >Spotify</IconButton>
+        <IconButton
+          {...btn}
+          href="https://feeds.libsyn.com/528247/rss"rel="nofollow"
+          Icon={SiRss}
+        >Custom (RSS)</IconButton>
+      </ButtonGroup>
+      <ShowMoreLess podcast={llh} />
+    </>
+  }
+
   return <>
     <ButtonGroup className='d-block' vertical>
       <IconButton
@@ -151,34 +182,18 @@ function MLGLinks() {
   </>
 }
 
-function MLGImage() {
+function PodcastImage() {
   // git-blame: links underneath; click to show
+  const key = usePodcastKey()
+  const img = key === "llh" ? <img src="/llh290.png" alt="Lefnire's Life Hacks"/>
+      // TODO use public link instead of importing image?
+      : <img src={scout} alt="Machine Learning Guide"/>
   return <div>
     <div className="logo mb-3">
-      <img src={scout} alt="Machine Learning Guide" />
+      {img}
     </div>
     {/*<MLGLinks />*/}
   </div>
-}
-
-// git-blame: dept links
-
-function Podcasts() {
-  const show = useStore(s => s.showAbout)
-  const toggle = useStore(s => s.toggleAbout)
-
-  return <AboutSection title='About' top={true} show={show} toggle={toggle}>
-    <Row>
-      <Col>
-        <MLGImage />
-      </Col>
-      <Col>
-        <MLGLinks />
-      </Col>
-    </Row>
-    <hr />
-    <Links />
-  </AboutSection>
 }
 
 function Updates() {
@@ -208,4 +223,28 @@ export default function About() {
       <Updates />
     </Card>
   </Col>
+}
+
+// git-blame: dept links
+
+function Podcasts() {
+  const show = useStore(s => s.showAbout)
+  const toggle = useStore(s => s.toggleAbout)
+
+  return <AboutSection
+      title='About'
+      top={true}
+      show={show}
+      toggle={toggle}
+  >
+    <Row>
+      <Col>
+        <PodcastImage />
+      </Col>
+      <Col>
+        <PodcastLinks />
+      </Col>
+    </Row>
+    <Links />
+  </AboutSection>
 }

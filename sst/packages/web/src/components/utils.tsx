@@ -1,5 +1,5 @@
 import React, {Suspense, useCallback} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
@@ -33,9 +33,16 @@ const Modal_ = <Modal show={true} animation={false}>
   </Modal.Header>
 </Modal>
 
-export function Lazy ({c}) {
+type Lazy = { c: any, props?: object }
+export function Lazy ({c, props={}}: Lazy) {
   const C = React.lazy(c)
   return <Suspense fallback={Modal_}>
-    <C />
+    <C {...props} />
   </Suspense>
+}
+
+export function usePodcastKey() {
+  const location = useLocation();
+  const splits = location.pathname.split("/").filter(Boolean)
+  return splits[0]
 }

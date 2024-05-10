@@ -47,13 +47,16 @@ export default function Contact() {
   const projects = <div>
     <Card.Title>Projects</Card.Title>
     <Card.Body>
-      <h6><FaCouch /> <a href="https://gnothiai.com" target="_blank">Gnothi</a></h6>
-      <p>An personal journal that uses AI to provide insights & resources. I created and maintain this open source project.</p>
-      <h6><FaDragon /> <a href="https://habitica.com" target="_blank">Habitica</a></h6>
+      <h6><FaCouch/> <a href="https://gnothiai.com" target="_blank">Gnothi</a></h6>
+      <p>An personal journal that uses AI to provide insights & resources. I created and maintain this open source
+        project.</p>
+      <h6><FaDragon/> <a href="https://habitica.com" target="_blank">Habitica</a></h6>
       <p>A gamified habit tracker. I created Habitica, but am no longer with the company.</p>
-      <h6><FaMicrophone /> <Link to="/mlg">Machine Learning Guide</Link></h6>
+      <h6><FaMicrophone/> <Link to="/mlg">Machine Learning Guide</Link></h6>
       <p>I teach the fundamentals of machine learning and artificial intelligence over a podcast.</p>
-      <h6><FaGithub /> More</h6>
+      <h6><FaMicrophone/> <Link to="/llh">Lefnire's Life Hacks</Link></h6>
+      <p>I teach useful efficiencies for productivity and health living in this podcast.</p>
+      <h6><FaGithub/> More</h6>
       <p>See my Github and LinkedIn profiles for more projects.</p>
     </Card.Body>
   </div>
