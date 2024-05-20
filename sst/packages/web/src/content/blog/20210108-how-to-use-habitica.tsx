@@ -218,6 +218,7 @@ function ClassCalculator() {
 }
 
 const body = <>
+  <p>[Update 2024-05-19] I have a {l("/llh/2", "podcast episode for this here.")}</p>
   <p>This is {l("/contact", "lefnire")}'s usage guide to Habitica. I created Habitica but am no longer with the company. Nonetheless, I've rarely missed a day since 2012, and have learned a <em>lot</em> about psychology since then through various projects and books, and have integrated the lessons and practices into my Habitica system. This system is a tad complex, but once you get dialed it can make Habitica truly improve your life. If you're just getting started, start here. If you're a seasoned pro, read this as it might change your play style. It's like an "ultimate build guide" or "speed runner guide" for RPGs.</p>
 
   <p>Note: this guide is incomplete. Like it in Disqus below to let me know it's worth completing; then I'll get my butt in gear.</p>

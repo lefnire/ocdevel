@@ -65,7 +65,7 @@ export default function Series() {
     <Container fluid className="podcasts">
       {isResources && (
         <div className='mb-3 mlg-update ps-3 small'>
-          These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. Also see <Link to="/blog/20240111-tylers-setup">hardware / software picks</Link>. [Updated 2020-10-28]
+          These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. Also see <Link to="/llh">productivity picks</Link>. [Updated 2020-10-28]
         </div>
       )}
       <Row>

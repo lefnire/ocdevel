@@ -57,6 +57,7 @@ import mla020 from './mla/020'
 import llh001 from './llh/001'
 import llh002 from './llh/002'
 import llh003 from './llh/003'
+import llh004 from './llh/004'
 
 export const episodes = map([
   mlg001,
@@ -146,6 +147,7 @@ export const llhEpisodes = [
   llh001,
   llh002,
   llh003,
+  llh004,
 ]
 export const llhEpisodesObj = keyBy(llhEpisodes, 'id')
 export const llh = {
