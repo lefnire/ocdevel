@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import {FaDiscord} from '@react-icons/all-files/fa/FaDiscord'
+import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube'
 import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope'
 import {FaGithub} from '@react-icons/all-files/fa/FaGithub'
 import {FaItunesNote} from '@react-icons/all-files/fa/FaItunesNote'
@@ -132,6 +133,11 @@ function PodcastLinks() {
       <ButtonGroup className='d-block' vertical>
         <IconButton
           {...btn}
+          href="https://www.youtube.com/playlist?list=PLxSuxy9i_cj2XvfWqGsr5L6Jtlm-wc6lA"
+          Icon={FaYoutube}
+        >YouTube</IconButton>
+        <IconButton
+          {...btn}
           href="https://podcasts.apple.com/us/podcast/lefnires-life-hacks/id1745611207"
           Icon={FaItunesNote}
         >iTunes</IconButton>
@@ -142,7 +148,7 @@ function PodcastLinks() {
         >Spotify</IconButton>
         <IconButton
           {...btn}
-          href="https://feeds.libsyn.com/528247/rss"rel="nofollow"
+          href="https://feeds.libsyn.com/528247/rss" rel="nofollow"
           Icon={SiRss}
         >Custom (RSS)</IconButton>
       </ButtonGroup>
@@ -152,6 +158,11 @@ function PodcastLinks() {
 
   return <>
     <ButtonGroup className='d-block' vertical>
+      <IconButton
+        {...btn}
+        href="https://www.youtube.com/playlist?list=PLxSuxy9i_cj1EwQIUFJUYonQ1AU3JVVcS"
+        Icon={FaYoutube}
+      >YouTube</IconButton>
       <IconButton
         {...btn}
         href="https://itunes.apple.com/us/podcast/machine-learning-guide/id1204521130"

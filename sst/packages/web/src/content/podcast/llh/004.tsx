@@ -9,7 +9,7 @@ const ep = {
   body: String.raw`
 Tricks for getting to sleep easier. No digital after 8pm, no caffeine after 2pm, no alcohol ever. Magnesium. Exercise. 
 
-Sleep Buds II (discontinued) or [Sleep A20](https://www.amazon.com/dp/B0CRGR2TS5?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.2AYNY2RAOHJZM&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.2AYNY2RAOHJZM_1715704771136)
+Sleep Buds II (discontinued) or [Sleep A20](https://amzn.to/4eodQqr)
 
 Meditate to fall asleep. Count sheep or breaths, body scan. Alternatively: read. [Kindle](https://amzn.to/3wrqALP) or [Onyx Boox](https://amzn.to/3UXWVDy)`
 }
