@@ -17,6 +17,7 @@ function ResourcesFlat({nids}) {
   let seen = {}
   function render(id) {
     const full = flat[id]
+    if (!full) { return null }
     if (!full.pick) {
       if (seen[id]) {return null}
       seen[id] = true
