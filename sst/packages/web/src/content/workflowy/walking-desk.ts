@@ -3,10 +3,12 @@ import xmlJs from 'xml-js'
 import reduce from 'lodash/reduce'
 import crypto from 'crypto'
 import {decode} from 'html-entities'
+import {walkingDeskLinks} from "./walking-desk-links.ts";
 
 // export function opmlPlugin({ references, state }) {
 export function transform(code, id) {
   const fileContent = fs.readFileSync(id, 'utf8');
+  // Replace any link keys with their actual URLs before parsing XML
   const res = xmlJs.xml2js(fileContent, {compact: true});
   const outline = res.opml.body.outline
   return parseTree(outline)
@@ -16,8 +18,14 @@ export function transform(code, id) {
 // FIXME this regex came from chatgpt, and is absolutely bonkers. There's gotta be something simpler
 const reTags = /(?<!:\/\/|\w)\#(\S+?)(?=\s|$|\.|,|;|\?|!)/g
 
-function addTargetBlank(html) {
-  return html.replace(/<a\s+(?!.*?target=['"]_blank['"])([^>]+)>/gi, '<a $1 target="_blank">');
+function fixLinks(html) {
+  const targetBlank = html.replace(/<a\s+(?!.*?target=['"]_blank['"])([^>]+)>/gi, '<a $1 target="_blank">');
+  const keysToHref = targetBlank.replace(/key:\/\/[^"']+/g, (match) => {
+    return walkingDeskLinks[match]
+      ? walkingDeskLinks[match]
+      : match
+  });
+  return keysToHref
 }
 
 function parseTree(tree) {
@@ -25,10 +33,10 @@ function parseTree(tree) {
 
   let text = tree._attributes?.text || ""
   text = decode(text)
-  text = addTargetBlank(text)
+  text = fixLinks(text)
 
   let note = tree._attributes?._note || ""
-  note = addTargetBlank(note)
+  note = fixLinks(note)
 
   // pull out tags
   let tags = text.match(reTags)
