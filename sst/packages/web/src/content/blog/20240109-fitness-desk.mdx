@@ -13,7 +13,7 @@ export const teaser = "Comparison of treadmill desk options. Under-desk walking 
 My picks change with research and testing. These are my current picks, scroll down for full details. Video lags behind picks, but is still worth watching for general info.
 
 
-<div class="d-flex flex-wrap gap-2 mb-4">
+<div className="d-flex flex-wrap gap-2 mb-4">
   <div className="card" style={{ minWidth: '300px', flex: '1' }}>
     <div className="card-body">
       <h6 className="card-subtitle mb-2 text-body-secondary">Treadmill</h6>
@@ -76,13 +76,15 @@ My picks change with research and testing. These are my current picks, scroll do
       }}
       src="https://www.youtube.com/embed/pJXnnhJsrlw?si=YUMsTIdygyuIuzip" 
       title="YouTube video player" 
-      frameborder="0" 
+      frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      allowfullscreen
+      allowFullScreen
     ></iframe>
   </div>
 </div>
 
 <Workflowy wf={wf} />
+
 ---
+
 <BattleStation />

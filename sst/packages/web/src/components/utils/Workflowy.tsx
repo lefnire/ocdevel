@@ -1,4 +1,3 @@
-
 import { FaRegPlusSquare as ExpandIcon } from "react-icons/fa";
 import { FaRegMinusSquare as CollapseIcon } from "react-icons/fa";
 
@@ -47,7 +46,7 @@ function AppliedTags() {
   const [anyTags, tags] = useStore(store => [store.anyTags, store.tags], shallow)
   if (!anyTags) { return null }
   const appliedTags = Object.entries(tags).filter(([k, v]) => v).map(([k, v]) => (
-    <Tag name={k} />
+    <Tag key={k} name={k} />
   ))
   return <div className="card">
     <div className="card-body">
@@ -126,7 +125,7 @@ function Node(node: Node) {
         // style={{wordWrap: "break-word", whiteSpace: "normal"}}
       />
       <div className='d-inline'>
-        {Object.keys(tags).map(k => <Tag name={k} />)}
+        {Object.keys(tags).map(k => <Tag key={k} name={k} />)}
       </div>
     </div>
     <div
