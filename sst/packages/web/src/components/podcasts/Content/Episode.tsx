@@ -140,7 +140,7 @@ export function Episode({e, teaser, i=null}) {
         title: "Show Notes",
         body: <>
           {podcastKey !== "llh" && <Alert variant="success">
-            Support my new podcast: <Link to="/llh">Lefnire's Life Hacks</Link>
+            Support this show by trying a <Link to="/blog/20240109-fitness-desk">walking desk</Link>!
           </Alert>}
           <Markdown_ Content={e.body} />
         </>
