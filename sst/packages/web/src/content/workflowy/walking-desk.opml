@@ -7,14 +7,6 @@
   </head>
   <body>
     <outline text="Fitness Desk">
-      <outline text="&lt;b&gt;Picks&lt;/b&gt;">
-        <outline text="&lt;b&gt;Treadmill: &lt;a href=&quot;key://urevo_3s&quot;&gt;Urevo 3S&lt;/a&gt;&lt;/b&gt;" _note="Incline @ 3, speed @ 2mph&#10;">
-          <outline text="&lt;b&gt;&lt;a href=&quot;key://mat&quot;&gt;Mat&lt;/a&gt; &lt;/b&gt;" _note="Prevent floor damage, protect knees&#10;" />
-          <outline text="&lt;b&gt;&lt;a href=&quot;key://lube&quot;&gt;Lube&lt;/a&gt;&lt;/b&gt;" _note="Apply once a week" />
-        </outline>
-        <outline text="&lt;b&gt;Desk: &lt;a href=&quot;key://flexispot&quot;&gt;FlexiSpot&lt;/a&gt;&lt;/b&gt;" />
-        <outline text="&lt;b&gt;Shoes: Hoka (&lt;a href=&quot;key://hoka_men&quot;&gt;Men&lt;/a&gt;, &lt;a href=&quot;key://hoka_women&quot;&gt;Women&lt;/a&gt;)&lt;/b&gt;" />
-      </outline>
       <outline text="Why walking desk">
         <outline text="Focus" _note="Unlike bikes &amp; steppers, treadmills move &lt;i&gt;you&lt;/i&gt; (just keep up), and satisfy the mind jitters. It &lt;i&gt;really&lt;/i&gt; helps with ADHD; one of the only things that works for me (along with the &lt;a href=&quot;https://ocdevel.com/blog/20240117-pomodoro-thinkers&quot;&gt;Modified Pomodoro&lt;/a&gt;). &#10;" />
         <outline text="Energy" _note="Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. You'll need less caffeine.&#10;" />

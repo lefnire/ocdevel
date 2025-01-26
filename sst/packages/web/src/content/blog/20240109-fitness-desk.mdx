@@ -6,13 +6,58 @@ export const pinned = true
 export const affiliate = true
 import wf from '../workflowy/walking-desk.opml'
 import {BattleStation} from "./utils.tsx";
+import {walkingDeskLinks} from '../workflowy/walking-desk-links'
 import {Workflowy} from '../../components/utils/Workflowy.tsx'
 export const teaser = "Comparison of treadmill desk options. Under-desk walking pads: Egofit, Urevo, GoYouth, GoPlus, WalkingPad, Lifespan, iMovR. A video showing how and when to use each option. Links to stand/sit desks, monitor arms, and ergonomic peripherals."
 
-<span className="text-bg-warning">Update 2025-01-24</span> See links below, as my picks change with time / testing / research. Video lags behind picks, but is still worth watching for general information.
+My picks change with research and testing. These are my current picks, scroll down for full details. Video lags behind picks, but is still worth watching for general info.
+
+
+<div class="list-group mb-2">
+  <div className="list-group-item list-group-item-action">
+    <div className="d-flex w-100 justify-content-between">
+      <div>
+        <div>
+          <a
+            href={walkingDeskLinks["key://urevo_3s"]}
+            target="_blank"
+            className="btn btn-primary"
+          >Treadmill</a>
+        </div>
+        <div><small className="text-body-secondary ms-2">Urevo 3S. Set incline to 3, speed to 2</small></div>
+        <div><a href={walkingDeskLinks["key://mat"]} target="_blank" className="btn btn-outline-primary">Mat</a></div>
+        <div><small className="text-body-secondary ms-2">Urevo treadmill mat. Prevents floor damage, protects knees</small></div>
+        <div><a href={walkingDeskLinks["key://lube"]} target="_blank" className="btn btn-outline-primary">Lube</a></div>
+        <div><small className="text-body-secondary ms-2">Godora silicone treadmill lubricant. Apply every 50hrs</small></div>
+      </div>
+      <small>Treadmill</small>
+    </div>
+  </div>
+  <div className="list-group-item list-group-item-action">
+    <div className="d-flex w-100 justify-content-between">
+      <div>
+        <div>
+          <a
+            href={walkingDeskLinks["key://flexispot"]}
+            target="_blank"
+            className="btn btn-outline-primary"
+          >Desk</a>
+        </div>
+        <div><small className="text-body-secondary ms-2">FlexiSpot electric sit/stand</small></div>
+        <div>
+            <a href={walkingDeskLinks["key://hoka_women"]} target="_blank" className="btn btn-outline-primary me-1">Shoes:Women</a>
+            <a href={walkingDeskLinks["key://hoka_men"]} target="_blank" className="btn btn-outline-primary">Shoes:Men</a>
+        </div>
+        <div><small className="text-body-secondary ms-2">Hoka Bondi 9 walking shoes</small></div>
+      </div>
+      <small>Other</small>
+    </div>
+  </div>
+</div>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pJXnnhJsrlw?si=YUMsTIdygyuIuzip" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
----
+
+
 <Workflowy wf={wf} />
 ---
 <BattleStation />
