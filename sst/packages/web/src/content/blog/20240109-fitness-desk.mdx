@@ -13,44 +13,45 @@ export const teaser = "Comparison of treadmill desk options. Under-desk walking 
 My picks change with research and testing. These are my current picks, scroll down for full details. Video lags behind picks, but is still worth watching for general info.
 
 
-<div class="list-group mb-2">
-  <div className="list-group-item list-group-item-action">
-    <div className="d-flex w-100 justify-content-between">
+<div class="d-flex flex-wrap gap-2 mb-4">
+  <div className="card" style={{ minWidth: '300px', flex: '1' }}>
+    <div className="card-body">
+      <h6 className="card-subtitle mb-2 text-body-secondary">Treadmill</h6>
       <div>
-        <div>
-          <a
-            href={walkingDeskLinks["key://urevo_3s"]}
-            target="_blank"
-            className="btn btn-primary"
-          >Treadmill</a>
-        </div>
-        <div><small className="text-body-secondary ms-2">Urevo 3S. Set incline to 3, speed to 2</small></div>
-        <div><a href={walkingDeskLinks["key://mat"]} target="_blank" className="btn btn-outline-primary">Mat</a></div>
-        <div><small className="text-body-secondary ms-2">Urevo treadmill mat. Prevents floor damage, protects knees</small></div>
-        <div><a href={walkingDeskLinks["key://lube"]} target="_blank" className="btn btn-outline-primary">Lube</a></div>
-        <div><small className="text-body-secondary ms-2">Godora silicone treadmill lubricant. Apply every 50hrs</small></div>
+        <a
+          href={walkingDeskLinks["key://urevo_3s"]}
+          target="_blank"
+          className="btn btn-primary"
+        >Treadmill</a>
+        <div><small className="text-body-secondary">Urevo 3S. Set incline to 3, speed to 2</small></div>
       </div>
-      <small>Treadmill</small>
+      <div className="mt-2">
+        <a href={walkingDeskLinks["key://mat"]} target="_blank" className="btn btn-outline-primary">Mat</a>
+        <div><small className="text-body-secondary">Urevo treadmill mat. Prevents floor damage, protects knees</small></div>
+      </div>
+      <div className="mt-2">
+        <a href={walkingDeskLinks["key://lube"]} target="_blank" className="btn btn-outline-primary">Lube</a>
+        <div><small className="text-body-secondary">Godora silicone treadmill lubricant. Apply every 50hrs</small></div>
+      </div>
     </div>
   </div>
-  <div className="list-group-item list-group-item-action">
-    <div className="d-flex w-100 justify-content-between">
+
+  <div className="card" style={{ minWidth: '300px', flex: '1' }}>
+    <div className="card-body">
+      <h6 className="card-subtitle mb-2 text-body-secondary">Other</h6>
       <div>
-        <div>
-          <a
-            href={walkingDeskLinks["key://flexispot"]}
-            target="_blank"
-            className="btn btn-outline-primary"
-          >Desk</a>
-        </div>
-        <div><small className="text-body-secondary ms-2">FlexiSpot electric sit/stand</small></div>
-        <div>
-            <a href={walkingDeskLinks["key://hoka_women"]} target="_blank" className="btn btn-outline-primary me-1">Shoes:Women</a>
-            <a href={walkingDeskLinks["key://hoka_men"]} target="_blank" className="btn btn-outline-primary">Shoes:Men</a>
-        </div>
-        <div><small className="text-body-secondary ms-2">Hoka Bondi 9 walking shoes</small></div>
+        <a
+          href={walkingDeskLinks["key://flexispot"]}
+          target="_blank"
+          className="btn btn-outline-primary"
+        >Desk</a>
+        <div><small className="text-body-secondary">FlexiSpot electric sit/stand</small></div>
       </div>
-      <small>Other</small>
+      <div className="mt-2">
+        <a href={walkingDeskLinks["key://hoka_women"]} target="_blank" className="btn btn-outline-primary me-1">Shoes:Women</a>
+        <a href={walkingDeskLinks["key://hoka_men"]} target="_blank" className="btn btn-outline-primary">Shoes:Men</a>
+        <div><small className="text-body-secondary">Hoka Bondi 9 walking shoes</small></div>
+      </div>
     </div>
   </div>
 </div>
