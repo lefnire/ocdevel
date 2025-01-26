@@ -16,6 +16,7 @@ import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
 import {TLDR} from './utils'
+import {Link} from "react-router-dom";
 
 export const teaser = "As Habitica's creator, I've refined my approach to using the system over 10 years. This post teaches you how to get the most out of improving your habits and behavior through Habitica. It includes a calculator for choosing the best class (warrior, rogue, mage, healer) for your play-style."
 
@@ -332,8 +333,9 @@ const body = <>
     </blockquote>*/}
   </Accordion_>
 </Accordion>
-</>
 
+  <div className='mt-2'>Random aside: besides gamifying life, my biggest life-hack is <Link to="/blog/20240109-fitness-desk">walking desks</Link>. Try it out!</div>
+</>
 export const id = '20210108-how-to-use-habitica'
 export const date = '2021-01-08'
 export const title = "How Habitica's Creator Uses Habitica"
