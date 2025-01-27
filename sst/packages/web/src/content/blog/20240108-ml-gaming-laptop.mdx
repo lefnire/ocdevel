@@ -1,18 +1,15 @@
 export const id = '20240108-ml-gaming-laptop'
 export const date = '2024-01-08'
+export const updated = '2025-01-27'
 export const title = "Laptop for machine learning and gaming"
 export const teaser = "My recommended laptop for anyone who games, or who works in machine learning / AI, or both. I'll modify this post any time one contender becomes more compelling than another."
 
-I've updated my laptop recommendation since my last post (which you can see at the bottom, in case it's useful). I now recommend the [Legion Pro series](https://www.lenovo.com/us/en/c/laptops/legion-laptops/legion-pro-series), and after-market thermal paste is optional. I got my Legion via [Antonline | Ebay](https://www.ebay.com/str/antonline) for $1400 on 2022-11-11.
+I strongly recommend the [Legion Pro series](https://www.lenovo.com/us/en/c/laptops/legion-laptops/legion-pro-series). Check [gaminglaptop.deals](https://gaminglaptop.deals/) against [brand quality](https://www.reddit.com/r/GamingLaptops/comments/1hbvrvo/this_is_how_often_a_product_of_this_brand_in_the/). Also get this [cooling pad](https://amzn.to/40qoh6s) to control temps (which impacts performance) and protect from dust.
 
-If you're buying it for gaming, get as high a GPU as you can afford in the 40-series (eg 4080, 4090, etc). Always target Nvidia and Intel, never AMD. I've faced niche AMD CPU compatibility issues. And for GPU, the 40-series has DLSS which offers AI upscaling (DLSS2) and frame interpolation (DLSS3), which improve gaming performance significantly. It also opens up performance improvements to software (AI) instead of hardware, so your laptop can continue to improve as Nvidia drivers release. You'll be limited to DLSS2-only if you buy a 30-series Nvidia; so if you plan to game, get a 40-series.
+If you're buying it *only* for gaming, get as high a GPU as you can afford in the Nvidia 40-series, anything 4070 and above. The 50-series raster gains are marginal (low bang-for-buck). And DLSS4 (the main performance marketing of the 50-series launch) is backwards-compatible to 40. This offers AI upscaling and multi-frame generation, which improve gaming performance significantly. It opens performance improvements to software instead of hardware, so your laptop can continue to improve as Nvidia drivers release. You'll be limited in DLSS capabilities if you buy a 30-series Nvidia; so if you plan to game, get a 4070+. I recommend a 4080. Nvidia is recommended over AMD due to DLSS.
 
-If you're buying the laptop for ML training AND gaming, follow the above advice as well.
+If you're buying the laptop for ML training *and* gaming, get 4090. With ML, VRAM is more essential than compute, and the top tier of each series (xx90) has the highest VRAM. Nvidia is required - ML frameworks are Nvidia-first, through CUDA and CuDNN.
 
-If you're buying the laptop *only* for work in ML, then you can downgrade and save lots of money. Go with a Legion Pro with the 30-series Nvidia (eg 3070, 3080). Not only is it cheaper since it's prior-gen, but those cards have more VRAM, which is vital for ML. Stay again with Intel and Nvidia; ML frameworks are Nvidia-first, through CUDA and CuDNN. Use WSL2 (Ubuntu) + Docker for your ML work, see [mla/12](/mlg/mla-12) for details.
+If you're buying the laptop *only* for work in ML, you can downgrade to 3090 and save lots of money. Much cheaper than 40/50-series, but in the VRAM sweet-spot at an xx90. Use WSL2 (Ubuntu) + Docker for your ML work, see [mla/12](/mlg/mla-12) for details.
 
-Why not Mac? For gamers it's obvious. But for ML, while strides are being taken in the M2/M3 territory (eg with LLMs), it's still not first-class. If you plan to do heavy ML work, you're much safer with a PC.
-
-
-#### Original post (2017-10-06)
-For laptops, I like the MSI Stealth series. Buy from a reseller like [Gentech](https://www.gentechpc.com/), Xotic, HIDevolution (I prefer Gentech) - not Amazon / Newegg. This because only resellers offer thermal pasting, and that is a _must_ have for performance & longevity. Make sure to get GPU & CPU thermal pasting at checkout, I used Conductonaut on my last purchase - do your research.
+Why not Mac? For gamers it's obvious. But for ML, while strides are being taken in Apple Silicon (eg with LLMs), it's still not first-class. If you plan to do heavy ML work, you're much safer with a PC.

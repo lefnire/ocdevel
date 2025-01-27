@@ -1,4 +1,5 @@
 export const walkingDeskLinks = {
+    "key://urevo": "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
     "key://urevo_3s": "https://amzn.to/4bE2JXR",
     "key://urevo_2s_lite": "https://amzn.to/3ROlFvN",
     "key://deerrun": "https://amzn.to/4hvQCzj",
