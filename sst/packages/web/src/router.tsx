@@ -43,6 +43,7 @@ export const router = createBrowserRouter([
       ]},
       { path: "contact", element: <Lazy c={Contact} />},
 
+      { path: "walk", element: <Navigate to="/blog/20240109-fitness-desk" />},
       { path: "podcasts/*", element: <Navigate to="/mlg" />},
       { path: "*", element: <Navigate to="/" />}
     ]
