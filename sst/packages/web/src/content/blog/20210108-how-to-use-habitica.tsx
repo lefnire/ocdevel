@@ -334,7 +334,7 @@ const body = <>
   </Accordion_>
 </Accordion>
 
-  <div className='mt-2'>Random aside: besides gamifying life, my biggest life-hack is <Link to="/blog/20240109-fitness-desk">walking desks</Link>. Try it out!</div>
+  <div className='mt-2'>Aside: besides gamifying life, my biggest life-hack is <Link to="/blog/20240109-fitness-desk">walking desks</Link>. Try it out!</div>
 </>
 export const id = '20210108-how-to-use-habitica'
 export const date = '2021-01-08'

@@ -7,11 +7,12 @@ import moment from "moment";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 import {BackButton, usePodcastKey} from "../../utils";
-import ReactDisqusComments from "react-disqus-comments";
+// import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from './Resources'
 import {episodesObj, llhEpisodesObj, mlg} from "../../../content/podcast";
 import {episodes as episodeResources, flat} from '../../../content/podcast/resources'
 import Badge from "react-bootstrap/Badge";
+import {Comments} from "../../utils/Comments.tsx";
 
 function ResourcesFlat({nids}) {
   let seen = {}
@@ -176,7 +177,7 @@ export function Episode({e, teaser, i=null}) {
 
         </Card.Body>
         {e.guid && <Card.Footer>
-          <ReactDisqusComments
+          <Comments
             shortname="ocdevel"
             identifier={e.guid}
             title={`${e.title} | ${mlg.title}`}

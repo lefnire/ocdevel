@@ -6,10 +6,11 @@ import {BackButton} from "../utils";
 import Card from "react-bootstrap/Card";
 import moment from "moment";
 import {ReactMarkdown_} from "../podcasts/utils";
-import ReactDisqusComments from "react-disqus-comments";
+// import ReactDisqusComments from "react-disqus-comments";
 import React from "react";
 import {fmt, PostDate} from './utils'
 import {components, renderBlogPost} from '../utils/markdown.tsx'
+import {Comments} from "../utils/Comments.tsx";
 
 export default function Full() {
   const {id} = useParams()
@@ -36,11 +37,11 @@ export default function Full() {
         </Card.Text>
       </Card.Body>
       <Card.Footer>
-        <ReactDisqusComments
+        <Comments
           shortname="ocdevel"
           identifier={id}
           title={`${p.title} | OCDevel`}
-          url={`http://ocdevel.com/blog/${id}`}/>
+          url={`http://ocdevel.com/blog/${id}`} />
       </Card.Footer>
     </Card>
   </div>
