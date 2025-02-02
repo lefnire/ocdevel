@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
+import Button from 'react-bootstrap/Button'
 import {IconButton} from "../../utils";
 import avatar from "../../assets/avatar.jfif";
 import {FaCouch} from '@react-icons/all-files/fa/FaCouch';
@@ -12,6 +13,10 @@ import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope';
 import {FaGithub} from '@react-icons/all-files/fa/FaGithub';
 import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
 import {FaMicrophone} from '@react-icons/all-files/fa/FaMicrophone';
+import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube';
+import {FaInstagram} from '@react-icons/all-files/fa/FaInstagram';
+import {SiTiktok} from '@react-icons/all-files/si/SiTiktok';
+import {FaFacebook} from '@react-icons/all-files/fa/FaFacebook';
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 
@@ -33,6 +38,24 @@ export default function Contact() {
         Icon={FaEnvelope}
       >Email</IconButton>
       {/*<a className="btn btn-primary" href="https://calendly.com/lefnire/60min" target="_blank">Schedule a 60-minute consultation</a>*/}
+    </Stack>
+    <Stack direction="horizontal" gap={2} className="justify-content-center mt-3">
+      {[
+        { href: "https://youtube.com/@ocdevel", Icon: FaYoutube },
+        { href: "https://instagram.com/ocdevel", Icon: FaInstagram },
+        { href: "https://tiktok.com/@lefnire", Icon: SiTiktok },
+        { href: "https://facebook.com/ocdevel", Icon: FaFacebook }
+      ].map(({ href, Icon }) => (
+        <Button
+          key={href}
+          href={href}
+          target="_blank"
+          variant="link"
+          className="p-1 text-dark fs-5"
+        >
+          <Icon />
+        </Button>
+      ))}
     </Stack>
   </>
 
