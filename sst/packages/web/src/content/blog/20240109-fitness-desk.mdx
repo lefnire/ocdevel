@@ -13,48 +13,80 @@ export const teaser = "Comparison of treadmill desk options. Under-desk walking 
 My picks change with research and testing. These are my current picks, scroll down for full details.
 
 
+
 <div className="d-flex flex-wrap gap-2 mb-4">
-  <div className="card" style={{ minWidth: '300px', flex: '1' }}>
+  <div className="card w-100">
     <div className="card-body">
       <h6 className="card-subtitle mb-2 text-body-secondary">Treadmill</h6>
-      <div>
-        <a
-          href={walkingDeskLinks["key://urevo_3s"]}
-          target="_blank"
-          className="btn btn-primary"
-        >Treadmill</a>
-        <div><small className="text-body-secondary">Urevo 3S. Set incline to 3, speed to 2</small></div>
+      <div className="d-flex align-items-center mb-3">
+        <img src="/walk_thumbs/3s.jpg" className="thumbnail me-3" width="50" height="50" />
+        <div className="flex-grow-1">
+          <h6 className="mb-0">Treadmill: Urevo 3S</h6>
+          <small className="text-body-secondary">Set incline to 3, speed to 2</small>
+        </div>
+        <a href={walkingDeskLinks["key://urevo_3s"]} target="_blank" className="btn btn-primary ms-3">View on Amazon</a>
       </div>
-      <div className="mt-2">
-        <a href={walkingDeskLinks["key://mat"]} target="_blank" className="btn btn-outline-primary">Mat</a>
-        <div><small className="text-body-secondary">Urevo treadmill mat. Prevents floor damage, protects knees</small></div>
+      
+      <div className="d-flex align-items-center mb-3">
+        <img src="/walk_thumbs/mat.jpg" class="thumbnail me-3" width="50" height="50" />
+        <div className="flex-grow-1">
+          <h6 className="mb-0">Mat: Urevo</h6>
+          <small className="text-body-secondary">Prevents floor damage, protects knees</small>
+        </div>
+        <a href={walkingDeskLinks["key://mat"]} target="_blank" className="btn btn-primary ms-3">View on Amazon</a>
       </div>
-      <div className="mt-2">
-        <a href={walkingDeskLinks["key://lube"]} target="_blank" className="btn btn-outline-primary">Lube</a>
-        <div><small className="text-body-secondary">Godora silicone treadmill lubricant. Apply every 50hrs</small></div>
+      
+      <div className="d-flex align-items-center mb-3">
+        <img src="/walk_thumbs/lube.jpg" class="thumbnail me-3" width="50" height="50" />
+        <div className="flex-grow-1">
+          <h6 className="mb-0">Lube: Godora</h6>
+          <small className="text-body-secondary">Silicone treadmill lubricant. Apply every 50hrs</small>
+        </div>
+        <a href={walkingDeskLinks["key://lube"]} target="_blank" className="btn btn-primary ms-3">View on Amazon</a>
       </div>
     </div>
   </div>
 
-  <div className="card" style={{ minWidth: '300px', flex: '1' }}>
+  <div className="card w-100">
     <div className="card-body">
       <h6 className="card-subtitle mb-2 text-body-secondary">Other</h6>
-      <div>
-        <a
-          href={walkingDeskLinks["key://flexispot"]}
-          target="_blank"
-          className="btn btn-outline-primary"
-        >Desk</a>
-        <div><small className="text-body-secondary">FlexiSpot electric sit/stand</small></div>
+      <div className="d-flex align-items-center mb-3">
+        <img src="/walk_thumbs/desk.jpg" class="thumbnail me-3" width="50" height="50" />
+        <div className="flex-grow-1">
+          <h6 className="mb-0">Desk: FlexiSpot</h6>
+          <small className="text-body-secondary">Electric sit/stand</small>
+        </div>
+        <a href={walkingDeskLinks["key://flexispot"]} target="_blank" className="btn btn-primary ms-3">View on Amazon</a>
       </div>
-      <div className="mt-2">
-        <a href={walkingDeskLinks["key://shoes_women"]} target="_blank" className="btn btn-outline-primary me-1">Shoes:Women</a>
-        <a href={walkingDeskLinks["key://shoes_men"]} target="_blank" className="btn btn-outline-primary">Shoes:Men</a>
-        <div><small className="text-body-secondary">Brooks walking shoes</small></div>
+      
+      <div className="d-flex align-items-center mb-3">
+        <img src="/walk_thumbs/shoes_women.jpg" class="thumbnail me-3" width="50" height="50" />
+        <div className="flex-grow-1">
+          <h6 className="mb-0">Shoes:Women</h6>
+          <small className="text-body-secondary">Brooks walking shoes</small>
+        </div>
+        <a href={walkingDeskLinks["key://shoes_women"]} target="_blank" className="btn btn-primary ms-3">View on Amazon</a>
+      </div>
+      
+      <div className="d-flex align-items-center mb-3">
+        <img src="/walk_thumbs/shoes_men.jpg" class="thumbnail me-3" width="50" height="50" />
+        <div className="flex-grow-1">
+          <h6 className="mb-0">Shoes:Men</h6>
+          <small className="text-body-secondary">Brooks walking shoes</small>
+        </div>
+        <a href={walkingDeskLinks["key://shoes_men"]} target="_blank" className="btn btn-primary ms-3">View on Amazon</a>
       </div>
     </div>
   </div>
 </div>
+
+<style jsx>{`
+.thumbnail-placeholder {
+  background-color: #e0e0e0;
+  width: 50px;
+  height: 50px;
+}
+`}</style>
 
 <div className="row g-3 mb-4">
   <div className="col-12 col-md-4">
@@ -133,5 +165,5 @@ My picks change with research and testing. These are my current picks, scroll do
 <Workflowy wf={wf} />
 
 ---
-
+ 
 <BattleStation />
