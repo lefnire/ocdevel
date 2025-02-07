@@ -9,6 +9,12 @@ import ReactGA from "react-ga4";
 // don't need bootstrap, imported in my scss
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.scss'
+import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
+import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
+import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
+import {FaFacebook} from "@react-icons/all-files/fa/FaFacebook";
+import Button from "react-bootstrap/Button";
+import Stack from "react-bootstrap/Stack";
 
 let usingGA = false;
 // FIXME use import.VITE_APP_*
@@ -67,7 +73,32 @@ export default function App() {
     <Outlet />
 
     <footer className='footer text-center mt-auto shadow'>
-      Copyright © 2009-2024 OCDevel LLC
+      <div className="d-flex justify-content-around align-items-center h-100">
+        <div>
+          {/*<span>Copyright © 2009-2024 OCDevel LLC</span>*/}
+          <span>© 2009-2025 OCDevel LLC</span>
+        </div>
+        <div>
+          <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
+            {[
+              { href: "https://youtube.com/@ocdevel", Icon: FaYoutube },
+              { href: "https://instagram.com/ocdevel", Icon: FaInstagram },
+              { href: "https://tiktok.com/@lefnire", Icon: SiTiktok },
+              { href: "https://facebook.com/ocdevel", Icon: FaFacebook }
+            ].map(({ href, Icon }) => (
+              <Button
+                key={href}
+                href={href}
+                target="_blank"
+                variant="link"
+                className="p-1 text-dark fs-5"
+              >
+                <Icon />
+              </Button>
+            ))}
+          </Stack>
+        </div>
+      </div>
     </footer>
   </div>
 }
