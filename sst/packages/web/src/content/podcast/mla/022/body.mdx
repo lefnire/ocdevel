@@ -1,0 +1,28 @@
+Tools discussed:
+
+1.  Windsurf: [https://codeium.com/windsurf](https://codeium.com/windsurf)
+2.  Copilot: [https://github.com/features/copilot](https://github.com/features/copilot)
+3.  Cursor: [https://www.cursor.com/](https://www.cursor.com/)
+4.  Cline: [https://github.com/cline/cline](https://github.com/cline/cline)
+5.  Roo Code: [https://github.com/RooVetGit/Roo-Code](https://github.com/RooVetGit/Roo-Code)
+6.  Aider: [https://aider.chat/](https://aider.chat/)
+
+Other:
+
+1.  Leaderboards: [https://aider.chat/docs/leaderboards/](https://aider.chat/docs/leaderboards/)
+2.  Video of speed-demon: [https://www.youtube.com/watch?v=QlUt06XLbJE&feature=youtu.be](https://www.youtube.com/watch?v=QlUt06XLbJE&feature=youtu.be)
+3.  Reddit: [https://www.reddit.com/r/chatgptcoding/](https://www.reddit.com/r/chatgptcoding/)
+
+---
+
+AI coding tools designed to boost programming productivity by acting as a pair programming partner. Three categories:
+
+• **Hands-Off Tools:** These include solutions that work on fixed monthly fees and require minimal user intervention. GitHub Copilot started with simple tab completions and now offers an agent mode similar to Cursor, which stands out for its advanced codebase indexing and intelligent file searching. Windsurf is noted for its simplicity—accepting prompts and performing automated edits—but some users report performance throttling after prolonged use.
+
+• **Hands-On Tools:** Aider is presented as a command-line utility that demands configuration and user involvement. It allows developers to specify files and settings, and it efficiently manages token usage by sending prompts in diff format. Aider also implements an “architect versus edit” approach: a reasoning model (such as DeepSeek R1) first outlines a sequence of changes, then an editor model (like Claude 3.5 Sonnet) produces precise code edits. This dual-model strategy enhances accuracy and reduces token costs, especially for complex tasks.
+
+• **Intermediate Power Tools:** Open-source tools such as Cline and its more advanced fork, RooCode, require users to supply their own API keys and pay per token. These tools offer robust, agentic features, including codebase indexing, file editing, and even browser automation. RooCode stands out with its ability to autonomously expand functionality through integrations (for example, managing cloud resources or querying issue trackers), making it particularly attractive for tinkerers and power users.
+
+A decision framework is suggested: for those new to AI coding assistants or with limited budgets, starting with Cursor (or cautiously exploring Copilot’s new features) is recommended. For developers who want to customize their workflow and dive deep into the tooling, RooCode or Cline offer greater control—always paired with Aider for precise and token-efficient code edits.
+
+Also reviews model performance using a coding benchmark leaderboard that updates frequently. The current top-performing combination uses DeepSeek R1 as the architect and Claude 3.5 Sonnet as the editor, with alternatives such as OpenAI’s O1 and O3 Mini available. Tools like Open Router are used as a way to consolidate API key management and reduce token costs.

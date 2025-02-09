@@ -1,0 +1,262 @@
+[00:00:00] Welcome back to Machine Learning Guide. I'm your host, Tyler Rinelli. MLG teaches the fundamentals of machine learning and artificial intelligence. It covers intuition, models, math, languages, frameworks, and more. Where your other machine learning resources provide the trees, I provide the forest. Visual is the best primary learning modality.
+
+[00:00:20] But audio is a great supplement during exercise, commute and chores. Consider MLG your syllabus with highly curated resources for each episode's details@ocdeve.com slash mlg. Speaking of curation, I'm a curator of life hacks, my favorite hack being treadmill desks. While you study machine learning or work on your machine learning projects, walk.
+
+[00:00:44] This helps improve focus by increasing blood flow and endorphins. This maintains consistency in energy, alertness, focus, and mood. Get your CDC recommended 10, 000 steps while studying or working. I get about 20, 000 steps per day walking just two miles per hour, which is sustainable without instability at the mouse or keyboard.
+
+[00:01:03] Save time and money on your fitness goals. See a link to my favorite walking desk setup in the show notes.
+
+[00:01:08] ​
+
+[00:01:08] In this episode of machine learning applied, I'm going to talk about the various AI coding tools out there. Tools which use AI to help you program. and this is a bit of a risky episode for two reasons. One, the landscape is changing so freaking fast, I mean singularity level fast, that a week or two after this episode is launched.
+
+[00:01:35] It will be totally irrelevant. I may try to keep up with it and edit and republish the episode as major changes come about.
+
+[00:01:44] But I still think it's worthwhile publishing because in the last year of the landscape of AI coding tools being released, I haven't found a good comparison breakdown of the tools to help me choose, and so it was a trial and error in reading Reddit comments and research process for me.
+
+[00:02:01] The second reason it's risky is this is very subjective. This is my personal opinion on why and how to choose the various tools and I'm going to exclude a lot of tools that some people hold dear, only because they didn't make the charts of my own research experience. so these AI coding tools, they just call them code AI, C O D E space, AI. And there are so many out there, I am so surprised at how many there are.
+
+[00:02:27] And you may be thinking, as a programmer, that a skilled programmer should be able to it yourself, without the aid of AI. In fact, some people are adverse to using chat GPT to help them with their day to day problems at programming or creating models or debugging issues.
+
+[00:02:45] But I sincerely believe that if you don't start adopting tools to help you, you'll be left behind. you don't have to abandon your skill sets. Entirely to lean into these tools as an aid. You can use them to do some of the grunt work of your day-to-day operations and use your own intelligence and creativity to come up with some of the more outside the box thinking King
+
+[00:03:07] and one way I see successful programmers using Code. ai tools is as a pair programmer. So they're not using it to do everything for them, streamline the end to end operation and deployment of a web app or a machine learning model. They are coding and interacting as much as the Code. ai tool is programming.
+
+[00:03:27] so it's almost like a pair programming session where they have one window open where they're doing typing and another window open where code AI is interacting. there's a video I'll link that really showcases this in action.
+
+[00:03:40] It's a video on the Aider, A I D E R, tools documentation in their video learning resources section. Aider is one tool I'll discuss in this episode. And it really highlights what this modern generation is now. So in the advent of AI, with these AI tools on the landscape, if you don't utilize one of these tools, you will be compared to a person like the person in this video.
+
+[00:04:08] And this guy has one window open where he uses cursor, one of the tools we'll discuss, to type out the instructions that the AI should be executing. he'll write comments like, write a function that does x. And another comment saying, now write the unit test that tests it. And he uses, in cursor, tab completion, so it finishes his sentences.
+
+[00:04:33] In another window, side by side, on his screen he has Ader open that has a watch flag listening to those files edits and executing the operations. And so it's building out the scaffolding for his code base And writing and executing the tests to make sure that the code was successful.
+
+[00:04:53] and then Adar will execute these tests and read in the terminal output with the errors in order to fix the bug. And he is just moving blazing fast. One of the fastest I've ever seen a programmer operate.
+
+[00:05:06] And if you watch this guy in the video, and you think about how fast you program, you realize he's not hamstringing himself. This isn't like Google Maps taking away our geospatial knowledge, our ability to navigate in the world.
+
+[00:05:20] this is somebody utilizing a tool in addition to his own capacity to deliver faster. They call it the 10x developer. so if you're not using code AI tools already, you should be, or I dare say, you're putting yourself in a bad position in this coming generation of automation.
+
+[00:05:38] The tools I'll discuss in this episode are Windsurf. Copilot, Cursor, Cline, Roo Code, and Aider. and I know there's a whole lot of other tools out there. there's one called Aid, not Aider, A I D E, and there's one called Continue. dev. the ones that I don't mention in this episode, I have found, tend to be These sort of underdogs that are mentioned in some Reddit comment when people discuss the best tooling and some commenter says, well, what about continue.
+
+[00:06:08] dev? And there's zero upvotes and no engagement. So unfortunately they just tend to be kind of sidelined or. put on the bench in the popularity contest and therefore I won't get into them. There's another tool that, I'm a JetBrains user personally, rather than VS Code. JetBrains has a whole list of IDEs based on the programming language.
+
+[00:06:27] And so for Python, PyCharm is the go to of their tools. I love JetBrains. I like them better than VS Code. I think they're more powerful. once you really learn the ropes, you can move faster. I personally think that. But, their AI tooling is very much second class. Not only their own AI tool built into the IDE that they built, I found that to just be totally pointless by comparison to some of the tools in this episode, but also the plugins that the tools in this episode offer a JetBrains plugin.
+
+[00:06:57] In addition to the Copilot plugin, you will find that their JetBrains plugin is always second class. It always gets short shrift compared to the VS Code plugins. So, so either jump ship of JetBrains and switch to VS Code or do what I do, which is I have JetBrains open for me, the human programmer, and I have VS Code open for the AI co programming experience.
+
+[00:07:22] Now, in the tools I'm discussing, I categorize them into three clusters. the most hands off tools are Windsurf, Copilot, and Cursor. the most hands on tool is Aider. And somewhere in the middle is Cline and Roo Code. So let's take it from most hands off, the most hands off tools.
+
+[00:07:44] Windsurf, copilot, and Cursor. GitHub copilot. It was basically the first AI coding tool on the block. It was put out by GitHub, and it started off with just, tab completion. You start typing and it will offer you an init in place. Tab completion.
+
+[00:08:00] So it will finish your sentence. It will finish your code. It will finish your line of code. And that's how it started off. And then they expanded out to finishing chunks of code. So if you write a comment that says, implement a Fibonacci function.
+
+[00:08:12] It will, tab completion will actually write the entire function for you. And this is handy, but it's not that powerful. so along came Cursor, and, Cursor is a bit more agentic, they call it, agentic with its Composer feature. Cursor will index your entire So that when you ask questions or tell it to implement functionality, it will have your whole codebase indexed. as reference, using whatever technology they use, some of these tools use RAG,
+
+[00:08:39] retrieval augmented generation, right? So using embeddings of functions indexed in some folder as files somewhere so it can draw upon parts of your code as reference to determine the right way to go about solving the problem at hand. A lot of these tools did find that RAG is not enough. there are more traditional human approaches that work better for a lot of tasks.
+
+[00:09:04] Like some of them will actually basically run control F or, or, or sed or awk, on your code base to try to find more intelligently. some of the code needed. to help in the process of what it's trying to accomplish at hand. some of them will look at the import statements at the top of your file and then drill into those imported files and build out a sort of hierarchy of dependencies based on the problem at hand.
+
+[00:09:30] So, more and more these are getting more intelligent at determining the knowledge dependency graph
+
+[00:09:36] needed to perform the task at hand. And Cursor has sort paved the way in this journey. they're independent of VS code, but they're a fork of VS.
+
+[00:09:46] Code. The, they forked the code base of VS code so that they could bake into the system some of the permissioning and capabilities necessary to, to execute on some of these requirements. They are the most popular kid on the block, Cursor. It's the most well known name of the set of tools I'll discuss.
+
+[00:10:04] they also, I think, have the most funding. except for Copilot, which is, you know, a Microsoft product. So you could say that it has the most funding because it has the strongest backers. But Cursor, I think, has the most direct funding from investors.
+
+[00:10:17] So they've been moving fast and they've been really adding very powerful tooling. And then, last on this list is Windsurf.
+
+[00:10:25] By Codium. And WinSurf is interesting to me because of these three, it seems to be the most hands off. I could be wrong in that aspect, but from my experience, it really is just trust the tool, give it a prompt, and let her rip. And it will do all the code based indexing, search the files you need. You can add files manually to the context window, of course.
+
+[00:10:48] but it really is hands off with limited control. compared to Copilot and Cursor. Cursor has some real advanced tools where the agent composer can not only find the right files to edit that you may not have mentioned directly but also trigger a line to be sent to the command line that you can execute and it will read in the input from the command line's output, like an NPM install or an NPM test, and then, operate from there.
+
+[00:11:18] I think WinSurf is a little bit more sandboxed, and, one issue I think I've seen a lot of people experience with WinSurf is that you can specify which model to use, Claude, O3, et cetera. but a lot of people report that with time, the performance tends to degrade like through your usage of this tool over the course of a month before your next billing cycle starts.
+
+[00:11:42] A lot of people report, and I don't know if this is true, but I've seen it a lot, that the performance degrades and also the speed degrades. And so what it seems like they're doing is throttling or power users who are sort of abusing the price point of the tool. Because all these three tools, these hands off tools that I'm mentioning, Windsurf, Copilot, and Cursor, they're all monthly fees.
+
+[00:12:05] Windsurf is, I think, 15 or 20, Copilot is 10, and Cursor is 20 per month. And if you are a power user, If you're familiar with the cost of hosted LLMs, those prices are extremely low. As we'll talk about with Cline and Roo Code, when you are paying for the token cost yourself as a developer, you will see that 20 a month on the high end of these tools is wildly low.
+
+[00:12:29] And so I, I think it may be fair to say, in fact, it may be fair to these. Tool developers if it's true that they do impose throttling or bottlenecking of, of the performance and the speed of execution. So in my experience windsurf is the most hands off you really just tell it what you want and it does it Copilot has recently added an agent mode.
+
+[00:12:55] I'm talking two days ago as of this recording. They recently added an agent mode, which is to compete directly with Cursor's Composer mode, because Copilot got totally left in the dust when all they offered was tab completion and Cursor went on to carry the baton in terms of adding more advanced tooling and Composer, which is their agent tool, which can edit files beyond the file you're looking at right now, based on the context of the files, hierarchical dependencies.
+
+[00:13:25] Copilot just two days ago finally added that functionality. So as we speak, Copilot and Cursor are going neck to neck in terms of agentic tooling and, Software Engineering, SWE Benchmarking. I don't know which of the two are, are more powerful, or will offer
+
+[00:13:43] The strongest tooling or benchmark scores in the final analysis. but I'm inclined to lean more towards Cursor, only because they have a stronger head start at this point. So if you have to pick one on the list of these three, I would lean towards Cursor, but I would keep a very strong eye on Copilot, because they are owned by Microsoft, who has a very strong Big investment in the AI space. they own GitHub, which hosts lots and lots of code, and therefore they have access to a lot of training data. So, right now, my hunch is that Cursor wins, but keep an eye on Copilot. And this is in the hands off space. Fixed monthly rate. You trust the tool to do its job.
+
+[00:14:29] Okay. We're going to skip the middle section, the kind of hands off, kind of hands on, tools, and jump straight to the totally hands on tool, Aider. And this will allow us to compare sort of the middle ground, the difference between hands off and hands on. der is I think the most hands on tool. it requires the developer, you, to really, truly know the tool to operate it correctly.
+
+[00:14:58] an Aider, A I D E R, is a CLI utility,terminal tool. And so you install it on the terminal, and you configure these configuration files, adr. conf. yml, to say which models you want to use, and if you're using a reasoning model like R1 or O3, the level of reasoning involved, like high, medium, or I think just high and medium, I don't think there's such a thing as low.
+
+[00:15:23] And what is the diff format that it should expect from the, from the model? A lot, a lot of these things, these, these configurations, they have sane default. So you don't have to specify all of them, but the more acquainted you get with the tool and the more hands on you become with the tool for it to work most effectively with you as a pair programmer.
+
+[00:15:42] the more you'll find yourself editing these, these various configurations. and you'll specify which model you want to use. we'll talk about the models, comparing their performance in a bit, but the sort of highlights are, popular ones these days are DeepSeek R1, Claude 3.
+
+[00:15:59] 5 Sonnet. an OpenAI's. o1 or So you'll specify which, model you use
+
+[00:16:06] and then. You will add to the context window the, files that you want the model to operate on. So this is, one of those reasons I say it's very hands on. unlike the hands off tools like Windsurf, Copilot, and Cursor, where it will find the files for you to edit based on the prompt you've provided it, Cursor will not, or, or it can, but I find that it doesn't on average.
+
+[00:16:29] So you specify which files you're going to be operating on. in the, in the terminal or in the configuration file. You specify which files are read only that it may use as reference for documentation like readme files or conventions or the code files for some of the libraries you're using.
+
+[00:16:47] And then you specify which files it should write to. like the file you have open in your editor. And, it will use the model you've specified, send up a request.
+
+[00:16:55] Now what Adr does that's special, compared to some of these other offerings, is it's very efficient and precise in the requests it sends to the model APIs, and the, responses it requests of those models to be used in applying diffs to your edits.
+
+[00:17:14] So it will send up the prompt that you've provided, the request that you sent, a very clever system prompt, and a modified version of the files that you've provided, the context window, intelligently, in order to keep the context window slim, to save you money. And it will send to that request as well, what it expects in response in terms of how the code edits should be applied.
+
+[00:17:36] And these two formats are called whole format or diff format. so whole format says I want you, the model API to send back to me an entire code file. An edited code file from beginning to end. Or, a diff format where Adr will tell the model to send back just the diff, almost in git diff format.
+
+[00:17:59] those two formats, some of them are more effective based on the model. So so O1 it appears is better at sending back Whole files, it's not as effective at sending back diff files, but Ader tends to prefer that the model sends back diff files, to save you on tokens, A, to save you money, because you're going to be using your own API keys, and B, to keep the running context window compressed as you're going along through, your back and forth in this chat window on the CLI.
+
+[00:18:33] So, with a lot of these considerations that A Aider is very meticulously glued to, the right format and the right model and the right way to modify the requests and responses, they are pulling every stop possible to make sure you get the most foolproof, accurate and precise edits to your files.
+
+[00:18:54] and it tends to be more precise and careful in editing your files and maintaining the running context window as you go through the conversation. By comparison to some, the rest of the tools on this list.
+
+[00:19:07] At the cost of you, the developer, need to be significantly more hands on in, navigating the tool and learning the ropes because it's, because it's a CLI tool, you can't just drop in and start using it, you know, within five minutes, you're going to want to read the documentation, become acquainted with the configuration files and the arguments and flags, and when to use what model, under what circumstance and so forth. now, er and, and Cline and Root code, which we'll discuss in a bit, require you use your own API keys for hosted model APIs. So if you're gonna use, open AI, o1 or o3 mini, or if you're gonna use DeepSeek r1 or v3, or if you're gonna use. Anthropic, Claude, 5 Sonnet, or Gemini. you're gonna add to your dot profile file or your bash rrc or, or the er config files or dot emv files, wherever, your API keys. So you'll go to OpenAI and you'll sign up for the API You'll punch in your credit card and you'll get an API key.
+
+[00:20:08] And then you'll do that as well for Claude. You'll do that for DeepSeek, and so forth. then you'll tell er which model you want to use. we'll compare all the different models later. And, it will use your API key and you will be charged for the tokens of the interactions of this tool. so again, that's one of the, big benefits of those hands off tools like Windsurf, Copilot, and Cursor, they front the cost of the tokens, With a fixed fee, like 10 or 20, and you will find, mark my word, that if you're using these tools regularly and you are paying for the tokens, you will find that that token cost soars fast.
+
+[00:20:47] You will burn through tokens, and you will pay out the nose. I personally pay, let's say, 20 to 50 a month. I, I'm still sort of getting up to speed with these things.
+
+[00:20:57] I'm not a very rapid power user just yet, but I've seen people on Reddit say that they're paying hundreds, you know, 100, 200, 300 per month.
+
+[00:21:06] One of the benefits of Aider compared to Cline and Roo Code, one of the benefits that everybody says over and over and over is Aider. is more intelligent in saving you tokens, this whole diff format and intelligent construction of the context window and the prompt and caching. There's this concept of caching prompts and so forth.
+
+[00:21:29] They have figured out. Every tiny little nuance possible to save you in token costs while also at the same time keeping those context windows slim and summarized and compressed so that as you go through your coding session, information isn't being lost in the process as much information is being retained through a single conversation as possible for that reason. no matter what tool you choose in this tool kit, in this comparison, I recommend you have Aider. I recommend that you have Aider on hand, in addition to whatever tool you use in this list. So, Adr will be your exacto precise cutting knife, and any one of the other tools in this list, will be your sort of move fast and break things,
+
+[00:22:20] sort of throw darts at a wall, quick and dirty approach. Whatever you choose, also choose Adr. And you may find in the end that you end up choosing only But at least to get started, also choose Adr. And use that to save you on token costs and execute very precise code edits where precision and accuracy is of the essence.
+
+[00:22:41] and like I said, the video that I mentioned, this is exactly the approach that that developer chose. that developer chose to use Ader, to watch the files that he edits.
+
+[00:22:51] for edit requests and in, in Aider, when you have the watch flag active, if you type AI exclamation point, whatever comes after or before on the comment line, Aider will then execute. Or if you type AI question mark, AI will answer a question. and then you also can specify in the AdrConfig file, the tests to run in tandem to your executing AI requests.
+
+[00:23:17] So it'll be continuously executing two things. One is watching the files you specify that you're editing in the configuration file for changes for it to execute against your file and running tests in the background to be fixing errors and encounters along the way.
+
+[00:23:33] And then the developer had in another window cursor. just for move fast and break things tab completions and, and quick composer edits outside the context explicitly specified in the Aider configuration file of files that it's editing and watching. And that way this developer has one fixed cost for the majority of edits that he's gonna be making in the move.
+
+[00:23:59] Fast break things, paradigm and costs that he incurs but which are managed precisely so as not to balloon his token costs against the API. all going on at the same time. now. I mentioned that there are all sorts of different model APIs out there. OpenAI, DeepSeek, Anthropic, and so forth.
+
+[00:24:22] And you'll find, that, Any given week, I mean, things are moving so fast. Any given week or at least month, one model topples the other in terms of these leaderboards of coding benchmarks.
+
+[00:24:36] so the leapfrog or arms race of these various models is constantly changing. So maintaining a thousand different API keys and having credit cards in tons of different locations and worse is that you top up these API keys. They tend not to just like charge you at the end of the month for how much you've used.
+
+[00:24:54] What they tend to require is that you put in 10, 20 up front and when that hits zero, then you top it off. So if you have, you know, five, six different API keys and all of them are topped off at 20, well, that's a lot of wasted money because you may only use so much of any one of those.
+
+[00:25:12] so there's this thing out there called open router, open router. is this website that you, they give you an API key, one API key, you top them off and they pay the cost to all these different APIs. So, they will deal with maintaining API keys across the board and topping those off and you will just pay one source, which is them.
+
+[00:25:38] And so, open router is much more popular than any individual API key. in this. code AI community. And so that's what you'll end up doing is pay for an open router, API key, and then plug that into ER or client or root code.
+
+[00:25:53] There's one more thing that Ader sort of introduced to the code AI community, which is very powerful. it is slightly costly, but it's, it's, Very, very powerful. It's much more likely to give you good results when you request edits of your files.
+
+[00:26:09] and very, precise and error free results. And it's this concept called, architect Versus code or architect versus edit and what it does is some of these models shine at making direct edits to your files, Claude 3. 5 sonnet is is a case in point claude is really good at just raw code edits You give it a code file and you say, you know Change this file or add this function and it does a great job of doing that and it can be cheaper Than some of the other models like o1 or o3 while being as good or just, just slightly less good than one of those models. and other models are good at, at planning out. a strategy, an action plan of edits that, that it should carry out. the reasoning models are a case in point. So DeepSeek R1, OpenAI 01 and 03 Mini are really good at planning out a sequence of edits That should be executed in order to accomplish the task without actually providing the code to do so.
+
+[00:27:20] So you give it a prompt, you know, edit this file and add the following. And this, architect edit paradigm. we'll send two requests, one to a reasoning model like DeepSeek R1 saying I built a prompt. This is what I want executed. Here are all the files. Now I want you to sort of redo that prompt, in the most foolproof, architecturally savvy,
+
+[00:27:43] step by step way, editor model. can receive that restructured prompt in context so as to make the best edits possible with the least amount of errors or deviation from the task. and Ader will receive the, the architect, response back and then send the edit request to the editor model.
+
+[00:28:04] Now this is, You're going to be paying twice for, tokens,one to the reasoner model, the architect, and one to the editor model, but it is worth it when, the task at hand is very important or, or complex, Especially if there are a lot of files in the context window that you're working with.
+
+[00:28:19] So, they have found that this approach is significantly more accurate and robust than just edit requests. And so they, popularized this concept, the, the architect edit paradigm. and then that concept ended up being pulled into all the different AI tools, either under the hood or, or you can manually.
+
+[00:28:38] this is another, case for Aider. Aider tends to be really on top of things, more than most of these other tools. They are really cutting edge. they're almost researchers of their own right. And, another case in point for that is they run the most popular, coding model leaderboard on the internet.
+
+[00:28:59] there's all sorts of benchmarks that you'll find on the internet, for models. Coding capabilities. Anytime a model comes out, like when o3 mini came out, they will throw their model against, you know, two, three different coding benchmarks and then publish the results.
+
+[00:29:14] you can find these, these benchmarks on hugging face and various websites. but when it comes to just a very practical comparisons of how good are these models in the wild on typical code bases and unbiased?
+
+[00:29:28] Well, Ader runs the most popular of those leaderboards on their website. and we'll get into the results here in a bit. all this is to say, you know, Ader popularized the architect edit. Paradigm they run the the main leaderboard out there. They are always on top of adding support for the newest model that gets released So ater is a top dog.
+
+[00:29:52] You do not want to ignore them. You want to install it right away no matter what secondary tool you end up using. Okay, so that brings us to what I call the, the hands off, hands on tools. The middle ground. and that's not to say that, that these aren't very robust power tools. That is not true at all.
+
+[00:30:11] they can be as hands on as Adr, if you want them to be. In fact, as we'll talk about with Roo, I think Roo is even more of a power tool than Aider. It can be more complex than Aider if you allow it to be. but, you can hit the ground running with them, just like Windsurf, Copilot, and Cursor.
+
+[00:30:31] and treat them hands off. And then with time, start to become more and more acquainted with them. in order to use their more advanced tooling. Okay, the the first of the power tools sort of hit the, hit the market was Cline. And these are open source, by the way, Cline root code, an eight or all open source, Cline, is an agentic tool built into.
+
+[00:30:53] VS Code. They have an extension for VS Code. and Cline It plugs into all the various models.
+
+[00:30:58] I believe they added a support for the architect edit paradigm. it has an agentic feature again that indexes your code base so when you ask it to perform a task, it can use some intelligent tooling to find the right files that are relevant to the task at hand.
+
+[00:31:13] and it was sort of the king of the open source power tools, for a while there until Roo Cline, forked Cline, and the initial intent there was the, authors of Roo Cline, who forked The original code base Cline, they wanted to be more on top of things that I think they had a gripe that Cline maybe was moving too slow.
+
+[00:31:34] It wasn't adding, models as they were coming out. it wasn't adding some of the more powerful tooling like CLI integration and browser automation, At as fast of a pace as they had hoped. So they forked the project just to be almost like an edge version of Kline. Like a nightly release version of Kline.
+
+[00:31:53] But after a while the projects deviated for so long that they became two totally separate projects. So they renamed the project RooCode rather than RooKline to differentiate themselves from Kline. and I believe having used both tools, that both are as cutting edge as each other these days.
+
+[00:32:13] I think Cline sort of, stepped up the pace at which they're keeping up with things. So it's tough to say, which, which one you should choose in terms of cutting edge features and popularity and power tool. tools and whatnot. What I will say though, is from my own personal experience, my take is Roo code is definitely the most power tool of the two.
+
+[00:32:35] in fact, it's, it's a little crazy, the, the types of tooling they offer. So obviously, you know, they list in their feature set file and editor operations, browser automation. So this is interesting browser automation. I know that Aider does support browser automation, by way of. installing playwright as a third party CLI dependency.
+
+[00:32:55] and Roo Code has browser automation tooling installed as well. Now for both Ader and Roo Code, you're going to have to do some tweaking to get it to work. I personally haven't gotten it working in either locations, but I've seen it working on YouTube and it's really cool. What it'll do is if you're building a website, you can, you know, run the tool where it's editing the files, watching those files, maybe continuously running a test file in the background.
+
+[00:33:19] and if it wants to see if it did the job, right, or if you specify that there is an error in the Chrome console, or if the test fails, it will open up the browser, look at the results in the browser, you know, using, you'll take a JPEG snapshot, send that up to Claude, for example, come back with some OCR or just an interpretation of the image, open back up Roo Code or Aider, And, try to fix the problem.
+
+[00:33:45] or another way you can use brow browser automation is you can feed ru code or er, an image, which is like a mockup or a spec. You can draw on a napkin what you want the webpage to look like. Take a picture of that, throw that JPEG in a folder of screenshots, and have, have Roo watching that folder.
+
+[00:34:06] And it will try to create a webpage to most closely resemble, not just the visuals. of what you were driving after, but the functionality end to end, both front end, back end and database. And then it will open up the browser, see how close it got to the mark based on its understanding of the feature you're trying to build, and then switch back to the editor and try to make the adjustments.
+
+[00:34:28] pretty freaking wild. It's, it's really cool tooling. CLI integration, obviously, this is sort of an expectation these days. so it will ask you to run a command. Let's say it determined that some feature you want to build, requires some npm dependency.
+
+[00:34:43] And so it will ask you to run a command that installs that. You say, you say yes, and it will then run npm run dev. and then it will switch over to browser And make sure it added the feature correctly after installing the dependency and so forth.
+
+[00:34:56] you can really start to see that these tools can, be a pair programmer, the proper right. Not just a code editor. It will go back and forth with you where you're telling it what to do and you're filling in the missing gaps, in code. And it will run commands, it will open up the browser, it will run tests, it will try to fix the test's issues, and so forth.
+
+[00:35:15] And then finally, the, reason I think Roo is more robust, or, potent than Cline, is they have these things called MCPs, model context protocol. I, I don't quite understand what this thing is. I looked into it a little bit, what they write is a root code can build and configure new tools autonomously with your approval to expand its capabilities instantly. three examples of this are add a tool that manages AWS EC2 resources, add a tool that queries the company Jira, add a tool that pulls the latest pager duty incidents. So in other words, the, these concepts of CLI integration, you know,executing commands or watching unit tests and stuff.
+
+[00:36:04] You can ask Roo, through through natural language, to build another tool for it to interact with your stack, in order to interact with your code base. like, it's the way down, so, Like, I'm only touching the tip of the iceberg, personally, in my own utilization of these tools, day to day, in what these tools are capable of.
+
+[00:36:28] so, with all of that functionality, I actually believe that Roo is even more a of a power tool than Aider. Nonetheless, no matter what tool you choose in this stack, you're still going to want Aider on hand.
+
+[00:36:40] one, because they keep up with the latest models and, and paradigms. And two, it's being a CLI tool. It's independent of whatever tool you use. so you may be switching from tool to tool as different, innovations come out
+
+[00:36:53] or after or after some testing, you decide you like one tool more than another, et cetera, you'll want. One tool on hand that is independent of your IDE. Okay, so, in this list then, let me try to give you a decision tree of how to pick one of these models.
+
+[00:37:11] if you have no idea, you don't know what to do after this episode, I would pick Cursor, so I would pick between either Copilot or Cursor, and the only reason I would pick Cursor over Copilot is because Copilot's recent agentic tooling is too new to know how it stacks up to Cursor, which has a much stronger history in this space, and a lot of funding, and a lot of care, they care about this a lot, whereas Copilot's last release Prior to adding the agentic tooling was a very long time ago.
+
+[00:37:45] So we don't know how much they're going to keep up with this. but keep an eye on copilot. but I would use cursor if, two things. One, you just don't know yet and you just want to get acquainted with this, this landscape and see, see what you think of it. Or two, you definitely want two separate tools.
+
+[00:38:07] One is going to be your power tool that you're going to get adjusted to over time, the hard way, which is going to be ADER. And you're going to have that over here on the side. And one is going to be your move fast and break things tool, where you don't want to incur an exorbitant cost, a fixed monthly fee.
+
+[00:38:28] And that is going to be CURSOR. Okay, so that's one branch in this decision tree. You don't have a lot of time or money yet and you just you just want to jump into the pond.
+
+[00:38:37] Cursor. or, you want to balance the two extremes of the, of the paradigm. hard power tool versus easy fast tool. cursor plus ader. Another branch of the decision tree is you are a tinkerer. you do think. That if you dive into this space, you will want to play with some bells and whistles and dials and knobs, and you tend to be a power user or an advanced user. And for that, I would recommend CLINE or Roo Code.
+
+[00:39:05] Like I said, Cline and Roux, they can be as hands off as Copilot and Cursor if you want them to be. You don't have to open the settings panel and enable all of these experimental features and tweak all the different settings.
+
+[00:39:21] but the reason you'd want to commit a little bit more, If you go with Cline or Roo, it's because you have to pay for the token usage. Unlike Copilot or Cursor, Cline and Roo being open source tools managed by the community, there's no hosted server running these things where they front the cost of token utilization.
+
+[00:39:45] You have to pay for the tokens in and the tokens out, which means you're going to pay for an open router API key. And unlike Adr, which is really efficient at managing those tokens for you, Cline and Roo are not. They, they blast the API server with just the The grab bag of context window of the files you have and the prompt and the system prompt, they send the response back and then your follow up message, they send the whole thing back again.
+
+[00:40:15] they're not the most careful with your tokens, unlike So, if you believe that you're a tinkerer who thinks they might get advanced and their hands dirty,then, then Cline or Roo will be your guy. Which of the two? I don't know, you're going to want to compare them, but hey, you're a tinkerer, you're likely to do that anyway.
+
+[00:40:37] So, if you want my gut check, it would be Roo, because I think Roo is a bit more potent of a power tool than Climb, but I could be wrong about that. I use Roo, personally. I actually have, all three tools installed. I have Copilot, because it's cheaper, the agentic tool. I have Roo when I'm doing some really like hairy, dirty stuff.
+
+[00:40:59] and then last of all is you're going to want to have Aider installed no matter what. So, Cursor if you're testing the waters and you may end up there. I'm not implying that Cursor falls short of the mark. Not at all. But, but it tends to be more hands off. Roo if you're a power user who tends to be very hands on.
+
+[00:41:16] And then Aider no matter what.
+
+[00:41:17] so that's a lay of the land. Now, let's talk about the models. Like I said, runs this leaderboard of the models, compares their performance to each other. they have multiple leaderboards. They have one leaderboard that is dedicated to how good one model is at just edits. they have another leaderboard that is all about refactoring and then their main leaderboard is called the polyglot leaderboard And it is the architect edit paradigm.
+
+[00:41:46] So because they think that you should be using that Yes, it does incur double the cost of tokens, but it is just almost always better in terms of the the output robustness and accuracy. So their main leader board is using that paradigm, and it's called the polyglot leader board. so here's the current list, from top to bottom, from most winner to less, DeepSeek R1 as their architect and, Claude 3. 5 sonnet as their editor. so you'll use open router and you'll tell, uh, Ader to use, the R1 model for the architect and Claude for the editor.
+
+[00:42:24] Next up is O1, all by itself, OpenAI O1. And when they list these models by themselves, I believe, I could be wrong about this, but I believe they mean that they're still going to use the architect editor paradigm, so it will send an architect request to O1, get a response back, and then send an edit request to O1.
+
+[00:42:43] I could be wrong about that, but, so O1 comes next. Then O3 mini with reasoning, Level set to high, then DeepSeek r1, then o3 mini with reasoning set to medium and then Claude 3. 5 sonnet. And then on their code leaderboard all by itself, is o1, Claude and then Gemini. And, when you set up these tools, before you start programming, you're going to want to look at the leaderboard because it changes all the time. in fact, the, the same models themselves will leapfrog each other. because I don't know why maybe some of the models. Make, post updates. I know Claude, for example, 3.
+
+[00:43:23] 5 Sonnet has snapshots. They, they update their very same model with time. so does, OpenAI's models. So the leaderboard itself without adding any new models will tend to shift who's in the lead at any given time. So before you start working, check the leaderboard to decide which model you're going to use. I have found that a lot of people online on Reddit tend to favor Claude, no matter what. It's kind of interesting, sort of, irrespective of Adr's leaderboards, a lot of people will sort of dabble with O3mini or R1, and then they'll sort of Come back to Claude. I don't know what the deal is there, but it's just something to keep in mind.
+
+[00:44:05] Claude 3. 5 sonnet, for a very long time, at least a year, what was the king of AI code without a doubt, it was absolutely better than the other models out there. DeepSeek R1 coming onto the scene really changed things up a lot. and, and in response, of course, O3 Mini came out.
+
+[00:44:24] It wasn't necessarily a direct response to the release of DeepSeek R1, but my opinion is that OpenAI accelerated the release of O3 Mini. They had it on hand, they were ready to go, but It was more important to get that out into the public, to sort of patch up their reputation that was marred by DeepSeek. those two came out and for a while there people loved them on the forums and they, they were high up in the leaderboards. But then I saw a lot of people sort of going back to Claude, online. but you'll, you'll want to experiment and you'll want to look at the leaderboards. one reason.
+
+[00:44:57] 01 isn't used extensively, OpenAI 01, because it tends to be very high on the charts and in the public favor. but it is very, very expensive to use via API with your own API tokens. Extremely expensive, prohibitively expensive. You're not going to be using that one with or Roo or Cline. unless you have really deep pockets.
+
+[00:45:22] interestingly, when you go to GitHub Copilot's, list of models that they support, they say, uh, uh ,O3mini, Gemini 2. 0 Flash, 4. 0 Sonnet, et cetera, they list 0. 1. They list unlimited access, via the 10 per month Pro account to OpenAI's 0. 1 model. I don't see it in my list. I have a co pilot subscription.
+
+[00:45:46] I don't see it in my list, so I don't know how to get access to that. But if that's true, that might be a big selling point for a co pilot. It would make sense that they. have access to that because Microsoft, you know, is a partner of open AI. They hosts a lot of their model architecture and their own spins of those models on Microsoft Azure.
+
+[00:46:06] So they might have cheaper access to a one than other platforms do.
+
+[00:46:11] Okay. So, Hot take, if you're sort of dabbling, go for Cursor, you're a hardcore power user, go for Roo, no matter what. Also have Aider, and if you use Roo or Aider in Architect Edit Paradigm, use DeepSeek R1 plus Claude 3. 5 Sonnet. But,
+
+[00:46:32] check the leaderboards before you set that up.
+
