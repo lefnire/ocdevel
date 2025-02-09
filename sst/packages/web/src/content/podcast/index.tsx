@@ -53,6 +53,7 @@ import mla017 from './mla/017'
 import mla018 from './mla/018'
 import mla019 from './mla/019'
 import mla020 from './mla/020'
+import mlg033 from './mlg/033'
 
 import llh001 from './llh/001'
 import llh002 from './llh/002'
@@ -115,6 +116,8 @@ export const episodes = map([
   mla018,
   mla019,
   mla020,
+
+  mlg033,
 ], e => ({
   mlg: !e.mla,
   id: e.mla ? `mla-${e.episode}` : e.episode,
