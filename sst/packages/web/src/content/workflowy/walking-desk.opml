@@ -12,7 +12,7 @@
         <outline text="Energy" _note="Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. You'll need less caffeine.&#10;" />
         <outline text="Health" _note="Calories and heart-rate. At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time. Excessive likely - but suffice it eliminates the gym, saving time and money. At my worst, I clock the minimum-recommend 10k steps. Further, your posture is ideal while walking, better than sitting &lt;i&gt;and&lt;/i&gt; standing.&#10;" />
       </outline>
-      <outline text="Treadmills" _note="I recommend &lt;a href=&quot;key://urevo_3s&quot;&gt;Urevo 3S&lt;/a&gt; ($350) as a one-size-fits-all. Otherwise, choose based on your budget; quality matches cost. From lowest-&amp;gt;highest: &lt;a href=&quot;key://deerrun&quot;&gt;DeerRun&lt;/a&gt; ($150); &lt;a href=&quot;key://urevo_2s_lite&quot;&gt;Urevo 2S Lite&lt;/a&gt; ($250); &lt;a href=&quot;key://urevo_3s&quot;&gt;Urevo 3S&lt;/a&gt; ($350); &lt;a href=&quot;key://urevo_strol&quot;&gt;Strol 2S Pro&lt;/a&gt; ($500).&#10;">
+      <outline text="Treadmills" _note="I recommend &lt;a href=&quot;key://urevo_3s&quot;&gt;Urevo 3S&lt;/a&gt; ($350) as a one-size-fits-all. Otherwise, choose based on your budget; quality matches cost. From lowest-&amp;gt;highest: &lt;a href=&quot;key://deerrun&quot;&gt;DeerRun&lt;/a&gt; ($150); &lt;a href=&quot;key://urevo_2s_lite&quot;&gt;Urevo 2S Lite&lt;/a&gt; ($250); &lt;a href=&quot;key://urevo_3s&quot;&gt;Urevo 3S&lt;/a&gt; ($350); &lt;a href=&quot;key://cyberpad&quot;&gt;CyberPad&lt;/a&gt; ($500).&#10;">
         <outline text="Filters #c" _note="If the aforementioned don't suite you, expand this to compare pros / cons to dial your preferences.">
           <outline text="Click some of these based on requirements #picked-by:op #picked-by:public #budget:low #budget:medium #budget:high #incline:yes #shock:yes #hp:2_5+ #weight:high #size:small  #speed:high #speed:low #electric:no #amazon:yes">
             <outline text="Picked-by #picked-by:public #picked-by:op " _note="OP (&quot;original poster&quot;, aka me) or the public. By public I mean, from what I've seen these are popular picks; sometimes not aligning with what I'd personally choose. Eg, GoPlus and WalkingPad are &lt;i&gt;very &lt;/i&gt;popular; but I consider them terrible picks, based on reviews and Reddit complaints.&#10;" />
@@ -68,24 +68,6 @@
               <outline text="3. Then copy/paste the model name into Amazon" _note="Some of the newest models aren't there yet; but most the others are. Then you can get the Asurion extended warranty and all that. They don't name them on Amazon, so cross-reference the image from what you chose on &lt;a href=&quot;https://shareasale.com/r.cfm?b=2635321&amp;u=4069700&amp;m=159466&amp;urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&amp;afftrack=blog&quot;&gt;urevo.com&lt;/a&gt;.&#10;" />
             </outline>
             <outline text="Quality-tier ($400-$1k)">
-              <outline text="&lt;a href=&quot;key://urevo_strol&quot;&gt;Strol 2S Pro&lt;/a&gt; ($450-$550) #speed:high #budget:medium #incline:yes #hp:2_5+ #shock:yes #weight:high #picked-by:op " _note="If you also want to run (use this away from the walking desk), get this. You flip up the handles and it enables high speed; flip down to put it under your desk (low speed). This will generally be higher quality and last longer than a walking-only pad, due to motor requirements for high speed.&#10;">
-                <outline text="Specs">
-                  <outline text="Dimensions: ‎54.72&quot;D x 25.37&quot;W x 6.67&quot;H" />
-                  <outline text="Weight: ‎85 Pounds (very heavy)" />
-                  <outline text="Max Weight: 265lbs" />
-                  <outline text="Max Speed 7.6mph" />
-                  <outline text="Horse Power: 2.5" />
-                  <outline text="Age: August 7, 2024" />
-                  <outline text="Rating 4.5; Fakespot A" _note="5=70%, 4=15%, 3=4%, 2=3%, 1=8%&#10;" />
-                </outline>
-                <outline text="Pros">
-                  <outline text="Running + walking" _note="One of the very few that allow running. For this to work, it needs a stronger motor than usual, meaning the mill will last longer generally. &#10;" />
-                  <outline text="Sturdy" _note="Very high quality, to accommodate running&#10;" />
-                </outline>
-                <outline text="Cons">
-                  <outline text="Heavy" _note="Heaviest of my recommended mills. Absolute unit of a treadmil&#10;" />
-                </outline>
-              </outline>
               <outline text="&lt;a href=&quot;key://cyberpad&quot;&gt;CyberPad&lt;/a&gt; ($500) #speed:low #budget:medium #incline:yes #hp:2_5+ #shock:yes #weight:high #picked-by:public " _note="I don't know much about this one yet, but it got popular on KickStarter and I've gotten a lot of emails people asking if I've tried this, or saying that they love it. Seems like their highest quality walking-pad (Strol 2S Pro being their highest quality walk + run).&#10;">
                 <outline text="Specs">
                   <outline text="Dimensions: 47.6&quot;D x 23.6&quot;W x 8.7&quot;H" />
@@ -104,6 +86,24 @@
                 <outline text="Cons">
                   <outline text="Bulky" _note="Its width &amp; depth dimensions are fine, but it's height and weight are much more than average. It does have wheels and tilt stoppers though, so it shouldn't  be a problem.&#10;" />
                   <outline text="Tall" _note="Unfortunately the back legs are 8&quot;, much taller than most mills. So make sure your standing desk is tall enough. &#10;" />
+                </outline>
+              </outline>
+              <outline text="&lt;a href=&quot;key://urevo_strol&quot;&gt;Strol 2S Pro&lt;/a&gt; ($450-$550) #speed:high #budget:medium #incline:yes #hp:2_5+ #shock:yes #weight:high #picked-by:op " _note="If you also want to run (use this away from the walking desk), get this. You flip up the handles and it enables high speed; flip down to put it under your desk (low speed). This will generally be higher quality and last longer than a walking-only pad, due to motor requirements for high speed.&#10;">
+                <outline text="Specs">
+                  <outline text="Dimensions: ‎54.72&quot;D x 25.37&quot;W x 6.67&quot;H" />
+                  <outline text="Weight: ‎85 Pounds (very heavy)" />
+                  <outline text="Max Weight: 265lbs" />
+                  <outline text="Max Speed 7.6mph" />
+                  <outline text="Horse Power: 2.5" />
+                  <outline text="Age: August 7, 2024" />
+                  <outline text="Rating 4.5; Fakespot A" _note="5=70%, 4=15%, 3=4%, 2=3%, 1=8%&#10;" />
+                </outline>
+                <outline text="Pros">
+                  <outline text="Running + walking" _note="One of the very few that allow running. For this to work, it needs a stronger motor than usual, meaning the mill will last longer generally. &#10;" />
+                  <outline text="Sturdy" _note="Very high quality, to accommodate running&#10;" />
+                </outline>
+                <outline text="Cons">
+                  <outline text="Heavy" _note="Heaviest of my recommended mills. Absolute unit of a treadmil&#10;" />
                 </outline>
               </outline>
             </outline>
