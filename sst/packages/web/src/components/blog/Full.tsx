@@ -12,6 +12,14 @@ import {fmt, PostDate} from './utils'
 import {components, renderBlogPost} from '../utils/markdown.tsx'
 import {Comments} from "../utils/Comments.tsx";
 
+function Affiliate({p}) {
+  if (!p.affiliate) { return null }
+  return <>
+    <span>.</span>
+    <span className="ms-1">This post may contain affiliate links</span>
+  </>
+}
+
 export default function Full() {
   const {id} = useParams()
 
@@ -28,10 +36,9 @@ export default function Full() {
         <Card.Title>{p.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           <PostDate p={p} />
+          <Affiliate p={p} />
         </Card.Subtitle>
-        {p.affiliate ? <Card.Subtitle className="mb-2 text-muted small">
-          This post may contain affiliate links
-        </Card.Subtitle> : null}
+
         <Card.Text>
           {renderBlogPost(p)}
         </Card.Text>
