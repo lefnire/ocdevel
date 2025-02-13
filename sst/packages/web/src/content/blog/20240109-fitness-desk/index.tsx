@@ -19,19 +19,22 @@ const treadmillProducts = [
     image: '/walk_thumbs/cyberpad.jpg',
     title: 'Premium: CyberPad',
     description: 'Sturdiest, quietest, most features. Set incline=3, speed=2.',
-    link: walkingDeskLinks["key://cyberpad"]
+    link: walkingDeskLinks["key://cyberpad"],
+    linkText: "~$500 on Amazon"
   },
   {
     image: '/walk_thumbs/3s.jpg',
     title: 'Value: 3S',
     description: 'One size fits all, bang for buck. Set incline=3, speed=2.',
-    link: walkingDeskLinks["key://urevo_3s"]
+    link: walkingDeskLinks["key://urevo_3s"],
+    linkText: "~$350 on Amazon"
   },
   {
     image: '/walk_thumbs/deerrun.jpg',
     title: 'Budget: DeerRun',
     description: 'Test the waters. No incline, 1-2yrs life; but good price.',
-    link: walkingDeskLinks["key://deerrun"]
+    link: walkingDeskLinks["key://deerrun"],
+    linkText: "~$150 on Amazon"
   },
 ];
 
@@ -40,19 +43,22 @@ const otherProducts = [
     image: '/walk_thumbs/desk.jpg',
     title: 'Desk: FlexiSpot',
     description: 'Electric sit/stand',
-    link: walkingDeskLinks["key://flexispot"]
+    link: walkingDeskLinks["key://flexispot"],
+    linkText: "~$150 on Amazon"
   },
   {
     image: '/walk_thumbs/mat.jpg',
     title: 'Mat: Urevo',
     description: 'Prevents floor damage, protects knees',
-    link: walkingDeskLinks["key://mat"]
+    link: walkingDeskLinks["key://mat"],
+    linkText: "$40 on Amazon"
   },
   {
     image: '/walk_thumbs/lube.jpg',
     title: 'Lube: Godora',
     description: 'Silicone treadmill lubricant. Apply every 50hrs',
-    link: walkingDeskLinks["key://lube"]
+    link: walkingDeskLinks["key://lube"],
+    linkText: "$35 on Amazon"
   }
   // {
   //   image: '/walk_thumbs/fluidstance.jpg',
@@ -89,7 +95,7 @@ const body = <div>
     }
   `}</style>
 
-  <p>My picks change with research and testing. Scroll past the videos for research and different budgets.</p>
+  <p>My picks change with research and testing. Scroll past the videos for research, different budgets and options, and more tips.</p>
 
   <div className="row g-4 mb-4">
     <div className="col-12 col-md-6">
