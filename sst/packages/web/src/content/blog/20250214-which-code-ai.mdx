@@ -1,7 +1,7 @@
 export const id = '20240214-which-code-ai'
 export const date = '2025-02-14'
 export const title = "Choosing a Code AI Tool"
-export const teaser = "Compares Aider, Cline, Roo Code, Cursor, Github Copilot, Windsurf."
+export const teaser = "A practical comparison of Aider, Cline, Roo Code, Cursor, Github Copilot, and Windsurf."
 
 <style>
 {`
@@ -21,257 +21,87 @@ export const teaser = "Compares Aider, Cline, Roo Code, Cursor, Github Copilot, 
 `}
 </style>
 
-Feel free to jump to the **Decision Framework** near the end. Even more [thorough read here](https://chatgpt.com/share/67a8dcb1-0b40-8013-907c-6ea89f09c002).
-
----
-
-## AI Coding Agents: Summary & Decision Guide
-
-### 1. Interface & Integration
-
-| Tool            | Interface                  | Key Points                                                                                                                     |
-|-----------------|----------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Cline**       | VS Code extension         | - Native sidebar, multi-file analysis.  <br/> - Easy setup via marketplace, uses user's API keys (OpenAI, Anthropic, etc.).       |
-| **Roo Code**    | VS Code extension (fork)  | - Similar to Cline, but adds multi-"mode" UI (Ask, Code, Architect). <br/> - Also uses user's model keys, includes UI refinements.|
-| **Copilot**     | IDE plugins (VS Code, JetBrains, etc.) | - "Agent Mode" baked into the Copilot extension. <br/> - Broad official IDE support, integrated chat, minimal config (GitHub login). |
-| **Cursor**      | Standalone editor (VS Code fork) | - Separate app you download, with AI features built in (chat, multi-file edits). <br/> - Can install VS Code extensions, but must use Cursor IDE. |
-| **Windsurf**    | Standalone editor (VS Code fork by Codeium) | - Another specialized IDE with built-in AI features ("Cascade" agent mode). <br/> - Polished, minimal UI, also uses extension ecosystem.  |
-| **Aider**       | CLI tool, editor-agnostic | - Runs in terminal, applies diffs to files on disk. <br/> - Works with any editor: you specify which files to include.            |
-
----
-
-### 2. Agentic Abilities
-
-| Tool                  | Autonomy Level                                                                                  |
-|-----------------------|-------------------------------------------------------------------------------------------------|
-| **Cline & Roo Code**  | **High autonomy**: multi-step planning, multi-file editing, can run tests/commands, self-correct errors.                              |
-| **Copilot (Agent Mode)** | **High autonomy**: interprets broad tasks, executes changes, runs code/tests, fixes issues in a loop (though still in preview).       |
-| **Cursor**            | **Moderate autonomy**: can edit multiple files, but typically asks user to select files and confirm diffs. No automated debugging loop. |
-| **Windsurf**          | **Moderate**: auto-fetches relevant code (“Cascade”), applies changes live, but stops if errors arise (user must prompt further).       |
-| **Aider**             | **Low autonomy by default**: relies on user specifying which files to include/fix. No built-in test runner (you do it manually).        |
-
-**Notes:**
-- **Cline/Roo** and **Copilot agent** can act like junior devs—plan, code, see errors, fix them automatically.
-- **Cursor/Windsurf** let you see and apply changes, but you remain in tighter control.
-- **Aider** does exactly what you say; you can script it for bigger tasks but it’s not fully “hands-off.”
-
----
-
-### 3. Token Efficiency
-
-All tools strive to stay within model context limits. Their approaches differ:
-
-- **Cline/Roo**:
-  - Analyze project structure to only include relevant files/snippets.  
-  - Use diffs for smaller edits, can also handle large projects by focusing on relevant areas.  
-  - Roo adds a “Memory Bank” to summarize older context and free up tokens.
-
-- **Copilot Agent**:
-  - Closed approach, uses large-context models (Claude, OpenAI, etc.).  
-  - Automatic indexing of your repo in the background.  
-  - You have limited insight/control over token usage, but it rarely becomes a user concern unless tasks are huge.
-
-- **Cursor**:
-  - Relies on an internal index; user typically must add files to context or rely on semantic search.  
-  - Diff-based changes are smaller. Sometimes you have to explicitly add missing files to avoid large prompts.  
-  - Uses model switching behind the scenes for cost optimization.
-
-- **Windsurf**:
-  - Similar indexing approach. Automatically pulls in relevant code snippets.  
-  - Applies changes in real time, so it may not always send the entire file in the prompt.  
-  - Uses large Anthropic model but tries to keep usage efficient.
-
-- **Aider**:
-  - Diff-based method by default: user includes specific files, making it token-thrifty.  
-  - Maintains a “repo map” (summaries of files) to avoid loading huge content.  
-  - Manual approach gives granular control over what goes into the prompt.
-
----
-
-### 4. Precision & Accuracy
-
-All use top-tier LLMs, but their workflows affect how precisely code is changed:
-
-- **Cline**:
-  - Self-verifies edits by running tests or checking compiler output.
-  - Often does thorough changes across all relevant files automatically.
-
-- **Roo Code**:
-  - Inherits Cline’s loop, plus specific “modes” to fine-tune how it approaches tasks.
-  - More refined UI for a smoother experience, with targeted insert/replace actions.
-
-- **Copilot (Agent)**:
-  - Automatically runs code/tests to correct obvious errors.
-  - Might produce big multi-file changes quickly, often accurate if your tests are robust.
-  - Still somewhat new/preview, so user oversight is recommended.
-
-- **Cursor**:
-  - Typically uses small, reviewable diffs and requires your confirmation.
-  - Less risk of unintended changes, but less autopilot.
-  - Has a “bug finder” step that tries to catch potential issues in your changes.
-
-- **Windsurf**:
-  - Applies changes live, so you see immediate effects in your running app.
-  - Cascade fetches multi-file context automatically.
-  - Good for fast iteration, but you might need to read diffs afterward if you want careful review.
-
-- **Aider**:
-  - Minimal changes to only the files you explicitly include.
-  - You must test/verify yourself (no built-in test-run loop).
-  - Good for stepwise, controlled edits. Extra autonomy is possible but requires custom scripting.
-
----
-
-### 5. Customization & Model Support
-
-**Open vs. Closed** is key:
-
-- **Cline/Roo/Aider**:
-  - *Bring your own API keys.*
-  - Use OpenAI, Claude, or other models (even local).
-  - Fully open-source, so you can tweak system prompts, integrate new models, etc.
-
-- **Copilot Agent**:
-  - Closed ecosystem, no custom model input.
-  - GitHub chooses which models they integrate (OpenAI, Claude, Gemini, etc.).
-  - You get a curated but limited set of official model options.
-
-- **Cursor**:
-  - Proprietary, no user-supplied model keys.
-  - Uses Anthropic Claude or others behind the scenes, included in your subscription.
-  - You can’t swap in a new model yourself.
-
-- **Windsurf**:
-  - Also proprietary, uses Codeium’s models + Anthropic behind the scenes.
-  - No option to plug in your own.
-  - Very few advanced tuning settings, but tries to “just work.”
-
----
-
-### 6. Open-Source vs. Proprietary
-
-- **Cline**
-  - **Open-source** (MIT), free to use with your own keys.
-  - Strong community, can be extended or forked.
-  - No vendor lock-in.
-
-- **Roo Code**
-  - **Open-source** fork of Cline, similarly flexible.
-  - Adds unique “modes” and refinements.
-  - Community-driven, no cost beyond API usage.
-
-- **Copilot**
-  - **Proprietary** (by GitHub/Microsoft).
-  - Well-funded and polished, but you can’t self-host or modify.
-  - Enterprise-ready with official support.
-
-- **Cursor**
-  - **Proprietary** startup product.
-  - Polished features, but no local hosting or open code.
-  - Must trust their cloud for AI service.
-
-- **Windsurf**
-  - **Proprietary** from Codeium.
-  - Some free aspects for completion, but main agent features are subscription.
-  - Closed code, single vendor route.
-
-- **Aider**
-  - **Open-source** (MIT).
-  - Entirely free to install, with no paywall.
-  - Full control, can integrate local or remote models.
-
----
-
-### 7. Pricing & Accessibility
-
-**Pay-as-you-go** vs. **Subscription**:
-
-- **Cline/Roo/Aider**:
-  - Tools themselves are **free**.
-  - You pay only for the model usage (OpenAI/Anthropic, etc.).
-  - Potentially cheap if usage is light, but cost can spike if you do massive OpenAI tasks.
-
-- **Copilot**:
-  - **Subscription**: ~$10/month for individuals (unlimited usage), more for business tiers.
-  - “Agent Mode” is included in that sub (currently in preview).
-  - Very straightforward cost, no token monitoring.
-
-- **Cursor**:
-  - **$20/month** subscription.
-  - AI calls included, presumably “unlimited within reason.”
-  - Has a free trial, but no indefinite free tier.
-
-- **Windsurf**:
-  - **$15/month** subscription with “action credits” for Cascade.
-  - Possibly a free trial or partial features.
-  - Must watch usage if you do large tasks often.
-
----
-
-### 8. Decision Framework
-
-#### Step 1: **Which environment do you prefer?**
-
-- **Existing IDE** (VS Code, JetBrains, etc.):
-  - **VS Code** → Try **Cline** or **Roo Code**.
-  - **JetBrains/NVIM** or many editors → **Copilot** is best-supported.
-  - **Don’t want to switch** → Also consider **Aider** (CLI) and keep your current IDE.
-
-- **Willing to switch** to an AI-centric IDE:
-  - **Cursor** or **Windsurf** are dedicated forks of VS Code with AI built in.
-
-#### Step 2: **Autonomy vs. Control**
-
-- **High Autonomy** (the AI runs tests, self-fixes errors):
-  - **Cline/Roo** or **Copilot Agent**.
-- **Moderate** (semi-auto, still requires your sign-off):
-  - **Cursor** (you confirm changes) or **Windsurf** (applies changes live, but you handle errors).
-- **Manual** (you direct everything, minimal surprises):
-  - **Aider**. Perfect if you want stepwise, user-driven control or to script the process.
-
-#### Step 3: **Budget & Payment Style**
-
-- **No subscription, pay only tokens**:
-  - **Aider, Cline, Roo** → open-source, your cost is purely API usage.
-- **Flat monthly fee, no token worries**:
-  - **Copilot** ($10), **Cursor** ($20), or **Windsurf** ($15).
-  - If you use AI heavily, flat rates can be cheaper overall.
-
-#### Step 4: **Openness & Privacy**
-
-- **Need open-source or self-host**:
-  - **Aider, Cline, Roo** (all MIT licensed).
-- **Accept proprietary** but want advanced polish/support**:
-  - **Copilot** (official support, robust for businesses), or
-  - **Cursor/Windsurf** (faster releases, smaller startups).
-
-#### Step 5: **Precision & Oversight**
-
-- **Maximum caution on code changes**:
-  - **Cursor** (diff approvals) or **Aider** (explicit file targeting).
-- **Fast, broad changes**:
-  - **Copilot Agent** or **Windsurf** (auto-applies, you test in real-time).
-- **Balanced**:
-  - **Cline/Roo** (auto coverage + checks, but still show diffs).
-
-#### Step 6: **Model Preferences**
-
-- **Must use latest custom or local model**:
-  - **Cline/Roo/Aider** (plug in any API key or local LLM).
-- **Fine with curated options**:
-  - **Copilot** (OpenAI, Claude, Gemini, etc.),
-  - **Cursor/Windsurf** (mostly Anthropic-based).
-
----
-
-### Final Takeaways
-
-- **If you want** a **full open-source** coding copilot that integrates easily with **VS Code**, pick **Cline or Roo Code**. They offer high autonomy, flexible model choices, and free usage aside from API costs.
-- **If you prefer** a **closed ecosystem** with a single monthly fee (no token mgmt), plus strong enterprise backing, **Copilot (Agent Mode)** is a strong default for mainstream IDE support.
-- **If you want** a **dedicated AI editor** with integrated chat/workflow in a polished UI, **Cursor** ($20/mo) and **Windsurf** ($15/mo) are good picks—just be prepared to adopt their proprietary forks of VS Code.
-- **If you love** the **CLI** approach, or want the freedom to script or use any editor (even Vim/Emacs), **Aider** is ideal. It’s also open-source and can integrate local or remote models.
-- The **“best”** choice depends on your **IDE preference**, **desired autonomy**, **pricing comfort**, and **open-source vs. proprietary** philosophy. Use the Decision Framework steps to narrow it down quickly!
-
----
-
-> **Tip:** If unsure, try the free open-source options (**Aider, Cline, Roo**) with minimal risk (just API keys). Then test a **proprietary** tool’s free trial (**Copilot, Cursor, Windsurf**) to see which style resonates with your workflow.
+## Quick Comparison
+
+| Tool | Key Features | Models | Cost | Best For |
+|------|-------------|---------|------|-----------|
+| **Copilot** | VS Code/JetBrains integration, high autonomy, auto-testing | Proprietary (latest models) | $10/mo flat | General use, enterprise |
+| **Cline/Roo** | VS Code, high autonomy, test running | Any API (OpenAI, Claude, etc) + Local LLMs | API costs only | Custom model needs, VS Code users |
+| **Cursor** | Standalone IDE, moderate autonomy | Claude-based | $20/mo flat | Fast iteration, UI-focused workflow |
+| **Windsurf** | Standalone IDE, live changes | Anthropic + Codeium | $15/mo | Real-time coding, UI-focused |
+| **Aider** | CLI tool, works with any editor | Any API + Local LLMs | API costs only | CLI lovers, precise control |
+
+## Quick Decision Guide
+
+1. **Want maximum autonomy?** (AI that self-corrects, runs tests)
+   - **Pick**: Copilot or Cline/Roo
+   - Both can act like junior devs: planning, coding, and fixing errors automatically
+
+2. **Need specific/latest models?**
+   - **Want latest models**: Cline/Roo or Aider (use any API)
+   - **Want local LLMs**: Cline/Roo or Aider
+   - **Don't care**: Any tool (all use strong models)
+
+3. **Pricing preference?**
+   - **Fixed monthly**: 
+     - Copilot ($10) 
+     - Cursor ($20)
+     - Windsurf ($15)
+   - **Pay-per-use**: 
+     - Cline/Roo/Aider (only pay API costs)
+
+4. **IDE preference?**
+   - **Keep existing**: 
+     - VS Code → Cline/Roo or Copilot
+     - Other IDEs → Copilot
+     - Any editor → Aider (CLI)
+   - **Willing to switch**: 
+     - Cursor or Windsurf (specialized AI IDEs)
+
+## Key Differences
+
+### Autonomy Level
+- **High** (self-testing, error fixing):
+  - Copilot, Cline/Roo
+- **Medium** (needs more oversight):
+  - Cursor, Windsurf
+- **Manual** (you control everything):
+  - Aider
+
+### Model Access
+- **Any model** (including local):
+  - Cline/Roo, Aider
+- **Fixed models**:
+  - Copilot (various top models)
+  - Cursor (Claude-based)
+  - Windsurf (Anthropic + Codeium)
+
+### Integration
+- **IDE plugins**: Copilot, Cline/Roo
+- **Standalone IDE**: Cursor, Windsurf
+- **CLI (any editor)**: Aider
+
+## Final Recommendation
+
+1. **Start with Copilot** if you want:
+   - Simple setup
+   - Fixed monthly cost
+   - Strong IDE support
+   - Don't need specific models
+
+2. **Try Cline/Roo** if you want:
+   - VS Code integration
+   - Custom/local model choice
+   - Pay-per-use pricing
+   - High autonomy
+
+3. **Consider Cursor/Windsurf** if you:
+   - Like dedicated AI IDEs
+   - Want real-time changes
+   - Prefer UI-focused workflow
+
+4. **Choose Aider** if you:
+   - Love CLI
+   - Want precise control
+   - Need custom models
+   - Use non-mainstream editors
