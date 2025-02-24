@@ -3,7 +3,6 @@ import {BattleStation} from "../utils.tsx";
 import {walkingDeskLinks} from '../../workflowy/walking-desk-links'
 import {Workflowy} from '../../../components/utils/Workflowy.tsx'
 import { ProductCard } from './ProductCard'
-import { VideoEmbed } from './VideoEmbed'
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
@@ -69,12 +68,6 @@ const otherProducts = [
   // }
 ];
 
-const videos = [
-  { id: 'rLDXoTD525E', title: 'Basics' },
-  { id: 'fHjxqYBIPKA', title: 'Intermediate' },
-  { id: 'BLvJmlB3j7Q', title: 'Advanced' }
-];
-
 const body = <div>
   <style jsx>{`
     .thumbnail-placeholder {
@@ -95,7 +88,7 @@ const body = <div>
     }
   `}</style>
 
-  <p>My picks change with research and testing. Scroll past the videos for research, different budgets and options, and more tips.</p>
+  <p>My picks change with research and testing. Watch the video below for a complete overview, then scroll down for research, different budgets and options, and more tips.</p>
 
   <div className="row g-4 mb-4">
     <div className="col-12 col-md-6">
@@ -106,15 +99,18 @@ const body = <div>
     </div>
   </div>
 
-  <div className="row g-3 mb-4">
-    {videos.map((video, i) => (
-      <div className="col-12 col-md-4" key={i}>
-        <VideoEmbed videoId={video.id} title={video.title} />
-      </div>
-    ))}
+  <div className="mb-4 text-center">
+    <iframe 
+      width="560" 
+      height="315" 
+      src="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl" 
+      title="YouTube video player" 
+      frameBorder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerPolicy="strict-origin-when-cross-origin" 
+      allowFullScreen
+    />
   </div>
-
-  <small>Outdated, but more detailed, <a href="https://youtube.com/embed/rLDXoTD525E?si=xk2XnhXVhVpIkHnT" target="_blank">video here</a>.</small>
 
   <Workflowy wf={wf} />
   <hr/>
