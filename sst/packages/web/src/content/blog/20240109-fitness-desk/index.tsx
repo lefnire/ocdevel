@@ -75,13 +75,26 @@ const body = <div>
       width: 50px;
       height: 50px;
     }
-
     .product-thumbnail {
       width: 50px;
       height: 50px;
       object-fit: cover;
     }
-
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-bottom: 56.25%;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
     @media (min-width: 768px) {
       .product-thumbnail {
         width: 100px;
@@ -90,48 +103,32 @@ const body = <div>
     }
   `}</style>
 
-  <p>My picks change with research and testing. Scroll past the video for research, different budgets and options, and
-    more tips.</p>
+  <p>My picks change with research and testing. Watch the video below for a complete overview, then scroll down for research, different budgets and options, and more tips.</p>
 
   <div className="row g-4 mb-4">
     <div className="col-12 col-md-6">
-      <ProductCard title="Treadmill" products={treadmillProducts}/>
+      <ProductCard title="Treadmill" products={treadmillProducts} />
     </div>
     <div className="col-12 col-md-6">
-      <ProductCard title="Other" products={otherProducts}/>
+      <ProductCard title="Other" products={otherProducts} />
     </div>
   </div>
 
-  <div style={{
-    maxWidth: '800px',
-    margin: '0 auto 1rem auto'
-  }}>
-    <div style={{
-      position: 'relative',
-      paddingBottom: '56.25%',
-      height: 0,
-      overflow: 'hidden'
-    }}>
-      <iframe
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%'
-          }}
-          src="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-      ></iframe>
+  <div className="mb-4">
+    <div className="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl" 
+        title="YouTube video player" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerPolicy="strict-origin-when-cross-origin" 
+        allowFullScreen
+      />
     </div>
   </div>
 
-  <Workflowy wf={wf}/>
+  <Workflowy wf={wf} />
   <hr/>
-  <BattleStation/>
+  <BattleStation />
 </div>
 
 export default body;
