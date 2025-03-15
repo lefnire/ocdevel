@@ -3,6 +3,7 @@ import {BattleStation} from "../utils.tsx";
 import {walkingDeskLinks} from '../../workflowy/walking-desk-links'
 import {Workflowy} from '../../../components/utils/Workflowy.tsx'
 import { ProductCard } from './ProductCard'
+import {useEffect, useState} from "react";
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
@@ -13,29 +14,48 @@ export const affiliate = true
 export const teaser = "Comparison of treadmill desk options. Under-desk walking pads: Egofit, Urevo, GoYouth, GoPlus, WalkingPad, Lifespan, iMovR. A video showing how and when to use each option. Links to stand/sit desks, monitor arms, and ergonomic peripherals."
 export const jsx = true;
 
-const treadmillProducts = [
-  {
-    image: '/walk_thumbs/cyberpad.jpg',
-    title: 'Premium: CyberPad',
-    description: 'Sturdiest, quietest, most features. Set incline=3, speed=2.',
-    link: walkingDeskLinks["key://cyberpad"],
-    linkText: "~$500 on Amazon"
-  },
-  {
-    image: '/walk_thumbs/3s.jpg',
-    title: 'Value: 3S',
-    description: 'One size fits all, bang for buck. Set incline=3, speed=2.',
-    link: walkingDeskLinks["key://urevo_3s"],
-    linkText: "~$350 on Amazon"
-  },
-  {
-    image: '/walk_thumbs/deerrun.jpg',
-    title: 'Budget: DeerRun',
-    description: 'Test the waters. No incline, 1-2yrs life; but good price.',
-    link: walkingDeskLinks["key://deerrun"],
-    linkText: "~$150 on Amazon"
-  },
-];
+const treadmillProducts = {
+  CA: [
+    {
+      image: '/walk_thumbs/mobvoi_ca.png',
+      title: 'Value: Mobvoi Fitness 10',
+      description: 'Bang for buck. Incline, walk & run modes',
+      link: "https://amzn.to/4hmAP5C",
+      linkText: "~$340 on Amazon"
+    },
+    {
+      image: '/walk_thumbs/deerrun.jpg',
+      title: 'Budget: DeerRun',
+      description: 'Test the waters. No incline, 1-2yrs life; but good price.',
+      // link: walkingDeskLinks["key://deerrun"],
+      link: "https://amzn.to/4kHdtdM",
+      linkText: "~$250 on Amazon"
+    },
+  ],
+  US: [
+    {
+      image: '/walk_thumbs/cyberpad.jpg',
+      title: 'Premium: CyberPad',
+      description: 'Sturdiest, quietest, most features. Set incline=3, speed=2.',
+      link: walkingDeskLinks["key://cyberpad"],
+      linkText: "~$500 on Amazon"
+    },
+    {
+      image: '/walk_thumbs/3s.jpg',
+      title: 'Value: 3S',
+      description: 'One size fits all, bang for buck. Set incline=3, speed=2.',
+      link: walkingDeskLinks["key://urevo_3s"],
+      linkText: "~$350 on Amazon"
+    },
+    {
+      image: '/walk_thumbs/deerrun.jpg',
+      title: 'Budget: DeerRun',
+      description: 'Test the waters. No incline, 1-2yrs life; but good price.',
+      link: walkingDeskLinks["key://deerrun"],
+      linkText: "~$150 on Amazon"
+    },
+  ]
+};
 
 const otherProducts = [
   {
@@ -68,67 +88,102 @@ const otherProducts = [
   // }
 ];
 
-const body = <div>
-  <style jsx>{`
-    .thumbnail-placeholder {
-      background-color: #e0e0e0;
-      width: 50px;
-      height: 50px;
-    }
-    .product-thumbnail {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-    }
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      padding-bottom: 56.25%;
-    }
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    @media (min-width: 768px) {
-      .product-thumbnail {
-        width: 100px;
-        height: 100px;
+
+function Body() {
+  const [loc, setLoc] = useState();
+  const [treadmills, setTreadmills] = useState(treadmillProducts.US);
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        data.country_code = 'CA'
+        if (data.country_code === "CA") {
+          setTreadmills(treadmillProducts.CA);
+        }
+        // else if (data.country === "GB") {
+        //   amazonLink = "https://www.amazon.co.uk/your-affiliate-link";
+        // // } else if (["DE", "FR", "IT", "ES", "NL"].includes(data.country)) {
+        // } else if (data.continent_code === "EU") {
+        //   amazonLink = "https://www.amazon.eu/your-affiliate-link";
+        // } else {
+        //   amazonLink = "https://www.amazon.com/your-affiliate-link";
+        // }
+        // Update your page accordingly, e.g.:
+        // document.getElementById('amazonLink').href = amazonLink;
+      })
+      // .catch(error => {
+      //   debugger
+      //   console.error('Error fetching location data:', error);
+      //   // Fallback to USA link
+      //   document.getElementById('amazonLink').href = "https://www.amazon.com/your-affiliate-link";
+      // });
+  }, [])
+
+
+  return <div>
+    <style jsx>{`
+      .thumbnail-placeholder {
+        background-color: #e0e0e0;
+        width: 50px;
+        height: 50px;
       }
-    }
-  `}</style>
+      .product-thumbnail {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-bottom: 56.25%;
+      }
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      @media (min-width: 768px) {
+        .product-thumbnail {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    `}</style>
 
-  <p>My picks change with research and testing. Watch the video below for a complete overview, then scroll down for research, different budgets and options, and more tips.</p>
+    <p>My picks change with research and testing. Watch the video below for a complete overview, then scroll down for research, different budgets and options, and more tips.</p>
 
-  <div className="row g-4 mb-4">
-    <div className="col-12 col-md-6">
-      <ProductCard title="Treadmill" products={treadmillProducts} />
+    <div className="row g-4 mb-4">
+      <div className="col-12 col-md-6">
+        <ProductCard title="Treadmill" products={treadmills} />
+      </div>
+      <div className="col-12 col-md-6">
+        <ProductCard title="Other" products={otherProducts} />
+      </div>
     </div>
-    <div className="col-12 col-md-6">
-      <ProductCard title="Other" products={otherProducts} />
+
+    <div className="mb-4">
+      <div className="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
     </div>
+
+    <Workflowy wf={wf} />
+    <hr/>
+    <BattleStation />
   </div>
+}
+const body = <Body />
 
-  <div className="mb-4">
-    <div className="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl" 
-        title="YouTube video player" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerPolicy="strict-origin-when-cross-origin" 
-        allowFullScreen
-      />
-    </div>
-  </div>
-
-  <Workflowy wf={wf} />
-  <hr/>
-  <BattleStation />
-</div>
 
 export default body;
