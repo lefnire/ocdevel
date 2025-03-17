@@ -6,17 +6,17 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Badge from 'react-bootstrap/Badge'
-import {FaCalendar} from '@react-icons/all-files/fa/FaCalendar'
-import {FaCheckSquare} from '@react-icons/all-files/fa/FaCheckSquare'
-import {FaGift} from '@react-icons/all-files/fa/FaGift'
-import {FaHatWizard} from '@react-icons/all-files/fa/FaHatWizard'
-import {FaPlusSquare} from '@react-icons/all-files/fa/FaPlusSquare'
-import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
+import {FaCalendar} from 'react-icons/fa'
+import {FaCheckSquare} from 'react-icons/fa'
+import {FaGift} from 'react-icons/fa'
+import {FaHatWizard} from 'react-icons/fa'
+import {FaPlusSquare} from 'react-icons/fa'
+import {FaSwatchbook} from 'react-icons/fa'
 import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
 import {TLDR} from './utils'
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 
 export const teaser = "As Habitica's creator, I've refined my approach to using the system over 10 years. This post teaches you how to get the most out of improving your habits and behavior through Habitica. It includes a calculator for choosing the best class (warrior, rogue, mage, healer) for your play-style."
 

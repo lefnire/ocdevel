@@ -1,5 +1,5 @@
 import {l} from './helpers';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 export let title = 'Please Learn to Code';
 

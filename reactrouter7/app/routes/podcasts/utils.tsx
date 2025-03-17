@@ -1,13 +1,13 @@
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Accordion from 'react-bootstrap/Accordion'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router'
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import {BiChevronDown} from '@react-icons/all-files/bi/BiChevronDown'
-import {BiChevronRight} from '@react-icons/all-files/bi/BiChevronRight'
-import {FiMinusSquare} from '@react-icons/all-files/fi/FiMinusSquare'
-import {FiPlusSquare} from '@react-icons/all-files/fi/FiPlusSquare'
+import {BiChevronDown} from 'react-icons/bi'
+import {BiChevronRight} from 'react-icons/bi'
+import {FiMinusSquare} from 'react-icons/fi'
+import {FiPlusSquare} from 'react-icons/fi'
 import compact from 'lodash/compact'
 
 export const dateFmt = 'MMM DD, YYYY';

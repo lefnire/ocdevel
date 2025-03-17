@@ -1,5 +1,5 @@
 import {l} from './helpers';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 export let title = 'Do I Need to Program to Work Remotely?';
 export let date = '2016-04-20';

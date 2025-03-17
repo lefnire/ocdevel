@@ -1,5 +1,5 @@
 import {l} from './helpers';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 export const title = 'Best Tech & Remote Job Boards';
 export const date = '2016-04-20';

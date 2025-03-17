@@ -1,7 +1,7 @@
-import blog from "../../content/blog";
+import blog from "~/content/blog";
 import React from "react";
 import {BlogPost, fmt} from './utils'
-import {Teaser} from './Teaser.tsx'
+import {Teaser} from './teaser.tsx'
 
 export default function List() {
   // const posts = _.sortBy(blog, e => -moment(e.date));

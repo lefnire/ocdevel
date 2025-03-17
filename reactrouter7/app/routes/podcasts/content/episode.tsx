@@ -3,7 +3,7 @@ import Alert from 'react-bootstrap/Alert'
 import Card from 'react-bootstrap/Card'
 import {Accordion_, dateFmt, ReactMarkdown_} from "../utils";
 import padStart from "lodash/padStart";
-import moment from "moment";
+import moment from "dayjs";
 import {Link, useParams} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 import {BackButton, usePodcastKey} from "../../utils";

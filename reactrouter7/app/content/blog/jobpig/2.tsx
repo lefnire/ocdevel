@@ -1,5 +1,5 @@
 import {l} from './helpers';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 export let title = 'Learn to Code - Shortcut for Digital Nomads';
 export let date = '2016-04-20';

@@ -1,5 +1,5 @@
 import Alert from 'react-bootstrap/Alert'
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 
 export function TLDR({children}) {
   return <Alert variant='info'><b>TL;DR</b> {children}</Alert>

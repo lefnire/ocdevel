@@ -1,5 +1,5 @@
 import React from 'react';
-import {DisqusThreadProps} from "react-disqus-comments";
+import {type DisqusThreadProps} from "react-disqus-comments";
 // import ReactDisqusComments from "react-disqus-comments";
 import {FaLock} from "react-icons/fa";
 

@@ -1,8 +1,8 @@
 import wf from '../../workflowy/walking-desk.opml'
 import {BattleStation} from "../utils.tsx";
 import {walkingDeskLinks} from '../../workflowy/walking-desk-links'
-import {Workflowy} from '../../../components/utils/Workflowy.tsx'
-import { ProductCard } from './ProductCard'
+import {Workflowy} from '~/components/workflowy.tsx'
+import { ProductCard } from './product-card'
 import {useEffect, useState} from "react";
 
 export const id = '20240109-fitness-desk'

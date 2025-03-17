@@ -1,16 +1,15 @@
-import {useParams} from "react-router-dom";
+import {useParams} from "react-router";
 import find from "lodash/find";
 import blog from "../../content/blog";
-import {Helmet} from "react-helmet-async";
-import {BackButton} from "../utils";
+import {BackButton} from "~/components/utils";
 import Card from "react-bootstrap/Card";
-import moment from "moment";
+import moment from "dayjs";
 import {ReactMarkdown_} from "../podcasts/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import React from "react";
 import {fmt, PostDate} from './utils'
-import {components, renderBlogPost} from '../utils/markdown.tsx'
-import {Comments} from "../utils/Comments.tsx";
+import {components, renderBlogPost} from '~/components/markdown.tsx'
+import {Comments} from "~/components/comments.tsx";
 
 function Affiliate({p}) {
   if (!p.affiliate) { return null }
@@ -25,11 +24,6 @@ export default function Full() {
 
   const p = find(blog, {id});
   return <div>
-    <Helmet>
-      <title>{p.title} | OCDevel</title>
-      {/* Should use teaser here */}
-      {/*<meta name="description" content="Helmet application" />*/}
-    </Helmet>
     <BackButton to="/blog" />
     <Card>
       <Card.Body>
@@ -52,4 +46,14 @@ export default function Full() {
       </Card.Footer>
     </Card>
   </div>
+}
+
+export function meta() {
+  return []
+  // @FIXME
+  // <Helmet>
+  //     <title>{p.title} | OCDevel</title>
+  //     {/* Should use teaser here */}
+  //     {/*<meta name="description" content="Helmet application" />*/}
+  //   </Helmet>
 }

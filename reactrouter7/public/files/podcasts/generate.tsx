@@ -2,7 +2,7 @@ const podcasts = {
   'machine-learning': require('../../../src/content/machine-learning'),
   // 'web-development': require('../../../src/content/web-development'),
 };
-const moment = require('moment');
+const moment = require('dayjs');
 const _ = require('lodash');
 const fs = require('fs');
 

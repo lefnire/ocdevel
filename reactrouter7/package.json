@@ -9,15 +9,23 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.1.0",
+    "@mdx-js/rollup": "^3.1.0",
     "@react-router/node": "^7.3.0",
     "@react-router/serve": "^7.3.0",
     "bootstrap": "^5.3.3",
+    "dayjs": "^1.11.13",
+    "immer": "^10.1.1",
     "isbot": "^5.1.17",
+    "lodash": "^4.17.21",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
+    "react-disqus-comments": "^1.4.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-router": "^7.3.0"
+    "react-markdown": "^10.1.0",
+    "react-router": "^7.3.0",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@react-router/dev": "^7.3.0",
@@ -25,11 +33,14 @@
     "@types/node": "^20",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
+    "html-entities": "^2.5.2",
     "react-router-devtools": "^1.1.0",
+    "remark-gfm": "^4.0.1",
     "sass-embedded": "^1.85.1",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "xml-js": "^1.6.11"
   }
 }

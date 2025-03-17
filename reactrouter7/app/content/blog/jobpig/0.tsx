@@ -1,5 +1,5 @@
 import {l} from './helpers';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 export const id = '21204489-34a6-4d56-8299-0e6d3f446d53'
 export const jsx = true;
