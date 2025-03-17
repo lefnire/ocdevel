@@ -1,0 +1,360 @@
+[00:00:00] (This file was imported without noise-removal done properly. So I've collected some noise at the end of the file. Before uploading, export the file into audacity - apply noise reduction based on silence at the end of file - remove silent chunk - export from Audacity without any other effects - upload)
+
+[00:00:00] Machine learning guide episode two, this is what is artificial intelligence, machine learning and data science. This is a complete redo of the original episode. So if you've already listened to episode two, I recommend listening to this anyway, because there's going to be a lot of new information, especially regarding data science, which was sorely lacking in the original recording.
+
+[00:00:21] Let's start with a bird's-eye view. Data. Science is the all encompassing umbrella term inside of which is artificial intelligence inside of which is machine learning. So data science contains AI and AI contains ML. But before we go into data science, let's actually start with artificial intelligence from Oxford dictionary.
+
+[00:00:46] AI means the theory and development of computer systems able to perform tasks that normally require human intelligence, such as visual perception, speech recognition, decision-making and translation between languages.
+
+[00:01:01] So basically AI is automated intelligence automation of things that normally require human intelligence. that's the object of definition of AI. in the same way that the industrial revolution was automating the body through robotics and machinery.
+
+[00:01:18] The AI revolution is automating the brain by way of intellect. So the objective definition is pretty clear, but in a sense, it may not be that helpful. and so people have difficulty defining AI because they have in mind more of a subjective take on it. and that subjective definition of artificial intelligence can be difficult because defining intelligence is difficult.
+
+[00:01:42] So we have the objective definition of AI We have the subjective definition of AI And since neither of those takes are super helpful in this context, let's instead just break AI down into its sub fields so that you have a better understanding of AI. As a discipline, AI is broken down into multiple sub-disciplines, straight from Wikipedia. These are reasoning and problem solving, knowledge, representation, planning, learning, natural language, processing, perception, motion, and manipulation, social intelligence, and general intelligence.
+
+[00:02:18] Let's start with natural language processing or NLP. And the reason I'm going to start there is I'm going to kind of paint a storyline of the disciplines of AI.
+
+[00:02:27] And this is a good starting point. NLP is the subdiscipline of AI dedicated to language, anything that is simulated language Is natural language processing. This can include machine translation. For example, Google translate from English to Spanish. it can include chatbots things like Siri, for example, or let's say that you have a customer service chat bot on a website, and you're chatting with that bot. You can either be speaking. Your utterances out loud and it will perform speech to text that's within the domain of NLP. And then once it has that text, it's going to perform something called named entity recognition.
+
+[00:03:05] So if a chat bot says, how can I help you today? And you say, I need help with my credit card. It'll pull out credit card as a named entity. That's named entity recognition or N E R. we'll talk about these kinds of topics in NLP in a future episode. And it can do question answering summarization and any other tasks associated with language.
+
+[00:03:25] Next, let's talk about the sub-discipline knowledge representation. A long time ago, IBM created a jeopardy playing bot called deep blue What would eventually become IBM Watson and deep blue had inside of it? The capacity to play jeopardy, not just by way of natural language processing.
+
+[00:03:45] You need NLP so that when the question is asked, it can take that question and transform it into something that can be used internally to answer the question, but also that there has to be some internal knowledge representation, either trained on the web or on Wikipedia or on books, some way of taking this knowledge about the world out there and transforming it into an internal representation.
+
+[00:04:11] usually in the subdiscipline, we deal with things called ontologies or knowledge graphs, So that after you've gotten the question and transformed it into the type of representation you can traverse the knowledge graph in order to find the answer, come back with the answer.
+
+[00:04:25] and then represent that answer using NLP back to the human. So these two fields are somewhat related, especially these days in NLP, we have a specific task called question answering where you can hand the agent, a Corpus of documents, for example, a book. And you can ask it a question and it will answer the question.
+
+[00:04:46] Either extractively by pulling the most probabilistic answer out of that Corpus or abstractively such it it'll actually parse your question, figure out what you implied by it. go through all the documents in the Corpus in order to paraphrase an answer to the best of its quote, unquote, understanding.
+
+[00:05:06] and then relay that answer back to you. That's called abstract of question answering, which to me is a little bit more magical than extractive question answering
+
+[00:05:15] these sound a lot like knowledge representation, but they're slightly different domains. Again, knowledge representation. Isn't explicitly dealing in language per se. Although it will certainly be using language as part of its tool chain. instead it's the subdiscipline of representing knowledge in the AI agent, such that that knowledge can be traversed for the correct answer rather than just by pre-trained text extraction, language models.
+
+[00:05:43] Next up we have reasoning and problem solving
+
+[00:05:47] This is related to the prior subdiscipline of knowledge. Representation. Reasoning and problem solving though, are more typically dealing with probabilistic models about the world in order to solve problems.
+
+[00:05:57] And then we have planning. Planning is actually the subdiscipline of taking actions in an environment by an artificial agent.
+
+[00:06:06] This is what you may have heard of with chess and go playing bots So a long time ago, AI researchers and developers created a bot that could play chess and played chess against the current reigning champion at the time, Gary Kasparov and beat him. And so that created a lot of publicity around AI. Recently Google's DeepMind, AlphaGo learns to play the game of go and was pitted against the reigning champion, Lee Sedole and one, again, bringing a lot of publicity to AI by way of much more magical tooling that I'll talk about in a bit than was previously used in the case of chess.
+
+[00:06:46] there's a great movie about deep mind versus Lisa doll, which I'll link in the show notes. I highly recommend watching it.
+
+[00:06:52] So planning is more about taking actions in an environment, whether that be playing video games or driving a self-driving car. where the car needs to be able to take turn by turn actions on the roads.
+
+[00:07:04] Speaking of self-driving cars, taking actions on the roads, there's two other pieces that need to be present for a car. The first is perception. So an AI needs to be able to perceive the world around it, eyes, ears, mouth, and nose, and touch. So a self-driving car needs to be able to see the road by way of cameras or LIDAR.
+
+[00:07:25] It may also need to be able to hear the road hear horns blaring or cars, screeching. And so that would be using microphones, so this is perception. and it also needs to be able to perform actions inside of its environment.
+
+[00:07:39] This is the subdiscipline called motion and manipulation, which is basically just robotics. So car has seen the road through a camera that pixel data gets transformed by AI into some internal representation. it performs some planning steps in order to determine whether it should brake accelerate, turn left, or turn right.
+
+[00:08:00] and then it has to be able to transform those action steps into physical reality by way of robotics. Which is the subdiscipline motion and manipulation. and in particular, we call this hardware the point at which the AI performs physical actions in an environment actuators.
+
+[00:08:18] So an actuator in a self-driving car might be the brakes, the steering wheel, the wheels, whatever. Now you'll notice I'm talking about robotics here. And a large part of robotics is simply hardware. That's cameras, microphones, and the machinery used in robotics, but we do include robotics as a subdiscipline of AI, to the extent that interfacing with the hardware by way of intelligence, Whether that be planning in the case of taking actions or representing what it perceives in a way that can be internally utilized by the AI agent in the case of perception.
+
+[00:08:55] Now you've probably seen in the news, all the cool stuff by Boston dynamics, those guys are killing it in the robotics field. we have robots that are jumping on boxes and doing backflips. There's one thing they can't do well defend themselves against hockey sticks.
+
+[00:09:10] I always joke that if there ever was and evil killer robot takeover, well, we know their weakness Because Boston dynamics has shown us that's hockey sticks. So you might want to stock up on hockey sticks to defend yourself against the AI revolution.
+
+[00:09:24] Also listed on Wikipedia is social intelligence and general intelligence. Social intelligence is the concept of AI being tuned into human emotions. So we may be trying to follow a human's emotional flow through time. In the case of robo therapists, I myself am actually building a journal app that uses AI to give you resources and recommendations through your journaling journey.
+
+[00:09:51] You'll hear about it in future episodes. It's called Gnothi And there are apps which are robo therapists that you can converse with.
+
+[00:09:58] and these will attempt to pick up on your emotional state based on NLP tasks, such as sentiment analysis, whether the things you're typing are positive or negative or neutral. and there are also computer vision technologies, which will try to pick up on the emotions on a human's face.
+
+[00:10:15] And then finally, general intelligence or artificial general intelligence. AGI AGI is the pot of gold at the end of the rainbow. It's a pipe dream. It's a pie in the sky. it's the goal of creating an artificial intelligence. That is not only good at its particular tasks, but it's also generalizable to all other domains, so that it is as effective at those as a human, if not better. Okay. So we say weak AI, If the AI is dedicated to a specific domain, for example, Siri is really relegated to natural language processing a Roomba it's mostly robotics, but it's also incorporating action and planning.
+
+[00:11:04] so that's a twofer right there. Self-driving cars. We're getting a little bit closer to the whole shebang, the grand-door prize of combining all of these AI sub-disciplines into one. We have perception, namely computer vision, and hearing to some extent, on the one hand, it may be listening to sounds on the road. it can also listen to voice commands inside the car. Of course, action and planning. That's turn by turn navigation, acceleration, braking,
+
+[00:11:32] and then motion and manipulation all through robotics. So a Tesla self-driving car is getting us closer to the end goal of artificial general intelligence. But as you can tell, it is not very general. The word general in this context means that the robot or the AI agent should be able to generally apply itself to any context in where, in which a human can find themself and perform, or act as intelligently as a human, if not better. So let's say we take a Boston dynamics robot, which is good at jumping on boxes and doing backflips and hauling luggage, like a pack meal and then put it in front of a court so that it's handling legal cases. It should be able to pick up the skills needed to handle legal cases as well, or better than a human who was plopped down into the court.
+
+[00:12:22] And that's the generality of artificial general intelligence weak means it's dedicated to a specific sub domain, Not necessarily that it's weak at its task, but just that it can only handle specific domain and general means that it can handle all domains And generalize across contexts, universally like a human could.
+
+[00:12:41] Now, when I say pie in the sky pipe dream, I don't mean that this isn't going to happen. I actually do believe we will achieve AGI. And I believe that it will happen in my lifetime
+
+[00:12:50] between Google mind, open AI and all the other Fang companies going hog wild with AI these days, it looks like we're on a pretty focused path with major improvements week by week. What I mean by that is that AGI is more of a concept and a future goal rather than the day-to-day dealings of somebody who works in artificial intelligence and machine learning.
+
+[00:13:12] so basically the objective definition of AI is automated intelligence or automating intellectual tasks, Which typically require human intelligence to perform. That's the object of definition.
+
+[00:13:27] What it's not very helpful? Because for example, I could write a Python script that does some number crunching on a spreadsheet that is automation of an intellectual task that usually requires human intelligence. and so that segues us into the subjective definition of artificial intelligence, which is really hard to pin down.
+
+[00:13:47] You'll find that when you ask somebody, what is artificial intelligence, whether you can read the definition from the dictionary, but strangely it can be easy to get into something of a heated debate. About what the actual definition of AI is. You'll find that a lot of people take the definition of AI and make it a little personal and make it subjective. And the reason for this I think is because what they're really driving after rather than the definition of AI is the definition of I, the definition of intelligence in general, and indeed defining intelligence can be quite a subjective and dicey matter, which segues into the conversation of what is consciousness.
+
+[00:14:28] For example, I discuss intelligence and consciousness in a future episode, but let's do a little bit of hand-waving here so that we can become a little bit more settled with the subjective take on artificial intelligence. The way I see it, we have. Manual hard-coded scripts on the one hand on the far left.
+
+[00:14:47] And then we have true intelligence all the way to the right far on the horizon, past what the eye can see. And the reason I say it this way is because I think that intelligence is an analog concept in the same way that some humans can be more intelligent than others And humans are more intelligent than dogs and dogs and than cats and cats then rats and so on. There's sort of an analog scale to intelligence. And so too will be the case with artificial intelligence and what is the upper limit? We don't know. And therefore there is no sort of end to the, to the right side of the scale it's analog.
+
+[00:15:25] so on the left of the scale, we have handwritten scripts that can be considered AI by the object of definition and on the far right, we have the pie in the sky concept of AGI, which I'll discuss in a bit and anywhere in the middle is sort of what we're dealing with in trying to define AI, subjectively
+
+[00:15:45] The layers by which the software becomes removed from the programmer adds elements of magic to the concept of AI. So a handwritten script is not very magical. A machine learning model, which we'll discuss later that learns, let's say the rules of the game of chess or go, or how to drive a self-driving car down the road.
+
+[00:16:08] well that's some number of layers removed from the original programmer and that removal adds an element of magic. That magic is the sense by which the concept of AI can be defined subjectively.
+
+[00:16:23] So, where do we draw the line by which we call something magically AI in the sense that we're all looking for?
+
+[00:16:31] Well, Alan Turing had a really good take here. The Turing test or the imitation game, Alan Turing is essentially the creator conceptually of the computer by way of the universal Turing machine.
+
+[00:16:44] And he was fascinated by the theoretical concept of artificial intelligence. of course, technically achieving AI was well outside of the technological capabilities of his time, but he was really interested in the concept and he came up with the Turing test, which basically says,
+
+[00:17:01] if you're chatting with an artificial agent, an AI, basically he envisioned that you're on a terminal with a chat bot and the other end of the chat bot responding to your utterances, you don't know is either a human or an artificially intelligent agent. If you're chatting with this agent and you can't tell if it's a human or an AI then it is intelligent, whether it's the human or the AI, if an AI can sufficiently convince you that it is intelligent through a chat bot, where you're poking and prodding and trying to find the holes and you can't find them, then it is intelligent in the magical sense.
+
+[00:17:41] So he says if an AI can convince you that it's not, not an AI. Than it is then it is intelligent. So in a way, if we say that there's a sliding scale from hard scripting on the left and artificial general intelligence way into the horizon to infinity the point at which we achieve intelligence in the magical sense that we're all trying to subjectively pin down is the point at which you can't deny it.
+
+[00:18:11] And it's as simple as that, if it walks like a duck and it talks like a duck, which is behaviorism. if you experience an AI agent and you are flabbergasted and can't deny that it is intelligence than it is and anything up until that point is not. And anything beyond that point is the future.
+
+[00:18:29] So that's sort of the marker delineating this analog infinity scale as the point at which we subjectively define intelligence that is you'll know it when you see it.
+
+[00:18:42] So that finally takes us to learning machine learning the last subdiscipline listed for artificial intelligence and the most interesting and powerful. Subdiscipline of artificial intelligence, as you'll see here, the reason I saved it for last is not only that it's the primary subject of this podcast series, but also because it is machine learning, this subdiscipline of AI that makes disambiguating the terms, AI and machine learning difficult.
+
+[00:19:15] And that is because in recent times, machine learning has been subsuming all of the other sub-disciplines of artificial intelligence machine learning. What was previously relegated to its own siloed sub-discipline is now breaking out of its cage. And hostile taking over all the other, sub-disciplines grabbing a chokehold on those sub-disciplines and some of these sub fields have been completely turned blue.
+
+[00:19:43] There's nothing left but machine learning. so let's define machine learning first, and then let's revisit the subfields machine learning is learning on data to make predictions it's pattern recognition over data. So that future predictions can be made.
+
+[00:20:00] It's learning on data. That's what machine learning is. It's really simple. It's really easy to understand. The idea is you feed it a spreadsheet. Let's say that spreadsheet is stock prices for a particular stock over time. And what we're trying to do is predict tomorrow's price for that stock. Okay. It's a typical use case of machine learning.
+
+[00:20:18] algorithmic trading bots. You take this spreadsheet, this data and the machine learning algorithm will look at all the data in the spreadsheet in order to try to find patterns in the data is trying to learn the patterns of the data. what is it that makes the price go up or go down, given other variables in that spreadsheet, such as the time of day, day of week, sentiment on Twitter, whatever the case, learn those patterns.
+
+[00:20:48] and once we have those learned patterns saved, We combine the learned patterns into the algorithm. Into what's called a model, a machine learning model. So a model is the combination of the algorithm, what the computer programmer wrote, and the patterns learned what the machine learning model itself picked up.
+
+[00:21:07] Now we have a model and that model can make predictions for the future. So the model can now predict based on today's context or circumstances, what's the price going to be for this stock tomorrow? And then it may either just predict the price, or it may actually take action on that prediction such as to buy or sell on that stock.
+
+[00:21:27] So that's machine learning. It is learning on data to make predictions. It's as simple as that. Now previously, like I said, this was a dedicated subdiscipline of AI that was focused primarily, maybe on tabular data, learning on spreadsheets or databases, the patterns in that tabular data by way of simple algorithms, simple models, things like linear and logistic regression, which we'll discuss later.
+
+[00:21:52] And these simple models made machine learning may be less interesting to the other practitioners in the other sub-disciplines of AI. But after the deep learning revolution of about 2015,
+
+[00:22:05] machine learning started to become generally applicable and started dominating the other sub-disciplines of artificial intelligence.
+
+[00:22:13] So natural language processing previously, NLP was language theory. basically you go to university, you study language theory, you learn all about syntax trees and the ways in which certain words combined with other words in grammatical constructs so that you could traverse these trees in order to pull out named entities or answers to questions.
+
+[00:22:37] These were hard-coded scripts by domain experts in NLP well along, comes machine learning with its recurrent neural networks and transformers models. And clobbers These original expert crafted scripts where each expert was a sub expert within NLP.
+
+[00:22:58] maybe some expert and their script. We're really good at question answering and another for named entity recognition and another for machine translation. well, these transformers models are generally applicable, generally applicable to all of the tasks within NLP.
+
+[00:23:17] transformers, can handle machine translation, question answering summarization and more all with a universal learning model. And. That this model can be trained on the language tasks generally, rather than hand crafted on a specific language task.
+
+[00:23:36] For example, the difference between legal documents versus news articles. So machine learning takes us some steps away from a handcrafted script, Which adds some magic to our subdiscipline of AI and some generality, a step towards artificial general intelligence, some generality in so far as a transformers model can be generally applied to various tasks and domains within NLP, computer vision. Previously, computer vision was handcrafted scripts algorithms that had hand designed pattern matching patches these sliding windows that would slide over an image from top to bottom left to right where the patterns that it's looking for in order to detect an object or to classify an image We're domain expert, handcrafted pattern, matching windows. So an expert would design a series of manual convolutions, which we're looking for lines and edges We're looking for certain patterns for dog breeds, for example, some such algorithms were called hog hog and har HAAR which I'll discuss in the computer vision episode.
+
+[00:24:49] Well along comes machine learning with it's convolutional neural networks, these CNN's learn the convolutions, these sliding windows. these pattern, identifying patches
+
+[00:25:01] and blows the old guard of handcrafted solutions to smithereens. again, these models are not only layers removed from handcrafted solutions in so far as they can learn the pixel pattern matching process, but also are generalizable across different domains.
+
+[00:25:21] So the hog and har people might have had to handcraft different convolutions for different domains, Whether we're dealing with animal matchers or clothing, matchers or outdoors objects, matchers, any one convolutional neural network can handle all these contexts generally.
+
+[00:25:42] and then finally, reasoning, problem solving, planning, motion, and manipulation and perception. These were all previously dedicated sub-disciplines in AI and they still are to some extent, In particular, the reasoning sub-discipline dealt a lot in probabilistic models and the planning sub-discipline dealt a lot in trees, search trees, like the, a star search tree, and these types of trees would have been used.
+
+[00:26:11] For example, in the chess playing bot against Garry Kasparov. Well along comes deep reinforcement learning models with their deep Q networks and their proximate policy optimization models. and I don't know which specific reinforcement models are used in different contexts. For example, what reinforcement model, what reinforcement learning models used in AlphaGo zero, but it is becoming very obvious that there is a massive amount of generalize-ability for use of deep reinforcement learning models in any situation that requires taking steps in an environment, planning actions and taking those actions
+
+[00:26:53] we previously had search trees and Markov models and all these things, which would have been custom tailored to specific environments. For example, pre-programmed with the rules of chess, along with the how tos of playing chess
+
+[00:27:09] Well, deep reinforcement learning models, not only learn how to play a game or drive on a road by taking actions in an environment and observing the point value. Consequences downstream at the end of the game in order to modify its behavior. But it also learns how the game is played in general. What game is even being played?
+
+[00:27:34] So many of these reinforcement learning models, all you have to do is show it a screen through time. so it takes space in pixel values and time the progression of the video game, as it takes specific actions and it will learn the rules of the game, the context and environment of the game and how to play it.
+
+[00:27:54] So now at this point, we're another layer removed from a handcrafted script, even more magical than, than the models used in NLP and computer.
+
+[00:28:05] So machine learning is not only more effective at tackling a lot of these sub-disciplines in AI than the old guard of previously handcrafted scripts. But it's also more generalizable
+
+[00:28:19] and frankly, more magical and speaking of generalize-ability.
+
+[00:28:23] strides are being made on many fronts now to unify these machine learning models, to tackle multiple sub domains within AI. At once. For example, recently in the news, Google announced something called pathways, which as I understand, it is a machine learning model that can be applied to computer vision, natural language processing and reinforcement learning.
+
+[00:28:47] also, as you'll learn in the NLP episodes, and NLP model concept called transformers. Is now also being used for vision and other tasks. So steps are being taken towards a grand unification machine learning model.
+
+[00:29:03] And those steps also take us towards dominating artificial intelligence at large by way of machine learning. So that's, what's special about machine learning is that it seems to be the master algorithm of artificial intelligence. And that's also why disambiguating those two terms has been relatively difficult is because previously ML was simply a subdiscipline of AI, but in modern times, it's the dominating driving force of AI in all of its other sub-disciplines.
+
+[00:29:36] Now let's talk about data science. data science, like I said, is the umbrella term that encompasses artificial intelligence and machine learning more than that data science is the umbrella term that encompasses anything related to data.
+
+[00:29:53] If you're a professional and your daily job is dealing with data, then you are a data scientist. This can include things like database administration, data analytics, business intelligence, machine learning, artificial intelligence, even something as simple as maybe a tax person. If you're dealing with spreadsheets day in, day out, to some extent you're a data scientist.
+
+[00:30:16] So roles that primarily deal in data are roles within data science, but there are roles more understood to be data science proper. And that's what we'll discuss here by way of a data pipeline.
+
+[00:30:32] Because the typical roles dealing in data science fall, somewhere in this pipeline, a pipeline from left to right beginning to end, the beginning of the data pipeline gets the data from somewhere and pipes it into the machine. And the output of the pipeline is either data analytics, business intelligence, or machine learning.
+
+[00:30:53] And then there's a whole bunch of machinery in the middle. so let's go down this pipeline journey.
+
+[00:30:58] The first step of the pipeline is data ingestion ingestion, which is to get your data from somewhere. This data can be in a spreadsheet like Microsoft Excel, Excel, SX, or CSV files. It can be in a database like PostgreSQL or my SQL. Those are relational database management systems. There are also non-relational database management systems or no SQL, no SQL databases like Mongo, DB and DynamoDB
+
+[00:31:31] or it can be from a stream of data on the internet. A stream means that the data is coming at you so much and so fast that you don't want to store it anywhere. You just want to process it real-time and route You want to receive your data, do stuff to it, and then probably throw it away.
+
+[00:31:49] So an example of a stream of data would be Twitter. Twitter is what's called a stream or a fire hose of data is coming at you so fast because there's so many tweets in the world that you probably not going to be storing this into a SQL database or a no SQL database.
+
+[00:32:03] And certainly not a spreadsheet.
+
+[00:32:04] Uh, data set typically means file formatted data. Like a spreadsheet. A data store typically means database formatted data, like on Postgres or my SQL. And then we have a stream or fire hose.
+
+[00:32:17] This comes into your pipeline. And now you want to put all that data somewhere. You want to aggregate all of the data, common, to some use case all together in what's called a data lake. A data lake is the aggregation of various data sets data stores
+
+[00:32:36] into one repository, one umbrella, and that data's going to be dirty. It's going to not be cleaned up yet. it's coming straight from the ingestion phase and data lake technologies allow you to apply Certain unifying aggregating features on top of your data. One of these might be permissions. so for example, if you want to collect spreadsheets and databases and tweets all into one unified repository called a data lake, then you can use data lake technology to apply permissioning on that data lake, such that various downstream data users or consumers can access this data lake all by way of a unified permissioning system.
+
+[00:33:21] another feature you might want to apply to your data. Lake is a unifying schema. If much of your data has a lot of structure in common, even though they're coming from disparate data sources, you can create a data schema that you generally apply to the data sources in this data lake.
+
+[00:33:41] So that downstream consumers of the data can expect a certain formatted structure to the data. The next phase of the pipeline might be something called a feature store. Now this can sometimes be wrapped up in the data lake phase, or they can be separate components of the pipeline.
+
+[00:34:00] A feature store is the phase at which you take the data from the data lake and you clean it up and you store it and it's cleaned up state. so you're going to have data coming from Twitter, coming from databases, and it's going to be dirty. There's going to be missing entries, missing columns for certain rows.
+
+[00:34:19] Some fields are in text format or date format. And as you'll find later, data analytics and machine learning, don't like dates or strings. They want numbers, machine learning and data analytics always wants numbers. And so this feature engineering phase, they call it feature engineering is where we will perform some of these steps. One step might be to fill in missing values. We call this imputing, you'll learn about imputation strategies later, Another feature engineering step might be taking your date column and turning it into numbers.
+
+[00:34:56] So for example, we can take a date column and turn that date string into time of day, day of week, week of year.
+
+[00:35:03] And so now we transformed the date feature into three other features. We call this feature transformation as well as simply deciding which features to keep and which ones aren't worth keeping. For example, in the case of Twitter, username might not be that valuable.
+
+[00:35:19] We really are concerned with the date, the tweets text, and maybe the engagement, like the number of replies or number of retweets. So we throw away the username. This is called feature selection, and this whole process is called feature engineering. and then we store all these engineered features as something of a checkpoint in our pipeline called a feature store and feature stores also allow you to version your transformed features such that
+
+[00:35:50] if a machine learning engineer has been working with data in such and such a way based on the way that the data engineer had previously been feature engineering and the data engineer makes a modification to that phase in the pipeline.
+
+[00:36:03] well, the machine learning engineer won't be sideswiped because they will be using a specific version of the feature store.
+
+[00:36:10] Okay. So data ingestion takes our data from data sets and data stores and streams. And firehoses, these are all called data sources, stores them all into a data lake, which is dirty unclean, large data or big data. You've probably heard that term, big data. anytime we're working with data that can't fit on a single server.
+
+[00:36:31] It's big. We may apply unified tooling on top of that lake things like permissioning or a common data schema. and then we pull that data out of the lake. we clean up the data, a step called feature engineering. Those steps may be feature transformations that is altering one feature into a different feature or set of features, imputation that is filling in missing values, feature selection that is deciding which features are important and which aren't.
+
+[00:37:03] And then now we're done with that third phase and we're ready to move on in the pipeline at this phase in the pipeline, we're going to veer left and right. There's a fork in the road just like there is with pipes. And so to the left, we have data analytics and business intelligence and to the right, we have machine learning.
+
+[00:37:22] These are two typically separate roles and we'll discuss how these are considered separate roles in a bit. Let's go left down the pipe towards data analytics. The first step down the pipe towards data analytics is to store what we've already cleaned up in the data, in something called a data warehouse, a data warehouse, a data warehouse is separate from a data lake.
+
+[00:37:45] it's a little different. Typically what a data warehouse will do is take a slice of historical data from the recent past, transform that data to be represented in column format rather than row format, and then maybe apply some additional transformations on the data. So let's take this step-by-step the way you would think about a data warehouse is that it is something like a proxy that sits between the data lake and the data analyst, a proxy, almost like a cache layer between the data source and the analyst in the same way that if you've ever worked with web development, there's a thing called mem cache D that you can stand up in front of your, MySQL server and have it proxy requests, which are frequently accessed it caches SQL queries.
+
+[00:38:39] so if there's a lot of really common SQL queries that get called frequently and would put a lot of strain on the underlying database, memcache D can sit between the database and the server and cache those common queries.
+
+[00:38:51] So as to reduce strain on the database and speed up SQL queries, well, a data warehouse is similar to that. We take a slice of data over, let's say the last one year or two years, we transform that data to be represented in column structured format rather than row format. Row format is what you're used to when you're looking at data like a spreadsheet or a database.
+
+[00:39:15] Now imagine taking the rows and columns and just flipping them around that's column structured data. that structure of data is more desirable for analysts than for other roles in the data science pipeline, like machine learning, engineers, Machine learning models do like row-structured data, the type we're familiar with, but data analysts prefer column structured data.
+
+[00:39:38] that's because running aggregation queries specifically over columns is faster in that way. Like count in sum and average running those queries is faster on column structured data. And then we might cache specific queries, which are frequently ran by analysts and all these things combined turn a data warehouse into a powerhouse proxy between the data lake so that very fast cached real time queries can be run against our data by the analysts.
+
+[00:40:10] So that's our data warehouse. And then finally our data pipes out of the data warehouse to the data analysts and the business intelligence professionals or business analysts, B I B I for business intelligence. these are two very similar roles, very related roles, but there is a nuanced difference.
+
+[00:40:33] and these roles are more likely to be differentiated from each other at larger companies where we have lots of roles to fill, as opposed to smaller companies where one person wears many hats.
+
+[00:40:43] So both of these roles deal in analytics, deal in charts and graphs. We take our data out of the data warehouse and we rotate it around in our hands. We look at the top, we look at the bottom in order to make human decisions. That's what makes these roles different than machine learning.
+
+[00:41:02] Machine learning makes automated decisions. in other words, data analytics or business intelligence is for humans and machine learning is for robots. But we'll get to that in a bit. A data analyst is more of a technical role. A data analyst is actually likely to be involved in the entire data science pipeline up until this point, everything we've already discussed such as Ingestion into a data lake feature engineering and working with a data warehouse is likely to also be tasks performed by a data analyst. in addition to the actual analytics task of charting and graphing, looking at the data in order to come up with human decisions.
+
+[00:41:49] Whereas a business intelligence person, a BI professional is typically a less technical role. They're less likely to be involved in the entire data science pipeline up until this point. And instead is likely to be working with the data from the data warehouse as a consumer, as a user And the giveaway difference between these two roles is the tooling. BI people will be using BI specific tools, things like Tableau T a B L E a U and power BI by Microsoft and QuickSight on Amazon AWS. Whereas a data analyst is probably going to actually be doing their analytics themselves with code by way of Python in Jupiter notebooks with map, plot, lib, and seaborne.
+
+[00:42:39] We'll talk about those things in a future episode or During the data engineering phase of the pipeline by way of things like Amazon data Wrangler, or Amazon glue data brew. So an analyst is more of a technical role and a BI person is a less technical role. That's data analytics, data-driven decision-making for humans.
+
+[00:43:04] So a data analyst may take the tweets out of our data warehouse and then chart and graph some things look at the optimal time to tweet during the day and what day of the week, based on the engagement of those tweets number of retweets and number of replies, and then go running to the boss and say, boss, boss, we should be tweeting at noon on Tuesday Based on my research of the data. That's a data analyst, machine learning. Now we go down the right side of the fork in the road in the branch of our pipes. Machine learning is automated predictions. it's predictions and decisions made by robots. now when I say robots, of course I'm being colloquial by machine learning models.
+
+[00:43:45] So rather than charting and graphing data, as an analyst would do a machine learning engineer will design a model using machine learning, tooling, Things like TensorFlow, Keras, PyTorch, scikit-learn and XG boost, maybe all hosted in the cloud using SageMaker
+
+[00:44:03] so that it will learn the patterns of the tweets so that it can automate predictions or maybe even take actions. So rather than coming up with the conclusion that it is optimal to send tweets at noon on Tuesday, the machine learning engineer might build a model that literally sends tweets at noon on Tuesday.
+
+[00:44:22] Hey, take that a step further and maybe they might write an NLP model. whereby the marketing team can feed it. Something they want to say. The machine learning model will construct the optimal way to say that using NLP, put that into a tweet, send it out at noon on Tuesday.
+
+[00:44:43] So that's the data science pipeline. It is the flow from left to right of data at ingestion. Put that into a lake, apply some stuff upon that lake, whether it's permissioning or a unified schema, pull it out of the lake and feature engineer it clean up the data store it in a feature store, veer left towards the analysts.
+
+[00:45:05] First we hit the data warehouse, which does some further transformation of our data so that it can be a real-time proxy to the analysts for fast querying, the analysts have more of a technical role in doing analytics, charting, and graphing on data for human decisions.
+
+[00:45:22] And the BI people have a less technical role for the same veer, right to the machine learning engineers who build automative, predictive models. now what is a data scientist then? well, that's a little bit nebulous and the reason is And the reason is it depends on the size of the company you work for. If you work for a mom and pop shop and you are their only data person then as a data scientist, your role is everything. Everything I just listed, You're going to handle each phase in the data pipeline. But if you apply to a larger organization like a Fang corporation, Facebook, Amazon, apple, Netflix, Google, Then it is likely the case that you will be applying as a role for any one phase of this pipeline. So for example, Google might have an entire data science team, and that team is broken down into the data engineering team, the analytics team and the machine learning team. And then you might apply to the machine learning team or the feature engineering team.
+
+[00:46:28] in other words, depending on the size of the company, any one phase in the hierarchical breakdown of the data science stack is a candidate for a role as a data scientist. And so what you might find is that people may market themselves either as specific roles, like data analyst, business intelligence, machine learning, engineering, or data engineering or they may market themselves as a data scientist, quote, unquote, either implying that they can handle everything in the stack or that they're looking to be more generally applicable.
+
+[00:47:01] maybe they're targeting smaller companies and want to wear multiple hats.
+
+[00:47:05] And then a company might be looking for a data scientist typically meaning they want somebody who can handle any and all of the moving parts in the data science pipeline, or they may specify which specific role they want a machine learning engineer, a data analyst, or a feature engineer.
+
+[00:47:23] and that's why it can be confusing sometimes the difference between machine learning and data science.
+
+[00:47:29] now, which of these roles should you as a budding engineer in the space target machine learning, data analytics, data engineering or the whole data science stack.
+
+[00:47:39] Well, take an analogy from web development, there's front end server database and dev ops, as an example, and somebody who tackles the entire stack calls themselves a full stack engineer. You could either specialize in front end and get really good at it.
+
+[00:47:56] and there's a lot to know about just front end, for example. similarly, machine learning is enough to tackle all on its own and keep you busy for a lifetime there's ML ops or machine learning operations, deploying your machine learning models to the cloud,
+
+[00:48:12] developing, and training your models on various tool kits, like PyTorch and TensorFlow
+
+[00:48:17] deploying, optimizing, and monitoring your models. All these things could keep you busy for a lifetime, and you could dedicate yourself exclusively to machine learning. That would be the equivalent of somebody dedicating themselves exclusively to front end engineering, where other roles in the data science stack are analogous to other roles in a web development stack.
+
+[00:48:37] So it depends on if you want to tackle the entire stack at large, Or if any one portion of the stack sounds more appealing than another.
+
+[00:48:45] What about machine learning versus AI? Now I did mention that machine learning is subsuming the various sub domains of AI, but that's not necessarily or completely the case, at least not yet. and so machine learning is more of an industry practice, a professional field.
+
+[00:49:03] If you want to get into industry, I would choose machine learning over artificial intelligence. You might get a master's in machine learning or data science whereas targeting artificial intelligence is kind of that dreamy scientific chasing the rainbow to the pot of gold of the future.
+
+[00:49:19] that's more of an academic endeavor. So if you want to stay in academia and push the scientific frontier, then targeting AI. Conceptually would be more aligned than targeting machine learning.
+
+[00:49:32] So that's data science, artificial intelligence, and machine learning. now I'm going to take the history of AI that I had originally recorded in 20 seventeens episode two. And I'm just going to insert it here, just cause I don't want to rerecord that stuff.
+
+[00:49:50] So if you've already listened to episode two, you can stop listening. Now, if this is your first listen through, keep on listening
+
+[00:49:58]
+
+[00:49:58] Okay. So we've covered the definition of artificial intelligence. The definition of machine learning. And now finally, let's go into the history of artificial intelligence. I'm going to recommend you some really good resources that I've picked up from the, from around the web, some common recommendations by people who are looking for good history information on artificial.
+
+[00:50:19] So, artificial intelligence goes way, way back, way back, further than you imagine, starting with Greek mythology and then, you know, coming out in Jewish mythology with Gollums and this is actually a very interesting point to me that artificial intelligence has sort of been conceived of in the Dawn of humanity.
+
+[00:50:37] It's almost like it's part of it was. Our quest. And we're going to get back to that actually in the next episode, which is artificial intelligence inspiration, but we'll try to inspire you around artificial intelligence and machine learning right now. Just keep that in mind. We've been thinking about artificial intelligence since at least Greek mythology, the first.
+
+[00:50:55] Attempt at actually implementing an automaton. I think this guy's name is Raman Lowell in the 13th century, Leonardo DaVinci was working on what he made, some walking animals, automata, Descartes, and , you know, they had a lot of kind of philosophical musings and on consciousness and Libnis on co-created calculus stuff that was used in the development of AI algorithms and mathematics.
+
+[00:51:19] And both of them were thinking about AI. So this theory about AI has been around for a very long time. The real nitty gritty stuff kind of started happening around the 17 hundreds in the 18 hundreds, the period of sort of statistics and mathematical decision-making one of the first, most important figures as Thomas Bayes.
+
+[00:51:37] He worked on reasoning about the probability of events. So Thomas Bayes reasoning about the probability of events. Remember that name? He's going to come up again. multiple times in the future Bayesian inference. Is very important, fundamental component of machine learning. So he's a very big figure.
+
+[00:51:54] George bull, who was involved in logical reasoning and binary algebra Gotlob Frege with propositional logic. So these were components in the development of computers in general, but also in the development of machine learning. Charles Babbage and ADA, Byron slash love Lovelace in 1832 designed the analytical. Which is a programmable calculating machine.
+
+[00:52:16] and then it was in 1936 that we got the universal Turing machine. And I think that a lot of people consider that kind of a kickoff point for computers, Alan Turing designed the con the concept of a programmable computer,with his universal turing machine. It also just so happens that Alan turning was very interested in AI.
+
+[00:52:34] He talked about, he has an article called a computing machinery and intelligence. So he was thinking about AI pretty early on as well. 1946, John Von Neumann uses universal Turing machine and the development of his universal computing machine. if I'm not mistaken, I believe the universal Turing machine was the theoretical and the universal computing machine.
+
+[00:52:53] He actually made a computer. I think John, Von Neuman made the architecture for the first kind of. Programmable computer. And now we finally start to get into the actual machine learning stuff, machine learning and artificial intelligence in 1943, Warren McCulloch and Walter Pitts, they kind of built the computer representation of a neuron that was later refined by Frank Rosenblatt to create the perceptron
+
+[00:53:16] and that word, the perceptron will come back, come up later. That's the first artificial neuron. And of course you stack those in an artificial neuron by way of what's called a multilayer perceptron and you've got an artificial neural network and that is deep learning. That's the fun stuff. So McCulloch and Pitts and.
+
+[00:53:36] Three very important figures. It wasn't until 1956, that the word artificial intelligence was coined by John McCarthy at the Dartmouth workshop. So dark John McCarthy, Marvin Minsky, Arthur, Samuel Oliver, Selfridge, Ray Solemonof, Alan Newell and Herbert Simon. They all came together at Dartmouth into, at this workshop in 1956.
+
+[00:54:00] And their goal was to simulate all aspects of intelligence. End quote, and that is the definition of artificial intelligence at the beginning at this podcast. So these guys defined AI, they created a field of it, and then they set off working. So at the workshop, it was kind of like a hackathon, like a multi-day hackathon.
+
+[00:54:17] They just cracked at it. Newell and Simon created heuristics, sort of the branch of heuristics in machine learning created this thing called the general problem solver. Okay. here we see the. Computer vision, natural language processing, shakey the robot. So this is between the 1950s and the 1970s. So they were working a little bit on this at the actual Dartmouth workshop, but then they all took their projects home to their own universities and they continued cracking at
+
+[00:54:41] these things we call this sort of the golden era of artificial intelligence is when it was like an explosion of interest and research and joy and light in the field fight. Feigenbaum creates expert systems. This is also sort of the creation of what we call. Good old fashioned AI because later you'll see, we kind of switched gears on the way we do AI in today's generation.
+
+[00:55:04] Good old fashioned AI, or GOFAI G O F a. I uses an approach called symbolism. These are logic based approaches, knowledge based expert systems, basically where the knowledge. And the logic is kind of hard-coded into the system. It's a little bit, it's a little bit like that once and twice removed analogy I used back when playing checkers a little bit less magical maybe than the connectionism approach of neural networks.
+
+[00:55:29] but some of the experts, including Marvin Minsky during this time took the side of GOFAI of symbolism. And they said that the connectionism approach of artificial neural networks wouldn't hold it had some problems. So this was the golden era, the fifties and the. The fifties to the seventies, the golden era of an explosion of research and ideas and discoveries and developments by some of the most important and influential names in the history of artificial intelligence that you'll read in any book.
+
+[00:55:59] But there was also a little bit of adversity, between some of the players. And like I said, so, so connectionism began to be criticized. Due to something. What was called calm a combinitorial explosion. Basically neural networks were too hard, computationally, too hard on the computer to be effective at generalizing solutions.
+
+[00:56:20] Going forward on the heel of that in the 1970s came this report by James Lighthill called the Lighthill report, and this did vast damage to the field of artificial intelligence. So, like I said, this was between the fifties and seventies when this golden era was ensuing in artificial intelligence, when the world was just vibrant and excited about AI and in that excitement, DARPA, you know, the military defense and lots of companies invested into these guys, these major players and created companies around these technologies, there was a lot of hype, a lot of excitement and under delivery.
+
+[00:56:58] It was almost like a Silicon valley. Bubble busts. It was almost like they said, we can do anything in the whole universe because we're simulating intelligence. Anything you could imagine intellectually, we can simulate that. But in fact, of course it's a little bit more difficult than that we're getting closer every day, but they under-delivered.
+
+[00:57:17] In too long of a time. And so people started cutting funds and cutting grants and cutting contracts with contractors. And a lot of that was due to this Lighthill report, which was basically a report on all these kind of negative aspects saying, yes indeed, these guys are biting off more than they can chew.
+
+[00:57:36] And they're under-delivering. So that created what we call the AI winter. AI went underground. And very few people were funding it anymore. The AI winter lasted from about the seventies until the nineties, and it started to make the comeback. And the reason it made a come back was that AI finally started to have some practical applications.
+
+[00:57:55] I'm sure it was kind of these diehards that were hiding in the cave. They knew that it would, that it had real application in industry. And so they finally started making some practical use of AI without some lofty promises. So for example, advertising. And recommender engines, which are two of the most commonly used applications of artificial intelligence in the modern era.
+
+[00:58:16] The other thing is that the computers got better. So remember that one of the reasons for the AI winter under delivery was due to this combinitorial explosion that these generalizations generalizing algorithms could not perform on the computers of that modern time, but they could perform on the computers 20 years later, 30 years.
+
+[00:58:37] It was the nineties and the two thousands that AI really started to pick up steam again. And finally, the last piece of the puzzle was data. One thing that you're going to find that I'm going to teach you in later episodes is that the accuracy of your machine learning algorithms improve the more data.
+
+[00:58:53] And with the internet becoming so popular and data becoming so prevalent all over the internet that we could just scrape web pages and there was Excel spreadsheets and databases everywhere of this and that these machine learning algorithms had basically just a gold mine of information to work with.
+
+[00:59:08] This is the era of what's called big data. Now you can work with all the data at your fingertips, as you can imagine. Big. So AI finally made a comeback. Finally had this AI spring after the AI winter. Another reason I think that AI made a come back, which I don't hear touted a lot was actually optimizations to the algorithms.
+
+[00:59:26] I know that they say that our computers got really fast, so the computation, got more efficient, but so did the algorithms. So for example, in 2006, Geoffrey Hinton optimize the backpropagation algorithm, which made artificial neural networks substantially more tractable and put connectionism back on the map, in effect
+
+[00:59:46] I believe it was that this sort of solidified connectionism as a really powerful, commonly used technique going forward. And that go find symbolism started to go out of Vogue. Finally, we have the modern. 2000 2017. Currently Bloomberg says that 2015 was sort of a Whopper for the AI industry. And I don't really know why.
+
+[01:00:07] I think maybe what happened is just, just that this graph that's constantly be on the rise since the nineties has just finally hit a peak that it's become really popular in the modern era. Now, almost any technology company is adopting machine learning and artificial intelligence. They're hiring machine learning, engineers and data.
+
+[01:00:23] scientists like never before. So we're in an explosion of AI. In fact, there's a little bit of concern that it's going to become another bubble bust another AI winter, but there's a lot of people who say that that probably won't happen. That we're actually, we're really doing well with the algorithms and the data.
+
+[01:00:38] The algorithms are very precise. Do the amount of data. We have the computing machines. we can scale these algorithms. Horizontally across an AWS cluster and all these things. So we're in a very, very good time for machine learning. Very interesting and good time to be alive and see what's happening.
+
+[01:00:54] Now. There's one company that I want to draw attention to, and this'll be my final point on the history of artificial intelligence. The company's name is DeepMind and DeepMind was acquired by Google. I believe in 2014, DeepMind at first was kind of. Playing games. it was an artificial intelligence system using deep learning approaches, like deep Q networks in order to play old classic games like pong, and then eventually old console games and more recently modern console games like from PlayStation and such, but Google saw potential in the types of things that they were doing with deep learning in reinforcement learning specifically, and they acquired.
+
+[01:01:29] And DeepMind has been putting out a lot. They have just been demolishing the field of machine learning and artificial intelligence. They're probably the most present figure in the news of artificial intelligence today. They put out papers all the time, making big splashes in research and developments, something I mentioned previously called a differentiable computer, which brought the sub field of knowledge representation.
+
+[01:01:54] And. Into the domain of machine learning. For example, deep mind is something to keep very close eye on. They're doing some really interesting work these days. Okay. So that's a history of artificial intelligence. So we covered, what is AI a definition? What is machine learning compared to AI was machine learning compared to data science compared to statistics.
+
+[01:02:15] Why is ML the sort of essential subfield of AI? And what is the history of AI in brief, if you're interested in the history of AI and the definition of AI, I'm going to provide some resources. there's one book that's commonly recommended and I'll point that out in the show notes. So go to the show notes, O C D E V E L, OCDevel.com And this will be episode two and get those links if you're interested in the history of machine learning. So in the next episode, I'm going to try to, I hope inspire you to be interested in the field of AI and specifically in machine learning.
+
+[01:02:51] I think that this episode was probably rather boring. The next episode of all the episodes I have planned so far, the next episode, I think will be the most fun episode. It's going to be inspiration around the field of AI. We're going to talk about the singularity consciousness, automate automation of the entire industry, some really philosophical and crazy stuff.
+
+[01:03:13] So I hope to see you then.
+

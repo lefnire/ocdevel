@@ -1,0 +1,17 @@
+export const id = "20201112-emacs27-ubuntu1804"
+export const date = "2020-11-12"
+export const title = "Install Emacs 27 on Ubuntu 18.04"
+export const teaser = "Guide on installing Emacs 27 on Ubuntu 18.04, a necessity for using the latest versions of Spacemacs. The post provides simple and direct commands to add the required repository, update the system, and install Emacs 27, followed by instructions to install Spacemacs. This is essential for those who rely on Spacemacs for their workflow and need compatibility with newer versions."
+
+
+I use [Spacemacs](https://www.spacemacs.org/) (highly recommended) who's latest versions aren't compatible with earlier Emacs (eg, 25 is common on 18.04).
+
+```
+# Install Emacs 27
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt update
+sudo apt install emacs27
+
+# Install Spacemacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+```    

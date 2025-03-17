@@ -1,0 +1,20 @@
+export const id = '20240424-code-ai-for-adhd'
+export const date = '2024-04-24'
+export const title = "Code AI for ADHD Programmers"
+import wf from '../workflowy/code-ai.opml'
+import {Workflowy} from '../../components/utils/Workflowy.tsx'
+export const teaser = "Using Code AI tools (Cursor, Copilot, Cody, Codeium, etc) help mitigate ADHD at work by keeping the problem focused and alive, getting help breaking down the steps, rubber-ducking, and in the best case - solving the problem."
+
+
+I've been leaning into Code AI (general term for tools like Copilot, Cursor.sh, Cody, Phind, etc - not sure where I'll land, but using Cursor for now). I'm doing it to stay ahead of the curve and keep up with my work-load. But there's a perk I didn't anticipate: it helps with ADHD.
+
+We all know "just start one thing" and "break it down into chunks." But just starting one thing is a huge problem with ADHD. What I've found myself doing is - after standup, I know I need to work on "add widget X", so I type that into Cursor and hit CTRL+ENTER, which sends the query against your whole codebase via RAG / embeddings for relevant context. Initially I started doing this just to "bookmark" the problem, let it take its time coming up with an answer while I browse Reddit; and I had no intention of looking at the response until I was caffeinated, had a few Reddit laughs, checked my emails, etc. This is just how I always get started, minus the Code AI step. Well what happens is it comes back with an answer faster than I thought. I scan it out of curiosity (still no intention of actually coding), and type "no no, you misunderstood. It should be using Tailwind and maintain consistency with other similar widgets. Also it should hit the API". CTRL+ENTER. At this point I have the Reddit tab open, but I haven't looked at it yet, I just want to make sure Cursor understands the problem, so that the final response is close enough to a solution that I don't have to remember where I left off. "Ok, that's close, but can you add a spinner while it's waiting for a response." And bada-bing, just like that I'm no longer interested in Reddit. I'm coding.
+
+I don't just use it to "bookmark" a problem; I also use it to get me started on something big and difficult, where I don't know where to start (breaking it into chunks). I'm usually surprised at how easy the first step was, I say "Add a hierarchical dropdown, where the popover doesn't close until the deepest leaf is selected. The data should come from a query response of some sort" and it spits out changes across 5 files, with a description of the current steps and likely next steps. Now I have my path before me.
+
+Everything above is just hacks to keep us - ADHD programmers - on-task. But the real gold is when Code AI just nails it. I had a timezone-based cron bug haunting me for months. I was tasked finally with fixing it, no more excuses. I used Cursor in the manner above, just to get me past the "but I don't wanna" phase - and it fixed it. It fixed the bug. I hated myself after that, since I'd spent so much human time on the bug. But whadyado, can't beat 'em join 'em.
+
+If nothing else, consider it rubber-ducking. I know people use Discord video chat always-on, and other non-traditional means to hash out problems to coworkers or strangers, either to keep the focus alive, or to hear the problem out loud. There have indeed been times I type a full paragraph into Cursor, then close the chat since I solved it in the typing.
+
+---
+<Workflowy wf={wf} />

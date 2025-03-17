@@ -1,0 +1,13 @@
+Consider developing against AWS as your _local development environment_, rather than only your cloud deployment environment. Solutions:
+
+1. Stick to AWS Cloud IDEs ([Lambda](https://aws.amazon.com/lambda/), [SageMaker Studio](https://aws.amazon.com/sagemaker/studio/), [Cloud9](https://aws.amazon.com/cloud9/)
+1. Connect to deployed infrastructure via [Client VPN](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html)
+   * [Terraform example](https://timeular.com/blog/creating-an-aws-client-vpn-with-terraform/)
+   * [YouTube tutorial](https://www.youtube.com/watch?v=uADf-JbN-ZE)
+   * [Creating the keys](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/client-authentication.html#mutual)
+1. [LocalStack](https://localstack.cloud/)
+
+Infrastructure as Code
+* [Terraform](https://www.terraform.io/)
+* [CDK](https://aws.amazon.com/cdk/)
+* [Serverless](https://www.serverless.com/)

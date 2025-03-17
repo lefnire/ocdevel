@@ -1,0 +1,55 @@
+import {useParams} from "react-router-dom";
+import find from "lodash/find";
+import blog from "../../content/blog";
+import {Helmet} from "react-helmet-async";
+import {BackButton} from "../utils";
+import Card from "react-bootstrap/Card";
+import moment from "moment";
+import {ReactMarkdown_} from "../podcasts/utils";
+// import ReactDisqusComments from "react-disqus-comments";
+import React from "react";
+import {fmt, PostDate} from './utils'
+import {components, renderBlogPost} from '../utils/markdown.tsx'
+import {Comments} from "../utils/Comments.tsx";
+
+function Affiliate({p}) {
+  if (!p.affiliate) { return null }
+  return <>
+    <span>.</span>
+    <span className="ms-1">This post may contain affiliate links</span>
+  </>
+}
+
+export default function Full() {
+  const {id} = useParams()
+
+  const p = find(blog, {id});
+  return <div>
+    <Helmet>
+      <title>{p.title} | OCDevel</title>
+      {/* Should use teaser here */}
+      {/*<meta name="description" content="Helmet application" />*/}
+    </Helmet>
+    <BackButton to="/blog" />
+    <Card>
+      <Card.Body>
+        <Card.Title>{p.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          <PostDate p={p} />
+          <Affiliate p={p} />
+        </Card.Subtitle>
+
+        <Card.Text>
+          {renderBlogPost(p)}
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <Comments
+          shortname="ocdevel"
+          identifier={id}
+          title={`${p.title} | OCDevel`}
+          url={`http://ocdevel.com/blog/${id}`} />
+      </Card.Footer>
+    </Card>
+  </div>
+}
