@@ -24,7 +24,7 @@ import * as b4 from './jobpig/3'
 import * as b3 from './jobpig/2'
 import * as b2 from './jobpig/1'
 import * as b1 from './jobpig/0'
-import {BlogPost} from "~/routes/blog/utils.tsx";
+import {type BlogPost} from "~/routes/blog/utils.tsx";
 
 export default [
   // pinned

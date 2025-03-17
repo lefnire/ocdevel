@@ -1,5 +1,5 @@
 import React from 'react'
-import create from "zustand";
+import {create} from "zustand";
 import compact from "lodash/compact";
 import reduce from "lodash/reduce";
 import {flat, top} from "../content/podcast/resources";

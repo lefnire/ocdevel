@@ -10,8 +10,8 @@ import {useFilteredTree} from "~/store/resources";
 import startsWith from "lodash/startsWith";
 
 import {ReactMarkdown_, icons, Popover_} from "~/components/utils";
-import {filterKeys, filters} from '../../../content/podcast/resources/filters'
-import {flat, picks} from '../../../content/podcast/resources'
+import {filterKeys, filters} from '~/content/podcast/resources/filters'
+import {flat, picks} from '~/content/podcast/resources'
 
 function ResourceWrapper({children, show}) {
     if (!show) {return <div>{children}</div>}

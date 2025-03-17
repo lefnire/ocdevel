@@ -5,25 +5,27 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import {FaDiscord} from '@react-icons/all-files/fa/FaDiscord'
-import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube'
-import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope'
-import {FaGithub} from '@react-icons/all-files/fa/FaGithub'
-import {FaItunesNote} from '@react-icons/all-files/fa/FaItunesNote'
-import {FaLightbulb} from '@react-icons/all-files/fa/FaLightbulb'
-import {RiGooglePlayLine} from '@react-icons/all-files/ri/RiGooglePlayLine'
-import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
-import {SiRss} from '@react-icons/all-files/si/SiRss'
-import {SiStitcher} from '@react-icons/all-files/si/SiStitcher'
-import {icons, Popover_} from "../utils";
-import {mlg, llh} from "../../../content/podcast";
-import scout from "../../../assets/MLG-Option-1.jpg";
-import deptLogo from "../../../assets/dept.jpg";
-import {IconButton} from "../../../utils";
-import useStore from "../../../store/episodes";
-import {FaBusinessTime} from "@react-icons/all-files/fa/FaBusinessTime";
-import {FaUserPlus} from "@react-icons/all-files/fa/FaUserPlus";
-import {usePodcastKey} from "../../utils.tsx";
+import {FaDiscord} from 'react-icons/fa'
+import {FaYoutube} from 'react-icons/fa'
+import {FaEnvelope} from 'react-icons/fa'
+import {FaGithub} from 'react-icons/fa'
+import {FaItunesNote} from 'react-icons/fa'
+import {FaLightbulb} from 'react-icons/fa'
+import {RiGooglePlayLine} from 'react-icons/ri'
+import {RiSpotifyLine} from 'react-icons/ri'
+import {SiRss} from 'react-icons/si'
+import {SiStitcher} from 'react-icons/si'
+import {icons, Popover_} from "~/components/utils";
+import {mlg, llh} from "~/content/podcast";
+// import scout from "../../../assets/MLG-Option-1.jpg";
+// import deptLogo from "../../../assets/dept.jpg";
+import {IconButton} from "~/components/utils";
+import useStore from "~/store/episodes";
+import {FaBusinessTime} from "react-icons/fa";
+import {FaUserPlus} from "react-icons/fa";
+import {usePodcastKey} from "~/components/utils.tsx";
+
+const scout = "/assets/MLG-Option-1.jpg"
 
 function AboutSection({children, title, show, toggle, top=false}) {
   return <>

@@ -1,6 +1,6 @@
 import blog from "~/content/blog";
 import React from "react";
-import {BlogPost, fmt} from './utils'
+// import {BlogPost, fmt} from './utils'
 import {Teaser} from './teaser.tsx'
 
 export default function List() {

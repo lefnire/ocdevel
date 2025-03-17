@@ -15,7 +15,7 @@ import {FaSwatchbook} from 'react-icons/fa'
 import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
-import {TLDR} from './utils'
+import {TLDR} from '../../components/utils'
 import {Link} from "react-router";
 
 export const teaser = "As Habitica's creator, I've refined my approach to using the system over 10 years. This post teaches you how to get the most out of improving your habits and behavior through Habitica. It includes a calculator for choosing the best class (warrior, rogue, mage, healer) for your play-style."
