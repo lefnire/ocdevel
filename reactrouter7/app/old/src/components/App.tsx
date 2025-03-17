@@ -9,10 +9,10 @@ import ReactGA from "react-ga4";
 // don't need bootstrap, imported in my scss
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.scss'
-import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
-import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
-import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
-import {FaFacebook} from "@react-icons/all-files/fa/FaFacebook";
+import {FaYoutube} from "react-icons/fa";
+import {FaInstagram} from "react-icons/fa";
+import {SiTiktok} from "react-icons/si";
+import {FaFacebook} from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 

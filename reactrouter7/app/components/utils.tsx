@@ -1,11 +1,11 @@
-import {
-  useLocation,
-} from "react-router-dom";
+// import {
+//   useLocation,
+// } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
 
-export function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+// export function useQuery() {
+//   return new URLSearchParams(useLocation().search);
+// }
 
 export function IconButton({
   Icon,
@@ -19,6 +19,7 @@ export function IconButton({
 }) {
   // Can pass Icon/Icon2 as either un-rendered component or rendered component (for performance). Currently
   // testing if is-rendered via $$typeof; is that right?
+  size = size || "";
   const size_ = {"sm": 16, "lg": 20, "": 20}[size]
   return <Button
     variant='outline-dark'

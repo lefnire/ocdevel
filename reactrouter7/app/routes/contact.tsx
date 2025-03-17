@@ -1,24 +1,18 @@
-import React from 'react'
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
-import Stack from 'react-bootstrap/Stack'
-import Button from 'react-bootstrap/Button'
-import {IconButton} from "../../utils";
-import avatar from "../../assets/avatar.jfif";
-import {FaCouch} from '@react-icons/all-files/fa/FaCouch';
-import {FaDragon} from '@react-icons/all-files/fa/FaDragon';
-import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope';
-import {FaGithub} from '@react-icons/all-files/fa/FaGithub';
-import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
-import {FaMicrophone} from '@react-icons/all-files/fa/FaMicrophone';
-import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube';
-import {FaInstagram} from '@react-icons/all-files/fa/FaInstagram';
-import {SiTiktok} from '@react-icons/all-files/si/SiTiktok';
-import {FaFacebook} from '@react-icons/all-files/fa/FaFacebook';
-import {Link} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
+import {Col, Row, Container, Stack, Button} from 'react-bootstrap'
+import {IconButton} from "~/components/utils";
+import {FaCouch} from 'react-icons/fa';
+import {FaDragon} from 'react-icons/fa';
+import {FaEnvelope} from 'react-icons/fa';
+import {FaGithub} from 'react-icons/fa';
+import {FaLinkedin} from 'react-icons/fa';
+import {FaMicrophone} from 'react-icons/fa';
+import {FaYoutube} from 'react-icons/fa';
+import {FaInstagram} from 'react-icons/fa';
+import {SiTiktok} from 'react-icons/si';
+import {FaFacebook} from 'react-icons/fa';
+import { Link } from "react-router";
+import type { Route } from "./+types/contact";
 
 export default function Contact() {
   const links = <>
@@ -63,7 +57,7 @@ export default function Contact() {
     <Card.Title>Tyler Renelle</Card.Title>
     <Card.Body>
       <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameters, etc. Devops with AWS, Docker, SageMaker. Full-stack with Python, Postgres, and React / React Native.</p>
-      <p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? Contact <a target="_blank" href="https://www.deptagency.com/en-us/contact/">Dept Agency</a>, tell them you want Tyler on your project!</p>
+      <p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? <a href="/contact">Contact me here</a>.</p>
     </Card.Body>
   </div>
 
@@ -85,12 +79,9 @@ export default function Contact() {
   </div>
 
   return <Container className='contact-hire'>
-    <Helmet>
-      <title>Contact Tyler Renelle</title>
-    </Helmet>
     <Row>
       <Col xs={12} lg={3} className='text-center'>
-        <img src={avatar} className='rounded mb-3'/>
+        <img src="assets/avatar.jfif" className='rounded mb-3'/>
         {links}
       </Col>
       <Col xs={12} lg={9}>
@@ -99,4 +90,10 @@ export default function Contact() {
       </Col>
     </Row>
   </Container>
+}
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    {title: "Contact Tyler Renelle"}
+  ]
 }
