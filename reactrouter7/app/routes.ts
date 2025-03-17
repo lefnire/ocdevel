@@ -1,12 +1,15 @@
 import {
   type RouteConfig,
   index,
-  route
+  route,
+  layout
 } from "@react-router/dev/routes";
 
 export default [
-  index("routes/home.tsx"),
-  route("contact", "routes/contact.tsx"),
+  layout("./layouts/root.tsx", [
+    index("routes/home.tsx"),
+    route("contact", "routes/contact.tsx"),
+  ])
 
   // {
   //   path: "/",
