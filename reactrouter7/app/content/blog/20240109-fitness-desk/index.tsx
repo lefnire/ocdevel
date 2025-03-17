@@ -1,5 +1,5 @@
 import wf from '../../workflowy/walking-desk.opml'
-import {BattleStation} from "../utils.tsx";
+import {BattleStation} from "~/components/utils.tsx";
 import {walkingDeskLinks} from '../../workflowy/walking-desk-links'
 import {Workflowy} from '~/components/workflowy.tsx'
 import { ProductCard } from './product-card'

@@ -17,22 +17,6 @@ import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import {NavLink, Link} from "react-router"
 
-function LinkContainer({children, ...props}) {
-  return <NavLink
-    role="button"
-    className={({ isActive, isPending, isTransitioning }) =>
-      [
-        isPending ? "pending" : "",
-        isActive ? "active" : "",
-        isTransitioning ? "transitioning" : "",
-        "nav-link"
-      ].join(" ").trim()
-    }
-    {...props}
-  >
-    {children}
-  </NavLink>
-}
 
 // let usingGA = false;
 // // FIXME use import.VITE_APP_*

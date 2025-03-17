@@ -1,23 +1,17 @@
 import React, {useMemo} from 'react';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import {Switch, Route, useLocation, Outlet, Link} from 'react-router-dom';
-import {Helmet} from "react-helmet-async";
+import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap'
+import {Route, useLocation, Outlet, Link} from 'react-router';
 
 import {mlg} from '../../content/podcast';
 
 
-import {LinkContainer} from "react-router-bootstrap";
-import {Lazy, usePodcastKey} from "../utils"
-const Recommend = () => import('./Content/Recommend')
-const EpisodeRoute = () => import('./Content/Episode')
-const ResourcesTree = () => import('./Content/Resources')
-const Episodes = () => import('./Content/Episodes')
-const Filters = () => import("./Sidebar/Filters")
-const About = () => import("./Sidebar/About")
+import {LinkContainer, usePodcastKey} from "~/components/utils"
+import Recommend from './recommend'
+import EpisodeRoute from './full'
+import ResourcesTree from './resources'
+import Episodes from './list'
+import Filters from "./sidebar/filters"
+import About from "./sidebar/about"
 // import {useQuery} from "../../utils";
 
 
@@ -46,20 +40,12 @@ export default function Series() {
 
   function renderSidebar() {
     if (location.pathname.startsWith("/mlg/resource")) {
-      return <Lazy c={Filters} />
+      return <Filters />
     }
-    return <Lazy c={About} />
+    return <About />
   }
 
   return <>
-    <Helmet>
-      { podcastKey === "mlg" ? <title>Machine Learning Guide Podcast</title>
-      : podcastKey === "llh" ? <title>Lefnire's Life Hacks</title>
-      : null }
-
-      <meta name="description" content={mlg.teaser} />
-    </Helmet>
-
     {renderNavBar()}
 
     <Container fluid className="podcasts">
@@ -80,4 +66,16 @@ export default function Series() {
       </Row>
     </Container>
   </>
+}
+
+export function meta() {
+  return []
+  // @FIXME
+  // <Helmet>
+  //     { podcastKey === "mlg" ? <title>Machine Learning Guide Podcast</title>
+  //     : podcastKey === "llh" ? <title>Lefnire's Life Hacks</title>
+  //     : null }
+  //
+  //     <meta name="description" content={mlg.teaser} />
+  //   </Helmet>
 }

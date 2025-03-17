@@ -4,7 +4,7 @@ import blog from "../../content/blog";
 import {BackButton} from "~/components/utils";
 import Card from "react-bootstrap/Card";
 import moment from "dayjs";
-import {ReactMarkdown_} from "../podcasts/utils";
+import {ReactMarkdown_} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import React from "react";
 import {fmt, PostDate} from './utils'

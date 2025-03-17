@@ -15,7 +15,12 @@ export default [
         index("routes/blog/list.tsx"),
         route(":id", "routes/blog/full.tsx")
       ])
-
+    ]),
+    layout("routes/podcast/layout.tsx", [
+      ...prefix("mlg", [
+        index("routes/podcast/list.tsx"),
+        route(":id", "routes/podcast/full.tsx")
+      ])
     ])
   ])
 

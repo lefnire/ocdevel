@@ -1,18 +1,17 @@
 import React from "react";
 import Alert from 'react-bootstrap/Alert'
 import Card from 'react-bootstrap/Card'
-import {Accordion_, dateFmt, ReactMarkdown_} from "../utils";
+import {Accordion_, dateFmt, ReactMarkdown_} from "~/components/utils";
 import padStart from "lodash/padStart";
 import moment from "dayjs";
-import {Link, useParams} from "react-router-dom";
-import {Helmet} from "react-helmet-async";
-import {BackButton, usePodcastKey} from "../../utils";
+import {Link, useParams} from "react-router";
+import {BackButton, usePodcastKey} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
-import {ResourceNode} from './Resources'
-import {episodesObj, llhEpisodesObj, mlg} from "../../../content/podcast";
-import {episodes as episodeResources, flat} from '../../../content/podcast/resources'
+import {ResourceNode} from './resources'
+import {episodesObj, llhEpisodesObj, mlg} from "~/content/podcast";
+import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import Badge from "react-bootstrap/Badge";
-import {Comments} from "../../utils/Comments.tsx";
+import {Comments} from "~/components/comments.tsx";
 
 function ResourcesFlat({nids}) {
   let seen = {}
@@ -160,10 +159,6 @@ export function Episode({e, teaser, i=null}) {
     ]
 
     return <div>
-      <Helmet>
-        <title>{e.title} | Machine Learning Guide</title>
-        {e.teaser && <meta name="description" Content={e.teaser} />}
-      </Helmet>
       <BackButton to={podcastKey === "llh" ? "/llh" : "/mlg"} />
       <Card>
         <Card.Body>
@@ -189,9 +184,18 @@ export function Episode({e, teaser, i=null}) {
   return teaser ? renderTeaser() : renderFull()
 }
 
-export default function EpisodeRoute() {
+export default function Full() {
   const {id} = useParams()
   const podcastKey = usePodcastKey()
   const e = podcastKey === "llh" ? llhEpisodesObj[id] : episodesObj[id]
   return <Episode e={e} teaser={false} />
+}
+
+export function meta() {
+  return []
+  // @FIMXE
+  // <Helmet>
+  //       <title>{e.title} | Machine Learning Guide</title>
+  //       {e.teaser && <meta name="description" Content={e.teaser} />}
+  //     </Helmet>
 }

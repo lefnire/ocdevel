@@ -1,15 +1,15 @@
 import React, {useCallback, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import {
   FaInfoCircle,
-} from "@react-icons/all-files/fa/FaInfoCircle";
+} from "react-icons/fa";
 import Alert from 'react-bootstrap/Alert'
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
-import {useFilteredTree} from "../../../store/resources";
+import {useFilteredTree} from "~/store/resources";
 import startsWith from "lodash/startsWith";
 
-import {ReactMarkdown_, icons, Popover_} from "../utils";
+import {ReactMarkdown_, icons, Popover_} from "~/components/utils";
 import {filterKeys, filters} from '../../../content/podcast/resources/filters'
 import {flat, picks} from '../../../content/podcast/resources'
 

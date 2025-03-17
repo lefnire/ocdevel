@@ -3,15 +3,15 @@ import filter from 'lodash/filter'
 import times from 'lodash/times'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import useStore from "../../../store/episodes";
+import useStore from "~/store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
 
-import {episodes, llhEpisodes} from "../../../content/podcast";
-import {Episode} from './Episode';
-import {usePodcastKey} from "../../utils.tsx";
+import {episodes, llhEpisodes} from "~/content/podcast";
+import {Episode} from './full';
+import {usePodcastKey} from "~/components/utils.tsx";
 
-export default function Episodes() {
+export default function List() {
   const podcastKey = usePodcastKey()
   const sortedEps = useMemo(() => {
     const episodes_ = podcastKey === "llh" ? llhEpisodes : episodes
