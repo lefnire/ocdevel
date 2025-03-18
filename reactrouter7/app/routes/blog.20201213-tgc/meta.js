@@ -1,0 +1,6 @@
+export const tgcML = "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=9070&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fintroduction-to-machine-learning&intsrc=PUI1_1204"
+export const tgcConsciousness = "https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&intsrc=PUI1_1204"
+export const id = "20201213-tgc"
+export const title = "The Great Courses - Find it Cheaper"
+export const date = "2020-12-13"
+export const teaser = "Ways to access The Great Courses more affordably. Checking your local library, comparing prices with Audible for audio courses, considering the subscription to their Plus service, and using coupon sites like RetailMeNot or Honey. Also compares their courses and other similar resources based on budget and time constraints."

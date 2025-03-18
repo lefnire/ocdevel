@@ -12,7 +12,7 @@ export async function loader() {
   const resolved = await Promise.all(metaArr.map(post => post()))
   // @FIXME pins
   const sorted = sortBy(resolved, e => -moment(e.date));
-  return { posts: resolved }
+  return { posts: sorted }
 }
 
 export default function List({loaderData: {posts}}) {

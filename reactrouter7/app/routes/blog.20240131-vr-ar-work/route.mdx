@@ -1,0 +1,41 @@
+import {TLDR} from '../../components/utils'
+export * from './meta.js'
+
+
+Many want a portable monitor(s) for their laptop. Even more compelling is laptop-free work. 2024 is the year this *just* becomes a possibility, and 2025+ should have the problem solved. For most use-cases I'd recommend a [Meta Quest 3](https://amzn.to/4bxJPDh). For the adventurous, consider [BigScreen Beyond](https://www.bigscreenvr.com/) or the upcoming [Visor](https://shop.visor.com/). For wealthy Apple users, the Apple Vision Pro. I discourage current AR glasses like XREAL or Rokid. And don't use older VR HMDs like Index, Quest 2, etc. See [vr-compare](https://vr-compare.com/compare?h1=0q3goALzg&h2=1qnvNfJKq&h3=-MpSqv-rB&h4=LUx-f7dXc&h5=uQn8c_Ufb) for my specs comparison.
+
+### VR Headsets
+
+
+Q3 ([Quest 3](https://amzn.to/4bxJPDh), $500) has a PPD (Peak Pixel Density) of 25, which is the important metric for productivity. It's a combination of resolution per eye (2064x2208) and FOV (field of view, 110° horizontal, 96° vertical). From my multiple attempts since 2018 at using VR for work - as a portable multi-monitor - this seems to be the absolute bare minimum workable PPD. All attempts prior to this had reading too difficult; better off looking at the small laptop screen. The Quest Pro was Meta's attempt at productivity, similar to the Apple Vision Pro, but whose PPD is 22 - too low. Other products people attempt for this task are the Pico 4 (20.76 PPD), Valve Index (14 PPD), and Bigscreen Beyond (I'll discuss shortly).
+
+Q3 is not *quite* enough PPD, but it's workable. If I'm at home with my multiple monitors, I prefer the monitors. But if I'm traveling, I prefer Q3 over the laptop screen. That's where we're at - it's better than nothing, but worse than the standard. That's a huge jump from last year's Quest 2 / Pico 4 options; where "better than nothing" wasn't true for most people.
+
+The way you work this is through 3rd party software called [Immersed](https://immersed.com/modes). This software is by the creators of the upcoming Visor glasses which I'll talk about later. Immerse has you connect to your PC or Mac from your HMD, wired or wireless, and allows creating multiple virtual screens (an operating system feature) where you can place your different apps. It works just like external monitors would work. Alas, to have reasonable resolutions for these external screens (anything more than 1440x900) - necessary given the PPD of the Quest 3 - you have to pay for the [$5/m Pro](https://immersed.com/modes) plan. As I write this, [Virtual Desktop](https://www.vrdesktop.net/) is working on a multi-monitor feature. When that releases, VD will be more compelling because it's a one-time purchase, and has huge value for PC VR gaming besides (you wouldn't use Immersed for gaming, even simply as an external monitor, because it consumes too much CPU). You can safely ignore all alternative options currently: Horizon Workrooms and Meta Remote PC; they're very bare-bones, single-screen, and quirky. Immersed if you want multiple screens; VD if you only need one; and soon VD for multiple.
+
+BB ([Bigscreen Beyond](https://www.bigscreenvr.com/), $1000). This HMD has 32 PPD. That's perfect for productivity. What it lacks unfortunately is passthrough, which Q3 nails. Passthrough means seeing the world around you; except for the virtual objects (monitors). Which most importantly lets you see your mouse and keyboard, and secondarily lets you see people come and go. If you're at home, alone, and you have memorized your mouse and keyboard, this could be a workable solution for you. However, do note that you'll need Steam-compatible base stations and controllers, since BB doesn't have hand-tracking or inside-out tracking. If you don't know what I'm saying, then BB is not for you. It's a tinkers' toy, where the additional requirements are very expensive and painful to setup.
+
+TL;DR, if you want something that works: Quest 3 + Immersed.
+
+Note: Q3 is uncomfortable with the default strap, especially for long work sessions. You'll need a 3rd-party comfort strap like [BoboVR](https://amzn.to/4bhhlgN).
+
+### AR Glasses
+
+The next batch of options are AR glasses, most prominently XREAL 2 ([Ultra](https://us.shop.xreal.com/products/xreal-air-2-ultra), $700). I can't find a listed PPD, but it's much higher than Q3. Unfortunately that's not because it has incredible resolution *and* FOV; it has low resolution (1920 x 1080), but low FOV (52), such that your center of vision is crystal clear (better than a Q3), but you can only see a very small slice of your screens. Imagine looking through a toilet paper roll (FOV) at your monitor, but having perfect fidelity (resolution). You might think you can adjust to this, but trust me - it's near impossible, I tried for a long time. You have to know exactly where to look, since you have no peripheral vision indicating what else is going on. The XREALs and the Rokids suffer the same problem: FOV. The Rokids are worse products generally, but they have diopters, which allows people who need glasses to simply adjust the lenses (where the XREALs require purchased lens inserts for your prescription). These two brands simply aren't there yet. They are, however, interesting for hand-held gaming, mobile usage, reading, etc. Just not work.
+
+
+[Visor](https://shop.visor.com/) ($1000), on the other hand, is an upcoming AR glasses with 4k display and 100 FOV. They don't list PPD, but 4k per eye is **enough**. That's literally the solution. This is the same company that makes Immersed, the software you'd use for Quest 3 productivity; it'll be compatible of course with their native glasses. The only reason I'm not saying "buy now" is that they're unreleased, and this is Visor's first hardware product. The delivery is yet to be seen. Keep an eye on them, because this could be the grand solution of 2024.
+
+
+### Apple Vision Pro
+
+And then finally AVP ($3500). At 3680x3140 per eye, PPD is no longer a discussion point; like when Macs introduced Retina. It's perfect. It is, however, only compatible with the Apple ecosystem; so unless you have a Mac for which you want those external monitors, you're out of luck. Also, it's $3500. There is precisely one target audience: an owner of a Macbook Pro, who has the money to spare. If that's you, get it.
+
+
+### TL;DR
+
+* Just want something that works? [Quest 3](https://amzn.to/4bxJPDh) + [BoboVR](https://amzn.to/4bhhlgN) + [Immersed](https://immersed.com/modes)
+* Willing to wait for the possible end-game? [Visor](https://shop.visor.com/)
+* Experimental PCVR hacker? [Bigscreen Beyond](https://www.bigscreenvr.com/)
+* Just need something for mobile (phone, Steam Deck, Switch, etc)? [XREAL](https://us.shop.xreal.com/products/xreal-air-2-ultra)
+* Rich Macbook owner? Apple Vision Pro

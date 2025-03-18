@@ -1,0 +1,4 @@
+export const id = '20201213-video2audio'
+export const date = '2020-12-13'
+export const title = "Convert video files to mp3"
+export const teaser = "Convert video files, such as YouTube playlists and mp4 files, into mp3 format for easier organization and listening. This post covers the use of youtube-dl for downloading YouTube playlists as mp3, and ffmpeg for converting existing video files to audio. Steps for installation and commands for both youtube-dl and ffmpeg are provided, along with tips for audio quality options and loading files onto an mp3 player. Ideal for those who prefer listening over watching, this guide simplifies the process of turning video resources into convenient audio files."

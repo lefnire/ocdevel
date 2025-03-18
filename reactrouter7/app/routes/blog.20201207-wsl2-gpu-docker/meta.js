@@ -1,0 +1,4 @@
+export const id = "20201207-wsl2-gpu-docker"
+export const date = "2020-12-07"
+export const title = "WSL2 + GPU + Docker"
+export const teaser = "Step-by-step guide on setting up WSL2 with GPU support for Docker on Windows. This includes switching to Windows Dev Channel, installing Nvidia's WSL2-compatible driver, setting up WSL2 and Ubuntu, and configuring Docker with Nvidia components. The post details each step clearly, from updating Windows settings to testing the Docker setup with an Nvidia CUDA sample. It also addresses a known Nvidia bug for laptops and suggests tweaks for optimizing the setup, such as enabling all available RAM and configuring docker-compose for GPU usage."

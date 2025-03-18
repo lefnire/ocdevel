@@ -1,0 +1,4 @@
+export const id = "20201206-index-vs-quest2"
+export const date = "2020-12-06"
+export const title = "VR 2020: buy either Index or Quest 2"
+export const teaser = "Comparing Index and Quest 2 VR headsets for different user needs. Index offers a high-end, immersive experience with a more complex setup and higher cost. Quest 2 provides portability, simplicity, and affordability, with acceptable performance for most scenarios. The post discusses the strengths and limitations of each, including the need for accessories like the Link cable for Quest 2 and the potential for combining Index controllers with other headsets. It's a guide for choosing between a premium, no-compromise setup and a more budget-friendly, versatile option in VR."

@@ -1,0 +1,4 @@
+export const id = '20240111-tylers-setup'
+export const date = '2024-01-11'
+export const title = "Tyler's Recommended Setup"
+export const teaser = "My recommended battlestation for work. Legion Pro for gaming and programming. A fitness desk to improve focus and health. Ergonomic peripherals for preventing RSI. And software recommendations."

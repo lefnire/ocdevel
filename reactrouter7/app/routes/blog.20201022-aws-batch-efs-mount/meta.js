@@ -1,0 +1,4 @@
+export const id = "20201022-aws-batch-efs-mount"
+export const date = "2020-10-22"
+export const title = "AWS Batch with EFS mount"
+export const teaser = "Step-by-step instructions for integrating AWS Batch with an EFS mount, particularly useful for ML model-runs requiring large artifact downloads. The post covers creating security groups for the Batch compute environment and EFS, setting up the EFS file system, configuring a launch template, and establishing the compute environment and job definition in AWS Batch. This setup allows for downloading and storing models on an external file system, which can be reused across Batch runs, optimizing provision uptime and cost."
