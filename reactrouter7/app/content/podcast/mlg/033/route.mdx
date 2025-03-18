@@ -1,0 +1,36 @@
+export * from './meta.js'
+export {default as transcript} from './transcript.mdx'
+
+3Blue1Brown videos: [https://3blue1brown.com/](https://3blue1brown.com/)
+
+* **Background & Motivation:**
+    *   **RNN Limitations:** Sequential processing prevents full parallelization—even with attention tweaks—making them inefficient on modern hardware.
+    *   **Breakthrough:** “Attention Is All You Need” replaced recurrence with self-attention, unlocking massive parallelism and scalability.
+* **Core Architecture:**
+    *   **Layer Stack:** Consists of alternating self-attention and feed-forward (MLP) layers, each wrapped in residual connections and layer normalization.
+    *   **Positional Encodings:** Since self-attention is permutation invariant, add sinusoidal or learned positional embeddings to inject sequence order.
+* **Self-Attention Mechanism:**
+    *   **Q, K, V Explained:**
+        *   **Query (Q):** The representation of the token seeking contextual info.
+        *   **Key (K):** The representation of tokens being compared against.
+        *   **Value (V):** The information to be aggregated based on the attention scores.
+    *   **Multi-Head Attention:** Splits Q, K, V into multiple “heads” to capture diverse relationships and nuances across different subspaces.
+    *   **Dot-Product & Scaling:** Computes similarity between Q and K (scaled to avoid large gradients), then applies softmax to weigh V accordingly.
+* **Masking:**
+    *   **Causal Masking:** In autoregressive models, prevents a token from “seeing” future tokens, ensuring proper generation.
+    *   **Padding Masks:** Ignore padded (non-informative) parts of sequences to maintain meaningful attention distributions.
+* **Feed-Forward Networks (MLPs):**
+    *   **Transformation & Storage:** Post-attention MLPs apply non-linear transformations; many argue they’re where the “facts” or learned knowledge really get stored.
+    *   **Depth & Expressivity:** Their layered nature deepens the model’s capacity to represent complex patterns.
+* **Residual Connections & Normalization:**
+    *   **Residual Links:** Crucial for gradient flow in deep architectures, preventing vanishing/exploding gradients.
+    *   **Layer Normalization:** Stabilizes training by normalizing across features, enhancing convergence.
+* **Scalability & Efficiency Considerations:**
+    *   **Parallelization Advantage:** Entire architecture is designed to exploit modern parallel hardware, a huge win over RNNs.
+    *   **Complexity Trade-offs:** Self-attention’s quadratic complexity with sequence length remains a challenge; spurred innovations like sparse or linearized attention.
+* **Training Paradigms & Emergent Properties:**
+    *   **Pretraining & Fine-Tuning:** Massive self-supervised pretraining on diverse data, followed by task-specific fine-tuning, is the norm.
+    *   **Emergent Behavior:** With scale comes abilities like in-context learning and few-shot adaptation, aspects that are still being unpacked.
+* **Interpretability & Knowledge Distribution:**
+    *   **Distributed Representation:** “Facts” aren’t stored in a single layer but are embedded throughout both attention heads and MLP layers.
+    *   **Debate on Attention:** While some see attention weights as interpretable, a growing view is that real “knowledge” is diffused across the network’s parameters.

@@ -32,7 +32,7 @@ export default function List({matches}) {
     setPage(page + 1)
   }
 
-  const pageSize = 3
+  const pageSize = 5
   let eps = newFirst ? sortedEps : sortedEps.slice().reverse()
   eps = filter(eps, e => {
     if (showMla && showMlg) {return true}

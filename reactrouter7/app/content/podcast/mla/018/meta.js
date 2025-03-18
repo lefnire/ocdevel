@@ -1,0 +1,8 @@
+export const title = 'Descript'
+export const episode = 18
+export const mergeEpisode = 50
+export const mla = true
+export const created = '2021-11-06'
+export const guid = 21074042
+export const libsynEpisode = 21074042
+export const teaser = "(Optional episode) just showcasing a cool application using machine learning"

@@ -1,0 +1,8 @@
+export const title = 'Certificates & Degrees'
+export const episode = 1
+export const mergeEpisode = 31
+export const mla = true
+export const created = "2018-05-24"
+export const guid = "bf6c96a2-4c22-49ce-833b-05c581b921cb"
+export const libsynEpisode = 16623032
+export const teaser = 'Reboot on the MLG episode, with more confident recommends. Specifically: get a masters, and get it from OMSCS Georgia Tech.'

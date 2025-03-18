@@ -101,6 +101,10 @@ export function Episode({e, teaser, i=null}) {
   function renderTeaser() {
     const link = `/${podcastKey}/${e.id}`
 
+    if (e.id === 'mla-6') {
+      debugger
+    }
+
     return <Card className={`mb-3 card-post`}>
       <Card.Body>
         <Card.Title>
@@ -115,16 +119,16 @@ export function Episode({e, teaser, i=null}) {
         </div>}
         {e.archived ? <>
           <div className='text-muted'>This episode is archived. As I'm re-doing the podcast, some episodes are outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
-        </> : e.body ? <>
+        </> : e.empty ? <>
+          <Markdown_ Content={e.teaser} teaser />
+        </> : <>
           <div className='fade-post'>
             <Markdown_ Content={e.teaser} teaser/>
             {e.teaser && <hr />}
-            <Markdown_ Content={e.body} teaser />
+            <Markdown_ Content={e.default} teaser />
             <div className='fade-post-bottom' />
           </div>
           <Link to={link}>Read More</Link>
-        </> : <>
-          <Markdown_ Content={e.teaser} teaser />
         </>}
       </Card.Body>
     </Card>
@@ -135,14 +139,17 @@ export function Episode({e, teaser, i=null}) {
         podcastKey === "llh" ? null
         : episodeResources[e.mla ? 'mla' : 'mlg']?.[e.episode]
     )
+
+    const body = e.body || e.default
+
     const items = [
-      (e.body && {
+      (body && {
         title: "Show Notes",
         body: <>
           {podcastKey !== "llh" && <Alert variant="success">
             Support this show by trying a <Link to="/blog/20240109-fitness-desk">walking desk</Link>!
           </Alert>}
-          <Markdown_ Content={e.body} />
+          <Markdown_ Content={body} />
         </>
       }),
       (resources && {

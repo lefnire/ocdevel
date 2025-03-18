@@ -1,0 +1,8 @@
+export const title = 'Jupyter Notebooks'
+export const episode = 7
+export const mergeEpisode = 37
+export const mla = true
+export const created = "2018-10-16"
+export const guid = "028b58d6-5f3a-423c-a788-61c58c27bbf4"
+export const libsynEpisode = 16622969
+export const teaser = "Run your code + visualizations in the browser: iPython / Jupyter Notebooks."

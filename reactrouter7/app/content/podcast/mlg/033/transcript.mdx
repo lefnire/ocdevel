@@ -1,0 +1,249 @@
+Today we're going to talk about transformers, the revolutionary technology behind large language models, the technology put out by the attention is all you need white paper.
+
+And transformers are not as hairy of a concept as you might think they are. If you tried reading the attention is all you need white paper and it was just an earful then stay tuned to this episode. I'll try to break it down. There's also a video I'll reference at the end when we talk about the resources by 3blue1brown.
+
+It's really not as complex as I thought it was. In fact, it's sort of a step back in technology in terms of things were getting more and more compounded and complex and neural network architectures.
+
+And this was almost an Occam's razor approach that simplified things.
+
+While also improving some things around computational complexity and parallelization, which we'll get to in a bit. [00:02:00] but first, transformers are nothing more than any neural network. whatever neural network you're using, plus attention, attention is a sort of Lego block, a type of layer or layers that you slot into your neural network that allow parts of your neural network to talk to other parts of your neural network. They allow the inputs or the hidden layers, the units within the hidden layers, to talk to, or they say attend to, other parts of the inputs or hidden layers or what not.
+
+So, up until this point we've talked about housing markets, number of bedrooms, number of bathrooms, distance to downtown, and so forth. You remember that we train a neural network, a multi layer perceptron, for example, on each and every row.
+
+So one house in isolation, we're trying to predict the cost of that house, the value of it on the market, based on its number of bedrooms, number of bathrooms, and so forth. In isolation, [00:03:00] they call that context free. That house is not aware of anything outside of itself. It is a house all on its own, on a single lot, all by itself, and its features determine its value.
+
+Well, attention introduces this concept of the various features of that house taking into account the context surrounding the house. So the features of the houses that are its neighbors on the block or in the city, for example, they call that context aware. So training your neural network on a single row in isolation is called context free.
+
+That's the traditional approach And training your neural network on each row, taking into consideration things around it, is called context aware. And it is the attention mechanism that enables context aware training or inference.
+
+And now we're going to ditch the housing scenario for the rest of this conversation because it's a little bit difficult to understand [00:04:00] where attention or context would really play into this example, except for to say that the value of surrounding houses on your block do indeed impact the value of the house in consideration.
+
+I'm going to move to a different example that I think paints this picture a little bit better. I'm working on a project with a friend named Peter. This project is called Dispatch Robot,
+
+and Dispatch Robot makes it easier for trucking companies or dispatch companies that are trying to ship shipments or boxes or loads. Let's just call them shipments for the rest of this conversation. From an origin to a destination.
+
+So it's a tool to help in the process of matching shipments with trucks.
+
+Now, if I am a truck owner or a dispatcher, now I want to load up my truck with 5, 10, 20 boxes. And every one of these boxes, or these shipments, have various attributes [00:05:00] associated with them. They have the weight and the miles from the origin to the destination and the rate, the cost that the shipper is paying for this particular shipment.
+
+And they have other things like the origin city and state. And these can be encoded into latitude and longitude numbers and the destination city and state , and directionality can be inferred. And then some of these more nuanced columns, things like deadhead and whatnot.
+
+now, I can train a multi layer perceptron vanilla neural network to look at each row in isolation, where a row is a load. They call it a load or a shipment. I can look at these loads in isolation and say, this is a good load. However, that's not typically how the job of a dispatcher works. Instead, a dispatcher will load up a website called a load board and see a list of loads on that load board, but that list of loads itself came from a search query where they specified their [00:06:00] preferences.
+
+They only want to go X distance. They want to go from this origin to this destination. They only have this much weight capacity. Now, at this point, all of the loads in that list matter all together in the grand scheme because Each shipment takes up X amount of capacity on their truck.
+
+And ideally, they want each shipment to come from as close as possible one origin location and land as close as possible to a single point destination. And therefore the various features of each row of this matrix of shipments impact each other in the final outcome.
+
+So the weight and the dimensions of shipment A
+
+take into consideration the weight and dimensions of shipment Z in the final analysis. And that's a [00:07:00] tabular data example. So the concept of attention in this case adds context awareness to the problem domain as opposed to each row being considered in isolation called context free. And then of course the real poster child of the use case of the attention mechanism in Transformers is large language models in natural language processing.
+
+And this makes it a little bit easier to understand. Now, In NLP, we've talked about in prior episodes, the concept of word to vec or word embeddings. You take a word and through a lot of magic, you turn it into an embedding a string of numbers. It is now a vector, so the word. Hello is now one, nine, 26, 38, 2.
+
+7, and so forth. That's called an embedding. And the word itself is called a token. And a sentence is a string of tokens, and therefore a matrix.
+
+Where one dimension of the matrix is the number of numbers in an embedding. [00:08:00] And the other dimension of the matrix is the number of tokens in that sentence.
+
+Now, if each token operated in isolation, all by itself, then it wouldn't take into consideration the impact the rest of the sentence has on that token. So, I'm going to use a sentence for most of the examples of this episode. the blue trophy didn't fit on the shelf because it was too big. The blue trophy didn't fit on the shelf because it was too big.
+
+Now in this sentence, trophy is a token, and that token can be converted into an embedding using word to VEC technology,
+
+but in isolation context free. That embedding is fairly useless in the context of trying to do anything with this sentence because it needs to be modified by the other words in the sentence. And this is especially a problem with homonyms, for example, close, [00:09:00] CLOSE, O S E. One word, one token, one embedding, unmodifiable unless it is impacted by its context, a.
+
+k. a. attention,
+
+without which impact would it be? You don't really know what this embedding means because it is a homonym. It can mean multiple things. So it has to be modified by its surrounding context. And that's what attention does.
+
+So the blue trophy didn't fit on the shelf because it was too big. Trophy should attend to the word blue. Trophy should be modified by the word blue. And then the blue trophy didn't fit on the shelf because it was too big. What was too big? The shelf? No, the trophy. It was the trophy that was too big. So it should know in its mind that trophy is the modifier word, the word that impacts the word it, not shelf, nor any other word in the sentence for that matter.
+
+So that's what attention is. Attention is a mechanism [00:10:00] whereby Components of a matrix can talk to other components of a matrix, be modified by other components of a matrix. Now, before I get into the attention mechanism itself and how it works, let's go back, way back to the recurrent neural networks episode.
+
+The series on natural language processing we landed on recurrent neural networks. Now, recurrent neural networks are a type of neural network that process tokens sequence by sequence or numbers or vectors, whatever the case may be. It's a system whereby things are processed sequence by sequence by looping the network back in on itself.
+
+Okay, we have what's called a recurrent cell, a component of the network architecture that loops back in on itself. and prior to the Transformers revolution, this was the solve. This was the [00:11:00] master algorithm of natural language processing, or time series analysis, or sequence to sequence modeling. anything that's step by step could be handled via a recurrent neural network.
+
+and this was a great architecture. Because it had the concept of context. It had context. so all the buildup of this episode where words are considered in isolation. Wait, I thought we solved that. Didn't we solve that with RNNs?
+
+The way RNNs work is you pipe in an embedding, and out comes an embedding that is the predicted word at this point in the sentence. And also, to the right, out comes an embedding that is the running tally, sort of, of the sentence thus far. The context being built up and maintained through the sequencing of this neural network.
+
+So, we're trying to predict next tokens in a language model. The cat sat on the mat. So we pipe in the, let's skip the first step for now to make it simple. We pipe in cat. Okay. At this [00:12:00] point, we piped in the embedding for cat into this recurrent cell. output of that cell is sat, assuming it's a well trained model, And it predicts a high probability for the embedding sat, given the context thus far.
+
+Out comes the embedding sat that gets converted to a token and it gets printed to your screen in this running sentence. then to the right, that is the running tally of the sentence thus far, the context, the essence of the sentence being built up. Now in step three of the RNN, the cell receives the running tally of the sentence, AKA, the context, the word cat from the prior step.
+
+That is the embedding from the prior step, both of those inputs to the recurrent cell. and at this step it outputs the new embedding. Sat updates the running tally of the sentence thus far, the embedding representing the sentence [00:13:00] essence into the next step of the recurrent neural network.
+
+Okay, it is a network architecture that has a recurrent cell that outputs a token As well as the running tally of the sentence thus far, which captures the essence of the sentence and therefore captures context. So haven't we solved context already? Yes, we have, but there were a number of issues with recurrent neural networks that Transformer solves. We're going to take them step by step. One is that the context or the embedding, the running tally of the sentence that gets sent through the network step by step over time has the problem that it loses sort of richness over time. It becomes diluted with every step. They call this vanishing gradient problem. With every step of the recurrent neural network, goes on, chunks of text we're or chapters or books,
+
+[00:14:00] There's only so much information that can be contained within the hidden state that gets passed along this process
+
+not just based on the dimensionality of the hidden state itself, But also just inherent of this process, information is lost along the way and they tried to solve this in a number of ways. One was the invention of something called the Long Short Term Memory Cell, LSTM cell.
+
+It was a modification of the recurrent cell that added the capacity to discard unneeded information in order to retain more effectively needed information. as well as an alternative modification to recurrent cells called a Gated Recurrent Unit,
+
+GRU. And so you can see they were experimenting with different architectures of the recurrent cell to try to get it to retain as much of the essential information of the context as it goes through step by step of sentences as [00:15:00] possible without losing too much information, without it diluting, without experiencing the vanishing gradient problem as possible.
+
+but just due to the nature of the beast, it still wasn't foolproof that information wouldn't be lost in the hidden state that's being passed along through the sequence of steps.
+
+So, one trick that they found helped was that so that too much information isn't lost from the hidden state as we go along. The recurrent neural network was enabled to reflect back on prior steps. So we would pass the hidden state step by step by step from left to right all the way through a sentence.
+
+And at any given cell, one cell can look back on all the other cells that came before it to determine if any of those prior cells were really important. If any of the output embeddings were really critical to Evaluating what's happening at the current step and [00:16:00] that very architecture that they added right there.
+
+That very concept of reflecting back on prior states of this recurrent neural network is called attention. so they invented or at least applied attention for recurrent neural networks to solve this problem of losing context through time.
+
+so as you can see with transformers, everything we're going to be discussing in this episode, attention isn't totally new. It was being used to solve the problem of vanishing gradients in recurrent neural networks, with great success, with great success. so, if that was the last problem with RNNs,
+
+Then we might be able to stop here and maybe the transformers architecture wouldn't have been invented. But there was one more problem with RNNs that was sort of it's Achilles heel, it's showstopper, therefore inspiring the transformers architecture. And that problem was that we have to compute every token step by step.
+
+It is sequential. And so therefore, it is a [00:17:00] computational bottleneck in terms of training and inference. so because every step of an RNN has to know about the last step to do its computation, to do its job, you can't train an RNN in parallel, You can't compute one broad swath of a big compute snap your fingers all at once.
+
+The thing that GPUs really excel at, that makes them shine in machine learning, is matrix multiplication, linear algebra. You can compute one matrix by another matrix. And as GPUs got stronger and stronger and stronger, they should be able to do that. handle larger and larger matrices and matrix operations.
+
+But RNNs weren't benefiting from the advancements in GPU technology because one recurrent cell was only so large and they were constrained by the fact that training had to be done step by step. So it wasn't a scale issue in terms of width and height of [00:18:00] a recurrent cell.
+
+It was a time issue in terms of left to right of a sequential operation. So while the hardware was improving, the network efficiency was not. So the biggest pain point of an RNN was the lack of parallelization of computation for the training of one of these models. So
+
+along comes this white paper, attention is all you need, And these authors say, Hey guys, take a step back. You added that attention mechanism to your RNN, right? whereby any one cell can reflect back On the prior steps of the sequence, this token, trophy, can reflect back on the token just before it, blue, and say, I care deeply about that token because it is an adjective.
+
+And then reflect back on the one before, the, the, T H E, and say, Well, I don't care so much about that [00:19:00] word. Yes, it's modifying me, but it's not that big of a modifier. So I really care about token two, but not so much about token one. and this white paper said That attention mechanism that you added to an RNN, what if we take it out of the RNN, throw away the RNN, and slap the attention mechanism onto a traditional neural network, a multilayer perceptron, a vanilla neural network. Just take that mechanism out of the RNN and slap it onto a vanilla neural network.
+
+you get the same results. That's all you need. that a ha moment of an attention mechanism was the great a ha moment, and it's the only thing that mattered in all of this.
+
+And thus was born the transformer. So, a transformer is nothing more than the attention mechanism plus a neural network. That's what a transformer is.
+
+Now. A new problem is introduced, and that problem is, if you've ever used ChatGPT or Claude, [00:20:00] context window. one nice thing about RNNs was, the network itself could be kept relatively small, and the context window, how long the network could operate over a sequence, was infinity. a large language model like chat GPT in an RNN paradigm could just loop back on itself over and over and over and output token after token after token and go forever because there's no limitation in theory to the amount of tokens it can output or read in. There's no context limit or bottleneck in any of this process. There is, of course, like I said, the vanishing gradient problem that they couldn't quite solve. so it doesn't work in practice very effectively for very, very large chunks of text.
+
+Things will get diluted over time. The output quality of an RNN starts to degrade with time. Let's say it's trying to write an entire book as opposed to a paragraph or a chapter. But in theory, an [00:21:00] RNN could operate infinitely, whereas with a multi layer perceptron plus the attention mechanism, you have to constrain the size of the network.
+
+It has a very specific context length. And so that's sort of the problem that's introduced by the transformer the number of tokens that it can work with, both on the input and the output altogether. And that's called the context window, and, as you'll see when we discuss how attention mechanisms work, the number of parameters of the network is basically quadratic of the context window.
+
+So in so many of the operations that you're going to be performing in the network itself, it's going to be the context window, so that the number of tokens times the number of tokens because they're going to be being compared to themselves through this attention mechanism to determine which other tokens they should be attending to.
+
+So expanding the context window of one of these transformers severely impacts the [00:22:00] computational requirements of the network itself. So that's the problem introduced by transformers. but the problem it solves is, even though the context window explodes the number of parameters, it nonetheless computationally efficient insofar as every step of the operation can be executed in parallel.
+
+thus taking advantage of the hardware gains that have happened over the last years.
+
+And the analogy I like to use is that the transformers architecture introduced speed reading to large language models where, traditional reading human reading when you read a book, is like an RNN. You go from left to right, bottom to top, you read it word after word after word and the transformers architecture enabled neural networks to speed read.
+
+if you've ever tried to learn speed reading, they have different video courses and books on the topic. There's different techniques. some of them say you skim and scan and then you piece together various parts and whatnot.
+
+But there was this one take on [00:23:00] speed reading I saw and I don't think it works. it's probably snake oil. But it was an interesting analogy in this case that said you look at a page, you human, look at a written page of the book and you take the whole blob of the page in all at once. As one point unit as a single embedding And the analogy that they give is they say when you're learning to read a word as a child in grade school, you read it letter by letter, C A T, and you sound it out, C A T, C A T. And then as you get older, you have chunked all the words that are in your own dictionary into single units, into, into point embeddings.
+
+And now you string those words together into sentences. And they say in the speed reading tutorial there are certain combinations of words that go together so effectively and so commonly that you can chunk those together as well. And they say the better you get at doing that, the larger you can [00:24:00] expand your window into chunking sentences together and then paragraphs together.
+
+And then finally you can look at a single page of a book with your eyes and snap your fingers. It is a single point embedding of words. Of a concept of everything that occurred on that page in one second of human brain computation. Now, again, I highly doubt that that technique works, but that is how transformers work.
+
+unlike RNNs where it goes step by step, a transformer takes in an entire context of input tokens being your prompt or a book or whatever. And, the output tokens that it is generating up into that point.
+
+now to say that these things aren't sequential is a bit of a fib, because on inference, when you're running a chat bot chat, GPT, for example, and you give it a prompt.
+
+And then it starts generating output. you'll see on chat GPT that those tokens, the words in its response they're being streamed to you token by token. And they, they measure these things, how fast they are in terms of tokens [00:25:00] per second.
+
+and so the network is operating sequentially, but the part that is parallelized is the prompt that you provide it is being ingested all at once rather than every token by token.
+
+And the training process, which is the most important component of parallelization in terms of hardware efficiency, the training phase of these networks itself is parallelizable. The only thing that is sequential is the inference phase. And what happens at inference is you give it a prompt and it generates one word in response.
+
+Certainly, right? ChatGPT always responds, Certainly, at first. So you give it a prompt and it says, Certainly. That was one step. And now it takes the entire prompt plus the word Certainly and generates the next token. Exclamation point. And then it takes the entire prompt plus Certainly exclamation point and generates the next token.
+
+[00:26:00] So that's the way in which this is done. sequential. transformers take everything up until now and generates the next token until it deems that it is at a stopping point. But everything else, the training pipeline and the ingestion of all tokens here to four in inference.
+
+Those are all parallelizable operations.
+
+Okay, so that is a transformer in concept. Now let's talk about how the attention mechanism works. Because like I said, a transformer is nothing more than a bland vanilla neural network called a multi layer perceptron plus the attention mechanism. And so let's try to understand the attention mechanism.
+
+The attention mechanism is composed Of three tensors, and I say tensor because it could be a matrix or a vector. , remember, tensor is the general word for any number of dimensions involved in the things we're using, whether they're matrices or vectors and so forth.
+
+[00:27:00] Three tensors. Q, K, V. Query, key, and value. And we're operating on the sentence The blue trophy didn't fit on the shelf because it was too big. every word in the sentence is a token Word and token are synonymous basically in in natural language processing.
+
+And every token can be converted to an embedding. And so we're gonna be doing matrix multiplication. We're gonna be multiplying those embeddings by things, QS, ks, and vs.
+
+The blue trophy. If we zero in on the word trophy, it is a token converted to an embedding. So we're zeroing in on the embedding for trophy. We layer on top of that embedding trophy. Three new tensors. Q, K, and V.
+
+The Q tensor is called query. Query because it is asking the question, Who cares about me? In this sentence, Who cares to [00:28:00] affect me? That's the query. That's the question. Who cares? The other embeddings in the sentence answer the question with the K tensor key. So the word blue says, I care it's K tensor is lit up at the point at which the Q tensor for trophy is lit up asking the question, who cares about me?
+
+The K tensor for blue and it, way down in the sentence, it was too big, light up to say, I care about you, dear trophy. I care deeply about you.
+
+So query is the tensor applied to a vector asking the question who shall impact me? Key is the tensor applied to another embedding answering the question I care. And V or value is the tensor applied to the embedding trophy saying to what extent shall this embedding be modified.
+
+the trophy embedding is a vector in vector space. It's an [00:29:00] arrow pointing some direction.
+
+Blue is another vector its own arrow pointing somewhere. So the value tensor, is the tensor that dictates the modification to the trophy tensor. and the extent of that is dictated by the combination of the query tensor and the key tensor.
+
+so you almost think of it as like asking the questions who, how much and where.
+
+So the Q tensor applied to trophy is asking the question who that is being answered by the blue tensor,
+
+which is answering the question, how much that is, how much do I impact you? And then where is the V tensor. Where are we going? What direction are we modifying this current vector under consideration?
+
+Now the way this works is that the Q and the K vectors are being compared to each other directly. these three tensors are layers of weights that are being modified. Tuned [00:30:00] through the learning process, there are layers of weights that are being modified through the learning process and the Q and the K vectors.
+
+Weights are simply meant to match up to each other, and the way the match system works is through a DOT product, So two vectors in vector space have a dot product of one when they're perfect matches. They point exactly the same direction and therefore have a dot product of one when they are essentially identical.
+
+So in this case, blue and trophy and the downstream it will all have dot products of one or close to one, and they will be made to have that dot product through the learning process of this transformer architecture. So, it's just a one. It's just a one yes I match. Yes, these two words match.
+
+They go together. They modify each other. And it's a zero if they're totally uncorrelated. [00:31:00] trophy and because, maybe downstream in the sentence. Might be very low correlation. Very low dot product score. Zero or a negative value.
+
+The V vector is there then to say, what is the modification you want to apply to me?
+
+If the trophy embedding is at this specific point in vector space, as dictated by Word2Vec, context free, in the raw, all by itself, the V tensor is going to be applied to it to shift it closer to the embedding of blue.
+
+so now there is a modified embedding, which is more a blue trophy.
+
+And the Q and K dot product being the number one multiplied by that shift value tensor equals Exactly the shift amount. If it were zero, if there was no match between blue and trophy, then it would be canceled out. That's what the dot product of zero would do. It would simply [00:32:00] cancel out the modification of the value tensor.
+
+at that point, the value tensor might be gibberish, or it may be intended to modify it in some way, but the attention mechanism through the combination of Q and K has determined that whatever modification that word intended to apply to the word under consideration, ignore it. Even if it was valid, even if the sentence deemed that there was a modification that this word could apply to me, ignore it because multiplied by zero, the dot product of Q and K, means cancel out its effect.
+
+And so these three new tensors, think of them as overlays. layered on top of the input embeddings and then downstream some other layer and then downstream some other layer. And that's what a transformer is, is it's, various layers of this sequence of attention mechanism followed by multilayer perceptron followed by attention mechanism followed by [00:33:00] multilayer perceptron.
+
+So at various. stages of the neural network. This attention mechanism is simply a layer on top of what was already there to allow all the parts of that layer, whether they're the input layer of embeddings Or downstream hidden layers and this overlay applies modifications to those embeddings.
+
+and it's a matrix. So all your words are stacked horizontally, and then all those words are repeated vertically, therefore it's quadratic, it's, it's number of words times number of words, and they all impact each other in some way, as dictated by this attention mechanism. Q is each word asking who cares about me, K is each other word answering the question. Combine those two tensors together via dot product, gives you the amount to which any two words are correlated with each other. Multiply that by this value tensor that says, Where do you put me now? How do you [00:34:00] change me, given that we're a match? where do you move my arrow? all three of those tensors applied to the original tensor or some hidden layer. That's your attention mechanism.
+
+so let's talk definitions then. everything we've described thus far is the attention mechanism. Attention mechanism just means the umbrella term, the very concept of attention. ChatGPT definition here it says, the fundamental operation that computes weights for combining value vectors based on the similarity between queries and keys, usually via dot products.
+
+This mechanism is what allows tokens to dynamically focus on other tokens in the sequence. And the implementation or the instantiation of an attention mechanism is called an attention head. The actual in code, in model,hard coded system is called an attention head.
+
+that is the QKV overlay. the chat GPT definition is a single instantiation of the attention mechanism operating on a subset of the model's [00:35:00] embedding dimensions. in multi head attention, several heads run in parallel. Each learns different aspects of relationships of the data.
+
+Their outputs are then concatenated and linearly transformed to form a richer, more diverse representation. That's one thing I forgot to mention is. there is a concept called multi headed attention. And the concept there is that, one attention head as I described it, where trophy is impacted by blue because blue is an adjective and trophy is also impacted by it downstream.
+
+The trophy didn't fit on the shelf because it was too big. It impacts trophy. It should not impact shelf, Well, that's my take. That's the take of Tyler Rinelli on how the word trophy should be impacted by various words in the sentence.
+
+but if you give a book to some literary analyst and then you give that same book to. a historian, and the same book to some other scientist, they all might pay [00:36:00] attention, to different characteristics of the reading exercise. certain words might stand out to them in various ways.
+
+And so multi headed attention is almost like adding different experts to the mix. It's adding more nuanced interpretations of what components of the network should pay attention to what other components. And then finally, an attention block is an attention head or a multi headed attention sequence followed by a multi layer perceptron.
+
+That's the vanilla neural network part of the transformer. and so after a phase of learning which components attend, which other components we then go. neural network in the raw to combine various components in ways that is nuanced and captures really the essence and meanings of things that are, that are happening in the network architecture. In fact, the three blue, one brown video that I'll reference at the end in the resources [00:37:00] section, says that the, the.
+
+Facts and meanings are actually captured at the multilayer perceptron part of the neural network. And so the chat GPT definition says an attention block typically refers to a larger architectural unit that incorporates one multi head attention layer, thus including several attention heads, along with associated components such as residual connections, layer normalization, and often a feed forward network perceptron.
+
+In other words, an attention block is more than just the attention computation. it's the self contained module or layer within the transformer that processes inputs using attention and then further refines the representation. So an attention block is a transformer.
+
+Really, all you need for a transformer is the attention head or multi headed attention followed by a multi layer perceptron and bing, bang, boom, you have a transformer. But in practice, real transformers, in, in, in industry are multiple [00:38:00] layers of this, plus some tweaks and modifications, such as what it mentioned, residual connections and layer normalization and so forth.
+
+And there you have it, Transformers. I'll mention a few other things that play in here that I haven't mentioned. Everything we've discussed is called self attention. In a sentence, about the trophy, we, we have each word of that sentence attending each other word of its own sentence.
+
+Quadratic. So, it's a matrix of words by words. It's attending itself. It's the sentence, paying attention to its own self. Now, in the case of machine translation where you're translating English to Spanish, as you're doing the translation, the English words are attending Something else, which is the translated sentence and they call that cross attention.
+
+So when a transformer is paying attention to itself, it's called self attention when it's paying attention to something else. It's [00:39:00] generating in the process. It's called cross attention. another element is in language modeling,
+
+or time series analysis, anything that's sequence to sequence. the order of words, or the order of numbers matters. So, the position of each token in the sentence matters. matters. You don't just throw it a grab bag of words, you throw it a sequence of words. in recurrent neural networks, we had sequencing based into the very fact that it was operating step by step.
+
+we lose sequencing when we move to transformers. And so we introduced something called positional encodings. And these are learned positional embeddings that inject sequence order. you can almost think of it simply as sending the number, the index where the token appeared in the sentence, but it's more complicated than that.
+
+It's, it's actually a learned positional embedding. that's essential for sequence operations. There's also something called masking. I won't get into that. it's what prevents, prior [00:40:00] words from peaking at future words in the training process.
+
+so that would otherwise, give away the answer in terms of the training phase. you can see how masking works in the three blue, one Brown video. And then of course, as mentioned in the attention block, description, there are residual connections and normalization, that are at play to help the model stabilize.
+
+and retain information through the layers.
+
+Okay. Transformers. Now, as far as resources go, I'll list the, the various paper and video and book resources in the show notes and in the resources section of MLG. But there's one resource I want to call out here.
+
+That is the three blue one brown video on transformers Long time ago. I had referenced The three blue one brown video series as a great learning resource for math and And, the thing about [00:41:00] 3Blue1Brown is, he spends a lot of effort on the video itself, on the animations,
+
+in a way I have never seen done before absolutely unprecedented level of animation quality and not just quality of animation but effectiveness teaching the concepts absolutely astoundingly good at teaching concepts through animations.
+
+I tend to, I tend to recommend resources on this podcast that can be converted to audio format because I myself am a podcast. You're listening to me. You're clearly interested in audio format,
+
+But I would say 80 percent of the learning impact of his series are the animations of the videos themselves.And he teaches math. He teaches probability and calculus and linear algebra, all great for your machine learning, learning journey.
+
+but since my last podcasting on MLG he's released a lot more videos, [00:42:00] including a playlist on neural networks in general, and a whole sequence on large language models and transformers. so if there's one resource you want to consume to better learn how transformers work, it's that video that I'll link in the show notes.
