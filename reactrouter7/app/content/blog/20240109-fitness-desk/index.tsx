@@ -3,7 +3,7 @@ import {BattleStation} from "~/components/utils.tsx";
 import {walkingDeskLinks} from '../../workflowy/walking-desk-links'
 import {Workflowy} from '~/components/workflowy.tsx'
 import { ProductCard } from './product-card'
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
@@ -89,7 +89,7 @@ const otherProducts = [
 ];
 
 
-function Body() {
+export default function Body() {
   const [loc, setLoc] = useState();
   const [treadmills, setTreadmills] = useState(treadmillProducts.US);
   useEffect(() => {
@@ -118,8 +118,6 @@ function Body() {
       //   document.getElementById('amazonLink').href = "https://www.amazon.com/your-affiliate-link";
       // });
   }, [])
-
-
   return <div>
     <style jsx>{`
       .thumbnail-placeholder {
@@ -183,7 +181,3 @@ function Body() {
     <BattleStation />
   </div>
 }
-const body = <Body />
-
-
-export default body;

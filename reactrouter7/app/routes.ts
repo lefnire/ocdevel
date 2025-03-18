@@ -9,11 +9,12 @@ import {
 export default [
   layout("routes/layout.tsx", [
     index("routes/home.tsx"),
-    route("walk", "content/blog/20240109-fitness-desk/index.tsx"),
+    // route("walk", "content/blog/20240109-fitness-desk/index.tsx"),
     route("contact", "routes/contact.tsx"),
     route("blog", "routes/blog/layout.tsx", [
       index("routes/blog/list.tsx"),
-      route(":id", "routes/blog/full.tsx")
+      route(":id", "routes/blog/full.tsx"),
+      route("20240109-fitness-desk", "content/blog/20240109-fitness-desk/index.tsx"),
     ]),
     layout("routes/podcast/layout.tsx", [
       ...prefix("mlg", [

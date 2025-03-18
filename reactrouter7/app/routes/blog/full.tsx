@@ -1,4 +1,4 @@
-import {useParams} from "react-router";
+import {useParams, Outlet} from "react-router";
 import find from "lodash/find";
 import blog from "../../content/blog";
 import {BackButton} from "~/components/utils";
@@ -19,9 +19,8 @@ function Affiliate({p}) {
   </>
 }
 
-export default function Full() {
-  const {id} = useParams()
-
+export default function Full({params}) {
+  const {id} = params;
   const p = find(blog, {id});
   return <div>
     <BackButton to="/blog" />
@@ -34,7 +33,9 @@ export default function Full() {
         </Card.Subtitle>
 
         <Card.Text>
+          {/* @FIXME need components={components} for MDX */}
           {renderBlogPost(p)}
+          {/*<Outlet />*/}
         </Card.Text>
       </Card.Body>
       <Card.Footer>
@@ -48,7 +49,8 @@ export default function Full() {
   </div>
 }
 
-export function meta() {
+export function meta(props) {
+  console.log(props)
   return []
   // @FIXME
   // <Helmet>

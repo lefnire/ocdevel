@@ -8,7 +8,6 @@ export const jsx = true
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {create} from "zustand";
 import {immer} from "zustand/middleware/immer";
-import {shallow} from "zustand/shallow";
 import {useShallow} from "zustand/react/shallow";
 
 interface UseStore {
@@ -43,7 +42,7 @@ function Tag({name}: {name: string}) {
 }
 
 function AppliedTags() {
-  const [anyTags, tags] = useStore(store => [store.anyTags, store.tags], shallow)
+  const [anyTags, tags] = useStore(useShallow(store => [store.anyTags, store.tags]))
   if (!anyTags) { return null }
   const appliedTags = Object.entries(tags).filter(([k, v]) => v).map(([k, v]) => (
     <Tag key={k} name={k} />

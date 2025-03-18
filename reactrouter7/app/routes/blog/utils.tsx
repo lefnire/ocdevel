@@ -16,10 +16,10 @@ export interface BlogPost {
 
 export function PostDate({p}: {p: BlogPost}) {
   const dates = [
-    <span>{moment(p.date).format(fmt)}</span>
+    <span key='date'>{moment(p.date).format(fmt)}</span>
   ]
   if (p.updated) {
-    dates.push(<span className='ms-1'>[updated {moment(p.updated).format(fmt)}]</span>)
+    dates.push(<span key='updated' className='ms-1'>[updated {moment(p.updated).format(fmt)}]</span>)
   }
   return dates
 }

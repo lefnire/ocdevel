@@ -34,7 +34,7 @@ export function MyMDXProvider({children}) {
 
 export function renderBlogPost(p: BlogPost) {
   if (p.jsx) {
-    return p.default
+    return p.default()
   }
   return <p.default components={components} />
 }
