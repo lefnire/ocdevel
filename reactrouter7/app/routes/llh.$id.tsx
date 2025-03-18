@@ -1,13 +1,13 @@
 import Episode from "~/components/podcast/podcast.$id.tsx"
-import {mlg, episodesObj} from "~/content/podcast";
+import {llh, llhEpisodesObj} from "~/content/podcast";
 
-export default function EpisodeMLG(props) {
+export default function EpisodeLLH(props) {
   return <Episode {...props} />
 }
 
 export function meta({params, matches}) {
-  const episodes = episodesObj
-  const show = mlg
+  const episodes = llhEpisodesObj
+  const show = llh
   const {id} = params
   const e = episodes[id]
   return [

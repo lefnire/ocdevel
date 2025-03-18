@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {mlg} from '~/content/podcast';
+import {llh} from '~/content/podcast';
 import Podcast from '~/components/podcast/podcast.tsx'
 
 export default function Series() {
@@ -8,7 +8,7 @@ export default function Series() {
 
 export function meta({params, matches}) {
   return [
-    { title: `${mlg.title} Podcast` },
-    { name: "description", content: mlg.teaser }
+    { title: `${llh.title} Podcast` },
+    { name: "description", content: llh.teaser }
   ]
 }

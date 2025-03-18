@@ -20,7 +20,7 @@ import {IconButton} from "~/components/utils";
 import useStore from "~/store/episodes";
 import {FaBusinessTime} from "react-icons/fa";
 import {FaUserPlus} from "react-icons/fa";
-import {getPodcastKey} from "~/routes/podcast/utils";
+import {getPodcastKey} from "./utils";
 
 const scout = "/assets/MLG-Option-1.jpg"
 

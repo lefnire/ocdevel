@@ -1,7 +1,8 @@
 export function getPodcastKey(matches) {
-  return matches[matches.length - 1].id.split('.')[0];
+  const parts = matches[matches.length - 1].pathname.split('/')
+  return parts.filter(Boolean)[0]
 }
 
 export function getIsResources(matches) {
-  return matches[matches.length - 1].id === 'mlg.resources';
+  return matches[matches.length - 1].pathname === '/mlg/resources'
 }

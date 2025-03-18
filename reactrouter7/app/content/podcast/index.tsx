@@ -56,10 +56,10 @@ import mla020 from './mla/020'
 import mlg033 from './mlg/033'
 import mla022 from './mla/022'
 
-import llh001 from './llh/001'
-import llh002 from './llh/002'
-import llh003 from './llh/003'
-import llh004 from './llh/004'
+import * as llh001 from './llh/1/meta.js'
+import * as llh002 from './llh/2/meta.js'
+import * as llh003 from './llh/3/meta.js'
+import * as llh004 from './llh/4/meta.js'
 
 export const episodes = map([
   mlg001,
