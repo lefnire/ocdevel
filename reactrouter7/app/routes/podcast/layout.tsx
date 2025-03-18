@@ -3,9 +3,9 @@ import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap'
 import {Route, useLocation, Outlet, Link} from 'react-router';
 
 import {mlg, llh} from '~/content/podcast';
+import {getIsResources, getPodcastKey} from './utils'
 
-
-import {LinkContainer, usePodcastKey} from "~/components/utils"
+import {LinkContainer} from "~/components/utils"
 import Recommend from './recommend'
 import EpisodeRoute from './full'
 import ResourcesTree from './resources'
@@ -15,14 +15,14 @@ import About from "./sidebar/about"
 // import {useQuery} from "../../utils";
 
 
-export default function Series() {
-  const podcastKey = usePodcastKey()
+export default function Series({matches}) {
+  const podcastKey = getPodcastKey(matches)
+  const isResources = getIsResources(matches)
   const location = useLocation()
 
-  const isResources = location.pathname === '/mlg/resources'
-    const col = isResources ?
-      {left: {xs:12, md:4}, right: {xs:12, md:8}} :
-      {left: {xs:12, md:5}, right: {xs:12, md:7}}
+  const col = isResources ?
+    {left: {xs:12, md:4}, right: {xs:12, md:8}} :
+    {left: {xs:12, md:5}, right: {xs:12, md:7}}
 
   function renderNavBar() {
     if (podcastKey === "llh") { return null; }
@@ -35,7 +35,7 @@ export default function Series() {
   }
 
   function renderSidebar() {
-    if (location.pathname.startsWith("/mlg/resource")) {
+    if (isResources) {
       return <Filters />
     }
     return <About />
@@ -65,7 +65,7 @@ export default function Series() {
 }
 
 export function meta({params, matches}) {
-  const podcastKey = matches[matches.length - 1].id.split('.')[0]
+  const podcastKey = getPodcastKey(matches)
   const show = {mlg, llh}[podcastKey]
   return [
     { title: `${show.title} Podcast` },

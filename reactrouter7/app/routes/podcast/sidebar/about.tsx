@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router";
+import {Link, useMatches} from "react-router";
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Card from 'react-bootstrap/Card'
@@ -22,7 +22,7 @@ import {IconButton} from "~/components/utils";
 import useStore from "~/store/episodes";
 import {FaBusinessTime} from "react-icons/fa";
 import {FaUserPlus} from "react-icons/fa";
-import {usePodcastKey} from "~/components/utils.tsx";
+import {getPodcastKey} from "~/routes/podcast/utils";
 
 const scout = "/assets/MLG-Option-1.jpg"
 
@@ -54,7 +54,8 @@ function ShowMoreLess({podcast}) {
 }
 
 function Links() {
-  const key = usePodcastKey()
+  const matches = useMatches()
+  const key = getPodcastKey(matches)
   if (key === "llh") { return null; }
   const common = {
     div: {xs: 12, md: 6, className: 'p-1'},
@@ -127,7 +128,8 @@ function Links() {
 
 function PodcastLinks() {
   const btn = {size: 'sm', variant: 'light', target: '_blank'}
-  const key = usePodcastKey()
+  const matches = useMatches()
+  const key = getPodcastKey(matches)
 
   if (key === "llh") {
     return <>
@@ -186,7 +188,8 @@ function PodcastLinks() {
       >Stitcher</IconButton>
       <IconButton
         {...btn}
-        href="http://machinelearningguide.libsyn.com/rss"rel="nofollow"
+        href="http://machinelearningguide.libsyn.com/rss"
+        rel="nofollow"
         Icon={SiRss}
       >Custom (RSS)</IconButton>
     </ButtonGroup>
@@ -196,7 +199,8 @@ function PodcastLinks() {
 
 function PodcastImage() {
   // git-blame: links underneath; click to show
-  const key = usePodcastKey()
+  const matches = useMatches()
+  const key = getPodcastKey(matches)
   const img = key === "llh" ? <img src="/llh290.png" alt="Lefnire's Life Hacks"/>
       // TODO use public link instead of importing image?
       : <img src={scout} alt="Machine Learning Guide"/>

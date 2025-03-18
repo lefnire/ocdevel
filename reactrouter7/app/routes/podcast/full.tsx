@@ -4,14 +4,15 @@ import Card from 'react-bootstrap/Card'
 import {Accordion_, dateFmt, ReactMarkdown_} from "~/components/utils";
 import padStart from "lodash/padStart";
 import moment from "dayjs";
-import {Link, useParams} from "react-router";
-import {BackButton, usePodcastKey} from "~/components/utils";
+import {Link, useMatches, useParams} from "react-router";
+import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from './resources'
 import {episodesObj, llhEpisodesObj, mlg} from "~/content/podcast";
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import Badge from "react-bootstrap/Badge";
 import {Comments} from "~/components/comments.tsx";
+import {getPodcastKey} from "~/routes/podcast/utils";
 
 function ResourcesFlat({nids}) {
   let seen = {}
@@ -79,7 +80,8 @@ function Markdown_({Content, teaser=false}) {
 }
 
 export function Episode({e, teaser, i=null}) {
-  const podcastKey = usePodcastKey()
+  const matches = useMatches()
+  const podcastKey = getPodcastKey(matches)
   const num = padStart(e.episode, 3, '0');
   const titleStart = podcastKey === "llh" ? "LLH" : e.mla ? "MLA" : "MLG"
   const title = `${titleStart} ${num} ${e.title}`;
@@ -184,23 +186,20 @@ export function Episode({e, teaser, i=null}) {
   return teaser ? renderTeaser() : renderFull()
 }
 
-export default function Full({params}) {
+export default function Full({params, matches}) {
   const {id} = params
-  const podcastKey = usePodcastKey()
+  const podcastKey = getPodcastKey(matches)
   const e = podcastKey === "llh" ? llhEpisodesObj[id] : episodesObj[id]
   return <Episode e={e} teaser={false} />
 }
 
-export function meta({params}) {
+export function meta({params, matches}) {
+  const podcastKey = getPodcastKey(matches)
+  const show = {mlg: episodesObj, llh: llhEpisodesObj}[podcastKey]
   const {id} = params
-  const e = episodesObj[id]
+  const e = show[id]
   return [
-    { title: `${e.title} | Machine Learning Guide` },
+    { title: `${e.title} | ${show.title}` },
     { description: e.teaser }
   ]
-  // @FIMXE
-  // <Helmet>
-  //       <title>{e.title} | Machine Learning Guide</title>
-  //       {e.teaser && <meta name="description" Content={e.teaser} />}
-  //     </Helmet>
 }

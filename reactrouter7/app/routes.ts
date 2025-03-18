@@ -47,7 +47,7 @@ export default [
     ]),
     route("mlg", "routes/podcast/layout.tsx", {id: "mlg.layout"}, [
       index("routes/podcast/list.tsx", {id: "mlg.list"}),
-      route("resources", "routes/podcast/resources.tsx"),
+      route("resources", "routes/podcast/resources.tsx", {id: "mlg.resources"}),
       route("recommend", "routes/podcast/recommend.tsx"),
       route(":id", "routes/podcast/full.tsx", {id: "mlg.full"})
     ]),

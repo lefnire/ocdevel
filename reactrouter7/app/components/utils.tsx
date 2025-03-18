@@ -79,12 +79,6 @@ const Modal_ = <Modal show={true} animation={false}>
 </Modal>
 
 
-export function usePodcastKey() {
-  const location = useLocation();
-  const splits = location.pathname.split("/").filter(Boolean)
-  return splits[0]
-}
-
 export const dateFmt = 'MMM DD, YYYY';
 
 export function Popover_({children, content, id=null, title=null, opts={}}) {

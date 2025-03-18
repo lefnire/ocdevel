@@ -9,10 +9,10 @@ import sortBy from "lodash/sortBy";
 
 import {episodes, llhEpisodes} from "~/content/podcast";
 import {Episode} from './full';
-import {usePodcastKey} from "~/components/utils.tsx";
+import {getPodcastKey} from "~/routes/podcast/utils";
 
-export default function List() {
-  const podcastKey = usePodcastKey()
+export default function List({matches}) {
+  const podcastKey = getPodcastKey(matches)
   const sortedEps = useMemo(() => {
     const episodes_ = podcastKey === "llh" ? llhEpisodes : episodes
     return sortBy(episodes_, e => e.created)
@@ -28,10 +28,6 @@ export default function List() {
   const setMla = useCallback(useStore(actions => actions.setMla), []);
   const setMlg = useCallback(useStore(actions => actions.setMlg), []);
 
-  useLayoutEffect(() => {
-    // window.scrollTo(0, document.body.scrollHeight);
-    window.scrollTo(0, 0);
-  }, [])
 
   function next() {
     setPage(page + 1)

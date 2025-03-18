@@ -31,6 +31,16 @@ export const links: Route.LinksFunction = () => [
   // }
 ];
 
+/**
+@FIXME Add these?
+<!-- TODO remove this? -->
+<!--<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=9f178603-558f-4b18-b4b9-b2f2f18a5ff5"></script>-->
+
+<meta name='impact-site-verification' value='c47f4703-3b54-4a24-9d35-67f518f4dbc7' />
+
+<!--<script data-ad-client="ca-pub-3242350243827794" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+ */
+
 export function Layout({children}: { children: React.ReactNode }) {
   return (
     <html lang="en">
