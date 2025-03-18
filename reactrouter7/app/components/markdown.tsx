@@ -1,6 +1,6 @@
 import { MDXProvider } from '@mdx-js/react';
 import { Link } from 'react-router';
-import {type BlogPost} from "~/routes/blog/utils.tsx";
+import {type BlogPost} from "./utils.tsx";
 
 const CustomLink = ({ href, children }) => {
   if (href.startsWith('/')) {

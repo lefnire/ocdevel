@@ -3,9 +3,14 @@ import type { Config } from "@react-router/dev/config";
 export default {
   // Config options...
   // Server-side render by default, to enable SPA mode set this to `false`
-  // ssr: true,
+  // ssr: false,
   
   async prerender() {
+    const blogs_ = import.meta.glob('/app/routes/blog*/meta.js');
+    const blogs = await Promise.all(Object.values(blogs_).map(b => b()))
+
+    return blogs.map(b => `/blog/${b.id}`)
+
     return [
       "/",
       "/contact",
