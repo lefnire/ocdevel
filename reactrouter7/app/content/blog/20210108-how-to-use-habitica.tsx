@@ -3,8 +3,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import {Row, Col} from 'react-bootstrap'
 import Badge from 'react-bootstrap/Badge'
 import {FaCalendar} from 'react-icons/fa'
 import {FaCheckSquare} from 'react-icons/fa'
@@ -15,10 +14,14 @@ import {FaSwatchbook} from 'react-icons/fa'
 import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
-import {TLDR} from '../../components/utils'
+import {TLDR} from '../../components/utils.tsx'
 import {Link} from "react-router";
 
 export const teaser = "As Habitica's creator, I've refined my approach to using the system over 10 years. This post teaches you how to get the most out of improving your habits and behavior through Habitica. It includes a calculator for choosing the best class (warrior, rogue, mage, healer) for your play-style."
+export const id = '20210108-how-to-use-habitica'
+export const date = '2021-01-08'
+export const title = "How Habitica's Creator Uses Habitica"
+export const jsx = true
 
 const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
@@ -219,7 +222,7 @@ function ClassCalculator() {
 }
 
 export default function Body() {
-  return <>
+  return <div>
     <p>[Update 2024-05-19] I have a {l("/llh/2", "podcast episode for this here.")}</p>
     <p>This is {l("/contact", "lefnire")}'s usage guide to Habitica. I created Habitica but am no longer with the
       company. Nonetheless, I've rarely missed a day since 2012, and have learned a <em>lot</em> about psychology since
@@ -247,7 +250,7 @@ export default function Body() {
           day, like <b>Smoke[-]</b>, <b>[+]Healthy Food[-]</b>, or <b>[+]Glass of Water</b>.
         </p>
 
-        <p>My personal Dailies are:
+        <div>My personal Dailies are:
           <ul>
             <li>Plan for the day (triage ToDos, work, calendar & contacts, etc)</li>
             <li>Take meds</li>
@@ -258,7 +261,7 @@ export default function Body() {
             <li>1h work-related reading</li>
             <li>(some more that won't make much sense, <b>screenshot here TODO</b></li>
           </ul>
-        </p>
+        </div>
 
         <h5>Digital workers</h5>
         <p>Recommendations for digital employees - anyone who's in front of their computer all day. Use
@@ -501,9 +504,5 @@ export default function Body() {
     <div className='mt-2'>Aside: besides gamifying life, my biggest life-hack is <Link to="/blog/20240109-fitness-desk">walking
       desks</Link>. Try it out!
     </div>
-  </>
+  </div>
 }
-export const id = '20210108-how-to-use-habitica'
-export const date = '2021-01-08'
-export const title = "How Habitica's Creator Uses Habitica"
-export const jsx = true

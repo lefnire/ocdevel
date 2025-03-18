@@ -19,9 +19,18 @@ function Affiliate({p}) {
   </>
 }
 
-export default function Full({params}) {
-  const {id} = params;
-  const p = find(blog, {id});
+function getPost(props) {
+  const id = props.params?.id || (() => {
+    const matches = props.matches
+    const parts = matches[matches.length - 1].pathname.split('/')
+    return parts[parts.length - 1];
+  })()
+  return find(blog, {id});
+}
+
+export default function Full(props) {
+  const p = getPost(props)
+  const id = p.id
   return <div>
     <BackButton to="/blog" />
     <Card>
@@ -32,11 +41,9 @@ export default function Full({params}) {
           <Affiliate p={p} />
         </Card.Subtitle>
 
-        <Card.Text>
-          {/* @FIXME need components={components} for MDX */}
-          {renderBlogPost(p)}
-          {/*<Outlet />*/}
-        </Card.Text>
+        {/* @FIXME need components={components} for MDX */}
+        {renderBlogPost(p)}
+        {/*<Outlet />*/}
       </Card.Body>
       <Card.Footer>
         <Comments
@@ -50,8 +57,11 @@ export default function Full({params}) {
 }
 
 export function meta(props) {
-  console.log(props)
-  return []
+  const p = getPost(props)
+  return [{
+    title: p.title,
+    description: p.teaser
+  }]
   // @FIXME
   // <Helmet>
   //     <title>{p.title} | OCDevel</title>
