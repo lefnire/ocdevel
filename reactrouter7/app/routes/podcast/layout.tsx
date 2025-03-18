@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap'
 import {Route, useLocation, Outlet, Link} from 'react-router';
 
-import {mlg} from '../../content/podcast';
+import {mlg, llh} from '~/content/podcast';
 
 
 import {LinkContainer, usePodcastKey} from "~/components/utils"
@@ -64,14 +64,11 @@ export default function Series() {
   </>
 }
 
-export function meta() {
-  return []
-  // @FIXME
-  // <Helmet>
-  //     { podcastKey === "mlg" ? <title>Machine Learning Guide Podcast</title>
-  //     : podcastKey === "llh" ? <title>Lefnire's Life Hacks</title>
-  //     : null }
-  //
-  //     <meta name="description" content={mlg.teaser} />
-  //   </Helmet>
+export function meta({params, matches}) {
+  const podcastKey = matches[matches.length - 1].id.split('.')[0]
+  const show = {mlg, llh}[podcastKey]
+  return [
+    { title: `${show.title} Podcast` },
+    { description: show.teaser }
+  ]
 }

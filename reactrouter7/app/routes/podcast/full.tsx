@@ -184,15 +184,20 @@ export function Episode({e, teaser, i=null}) {
   return teaser ? renderTeaser() : renderFull()
 }
 
-export default function Full() {
-  const {id} = useParams()
+export default function Full({params}) {
+  const {id} = params
   const podcastKey = usePodcastKey()
   const e = podcastKey === "llh" ? llhEpisodesObj[id] : episodesObj[id]
   return <Episode e={e} teaser={false} />
 }
 
-export function meta() {
-  return []
+export function meta({params}) {
+  const {id} = params
+  const e = episodesObj[id]
+  return [
+    { title: `${e.title} | Machine Learning Guide` },
+    { description: e.teaser }
+  ]
   // @FIMXE
   // <Helmet>
   //       <title>{e.title} | Machine Learning Guide</title>
