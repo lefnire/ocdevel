@@ -58,10 +58,10 @@ export default function Full(props) {
 
 export function meta(props) {
   const p = getPost(props)
-  return [{
-    title: p.title,
-    description: p.teaser
-  }]
+  return [
+    { title: p.title },
+    { name: "description", content: p.teaser }
+  ]
   // @FIXME
   // <Helmet>
   //     <title>{p.title} | OCDevel</title>

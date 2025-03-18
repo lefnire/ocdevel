@@ -8,7 +8,7 @@ import {Link, useMatches, useParams} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from './resources'
-import {episodesObj, llhEpisodesObj, mlg} from "~/content/podcast";
+import {episodesObj, llhEpisodesObj, mlg, llh} from "~/content/podcast";
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import Badge from "react-bootstrap/Badge";
 import {Comments} from "~/components/comments.tsx";
@@ -195,11 +195,12 @@ export default function Full({params, matches}) {
 
 export function meta({params, matches}) {
   const podcastKey = getPodcastKey(matches)
-  const show = {mlg: episodesObj, llh: llhEpisodesObj}[podcastKey]
+  const episodes = {mlg: episodesObj, llh: llhEpisodesObj}[podcastKey]
+  const show = {mlg, llh}[podcastKey]
   const {id} = params
-  const e = show[id]
+  const e = episodes[id]
   return [
     { title: `${e.title} | ${show.title}` },
-    { description: e.teaser }
+    { name: "description", content: e.teaser }
   ]
 }

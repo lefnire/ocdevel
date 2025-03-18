@@ -69,6 +69,6 @@ export function meta({params, matches}) {
   const show = {mlg, llh}[podcastKey]
   return [
     { title: `${show.title} Podcast` },
-    { description: show.teaser }
+    { name: "description", content: show.teaser }
   ]
 }

@@ -57,7 +57,7 @@ export default function Contact() {
     <Card.Title>Tyler Renelle</Card.Title>
     <Card.Body>
       <p>ML engineer focused on NLP, with experience in computer vision, time series, and RL. I work with Keras, Pytorch, hugginface/transformers, XGBoost, SciPy (sklearn, Pandas, numpy), hyperparameters, etc. Devops with AWS, Docker, SageMaker. Full-stack with Python, Postgres, and React / React Native.</p>
-      <p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? <a href="/contact">Contact me here</a>.</p>
+      <p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? <a href="mailto:tylerrenelle@gmail.com">Contact me for consultant work!</a></p>
     </Card.Body>
   </div>
 
@@ -94,6 +94,7 @@ export default function Contact() {
 
 export function meta({}: Route.MetaArgs) {
   return [
-    {title: "Contact Tyler Renelle"}
+    {title: "Contact Tyler Renelle"},
+    {name: "description", content: "Hire a machine learning engineer consultant"}
   ]
 }

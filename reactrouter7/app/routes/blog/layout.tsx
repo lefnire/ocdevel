@@ -9,6 +9,7 @@ export default function Home() {
 
 export function meta() {
   return [
-    {title: "OCDevel Blog"}
+    { title: "OCDevel Blog" },
+    { name: "description", content: "Treadmill desks, walking pads, life and tech hacks, ergonomic mice and keyboards." }
   ]
 }

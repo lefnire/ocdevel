@@ -1,10 +1,9 @@
-// @FIXME
-// import CookieConsent from "react-cookie-consent";
+import CookieConsent from "react-cookie-consent";
 import {Navbar, Nav} from "react-bootstrap";
 import {Outlet, useLocation} from "react-router";
 import React, {useEffect} from "react";
 // import {LinkContainer} from 'react-router-bootstrap';
-// import ReactGA from "react-ga4";
+import ReactGA from "react-ga4";
 
 // don't need bootstrap, imported in my scss
 // import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,15 +17,6 @@ import Stack from "react-bootstrap/Stack";
 import {NavLink, Link} from "react-router"
 import {LinkContainer} from "~/components/utils"
 
-// let usingGA = false;
-// // FIXME use import.VITE_APP_*
-// if (import.meta.env.PROD) {
-//   console.log("using GA")
-//   usingGA = true;
-//   ReactGA.initialize('G-0YR1STKJS3')
-//   ReactGA.send({hitType: "pageview", page: window.location.pathname})
-// }
-//
 // function LocationListener() {
 //   const location = useLocation()
 //
@@ -40,6 +30,15 @@ import {LinkContainer} from "~/components/utils"
 // }
 
 export default function App() {
+  let usingGA = false;
+  useEffect(() => {
+    if (!(import.meta.env.PROD && window?.location?.pathname)) { return }
+    console.log("using GA")
+    usingGA = true;
+    ReactGA.initialize('G-0YR1STKJS3')
+    ReactGA.send({hitType: "pageview", page: window.location.pathname})
+  }, [])
+
   return <div>
     {/*<LocationListener />*/}
     {/*<CookieConsent buttonText="Accept">This website uses cookies to enhance the user experience.</CookieConsent>*/}
