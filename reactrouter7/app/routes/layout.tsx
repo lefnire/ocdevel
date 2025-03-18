@@ -12,8 +12,7 @@ import {FaYoutube} from "react-icons/fa";
 import {FaInstagram} from "react-icons/fa";
 import {SiTiktok} from "react-icons/si";
 import {FaFacebook} from "react-icons/fa";
-import Button from "react-bootstrap/Button";
-import Stack from "react-bootstrap/Stack";
+import {Button, Stack} from "react-bootstrap";
 import {NavLink, Link} from "react-router"
 import {LinkContainer} from "~/components/utils"
 
@@ -32,7 +31,8 @@ import {LinkContainer} from "~/components/utils"
 export default function App() {
   let usingGA = false;
   useEffect(() => {
-    if (!(import.meta.env.PROD && window?.location?.pathname)) { return }
+    if (!import.meta.env.PROD) { return }
+    if (typeof document === "undefined") { return }
     console.log("using GA")
     usingGA = true;
     ReactGA.initialize('G-0YR1STKJS3')

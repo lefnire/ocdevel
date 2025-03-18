@@ -3,9 +3,8 @@ import {
   useLocation,
   useNavigate
 } from "react-router";
-import Button from 'react-bootstrap/Button'
+import {Button, Modal} from 'react-bootstrap'
 import React, {Suspense, useCallback} from "react";
-import Modal from "react-bootstrap/Modal";
 import {FaArrowLeft} from "react-icons/fa"
 import {Popover, OverlayTrigger, Accordion, Alert} from "react-bootstrap";
 import ReactMarkdown from "react-markdown";

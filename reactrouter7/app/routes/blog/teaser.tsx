@@ -1,4 +1,4 @@
-import Card from "react-bootstrap/Card";
+import {Card} from "react-bootstrap";
 import {Link} from "react-router";
 import moment from "dayjs";
 import {type BlogPost, fmt, PostDate} from "./utils.tsx";

@@ -2,7 +2,7 @@ import {useParams, Outlet} from "react-router";
 import find from "lodash/find";
 import blog from "../../content/blog";
 import {BackButton} from "~/components/utils";
-import Card from "react-bootstrap/Card";
+import {Card} from "react-bootstrap";
 import moment from "dayjs";
 import {ReactMarkdown_} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";

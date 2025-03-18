@@ -1,5 +1,4 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card'
+import {Card} from 'react-bootstrap'
 import {Col, Row, Container} from 'react-bootstrap'
 import {Link} from "react-router";
 import type {Route} from "../../.react-router/types/app/routes/+types/home";

@@ -6,9 +6,7 @@ import {FiMinusSquare} from 'react-icons/fi'
 import {FiPlusSquare} from 'react-icons/fi'
 import {icons} from "~/components/utils";
 import React, {useCallback, useState} from "react";
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Card from 'react-bootstrap/Card'
+import {ButtonGroup, Card} from 'react-bootstrap'
 import {Col} from 'react-bootstrap'
 import {useStore} from "~/store/resources";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";

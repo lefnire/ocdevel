@@ -3,9 +3,7 @@ import {Link} from "react-router";
 import {
   FaInfoCircle,
 } from "react-icons/fa";
-import Alert from 'react-bootstrap/Alert'
-import Card from 'react-bootstrap/Card'
-import Table from 'react-bootstrap/Table'
+import {Card, Alert, Table} from 'react-bootstrap'
 import {useFilteredTree} from "~/store/resources";
 import startsWith from "lodash/startsWith";
 

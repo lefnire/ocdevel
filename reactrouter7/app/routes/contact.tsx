@@ -1,4 +1,4 @@
-import Card from 'react-bootstrap/Card'
+import {Card} from 'react-bootstrap'
 import {Col, Row, Container, Stack, Button} from 'react-bootstrap'
 import {IconButton} from "~/components/utils";
 import {FaCouch} from 'react-icons/fa';

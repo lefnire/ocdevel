@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import {Link, useMatches} from "react-router";
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Card from 'react-bootstrap/Card'
+import {Button, ButtonGroup, Card} from 'react-bootstrap'
 import {Col, Row} from 'react-bootstrap'
 import {FaDiscord} from 'react-icons/fa'
 import {FaYoutube} from 'react-icons/fa'

@@ -1,6 +1,5 @@
 import React from "react";
-import Alert from 'react-bootstrap/Alert'
-import Card from 'react-bootstrap/Card'
+import {Card, Alert, Badge} from 'react-bootstrap'
 import {Accordion_, dateFmt, ReactMarkdown_} from "~/components/utils";
 import padStart from "lodash/padStart";
 import moment from "dayjs";
@@ -10,7 +9,6 @@ import {BackButton} from "~/components/utils";
 import {ResourceNode} from './resources'
 import {episodesObj, llhEpisodesObj, mlg, llh} from "~/content/podcast";
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
-import Badge from "react-bootstrap/Badge";
 import {Comments} from "~/components/comments.tsx";
 import {getPodcastKey} from "~/routes/podcast/utils";
 

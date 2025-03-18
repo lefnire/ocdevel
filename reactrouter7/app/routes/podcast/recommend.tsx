@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
+import {Card} from "react-bootstrap";
 // import ReactDisqusComments from "react-disqus-comments";
 import {BackButton} from "~/components/utils";
 import {mlg} from "~/content/podcast";

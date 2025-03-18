@@ -1,8 +1,7 @@
 import React, {useCallback, useLayoutEffect, useEffect, useState, useMemo} from "react";
 import filter from 'lodash/filter'
 import times from 'lodash/times'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import {Button, ButtonGroup} from 'react-bootstrap'
 import useStore from "~/store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
