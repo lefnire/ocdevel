@@ -28,7 +28,7 @@ export default function Series() {
     if (podcastKey === "llh") { return null; }
     return <Navbar bg='dark' variant='dark' className="border-bottom justify-content-center secondary-nav">
       <Nav>
-        <LinkContainer to={"/" + podcastKey} exact>Episodes</LinkContainer>
+        <LinkContainer to={"/" + podcastKey}>Episodes</LinkContainer>
         <LinkContainer to="/mlg/resources">Resources</LinkContainer>
       </Nav>
     </Navbar>

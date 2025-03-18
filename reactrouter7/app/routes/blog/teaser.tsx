@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router";
 import moment from "dayjs";
-import {BlogPost, fmt, PostDate} from "./utils.tsx";
+import {type BlogPost, fmt, PostDate} from "./utils.tsx";
 import {renderBlogPost} from "~/components/markdown.tsx";
 
 interface Teaser {

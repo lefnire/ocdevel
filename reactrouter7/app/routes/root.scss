@@ -1,4 +1,4 @@
-@import "bootstrap/scss/bootstrap";
+@use "bootstrap/scss/bootstrap" as *;
 @mixin transform($property) {
   -webkit-transform: $property;
   -ms-transform: $property;

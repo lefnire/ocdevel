@@ -23,4 +23,12 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths()
   ],
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
 });
