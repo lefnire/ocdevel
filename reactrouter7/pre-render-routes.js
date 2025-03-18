@@ -1,0 +1,58 @@
+import {episodes, llhEpisodes} from "./app/content/podcast/metas.js";
+import blog from './app/content/blog/metas.js'
+
+export default function getPrerenderRoutes(forSitemap) {
+  const blogRoutes = blog.map(b => `/blog/${b.id}`)
+  const mlgRoutes = episodes.map(e => `/mlg/${e.id}`)
+  const llhRoutes = llhEpisodes.map(e => `/llh/${e.id}`)
+  const baseRoutes = [
+    "/",
+    "/contact",
+    "/blog",
+    "/mlg",
+    "/mlg/resources",
+    "/llh",
+    "/walk",
+  ]
+  const routes = [
+    ...baseRoutes,
+    ...blogRoutes,
+    ...mlgRoutes,
+    ...llhRoutes,
+  ]
+  if (!forSitemap) { return routes }
+
+  // TODO put these in the meta.js files
+  const changeFreq = Object.fromEntries(
+    routes.map(r => {
+      const freq = ['/mlg', '/blog', '/llh'].includes(r) ? 'monthly'
+        : ['/walk', '/blog/20240109-fitness-desk'].includes(r) ? 'weekly'
+          : 'yearly'
+      return [r, freq]
+    })
+  )
+  const lookups = [
+    ...baseRoutes,
+    ...blog,
+    ...episodes,
+    ...llhEpisodes
+  ]
+  const priority = Object.fromEntries(
+    routes.map(r => {
+      const prio = ['/mlg', '/walk', '/blog/20240109-fitness-desk'].includes(r) ? 1
+        : ['/blog'].includes(r) ? 0.6
+        : 0.3;
+      return [r, prio]
+    })
+  )
+  const lastmod = Object.fromEntries(
+    routes.map((r, i) => {
+      const meta = lookups[i];
+      if (typeof meta === 'string' || !(meta.updated || meta.created)) {
+        return [r, new Date()]
+      }
+      return [r, new Date(meta.updated || meta.created)]
+    })
+  )
+  return { dynamicRoutes: routes, changeFreq, priority, lastmod }
+}

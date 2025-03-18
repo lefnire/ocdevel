@@ -5,6 +5,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import mdx from '@mdx-js/rollup'
 import {vitePluginOpml} from "./app/content/workflowy/vite-plugin-opml.ts";
 import remarkGfm from 'remark-gfm';
+import Sitemap from 'vite-plugin-sitemap'
+import getPrerenderRoutes from "./pre-render-routes.js"
+
+const siteMapArgs = getPrerenderRoutes(true);
 
 export default defineConfig({
   plugins: [
@@ -21,7 +25,14 @@ export default defineConfig({
     vitePluginOpml,
 
     reactRouter(),
-    tsconfigPaths()
+    tsconfigPaths(),
+
+    Sitemap({
+      ...siteMapArgs,
+      hostname: 'https://ocdevel.com',
+      outDir: "build/client",
+    }),
+
   ],
 
   css: {

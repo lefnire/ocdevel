@@ -13,5 +13,8 @@
   },
   "dependencies": {
     "sst": "^3.9.39"
+  },
+  "devDependencies": {
+    "vite-plugin-sitemap": "^0.7.1"
   }
 }
