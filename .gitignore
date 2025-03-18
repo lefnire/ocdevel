@@ -5,3 +5,6 @@ tmp/
 **/.DS_Store
 node_modules
 .aider*
+
+# sst
+.sst

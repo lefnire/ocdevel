@@ -1,0 +1,17 @@
+{
+  "name": "ocdevel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst dev",
+    "deploy": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst deploy",
+    "deploy:prod": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst deploy --stage=production",
+    "remove": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove",
+    "remove:dev": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove --stage=dev",
+    "remove:prod": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove --stage=production"
+  },
+  "dependencies": {
+    "sst": "^3.9.39"
+  }
+}

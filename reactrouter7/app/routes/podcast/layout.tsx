@@ -6,13 +6,8 @@ import {mlg, llh} from '~/content/podcast';
 import {getIsResources, getPodcastKey} from './utils'
 
 import {LinkContainer} from "~/components/utils"
-import Recommend from './recommend'
-import EpisodeRoute from './full'
-import ResourcesTree from './resources'
-import Episodes from './list'
 import Filters from "./sidebar/filters"
 import About from "./sidebar/about"
-// import {useQuery} from "../../utils";
 
 
 export default function Series({matches}) {
