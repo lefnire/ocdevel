@@ -12,17 +12,24 @@ import type {EpisodeType, ShowType} from '~/content/podcast/types'
 import {ExternalScript} from "~/components/external-scripts";
 
 const AD_CLIENT = "ca-pub-3242350243827794";
+// const AD_CLIENT = false;
 
 type PodcastList = Route.LoaderArgs & {
   episodesList: EpisodeType[]
   show: ShowType
   podcastKey: "mlg" | "llh"
 }
-export default function List({podcastKey, episodesList, show}: PodcastList) {
-  const showAds = podcastKey === "mlg";
 
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
+
+export default function List({podcastKey, episodesList, show}: PodcastList) {
   const adsenseScript = useMemo(() => {
-    if (!showAds) { return null; }
+    if (!AD_CLIENT) { return null;}
+    if (podcastKey !== "mlg") { return null; }
     return <ExternalScript
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}`}
       options={{
@@ -31,7 +38,7 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
         async: true,
       }}
     />
-  }, [showAds])
+  }, [podcastKey])
 
   const sortedEps = useMemo(() => {
     return sortBy(episodesList, e => e.created)
@@ -90,10 +97,7 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
 
   function renderEpisodes(eps: EpisodeType[]) {
     return eps.map((e: EpisodeType, i: number) => {
-      if (i % 3 === 3) {
-        return <Adsense key={i} />
-      }
-      return <EpisodeComponent
+      const episode = <EpisodeComponent
         show={show}
         podcastKey={podcastKey}
         key={e.id}
@@ -101,6 +105,14 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
         teaser={true}
         i={i}
       />
+      if (!AD_CLIENT) { return episode; }
+      if (i > 0 && i % 3 === 0) {
+        return [
+          <Adsense key={`ad-${i}`} />,
+          episode
+        ]
+      }
+      return episode
     })
   }
 
@@ -123,32 +135,39 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
 }
 
 function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
-  const didRun = useRef(false)
-  useEffect(() => {
-    if (didRun.current) { return; }
-    didRun.current = true;
-    const p: any = {};
-    if (pageLevelAds) {
-      p.google_ad_client = AD_CLIENT;
-      p.enable_page_level_ads = true;
-    }
+  const adRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
 
-    try {
-      if (typeof window === 'object') {
-        // biome-ignore lint/suspicious/noAssignInExpressions: adsense
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(p);
-      }
-    } catch {
-      // Pass
-    }
-  }, []);
-  return <ins
-    className="adsbygoogle"
-    style={{display:"block"}}
-    data-ad-format="fluid"
-    data-ad-layout-key="-f9+5v+4m-d8+7b"
-    data-ad-client={AD_CLIENT}
-    data-ad-slot="8958942863"
-  >
-  </ins>
+  useEffect(() => {
+    // Only run this once per ad unit
+    if (initialized.current) { return; }
+    if (typeof document === "undefined" || !adRef.current) { return; }
+
+    // Make sure adsbygoogle is available and we're in client
+    initialized.current = true;
+
+    // Handle page-level ads if needed
+    const params = pageLevelAds ? {
+      google_ad_client: AD_CLIENT,
+      enable_page_level_ads: true
+    } : {};
+
+    // Push the ad after a short delay to ensure DOM is ready
+    setTimeout(() => {
+      (window.adsbygoogle = window.adsbygoogle || []).push(params);
+    }, 100);
+  }, [pageLevelAds, adRef.current]);
+
+  return (
+    <div ref={adRef}>
+      <ins
+        className="adsbygoogle"
+        style={{display: "block"}}
+        data-ad-format="fluid"
+        data-ad-layout-key="-f9+5v+4m-d8+7b"
+        data-ad-client={AD_CLIENT}
+        data-ad-slot="8958942863"
+      />
+    </div>
+  );
 }
