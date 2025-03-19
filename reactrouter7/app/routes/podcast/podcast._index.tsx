@@ -11,8 +11,8 @@ import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/content/podcast/types'
 import {ExternalScript} from "~/components/external-scripts";
 
-const AD_CLIENT = "ca-pub-3242350243827794";
-// const AD_CLIENT = false;
+// const AD_CLIENT = "ca-pub-3242350243827794";
+const AD_CLIENT = false;
 
 type PodcastList = Route.LoaderArgs & {
   episodesList: EpisodeType[]
@@ -95,31 +95,28 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
     </div>
   }
 
-  function renderEpisodes(eps: EpisodeType[]) {
-    return eps.map((e: EpisodeType, i: number) => {
-      const episode = <EpisodeComponent
-        show={show}
-        podcastKey={podcastKey}
-        key={e.id}
-        episode={e}
-        teaser={true}
-        i={i}
-      />
-      if (!AD_CLIENT) { return episode; }
-      if (i > 0 && i % 3 === 0) {
-        return [
-          <Adsense key={`ad-${i}`} />,
-          episode
-        ]
-      }
-      return episode
-    })
+  function renderEpisode(e: EpisodeType, i: number) {
+    const episode = <EpisodeComponent
+      show={show}
+      podcastKey={podcastKey}
+      key={e.id}
+      episode={e}
+      teaser={true}
+      i={i}
+    />
+    if (!AD_CLIENT) { return episode; }
+    if (i > 0 && i % 3 === 0) {
+      return [
+        <Adsense key={`ad-${i}`} />,
+        episode
+      ]
+    }
+    return episode
   }
 
   // TODO filter episodes
   return <div>
     {renderButtons()}
-
     <InfiniteScroll
       dataLength={eps.length} //This is important field to render the next data
       next={next}
@@ -127,7 +124,7 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
       loader={<h4>Loading...</h4>}
       endMessage={<></>}
     >
-      {renderEpisodes(eps)}
+      {eps.map(renderEpisode)}
     </InfiniteScroll>
 
     {adsenseScript}
@@ -143,7 +140,6 @@ function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
     if (initialized.current) { return; }
     if (typeof document === "undefined" || !adRef.current) { return; }
 
-    // Make sure adsbygoogle is available and we're in client
     initialized.current = true;
 
     // Handle page-level ads if needed
@@ -153,9 +149,7 @@ function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
     } : {};
 
     // Push the ad after a short delay to ensure DOM is ready
-    setTimeout(() => {
-      (window.adsbygoogle = window.adsbygoogle || []).push(params);
-    }, 100);
+    (window.adsbygoogle = window.adsbygoogle || []).push(params);
   }, [pageLevelAds, adRef.current]);
 
   return (
