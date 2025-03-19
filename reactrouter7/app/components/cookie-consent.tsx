@@ -4,81 +4,11 @@ import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
 import {useLocation} from "react-router";
 
+// Cookie Consent Basic:
 // https://cookieconsent.orestbida.com/essential/getting-started.html
-function CookieConsentBasic() {
-  let usingGA = false;
-  useEffect(() => {
-    if (!import.meta.env.PROD) {
-      return
-    }
-    if (typeof document === "undefined") {
-      return
-    }
-    console.log("using GA")
-    usingGA = true;
-    ReactGA.initialize('G-0YR1STKJS3')
-    // I think this is double-counting, do to hydration maybe or that I don't need to manually call this after all?
-    // ReactGA.send({hitType: "pageview", page: window.location.pathname})
-  }, [])
 
-  useEffect(() => {
-    CookieConsent.run({
-      categories: {
-        necessary: {
-          enabled: true,  // this category is enabled by default
-          readOnly: true  // this category cannot be disabled
-        },
-        analytics: {}
-      },
-      language: {
-        default: 'en',
-        translations: {
-          en: {
-            consentModal: {
-              title: 'We use cookies',
-              description: 'Cookie modal description',
-              acceptAllBtn: 'Accept all',
-              acceptNecessaryBtn: 'Reject all',
-              showPreferencesBtn: 'Manage Individual preferences'
-            },
-            preferencesModal: {
-              title: 'Manage cookie preferences',
-              acceptAllBtn: 'Accept all',
-              acceptNecessaryBtn: 'Reject all',
-              savePreferencesBtn: 'Accept current selection',
-              closeIconLabel: 'Close modal',
-              sections: [
-                {
-                  title: 'Somebody said ... cookies?',
-                  description: 'I want one!'
-                },
-                {
-                  title: 'Strictly Necessary cookies',
-                  description: 'These cookies are essential for the proper functioning of the website and cannot be disabled.',
-
-                  //this field will generate a toggle linked to the 'necessary' category
-                  linkedCategory: 'necessary'
-                },
-                {
-                  title: 'Performance and Analytics',
-                  description: 'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
-                  linkedCategory: 'analytics'
-                },
-                {
-                  title: 'More information',
-                  description: 'For any queries in relation to my policy on cookies and your choices, please <a href="#contact-page">contact us</a>'
-                }
-              ]
-            }
-          }
-        }
-      }
-    });
-  }, []);
-}
-
+// Google Consent Mode
 // https://cookieconsent.orestbida.com/advanced/google-consent-mode.html
-
 const CAT_NECESSARY = "necessary";
 const CAT_ANALYTICS = "analytics";
 const CAT_ADVERTISEMENT = "advertisement";
@@ -93,10 +23,8 @@ const SERVICE_FUNCTIONALITY_STORAGE = 'functionality_storage'
 const SERVICE_PERSONALIZATION_STORAGE = 'personalization_storage'
 const SERVICE_SECURITY_STORAGE = 'security_storage'
 
-const TEST = false;
+const TEST = true;
 const PROD = import.meta.env.PROD;
-
-function gtag() { dataLayer.push(arguments); }
 
 function GoogleConsentMode() {
   const USE_GA = (TEST || PROD) && (typeof document !== "undefined");
@@ -112,7 +40,8 @@ function GoogleConsentMode() {
       if (pathname !== lastPageView.current) {
         lastPageView.current = pathname;
         const page_path = TEST ? "/test" : pathname;
-        gtag('event', 'page_view', {page_path});
+        debugger
+        ReactGA.gtag('event', 'page_view', {page_path});
       }
     }
   }
@@ -127,24 +56,10 @@ function GoogleConsentMode() {
   useEffect(() => {
     if (!USE_GA) { return; }
 
-    const scriptId = 'ga-gtag';
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
-      script.id = scriptId;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=G-0YR1STKJS3`;
-      script.async = true;
-      document.head.appendChild(script);
-    }
-
-    // Define dataLayer and the gtag function.
-    window.dataLayer = window.dataLayer || [];
-    // function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-0YR1STKJS3', { send_page_view: false });
+    ReactGA.initialize('G-0YR1STKJS3', { gtagOptions: { send_page_view: false } })
 
     // Set default consent to 'denied' (this should happen before changing any other dataLayer)
-    gtag('consent', 'default', {
+    ReactGA.gtag('consent', 'default', {
       [SERVICE_AD_STORAGE]: 'denied',
       [SERVICE_AD_USER_DATA]: 'denied',
       [SERVICE_AD_PERSONALIZATION]: 'denied',
@@ -158,7 +73,7 @@ function GoogleConsentMode() {
      * Update gtag consent according to the users choices made in CookieConsent UI
      */
     function updateGtagConsent() {
-      gtag('consent', 'update', {
+      ReactGA.gtag('consent', 'update', {
         [SERVICE_ANALYTICS_STORAGE]: CookieConsent.acceptedService(SERVICE_ANALYTICS_STORAGE, CAT_ANALYTICS) ? 'granted' : 'denied',
         [SERVICE_AD_STORAGE]: CookieConsent.acceptedService(SERVICE_AD_STORAGE, CAT_ADVERTISEMENT) ? 'granted' : 'denied',
         [SERVICE_AD_USER_DATA]: CookieConsent.acceptedService(SERVICE_AD_USER_DATA, CAT_ADVERTISEMENT) ? 'granted' : 'denied',
