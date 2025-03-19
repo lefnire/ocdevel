@@ -21,8 +21,6 @@
     "lodash": "^4.17.21",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
-    "react-cookie-consent": "^9.0.0",
-    "react-disqus-comments": "^1.4.0",
     "react-dom": "^19.0.0",
     "react-ga4": "^2.1.0",
     "react-icons": "^5.5.0",
@@ -30,6 +28,7 @@
     "react-markdown": "^10.1.0",
     "react-router": "^7.3.0",
     "react-router-bootstrap": "^0.26.3",
+    "vanilla-cookieconsent": "^3.1.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -39,7 +38,7 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "html-entities": "^2.5.2",
-    "react-router-devtools": "^1.1.0",
+    "react-router-devtools": "^1.1.6",
     "remark-gfm": "^4.0.1",
     "sass-embedded": "^1.85.1",
     "tailwindcss": "^4.0.0",

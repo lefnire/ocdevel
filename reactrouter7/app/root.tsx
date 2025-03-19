@@ -16,7 +16,7 @@ import {Button, Nav, Navbar, Stack} from "react-bootstrap";
 import {LinkContainer} from "~/components/utils";
 import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
 import {SiTiktok} from "react-icons/si";
-// import CookieConsent from "react-cookie-consent";
+import CookieConsent from '~/components/cookie-consent'
 
 export const links: Route.LinksFunction = () => [
   // {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -49,18 +49,6 @@ export const links: Route.LinksFunction = () => [
 <!--<script data-ad-client="ca-pub-3242350243827794" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
  */
 
-// function LocationListener() {
-//   const location = useLocation()
-//
-//   // https://medium.com/javascript-in-plain-english/google-analytics-with-react-router-and-hooks-16d403ddc528
-//   useEffect(() => {
-//     if (!usingGA) {return}
-//     ReactGA.send({hitType: "pageview", page: location.pathname}) //  + location.search);
-//     window.scrollTo(0, 0);
-//   }, [location])
-//   return null
-// }
-
 export function Layout({children}: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -80,21 +68,8 @@ export function Layout({children}: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  let usingGA = false;
-  useEffect(() => {
-    if (!import.meta.env.PROD) { return }
-    if (typeof document === "undefined") { return }
-    console.log("using GA")
-    usingGA = true;
-    ReactGA.initialize('G-0YR1STKJS3')
-    // I think this is double-counting, do to hydration maybe or that I don't need to manually call this after all?
-    // ReactGA.send({hitType: "pageview", page: window.location.pathname})
-  }, [])
-
   return <div>
-    {/*<LocationListener />*/}
-    {/*<CookieConsent buttonText="Accept">This website uses cookies to enhance the user experience.</CookieConsent>*/}
-
+    <CookieConsent />
     <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
       <LinkContainer to="/">
         <Navbar.Brand>OCDevel</Navbar.Brand>
@@ -106,14 +81,6 @@ export default function App() {
         <LinkContainer to='/contact' tabIndex="3">Contact</LinkContainer>
       </Nav>
     </Navbar>
-
-    {/*<Switch>*/}
-    {/*  <Route path="/" exact><Lazy c={Home} /></Route>*/}
-    {/*  <Route path="/blog"><Lazy c={Blog} /></Route>*/}
-    {/*  <Route path="/mlg"><Lazy c={Podcasts} /></Route>*/}
-    {/*  <Route path="/contact"><Lazy c={Contact} /></Route>*/}
-    {/*  <Redirect from="/podcasts(.*)" to="/mlg"/>*/}
-    {/*</Switch>*/}
 
     <Outlet />
 
