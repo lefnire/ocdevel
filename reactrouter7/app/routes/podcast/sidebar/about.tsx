@@ -13,37 +13,44 @@ import {RiSpotifyLine} from 'react-icons/ri'
 import {SiRss} from 'react-icons/si'
 import {SiStitcher} from 'react-icons/si'
 import {icons, Popover_} from "~/components/utils";
-import {mlg, llh} from "~/content/podcast";
 // import scout from "../../../assets/MLG-Option-1.jpg";
 // import deptLogo from "../../../assets/dept.jpg";
 import {IconButton} from "~/components/utils";
 import useStore from "~/store/episodes";
 import {FaBusinessTime} from "react-icons/fa";
 import {FaUserPlus} from "react-icons/fa";
-import {getPodcastKey} from "./utils";
+import type {ShowType} from "~/content/podcast/types";
+import {useShallow} from "zustand/react/shallow";
 
 const scout = "/assets/MLG-Option-1.jpg"
 
-function AboutSection({children, title, show, toggle, top=false}) {
+interface About {
+  podcastKey: "mlg" | "llh"
+  show: ShowType
+}
+
+type AboutSection = React.PropsWithChildren<{title: string, top?: boolean}>
+function AboutSection({children, title, top=false}: AboutSection) {
+  const [showAbout, toggleAbout] = useStore(useShallow(state => [state.showAbout, state.toggleAbout]))
   return <>
     <Card.Header
       className={`pointer border-bottom-0 ${top ? '' : 'border-top'}`}
-      onClick={toggle}
+      onClick={toggleAbout}
     >
       <Card.Title className='text-center mb-0'>
-        {show ? icons.down : icons.right}{' '}
+        {showAbout ? icons.down : icons.right}{' '}
         {title}
       </Card.Title>
     </Card.Header>
-    {show && <Card.Body>{children}</Card.Body>}
+    {showAbout && <Card.Body>{children}</Card.Body>}
   </>
 }
 
-function ShowMoreLess({podcast}) {
+function ShowMoreLess({show}: { show: ShowType }) {
   const [showMore, setShowMore] = useState(false)
 
   return <div className="mt-2">
-    {showMore ? podcast.body : podcast.teaser}
+    {showMore ? show.body : show.teaser}
     <a
       className='ms-2 text-primary text-decoration-underline pointer'
       onClick={() => setShowMore(!showMore)}
@@ -51,10 +58,9 @@ function ShowMoreLess({podcast}) {
   </div>
 }
 
-function Links() {
+function Links({podcastKey}: About) {
   const matches = useMatches()
-  const key = getPodcastKey(matches)
-  if (key === "llh") { return null; }
+  if (podcastKey === "llh") { return null; }
   const common = {
     div: {xs: 12, md: 6, className: 'p-1'},
   }
@@ -124,12 +130,10 @@ function Links() {
   </>
 }
 
-function PodcastLinks() {
+function PodcastLinks({podcastKey, show}: About) {
   const btn = {size: 'sm', variant: 'light', target: '_blank'}
-  const matches = useMatches()
-  const key = getPodcastKey(matches)
 
-  if (key === "llh") {
+  if (podcastKey === "llh") {
     return <>
       <ButtonGroup className='d-block' vertical>
         <IconButton
@@ -153,7 +157,7 @@ function PodcastLinks() {
           Icon={SiRss}
         >Custom (RSS)</IconButton>
       </ButtonGroup>
-      <ShowMoreLess podcast={llh} />
+      <ShowMoreLess show={show} />
     </>
   }
 
@@ -191,15 +195,14 @@ function PodcastLinks() {
         Icon={SiRss}
       >Custom (RSS)</IconButton>
     </ButtonGroup>
-    <ShowMoreLess podcast={mlg} />
+    <ShowMoreLess show={show} />
   </>
 }
 
-function PodcastImage() {
+function PodcastImage({podcastKey}: About) {
   // git-blame: links underneath; click to show
   const matches = useMatches()
-  const key = getPodcastKey(matches)
-  const img = key === "llh" ? <img src="/llh290.png" alt="Lefnire's Life Hacks"/>
+  const img = podcastKey === "llh" ? <img src="/llh290.png" alt="Lefnire's Life Hacks"/>
       // TODO use public link instead of importing image?
       : <img src={scout} alt="Machine Learning Guide"/>
   return <div>
@@ -210,7 +213,7 @@ function PodcastImage() {
   </div>
 }
 
-function Updates() {
+function Updates(props: About) {
   // hiding for now; bring bakc later
   return null;
   const show = useStore(s => s.showUpdates)
@@ -230,35 +233,30 @@ function Updates() {
   </AboutSection>
 }
 
-export default function About() {
+export default function About(props: About) {
   return <Col className='sidebar-podcasts'>
     <Card className='border-0'>
-      <Podcasts />
-      <Updates />
+      <Podcasts {...props} />
+      <Updates {...props} />
     </Card>
   </Col>
 }
 
 // git-blame: dept links
 
-function Podcasts() {
-  const show = useStore(s => s.showAbout)
-  const toggle = useStore(s => s.toggleAbout)
-
+function Podcasts(props: About) {
   return <AboutSection
-      title='About'
-      top={true}
-      show={show}
-      toggle={toggle}
+    title='About'
+    top={true}
   >
     <Row>
       <Col>
-        <PodcastImage />
+        <PodcastImage {...props} />
       </Col>
       <Col>
-        <PodcastLinks />
+        <PodcastLinks {...props} />
       </Col>
     </Row>
-    <Links />
+    <Links {...props} />
   </AboutSection>
 }

@@ -2,8 +2,8 @@ import React from "react";
 import {Card} from "react-bootstrap";
 // import ReactDisqusComments from "react-disqus-comments";
 import {BackButton} from "~/components/utils";
-import {mlg} from "~/content/podcast";
-import {Comments} from "~/components/comments.tsx";
+import {mlgShow} from "~/content/podcast/metas.js";
+import {Comments} from "~/components/comments";
 
 export default function Recommend() {
   return <Card>
@@ -19,7 +19,7 @@ export default function Recommend() {
       <Comments
         shortname="ocdevel"
         identifier="machine-learning-recommend"
-        title={`Recommend an Episode | ${mlg.title}`}
+        title={`Recommend an Episode | ${mlgShow.title}`}
         url="https://ocdevel.com/mlg/recommend" />
     </Card.Footer>
   </Card>

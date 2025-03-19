@@ -4,5 +4,5 @@ export function getPodcastKey(matches) {
 }
 
 export function getIsResources(matches) {
-  return matches[matches.length - 1].pathname === '/mlg/resources'
+  return
 }

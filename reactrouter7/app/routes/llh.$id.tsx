@@ -1,17 +1,21 @@
-import Episode from "~/components/podcast/podcast.$id.tsx"
-import {llh, llhEpisodesObj} from "~/content/podcast";
+import EpisodeRoute from "./podcast/podcast.$id"
+import {llhShow, llhObj} from "~/content/podcast/fulls";
+import type { Route } from "./+types/llh.$id";
 
-export default function EpisodeLLH(props) {
-  return <Episode {...props} />
+export default function EpisodeLLH(props: Route.LoaderArgs) {
+  return <EpisodeRoute
+    {...props}
+    episode={llhObj[props.params.id]}
+    podcastKey="llh"
+    show={llhShow}
+  />
 }
 
-export function meta({params, matches}) {
-  const episodes = llhEpisodesObj
-  const show = llh
+export function meta({params, matches}: Route.MetaArgs) {
   const {id} = params
-  const e = episodes[id]
+  const e = llhObj[id]
   return [
-    { title: `${e.title} | ${show.title}` },
+    { title: `${e.title} | ${llhShow.title}` },
     { name: "description", content: e.teaser }
   ]
 }

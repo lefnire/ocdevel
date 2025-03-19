@@ -1,10 +1,10 @@
-import {episodes, llhEpisodes} from "./app/content/podcast/metas.js";
+import {mlgList, llhList} from "./app/content/podcast/metas.js";
 import blog from './app/content/blog/metas.js'
 
 export default function getPrerenderRoutes(forSitemap) {
   const blogRoutes = blog.map(b => `/blog/${b.id}`)
-  const mlgRoutes = episodes.map(e => `/mlg/${e.id}`)
-  const llhRoutes = llhEpisodes.map(e => `/llh/${e.id}`)
+  const mlgRoutes = mlgList.map(e => `/mlg/${e.id}`)
+  const llhRoutes = llhList.map(e => `/llh/${e.id}`)
   const baseRoutes = [
     "/",
     "/contact",
@@ -34,8 +34,8 @@ export default function getPrerenderRoutes(forSitemap) {
   const lookups = [
     ...baseRoutes,
     ...blog,
-    ...episodes,
-    ...llhEpisodes
+    ...mlgList,
+    ...llhList
   ]
   const priority = Object.fromEntries(
     routes.map(r => {

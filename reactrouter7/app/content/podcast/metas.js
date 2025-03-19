@@ -64,7 +64,7 @@ import * as llh002 from './llh/2/meta.js'
 import * as llh003 from './llh/3/meta.js'
 import * as llh004 from './llh/4/meta.js'
 
-export const episodes = map([
+export const mlgList = map([
   mlg001,
   mlg002,
   mlg003,
@@ -128,10 +128,9 @@ export const episodes = map([
   id: e.mla ? `mla-${e.episode}` : e.episode,
   ...e,
 }))
+export const mlgObj = keyBy(mlgList, 'id')
 
-export const episodesObj = keyBy(episodes, 'id')
-
-export const mlg = {
+export const mlgShow = {
   title: "Machine Learning Guide",
   link: "https://ocdevel.com/mlg",
   feed: "http://ocdevel.com/files/podcasts/machine-learning/feed.xml",
@@ -145,20 +144,20 @@ export const mlg = {
 
   useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
 };
-export const mla = {
+export const mlaShow = {
   title: "Machine Learning Applied",
   teaser: "Practical machine learning. Covers languages, frameworks, tech stacks, job-hunting, and more.",
   body: "MLA is a Patreon-exclusive podcast for practical ML. Where MLG covers theory, MLA covers practice. Hands-on information about technology, industry, job-hunting & interviews, etc. Smaller, more frequent episodes, in more traditional podcast format (vs MLG's course style).",
 }
 
-export const llhEpisodes = [
+export const llhList = [
   llh001,
   llh002,
   llh003,
   llh004,
 ]
-export const llhEpisodesObj = keyBy(llhEpisodes, 'id')
-export const llh = {
+export const llhObj = keyBy(llhList, 'id')
+export const llhShow = {
   title: "Lefnire's Life Hacks",
   link: "https://ocdevel.com/llh",
   feed: "",

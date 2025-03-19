@@ -1,4 +1,4 @@
-import React from "react";
+import React, {type ReactElement} from "react";
 import {Card, Alert, Badge} from 'react-bootstrap'
 import {Accordion_, dateFmt, ReactMarkdown_} from "~/components/utils";
 import padStart from "lodash/padStart";
@@ -7,14 +7,15 @@ import {Link, useMatches, useParams} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from '~/routes/mlg.resources'
-import {episodesObj, llhEpisodesObj, mlg, llh} from "~/content/podcast";
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
-import {Comments} from "~/components/comments.tsx";
-import {getPodcastKey} from "~/components/podcast/utils";
+import {Comments} from "~/components/comments";
+import type {EpisodeType, ShowType} from '~/content/podcast/types'
+import {mlgShow} from "~/content/podcast/metas.js"
+import type { Route } from "../+types/mlg.$id.tsx"
 
-function ResourcesFlat({nids}) {
-  let seen = {}
-  function render(id) {
+function ResourcesFlat({nids}: {nids: string[]}) {
+  let seen: Record<string, boolean> = {}
+  function render(id: string) {
     const full = flat[id]
     if (!full) { return null }
     if (!full.pick) {
@@ -32,8 +33,8 @@ function ResourcesFlat({nids}) {
 
 // 8d7997de switched from component to returning memoized JSX, since iframe being
 // re-rendered slowly each time. This trick doesn't seem to work either, figure out later
-const players = {}
-function player(e) {
+const players: Record<string, ReactElement> = {}
+function player(e: EpisodeType) {
   // if (e.mla) {return <div>TODO move to MLG</div>}
   const id = e.libsynEpisode
   if (!id) {return null}
@@ -77,9 +78,15 @@ function Markdown_({Content, teaser=false}) {
     : <Content {...opts} />;
 }
 
-export function Episode({e, teaser, i=null}) {
-  const matches = useMatches()
-  const podcastKey = getPodcastKey(matches)
+interface EpisodeComponent {
+  episode: EpisodeType
+  teaser?: boolean
+  i?: number // debugging MLG/MLA numbering issue
+  podcastKey: "llh" | "mlg"
+  show: ShowType
+}
+export function EpisodeComponent(props: EpisodeComponent) {
+  const {episode: e, teaser, podcastKey, show, i=null} = props
   const num = padStart(e.episode, 3, '0');
   const titleStart = podcastKey === "llh" ? "LLH" : e.mla ? "MLA" : "MLG"
   const title = `${titleStart} ${num} ${e.title}`;
@@ -100,10 +107,6 @@ export function Episode({e, teaser, i=null}) {
 
   function renderTeaser() {
     const link = `/${podcastKey}/${e.id}`
-
-    if (e.id === 'mla-6') {
-      debugger
-    }
 
     return <Card className={`mb-3 card-post`}>
       <Card.Body>
@@ -140,8 +143,7 @@ export function Episode({e, teaser, i=null}) {
         : episodeResources[e.mla ? 'mla' : 'mlg']?.[e.episode]
     )
 
-    const body = e.body || e.default
-
+    const body = e.default
     const items = [
       (body && {
         title: "Show Notes",
@@ -182,8 +184,8 @@ export function Episode({e, teaser, i=null}) {
           <Comments
             shortname="ocdevel"
             identifier={e.guid}
-            title={`${e.title} | ${mlg.title}`}
-            url={`https://ocdevel.com/mlg/${e.id}`}/>
+            title={`${e.title} | ${show.title}`}
+            url={`https://ocdevel.com/${podcastKey}/${e.id}`}/>
         </Card.Footer>}
       </Card>
     </div>
@@ -191,9 +193,10 @@ export function Episode({e, teaser, i=null}) {
   return teaser ? renderTeaser() : renderFull()
 }
 
-export default function Full({params, matches}) {
-  const {id} = params
-  const podcastKey = getPodcastKey(matches)
-  const e = podcastKey === "llh" ? llhEpisodesObj[id] : episodesObj[id]
-  return <Episode e={e} teaser={false} />
+type EpisodeLoaderArgs = Route.LoaderArgs & EpisodeComponent
+export default function EpisodeRoute(props: EpisodeLoaderArgs) {
+  return <EpisodeComponent
+    {...props}
+    teaser={false}
+  />
 }

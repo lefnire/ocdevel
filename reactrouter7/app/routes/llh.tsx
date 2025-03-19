@@ -1,14 +1,14 @@
-import React, {useMemo} from 'react';
-import {llh} from '~/content/podcast';
-import Podcast from '~/components/podcast/podcast.tsx'
+import React from 'react';
+import {llhShow} from '~/content/podcast/metas.js';
+import Podcast from './podcast/podcast'
 
 export default function Series() {
-  return <Podcast />
+  return <Podcast podcastKey="llh" show={llhShow} />
 }
 
-export function meta({params, matches}) {
+export function meta() {
   return [
-    { title: `${llh.title} Podcast` },
-    { name: "description", content: llh.teaser }
+    { title: `${llhShow.title} Podcast` },
+    { name: "description", content: llhShow.teaser }
   ]
 }

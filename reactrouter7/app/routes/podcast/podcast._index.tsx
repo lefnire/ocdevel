@@ -1,32 +1,30 @@
-import React, {useCallback, useLayoutEffect, useEffect, useState, useMemo} from "react";
+import React, {useCallback, useState, useMemo} from "react";
 import filter from 'lodash/filter'
-import times from 'lodash/times'
 import {Button, ButtonGroup} from 'react-bootstrap'
 import useStore from "~/store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
 
-import {episodes, llhEpisodes} from "~/content/podcast";
-import {Episode} from '~/components/podcast/podcast.$id.tsx';
-import {getPodcastKey} from "~/components/podcast/utils.tsx";
+import {EpisodeComponent} from './podcast.$id';
+import type { Route } from "../+types/mlg._index";
+import {useShallow} from "zustand/react/shallow";
+import type {EpisodeType, ShowType} from '~/content/podcast/types'
 
-export default function List({matches}) {
-  const podcastKey = getPodcastKey(matches)
+type PodcastList = Route.LoaderArgs & {
+  episodesList: EpisodeType[]
+  show: ShowType
+  podcastKey: "mlg" | "llh"
+}
+export default function List({podcastKey, episodesList, show}: PodcastList) {
   const sortedEps = useMemo(() => {
-    const episodes_ = podcastKey === "llh" ? llhEpisodes : episodes
-    return sortBy(episodes_, e => e.created)
+    return sortBy(episodesList, e => e.created)
   }, [podcastKey])
 
   const [page, setPage] = useState(0)
 
-  const showMla = useStore(state => state.mla)
-  const showMlg = useStore(state => state.mlg)
-  const newFirst = useStore(state => state.newFirst);
-
-  const toggleNewFirst = useCallback(useStore(actions => actions.toggleNewFirst), []);
-  const setMla = useCallback(useStore(actions => actions.setMla), []);
-  const setMlg = useCallback(useStore(actions => actions.setMlg), []);
-
+  const [showMla, showMlg, newFirst, toggleNewFirst, setMla, setMlg] = useStore(useShallow(
+    s => [s.mla, s.mlg, s.newFirst, s.toggleNewFirst, s.setMla, s.setMlg]
+  ))
 
   function next() {
     setPage(page + 1)
@@ -73,6 +71,37 @@ export default function List({matches}) {
     </div>
   }
 
+  function renderAd(i: number) {
+    return <div key={i}>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3242350243827794"
+              crossOrigin="anonymous"></script>
+      <ins className="adsbygoogle"
+           style={{display:"block"}}
+           data-ad-format="fluid"
+           data-ad-layout-key="-f9+5v+4m-d8+7b"
+           data-ad-client="ca-pub-3242350243827794"
+           data-ad-slot="8958942863"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  }
+
+  function renderEpisodes(eps: EpisodeType[]) {
+    return eps.map((e: EpisodeType, i: number) => {
+      if (i % 3 === 3) {
+        return renderAd(i)
+      }
+      return <EpisodeComponent
+        podcastKey={podcastKey}
+        key={e.id}
+        episode={e}
+        teaser={true}
+        i={i}
+      />
+    })
+  }
+
   // TODO filter episodes
   return <div>
     {renderButtons()}
@@ -84,7 +113,7 @@ export default function List({matches}) {
       loader={<h4>Loading...</h4>}
       endMessage={<></>}
     >
-      {eps.map((e, i) => <Episode key={e.id} e={e} teaser={true} i={i} />)}
+      {renderEpisodes(eps)}
     </InfiniteScroll>
   </div>
 }

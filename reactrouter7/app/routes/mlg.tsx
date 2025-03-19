@@ -1,14 +1,14 @@
 import React, {useMemo} from 'react';
-import {mlg} from '~/content/podcast';
-import Podcast from '~/components/podcast/podcast.tsx'
+import {mlgShow} from '~/content/podcast/metas.js';
+import Podcast from './podcast/podcast'
 
-export default function Series() {
-  return <Podcast />
+export default function Series(props) {
+  return <Podcast podcastKey="mlg" show={mlgShow} />
 }
 
-export function meta({params, matches}) {
+export function meta() {
   return [
-    { title: `${mlg.title} Podcast` },
-    { name: "description", content: mlg.teaser }
+    { title: `${mlgShow.title} Podcast` },
+    { name: "description", content: mlgShow.teaser }
   ]
 }

@@ -56,12 +56,16 @@ import * as mla020 from './mla/020/route.mdx'
 import * as mlg033 from './mlg/033/route.mdx'
 import * as mla022 from './mla/022/route.mdx'
 
-import * as llh001 from './llh/1/meta.js'
-import * as llh002 from './llh/2/meta.js'
-import * as llh003 from './llh/3/meta.js'
-import * as llh004 from './llh/4/meta.js'
+import * as llh001 from './llh/1/route.mdx'
+import * as llh002 from './llh/2/route.mdx'
+import * as llh003 from './llh/3/route.mdx'
+import * as llh004 from './llh/4/route.mdx'
 
-export const episodes = map([
+export {mlgShow} from "./metas.js"
+export {mlaShow} from "./metas.js"
+export {llhShow} from "./metas.js"
+
+export const mlgList = map([
   mlg001,
   mlg002,
   mlg003,
@@ -125,44 +129,12 @@ export const episodes = map([
   id: e.mla ? `mla-${e.episode}` : e.episode,
   ...e,
 }))
+export const mlgObj = keyBy(mlgList, 'id')
 
-export const episodesObj = keyBy(episodes, 'id')
-
-export const mlg = {
-  title: "Machine Learning Guide",
-  link: "https://ocdevel.com/mlg",
-  feed: "http://ocdevel.com/files/podcasts/machine-learning/feed.xml",
-  keywords: "machine,learning,ml,introduction,artificial,intelligence,ai",
-  image: "http://ocdevel.com/files/podcasts/machine-learning/art.jpg",
-  date: new Date('02/01/2017'),
-
-  teaser: "Machine learning audio course. Teaches ML fundamentals, models (shallow and deep), math, and more.",
-
-  body: "MLG teaches the fundamentals of machine learning and artificial intelligence. It covers intuition, models, math, languages, frameworks, etc. Where your other ML resources provide the trees, I provide the forest. Consider MLG your syllabus, with highly-curated resources for each episode's details at ocdevel.com. Audio is a great supplement during exercise, commute, chores, etc.",
-
-  useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
-};
-export const mla = {
-  title: "Machine Learning Applied",
-  teaser: "Practical machine learning. Covers languages, frameworks, tech stacks, job-hunting, and more.",
-  body: "MLA is a Patreon-exclusive podcast for practical ML. Where MLG covers theory, MLA covers practice. Hands-on information about technology, industry, job-hunting & interviews, etc. Smaller, more frequent episodes, in more traditional podcast format (vs MLG's course style).",
-}
-
-export const llhEpisodes = [
+export const llhList = [
   llh001,
   llh002,
   llh003,
   llh004,
 ]
-export const llhEpisodesObj = keyBy(llhEpisodes, 'id')
-export const llh = {
-  title: "Lefnire's Life Hacks",
-  link: "https://ocdevel.com/llh",
-  feed: "",
-  keywords: "",
-  image: "",
-  date: new Date("05/09/2024"),
-  teaser: "Unusual hacks in efficiencies, productivity, and health, primarily focused around a work-from-home office environment.",
-  body: "Over the years of developing productivity apps, making off-topic life-hack suggestions in MLG, etc; I decided to make a podcast dedicated to all my weird tips and tricks for improved productivity and efficiency in your life. Things like treadmill desks for work and study; healthy food for busy people; how to get to sleep faster, etc. Much of these lessons come from developing Habitica (a life-hack of its own), and knowing its community (with their great insights).",
-  useLibsynPlayer: true
-}
+export const llhObj = keyBy(llhList, 'id')

@@ -1,17 +1,21 @@
-import Episode from "~/components/podcast/podcast.$id.tsx"
-import {mlg, episodesObj} from "~/content/podcast";
+import EpisodeRoute from "./podcast/podcast.$id"
+import {mlgShow, mlgObj} from "~/content/podcast/fulls";
+import type { Route } from "./+types/mlg.$id";
 
-export default function EpisodeMLG(props) {
-  return <Episode {...props} />
+export default function EpisodeMLG(props: Route.LoaderArgs) {
+  return <EpisodeRoute
+    {...props}
+    episode={mlgObj[props.params.id]}
+    podcastKey="mlg"
+    show={mlgShow}
+  />
 }
 
-export function meta({params, matches}) {
-  const episodes = episodesObj
-  const show = mlg
+export function meta({params, matches}: Route.MetaArgs) {
   const {id} = params
-  const e = episodes[id]
+  const e = mlgObj[id]
   return [
-    { title: `${e.title} | ${show.title}` },
+    { title: `${e.title} | ${mlgShow.title}` },
     { name: "description", content: e.teaser }
   ]
 }
