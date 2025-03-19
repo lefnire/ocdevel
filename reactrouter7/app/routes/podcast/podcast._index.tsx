@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useMemo, useEffect} from "react";
+import React, {useCallback, useState, useMemo, useEffect, useRef} from "react";
 import filter from 'lodash/filter'
 import {Button, ButtonGroup} from 'react-bootstrap'
 import useStore from "~/store/episodes";
@@ -11,6 +11,8 @@ import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/content/podcast/types'
 import {ExternalScript} from "~/components/external-scripts";
 
+const AD_CLIENT = "ca-pub-3242350243827794";
+
 type PodcastList = Route.LoaderArgs & {
   episodesList: EpisodeType[]
   show: ShowType
@@ -22,14 +24,11 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
   const adsenseScript = useMemo(() => {
     if (!showAds) { return null; }
     return <ExternalScript
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3242350243827794"
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}`}
       options={{
+        id: "adsense-script",
         crossOrigin: "anonymous",
         async: true,
-      }}
-      callback={() => {
-        if (window.adsbygoogle?.loaded) { return; }
-        (window.adsbygoogle = window.adsbygoogle || []).push({})
       }}
     />
   }, [showAds])
@@ -89,22 +88,10 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
     </div>
   }
 
-  function renderAd(i: number) {
-    return <ins
-      key={i}
-      className="adsbygoogle"
-      style={{display:"block"}}
-      data-ad-format="fluid"
-      data-ad-layout-key="-f9+5v+4m-d8+7b"
-      data-ad-client="ca-pub-3242350243827794"
-      data-ad-slot="8958942863">
-    </ins>
-  }
-
   function renderEpisodes(eps: EpisodeType[]) {
     return eps.map((e: EpisodeType, i: number) => {
       if (i % 3 === 3) {
-        return renderAd(i)
+        return <Adsense key={i} />
       }
       return <EpisodeComponent
         show={show}
@@ -133,4 +120,35 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
 
     {adsenseScript}
   </div>
+}
+
+function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
+  const didRun = useRef(false)
+  useEffect(() => {
+    if (didRun.current) { return; }
+    didRun.current = true;
+    const p: any = {};
+    if (pageLevelAds) {
+      p.google_ad_client = AD_CLIENT;
+      p.enable_page_level_ads = true;
+    }
+
+    try {
+      if (typeof window === 'object') {
+        // biome-ignore lint/suspicious/noAssignInExpressions: adsense
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(p);
+      }
+    } catch {
+      // Pass
+    }
+  }, []);
+  return <ins
+    className="adsbygoogle"
+    style={{display:"block"}}
+    data-ad-format="fluid"
+    data-ad-layout-key="-f9+5v+4m-d8+7b"
+    data-ad-client={AD_CLIENT}
+    data-ad-slot="8958942863"
+  >
+  </ins>
 }
