@@ -16,7 +16,7 @@ import {Button, Nav, Navbar, Stack} from "react-bootstrap";
 import {LinkContainer} from "~/components/utils";
 import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
 import {SiTiktok} from "react-icons/si";
-import CookieConsent from '~/components/cookie-consent'
+import {GoogleConsentMode} from '~/components/analytics'
 
 export const links: Route.LinksFunction = () => [
   // {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -69,7 +69,7 @@ export function Layout({children}: { children: React.ReactNode }) {
 
 export default function App() {
   return <div>
-    <CookieConsent />
+    <GoogleConsentMode />
     <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
       <LinkContainer to="/">
         <Navbar.Brand>OCDevel</Navbar.Brand>

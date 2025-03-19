@@ -10,67 +10,83 @@ export * from './meta.js'
 const treadmillProducts = {
   CA: [
     {
+      key: 'mobvoi',
       image: '/walk_thumbs/mobvoi_ca.png',
       title: 'Value: Mobvoi Fitness 10',
       description: 'Bang for buck. Incline, walk & run modes',
       link: "https://amzn.to/4hmAP5C",
-      linkText: "~$340 on Amazon"
+      linkText: "~$340 on Amazon",
+      price: 340,
     },
     {
+      key: 'deerrun',
       image: '/walk_thumbs/deerrun.jpg',
       title: 'Budget: DeerRun',
       description: 'Test the waters. No incline, 1-2yrs life; but good price.',
       // link: walkingDeskLinks["key://deerrun"],
       link: "https://amzn.to/4kHdtdM",
-      linkText: "~$250 on Amazon"
+      linkText: "~$250 on Amazon",
+      price: 250,
     },
   ],
   US: [
     {
+      key: 'cyberpad',
       image: '/walk_thumbs/cyberpad.jpg',
       title: 'Premium: CyberPad',
       description: 'Sturdiest, quietest, most features. Set incline=3, speed=2.',
       link: walkingDeskLinks["key://cyberpad"],
-      linkText: "~$500 on Amazon"
+      linkText: "~$500 on Amazon",
+      price: 500,
     },
     {
+      key: 'urevo_3s',
       image: '/walk_thumbs/3s.jpg',
       title: 'Value: 3S',
       description: 'One size fits all, bang for buck. Set incline=3, speed=2.',
       link: walkingDeskLinks["key://urevo_3s"],
-      linkText: "~$350 on Amazon"
+      linkText: "~$350 on Amazon",
+      price: 350,
     },
     {
+      key: 'deerrun',
       image: '/walk_thumbs/deerrun.jpg',
       title: 'Budget: DeerRun',
       description: 'Test the waters. No incline, 1-2yrs life; but good price.',
       link: walkingDeskLinks["key://deerrun"],
-      linkText: "~$150 on Amazon"
+      linkText: "~$150 on Amazon",
+      price: 150,
     },
   ]
 };
 
 const otherProducts = [
   {
+    key: 'flexispot',
     image: '/walk_thumbs/desk.jpg',
     title: 'Desk: FlexiSpot',
     description: 'Electric sit/stand',
     link: walkingDeskLinks["key://flexispot"],
-    linkText: "~$150 on Amazon"
+    linkText: "~$150 on Amazon",
+    price: 150,
   },
   {
+    key: 'mat',
     image: '/walk_thumbs/mat.jpg',
     title: 'Mat: Urevo',
     description: 'Prevents floor damage, protects knees',
     link: walkingDeskLinks["key://mat"],
-    linkText: "$40 on Amazon"
+    linkText: "$40 on Amazon",
+    price: 40,
   },
   {
+    key: 'lube_godora',
     image: '/walk_thumbs/lube.jpg',
     title: 'Lube: Godora',
     description: 'Silicone treadmill lubricant. Apply every 50hrs',
     link: walkingDeskLinks["key://lube"],
-    linkText: "$35 on Amazon"
+    linkText: "$35 on Amazon",
+    price: 35,
   }
   // {
   //   image: '/walk_thumbs/fluidstance.jpg',

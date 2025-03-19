@@ -23,12 +23,36 @@ const SERVICE_FUNCTIONALITY_STORAGE = 'functionality_storage'
 const SERVICE_PERSONALIZATION_STORAGE = 'personalization_storage'
 const SERVICE_SECURITY_STORAGE = 'security_storage'
 
-const TEST = true;
+const TEST = false;
 const PROD = import.meta.env.PROD;
+const USE_GA = TEST || PROD;
 
-function GoogleConsentMode() {
-  const USE_GA = (TEST || PROD) && (typeof document !== "undefined");
+interface Event {
+  category: string
+  action: string
+  label?: string
+  value?: number
+  nonInteraction?: boolean
+  transport?: "beacon" | "xhr" | "image"
+}
+export function sendEvent(event: Event) {
+  if (!USE_GA) { return; }
+  if (CookieConsent?.acceptedService('analytics_storage', 'analytics')) {
+    ReactGA.event(event);
+  }
+}
+type Affiliate = {label: string, value: number}
+export const clickAffiliate = ({label, value}: Affiliate) => () => {
+  sendEvent({
+    category: "Affiliate",
+    action: "AffiliateClick",
+    label,
+    // 12% conversion rate, 3% commission
+    value: value * .12 * .03
+  })
+}
 
+export function GoogleConsentMode() {
   const {pathname} = useLocation()
   // It's calling twice sometimes for some reason
   const lastPageView = useRef("");
@@ -36,11 +60,10 @@ function GoogleConsentMode() {
   function sendPageView() {
     if (!USE_GA) { return; }
     // Probably don't need to check, since Google will admit/deny what goes through
-    if (CookieConsent.acceptedService('analytics_storage', 'analytics')) {
+    if (CookieConsent?.acceptedService('analytics_storage', 'analytics')) {
       if (pathname !== lastPageView.current) {
         lastPageView.current = pathname;
         const page_path = TEST ? "/test" : pathname;
-        debugger
         ReactGA.gtag('event', 'page_view', {page_path});
       }
     }
@@ -162,8 +185,10 @@ function GoogleConsentMode() {
           en: {
             // See: https://support.google.com/tagmanager/answer/10718549?hl=en
             consentModal: {
-              title: 'We use cookies',
-              description: 'This website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
+              // title: 'We use cookies',
+              title: 'Cookies',
+              // description: 'This website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
+              description: 'This website uses cookies for basic analytics, only enabled after consent.',
               acceptAllBtn: 'Accept all',
               acceptNecessaryBtn: 'Reject all',
               showPreferencesBtn: 'Manage Individual preferences'
@@ -228,7 +253,7 @@ function GoogleConsentMode() {
                 },
                 {
                   title: 'More information',
-                  description: 'For any queries in relation to the policy on cookies and your choices, please <a href="https://www.example.com/contacts">contact us</a>.'
+                  description: 'For any queries in relation to the policy on cookies and your choices, please <a href="/contact">contact me</a>.'
                 }
               ]
             }
@@ -239,5 +264,3 @@ function GoogleConsentMode() {
   }, []);
   return null
 }
-
-export default GoogleConsentMode;
