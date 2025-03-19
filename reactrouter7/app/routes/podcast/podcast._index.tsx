@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useMemo} from "react";
+import React, {useCallback, useState, useMemo, useEffect} from "react";
 import filter from 'lodash/filter'
 import {Button, ButtonGroup} from 'react-bootstrap'
 import useStore from "~/store/episodes";
@@ -9,6 +9,7 @@ import {EpisodeComponent} from './podcast.$id';
 import type { Route } from "../+types/mlg._index";
 import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/content/podcast/types'
+import {ExternalScript} from "~/components/external-scripts";
 
 type PodcastList = Route.LoaderArgs & {
   episodesList: EpisodeType[]
@@ -16,6 +17,23 @@ type PodcastList = Route.LoaderArgs & {
   podcastKey: "mlg" | "llh"
 }
 export default function List({podcastKey, episodesList, show}: PodcastList) {
+  const showAds = podcastKey === "mlg";
+
+  const adsenseScript = useMemo(() => {
+    if (!showAds) { return null; }
+    return <ExternalScript
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3242350243827794"
+      options={{
+        crossOrigin: "anonymous",
+        async: true,
+      }}
+      callback={() => {
+        if (window.adsbygoogle?.loaded) { return; }
+        (window.adsbygoogle = window.adsbygoogle || []).push({})
+      }}
+    />
+  }, [showAds])
+
   const sortedEps = useMemo(() => {
     return sortBy(episodesList, e => e.created)
   }, [podcastKey])
@@ -72,19 +90,15 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
   }
 
   function renderAd(i: number) {
-    return <div key={i}>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3242350243827794"
-              crossOrigin="anonymous"></script>
-      <ins className="adsbygoogle"
-           style={{display:"block"}}
-           data-ad-format="fluid"
-           data-ad-layout-key="-f9+5v+4m-d8+7b"
-           data-ad-client="ca-pub-3242350243827794"
-           data-ad-slot="8958942863"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </div>
+    return <ins
+      key={i}
+      className="adsbygoogle"
+      style={{display:"block"}}
+      data-ad-format="fluid"
+      data-ad-layout-key="-f9+5v+4m-d8+7b"
+      data-ad-client="ca-pub-3242350243827794"
+      data-ad-slot="8958942863">
+    </ins>
   }
 
   function renderEpisodes(eps: EpisodeType[]) {
@@ -93,6 +107,7 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
         return renderAd(i)
       }
       return <EpisodeComponent
+        show={show}
         podcastKey={podcastKey}
         key={e.id}
         episode={e}
@@ -115,5 +130,7 @@ export default function List({podcastKey, episodesList, show}: PodcastList) {
     >
       {renderEpisodes(eps)}
     </InfiniteScroll>
+
+    {adsenseScript}
   </div>
 }

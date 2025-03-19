@@ -81,7 +81,7 @@ function Markdown_({Content, teaser=false}) {
 interface EpisodeComponent {
   episode: EpisodeType
   teaser?: boolean
-  i?: number // debugging MLG/MLA numbering issue
+   i?: number // debugging MLG/MLA numbering issue
   podcastKey: "llh" | "mlg"
   show: ShowType
 }
