@@ -9,7 +9,7 @@ import {
 } from '@tanstack/react-table';
 import type { SortingState } from '@tanstack/react-table';
 import { data } from './treadmills/data';
-import columnInfo from './treadmills/columns';
+import columnInfo, { columnsArray } from './treadmills/columns';
 import brands from './treadmills/brands';
 import { OverlayTrigger, Popover, Form, InputGroup } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
@@ -410,9 +410,9 @@ const columns = React.useMemo(() => {
     ),
     ];
     
-    // Info columns
-    const infoColumns = Object.entries(columnInfo as Record<string, ColumnInfo>).map(([key, info]) => {
-      return columnHelper.accessor(key as keyof Product, {
+    // Info columns - using columnsArray to maintain order
+    const infoColumns = columnsArray.map((info) => {
+      return columnHelper.accessor(info.key as keyof Product, {
         header: ({ column }) => <HeaderCell column={column} info={info} />,
         cell: ({ row, column }) => <Cell value={getCellValue(row.original, column.id)} row={row.original} column={column} info={info} />,
         enableSorting: true,
@@ -618,7 +618,7 @@ const columns = React.useMemo(() => {
                                     description: "Product manufacturer",
                                     rating: 0
                                   }
-                              : columnInfo[header.column.id as keyof typeof columnInfo]
+                              : columnsArray.find(col => col.key === header.column.id) || columnInfo[header.column.id as keyof typeof columnInfo]
                           }
                         />
                       </div>
@@ -632,7 +632,7 @@ const columns = React.useMemo(() => {
                   const cell = row.getVisibleCells().find(cell => cell.column.id === header.column.id);
                   
                   // Skip rating indicators for certain columns
-                  const skipRatingColumns = ['rank', 'model', 'make', 'countries'];
+                  const skipRatingColumns = ['rank', 'model', 'countries'];
                   const showRating = !skipRatingColumns.includes(header.column.id);
                   
                   // Debug which columns are being skipped
@@ -641,14 +641,25 @@ const columns = React.useMemo(() => {
                   // Get the data-specific rating for this cell
                   let rating = 0;
                   if (showRating) {
-                    // Get the original cell value directly from the row data
-                    const originalValue = row.original[header.column.id as keyof Product];
-                    
-                    // Check if the original value is an object with a rating property
-                    if (originalValue && typeof originalValue === 'object' && 'rating' in originalValue) {
-                      rating = (originalValue as any).rating;
-                      // Add console log for debugging
-                      console.log(`Column: ${header.column.id}, Rating: ${rating}, Value:`, originalValue);
+                    // Special handling for Brand column
+                    if (header.column.id === 'make') {
+                      const make = row.original.make;
+                      const brand = brands[make];
+                      if (brand && typeof brand.rating === 'number') {
+                        rating = brand.rating;
+                        // Add console log for debugging
+                        console.log(`Brand: ${make}, Rating: ${rating}`);
+                      }
+                    } else {
+                      // Get the original cell value directly from the row data
+                      const originalValue = row.original[header.column.id as keyof Product];
+                      
+                      // Check if the original value is an object with a rating property
+                      if (originalValue && typeof originalValue === 'object' && 'rating' in originalValue) {
+                        rating = (originalValue as any).rating;
+                        // Add console log for debugging
+                        console.log(`Column: ${header.column.id}, Rating: ${rating}, Value:`, originalValue);
+                      }
                     }
                   }
                   
