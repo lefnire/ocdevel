@@ -8,6 +8,7 @@ interface Attribute {
 }
 type BoolVal = Omit<Attribute, 'value'> & { value?: boolean }
 type StringVal = Omit<Attribute, 'value'> & { value?: string }
+type Numval = Omit<Attribute, 'value'> & { value?: number }
 
 export interface Product {
   make: string
@@ -45,6 +46,6 @@ export interface Product {
   countries: Omit<Attribute, 'value'> & {
     value?: string[]
   }
-  pros?: Attribute[]
-  cons?: Attribute[]
+  pros?: StringVal[]
+  cons?: StringVal[]
 }

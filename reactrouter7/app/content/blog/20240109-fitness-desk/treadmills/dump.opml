@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<opml version="2.0">
+  <head>
+    <ownerEmail>
+      tylerrenelle@gmail.com
+    </ownerEmail>
+  </head>
+  <body>
+    <outline text="Treadmills">
+      <outline text="Urevo &lt;a href=&quot;key://urevo_3s&quot;&gt;3S&lt;/a&gt; ($350) #picked-by:op #picked-by:public #budget:medium #incline:yes #weight:high #shock:yes #hp:2_5+ #amazon:yes " _note="Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it.&#10;">
+        <outline text="Specs #c">
+          <outline text="Quiet: 52dB near treadmill, 46dB near microphone">
+            <outline text="Quietness #quiet:yes" _note="&#10;" />
+          </outline>
+          <outline text="Dimensions: 51.6&quot;Dx22.1&quot;Wx6.5&quot;H" />
+          <outline text="Horse Power: 2.5" />
+          <outline text="Max Weight: 265lbs" />
+          <outline text="Max Speed: 4mph" />
+          <outline text="Age: July 18, 2023" />
+          <outline text="Rating: 4.3; Fakespot B" _note="Fakespot A. 5=70%, 4=15%, 3=4%, 2=3%, 1=8%&#10;" />
+        </outline>
+        <outline text="Pros">
+          <outline text="Incline" />
+          <outline text="Sturdiness" _note="The incline mechanism has a focal-point closer to the center, adding better stability to the structure than 2S Lite or EgoFit (which have triangle structure). The overall build quality (including the remote) is better than 2S Lite and EgoFit, as well. This is the highest quality you'll find in budget range.&#10;" />
+          <outline text="Shock absorption" _note="Again for knee-health. More shock points than Egofit (4 silicon pins, 2 silicon &quot;sandwiches&quot;)&#10;" />
+          <outline text="High horse power" />
+          <outline text="Available on Amazon" />
+        </outline>
+        <outline text="Cons">
+          <outline text="Bulky" _note="Larger and heavier than Egofit. Note: it does has tilt wheels for moving the device to/from the desk. &#10;" />
+          <outline text="Can't stand on head" _note="Lacks rubber stops on the head, so if you tilt it head-side you'll break its power switch. You have to stand it on its &quot;feet&quot;, but the wheels are near the head - making tilting against a wall a muscular challenge. So you'll need to store it under a couch, tilt on its side, or have some muscle for feet-tilt against wall.&#10;" />
+          <outline text="Hard to lube" _note="The rails are elevated, so you have to fish your fingers under the belt to pull it up and apply lubricant. Pain in the butt, but whatever - it's a once-a-week task.&#10;" />
+        </outline>
+      </outline>
+      <outline text="Urevo &lt;a href=&quot;key://urevo_2s_lite&quot;&gt;2S Lite&lt;/a&gt; ($250) #picked-by:op #budget:medium #incline:yes #weight:high #shock:yes #hp:2_5+ #amazon:yes #c" _note="If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S. &#10;">
+        <outline text="Specs">
+          <outline text="Dimensions: 48.6&quot;D x 20&quot;W x 6.06&quot;H" />
+          <outline text="Max weight: 265lbs" />
+          <outline text="Motor Power: 2.5HP" />
+          <outline text="Max Speed: 4mph" />
+          <outline text="Age: Oct 19th 2023" />
+          <outline text="Rating 4.2; Fakespot D" _note="5=65% 4=17% 3=6% 2=5% 1=7%&#10;" />
+        </outline>
+        <outline text="Pros">
+          <outline text="Incline" />
+          <outline text="Shock absorption" />
+          <outline text="High horse power" />
+          <outline text="Available on Amazon" />
+        </outline>
+        <outline text="Cons">
+          <outline text="Loud" _note="A fair bit louder than Urevo 3S and Egofit M2. Make this the main tie-breaker. Still workable for meetings, but not if you want to be inconspicuous.&#10;" />
+          <outline text="Bulky" />
+        </outline>
+      </outline>
+      <outline text="Urevo &lt;a href=&quot;key://urevo_e5&quot;&gt;E5&lt;/a&gt; #picked-by:op #picked-by:public #budget:low #incline:no #weight:high #shock:no #amazon:yes " _note="This has the most hardware improvements over the below. Eg, improved motor, and vents to dissipate heat, and doesn't have an incline. I don't know why they removed the incline after E3... real bummer. So I recommend propping the head on some yoga blocks or a 2x4. &#10;">
+        <outline text="Specs">
+          <outline text="$200" />
+          <outline text="50&quot;D x 20.9&quot;W x 4.72&quot;H" />
+          <outline text="Max Speed: 4mph" />
+          <outline text="Motor power: 2.25HP" />
+          <outline text="Max weight: 265lbs" />
+          <outline text="Rating 4.4/5" _note="Fakespot B. 5=70% 4=16% 3=6% 2=4% 1=4%&#10;" />
+        </outline>
+        <outline text="Pros: better tech (eg motor vents); shock absorption; cheap" />
+        <outline text="Cons: No incline, loud" />
+      </outline>
+      <outline text="Urevo &lt;a href=&quot;key://urevo_e4&quot;&gt;E4&lt;/a&gt; (succeeded by E5) #speed:low #budget:low #weight:high #amazon:yes " _note="Motor improvement over E3 (which had a lot of overheating complaints); but removed incline. E5 is upgrade over this one, so if you don't want E3's incline, just get E5&#10;">
+        <outline text="Specs">
+          <outline text="$200" />
+          <outline text="50&quot;D x 20.9&quot;W x 4.72&quot;H" />
+          <outline text="Max Speed: 4mph" />
+          <outline text="Motor power: 2.25HP" />
+          <outline text="Max weight: 265lbs" />
+          <outline text="Rating 4.4/5" _note="Fakespot B. 5=70% 4=16% 3=6% 2=4% 1=4%&#10;" />
+        </outline>
+        <outline text="Pros: on Amazon; improved motor heat from E3; shock absorption, cheap" />
+        <outline text="Cons: no incline, loud" />
+        <outline text="Rating: 4.4" _note="5=69%, 4=15%, 3=6%, 2=3%, 1=7%&#10;" />
+      </outline>
+      <outline text="Urevo &lt;a href=&quot;key://urevo_e3&quot;&gt;E3&lt;/a&gt; #budget:low #incline:yes #weight:high #amazon:yes " _note="Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.&#10;">
+        <outline text="Specs">
+          <outline text="$200" />
+          <outline text="50&quot;D x 20.9&quot;W x 4.72&quot;H" />
+          <outline text="Max Speed: 4mph" />
+          <outline text="Motor power: 2.25HP" />
+          <outline text="Max weight: 265lbs" />
+          <outline text="Rating 4.4/5" _note="Fakespot B. 5=70% 4=16% 3=6% 2=4% 1=4%&#10;" />
+        </outline>
+        <outline text="Pros: incline; on Amazon" />
+        <outline text="Cons: motor overheating complaints, loud" />
+        <outline text="Rating: 4.4" _note="5=68%, 4=16%, 3=6%, 2=4%, 1=6%&#10;" />
+      </outline>
+      <outline text="DeerRun &lt;a href=&quot;key://deerrun&quot;&gt;DeerRun&lt;/a&gt; ($150) #picked-by:op #picked-by:public #budget:low #incline:no #weight:high #shock:no #amazon:yes  #c" _note="Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.&#10;">
+        <outline text="Specs">
+          <outline text="‎45&quot;D x 20.3&quot;W x 4.3&quot;H" />
+          <outline text="Age: October 15, 2024" />
+          <outline text="Max Speed: 3.8mph" />
+          <outline text="Motor power: 2.2HP" />
+          <outline text="Max weight: 300lbs" />
+          <outline text="Rating: 4.6" _note="5=73%, 4=19%, 3=4%, 2=0%, 1=4%&#10;" />
+        </outline>
+        <outline text="Pros">
+          <outline text="Cheap!" _note="Cheapest you'll find, especially on a sale. The pro option (increased quality and horse power) sometimes drops to this price, so check before buying&#10;" />
+        </outline>
+        <outline text="Cons">
+          <outline text="Low-ish quality" _note="This won't last you more than a year. But if you're just testing the waters, it's a good way to go. &#10;" />
+          <outline text="No incline" _note="So I recommend propping the front on a block of wood or foam.&#10;" />
+        </outline>
+      </outline>
+      <outline text="&lt;a href=&quot;https://amzn.to/4817FEe&quot;&gt;Egofit M1 Pro&lt;/a&gt; (old version) #picked-by:public #budget:low #incline:yes #size:small #amazon:yes " _note="I don't recommend this one, because (1) they've improved knee-health by adding shock absorption and dialing incline from 5% to 3% based on research; (2) increased the max weight and horse power; and (3) I'm sure improved on quality / durability (as a newer edition). The M2 is $100 more, but I truly think it's worth it. Listing M1 here in case you really want to save the $100&#10;">
+        <outline text="Specs">
+          <outline text="$400" />
+          <outline text="38.39&quot;D x 21.85&quot;W x 6.89&quot;H" />
+          <outline text="Max weight: 220lbs" />
+          <outline text="Motor Power: 2HP" />
+          <outline text="Max speed 3.1mph" />
+          <outline text="Age &lt;time startYear=&quot;2021&quot; startMonth=&quot;3&quot; startDay=&quot;30&quot;&gt;Tue, Mar 30, 2021&lt;/time&gt; " />
+          <outline text="Rating 4.5/5" _note="Fakespot: B. 5=75% 4=15% 3=4% 2=2% 1=4%&#10;" />
+        </outline>
+        <outline text="Pros + Cons" _note="Each item listed is both a pro and con, depending on your situation">
+          <outline text="Incline" _note="Albeit a hard-set 5%, where 3% is the ideal. This makes is tall (6.89&quot;H) which may or may not accommodate your desk height for ergonomic peripherals and monitor placement, so do some measurements beforehand. If it works height-wise, then this is a great pick because an incline is significantly better for your knees, which is very important for long-term use. This will be my next pick when I upgrade my desk.&#10;" />
+        </outline>
+        <outline text="Cons">
+          <outline text="2HP &amp; max weight 220lbs" />
+        </outline>
+      </outline>
+      <outline text="GoYouth &lt;a href=&quot;https://amzn.to/3H75BzJ&quot;&gt;GoYouth&lt;/a&gt; #budget:medium #amazon:yes #speed:low #c" _note="My prior main, and I loved it. I upgraded to Egofit for the incline. If you choose GoYouth, go to their &lt;a href=&quot;https://amzn.to/4aKjql7&quot;&gt;store page&lt;/a&gt; just to make sure there's nothing newer than the link I posted. These budget brands often release newer versions quite frequently; and newer is better with these.&#10;">
+        <outline text="Specs">
+          <outline text="$340" _note="There's currently a $40 Amazon &quot;Apply Coupon&quot; = $300 total&#10;" />
+          <outline text="49&quot;D x 21.6&quot;W x 5.9&quot;H" />
+          <outline text="Max Speed: 6mph" />
+          <outline text="Horsepower: 2.25" _note="Always look for 2.25 HP or more. Treadmills lower than this won't last (heat build-up, inability to handle the walking load). Everything in my picks has 2.25HP or more, many of those I mention without review, or didn't even include (like Treadly), had less (eg 1HP).&#10;" />
+          <outline text="Max weight: 220 pounds" />
+          <outline text="Age: &lt;time startYear=&quot;2022&quot; startMonth=&quot;5&quot; startDay=&quot;9&quot;&gt;Mon, May 9, 2022&lt;/time&gt; " />
+          <outline text="Rating: 4.3/5" _note="Fakespot: A. 5=66% | 4=17% | 3=5% | 2=5% | 1=7%" />
+        </outline>
+        <outline text="&lt;a href=&quot;https://amzn.to/48MxKYv&quot;&gt;Possibly newer edition?&lt;/a&gt;" _note="I just saw this, released &lt;time startYear=&quot;2023&quot; startMonth=&quot;6&quot; startDay=&quot;20&quot;&gt;Tue, Jun 20, 2023&lt;/time&gt;, 4 reviews. #TODO I've asked them, if so I'll replace the original link / details. There's also some incline options and a with-desk option; but those ones have poor reviews. So I'd go with this or my above link.&#10;">
+          <outline text="$390 with a $120 coupon (=$270)" />
+          <outline text="Otherwise same specs" />
+        </outline>
+        <outline text="Pros">
+          <outline text="Surprisingly durable" _note="I've been using it for 2yrs, around 6hrs per day 5 days a week. I'm 220lbs and I walk 3.5mph. That's &lt;i&gt;very&lt;/i&gt; intense usage to have lasted this long. Just recently it started to develop creaks and groans, which I believe is due to damage I put on the walking pad from the usage. But I think it has another 6 months left in it before I need to use the extended warranty.&#10;" />
+          <outline text="Smaller than many others" _note="Making it fit under more desks. No rails.&#10;" />
+          <outline text="Up to 6mph" _note="I like to walk 3.5mph while working; faster than most walking treadmills allow. I wouldn't recommend using this to run/sprint though, unless you absolutely must (no nearby gym, bad weather, etc). While it's quite durable, I fear my 220lbs landing too hard on the pad would cause cracks.&#10;" />
+        </outline>
+        <outline text="Cons">
+          <outline text="Controller sucks" _note="But can easily be replaced for free. Just deal with it. The first one will have button-presses miss-firing (as in, activating a different button's action). To fix this, buy a compatible controller battery along with the treadmill and replace the one in the controller immediately. I think they just run out while sitting in the warehouse. After 1.5yrs, I nonetheless had to do a hard replacement, which GoYouth did for free via Amazon messaging center. It was easy, came fast, and didn't phase me. This isn't a fluke; you'll see in the reviews many have experienced this scenario. &#10;" />
+          <outline text="Low max weight" _note="220 is lower than 265 average of the budget picks. &#10;" />
+        </outline>
+        <outline text="Considerations">
+          <outline text="&lt;a href=&quot;https://amzn.to/4aJnyBV&quot;&gt;Controller batteries&lt;/a&gt;" _note="If you get a treadmill with a mini controller (like GoYouth or GoPlus), get some batteries. In fact, replace the batteries as soon as you can. With GoYouth at least, it seems many of the controller complaints are a spent battery upon arrival. &#10;" />
+        </outline>
+      </outline>
+      <outline text="GoPlus &lt;a href=&quot;https://amzn.to/3vxMSuh&quot;&gt;GoPlus&lt;/a&gt; #budget:medium #picked-by:public #amazon:yes #c" _note="I &lt;i&gt;strongly&lt;/i&gt; discourage GoPlus. Forget the Wirecutter pick, they only did it because GoPlus is the most popular Amazon budget mill - it was a grab pick. There are two main models: &lt;a href=&quot;https://amzn.to/3tB1g4H&quot;&gt;this&lt;/a&gt; and &lt;a href=&quot;https://amzn.to/3vxMSuh&quot;&gt;this&lt;/a&gt;. They have a &lt;i&gt;ton&lt;/i&gt; more, so visit their &lt;a href=&quot;https://amzn.to/3S8VDnA&quot;&gt;store page&lt;/a&gt; to compare. Hover over as many models' star-rating widgets as you can. Notice the distribution, that looks like a &quot;C&quot; rather than a stair-case. High 1-stars and 2-stars indicate quality issues. If you have the FakeSpot Chrome Extension, you'll see almost all their models are F and D; meaning the 5-stars are fake. Scan through the reviews, and you'll see countless cases of belt-drift, motor blow-out, and more. It's not just Amazon, I've seen GoPlus complaints on Reddit over the years. Hell, GoPlus doesn't even push specs (max weight, horse power, price, incline, etc). Trust me, if GoPlus caught your eye, get Urevo intead; similar line-up but fewer user-reported issues.&#10;The reason I'm heavy-handed here is that GoPlus was one of first in this space, and &quot;poisoned the well&quot; - gave people the impression that budget mills aren't worth it. Similar to what Samsung Gear VR did in the VR market, if you're familiar. As a budget-mill lover, I want people to experience the real deal and not get a bad taste.&#10;">
+        <outline text="Pros">
+          <outline text="Extremely popular" />
+        </outline>
+        <outline text="Cons">
+          <outline text="Belt drift" />
+          <outline text="Motor burnout" />
+          <outline text="Console errors and won't start" />
+          <outline text="Strong 1-star skew, indicating quality issues. FakeSpot F, and &quot;Seller Caution&quot;" />
+        </outline>
+        <outline text="Specs">
+          <outline text="$300" />
+          <outline text="Max Speed: 2.5mph / 7.5mph" />
+          <outline text="Motor Horsepower: 2.25" />
+          <outline text="Max weight: 265 pounds" />
+          <outline text="Dimensions: ‎52.5 x 29 x 44.5 inches" />
+          <outline text="Age: &lt;time startYear=&quot;2020&quot; startMonth=&quot;6&quot; startDay=&quot;9&quot;&gt;Tue, Jun 9, 2020&lt;/time&gt; " />
+          <outline text="Rating: 4/5">
+            <outline text="Fakespot: F" _note="And seller has a FakeSpot &quot;Caution&quot;! &#10;" />
+            <outline text="5=56% | 4=17% | 3=8% | 2=5% | 1=14%" />
+          </outline>
+        </outline>
+      </outline>
+      <outline text="WalkingPad &lt;a href=&quot;https://amzn.to/3HCBP67&quot;&gt;WalkingPad&lt;/a&gt; #budget:low #picked-by:public #amazon:yes #c " _note="I strongly discourage WalkingPad. It's the one I see the most complaints about online; severe quality issues like motor burnout. I think it's so popular because they landed strong SEO with the name, being exactly what people search for. Please look at the reviews before considering WalkingPad.&#10;">
+        <outline text="Specs" _note="The newest model is X21 at $1000. They have a lot of options, the newer / more expensive models being upgrades in durability, quietness, ability to stow away, etc. Since they have so many models, I'll list ranges or averages - or specs from the R2, which is popular.&#10;">
+          <outline text="$500-1000" _note="The range in price is high, so just choose whichever its your budget." />
+          <outline text="57.17&quot;D x 28.43&quot;W x 51.18&quot;H" />
+          <outline text="Max weight: 242lbs" />
+          <outline text="Max speed: 7.5mph" _note="It can go much faster than most on this list, if you want to use this for running&#10;" />
+          <outline text="Motor Power: 2 HP" _note="Take not of this, slightly less than most on this list. I really prefer to see 2.25 or more.&#10;" />
+          <outline text="Age: &lt;time startYear=&quot;2021&quot; startMonth=&quot;8&quot; startDay=&quot;12&quot;&gt;Thu, Aug 12, 2021&lt;/time&gt; " />
+          <outline text="Rating: 4/5" _note="Fakespot: A. 5=55% 4=21% 3=8% 2=5% 1=11%" />
+        </outline>
+        <outline text="Pros">
+          <outline text="Folds up for stow-away" _note="This is the most important benefit. This mill folds in half, and you can either store it under your bed or vertically like a box. Only mill which does this. Personally I don't care, because most mills can tilt against a wall and take up less depth-space that way than a folded WalkingPad anyway&#10;" />
+          <outline text="App instead of controller" _note="Many of these mills use a dedicated controller, which adds a point of failure (the cheapest point of failure in many cases). Not only does an app remove that liability; but also tracks stats over time, which most mills lack.&#10;" />
+          <outline text="Running speed" _note="Doubles as a proper treadmill at 7.5mph, much higher than most of the mills listed (including the quality mills). So if you want the choice between walking desk and actual treadmill, this is a great pick.&#10;" />
+        </outline>
+        <outline text="Cons: ">
+          <outline text="Major bad reviews" _note="Including motor issues and frequent belt drift. Each of these models ha a high 1-star skew, which is very concerning. I've seen a &lt;i&gt;lot &lt;/i&gt;of complaints even outside of Amazon (esp. Reddit). I personally would never buy a WalkingPad; but they are very popular among those who read my content and later make a choice, which is why I'm listing it. I strongly advise doing some heavy review research.&#10;" />
+        </outline>
+      </outline>
+      <outline text="LifeSpan &lt;a href=&quot;https://lifespan-fitness.e9ppfh.net/eK0k5j&quot;&gt;TR1000&lt;/a&gt; #budget:high #picked-by:public #weight:high #hp:2_5+ ">
+        <outline text="Pros">
+          <outline text="Commercial use" _note="I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.&#10;" />
+        </outline>
+        <outline text="$1600" />
+        <outline text="Max speed: 4mph" />
+        <outline text="Max weight: 350 pounds" />
+        <outline text="Dimensions: 58&quot; L x 28.5&quot; W x 7.25&quot; H" />
+        <outline text="Recommend Use: 6 Hours per Day" />
+      </outline>
+      <outline text="LifeSpan &lt;a href=&quot;https://lifespan-fitness.e9ppfh.net/GmyR4k&quot;&gt;TR1200&lt;/a&gt; #budget:high #picked-by:public #weight:high #hp:2_5+ ">
+        <outline text="Pros ">
+          <outline text="Commercial use" _note="I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.&#10;" />
+        </outline>
+        <outline text="$1800" />
+        <outline text="Max speed: 4mph" />
+        <outline text="Max weight: 350 pounds" />
+        <outline text="Dimensions: 63&quot; L x 28.5&quot; W x 7.25&quot; H" />
+        <outline text="Recommended Use: 6 Hours per Day" />
+      </outline>
+      <outline text="LifeSpan &lt;a href=&quot;https://lifespan-fitness.e9ppfh.net/LXLRYZ&quot;&gt;TR5000&lt;/a&gt; #budget:high #picked-by:public #weight:high #hp:2_5+ ">
+        <outline text="Pros ">
+          <outline text="Commercial use" _note="I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.&#10;" />
+        </outline>
+        <outline text="$2200" />
+        <outline text="Max speed: 4mph" />
+        <outline text="Max weight: 400 pounds" />
+        <outline text="Dimensions: 63&quot; L x 28.5&quot; W x 7.25&quot; H" />
+        <outline text="Recommended Use: 9 Hours per Day" />
+      </outline>
+      <outline text="&lt;a href=&quot;https://www.imovr.com/treadmill-desk-workstations.html&quot;&gt;iMovR&lt;/a&gt; #budget:high #weight:high #hp:2_5+ #c">
+        <outline text="Specs">
+          <outline text="$2500" />
+          <outline text="Dimensions: 39″ wide × 56″ long" />
+          <outline text="Max speed: 2mph" />
+          <outline text="Max Weight: 300 lbs" />
+        </outline>
+        <outline text="Pros">
+          <outline text="Considered on the internet the highest quality underdesk treadmill" _note="Often over Lifespan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer Lifespan based on what I've seen" />
+        </outline>
+        <outline text="Cons">
+          <outline text="Wide, heavy" />
+          <outline text="Expensive" />
+          <outline text="Slow" />
+        </outline>
+      </outline>
+    </outline>
+  </body>
+</opml>
