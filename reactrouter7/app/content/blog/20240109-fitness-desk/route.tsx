@@ -589,18 +589,20 @@ const columns = React.useMemo(() => {
                   const skipRatingColumns = ['rank', 'model', 'make', 'countries'];
                   const showRating = !skipRatingColumns.includes(header.column.id);
                   
+                  // Debug which columns are being skipped
+                  console.log(`Column: ${header.column.id}, Skip Rating: ${skipRatingColumns.includes(header.column.id)}`);
+                  
                   // Get the data-specific rating for this cell
                   let rating = 0;
                   if (showRating) {
-                    // Use the getCellValue function to get the cell value
-                    const cellValue = getCellValue(row.original, header.column.id);
+                    // Get the original cell value directly from the row data
+                    const originalValue = row.original[header.column.id as keyof Product];
                     
-                    // Check if the cell value is an object with a rating property
-                    if (cellValue && typeof cellValue === 'object' && 'rating' in cellValue) {
-                      rating = (cellValue as any).rating;
-                    } else if (cellValue && typeof cellValue === 'object' && 'value' in cellValue && typeof (cellValue as any).value === 'object' && 'rating' in (cellValue as any).value) {
-                      // Some values might be nested
-                      rating = (cellValue as any).value.rating;
+                    // Check if the original value is an object with a rating property
+                    if (originalValue && typeof originalValue === 'object' && 'rating' in originalValue) {
+                      rating = (originalValue as any).rating;
+                      // Add console log for debugging
+                      console.log(`Column: ${header.column.id}, Rating: ${rating}, Value:`, originalValue);
                     }
                   }
                   
