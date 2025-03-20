@@ -140,15 +140,15 @@ const getCellStyle = (row: Product, columnId: string): React.CSSProperties => {
 };
 
 // Header cell component with notes
-const HeaderCell = ({ 
-  column, 
-  info 
-}: { 
-  column: any, 
-  info: ColumnInfo 
+const HeaderCell = ({
+  column,
+  info
+}: {
+  column: any,
+  info: ColumnInfo
 }) => {
   if (!info.notes) {
-    return <div>{info.label}</div>;
+    return <div style={{ whiteSpace: 'nowrap', minWidth: '100px' }}>{info.label}</div>;
   }
   
   const popover = (
@@ -161,7 +161,7 @@ const HeaderCell = ({
   );
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', minWidth: '100px' }}>
       <span>{info.label}</span>
       <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
         <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
@@ -209,40 +209,57 @@ const Cell = ({
   );
 };
 
+// Helper to determine if a column is numeric
+const isNumericColumn = (columnId: string): boolean => {
+  // Check if the column is one of the known numeric columns
+  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price'];
+  if (numericColumns.includes(columnId)) return true;
+  
+  // Check if the column info indicates it's a number
+  return columnInfo[columnId]?.dtype === 'number';
+};
+
 // Filter component
 const Filter = ({ column, table }: { column: any, table: any }) => {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
-
+  const columnId = column.id;
   const columnFilterValue = column.getFilterValue();
-
-  return typeof firstValue === 'number' ? (
-    <div className="flex space-x-2">
-      <InputGroup size="sm" className="mb-2">
-        <Form.Control
-          type="number"
-          value={(columnFilterValue as [number, number])?.[0] ?? ''}
-          onChange={e => {
-            const val = e.target.value ? parseFloat(e.target.value) : undefined;
-            column.setFilterValue((old: [number, number]) => [val, old?.[1]]);
-          }}
-          placeholder="Min"
-          className="w-24 border shadow rounded"
-        />
-        <Form.Control
-          type="number"
-          value={(columnFilterValue as [number, number])?.[1] ?? ''}
-          onChange={e => {
-            const val = e.target.value ? parseFloat(e.target.value) : undefined;
-            column.setFilterValue((old: [number, number]) => [old?.[0], val]);
-          }}
-          placeholder="Max"
-          className="w-24 border shadow rounded"
-        />
-      </InputGroup>
-    </div>
-  ) : (
+  
+  // Use numeric filter for numeric columns
+  if (isNumericColumn(columnId)) {
+    return (
+      <div className="d-flex gap-2">
+        <InputGroup size="sm" className="mb-2">
+          <Form.Control
+            type="number"
+            value={(columnFilterValue as [number, number])?.[0] ?? ''}
+            onChange={e => {
+              const val = e.target.value ? parseFloat(e.target.value) : undefined;
+              column.setFilterValue((old: [number, number] | undefined) =>
+                old ? [val, old[1]] : [val, undefined]
+              );
+            }}
+            placeholder="Min"
+            className="w-24 border shadow rounded"
+          />
+          <Form.Control
+            type="number"
+            value={(columnFilterValue as [number, number])?.[1] ?? ''}
+            onChange={e => {
+              const val = e.target.value ? parseFloat(e.target.value) : undefined;
+              column.setFilterValue((old: [number, number] | undefined) =>
+                old ? [old[0], val] : [undefined, val]
+              );
+            }}
+            placeholder="Max"
+            className="w-24 border shadow rounded"
+          />
+        </InputGroup>
+      </div>
+    );
+  }
+  
+  // Use text filter for non-numeric columns
+  return (
     <InputGroup size="sm" className="mb-2">
       <Form.Control
         type="text"
@@ -287,21 +304,26 @@ export default function Treadmills() {
           const value = getCellValue(row.original, columnId);
           if (typeof value === 'undefined' || value === null) return false;
           
+          // Handle numeric range filtering
+          if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
+            const [min, max] = filterValue;
+            const numValue = typeof value === 'number' ? value : parseFloat(String(value));
+            
+            if (!isNaN(numValue)) {
+              return (
+                (min === undefined || numValue >= min) &&
+                (max === undefined || numValue <= max)
+              );
+            }
+            return false;
+          }
+          
+          // Handle string filtering
           if (typeof filterValue === 'string') {
             if (typeof value === 'string') {
               return value.toLowerCase().includes(filterValue.toLowerCase());
             }
             return String(value).toLowerCase().includes(filterValue.toLowerCase());
-          }
-          
-          if (Array.isArray(filterValue)) {
-            const [min, max] = filterValue;
-            if (typeof value === 'number') {
-              return (
-                (min === undefined || value >= min) &&
-                (max === undefined || value <= max)
-              );
-            }
           }
           
           return false;
@@ -331,13 +353,13 @@ export default function Treadmills() {
     <div style={{ width: '100%' }}>
       <h1>Treadmill Comparison</h1>
       
-      <div className="table-responsive">
-        <table className="table table-striped table-bordered">
+      <div className="table-responsive" style={{ overflowX: 'auto' }}>
+        <table className="table table-striped table-bordered" style={{ tableLayout: 'fixed', width: 'auto', minWidth: '100%' }}>
           <thead>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th key={header.id} colSpan={header.colSpan} style={{ whiteSpace: 'nowrap', minWidth: '120px' }}>
                     {header.isPlaceholder ? null : (
                       <div>
                         <div
