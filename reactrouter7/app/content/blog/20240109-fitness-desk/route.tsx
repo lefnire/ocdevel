@@ -148,7 +148,7 @@ const HeaderCell = ({
   info: ColumnInfo
 }) => {
   if (!info.notes) {
-    return <div style={{ whiteSpace: 'nowrap', minWidth: '100px' }}>{info.label}</div>;
+    return <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>{info.label}</div>;
   }
   
   const popover = (
@@ -161,7 +161,7 @@ const HeaderCell = ({
   );
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', minWidth: '100px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', maxWidth: '130px' }}>
       <span>{info.label}</span>
       <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
         <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
@@ -233,8 +233,8 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
   // Use numeric filter for numeric columns
   if (isNumericColumn(columnId)) {
     return (
-      <div className="d-flex gap-2">
-        <InputGroup size="sm" className="mb-2">
+      <div style={{ maxWidth: '130px' }}>
+        <div className="d-flex gap-1 mb-1">
           <Form.Control
             type="number"
             value={(columnFilterValue as [number, number])?.[0] ?? ''}
@@ -245,7 +245,8 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
               );
             }}
             placeholder="Min"
-            className="w-24 border shadow rounded"
+            className="border rounded"
+            style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
           />
           <Form.Control
             type="number"
@@ -257,9 +258,10 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
               );
             }}
             placeholder="Max"
-            className="w-24 border shadow rounded"
+            className="border rounded"
+            style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
           />
-        </InputGroup>
+        </div>
       </div>
     );
   }
@@ -267,39 +269,43 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
   // Use boolean filter for boolean columns
   if (isBooleanColumn(columnId)) {
     return (
-      <Form.Select
-        size="sm"
-        value={columnFilterValue === undefined ? '' : String(columnFilterValue)}
-        onChange={e => {
-          const value = e.target.value;
-          if (value === '') {
-            column.setFilterValue(undefined);
-          } else if (value === 'true') {
-            column.setFilterValue(true);
-          } else if (value === 'false') {
-            column.setFilterValue(false);
-          }
-        }}
-        className="mb-2"
-      >
-        <option value="">All</option>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </Form.Select>
+      <div style={{ maxWidth: '130px' }}>
+        <Form.Select
+          size="sm"
+          value={columnFilterValue === undefined ? '' : String(columnFilterValue)}
+          onChange={e => {
+            const value = e.target.value;
+            if (value === '') {
+              column.setFilterValue(undefined);
+            } else if (value === 'true') {
+              column.setFilterValue(true);
+            } else if (value === 'false') {
+              column.setFilterValue(false);
+            }
+          }}
+          className="mb-1"
+          style={{ fontSize: '0.7rem', padding: '1px 3px', height: '24px' }}
+        >
+          <option value="">All</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </Form.Select>
+      </div>
     );
   }
   
   // Use text filter for other columns
   return (
-    <InputGroup size="sm" className="mb-2">
+    <div style={{ maxWidth: '130px' }}>
       <Form.Control
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={e => column.setFilterValue(e.target.value)}
         placeholder="Search..."
-        className="w-36 border shadow rounded"
+        className="border rounded mb-1"
+        style={{ fontSize: '0.7rem', padding: '1px 3px', height: '24px' }}
       />
-    </InputGroup>
+    </div>
   );
 };
 
@@ -404,51 +410,66 @@ export default function Treadmills() {
       <h1>Treadmill Comparison</h1>
       
       <div className="table-responsive" style={{ overflowX: 'auto' }}>
-        <table className="table table-striped table-bordered" style={{ tableLayout: 'fixed', width: 'auto', minWidth: '100%' }}>
+        <table className="table table-striped table-bordered">
+          {/* Transposed table: columns become rows, rows become columns */}
           <thead>
-            {table.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <th key={header.id} colSpan={header.colSpan} style={{ whiteSpace: 'nowrap', minWidth: '120px' }}>
-                    {header.isPlaceholder ? null : (
-                      <div>
-                        <div
-                          {...{
-                            className: header.column.getCanSort()
-                              ? 'cursor-pointer select-none'
-                              : '',
-                            onClick: header.column.getToggleSortingHandler(),
-                          }}
-                        >
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                          {{
-                            asc: ' 🔼',
-                            desc: ' 🔽',
-                          }[header.column.getIsSorted() as string] ?? null}
-                        </div>
-                        {header.column.getCanFilter() ? (
-                          <div>
-                            <Filter column={header.column} table={table} />
-                          </div>
-                        ) : null}
-                      </div>
-                    )}
-                  </th>
-                ))}
-              </tr>
-            ))}
+            <tr>
+              <th style={{ whiteSpace: 'nowrap', width: '130px', maxWidth: '130px', minWidth: '130px' }}>Property</th>
+              {/* Each product becomes a column header */}
+              {table.getRowModel().rows.map(row => (
+                <th key={row.id} style={{ whiteSpace: 'nowrap' }}>
+                  {/* Display make and model as the column header */}
+                  <div>
+                    <strong>{row.original.make}</strong>
+                    <div>{row.original.model}</div>
+                  </div>
+                </th>
+              ))}
+            </tr>
           </thead>
           <tbody>
-            {table.getRowModel().rows.map(row => (
-              <tr key={row.id}>
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+            {/* Each column becomes a row */}
+            {table.getHeaderGroups()[0].headers.map(header => (
+              <tr key={header.id}>
+                {/* First cell is the column header (now a row header) */}
+                <td style={{ fontWeight: 'bold', backgroundColor: '#f8f9fa', width: '130px', maxWidth: '130px', minWidth: '130px' }}>
+                  <div>
+                    <div
+                      {...{
+                        className: header.column.getCanSort()
+                          ? 'cursor-pointer select-none'
+                          : '',
+                        onClick: header.column.getToggleSortingHandler(),
+                      }}
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      {{
+                        asc: ' 🔼',
+                        desc: ' 🔽',
+                      }[header.column.getIsSorted() as string] ?? null}
+                    </div>
+                    {header.column.getCanFilter() ? (
+                      <div>
+                        <Filter column={header.column} table={table} />
+                      </div>
+                    ) : null}
+                  </div>
+                </td>
+                
+                {/* Each cell in this row represents a different product's value for this property */}
+                {table.getRowModel().rows.map(row => {
+                  // Find the cell that corresponds to this column and row
+                  const cell = row.getVisibleCells().find(cell => cell.column.id === header.column.id);
+                  
+                  return (
+                    <td key={`${row.id}-${header.id}`}>
+                      {cell ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null}
+                    </td>
+                  );
+                })}
               </tr>
             ))}
           </tbody>
