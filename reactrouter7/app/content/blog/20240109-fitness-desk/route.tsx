@@ -238,85 +238,78 @@ export default function Treadmills() {
   const columnHelper = createColumnHelper<Product>();
   
   // Create columns
-  const columns = React.useMemo(() => {
-    // Base columns with Rank as the first column
-    const baseColumns = [
-      // Rank column - calculated from product attributes and column weights
-      columnHelper.accessor(
-        row => calculateFinalScore(row),
-        {
-          id: 'rank',
-          header: ({ column }) => (
-            <HeaderCell
-              column={column}
-              info={{
-                label: "Rank",
-                dtype: "number",
-                description: "Overall score (0-10)",
-                rating: 10,
-                notes: () => (
-                  <div>
-                    This score is calculated based on each product's attribute ratings and the importance of each attribute.
-                    Higher scores indicate better overall performance. The calculation takes into account:
-                    <ul>
-                      <li>Each attribute's rating (out of 10)</li>
-                      <li>The importance weight of each attribute (defined in columns.tsx)</li>
-                      <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
-                    </ul>
-                  </div>
-                )
-              }}
-            />
-          ),
-          cell: info => (
-            <div style={{ fontWeight: 'bold' }}>
-              {formatFinalScore(info.getValue())}
-            </div>
-          ),
-          enableSorting: true,
-          enableColumnFilter: true,
-          filterFn: (row, columnId, filterValue) => {
-            if (Array.isArray(filterValue)) {
-              const [min, max] = filterValue;
-              const score = calculateFinalScore(row.original);
-              
-              return (
-                (min === undefined || score >= min) &&
-                (max === undefined || score <= max)
-              );
-            }
-            return true;
-          },
-        }
-      ),
-      columnHelper.accessor('make', {
+const columns = React.useMemo(() => {
+  // Base columns with Rank as the first column
+  const baseColumns = [
+    // Rank column - calculated from product attributes and column weights
+    columnHelper.accessor(
+      row => calculateFinalScore(row),
+      {
+        id: 'rank',
         header: ({ column }) => (
           <HeaderCell
             column={column}
             info={{
-              label: "Make",
+              label: "Rank",
+              dtype: "number",
+              description: "Overall score (0-10)",
+              rating: 10,
+              notes: () => (
+                <div>
+                  This score is calculated based on each product's attribute ratings and the importance of each attribute.
+                  Higher scores indicate better overall performance. The calculation takes into account:
+                  <ul>
+                    <li>Each attribute's rating (out of 10)</li>
+                    <li>The importance weight of each attribute (defined in columns.tsx)</li>
+                    <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
+                  </ul>
+                </div>
+              )
+            }}
+          />
+        ),
+        cell: info => (
+          <div style={{ fontWeight: 'bold' }}>
+            {formatFinalScore(info.getValue())}
+          </div>
+        ),
+        enableSorting: true,
+        enableColumnFilter: true,
+        filterFn: (row, columnId, filterValue) => {
+          if (Array.isArray(filterValue)) {
+            const [min, max] = filterValue;
+            const score = calculateFinalScore(row.original);
+            
+            return (
+              (min === undefined || score >= min) &&
+              (max === undefined || score <= max)
+            );
+          }
+          return true;
+        },
+      }
+    ),
+    // Combined Product column (model - make)
+    columnHelper.accessor(
+      row => `${row.model} - ${row.make}`,
+      {
+        id: 'product',
+        header: ({ column }) => (
+          <HeaderCell
+            column={column}
+            info={{
+              label: "Product",
               dtype: "string",
-              description: "Manufacturer",
+              description: "Product model and manufacturer",
               rating: 0
             }}
           />
         ),
         cell: info => <div>{info.getValue()}</div>,
-      }),
-      columnHelper.accessor('model', {
-        header: ({ column }) => (
-          <HeaderCell
-            column={column}
-            info={{
-              label: "Model",
-              dtype: "string",
-              description: "Product model",
-              rating: 0
-            }}
-          />
-        ),
-        cell: info => <div>{info.getValue()}</div>,
-      }),
+        enableSorting: true,
+        enableColumnFilter: true,
+      }
+    ),
     ];
     
     // Info columns
@@ -407,10 +400,9 @@ export default function Treadmills() {
               {/* Each product becomes a column header */}
               {table.getRowModel().rows.map(row => (
                 <th key={row.id} style={{ whiteSpace: 'nowrap' }}>
-                  {/* Display make and model as the column header */}
+                  {/* Display product (model - make) as the column header */}
                   <div>
-                    <strong>{row.original.make}</strong>
-                    <div>{row.original.model}</div>
+                    <strong>{row.original.model} - {row.original.make}</strong>
                   </div>
                 </th>
               ))}
@@ -461,18 +453,11 @@ export default function Treadmills() {
                                     </div>
                                   )
                                 }
-                              : header.column.id === 'make'
+                              : header.column.id === 'product'
                                 ? {
-                                    label: "Make",
+                                    label: "Product",
                                     dtype: "string",
-                                    description: "Manufacturer",
-                                    rating: 0
-                                  }
-                              : header.column.id === 'model'
-                                ? {
-                                    label: "Model",
-                                    dtype: "string",
-                                    description: "Product model",
+                                    description: "Product model and manufacturer",
                                     rating: 0
                                   }
                               : columnInfo[header.column.id as keyof typeof columnInfo]
