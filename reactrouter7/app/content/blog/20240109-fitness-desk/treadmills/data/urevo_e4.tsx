@@ -1,4 +1,6 @@
-import type {Product} from "./types"
+import type {Product} from "../types"
+import {budgetNote} from '../brands'
+
 const info: Product = {
   make: "urevo",
   model: "E4",
@@ -45,6 +47,7 @@ const info: Product = {
   },
   price: {
     value: 200,
+    note: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     value: [], // Not specifically picked by anyone according to the data
