@@ -1,4 +1,4 @@
-import type {Product} from "./types"
+import type {Product} from "../types"
 const info: Product = {
   make: "walkingpad",
   model: "WalkingPad",

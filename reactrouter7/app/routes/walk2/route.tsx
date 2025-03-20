@@ -9,84 +9,13 @@ import {
 } from '@tanstack/react-table';
 import type { SortingState } from '@tanstack/react-table';
 import { data } from './treadmills/data';
-import columnInfo, { columnsArray } from './treadmills/columns';
+import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './treadmills/columns';
 import brands from './treadmills/brands';
-import { OverlayTrigger, Popover, Form, InputGroup } from 'react-bootstrap';
+import { OverlayTrigger, Popover, Form } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
-import { calculateFinalScore, calculateCombinedRating, getCombinedRatingDetails } from './treadmills/calculator';
-import {
-  formatFinalScore,
-  formatCombinedRating,
-  getCombinedRatingNotes,
-  getCellValue,
-  getCellDisplayValue,
-  getCellStyle,
-  hasAttributeNotes,
-  isNumericColumn,
-  isBooleanColumn
-} from './treadmills/formatters';
 
 export * from './meta.js';
-
-// Define the column info type
-interface ColumnInfo {
-  label: string;
-  dtype: string;
-  description?: string;
-  rating: number;
-  notes?: () => React.ReactElement;
-}
-
-// Define reusable column info objects for special columns
-const rankColumnInfo: ColumnInfo = {
-  label: "Rank",
-  dtype: "number",
-  description: "Calculation",
-  rating: 10,
-  notes: () => (
-    <div>
-      This score is calculated based on each product's attribute ratings and the importance of each attribute.
-      Higher scores indicate better overall performance. The calculation takes into account:
-      <ul>
-        <li>Each attribute's rating (out of 10)</li>
-        <li>The importance weight of each attribute (defined in columns.tsx)</li>
-        <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
-      </ul>
-    </div>
-  )
-};
-
-const modelColumnInfo: ColumnInfo = {
-  label: "Model",
-  dtype: "string",
-  rating: 0
-};
-
-const brandColumnInfo: ColumnInfo = {
-  label: "Brand",
-  dtype: "string",
-  rating: 0
-};
-
-// Define the combined rating column info
-const combinedRatingColumnInfo: ColumnInfo = {
-  label: "Star Rating",
-  dtype: "number",
-  description: "Calculation",
-  rating: 9,
-  notes: () => (
-    <div>
-      <p>This is a combined rating that takes into account:</p>
-      <ul>
-        <li>Star rating (weighted by number of reviews - more reviews = more reliable)</li>
-        <li>Rating distribution (penalizes skewed distributions with high 5-star and high 1-star counts)</li>
-        <li>Fakespot grades for both product and company (company grade weighted more heavily)</li>
-      </ul>
-      <p>The calculation aims to provide a more accurate representation of product quality by accounting for potential fake reviews and quality control issues.</p>
-    </div>
-  )
-};
 
 // Header cell component with notes
 const HeaderCell = ({
@@ -94,18 +23,8 @@ const HeaderCell = ({
   info
 }: {
   column: any,
-  info: ColumnInfo
+  info: any
 }) => {
-  // Create popover content if notes are available
-  const popover = info.notes ? (
-    <Popover id={`popover-header-${column.id}`}>
-      <Popover.Header as="h3">{info.label}</Popover.Header>
-      <Popover.Body>
-        {info.notes()}
-      </Popover.Body>
-    </Popover>
-  ) : null;
-
   return (
     <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -126,7 +45,7 @@ const ColumnDescription = ({
   info
 }: {
   column: any,
-  info: ColumnInfo
+  info: any
 }) => {
   if (!info.description && !info.notes) return null;
   
@@ -157,88 +76,149 @@ const ColumnDescription = ({
   );
 };
 
-// Helper function to get column rating
-const getColumnRating = (columnId: string, info?: ColumnInfo): number => {
-  if (info && typeof info.rating === 'number') {
-    return info.rating;
-  } else if (columnId === 'rank') {
-    return rankColumnInfo.rating;
-  } else if (columnId === 'model') {
-    return modelColumnInfo.rating;
-  } else if (columnId === 'make') {
-    return brandColumnInfo.rating;
-  } else if (columnId === 'combinedRating') {
-    return combinedRatingColumnInfo.rating;
-  }
-  return 0;
-};
-
 // Cell component with notes and rating indicator
 const Cell = ({
-  value,
   row,
   column,
   info
 }: {
-  value: any,
-  row: Product,
+  row: any, // Using any to accommodate both Product and Row<Product>
   column: any,
-  info?: ColumnInfo
+  info?: any
 }) => {
-  const displayValue = getCellDisplayValue(row, column.id);
-  const cellValue = row[column.id as keyof Product];
+  const columnId = column.id;
+  const columnDef = columnsArray.find(col => col.key === columnId);
   
-  // Get the rating for this cell using the helper function
-  const rating = getColumnRating(column.id, info);
+  // Get the actual product data
+  const product: Product = row.original || row;
   
-  // Special case for combinedRating column
-  if (column.id === 'combinedRating') {
-    const popover = (
-      <Popover id={`popover-cell-${column.id}-${row.make}-${row.model}`}>
-        <Popover.Header as="h3">{info?.label || column.id}</Popover.Header>
-        <Popover.Body>
-          {getCombinedRatingNotes(row)}
-        </Popover.Body>
-      </Popover>
-    );
-
-    return (
-      <div style={getCellStyle(row, column.id)}>
-        <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
-          <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer', fontWeight: 'bold' }}>
-            {displayValue}
-          </span>
-        </OverlayTrigger>
-      </div>
-    );
+  // Special case for make/brand column
+  if (columnId === 'make') {
+    const make = product.make;
+    const brand = brands[make];
+    const brandName = brand?.name || make;
+    
+    if (brand && brand.notes) {
+      return (
+        <div>
+          <OverlayTrigger
+            trigger={["hover","focus"]}
+            placement="right"
+            overlay={
+              <Popover id={`popover-brand-${row.id || `${product.make}-${product.model}`}`}>
+                <Popover.Header as="h3">{brandName}</Popover.Header>
+                <Popover.Body>
+                  {brand.notes()}
+                </Popover.Body>
+              </Popover>
+            }
+          >
+            <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+              {brandName}
+            </span>
+          </OverlayTrigger>
+        </div>
+      );
+    }
+    
+    return <div>{brandName}</div>;
   }
   
-  if (!hasAttributeNotes(cellValue)) {
+  // For other columns, use the render function from columnDef
+  if (columnDef && columnDef.render) {
+    const displayValue = columnDef.render(product);
+    const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
+    
+    // Check if the attribute has notes
+    const attr = product[columnId as keyof Product];
+    const hasNotes = attr && typeof attr === 'object' && 'notes' in attr && typeof (attr as any).notes === 'function';
+    
+    if (hasNotes) {
+      const popover = (
+        <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
+          <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
+          <Popover.Body>
+            {(attr as any).notes()}
+          </Popover.Body>
+        </Popover>
+      );
+      
+      return (
+        <div style={cellStyle}>
+          <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+            <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+              {displayValue}
+            </span>
+          </OverlayTrigger>
+        </div>
+      );
+    }
+    
+    // Special case for combinedRating - always show popover with details
+    if (columnId === 'combinedRating') {
+      const combinedRatingColumn = columnsArray.find(col => col.key === 'combinedRating');
+      if (combinedRatingColumn && combinedRatingColumn.notes) {
+        const popover = (
+          <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
+            <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
+            <Popover.Body>
+              {/* Generate combined rating details */}
+              <div>
+                {/* Star Rating */}
+                {product.rating && typeof product.rating === 'object' && 'value' in product.rating && product.rating.value && (
+                  <div>
+                    <strong>Star Rating:</strong> {product.rating.value[0] && product.rating.value[0][0] ? product.rating.value[0][0].toFixed(1) : '0'}/5
+                    ({product.rating.value[0] && product.rating.value[0][1] ? product.rating.value[0][1] : 0} reviews)
+                  </div>
+                )}
+                
+                {/* Rating Distribution */}
+                {product.rating && typeof product.rating === 'object' && 'value' in product.rating && product.rating.value && product.rating.value[1] && (
+                  <div className="mt-2">
+                    <strong>Rating Distribution:</strong>
+                    <div>
+                      5★: {product.rating.value[1][0] || 0},
+                      4★: {product.rating.value[1][1] || 0},
+                      3★: {product.rating.value[1][2] || 0},
+                      2★: {product.rating.value[1][3] || 0},
+                      1★: {product.rating.value[1][4] || 0}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Fakespot Grades */}
+                {product.fakespot && typeof product.fakespot === 'object' && 'value' in product.fakespot && product.fakespot.value && (
+                  <div className="mt-2">
+                    <strong>Fakespot Grades:</strong> Product: {product.fakespot.value[0] || 'B'}, Company: {product.fakespot.value[1] || 'B'}
+                  </div>
+                )}
+              </div>
+            </Popover.Body>
+          </Popover>
+        );
+        
+        return (
+          <div style={cellStyle}>
+            <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+              <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer', fontWeight: 'bold' }}>
+                {displayValue}
+              </span>
+            </OverlayTrigger>
+          </div>
+        );
+      }
+    }
+    
+    // Default rendering without popover
     return (
-      <div style={getCellStyle(row, column.id)}>
+      <div style={cellStyle}>
         {displayValue}
       </div>
     );
   }
   
-  const popover = (
-    <Popover id={`popover-cell-${column.id}-${row.make}-${row.model}`}>
-      <Popover.Header as="h3">{info?.label || column.id}</Popover.Header>
-      <Popover.Body>
-        {(cellValue as any).notes()}
-      </Popover.Body>
-    </Popover>
-  );
-
-  return (
-    <div style={getCellStyle(row, column.id)}>
-      <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
-        <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
-          {displayValue}
-        </span>
-      </OverlayTrigger>
-    </div>
-  );
+  // Fallback if no render function is defined
+  return <div>{String(row.getValue ? row.getValue(columnId) : product[columnId as keyof Product]) || ''}</div>;
 };
 
 // Filter component
@@ -336,206 +316,54 @@ export default function Treadmills() {
   const columnHelper = createColumnHelper<Product>();
   
   // Create columns
-const columns = React.useMemo(() => {
-  // Base columns with Rank as the first column
-  const baseColumns = [
-    // Rank column - calculated from product attributes and column weights
-    columnHelper.accessor(
-      row => calculateFinalScore(row),
-      {
-        id: 'rank',
-        header: ({ column }) => (
-          <HeaderCell
-            column={column}
-            info={rankColumnInfo}
-          />
-        ),
-        cell: info => (
-          <div style={{ fontWeight: 'bold' }}>
-            {formatFinalScore(info.getValue())}
-          </div>
-        ),
-        enableSorting: true,
-        enableColumnFilter: true,
-        filterFn: (row, columnId, filterValue) => {
-          if (Array.isArray(filterValue)) {
-            const [min, max] = filterValue;
-            const score = calculateFinalScore(row.original);
-            
-            return (
-              (min === undefined || score >= min) &&
-              (max === undefined || score <= max)
-            );
-          }
-          return true;
-        },
-        sortingFn: (rowA, rowB, columnId) => {
-          // For rank column, we can use the actual value since it's already a score
-          const valueA = rowA.getValue(columnId) as number;
-          const valueB = rowB.getValue(columnId) as number;
-          return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
-        }
-      }
-    ),
-    // Model column
-    columnHelper.accessor(
-      'model',
-      {
-        id: 'model',
-        header: ({ column }) => (
-          <HeaderCell
-            column={column}
-            info={modelColumnInfo}
-          />
-        ),
-        cell: info => <div>{info.getValue()}</div>,
-        enableSorting: true,
-        enableColumnFilter: true,
-        // Model doesn't have a rating, so we'll use a default of 0
-        sortingFn: (rowA, rowB, columnId) => {
-          return 0; // No sorting by rating for model column
-        }
-      }
-    ),
-    // Make column (using brand name from brands.tsx)
-    columnHelper.accessor(
-      'make',
-      {
-        id: 'make',
-        header: ({ column }) => (
-          <HeaderCell
-            column={column}
-            info={brandColumnInfo}
-          />
-        ),
-        cell: ({ row }) => {
-          const make = row.original.make;
-          const brand = brands[make];
-          const brandName = brand?.name || make;
-          
-          if (brand && brand.notes) {
-            return (
-              <div>
-                <OverlayTrigger
-                  trigger={["hover","focus"]}
-                  placement="right"
-                  overlay={
-                    <Popover id={`popover-brand-${row.id}`}>
-                      <Popover.Header as="h3">{brandName}</Popover.Header>
-                      <Popover.Body>
-                        {brand.notes()}
-                      </Popover.Body>
-                    </Popover>
-                  }
-                >
-                  <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
-                    {brandName}
-                  </span>
-                </OverlayTrigger>
-              </div>
-            );
-          }
-          
-          return <div>{brandName}</div>;
-        },
-        enableSorting: true,
-        enableColumnFilter: true,
-        // Use brand rating from brands.tsx for sorting
-        sortingFn: (rowA, rowB, columnId) => {
-          const makeA = rowA.original.make;
-          const makeB = rowB.original.make;
-          
-          const brandA = brands[makeA];
-          const brandB = brands[makeB];
-          
-          const ratingA = brandA?.rating || 0;
-          const ratingB = brandB?.rating || 0;
-          
-          return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
-        }
-      }
-    ),
-    // Combined Rating column - calculated from star rating, distribution, and fakespot
-    columnHelper.accessor(
-      row => calculateCombinedRating(row).score,
-      {
-        id: 'combinedRating',
-        header: ({ column }) => (
-          <HeaderCell
-            column={column}
-            info={combinedRatingColumnInfo}
-          />
-        ),
-        cell: ({ row, column }) => (
-          <Cell
-            value={calculateCombinedRating(row.original).score}
-            row={row.original}
-            column={column}
-            info={combinedRatingColumnInfo}
-          />
-        ),
-        enableSorting: true,
-        enableColumnFilter: true,
-        filterFn: (row, columnId, filterValue) => {
-          if (Array.isArray(filterValue)) {
-            const [min, max] = filterValue;
-            const score = calculateCombinedRating(row.original).score;
-            
-            return (
-              (min === undefined || score >= min) &&
-              (max === undefined || score <= max)
-            );
-          }
-          return true;
-        },
-        sortingFn: (rowA, rowB, columnId) => {
-          const scoreA = calculateCombinedRating(rowA.original).score;
-          const scoreB = calculateCombinedRating(rowB.original).score;
-          return scoreA > scoreB ? 1 : scoreA < scoreB ? -1 : 0;
-        }
-      }
-    ),
-    ];
+  const columns = React.useMemo(() => {
+    // Filter columns to only include those marked for display in the table
+    const visibleColumns = columnsArray.filter(col => col.showInTable !== false);
     
-    // Info columns - using columnsArray to maintain order but excluding 'fakespot' and 'rating'
-    const infoColumns = columnsArray
-      .filter(info => info.key !== 'fakespot' && info.key !== 'rating') // Remove fakespot and rating columns
-      .map((info) => {
-        return columnHelper.accessor(info.key as keyof Product, {
-          header: ({ column }) => <HeaderCell column={column} info={info} />,
-          cell: ({ row, column }) => <Cell value={getCellValue(row.original, column.id)} row={row.original} column={column} info={info} />,
+    return visibleColumns.map(colDef => {
+      return columnHelper.accessor(
+        // Use the calculate function if available, otherwise use the key directly
+        row => colDef.calculate ? colDef.calculate(row) : row[colDef.key as keyof Product],
+        {
+          id: colDef.key,
+          header: ({ column }) => (
+            <HeaderCell
+              column={column}
+              info={colDef}
+            />
+          ),
+          cell: ({ row, column }) => (
+            <Cell
+              row={row}
+              column={column}
+              info={colDef}
+            />
+          ),
           enableSorting: true,
           enableColumnFilter: true,
           filterFn: (row, columnId, filterValue) => {
-            const value = getCellValue(row.original, columnId);
-            if (typeof value === 'undefined' || value === null) return false;
-            
-            // Handle numeric range filtering
+            // For numeric columns with range filtering
             if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
-              const numValue = typeof value === 'number' ? value : parseFloat(String(value));
+              const columnDef = columnsArray.find(col => col.key === columnId);
+              const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
               
-              if (!isNaN(numValue)) {
-                return (
-                  (min === undefined || numValue >= min) &&
-                  (max === undefined || numValue <= max)
-                );
-              }
-              return false;
+              if (value === undefined || value === null) return false;
+              
+              const numValue = typeof value === 'number' ? value : parseFloat(String(value));
+              if (isNaN(numValue)) return false;
+              
+              return (
+                (min === undefined || numValue >= min) &&
+                (max === undefined || numValue <= max)
+              );
             }
             
-            // Handle boolean filtering
+            // For boolean columns
             if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
-              // Always use getAttributeValue to get the actual boolean value
-              // This ensures we're checking the underlying boolean, not the display value (✓)
-              const boolValue = getCellValue(row.original, columnId);
+              const columnDef = columnsArray.find(col => col.key === columnId);
+              const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
               
-              // If we have a valid boolean value, compare it with the filter value
-              if (typeof boolValue === 'boolean') {
-                return boolValue === filterValue;
-              }
-              
-              // If the value itself is a boolean (not wrapped in an object), check that too
               if (typeof value === 'boolean') {
                 return value === filterValue;
               }
@@ -543,43 +371,78 @@ const columns = React.useMemo(() => {
               return false;
             }
             
-            // Handle string filtering
+            // For string columns
             if (typeof filterValue === 'string') {
+              const columnDef = columnsArray.find(col => col.key === columnId);
+              const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
+              
+              if (value === undefined || value === null) return false;
+              
               if (typeof value === 'string') {
                 return value.toLowerCase().includes(filterValue.toLowerCase());
               }
+              
               return String(value).toLowerCase().includes(filterValue.toLowerCase());
             }
             
-            return false;
+            return true;
           },
-          // Use rating-based sorting for all info columns
           sortingFn: (rowA, rowB, columnId) => {
-            const originalA = rowA.original;
-            const originalB = rowB.original;
+            const columnDef = columnsArray.find(col => col.key === columnId);
             
-            // Get the attribute from the row
-            const attrA = originalA[columnId as keyof Product];
-            const attrB = originalB[columnId as keyof Product];
-            
-            // Extract ratings
-            let ratingA = 0;
-            let ratingB = 0;
-            
-            if (attrA && typeof attrA === 'object' && 'rating' in attrA) {
-              ratingA = (attrA as any).rating || 0;
+            // Special case for make/brand column
+            if (columnId === 'make') {
+              const makeA = rowA.original.make;
+              const makeB = rowB.original.make;
+              
+              const brandA = brands[makeA];
+              const brandB = brands[makeB];
+              
+              const ratingA = brandA?.rating || 0;
+              const ratingB = brandB?.rating || 0;
+              
+              return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
             }
             
-            if (attrB && typeof attrB === 'object' && 'rating' in attrB) {
-              ratingB = (attrB as any).rating || 0;
+            // Use getSortValue if available
+            if (columnDef?.getSortValue) {
+              const valueA = columnDef.getSortValue(rowA.original);
+              const valueB = columnDef.getSortValue(rowB.original);
+              
+              if (typeof valueA === 'number' && typeof valueB === 'number') {
+                return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
+              }
+              
+              // String comparison
+              return String(valueA).localeCompare(String(valueB));
             }
             
-            return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
+            // Use calculate if available
+            if (columnDef?.calculate) {
+              const valueA = columnDef.calculate(rowA.original);
+              const valueB = columnDef.calculate(rowB.original);
+              
+              if (typeof valueA === 'number' && typeof valueB === 'number') {
+                return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
+              }
+              
+              // String comparison
+              return String(valueA).localeCompare(String(valueB));
+            }
+            
+            // Default sorting
+            const valueA = rowA.getValue(columnId);
+            const valueB = rowB.getValue(columnId);
+            
+            if (typeof valueA === 'number' && typeof valueB === 'number') {
+              return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
+            }
+            
+            return String(valueA).localeCompare(String(valueB));
           }
-        });
-      });
-    
-    return [...baseColumns, ...infoColumns];
+        }
+      );
+    });
   }, []);
   
   // Create table instance
@@ -629,17 +492,7 @@ const columns = React.useMemo(() => {
                        {/* Add description with popover below the filter */}
                        <ColumnDescription
                          column={header.column}
-                         info={
-                           header.column.id === 'rank'
-                             ? rankColumnInfo
-                             : header.column.id === 'model'
-                               ? modelColumnInfo
-                             : header.column.id === 'make'
-                               ? brandColumnInfo
-                             : header.column.id === 'combinedRating'
-                               ? combinedRatingColumnInfo
-                             : columnsArray.find(col => col.key === header.column.id) || columnInfo[header.column.id as keyof typeof columnInfo]
-                         }
+                         info={columnsArray.find(col => col.key === header.column.id) || columnInfo[header.column.id as keyof typeof columnInfo]}
                        />
                      </div>
                    ) : null}
