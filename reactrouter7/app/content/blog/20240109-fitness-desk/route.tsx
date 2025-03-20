@@ -1,192 +1,254 @@
-import wf from '~/content/workflowy/walking-desk.opml'
-import {BattleStation} from "~/components/utils.tsx";
-import {walkingDeskLinks} from '~/content/workflowy/walking-desk-links'
-import {Workflowy} from '~/components/workflowy.tsx'
-import { ProductCard } from './product-card'
-import {useCallback, useEffect, useMemo, useState} from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+// Register all Community features
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+import { AgGridReact } from 'ag-grid-react';
+import type { ColDef } from 'ag-grid-community';
+import { data } from './treadmills/data';
+import columnInfo from './treadmills/columns';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
+import type {Product} from './treadmills/types'
 
 export * from './meta.js'
 
-const treadmillProducts = {
-  CA: [
-    {
-      key: 'mobvoi',
-      image: '/walk_thumbs/mobvoi_ca.png',
-      title: 'Value: Mobvoi Fitness 10',
-      description: 'Bang for buck. Incline, walk & run modes',
-      link: "https://amzn.to/4hmAP5C",
-      linkText: "~$340 on Amazon",
-      price: 340,
-    },
-    {
-      key: 'deerrun',
-      image: '/walk_thumbs/deerrun.jpg',
-      title: 'Budget: DeerRun',
-      description: 'Test the waters. No incline, 1-2yrs life; but good price.',
-      // link: walkingDeskLinks["key://deerrun"],
-      link: "https://amzn.to/4kHdtdM",
-      linkText: "~$250 on Amazon",
-      price: 250,
-    },
-  ],
-  US: [
-    {
-      key: 'cyberpad',
-      image: '/walk_thumbs/cyberpad.jpg',
-      title: 'Premium: CyberPad',
-      description: 'Sturdiest, quietest, most features. Set incline=3, speed=2.',
-      link: walkingDeskLinks["key://cyberpad"],
-      linkText: "~$500 on Amazon",
-      price: 500,
-    },
-    {
-      key: 'urevo_3s',
-      image: '/walk_thumbs/3s.jpg',
-      title: 'Value: 3S',
-      description: 'One size fits all, bang for buck. Set incline=3, speed=2.',
-      link: walkingDeskLinks["key://urevo_3s"],
-      linkText: "~$350 on Amazon",
-      price: 350,
-    },
-    {
-      key: 'deerrun',
-      image: '/walk_thumbs/deerrun.jpg',
-      title: 'Budget: DeerRun',
-      description: 'Test the waters. No incline, 1-2yrs life; but good price.',
-      link: walkingDeskLinks["key://deerrun"],
-      linkText: "~$150 on Amazon",
-      price: 150,
-    },
-  ]
+// Define the column info type
+interface ColumnInfo {
+  label: string;
+  dtype: string;
+  description?: string;
+  rating: number;
+  notes?: () => React.ReactElement;
+}
+
+// Function to create a header component with notes
+const createHeaderComponent = (info: ColumnInfo) => {
+  if (!info.notes) return undefined;
+  
+  return (params: any) => {
+    const popover = (
+      <Popover id={`popover-header-${params.column.getColId()}`}>
+        <Popover.Header as="h3">{info.label}</Popover.Header>
+        <Popover.Body>
+          {info.notes && info.notes()}
+        </Popover.Body>
+      </Popover>
+    );
+
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <span>{params.displayName}</span>
+        <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
+          <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
+        </OverlayTrigger>
+      </div>
+    );
+  };
 };
 
-const otherProducts = [
-  {
-    key: 'flexispot',
-    image: '/walk_thumbs/desk.jpg',
-    title: 'Desk: FlexiSpot',
-    description: 'Electric sit/stand',
-    link: walkingDeskLinks["key://flexispot"],
-    linkText: "~$150 on Amazon",
-    price: 150,
-  },
-  {
-    key: 'mat',
-    image: '/walk_thumbs/mat.jpg',
-    title: 'Mat: Urevo',
-    description: 'Prevents floor damage, protects knees',
-    link: walkingDeskLinks["key://mat"],
-    linkText: "$40 on Amazon",
-    price: 40,
-  },
-  {
-    key: 'lube_godora',
-    image: '/walk_thumbs/lube.jpg',
-    title: 'Lube: Godora',
-    description: 'Silicone treadmill lubricant. Apply every 50hrs',
-    link: walkingDeskLinks["key://lube"],
-    linkText: "$35 on Amazon",
-    price: 35,
-  }
-  // {
-  //   image: '/walk_thumbs/fluidstance.jpg',
-  //   title: 'Board: FluidStance',
-  //   description: 'Cushioned balance board for non-walking times.',
-  //   link: walkingDeskLinks["key://fluidstance"],
-  //   linkText: 'View on FluidStance'
-  // }
-];
+// Function to create a cell renderer with notes
+const createCellRenderer = (field: string) => {
+  return (params: any) => {
+    // Safely convert value to string
+    const displayValue = (() => {
+      if (params.valueFormatted) return params.valueFormatted;
+      if (params.value === null || params.value === undefined) return '';
+      if (typeof params.value === 'object') {
+        if (params.value.value !== undefined) return String(params.value.value);
+        return JSON.stringify(params.value);
+      }
+      return String(params.value);
+    })();
+    
+    if (!params.data[field] || !params.data[field].notes) {
+      return displayValue;
+    }
 
+    const popover = (
+      <Popover id={`popover-cell-${field}-${params.data.make}-${params.data.model}`}>
+        <Popover.Header as="h3">{params.colDef.headerName}</Popover.Header>
+        <Popover.Body>
+          {params.data[field].notes()}
+        </Popover.Body>
+      </Popover>
+    );
 
-export default function Body() {
-  const [loc, setLoc] = useState();
-  const [treadmills, setTreadmills] = useState(treadmillProducts.US);
-  useEffect(() => {
-    fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(data => {
-        // data.country_code = 'CA'
-        if (data.country_code === "CA") {
-          setTreadmills(treadmillProducts.CA);
+    return (
+      <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+        <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+          {displayValue}
+        </span>
+      </OverlayTrigger>
+    );
+  };
+};
+
+export default function Treadmills() {
+  // Use the actual treadmill data
+  const [rowData] = useState(data);
+
+  // Format the dimensions as a string (e.g., "41.5"D x 22.8"W x 7"H")
+  const formatDimensions = (params: any) => {
+    if (!params.value || !params.value.value) return '';
+    const [d, w, h] = params.value.value;
+    return `${d}"D x ${w}"W x ${h}"H`;
+  };
+
+  // Format the rating as a string (e.g., "4.7 (567 reviews)")
+  const formatRating = (params: any) => {
+    if (!params.value || !params.value.value) return '';
+    const [[avg, count], distribution] = params.value.value;
+    return `${avg.toFixed(1)} (${count} reviews)`;
+  };
+
+  // Format the fakespot rating
+  const formatFakespot = (params: any) => {
+    if (!params.value || !params.value.value) return '';
+    const [product, company] = params.value.value;
+    return `P: ${product}, C: ${company}`;
+  };
+
+  // Format the pickedBy field
+  const formatPickedBy = (params: any) => {
+    if (!params.value || !params.value.value) return '';
+    return params.value.value.join(', ');
+  };
+
+  // Format the countries field
+  const formatCountries = (params: any) => {
+    if (!params.value || !params.value.value) return '';
+    return params.value.value.join(', ');
+  };
+
+  // Format the age field
+  const formatAge = (params: any) => {
+    if (!params.value || !params.value.value) return '';
+    return params.value.value;
+  };
+
+  // Get the value for a field
+  const valueGetter = (params: any) => {
+    const field = params.colDef.field;
+    if (!params.data[field]) return '';
+    return params.data[field].value;
+  };
+
+  // Default formatter for any object type
+  const defaultFormatter = (params: any) => {
+    if (!params.value) return '';
+    if (typeof params.value === 'object' && params.value.value !== undefined) {
+      return params.value.value;
+    }
+    return params.value;
+  };
+
+  // Cell style based on flag
+  const cellStyle = (params: any) => {
+    const field = params.colDef.field;
+    if (!params.data[field] || !params.data[field].flag) return null;
+    
+    const flag = params.data[field].flag;
+    if (flag === 'green') return { backgroundColor: '#e6ffe6' };
+    if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
+    if (flag === 'red') return { backgroundColor: '#ffcccc' };
+    return null;
+  };
+
+  // Generate column definitions based on the column info
+  const columnDefs = useMemo<ColDef<Product>[]>(() => {
+    const baseColumns: ColDef<Product>[] = [
+      {
+        headerName: 'Make',
+        field: 'make',
+        filter: true,
+        sortable: true
+      },
+      {
+        headerName: 'Model',
+        field: 'model',
+        filter: true,
+        sortable: true
+      }
+    ];
+
+    // Add columns from columnInfo
+    const infoColumns = Object.entries(columnInfo as Record<string, ColumnInfo>).map(([key, info]) => {
+      const column: ColDef<Product> = {
+        headerName: info.label,
+        field: key as any, // Type assertion to handle dynamic field names
+        filter: true,
+        sortable: true,
+        cellStyle: cellStyle,
+        tooltipValueGetter: (params: any) => {
+          return info.description || '';
+        },
+        headerComponentParams: {
+          template: info.label
         }
-        // else if (data.country === "GB") {
-        //   amazonLink = "https://www.amazon.co.uk/your-affiliate-link";
-        // // } else if (["DE", "FR", "IT", "ES", "NL"].includes(data.country)) {
-        // } else if (data.continent_code === "EU") {
-        //   amazonLink = "https://www.amazon.eu/your-affiliate-link";
-        // } else {
-        //   amazonLink = "https://www.amazon.com/your-affiliate-link";
-        // }
-        // Update your page accordingly, e.g.:
-        // document.getElementById('amazonLink').href = amazonLink;
-      })
-      // .catch(error => {
-      //   debugger
-      //   console.error('Error fetching location data:', error);
-      //   // Fallback to USA link
-      //   document.getElementById('amazonLink').href = "https://www.amazon.com/your-affiliate-link";
-      // });
-  }, [])
-  return <div>
-    <style jsx>{`
-      .thumbnail-placeholder {
-        background-color: #e0e0e0;
-        width: 50px;
-        height: 50px;
-      }
-      .product-thumbnail {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-      }
-      .video-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        padding-bottom: 56.25%;
-      }
-      .video-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
-      @media (min-width: 768px) {
-        .product-thumbnail {
-          width: 100px;
-          height: 100px;
-        }
-      }
-    `}</style>
+      };
 
-    <p>My picks change with research and testing. Watch the video below for a complete overview, then scroll down for research, different budgets and options, and more tips.</p>
+      // Add header component if notes exist
+      if (info.notes) {
+        column.headerComponent = createHeaderComponent(info);
+      }
 
-    <div className="row g-4 mb-4">
-      <div className="col-12 col-md-6">
-        <ProductCard title="Treadmill" products={treadmills} />
-      </div>
-      <div className="col-12 col-md-6">
-        <ProductCard title="Other" products={otherProducts} />
-      </div>
+      // Add specific formatters based on data type
+      if (key === 'dimensions') {
+        column.valueFormatter = formatDimensions;
+      } else if (key === 'rating') {
+        column.valueFormatter = formatRating;
+      } else if (key === 'fakespot') {
+        column.valueFormatter = formatFakespot;
+      } else if (key === 'pickedBy') {
+        column.valueFormatter = formatPickedBy;
+      } else if (key === 'countries') {
+        column.valueFormatter = formatCountries;
+      } else if (key === 'age') {
+        column.valueFormatter = formatAge;
+      } else if (info.dtype === 'boolean') {
+        column.cellRenderer = (params: any) => {
+          return params.value && params.value.value ? '✓' : '';
+        };
+      } else if (info.dtype === 'number' || key === 'price') {
+        column.valueGetter = valueGetter;
+      }
+
+      // Add cell renderer if notes exist in any data for this field
+      const hasNotes = data.some(item => item[key] && item[key].notes);
+      if (hasNotes) {
+        column.cellRenderer = createCellRenderer(key);
+      }
+
+      return column;
+    });
+
+    return [...baseColumns, ...infoColumns];
+  }, []);
+
+  // Default column definitions
+  const defaultColDef = useMemo(() => ({
+    flex: 1,
+    minWidth: 100,
+    resizable: true,
+    filter: true,
+    sortable: true,
+    valueFormatter: defaultFormatter,
+  }), []);
+
+  return (
+    <div className="ag-theme-alpine" style={{ height: 600, width: '100%' }}>
+      <h1>Treadmill Comparison</h1>
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs}
+        defaultColDef={defaultColDef}
+        animateRows={true}
+        rowSelection="multiple"
+        theme="legacy"
+      />
     </div>
-
-    <div className="mb-4">
-      <div className="video-wrapper">
-        <iframe
-          src="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </div>
-    </div>
-
-    <Workflowy wf={wf} />
-    <hr/>
-    <BattleStation />
-  </div>
+  );
 }
