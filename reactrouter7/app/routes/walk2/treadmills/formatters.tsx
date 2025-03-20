@@ -1,6 +1,7 @@
 import React from "react";
 import type { Product } from './types';
 import columnInfo from './columns';
+import { calculateCombinedRating, getCombinedRatingDetails } from './calculator';
 
 /**
  * Helper function to safely access attribute values
@@ -47,6 +48,21 @@ export const formatRating = (value: any): string => {
   if (!rating) return '';
   const [[avg, count], distribution] = rating;
   return `${avg.toFixed(1)} (${count} reviews)`;
+};
+
+/**
+ * Helper function to format the combined rating
+ */
+export const formatCombinedRating = (product: Product): string => {
+  const { score } = calculateCombinedRating(product);
+  return score.toFixed(1);
+};
+
+/**
+ * Helper function to get combined rating notes
+ */
+export const getCombinedRatingNotes = (product: Product): React.ReactElement => {
+  return getCombinedRatingDetails(product);
 };
 
 /**
@@ -97,6 +113,11 @@ export const formatFinalScore = (score: number): string => {
  * Helper function to get cell value
  */
 export const getCellValue = (row: Product, columnId: string): any => {
+  // Special case for combinedRating
+  if (columnId === 'combinedRating') {
+    return calculateCombinedRating(row).score;
+  }
+  
   const value = row[columnId as keyof Product];
   return getAttributeValue(value) ?? value;
 };
@@ -109,6 +130,11 @@ export const getCellRatingValue = (row: Product, columnId: string): number => {
   if (columnId === 'make') {
     // This will be handled separately in the column definition
     return 0;
+  }
+  
+  // Special case for combinedRating
+  if (columnId === 'combinedRating') {
+    return calculateCombinedRating(row).score;
   }
   
   const value = row[columnId as keyof Product];
@@ -131,6 +157,11 @@ export const getCellRatingValue = (row: Product, columnId: string): number => {
  * Helper function to get cell display value
  */
 export const getCellDisplayValue = (row: Product, columnId: string): string => {
+  // Special case for combinedRating
+  if (columnId === 'combinedRating') {
+    return formatCombinedRating(row);
+  }
+  
   const value = row[columnId as keyof Product];
   if (!value) return '';
   
@@ -164,6 +195,15 @@ export const getCellDisplayValue = (row: Product, columnId: string): string => {
  * Helper function to get cell style based on flag
  */
 export const getCellStyle = (row: Product, columnId: string): React.CSSProperties => {
+  // Special case for combinedRating - color based on score
+  if (columnId === 'combinedRating') {
+    const { score } = calculateCombinedRating(row);
+    if (score >= 8) return { backgroundColor: '#e6ffe6' }; // Green
+    if (score >= 6) return { backgroundColor: '#ffffcc' }; // Yellow
+    if (score < 6) return { backgroundColor: '#ffcccc' };  // Red
+    return {};
+  }
+  
   const value = row[columnId as keyof Product];
   const flag = getAttributeFlag(value);
   
@@ -179,7 +219,7 @@ export const getCellStyle = (row: Product, columnId: string): React.CSSPropertie
  */
 export const isNumericColumn = (columnId: string): boolean => {
   // Check if the column is one of the known numeric columns
-  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price'];
+  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price', 'combinedRating'];
   if (numericColumns.includes(columnId)) return true;
   
   // Check if the column info indicates it's a number
