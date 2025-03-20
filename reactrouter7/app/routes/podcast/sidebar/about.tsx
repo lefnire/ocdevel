@@ -199,15 +199,15 @@ function PodcastLinks({podcastKey, show}: About) {
   </>
 }
 
-function PodcastImage({podcastKey}: About) {
+function PodcastImage({podcastKey, show}: About) {
   // git-blame: links underneath; click to show
-  const matches = useMatches()
-  const img = podcastKey === "llh" ? <img src="/llh290.png" alt="Lefnire's Life Hacks"/>
-      // TODO use public link instead of importing image?
-      : <img src={scout} alt="Machine Learning Guide"/>
   return <div>
     <div className="logo mb-3">
-      {img}
+      <img
+        width="290" height="290"
+        src={podcastKey === "llh" ? "/llh290.png" : scout}
+        alt={show.title}
+      />
     </div>
     {/*<MLGLinks />*/}
   </div>

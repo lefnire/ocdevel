@@ -5,7 +5,7 @@ import useStore from "~/store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
 
-import {EpisodeComponent} from './podcast.$id';
+import Teaser from './episode/teaser';
 import type { Route } from "../+types/mlg._index";
 import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/content/podcast/types'
@@ -65,7 +65,7 @@ function EpisodeList({podcastKey, episodesList, show}: PodcastList) {
 
   function next() { setPage(page + 1); }
 
-  const pageSize = 5
+  const pageSize = 10
   let eps = newFirst ? sortedEps : sortedEps.slice().reverse()
   eps = filter(eps, e => {
     if (showMla && showMlg) {return true}
@@ -76,7 +76,7 @@ function EpisodeList({podcastKey, episodesList, show}: PodcastList) {
   const hasMore = eps.length < fullLen
 
   function renderEpisode(e: EpisodeType, i: number) {
-    const episode = <EpisodeComponent
+    const episode = <Teaser
       show={show}
       podcastKey={podcastKey}
       key={e.id}

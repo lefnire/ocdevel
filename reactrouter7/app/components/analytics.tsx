@@ -23,7 +23,7 @@ const SERVICE_FUNCTIONALITY_STORAGE = 'functionality_storage'
 const SERVICE_PERSONALIZATION_STORAGE = 'personalization_storage'
 const SERVICE_SECURITY_STORAGE = 'security_storage'
 
-const TEST = true;
+const TEST = false;
 const PROD = import.meta.env.PROD;
 const USE_GA = TEST || PROD;
 
