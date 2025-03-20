@@ -104,23 +104,47 @@ const ColumnDescription = ({
   );
 };
 
-// Cell component with notes
-const Cell = ({ 
-  value, 
-  row, 
-  column, 
-  info 
-}: { 
-  value: any, 
-  row: Product, 
-  column: any, 
-  info?: ColumnInfo 
+// Cell component with notes and rating indicator
+const Cell = ({
+  value,
+  row,
+  column,
+  info
+}: {
+  value: any,
+  row: Product,
+  column: any,
+  info?: ColumnInfo
 }) => {
   const displayValue = getCellDisplayValue(row, column.id);
   const cellValue = row[column.id as keyof Product];
   
+  // Get the rating for this cell
+  let rating = 0;
+  if (info && typeof info.rating === 'number') {
+    rating = info.rating;
+  } else if (column.id === 'rank') {
+    // Rank column has a fixed rating of 10
+    rating = 10;
+  } else if (column.id === 'product') {
+    // Product column has a fixed rating of 0
+    rating = 0;
+  }
+  
+  // Create a color based on the rating (0-10)
+  // 0 = light gray, 10 = dark green
+  const ratingColor = rating === 0
+    ? '#e0e0e0'
+    : `rgba(0, ${Math.min(200, rating * 20)}, 0, ${Math.min(0.8, rating * 0.08)})`;
+  
+  // We'll handle the rating indicator in the table rendering
+  
   if (!hasAttributeNotes(cellValue)) {
-    return <div style={getCellStyle(row, column.id)}>{displayValue}</div>;
+    return (
+      <div style={getCellStyle(row, column.id)}>
+        {displayValue}
+      </div>
+    );
   }
   
   const popover = (
@@ -473,9 +497,55 @@ const columns = React.useMemo(() => {
                   // Find the cell that corresponds to this column and row
                   const cell = row.getVisibleCells().find(cell => cell.column.id === header.column.id);
                   
+                  // Skip rating indicators for certain columns
+                  const skipRatingColumns = ['rank', 'product', 'countries'];
+                  const showRating = !skipRatingColumns.includes(header.column.id);
+                  
+                  // Get the data-specific rating for this cell
+                  let rating = 0;
+                  if (showRating) {
+                    // Use the getCellValue function to get the cell value
+                    const cellValue = getCellValue(row.original, header.column.id);
+                    
+                    // Check if the cell value is an object with a rating property
+                    if (cellValue && typeof cellValue === 'object' && 'rating' in cellValue) {
+                      rating = (cellValue as any).rating;
+                    } else if (cellValue && typeof cellValue === 'object' && 'value' in cellValue && typeof (cellValue as any).value === 'object' && 'rating' in (cellValue as any).value) {
+                      // Some values might be nested
+                      rating = (cellValue as any).value.rating;
+                    }
+                  }
+                  
                   return (
-                    <td key={`${row.id}-${header.id}`}>
+                    <td key={`${row.id}-${header.id}`} style={{ position: 'relative' }}>
                       {cell ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null}
+                      
+                      {/* Rating indicator - only show for applicable columns and if rating exists */}
+                      {showRating && rating > 0 && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            bottom: '0',
+                            right: '0',
+                            width: '18px',
+                            height: '18px',
+                            backgroundColor: rating >= 7 ? '#28a745' : // Bootstrap success
+                                             rating >= 4 ? '#ffc107' : // Bootstrap warning
+                                             '#dc3545',                // Bootstrap danger
+                            borderRadius: '3px',
+                            fontSize: '11px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: rating >= 4 ? 'black' : 'white',
+                            fontWeight: 'bold',
+                            opacity: 0.85
+                          }}
+                          title={`Rating: ${rating}/10`}
+                        >
+                          {rating}
+                        </div>
+                      )}
                     </td>
                   );
                 })}
