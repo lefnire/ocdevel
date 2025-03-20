@@ -401,7 +401,7 @@ export default function Treadmills() {
       <div className="table-responsive" style={{ overflowX: 'auto' }}>
         <table className="table table-striped table-bordered">
           {/* Transposed table: columns become rows, rows become columns */}
-          <thead>
+          <thead style={{ display: 'none' }}>
             <tr>
               <th style={{ whiteSpace: 'nowrap', width: '130px', maxWidth: '130px', minWidth: '130px' }}>Property</th>
               {/* Each product becomes a column header */}
