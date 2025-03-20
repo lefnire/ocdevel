@@ -219,6 +219,12 @@ const isNumericColumn = (columnId: string): boolean => {
   return columnInfo[columnId]?.dtype === 'number';
 };
 
+// Helper to determine if a column is boolean
+const isBooleanColumn = (columnId: string): boolean => {
+  // Check if the column info indicates it's a boolean
+  return columnInfo[columnId]?.dtype === 'boolean';
+};
+
 // Filter component
 const Filter = ({ column, table }: { column: any, table: any }) => {
   const columnId = column.id;
@@ -258,7 +264,32 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
     );
   }
   
-  // Use text filter for non-numeric columns
+  // Use boolean filter for boolean columns
+  if (isBooleanColumn(columnId)) {
+    return (
+      <Form.Select
+        size="sm"
+        value={columnFilterValue === undefined ? '' : String(columnFilterValue)}
+        onChange={e => {
+          const value = e.target.value;
+          if (value === '') {
+            column.setFilterValue(undefined);
+          } else if (value === 'true') {
+            column.setFilterValue(true);
+          } else if (value === 'false') {
+            column.setFilterValue(false);
+          }
+        }}
+        className="mb-2"
+      >
+        <option value="">All</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </Form.Select>
+    );
+  }
+  
+  // Use text filter for other columns
   return (
     <InputGroup size="sm" className="mb-2">
       <Form.Control
@@ -315,6 +346,25 @@ export default function Treadmills() {
                 (max === undefined || numValue <= max)
               );
             }
+            return false;
+          }
+          
+          // Handle boolean filtering
+          if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
+            // Always use getAttributeValue to get the actual boolean value
+            // This ensures we're checking the underlying boolean, not the display value (✓)
+            const boolValue = getAttributeValue<boolean>(row.original[columnId as keyof Product]);
+            
+            // If we have a valid boolean value, compare it with the filter value
+            if (typeof boolValue === 'boolean') {
+              return boolValue === filterValue;
+            }
+            
+            // If the value itself is a boolean (not wrapped in an object), check that too
+            if (typeof value === 'boolean') {
+              return value === filterValue;
+            }
+            
             return false;
           }
           
