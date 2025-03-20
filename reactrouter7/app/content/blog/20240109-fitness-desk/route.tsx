@@ -13,6 +13,16 @@ import columnInfo from './treadmills/columns';
 import { OverlayTrigger, Popover, Form, InputGroup } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { calculateFinalScore } from './treadmills/calculator';
+import {
+  formatFinalScore,
+  getCellValue,
+  getCellDisplayValue,
+  getCellStyle,
+  hasAttributeNotes,
+  isNumericColumn,
+  isBooleanColumn
+} from './treadmills/formatters';
 
 export * from './meta.js';
 
@@ -24,199 +34,6 @@ interface ColumnInfo {
   rating: number;
   notes?: () => React.ReactElement;
 }
-
-// Helper function to calculate the final score for a product
-const calculateFinalScore = (product: Product): number => {
-  let totalScore = 0;
-  let totalWeight = 0;
-
-  // Process each attribute that has a rating
-  Object.entries(product).forEach(([key, attr]) => {
-    // Skip non-attribute properties
-    if (!attr || typeof attr !== 'object' || !('rating' in attr)) {
-      return;
-    }
-
-    // Get the column info for this attribute
-    const colInfo = columnInfo[key as keyof typeof columnInfo];
-    if (!colInfo || typeof colInfo.rating !== 'number') {
-      return;
-    }
-
-    // Get the attribute rating
-    const attrRating = attr.rating as number;
-    if (typeof attrRating !== 'number') {
-      return;
-    }
-
-    // Special handling for complex attributes
-    let adjustedRating = attrRating;
-
-    // For rating attribute (star ratings)
-    if (key === 'rating' && 'value' in attr && attr.value) {
-      const ratingValue = attr.value as [[number, number], [number, number, number, number, number]];
-      const [starRating, _] = ratingValue[0];
-      
-      // Adjust the rating based on the star rating (0-5 scale to 0-10 scale)
-      adjustedRating = (attrRating + (starRating * 2)) / 2;
-    }
-
-    // For fakespot attribute (letter grades)
-    if (key === 'fakespot' && 'value' in attr && attr.value) {
-      const fakespotValue = attr.value as [string, string];
-      const [productScore, companyScore] = fakespotValue;
-      
-      // Convert letter grades to numeric values (A=4, B=3, C=2, D=1, F=0)
-      const letterToNumber = (letter: string): number => {
-        switch (letter) {
-          case 'A': return 4;
-          case 'B': return 3;
-          case 'C': return 2;
-          case 'D': return 1;
-          case 'F': return 0;
-          default: return 0;
-        }
-      };
-      
-      // Calculate combined score with product score weighted more heavily (60/40 split)
-      const numericProductScore = letterToNumber(productScore);
-      const numericCompanyScore = letterToNumber(companyScore);
-      const combinedScore = (numericProductScore * 0.6) + (numericCompanyScore * 0.4);
-      
-      // Scale to 0-10 and blend with the attribute rating
-      const scaledScore = (combinedScore / 4) * 10;
-      adjustedRating = (attrRating + scaledScore) / 2;
-    }
-
-    // Add weighted score to total
-    const weightedScore = adjustedRating * colInfo.rating;
-    totalScore += weightedScore;
-    totalWeight += colInfo.rating;
-  });
-
-  // Normalize the score to a 0-10 scale
-  return totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
-};
-
-// Helper function to safely access attribute values
-const getAttributeValue = <T extends any>(attr: any): T | undefined => {
-  if (attr && typeof attr === 'object' && 'value' in attr) {
-    return attr.value as T;
-  }
-  return undefined;
-};
-
-// Helper function to safely check for attribute notes
-const hasAttributeNotes = (attr: any): boolean => {
-  return attr && typeof attr === 'object' && 'notes' in attr && typeof attr.notes === 'function';
-};
-
-// Helper function to safely get attribute flag
-const getAttributeFlag = (attr: any): string | undefined => {
-  if (attr && typeof attr === 'object' && 'flag' in attr) {
-    return attr.flag as string;
-  }
-  return undefined;
-};
-
-// Helper function to format dimensions
-const formatDimensions = (value: any): string => {
-  const dimensions = getAttributeValue<[number, number, number]>(value);
-  if (!dimensions) return '';
-  const [d, w, h] = dimensions;
-  return `${d}"D x ${w}"W x ${h}"H`;
-};
-
-// Helper function to format rating
-const formatRating = (value: any): string => {
-  const rating = getAttributeValue<[[number, number], [number, number, number, number, number]]>(value);
-  if (!rating) return '';
-  const [[avg, count], distribution] = rating;
-  return `${avg.toFixed(1)} (${count} reviews)`;
-};
-
-// Helper function to format fakespot
-const formatFakespot = (value: any): string => {
-  const fakespot = getAttributeValue<[string, string]>(value);
-  if (!fakespot) return '';
-  const [product, company] = fakespot;
-  return `P: ${product}, C: ${company}`;
-};
-
-// Helper function to format pickedBy
-const formatPickedBy = (value: any): string => {
-  const pickedBy = getAttributeValue<string[]>(value);
-  if (!pickedBy) return '';
-  return pickedBy.join(', ');
-};
-
-// Helper function to format countries
-const formatCountries = (value: any): string => {
-  const countries = getAttributeValue<string[]>(value);
-  if (!countries) return '';
-  return countries.join(', ');
-};
-
-// Helper function to format age
-const formatAge = (value: any): string => {
-  const age = getAttributeValue<string>(value);
-  if (!age) return '';
-  return age;
-};
-
-// Helper function to format the final score
-const formatFinalScore = (score: number): string => {
-  return score.toFixed(1);
-};
-
-// Helper function to get cell value
-const getCellValue = (row: Product, columnId: string): any => {
-  const value = row[columnId as keyof Product];
-  return getAttributeValue(value) ?? value;
-};
-
-// Helper function to get cell display value
-const getCellDisplayValue = (row: Product, columnId: string): string => {
-  const value = row[columnId as keyof Product];
-  if (!value) return '';
-  
-  // Handle specific column types
-  if (columnId === 'dimensions') {
-    return formatDimensions(value);
-  } else if (columnId === 'rating') {
-    return formatRating(value);
-  } else if (columnId === 'fakespot') {
-    return formatFakespot(value);
-  } else if (columnId === 'pickedBy') {
-    return formatPickedBy(value);
-  } else if (columnId === 'countries') {
-    return formatCountries(value);
-  } else if (columnId === 'age') {
-    return formatAge(value);
-  } else if (columnInfo[columnId]?.dtype === 'boolean') {
-    return getAttributeValue<boolean>(value) ? '✓' : '';
-  }
-  
-  // Default handling
-  const attributeValue = getAttributeValue(value);
-  if (attributeValue !== undefined) {
-    return String(attributeValue);
-  }
-  
-  return String(value);
-};
-
-// Helper function to get cell style based on flag
-const getCellStyle = (row: Product, columnId: string): React.CSSProperties => {
-  const value = row[columnId as keyof Product];
-  const flag = getAttributeFlag(value);
-  
-  if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-  if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-  if (flag === 'red') return { backgroundColor: '#ffcccc' };
-  
-  return {};
-};
 
 // Header cell component with notes
 const HeaderCell = ({
@@ -324,22 +141,6 @@ const Cell = ({
       </OverlayTrigger>
     </div>
   );
-};
-
-// Helper to determine if a column is numeric
-const isNumericColumn = (columnId: string): boolean => {
-  // Check if the column is one of the known numeric columns
-  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price'];
-  if (numericColumns.includes(columnId)) return true;
-  
-  // Check if the column info indicates it's a number
-  return columnInfo[columnId]?.dtype === 'number';
-};
-
-// Helper to determine if a column is boolean
-const isBooleanColumn = (columnId: string): boolean => {
-  // Check if the column info indicates it's a boolean
-  return columnInfo[columnId]?.dtype === 'boolean';
 };
 
 // Filter component
@@ -547,7 +348,7 @@ export default function Treadmills() {
           if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
             // Always use getAttributeValue to get the actual boolean value
             // This ensures we're checking the underlying boolean, not the display value (✓)
-            const boolValue = getAttributeValue<boolean>(row.original[columnId as keyof Product]);
+            const boolValue = getCellValue(row.original, columnId);
             
             // If we have a valid boolean value, compare it with the filter value
             if (typeof boolValue === 'boolean') {
