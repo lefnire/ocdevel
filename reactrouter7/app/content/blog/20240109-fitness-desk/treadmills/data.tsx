@@ -1,5 +1,5 @@
 export {default as brands} from './brands'
-export {default as filters} from './filters'
+export {default as columns} from './columns'
 
 import urevo_cyberpad from './urevo_cyberpad'
 import urevo_strol_2s_pro from './urevo_strol_2s_pro'
