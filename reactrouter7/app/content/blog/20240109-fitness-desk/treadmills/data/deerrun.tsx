@@ -1,6 +1,6 @@
-import type {Product} from "./types"
+import type {Product} from "../types"
 const info: Product = {
-  make: "DeerRun",
+  make: "deerrun",
   model: "DeerRun",
   description: "Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.",
   link: "",

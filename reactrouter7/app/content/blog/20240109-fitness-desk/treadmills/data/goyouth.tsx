@@ -1,6 +1,6 @@
-import type {Product} from "./types"
+import type {Product} from "../types"
 const info: Product = {
-  make: "GoYouth",
+  make: "goyouth",
   model: "GoYouth",
   description: "My prior main, and I loved it. I upgraded to Egofit for the incline. If you choose GoYouth, go to their store page just to make sure there's nothing newer than the link I posted. These budget brands often release newer versions quite frequently; and newer is better with these.",
   link: "https://amzn.to/3H75BzJ",

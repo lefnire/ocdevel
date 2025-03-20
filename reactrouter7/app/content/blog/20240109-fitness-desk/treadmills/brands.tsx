@@ -38,6 +38,7 @@ const info = {
   },
   egofit: {
     name: "Egofit",
+    rating: 7,
   },
   lifespan: {
     name: "LifeSpan",
@@ -53,6 +54,26 @@ const info = {
     rating: 5,
     warranty: {},
     notes: () => <div>{nonBudgetNote}</div>
+  },
+  deerrun: {
+    name: "DeerRun",
+    rating: 6,
+    warranty: {},
+  },
+  goplus: {
+    name: "GoPlus",
+    rating: 1,
+    warranty: {}
+  },
+  goyouth: {
+    name: "GoYouth",
+    rating: 3,
+    warranty: {}
+  },
+  walkingpad: {
+    name: "WalkingPad",
+    rating: 1,
+    warranty: {}
   }
 }
 export default info;

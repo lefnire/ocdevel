@@ -1,6 +1,6 @@
 import type {Product} from "./types"
 const info: Product = {
-  make: "WalkingPad",
+  make: "walkingpad",
   model: "WalkingPad",
   description: "I strongly discourage WalkingPad. It's the one I see the most complaints about online; severe quality issues like motor burnout. I think it's so popular because they landed strong SEO with the name, being exactly what people search for. Please look at the reviews before considering WalkingPad.",
   link: "https://amzn.to/3HCBP67",
