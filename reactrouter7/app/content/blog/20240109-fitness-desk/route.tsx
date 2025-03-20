@@ -13,7 +13,7 @@ import columnInfo, { columnsArray } from './treadmills/columns';
 import brands from './treadmills/brands';
 import { OverlayTrigger, Popover, Form, InputGroup } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { calculateFinalScore } from './treadmills/calculator';
 import {
   formatFinalScore,
@@ -59,10 +59,10 @@ const HeaderCell = ({
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <span>{info.label}</span>
         {column.getIsSorted() && (
-          <span style={{ marginLeft: '5px' }}>
-            {column.getIsSorted() === 'asc' ? <FaArrowLeft /> : <FaArrowRight />}
-          </span>
-        )}
+         <span style={{ marginLeft: '5px' }}>
+           {column.getIsSorted() === 'asc' ? <FaArrowUp /> : <FaArrowDown />}
+         </span>
+       )}
       </div>
     </div>
   );
@@ -513,192 +513,145 @@ const columns = React.useMemo(() => {
       <h1>Treadmill Comparison</h1>
       
       <div className="table-responsive" style={{ overflowX: 'auto' }}>
-        <table className="table table-striped table-bordered">
-          {/* Transposed table: columns become rows, rows become columns */}
-          <thead style={{ display: 'none' }}>
-            <tr>
-              <th style={{ whiteSpace: 'nowrap', width: '130px', maxWidth: '130px', minWidth: '130px' }}>Property</th>
-              {/* Each product becomes a column header */}
-              {table.getRowModel().rows.map(row => (
-                <th key={row.id} style={{ whiteSpace: 'nowrap' }}>
-                  {/* Display model and brand separately as the column header */}
-                  <div>
-                    <strong>
-                      {row.original.model} - {
-                        (() => {
-                          const brand = brands[row.original.make];
-                          const brandName = brand?.name || row.original.make;
-                          
-                          if (brand && brand.notes) {
-                            return (
-                              <OverlayTrigger
-                                trigger={["hover","focus"]}
-                                placement="right"
-                                overlay={
-                                  <Popover id={`popover-brand-${row.id}`}>
-                                    <Popover.Header as="h3">{brandName}</Popover.Header>
-                                    <Popover.Body>
-                                      {brand.notes()}
-                                    </Popover.Body>
-                                  </Popover>
-                                }
-                              >
-                                <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
-                                  {brandName}
-                                </span>
-                              </OverlayTrigger>
-                            );
-                          }
-                          
-                          return brandName;
-                        })()
-                      }
-                    </strong>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {/* Each column becomes a row */}
-            {table.getHeaderGroups()[0].headers.map(header => (
-              <tr key={header.id}>
-                {/* First cell is the column header (now a row header) */}
-                <td style={{ fontWeight: 'bold', backgroundColor: '#f8f9fa', width: '130px', maxWidth: '130px', minWidth: '130px' }}>
-                  <div>
-                    <div
-                      {...{
-                        className: header.column.getCanSort()
-                          ? 'cursor-pointer select-none'
-                          : '',
-                        onClick: header.column.getToggleSortingHandler(),
-                      }}
-                    >
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </div>
-                    {header.column.getCanFilter() ? (
-                      <div>
-                        <Filter column={header.column} table={table} />
-                        {/* Add description with popover below the filter */}
-                        <ColumnDescription
-                          column={header.column}
-                          info={
-                            header.column.id === 'rank'
-                              ? {
-                                  label: "Rank",
-                                  dtype: "number",
-                                  description: "Overall score (0-10)",
-                                  rating: 10,
-                                  notes: () => (
-                                    <div>
-                                      This score is calculated based on each product's attribute ratings and the importance of each attribute.
-                                      Higher scores indicate better overall performance. The calculation takes into account:
-                                      <ul>
-                                        <li>Each attribute's rating (out of 10)</li>
-                                        <li>The importance weight of each attribute (defined in columns.tsx)</li>
-                                        <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
-                                      </ul>
-                                    </div>
-                                  )
-                                }
-                              : header.column.id === 'model'
-                                ? {
-                                    label: "Model",
-                                    dtype: "string",
-                                    description: "Product model",
-                                    rating: 0
-                                  }
-                              : header.column.id === 'make'
-                                ? {
-                                    label: "Brand",
-                                    dtype: "string",
-                                    description: "Product manufacturer",
-                                    rating: 0
-                                  }
-                              : columnsArray.find(col => col.key === header.column.id) || columnInfo[header.column.id as keyof typeof columnInfo]
-                          }
-                        />
-                      </div>
-                    ) : null}
-                  </div>
-                </td>
-                
-                {/* Each cell in this row represents a different product's value for this property */}
-                {table.getRowModel().rows.map(row => {
-                  // Find the cell that corresponds to this column and row
-                  const cell = row.getVisibleCells().find(cell => cell.column.id === header.column.id);
-                  
-                  // Skip rating indicators for certain columns
-                  const skipRatingColumns = ['rank', 'model', 'countries'];
-                  const showRating = !skipRatingColumns.includes(header.column.id);
-                  
-                  // Debug which columns are being skipped
-                  console.log(`Column: ${header.column.id}, Skip Rating: ${skipRatingColumns.includes(header.column.id)}`);
-                  
-                  // Get the data-specific rating for this cell
-                  let rating = 0;
-                  if (showRating) {
-                    // Special handling for Brand column
-                    if (header.column.id === 'make') {
-                      const make = row.original.make;
-                      const brand = brands[make];
-                      if (brand && typeof brand.rating === 'number') {
-                        rating = brand.rating;
-                        // Add console log for debugging
-                        console.log(`Brand: ${make}, Rating: ${rating}`);
-                      }
-                    } else {
-                      // Get the original cell value directly from the row data
-                      const originalValue = row.original[header.column.id as keyof Product];
-                      
-                      // Check if the original value is an object with a rating property
-                      if (originalValue && typeof originalValue === 'object' && 'rating' in originalValue) {
-                        rating = (originalValue as any).rating;
-                        // Add console log for debugging
-                        console.log(`Column: ${header.column.id}, Rating: ${rating}, Value:`, originalValue);
-                      }
-                    }
-                  }
-                  
-                  return (
-                    <td key={`${row.id}-${header.id}`} style={{ position: 'relative' }}>
-                      {cell ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null}
-                      
-                      {/* Rating indicator - only show for applicable columns and if rating exists */}
-                      {showRating && rating > 0 && (
-                        <div
-                          style={{
-                            position: 'absolute',
-                            bottom: '0',
-                            right: '0',
-                            width: '18px',
-                            height: '18px',
-                            backgroundColor: rating >= 7 ? '#28a745' : // Bootstrap success
-                                             rating >= 4 ? '#ffc107' : // Bootstrap warning
-                                             '#dc3545',                // Bootstrap danger
-                            borderRadius: '3px',
-                            fontSize: '11px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: rating >= 4 ? 'black' : 'white',
-                            fontWeight: 'bold',
-                            opacity: 0.85
-                          }}
-                          title={`Rating: ${rating}/10`}
-                        >
-                          {rating}
-                        </div>
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
+       <table className="table table-striped table-bordered">
+         {/* Normal table: columns are attributes, rows are products */}
+         <thead>
+           <tr>
+             {/* Each column header */}
+             {table.getHeaderGroups()[0].headers.map(header => (
+               <th key={header.id} style={{ whiteSpace: 'nowrap', minWidth: header.id === 'model' || header.id === 'make' ? '130px' : '100px' }}>
+                 <div>
+                   <div
+                     {...{
+                       className: header.column.getCanSort()
+                         ? 'cursor-pointer select-none'
+                         : '',
+                       onClick: header.column.getToggleSortingHandler(),
+                     }}
+                   >
+                     {flexRender(
+                       header.column.columnDef.header,
+                       header.getContext()
+                     )}
+                   </div>
+                   {header.column.getCanFilter() ? (
+                     <div>
+                       <Filter column={header.column} table={table} />
+                       {/* Add description with popover below the filter */}
+                       <ColumnDescription
+                         column={header.column}
+                         info={
+                           header.column.id === 'rank'
+                             ? {
+                                 label: "Rank",
+                                 dtype: "number",
+                                 description: "Overall score (0-10)",
+                                 rating: 10,
+                                 notes: () => (
+                                   <div>
+                                     This score is calculated based on each product's attribute ratings and the importance of each attribute.
+                                     Higher scores indicate better overall performance. The calculation takes into account:
+                                     <ul>
+                                       <li>Each attribute's rating (out of 10)</li>
+                                       <li>The importance weight of each attribute (defined in columns.tsx)</li>
+                                       <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
+                                     </ul>
+                                   </div>
+                                 )
+                               }
+                             : header.column.id === 'model'
+                               ? {
+                                   label: "Model",
+                                   dtype: "string",
+                                   description: "Product model",
+                                   rating: 0
+                                 }
+                             : header.column.id === 'make'
+                               ? {
+                                   label: "Brand",
+                                   dtype: "string",
+                                   description: "Product manufacturer",
+                                   rating: 0
+                                 }
+                             : columnsArray.find(col => col.key === header.column.id) || columnInfo[header.column.id as keyof typeof columnInfo]
+                         }
+                       />
+                     </div>
+                   ) : null}
+                 </div>
+               </th>
+             ))}
+           </tr>
+         </thead>
+         <tbody>
+           {/* Each row is a product */}
+           {table.getRowModel().rows.map(row => (
+             <tr key={row.id}>
+               {/* Each cell in this row represents a different attribute for this product */}
+               {row.getVisibleCells().map(cell => {
+                 const columnId = cell.column.id;
+                 
+                 // Skip rating indicators for certain columns
+                 const skipRatingColumns = ['rank', 'model', 'countries'];
+                 const showRating = !skipRatingColumns.includes(columnId);
+                 
+                 // Get the data-specific rating for this cell
+                 let rating = 0;
+                 if (showRating) {
+                   // Special handling for Brand column
+                   if (columnId === 'make') {
+                     const make = row.original.make;
+                     const brand = brands[make];
+                     if (brand && typeof brand.rating === 'number') {
+                       rating = brand.rating;
+                     }
+                   } else {
+                     // Get the original cell value directly from the row data
+                     const originalValue = row.original[columnId as keyof Product];
+                     
+                     // Check if the original value is an object with a rating property
+                     if (originalValue && typeof originalValue === 'object' && 'rating' in originalValue) {
+                       rating = (originalValue as any).rating;
+                     }
+                   }
+                 }
+                 
+                 return (
+                   <td key={cell.id} style={{ position: 'relative' }}>
+                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                     
+                     {/* Rating indicator - only show for applicable columns and if rating exists */}
+                     {showRating && rating > 0 && (
+                       <div
+                         style={{
+                           position: 'absolute',
+                           bottom: '0',
+                           right: '0',
+                           width: '18px',
+                           height: '18px',
+                           backgroundColor: rating >= 7 ? '#28a745' : // Bootstrap success
+                                            rating >= 4 ? '#ffc107' : // Bootstrap warning
+                                            '#dc3545',                // Bootstrap danger
+                           borderRadius: '3px',
+                           fontSize: '11px',
+                           display: 'flex',
+                           alignItems: 'center',
+                           justifyContent: 'center',
+                           color: rating >= 4 ? 'black' : 'white',
+                           fontWeight: 'bold',
+                           opacity: 0.85
+                         }}
+                         title={`Rating: ${rating}/10`}
+                       >
+                         {rating}
+                       </div>
+                     )}
+                   </td>
+                 );
+               })}
+             </tr>
+           ))}
+         </tbody>
         </table>
       </div>
     </div>
