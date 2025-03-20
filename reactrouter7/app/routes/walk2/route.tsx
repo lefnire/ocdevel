@@ -47,7 +47,7 @@ const ColumnDescription = ({
   column: any,
   info: any
 }) => {
-  if (!info.description && !info.notes) return null;
+  if (!info.description && !info.notes) return <div>&nbsp;</div>;
   
   const popover = (
     <Popover id={`popover-desc-${column.id}`}>
@@ -69,7 +69,7 @@ const ColumnDescription = ({
             borderBottom: '1px dotted #6c757d'
           }}
         >
-          {info.description || 'More info'}
+          {info.description || 'Info (?)'}
         </span>
       </OverlayTrigger>
     </div>
@@ -564,7 +564,7 @@ export default function Treadmills() {
                            fontWeight: 'bold',
                            opacity: 0.85
                          }}
-                         title={`Rating: ${rating}/10`}
+                         title={`This attribute's rating: ${rating}/10`}
                        >
                          {rating}
                        </div>

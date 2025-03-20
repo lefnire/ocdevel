@@ -107,9 +107,9 @@ const columnsArray: ColumnDefinition[] = [
     key: "rank",
     label: "Rank",
     dtype: "number",
-    description: "Overall score based on weighted attributes",
     rating: 10,
     showInTable: true,
+    description: "Calculation (?)",
     notes: () => (
       <div>
         This score is calculated based on each product's attribute ratings and the importance of each attribute.
@@ -157,9 +157,9 @@ const columnsArray: ColumnDefinition[] = [
     key: "combinedRating",
     label: "Star Rating",
     dtype: "number",
-    description: "Combined rating from stars and Fakespot",
     rating: 9,
     showInTable: true,
+    description: "Calculation (?)",
     notes: () => (
       <div>
         <p>This is a combined rating that takes into account:</p>
@@ -305,10 +305,10 @@ const columnsArray: ColumnDefinition[] = [
     key: "price",
     label: "Price",
     dtype: "number",
-    description: "Dollars",
+    description: "Sorting (?)",
     rating: 4,
     showInTable: true,
-    notes: () => <div>Price is what you're willing to pay, it is what it is. So instead of ranking price, I use my perception of <em>value</em> (cost to quality).</div>,
+    notes: () => <div>These filters filter by price; but sorting this column sorts by my gut-check on <em>value</em> (cost to quality).</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.price);
     },
@@ -329,10 +329,10 @@ const columnsArray: ColumnDefinition[] = [
     key: "maxWeight",
     label: "Max Capacity",
     dtype: "number",
-    description: "Pounds",
     rating: 5,
     showInTable: true,
-    notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
+    // description: "Pounds",
+    // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.maxWeight);
     },
@@ -353,7 +353,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "maxSpeed",
     label: "Max Speed",
     dtype: "number",
-    description: "Miles Per Hour",
+    description: "Rails (?)",
     rating: 3,
     showInTable: true,
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
@@ -377,7 +377,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "incline",
     label: "Incline",
     dtype: "boolean",
-    description: "Favor 3%",
+    description: "Favor 3% (?)",
     rating: 6,
     showInTable: true,
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
@@ -421,7 +421,6 @@ const columnsArray: ColumnDefinition[] = [
     key: "horsePower",
     label: "Horse Power",
     dtype: "number",
-    description: "Motor Speed",
     rating: 6,
     showInTable: true,
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
@@ -443,13 +442,12 @@ const columnsArray: ColumnDefinition[] = [
   },
   {
     key: "age",
-    label: "Age",
+    label: "Released",
     // Generally an ISO string that can be converted into a number (so we can
     // sort / filter), but sometimes it's a textual description. So for sort / filter
     // purposes, it should use dates if possible, and handle non-date strings
     // appropriately
     dtype: "custom",
-    description: "Date released",
     rating: 7,
     showInTable: true,
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
@@ -473,7 +471,6 @@ const columnsArray: ColumnDefinition[] = [
     key: "pickedBy",
     label: "Favored By",
     dtype: "string",
-    description: "Me | my trusted sources | the public | the press",
     rating: 10,
     showInTable: true,
     notes: () => <div>Call me cocky, but this is my most important flag. I study the <em>hell</em> out of budget mills. I'm glued to reviews, I test them, I see what DIY fixer-type are saying in Discord. So between my picks and the picks of those I trust on the internet, I won't lead you astray. Next would be public picks; popular either by reviews or in forums (Reddit). Worst, IMO, are popular review site picks. CNET, Engadget, Wired - they're not always wrong, but boy do they get treadmills wrong. I think they just sort by popular on Amazon. Most of their top picks are my bottom picks.</div>,
@@ -545,10 +542,10 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "custom",
     // the data is stores as [number,number,number], so should be converted to
     // a string like `1"D x 1"W x 1"H` the cells.
-    description: "Depth x Width x Height (inches)",
+    description: 'D" x W" x H"',
     rating: 3, // adjustment weight (out of 10). 3 means, this isn't that big a deal
     showInTable: true,
-    notes: () => <div>Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
+    notes: () => <div>(Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
     calculate: (row: Product): [number, number, number] | undefined => {
       return getAttributeValue<[number, number, number]>(row.dimensions);
     },
@@ -570,7 +567,6 @@ const columnsArray: ColumnDefinition[] = [
     key: "weight",
     label: "Weight",
     dtype: "number",
-    description: "Pounds",
     rating: 1,
     showInTable: true,
     notes: () => <div>As long as it has wheels and tilt-stoppers, weight won't be a problem.</div>,
@@ -594,10 +590,9 @@ const columnsArray: ColumnDefinition[] = [
     key: "easyLube",
     label: "Easy Lube",
     dtype: "boolean",
-    description: "Low-profile rails",
     rating: 3,
     showInTable: true,
-    notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with Egofit's low-profile plates.</div>,
+    notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
     calculate: (row: Product): boolean | undefined => {
       return getAttributeValue<boolean>(row.easyLube);
     },
@@ -639,7 +634,6 @@ const columnsArray: ColumnDefinition[] = [
     key: "countries",
     label: "Countries",
     dtype: "custom", // list of country codes
-    description: "Where can this be shipped to.",
     rating: 0,
     showInTable: true,
     calculate: (row: Product): string[] | undefined => {
@@ -662,7 +656,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "app",
     label: "App",
     dtype: "boolean",
-    description: "Can control through app",
+    notes: () => <div>A nice-to-have, but not a deal maker.Some mills work with an app, so your controller isn't a point of failure. In the early days, a dead controller meant a dead mill - as companies didn't provide replacements. But that's less common these days. Apps also tally walking metrics.</div>,
     rating: 1,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
