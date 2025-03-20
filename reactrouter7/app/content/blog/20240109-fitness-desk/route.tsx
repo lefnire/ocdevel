@@ -12,6 +12,7 @@ import { data } from './treadmills/data';
 import columnInfo from './treadmills/columns';
 import { OverlayTrigger, Popover, Form, InputGroup } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export * from './meta.js';
 
@@ -225,24 +226,62 @@ const HeaderCell = ({
   column: any,
   info: ColumnInfo
 }) => {
-  if (!info.notes) {
-    return <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>{info.label}</div>;
-  }
-  
-  const popover = (
+  // Create popover content if notes are available
+  const popover = info.notes ? (
     <Popover id={`popover-header-${column.id}`}>
       <Popover.Header as="h3">{info.label}</Popover.Header>
       <Popover.Body>
-        {info.notes && info.notes()}
+        {info.notes()}
+      </Popover.Body>
+    </Popover>
+  ) : null;
+
+  return (
+    <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <span>{info.label}</span>
+        {column.getIsSorted() && (
+          <span style={{ marginLeft: '5px' }}>
+            {column.getIsSorted() === 'asc' ? <FaArrowLeft /> : <FaArrowRight />}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Description component with notes popover
+const ColumnDescription = ({
+  column,
+  info
+}: {
+  column: any,
+  info: ColumnInfo
+}) => {
+  if (!info.description && !info.notes) return null;
+  
+  const popover = (
+    <Popover id={`popover-desc-${column.id}`}>
+      <Popover.Header as="h3">{info.label}</Popover.Header>
+      <Popover.Body>
+        {info.notes ? info.notes() : <div>{info.description}</div>}
       </Popover.Body>
     </Popover>
   );
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', maxWidth: '130px' }}>
-      <span>{info.label}</span>
+    <div className="mt-1">
       <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-        <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
+        <span
+          style={{
+            fontSize: '0.75rem',
+            color: '#6c757d',
+            cursor: 'pointer',
+            borderBottom: '1px dotted #6c757d'
+          }}
+        >
+          {info.description || 'More info'}
+        </span>
       </OverlayTrigger>
     </div>
   );
@@ -407,31 +446,26 @@ export default function Treadmills() {
         {
           id: 'rank',
           header: ({ column }) => (
-            <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>
-              Rank
-              <OverlayTrigger
-                trigger={["hover","focus"]}
-                placement="bottom"
-                overlay={
-                  <Popover id="popover-header-rank">
-                    <Popover.Header as="h3">Rank</Popover.Header>
-                    <Popover.Body>
-                      <div>
-                        This score is calculated based on each product's attribute ratings and the importance of each attribute.
-                        Higher scores indicate better overall performance. The calculation takes into account:
-                        <ul>
-                          <li>Each attribute's rating (out of 10)</li>
-                          <li>The importance weight of each attribute (defined in columns.tsx)</li>
-                          <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
-                        </ul>
-                      </div>
-                    </Popover.Body>
-                  </Popover>
-                }
-              >
-                <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
-              </OverlayTrigger>
-            </div>
+            <HeaderCell
+              column={column}
+              info={{
+                label: "Rank",
+                dtype: "number",
+                description: "Overall score (0-10)",
+                rating: 10,
+                notes: () => (
+                  <div>
+                    This score is calculated based on each product's attribute ratings and the importance of each attribute.
+                    Higher scores indicate better overall performance. The calculation takes into account:
+                    <ul>
+                      <li>Each attribute's rating (out of 10)</li>
+                      <li>The importance weight of each attribute (defined in columns.tsx)</li>
+                      <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
+                    </ul>
+                  </div>
+                )
+              }}
+            />
           ),
           cell: info => (
             <div style={{ fontWeight: 'bold' }}>
@@ -455,11 +489,31 @@ export default function Treadmills() {
         }
       ),
       columnHelper.accessor('make', {
-        header: 'Make',
+        header: ({ column }) => (
+          <HeaderCell
+            column={column}
+            info={{
+              label: "Make",
+              dtype: "string",
+              description: "Manufacturer",
+              rating: 0
+            }}
+          />
+        ),
         cell: info => <div>{info.getValue()}</div>,
       }),
       columnHelper.accessor('model', {
-        header: 'Model',
+        header: ({ column }) => (
+          <HeaderCell
+            column={column}
+            info={{
+              label: "Model",
+              dtype: "string",
+              description: "Product model",
+              rating: 0
+            }}
+          />
+        ),
         cell: info => <div>{info.getValue()}</div>,
       }),
     ];
@@ -580,14 +634,49 @@ export default function Treadmills() {
                         header.column.columnDef.header,
                         header.getContext()
                       )}
-                      {{
-                        asc: ' 🔼',
-                        desc: ' 🔽',
-                      }[header.column.getIsSorted() as string] ?? null}
                     </div>
                     {header.column.getCanFilter() ? (
                       <div>
                         <Filter column={header.column} table={table} />
+                        {/* Add description with popover below the filter */}
+                        <ColumnDescription
+                          column={header.column}
+                          info={
+                            header.column.id === 'rank'
+                              ? {
+                                  label: "Rank",
+                                  dtype: "number",
+                                  description: "Overall score (0-10)",
+                                  rating: 10,
+                                  notes: () => (
+                                    <div>
+                                      This score is calculated based on each product's attribute ratings and the importance of each attribute.
+                                      Higher scores indicate better overall performance. The calculation takes into account:
+                                      <ul>
+                                        <li>Each attribute's rating (out of 10)</li>
+                                        <li>The importance weight of each attribute (defined in columns.tsx)</li>
+                                        <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
+                                      </ul>
+                                    </div>
+                                  )
+                                }
+                              : header.column.id === 'make'
+                                ? {
+                                    label: "Make",
+                                    dtype: "string",
+                                    description: "Manufacturer",
+                                    rating: 0
+                                  }
+                              : header.column.id === 'model'
+                                ? {
+                                    label: "Model",
+                                    dtype: "string",
+                                    description: "Product model",
+                                    rating: 0
+                                  }
+                              : columnInfo[header.column.id as keyof typeof columnInfo]
+                          }
+                        />
                       </div>
                     ) : null}
                   </div>

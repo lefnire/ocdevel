@@ -77,6 +77,8 @@ const info: Product = {
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>
   },
   app: {
+    value: false,
+    rating: 1,
   },
   countries: {
     value: ["US", "UK"]

@@ -107,7 +107,7 @@ const info = {
     label: "Favored By",
     dtype: "string",
     description: "Me | my trusted sources | the public | the press",
-    rating: 9,
+    rating: 10,
     notes: () => <div>Call me cocky, but this is my most important flag. I study the <em>hell</em> out of budget mills. I'm glued to reviews, I test them, I see what DIY fixer-type are saying in Discord. So between my picks and the picks of those I trust on the internet, I won't lead you astray. Next would be public picks; popular either by reviews or in forums (Reddit). Worst, IMO, are popular review site picks. CNET, Engadget, Wired - they're not always wrong, but boy do they get treadmills wrong. I think they just sort by popular on Amazon. Most of their top picks are my bottom picks.</div>
   },
   shock: {
