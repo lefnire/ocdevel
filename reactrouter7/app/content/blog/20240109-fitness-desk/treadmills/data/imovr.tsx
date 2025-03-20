@@ -1,6 +1,6 @@
 import type {Product} from "./types"
 const info: Product = {
-  make: "iMovR",
+  make: "imovr",
   model: "iMovR",
   description: "Considered on the internet the highest quality underdesk treadmill, often over Lifespan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer Lifespan based on what I've seen.",
   link: "https://www.imovr.com/treadmill-desk-workstations.html",

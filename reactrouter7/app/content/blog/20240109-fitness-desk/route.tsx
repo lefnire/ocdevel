@@ -10,6 +10,7 @@ import {
 import type { SortingState } from '@tanstack/react-table';
 import { data } from './treadmills/data';
 import columnInfo from './treadmills/columns';
+import brands from './treadmills/brands';
 import { OverlayTrigger, Popover, Form, InputGroup } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
@@ -126,8 +127,8 @@ const Cell = ({
   } else if (column.id === 'rank') {
     // Rank column has a fixed rating of 10
     rating = 10;
-  } else if (column.id === 'product') {
-    // Product column has a fixed rating of 0
+  } else if (column.id === 'model' || column.id === 'make') {
+    // Model and Make columns have a fixed rating of 0
     rating = 0;
   }
   
@@ -313,23 +314,73 @@ const columns = React.useMemo(() => {
         },
       }
     ),
-    // Combined Product column (model - make)
+    // Model column
     columnHelper.accessor(
-      row => `${row.model} - ${row.make}`,
+      'model',
       {
-        id: 'product',
+        id: 'model',
         header: ({ column }) => (
           <HeaderCell
             column={column}
             info={{
-              label: "Product",
+              label: "Model",
               dtype: "string",
-              description: "Product model and manufacturer",
+              description: "Product model",
               rating: 0
             }}
           />
         ),
         cell: info => <div>{info.getValue()}</div>,
+        enableSorting: true,
+        enableColumnFilter: true,
+      }
+    ),
+    // Make column (using brand name from brands.tsx)
+    columnHelper.accessor(
+      'make',
+      {
+        id: 'make',
+        header: ({ column }) => (
+          <HeaderCell
+            column={column}
+            info={{
+              label: "Brand",
+              dtype: "string",
+              description: "Product manufacturer",
+              rating: 0
+            }}
+          />
+        ),
+        cell: ({ row }) => {
+          const make = row.original.make;
+          const brand = brands[make];
+          const brandName = brand?.name || make;
+          
+          if (brand && brand.notes) {
+            return (
+              <div>
+                <OverlayTrigger
+                  trigger={["hover","focus"]}
+                  placement="right"
+                  overlay={
+                    <Popover id={`popover-brand-${row.id}`}>
+                      <Popover.Header as="h3">{brandName}</Popover.Header>
+                      <Popover.Body>
+                        {brand.notes()}
+                      </Popover.Body>
+                    </Popover>
+                  }
+                >
+                  <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+                    {brandName}
+                  </span>
+                </OverlayTrigger>
+              </div>
+            );
+          }
+          
+          return <div>{brandName}</div>;
+        },
         enableSorting: true,
         enableColumnFilter: true,
       }
@@ -424,9 +475,39 @@ const columns = React.useMemo(() => {
               {/* Each product becomes a column header */}
               {table.getRowModel().rows.map(row => (
                 <th key={row.id} style={{ whiteSpace: 'nowrap' }}>
-                  {/* Display product (model - make) as the column header */}
+                  {/* Display model and brand separately as the column header */}
                   <div>
-                    <strong>{row.original.model} - {row.original.make}</strong>
+                    <strong>
+                      {row.original.model} - {
+                        (() => {
+                          const brand = brands[row.original.make];
+                          const brandName = brand?.name || row.original.make;
+                          
+                          if (brand && brand.notes) {
+                            return (
+                              <OverlayTrigger
+                                trigger={["hover","focus"]}
+                                placement="right"
+                                overlay={
+                                  <Popover id={`popover-brand-${row.id}`}>
+                                    <Popover.Header as="h3">{brandName}</Popover.Header>
+                                    <Popover.Body>
+                                      {brand.notes()}
+                                    </Popover.Body>
+                                  </Popover>
+                                }
+                              >
+                                <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+                                  {brandName}
+                                </span>
+                              </OverlayTrigger>
+                            );
+                          }
+                          
+                          return brandName;
+                        })()
+                      }
+                    </strong>
                   </div>
                 </th>
               ))}
@@ -477,11 +558,18 @@ const columns = React.useMemo(() => {
                                     </div>
                                   )
                                 }
-                              : header.column.id === 'product'
+                              : header.column.id === 'model'
                                 ? {
-                                    label: "Product",
+                                    label: "Model",
                                     dtype: "string",
-                                    description: "Product model and manufacturer",
+                                    description: "Product model",
+                                    rating: 0
+                                  }
+                              : header.column.id === 'make'
+                                ? {
+                                    label: "Brand",
+                                    dtype: "string",
+                                    description: "Product manufacturer",
                                     rating: 0
                                   }
                               : columnInfo[header.column.id as keyof typeof columnInfo]
@@ -498,7 +586,7 @@ const columns = React.useMemo(() => {
                   const cell = row.getVisibleCells().find(cell => cell.column.id === header.column.id);
                   
                   // Skip rating indicators for certain columns
-                  const skipRatingColumns = ['rank', 'product', 'countries'];
+                  const skipRatingColumns = ['rank', 'model', 'make', 'countries'];
                   const showRating = !skipRatingColumns.includes(header.column.id);
                   
                   // Get the data-specific rating for this cell

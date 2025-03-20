@@ -1,6 +1,6 @@
 import type {Product} from "./types"
 const info: Product = {
-  make: "LifeSpan",
+  make: "lifespan",
   model: "TR1000",
   description: "A commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
   link: "https://lifespan-fitness.e9ppfh.net/eK0k5j",
