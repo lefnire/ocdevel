@@ -312,6 +312,12 @@ const columns = React.useMemo(() => {
           }
           return true;
         },
+        sortingFn: (rowA, rowB, columnId) => {
+          // For rank column, we can use the actual value since it's already a score
+          const valueA = rowA.getValue(columnId) as number;
+          const valueB = rowB.getValue(columnId) as number;
+          return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
+        }
       }
     ),
     // Model column
@@ -333,6 +339,10 @@ const columns = React.useMemo(() => {
         cell: info => <div>{info.getValue()}</div>,
         enableSorting: true,
         enableColumnFilter: true,
+        // Model doesn't have a rating, so we'll use a default of 0
+        sortingFn: (rowA, rowB, columnId) => {
+          return 0; // No sorting by rating for model column
+        }
       }
     ),
     // Make column (using brand name from brands.tsx)
@@ -383,6 +393,19 @@ const columns = React.useMemo(() => {
         },
         enableSorting: true,
         enableColumnFilter: true,
+        // Use brand rating from brands.tsx for sorting
+        sortingFn: (rowA, rowB, columnId) => {
+          const makeA = rowA.original.make;
+          const makeB = rowB.original.make;
+          
+          const brandA = brands[makeA];
+          const brandB = brands[makeB];
+          
+          const ratingA = brandA?.rating || 0;
+          const ratingB = brandB?.rating || 0;
+          
+          return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
+        }
       }
     ),
     ];
@@ -441,6 +464,29 @@ const columns = React.useMemo(() => {
           
           return false;
         },
+        // Use rating-based sorting for all info columns
+        sortingFn: (rowA, rowB, columnId) => {
+          const originalA = rowA.original;
+          const originalB = rowB.original;
+          
+          // Get the attribute from the row
+          const attrA = originalA[columnId as keyof Product];
+          const attrB = originalB[columnId as keyof Product];
+          
+          // Extract ratings
+          let ratingA = 0;
+          let ratingB = 0;
+          
+          if (attrA && typeof attrA === 'object' && 'rating' in attrA) {
+            ratingA = (attrA as any).rating || 0;
+          }
+          
+          if (attrB && typeof attrB === 'object' && 'rating' in attrB) {
+            ratingB = (attrB as any).rating || 0;
+          }
+          
+          return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
+        }
       });
     });
     

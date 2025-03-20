@@ -102,6 +102,32 @@ export const getCellValue = (row: Product, columnId: string): any => {
 };
 
 /**
+ * Helper function to get cell rating value for sorting
+ */
+export const getCellRatingValue = (row: Product, columnId: string): number => {
+  // Handle special case for brand/make column
+  if (columnId === 'make') {
+    // This will be handled separately in the column definition
+    return 0;
+  }
+  
+  const value = row[columnId as keyof Product];
+  
+  // If the value is an object with a rating property, return that
+  if (value && typeof value === 'object' && 'rating' in value) {
+    return (value as any).rating || 0;
+  }
+  
+  // For rank column, return the calculated score directly
+  if (columnId === 'rank') {
+    return row[columnId as keyof Product] as number || 0;
+  }
+  
+  // For other columns without rating, return 0
+  return 0;
+};
+
+/**
  * Helper function to get cell display value
  */
 export const getCellDisplayValue = (row: Product, columnId: string): string => {
