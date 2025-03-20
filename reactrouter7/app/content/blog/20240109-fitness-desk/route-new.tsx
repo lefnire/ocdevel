@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -10,6 +10,7 @@ import { AgGridReact } from 'ag-grid-react';
 import type { ColDef } from 'ag-grid-community';
 import { data } from './treadmills/data';
 import columnInfo from './treadmills/columns';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 // Define the Product interface inline to avoid import issues
 interface Attribute {
@@ -70,6 +71,68 @@ interface ColumnInfo {
   rating: number;
   notes?: () => React.ReactElement;
 }
+
+// Function to create a header component with notes
+const createHeaderComponent = (info: ColumnInfo) => {
+  if (!info.notes) return undefined;
+  
+  return (params: any) => {
+    const popover = (
+      <Popover id={`popover-header-${params.column.getColId()}`}>
+        <Popover.Header as="h3">{info.label}</Popover.Header>
+        <Popover.Body>
+          {info.notes && info.notes()}
+        </Popover.Body>
+      </Popover>
+    );
+
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <span>{params.displayName}</span>
+        <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
+          <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
+        </OverlayTrigger>
+      </div>
+    );
+  };
+};
+
+// Function to create a cell renderer with notes
+const createCellRenderer = (field: string) => {
+  return (params: any) => {
+    // Safely convert value to string
+    const displayValue = (() => {
+      if (params.valueFormatted) return params.valueFormatted;
+      if (params.value === null || params.value === undefined) return '';
+      if (typeof params.value === 'object') {
+        if (params.value.value !== undefined) return String(params.value.value);
+        return JSON.stringify(params.value);
+      }
+      return String(params.value);
+    })();
+    
+    if (!params.data[field] || !params.data[field].notes) {
+      return displayValue;
+    }
+
+    const popover = (
+      <Popover id={`popover-cell-${field}-${params.data.make}-${params.data.model}`}>
+        <Popover.Header as="h3">{params.colDef.headerName}</Popover.Header>
+        <Popover.Body>
+          {params.data[field].notes()}
+        </Popover.Body>
+      </Popover>
+    );
+
+    return (
+      <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+        <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+          {displayValue}
+        </span>
+      </OverlayTrigger>
+    );
+  };
+};
 
 export default function Treadmills() {
   // Use the actual treadmill data
@@ -169,8 +232,16 @@ export default function Treadmills() {
         cellStyle: cellStyle,
         tooltipValueGetter: (params: any) => {
           return info.description || '';
+        },
+        headerComponentParams: {
+          template: info.label
         }
       };
+
+      // Add header component if notes exist
+      if (info.notes) {
+        column.headerComponent = createHeaderComponent(info);
+      }
 
       // Add specific formatters based on data type
       if (key === 'dimensions') {
@@ -193,6 +264,12 @@ export default function Treadmills() {
         column.valueGetter = valueGetter;
       }
 
+      // Add cell renderer if notes exist in any data for this field
+      const hasNotes = data.some(item => item[key] && item[key].notes);
+      if (hasNotes) {
+        column.cellRenderer = createCellRenderer(key);
+      }
+
       return column;
     });
 
@@ -205,6 +282,7 @@ export default function Treadmills() {
     minWidth: 100,
     resizable: true,
     filter: true,
+    sortable: true,
     valueFormatter: defaultFormatter,
   }), []);
 
