@@ -24,6 +24,79 @@ interface ColumnInfo {
   notes?: () => React.ReactElement;
 }
 
+// Helper function to calculate the final score for a product
+const calculateFinalScore = (product: Product): number => {
+  let totalScore = 0;
+  let totalWeight = 0;
+
+  // Process each attribute that has a rating
+  Object.entries(product).forEach(([key, attr]) => {
+    // Skip non-attribute properties
+    if (!attr || typeof attr !== 'object' || !('rating' in attr)) {
+      return;
+    }
+
+    // Get the column info for this attribute
+    const colInfo = columnInfo[key as keyof typeof columnInfo];
+    if (!colInfo || typeof colInfo.rating !== 'number') {
+      return;
+    }
+
+    // Get the attribute rating
+    const attrRating = attr.rating as number;
+    if (typeof attrRating !== 'number') {
+      return;
+    }
+
+    // Special handling for complex attributes
+    let adjustedRating = attrRating;
+
+    // For rating attribute (star ratings)
+    if (key === 'rating' && 'value' in attr && attr.value) {
+      const ratingValue = attr.value as [[number, number], [number, number, number, number, number]];
+      const [starRating, _] = ratingValue[0];
+      
+      // Adjust the rating based on the star rating (0-5 scale to 0-10 scale)
+      adjustedRating = (attrRating + (starRating * 2)) / 2;
+    }
+
+    // For fakespot attribute (letter grades)
+    if (key === 'fakespot' && 'value' in attr && attr.value) {
+      const fakespotValue = attr.value as [string, string];
+      const [productScore, companyScore] = fakespotValue;
+      
+      // Convert letter grades to numeric values (A=4, B=3, C=2, D=1, F=0)
+      const letterToNumber = (letter: string): number => {
+        switch (letter) {
+          case 'A': return 4;
+          case 'B': return 3;
+          case 'C': return 2;
+          case 'D': return 1;
+          case 'F': return 0;
+          default: return 0;
+        }
+      };
+      
+      // Calculate combined score with product score weighted more heavily (60/40 split)
+      const numericProductScore = letterToNumber(productScore);
+      const numericCompanyScore = letterToNumber(companyScore);
+      const combinedScore = (numericProductScore * 0.6) + (numericCompanyScore * 0.4);
+      
+      // Scale to 0-10 and blend with the attribute rating
+      const scaledScore = (combinedScore / 4) * 10;
+      adjustedRating = (attrRating + scaledScore) / 2;
+    }
+
+    // Add weighted score to total
+    const weightedScore = adjustedRating * colInfo.rating;
+    totalScore += weightedScore;
+    totalWeight += colInfo.rating;
+  });
+
+  // Normalize the score to a 0-10 scale
+  return totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
+};
+
 // Helper function to safely access attribute values
 const getAttributeValue = <T extends any>(attr: any): T | undefined => {
   if (attr && typeof attr === 'object' && 'value' in attr) {
@@ -88,6 +161,11 @@ const formatAge = (value: any): string => {
   const age = getAttributeValue<string>(value);
   if (!age) return '';
   return age;
+};
+
+// Helper function to format the final score
+const formatFinalScore = (score: number): string => {
+  return score.toFixed(1);
 };
 
 // Helper function to get cell value
@@ -310,7 +388,10 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
 };
 
 export default function Treadmills() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  // Initialize sorting state with Rank column in descending order
+  const [sorting, setSorting] = React.useState<SortingState>([
+    { id: 'rank', desc: true }
+  ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
   
   // Column helper
@@ -318,8 +399,61 @@ export default function Treadmills() {
   
   // Create columns
   const columns = React.useMemo(() => {
-    // Base columns
+    // Base columns with Rank as the first column
     const baseColumns = [
+      // Rank column - calculated from product attributes and column weights
+      columnHelper.accessor(
+        row => calculateFinalScore(row),
+        {
+          id: 'rank',
+          header: ({ column }) => (
+            <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>
+              Rank
+              <OverlayTrigger
+                trigger={["hover","focus"]}
+                placement="bottom"
+                overlay={
+                  <Popover id="popover-header-rank">
+                    <Popover.Header as="h3">Rank</Popover.Header>
+                    <Popover.Body>
+                      <div>
+                        This score is calculated based on each product's attribute ratings and the importance of each attribute.
+                        Higher scores indicate better overall performance. The calculation takes into account:
+                        <ul>
+                          <li>Each attribute's rating (out of 10)</li>
+                          <li>The importance weight of each attribute (defined in columns.tsx)</li>
+                          <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
+                        </ul>
+                      </div>
+                    </Popover.Body>
+                  </Popover>
+                }
+              >
+                <span style={{ marginLeft: '5px', cursor: 'pointer', color: '#007bff' }}>ⓘ</span>
+              </OverlayTrigger>
+            </div>
+          ),
+          cell: info => (
+            <div style={{ fontWeight: 'bold' }}>
+              {formatFinalScore(info.getValue())}
+            </div>
+          ),
+          enableSorting: true,
+          enableColumnFilter: true,
+          filterFn: (row, columnId, filterValue) => {
+            if (Array.isArray(filterValue)) {
+              const [min, max] = filterValue;
+              const score = calculateFinalScore(row.original);
+              
+              return (
+                (min === undefined || score >= min) &&
+                (max === undefined || score <= max)
+              );
+            }
+            return true;
+          },
+        }
+      ),
       columnHelper.accessor('make', {
         header: 'Make',
         cell: info => <div>{info.getValue()}</div>,
