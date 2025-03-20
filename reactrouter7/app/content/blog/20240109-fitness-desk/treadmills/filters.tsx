@@ -1,6 +1,6 @@
 import Markdown from "react-markdown";
 
-export const info = {
+const info = {
   dimensions: {
     label: "Dimensions",
     value: "Depth x Width x Height (inches)",
@@ -74,9 +74,22 @@ export const info = {
     rating: 4,
     notes: () => <div>How conducive to meetings and calls is this treadmill. Whispering is 30dB, conversation is 60dB. So it's only conducive if less than 60. I measure these at 2mph, with the decibel meter near the treadmill and near my microphone. I try to record dB here when I can.</div>
   }, // TODO
+  easyLube: {
+    label: "Easy Lube",
+    value: "Low-profile rails",
+    rating: 3,
+    notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with Egofit's low-profile plates.</div>
+  },
+  amazon: {
+    label: "Amazon",
+    value: "Available on Amazon",
+    rating: 4,
+    notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>
+  },
   sturdy: {}, // TODO
-  flags: {
-    countries: [], // TODO,
-    warranty: () => <div>Buyer peace-of-mind. Can return easily, and buy an extended warranty through Asurion (which I recommend).</div>
-  }
+  countries: {}, // TODO
+  app: {}, // TODO
+  // warranty: () => <div>Buyer peace-of-mind. Can return easily, and buy an extended warranty through Asurion (which I recommend).</div>
 }
+
+export default info;

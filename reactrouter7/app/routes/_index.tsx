@@ -1,7 +1,7 @@
 import {Card} from 'react-bootstrap'
 import {Col, Row, Container} from 'react-bootstrap'
 import {Link} from "react-router";
-import type {Route} from "../../.react-router/types/app/routes/+types/home";
+import type {Route} from "./+types/_index";
 
 export default function Home() {
   const img = {
@@ -60,6 +60,6 @@ export default function Home() {
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "OCDevel" },
-    { name: "description", content: "Machine Learning Guide podcast, treadmill desks, walking pads, and life hacks." },
+    { name: "description", content: "Machine Learning Guide podcast, treadmill desks, and life hacks." },
   ];
 }

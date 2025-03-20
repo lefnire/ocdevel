@@ -1,8 +1,6 @@
-import Markdown from "react-markdown";
-
-
-export const info = {
-  make: "Urevo",
+import type {Product} from "./types"
+const info: Product = {
+  make: "urevo",
   model: "Cyberpad",
   description: "I just got this (Feb 12th 2025) and am in love. It's their newest, most upgraded model via Kickstarter. I'm retiring my 3S as a backup. Quality upgrades over 3S are worth the +$150.",
   link: "",
@@ -15,7 +13,7 @@ export const info = {
   },
   weight: {
     value: 70.6,
-    rating: 1,
+    rating: 2,
     flag: 'yellow',
     notes: () => <div>Very heavy! It does have wheels and tilt stoppers though, so it shouldn't  be a problem.</div>
   },
@@ -58,7 +56,7 @@ export const info = {
   },
   incline: {
     value: 12,
-    rating: 6,
+    rating: 9,
     notes: () => <div>Goes really high! Don't get greedy with those calories though, 3% for those knees baby.</div>
   },
   shock: {
@@ -79,23 +77,25 @@ export const info = {
     flag: "green",
     notes: () => <div>Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer</div>
   },
-  extra: [
-    {
-      value: "App",
-      rating: 1,
-      notes: () => <div>I've seen many treadmills with apps, but never got any of them working until this one. Control
+  app: {
+    value: true,
+    rating: 1,
+    notes: () => <div>I've seen many treadmills with apps, but never got any of them working until this one. Control
         speed / incline / lights via app, track calories & distance over time. It's more convenient than the controller
         (easier to navigate, no beeps) and removes the controller as a point of failure</div>
-    },
+  },
+  countries: {
+    value: ["US"]
+  },
+
+  // warranty: from brands
+
+  cons: [
     {
       value: "No Running",
       rating: 0,
       notes: () => <div>Only their Strol models support speeds past 4mph. But this being a premium-tier price point, I'd hoped it'd support higher speeds. So go Strol if you need to run.</div>
     }
   ],
-
-  flags: {
-    countries: ["US"],
-    warranty: ["Amazon", "Urevo"], // favor Urevo
-  }
 }
+export default info

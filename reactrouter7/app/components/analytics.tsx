@@ -23,7 +23,7 @@ const SERVICE_FUNCTIONALITY_STORAGE = 'functionality_storage'
 const SERVICE_PERSONALIZATION_STORAGE = 'personalization_storage'
 const SERVICE_SECURITY_STORAGE = 'security_storage'
 
-const TEST = false;
+const TEST = true;
 const PROD = import.meta.env.PROD;
 const USE_GA = TEST || PROD;
 
@@ -189,9 +189,12 @@ export function GoogleConsentMode() {
               title: 'Cookies',
               // description: 'This website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
               description: 'This website uses cookies for basic analytics, only enabled after consent.',
-              acceptAllBtn: 'Accept all',
-              acceptNecessaryBtn: 'Reject all',
-              showPreferencesBtn: 'Manage Individual preferences'
+              // acceptAllBtn: 'Accept all',
+              // acceptNecessaryBtn: 'Reject all',
+              // showPreferencesBtn: 'Manage Individual preferences'
+              acceptAllBtn: 'Accept',
+              acceptNecessaryBtn: 'Reject',
+              showPreferencesBtn: 'Manage'
             },
             preferencesModal: {
               title: 'Manage cookie preferences',
