@@ -14,7 +14,7 @@ const info: Product = {
   weight: {
     value: 0, // TODO: Weight not specified in the data
     rating: 0,
-    flag: 'yellow',
+    
     notes: () => <div>Described as high weight in the data, but exact value not specified.</div>
   },
   maxWeight: {
@@ -24,7 +24,7 @@ const info: Product = {
   maxSpeed: {
     value: 4,
     rating: 5,
-    flag: 'yellow',
+    
     notes: () => <div>Tagged as #speed:low in the data, but max speed is listed as 4mph which is standard.</div>
   },
   horsePower: {
@@ -56,19 +56,19 @@ const info: Product = {
   incline: {
     value: 0,
     rating: 2,
-    flag: "red",
+    
     notes: () => <div>No incline functionality, which is a downgrade from E3.</div>
   },
   shock: {
     value: true,
     rating: 7,
-    flag: "green",
+    
     notes: () => <div>Has shock absorption for better knee health.</div>
   },
   quiet: {
     value: false,
     rating: 3,
-    flag: "yellow",
+    
     notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {

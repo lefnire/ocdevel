@@ -8,7 +8,7 @@ const info: Product = {
   dimensions: {
     value: [41.5, 22.8, 7],
     rating: 7,
-    flag: 'green',
+    
     notes: () => <div>They've dialed the depth to the smallest comfortable even for long strides, to minimize space within the home. Part of this is removing face plates (the front is all belt), and part of it is leaning into the incline's modified gait.</div>
   },
   weight: {
@@ -44,7 +44,7 @@ const info: Product = {
   pickedBy: {
     value: ["me"],
     rating: 7,
-    flag: "green",
+    
   },
   incline: {
     value: 3,
@@ -59,7 +59,7 @@ const info: Product = {
   easyLube: {
     value: true,
     rating: 10,
-    flag: "green"
+    
   },
   quiet: {
     value: true,
@@ -68,7 +68,7 @@ const info: Product = {
   sturdy: {
     value: true,
     rating: 9,
-    flag: "green",
+    
     notes: () => <div>Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer</div>
   },
   amazon: {

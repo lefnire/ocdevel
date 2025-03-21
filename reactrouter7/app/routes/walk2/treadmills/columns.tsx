@@ -9,8 +9,6 @@ enabled for all columns. Some info on the attributes:
 
  For each row, not all values are always present. The table (and the Rank calculation) should take that into consideration.
 
- There's a `flag` attribute in the rows. If present, it should color the cell.
-
  Each attribute of each row may have a `notes` attribute, also a function returning jsx. If present, a popover on the cell should show that content.
 */
 
@@ -29,12 +27,6 @@ const hasAttributeNotes = (attr: any): boolean => {
   return attr && typeof attr === 'object' && 'notes' in attr && typeof attr.notes === 'function';
 };
 
-const getAttributeFlag = (attr: any): string | undefined => {
-  if (attr && typeof attr === 'object' && 'flag' in attr) {
-    return attr.flag as string;
-  }
-  return undefined;
-};
 
 // Helper functions moved from calculator.tsx
 const fakespotLetterToNumber = (letter: string): number => {
@@ -324,13 +316,6 @@ const columnsArray: ColumnDefinition[] = [
       if (price === undefined) return '';
       return `$${price}`;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.price);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "maxWeight",
@@ -349,13 +334,6 @@ const columnsArray: ColumnDefinition[] = [
       if (maxWeight === undefined) return '';
       return `${maxWeight} lbs`;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.maxWeight);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "maxSpeed",
@@ -374,13 +352,6 @@ const columnsArray: ColumnDefinition[] = [
       if (maxSpeed === undefined) return '';
       return `${maxSpeed} mph`;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.maxSpeed);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "incline",
@@ -397,13 +368,6 @@ const columnsArray: ColumnDefinition[] = [
       const incline = getAttributeValue<boolean>(row.incline);
       return incline ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.incline);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "sturdy",
@@ -418,13 +382,6 @@ const columnsArray: ColumnDefinition[] = [
       const sturdy = getAttributeValue<boolean>(row.sturdy);
       return sturdy ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.sturdy);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "horsePower",
@@ -442,13 +399,6 @@ const columnsArray: ColumnDefinition[] = [
       if (horsePower === undefined) return '';
       return `${horsePower}`;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.horsePower);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "age",
@@ -469,13 +419,6 @@ const columnsArray: ColumnDefinition[] = [
       if (!age) return '';
       return age;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.age);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "pickedBy",
@@ -492,13 +435,6 @@ const columnsArray: ColumnDefinition[] = [
       if (!pickedBy) return '';
       return pickedBy.join(', ');
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.pickedBy);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "shock",
@@ -513,13 +449,6 @@ const columnsArray: ColumnDefinition[] = [
       const shock = getAttributeValue<boolean>(row.shock);
       return shock ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.shock);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "quiet",
@@ -535,13 +464,6 @@ const columnsArray: ColumnDefinition[] = [
       const quiet = getAttributeValue<boolean>(row.quiet);
       return quiet ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.quiet);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "dimensions",
@@ -565,13 +487,6 @@ const columnsArray: ColumnDefinition[] = [
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.dimensions);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "weight",
@@ -589,13 +504,6 @@ const columnsArray: ColumnDefinition[] = [
       if (weight === undefined) return '';
       return `${weight} lbs`;
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.weight);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "easyLube",
@@ -611,13 +519,6 @@ const columnsArray: ColumnDefinition[] = [
       const easyLube = getAttributeValue<boolean>(row.easyLube);
       return easyLube ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.easyLube);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "amazon",
@@ -633,13 +534,6 @@ const columnsArray: ColumnDefinition[] = [
       const amazon = getAttributeValue<boolean>(row.amazon);
       return amazon ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.amazon);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "countries",
@@ -655,13 +549,6 @@ const columnsArray: ColumnDefinition[] = [
       if (!countries) return '';
       return countries.join(', ');
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.countries);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   {
     key: "app",
@@ -677,13 +564,6 @@ const columnsArray: ColumnDefinition[] = [
       const app = getAttributeValue<boolean>(row.app);
       return app ? '✓' : '';
     },
-    getStyle: (row: Product): React.CSSProperties => {
-      const flag = getAttributeFlag(row.app);
-      if (flag === 'green') return { backgroundColor: '#e6ffe6' };
-      if (flag === 'yellow') return { backgroundColor: '#ffffcc' };
-      if (flag === 'red') return { backgroundColor: '#ffcccc' };
-      return {};
-    }
   },
   // warranty: () => <div>Buyer peace-of-mind. Can return easily, and buy an extended warranty through Asurion (which I recommend).</div>
 ];

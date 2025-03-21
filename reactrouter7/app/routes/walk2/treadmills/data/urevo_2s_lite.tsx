@@ -12,7 +12,7 @@ const info: Product = {
   weight: {
     value: 0, // TODO: Weight not specified in the data
     rating: 2,
-    flag: 'yellow',
+    
     notes: () => <div>High weight according to the data, but exact value not specified.</div>
   },
   maxWeight: {
@@ -30,7 +30,7 @@ const info: Product = {
   age: {
     value: "2023-10-19",
     rating: 7,
-    flag: "green",
+    
     notes: () => <div>Released October 19, 2023 - relatively new model.</div>
   },
   rating: {
@@ -49,24 +49,24 @@ const info: Product = {
   pickedBy: {
     value: ["me"],
     rating: 7,
-    flag: "green",
+    
   },
   incline: {
     value: 3, // Exact value not specified, but it has incline
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Has incline functionality, which is important for knee health.</div>
   },
   shock: {
     value: true,
     rating: 7,
-    flag: "green",
+    
     notes: () => <div>Has shock absorption for better knee health.</div>
   },
   quiet: {
     value: false,
     rating: 3,
-    flag: "yellow",
+    
     notes: () => <div>A fair bit louder than Urevo 3S and Egofit M2. Still workable for meetings, but not if you want to be inconspicuous.</div>
   },
   sturdy: {

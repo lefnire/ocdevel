@@ -49,24 +49,24 @@ const info: Product = {
   pickedBy: {
     value: ["me", "public"],
     rating: 8,
-    flag: "green",
+    
   },
   incline: {
     value: 0,
     rating: 2,
-    flag: "red",
+    
     notes: () => <div>No incline functionality. Recommendation is to prop the head on yoga blocks or a 2x4.</div>
   },
   shock: {
     value: true,
     rating: 7,
-    flag: "green",
+    
     notes: () => <div>Has shock absorption for better knee health.</div>
   },
   quiet: {
     value: false,
     rating: 3,
-    flag: "yellow",
+    
     notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {

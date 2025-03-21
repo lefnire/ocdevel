@@ -12,7 +12,7 @@ const info: Product = {
   weight: {
     value: 0, // TODO: Weight not specified in the data
     rating: 2,
-    flag: 'yellow',
+    
     notes: () => <div>High weight according to the data, but exact value not specified.</div>
   },
   maxWeight: {
@@ -30,7 +30,7 @@ const info: Product = {
   age: {
     value: "2023-07-18",
     rating: 7,
-    flag: "green",
+    
     notes: () => <div>Released July 18, 2023 - relatively new model.</div>
   },
   rating: {
@@ -49,18 +49,18 @@ const info: Product = {
   pickedBy: {
     value: ["me", "public"],
     rating: 9,
-    flag: "green",
+    
   },
   incline: {
     value: 3, // Exact value not specified, but it has incline
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Has incline functionality, which is important for knee health.</div>
   },
   shock: {
     value: true,
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>More shock points than Egofit (4 silicon pins, 2 silicon "sandwiches").</div>
   },
   quiet: {
@@ -71,7 +71,7 @@ const info: Product = {
   sturdy: {
     value: true,
     rating: 9,
-    flag: "green",
+    
     notes: () => <div>The incline mechanism has a focal-point closer to the center, adding better stability to the structure than 2S Lite or EgoFit (which have triangle structure). The overall build quality (including the remote) is better than 2S Lite and EgoFit.</div>
   },
   app: {

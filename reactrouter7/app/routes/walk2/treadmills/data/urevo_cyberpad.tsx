@@ -8,13 +8,13 @@ const info: Product = {
   dimensions: {
     value: [47.6, 23.6, 8.7], // 47.6"D x 23.6"W x 8.7"H
     rating: 3,
-    flag: 'yellow',
+    
     notes: () => <div>Extremely tall. The back legs are 8.7", much taller than most mills. So make sure your standing desk is tall enough. Indeed, after switching from Urevo 3S to this, I had to raise my monitor arms.</div>
   },
   weight: {
     value: 70.6,
     rating: 2,
-    flag: 'yellow',
+    
     notes: () => <div>Very heavy! It does have wheels and tilt stoppers though, so it shouldn't  be a problem.</div>
   },
   maxWeight: {
@@ -32,7 +32,7 @@ const info: Product = {
   age: {
     value: "2025-02-05",
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Brand spankin' new, baby. It's their flagship from a Kickstarter campaign, and they're proud of it (as they should be). This is my favorite mill of all!</div>
   },
   rating: {
@@ -52,7 +52,7 @@ const info: Product = {
   pickedBy: {
     value: ["me", "trusted", "public"],
     rating: 10,
-    flag: "green",
+    
   },
   incline: {
     value: 12,
@@ -62,19 +62,19 @@ const info: Product = {
   shock: {
     value: true,
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>The absorption happens at the pistons of the incline mechanism, like spring-loading. This is more robust than silicone absorbers at the deck-level.</div>
   },
   quiet: {
     value: true,
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Brushless motor, 30db - 30% quieter than average.</div>
   },
   sturdy: {
     value: true,
     rating: 9,
-    flag: "green",
+    
     notes: () => <div>Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer</div>
   },
   app: {

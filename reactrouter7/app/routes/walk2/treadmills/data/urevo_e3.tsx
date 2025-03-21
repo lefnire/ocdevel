@@ -13,7 +13,7 @@ const info: Product = {
   weight: {
     value: 0, // TODO: Weight not specified in the data
     rating: 0,
-    flag: 'yellow',
+    
     notes: () => <div>Described as high weight in the data, but exact value not specified.</div>
   },
   maxWeight: {
@@ -53,7 +53,7 @@ const info: Product = {
   incline: {
     value: 3, // Exact value not specified, but it has incline
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Has incline functionality, which is important for knee health. Only Spacewalk model with incline.</div>
   },
   shock: {
@@ -63,7 +63,7 @@ const info: Product = {
   quiet: {
     value: false,
     rating: 3,
-    flag: "yellow",
+    
     notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {
@@ -103,7 +103,7 @@ const info: Product = {
     {
       value: "Motor overheating",
       rating: 2,
-      flag: "red",
+      
       notes: () => <div>People complain about the motor smelling burnt. Urevo recommends only walking 30-45 minutes at a time, then giving it a break.</div>
     },
     {

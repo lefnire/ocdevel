@@ -16,7 +16,7 @@ const info: Product = {
   maxWeight: {
     value: 300,
     rating: 9,
-    flag: "green",
+    
     notes: () => <div>Higher max weight capacity (300lbs) than many competitors.</div>
   },
   maxSpeed: {
@@ -30,13 +30,13 @@ const info: Product = {
   age: {
     value: "2024-10-15",
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Released October 15, 2024 - very recent model.</div>
   },
   rating: {
     value: [[4.6, 0], [73, 19, 4, 0, 4]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Excellent rating distribution with 73% 5-star ratings and no 2-star ratings.</div>
   },
   fakespot: {
@@ -46,24 +46,24 @@ const info: Product = {
   price: {
     value: 150,
     rating: 9,
-    flag: "green",
+    
     notes: () => <div>Very affordable price point, especially during sales.</div>
   },
   pickedBy: {
     value: ["me", "public"],
     rating: 8,
-    flag: "green",
+    
   },
   incline: {
     value: 0,
     rating: 2,
-    flag: "red",
+    
     notes: () => <div>No incline functionality. Recommendation is to prop the front on a block of wood or foam.</div>
   },
   shock: {
     value: false, // Not mentioned in the data
     rating: 0,
-    flag: "yellow",
+    
     notes: () => <div>No shock absorption mentioned, which may be a concern for knee health.</div>
   },
   quiet: {
@@ -94,7 +94,7 @@ const info: Product = {
     {
       value: "Very affordable",
       rating: 9,
-      flag: "green",
+      
       notes: () => <div>Cheapest you'll find, especially on a sale. The pro option (increased quality and horse power) sometimes drops to this price, so check before buying.</div>
     }
   ],
@@ -103,13 +103,13 @@ const info: Product = {
     {
       value: "Low-ish quality",
       rating: 3,
-      flag: "yellow",
+      
       notes: () => <div>This won't last you more than a year. But if you're just testing the waters, it's a good way to go.</div>
     },
     {
       value: "No incline",
       rating: 3,
-      flag: "red",
+      
       notes: () => <div>No incline functionality, which is important for knee health. Recommendation is to prop the front on a block of wood or foam.</div>
     }
   ],

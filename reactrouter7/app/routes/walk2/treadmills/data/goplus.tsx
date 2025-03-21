@@ -8,7 +8,7 @@ const info: Product = {
   dimensions: {
     value: [52.5, 29, 44.5], // 52.5"D x 29"W x 44.5"H
     rating: 3,
-    flag: "yellow",
+    
     notes: () => <div>Larger dimensions than many competitors, which may be an issue for some desk setups.</div>
   },
   weight: {
@@ -22,7 +22,7 @@ const info: Product = {
   maxSpeed: {
     value: 7.5, // Listed as 2.5mph / 7.5mph in the data, taking the higher value
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Higher max speed than many competitors, allowing for running.</div>
   },
   horsePower: {
@@ -32,19 +32,19 @@ const info: Product = {
   age: {
     value: "2020-06-09",
     rating: 2,
-    flag: "red",
+    
     notes: () => <div>Released June 9, 2020 - older model compared to newer options.</div>
   },
   rating: {
     value: [[4, 0], [56, 17, 8, 5, 14]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
     rating: 3,
-    flag: "red",
+    
     notes: () => <div>Concerning rating distribution with 14% 1-star ratings, showing a "C" shape rather than a staircase, which indicates potential quality issues.</div>
   },
   fakespot: {
     value: ["F", ""], // Fakespot F for the product
     rating: 1,
-    flag: "red",
+    
     notes: () => <div>Fakespot F rating and "Seller Caution" indicates significant issues with review authenticity.</div>
   },
   price: {
@@ -54,7 +54,7 @@ const info: Product = {
   pickedBy: {
     value: ["public"], // Listed as popular but not recommended
     rating: 2,
-    flag: "red",
+    
     notes: () => <div>Extremely popular but not recommended due to quality issues.</div>
   },
   incline: {
@@ -72,7 +72,7 @@ const info: Product = {
   sturdy: {
     value: false,
     rating: 2,
-    flag: "red",
+    
     notes: () => <div>Many reports of quality issues including belt drift and motor burnout.</div>
   },
   app: {
@@ -103,25 +103,25 @@ const info: Product = {
     {
       value: "Belt drift",
       rating: 2,
-      flag: "red",
+      
       notes: () => <div>Many reports of belt drift issues.</div>
     },
     {
       value: "Motor burnout",
       rating: 1,
-      flag: "red",
+      
       notes: () => <div>Frequent complaints about motor burnout.</div>
     },
     {
       value: "Console errors",
       rating: 2,
-      flag: "red",
+      
       notes: () => <div>Reports of console errors and failure to start.</div>
     },
     {
       value: "Poor review distribution",
       rating: 1,
-      flag: "red",
+      
       notes: () => <div>Strong 1-star skew, indicating quality issues. FakeSpot F, and "Seller Caution".</div>
     }
   ],

@@ -13,7 +13,7 @@ const info: Product = {
   weight: {
     value: 86,
     rating: 1,
-    flag: 'yellow',
+    
     notes: () => <div>Woa mama is it heavy! Much of it is in the rails.</div>
   },
   maxWeight: {
@@ -23,7 +23,7 @@ const info: Product = {
   maxSpeed: {
     value: 7.6,
     rating: 10,
-    flag: "green",
+    
     notes: () => <div>One of thew quality walking pads which allows running.</div>
   },
   horsePower: {
@@ -49,7 +49,7 @@ const info: Product = {
   pickedBy: {
     value: ["me", "trusted", "public"],
     rating: 9,
-    flag: "green",
+    
   },
   incline: {
     value: 9,
@@ -65,7 +65,7 @@ const info: Product = {
   sturdy: {
     value: true,
     rating: 8,
-    flag: "green",
+    
     notes: () => <div>Very high quality, to accommodate running.</div>
   },
   app: {
