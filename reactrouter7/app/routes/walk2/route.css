@@ -1,0 +1,23 @@
+.thumbnail-placeholder {
+    background-color: #e0e0e0;
+    width: 50px;
+    height: 50px;
+  }
+  .product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 56.25%;
+  }
+  @media (min-width: 768px) {
+    .product-thumbnail {
+      width: 100px;
+      height: 100px;
+    }
+  }
