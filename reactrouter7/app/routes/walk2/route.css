@@ -8,13 +8,6 @@
     height: 50px;
     object-fit: cover;
   }
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding-bottom: 56.25%;
-  }
   @media (min-width: 768px) {
     .product-thumbnail {
       width: 100px;
