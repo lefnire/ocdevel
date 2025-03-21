@@ -10,6 +10,7 @@ import {
 import type { SortingState } from '@tanstack/react-table';
 import { data } from './treadmills/data';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './treadmills/columns';
+// columnInfo is an object version of columnsArray for direct access by key
 import brands from './treadmills/brands';
 import { OverlayTrigger, Popover, Form } from 'react-bootstrap';
 import type { Product } from './treadmills/types';
@@ -87,7 +88,7 @@ const Cell = ({
   info?: any
 }) => {
   const columnId = column.id;
-  const columnDef = columnsArray.find(col => col.key === columnId);
+  const columnDef = columnInfo[columnId];
   
   // Get the actual product data
   const product: Product = row.original || row;
@@ -156,7 +157,7 @@ const Cell = ({
     
     // Special case for combinedRating - always show popover with details
     if (columnId === 'combinedRating') {
-      const combinedRatingColumn = columnsArray.find(col => col.key === 'combinedRating');
+      const combinedRatingColumn = columnInfo.combinedRating;
       if (combinedRatingColumn && combinedRatingColumn.notes) {
         const popover = (
           <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
@@ -228,35 +229,43 @@ const Filter = ({ column, table }: { column: any, table: any }) => {
   
   // Use numeric filter for numeric columns
   if (isNumericColumn(columnId)) {
+    // Get filter options from column definition
+    const columnDef = columnInfo[columnId];
+    const filterOptions = columnDef?.filterOptions || { min: true, max: true };
+    
     return (
       <div style={{ maxWidth: '130px' }}>
         <div className="d-flex gap-1 mb-1">
-          <Form.Control
-            type="number"
-            value={(columnFilterValue as [number, number])?.[0] ?? ''}
-            onChange={e => {
-              const val = e.target.value ? parseFloat(e.target.value) : undefined;
-              column.setFilterValue((old: [number, number] | undefined) =>
-                old ? [val, old[1]] : [val, undefined]
-              );
-            }}
-            placeholder="Min"
-            className="border rounded"
-            style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
-          />
-          <Form.Control
-            type="number"
-            value={(columnFilterValue as [number, number])?.[1] ?? ''}
-            onChange={e => {
-              const val = e.target.value ? parseFloat(e.target.value) : undefined;
-              column.setFilterValue((old: [number, number] | undefined) =>
-                old ? [old[0], val] : [undefined, val]
-              );
-            }}
-            placeholder="Max"
-            className="border rounded"
-            style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
-          />
+          {filterOptions.min && (
+            <Form.Control
+              type="number"
+              value={(columnFilterValue as [number, number])?.[0] ?? ''}
+              onChange={e => {
+                const val = e.target.value ? parseFloat(e.target.value) : undefined;
+                column.setFilterValue((old: [number, number] | undefined) =>
+                  old ? [val, old[1]] : [val, undefined]
+                );
+              }}
+              placeholder="Min"
+              className="border rounded"
+              style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
+            />
+          )}
+          {filterOptions.max && (
+            <Form.Control
+              type="number"
+              value={(columnFilterValue as [number, number])?.[1] ?? ''}
+              onChange={e => {
+                const val = e.target.value ? parseFloat(e.target.value) : undefined;
+                column.setFilterValue((old: [number, number] | undefined) =>
+                  old ? [old[0], val] : [undefined, val]
+                );
+              }}
+              placeholder="Max"
+              className="border rounded"
+              style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
+            />
+          )}
         </div>
       </div>
     );
@@ -345,7 +354,7 @@ export default function Treadmills() {
             // For numeric columns with range filtering
             if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
-              const columnDef = columnsArray.find(col => col.key === columnId);
+              const columnDef = columnInfo[columnId];
               const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
               
               if (value === undefined || value === null) return false;
@@ -353,15 +362,26 @@ export default function Treadmills() {
               const numValue = typeof value === 'number' ? value : parseFloat(String(value));
               if (isNaN(numValue)) return false;
               
-              return (
-                (min === undefined || numValue >= min) &&
-                (max === undefined || numValue <= max)
-              );
+              // Get filter options from column definition
+              const filterOptions = columnDef?.filterOptions || { min: true, max: true };
+              
+              // Only apply min/max filters based on filterOptions
+              let passesFilter = true;
+              
+              if (filterOptions.min && min !== undefined) {
+                passesFilter = passesFilter && numValue >= min;
+              }
+              
+              if (filterOptions.max && max !== undefined) {
+                passesFilter = passesFilter && numValue <= max;
+              }
+              
+              return passesFilter;
             }
             
             // For boolean columns
             if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
-              const columnDef = columnsArray.find(col => col.key === columnId);
+              const columnDef = columnInfo[columnId];
               const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
               
               if (typeof value === 'boolean') {
@@ -373,7 +393,7 @@ export default function Treadmills() {
             
             // For string columns
             if (typeof filterValue === 'string') {
-              const columnDef = columnsArray.find(col => col.key === columnId);
+              const columnDef = columnInfo[columnId];
               const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
               
               if (value === undefined || value === null) return false;
@@ -388,7 +408,7 @@ export default function Treadmills() {
             return true;
           },
           sortingFn: (rowA, rowB, columnId) => {
-            const columnDef = columnsArray.find(col => col.key === columnId);
+            const columnDef = columnInfo[columnId];
             
             // Special case for make/brand column
             if (columnId === 'make') {
@@ -471,7 +491,14 @@ export default function Treadmills() {
            <tr>
              {/* Each column header */}
              {table.getHeaderGroups()[0].headers.map(header => (
-               <th key={header.id} style={{ whiteSpace: 'nowrap', minWidth: header.id === 'model' || header.id === 'make' ? '130px' : '100px' }}>
+               <th
+                 key={header.id}
+                 style={{
+                   whiteSpace: 'nowrap',
+                   // minWidth: header.id === 'model' || header.id === 'make' ? '130px' : '100px'
+                   minWidth: 90
+                }}
+               >
                  <div>
                    <div
                      {...{
@@ -492,7 +519,7 @@ export default function Treadmills() {
                        {/* Add description with popover below the filter */}
                        <ColumnDescription
                          column={header.column}
-                         info={columnsArray.find(col => col.key === header.column.id) || columnInfo[header.column.id as keyof typeof columnInfo]}
+                         info={columnInfo[header.column.id as keyof typeof columnInfo]}
                        />
                      </div>
                    ) : null}

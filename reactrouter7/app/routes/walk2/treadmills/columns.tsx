@@ -99,6 +99,10 @@ interface ColumnDefinition {
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => any; // Function to get value for sorting
   getFilterValue?: (row: Product) => any; // Function to get value for filtering
+  filterOptions?: {
+    min?: boolean; // Whether to show min filter for numeric columns
+    max?: boolean; // Whether to show max filter for numeric columns
+  };
 }
 
 // Define the column info array
@@ -110,6 +114,7 @@ const columnsArray: ColumnDefinition[] = [
     rating: 10,
     showInTable: true,
     description: "Calculation (?)",
+    filterOptions: { min: true, max: false },
     notes: () => (
       <div>
         This score is calculated based on each product's attribute ratings and the importance of each attribute.
@@ -157,6 +162,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "combinedRating",
     label: "Star Rating",
     dtype: "number",
+    filterOptions: {min: true, max: false},
     rating: 9,
     showInTable: true,
     description: "Calculation (?)",
@@ -308,6 +314,7 @@ const columnsArray: ColumnDefinition[] = [
     description: "Sorting (?)",
     rating: 4,
     showInTable: true,
+    filterOptions: { min: false, max: true },
     notes: () => <div>These filters filter by price; but sorting this column sorts by my gut-check on <em>value</em> (cost to quality).</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.price);
@@ -331,6 +338,7 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "number",
     rating: 5,
     showInTable: true,
+    filterOptions: { min: true, max: false },
     // description: "Pounds",
     // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
     calculate: (row: Product): number | undefined => {
@@ -356,6 +364,7 @@ const columnsArray: ColumnDefinition[] = [
     description: "Rails (?)",
     rating: 3,
     showInTable: true,
+    filterOptions: { min: true, max: false },
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.maxSpeed);
@@ -423,6 +432,7 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "number",
     rating: 6,
     showInTable: true,
+    filterOptions: { min: true, max: false },
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.horsePower);
@@ -569,6 +579,7 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "number",
     rating: 1,
     showInTable: true,
+    filterOptions: { min: false, max: true },
     notes: () => <div>As long as it has wheels and tilt-stoppers, weight won't be a problem.</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.weight);
