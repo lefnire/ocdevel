@@ -153,15 +153,15 @@ const Cell = ({
       );
     }
     
-    // Special case for combinedRating - always show popover with details
-    if (columnId === 'combinedRating') {
-      const combinedRatingColumn = columnInfo.combinedRating;
-      if (combinedRatingColumn && combinedRatingColumn.notes) {
+    // Special case for rating - always show popover with details
+    if (columnId === 'rating') {
+      const ratingColumn = columnInfo.rating;
+      if (ratingColumn && ratingColumn.notes) {
         const popover = (
           <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
             <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
             <Popover.Body>
-              {/* Generate combined rating details */}
+              {/* Generate rating details */}
               <div>
                 {/* Star Rating */}
                 {product.rating && typeof product.rating === 'object' && 'value' in product.rating && product.rating.value && (
@@ -580,7 +580,7 @@ export default function Treadmills() {
                          }}
                          title={`This attribute's rating: ${rating}/10`}
                        >
-                         {rating}
+                         {rating?.toFixed(0)}
                        </div>
                      )}
                    </td>

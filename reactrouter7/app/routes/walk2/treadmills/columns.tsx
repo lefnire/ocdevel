@@ -94,6 +94,78 @@ const fakespotLetterToNumber = (letter: string): number => {
   }
 };
 
+// Function to calculate the combined rating (moved from combinedRating column)
+const calculateCombinedRating = (row: Product): number => {
+  // Default values
+  const details = {
+    starRating: 0,
+    ratingCount: 0,
+    countFactor: 0.6,
+    distribution: [0, 0, 0, 0, 0],
+    distributionFactor: 1.0,
+    fakespotProduct: 'B', // Default to B if not present
+    fakespotCompany: 'B', // Default to B if not present
+    fakespotScore: 0
+  };
+  
+  // Get the star rating data
+  let starRatingBase = 0;
+  if (row.rating && typeof row.rating === 'object' && 'value' in row.rating) {
+    const ratingValue = row.rating.value as [[number, number], [number, number, number, number, number]];
+    if (ratingValue && ratingValue.length === 2) {
+      const [[starRating, ratingCount], distribution] = ratingValue;
+      
+      details.starRating = starRating;
+      details.ratingCount = ratingCount;
+      details.countFactor = calculateRatingCountFactor(ratingCount);
+      
+      if (distribution && distribution.length === 5) {
+        details.distribution = distribution;
+        details.distributionFactor = calculateDistributionFactor(distribution);
+      }
+      
+      // Convert star rating (0-5) to a 0-10 scale
+      starRatingBase = starRating * 2;
+    }
+  }
+  
+  // Apply the count factor to the star rating
+  const weightedStarRating = starRatingBase * details.countFactor;
+  
+  // Apply the distribution factor
+  const distributionAdjustedRating = weightedStarRating * details.distributionFactor;
+  
+  // Get the fakespot data
+  let fakespotModifier = 0;
+  if (row.fakespot && typeof row.fakespot === 'object' && 'value' in row.fakespot) {
+    const fakespotValue = row.fakespot.value as [string, string];
+    if (fakespotValue && fakespotValue.length === 2) {
+      const [productGrade, companyGrade] = fakespotValue;
+      
+      details.fakespotProduct = productGrade || 'B';
+      details.fakespotCompany = companyGrade || 'B';
+      
+      // Convert grades to numeric values (A=10, B=8, C=6, D=3, F=1)
+      const productScore = fakespotLetterToNumber(productGrade);
+      const companyScore = fakespotLetterToNumber(companyGrade);
+      
+      // Weight company score more heavily (70/30 split)
+      const combinedFakespotScore = (productScore * 0.3) + (companyScore * 0.7);
+      details.fakespotScore = combinedFakespotScore;
+      
+      // Scale fakespot score to be a modifier (0.7 to 1.1)
+      // This makes fakespot less impactful as mentioned in the requirements
+      fakespotModifier = 0.7 + (combinedFakespotScore / 25); // 10 = 1.1, 1 = 0.74
+    }
+  }
+  
+  // Combine all factors for the final score
+  const finalScore = distributionAdjustedRating * fakespotModifier;
+  
+  // Clamp the score between 0 and 10
+  return Math.max(0, Math.min(10, finalScore));
+};
+
 const calculateDistributionFactor = (distribution: number[]): number => {
   if (!distribution || distribution.length !== 5) return 1.0;
   
@@ -217,114 +289,6 @@ const columnsArray: ColumnDefinition[] = [
     }
   },
   {
-    key: "combinedRating",
-    label: "Star Rating",
-    dtype: "number",
-    filterOptions: {min: true, max: false},
-    rating: 9,
-    showInTable: true,
-    description: "Calculation (?)",
-    notes: () => (
-      <div>
-        <p>This is a combined rating that takes into account:</p>
-        <ul>
-          <li>Star rating (weighted by number of reviews - more reviews = more reliable)</li>
-          <li>Rating distribution (penalizes skewed distributions with high 5-star and high 1-star counts)</li>
-          <li>Fakespot grades for both product and company (company grade weighted more heavily)</li>
-        </ul>
-        <p>The calculation aims to provide a more accurate representation of product quality by accounting for potential fake reviews and quality control issues.</p>
-      </div>
-    ),
-    calculate: (row: Product): number => {
-      // Default values
-      const details = {
-        starRating: 0,
-        ratingCount: 0,
-        countFactor: 0.6,
-        distribution: [0, 0, 0, 0, 0],
-        distributionFactor: 1.0,
-        fakespotProduct: 'B', // Default to B if not present
-        fakespotCompany: 'B', // Default to B if not present
-        fakespotScore: 0
-      };
-      
-      // Get the star rating data
-      let starRatingBase = 0;
-      if (row.rating && typeof row.rating === 'object' && 'value' in row.rating) {
-        const ratingValue = row.rating.value as [[number, number], [number, number, number, number, number]];
-        if (ratingValue && ratingValue.length === 2) {
-          const [[starRating, ratingCount], distribution] = ratingValue;
-          
-          details.starRating = starRating;
-          details.ratingCount = ratingCount;
-          details.countFactor = calculateRatingCountFactor(ratingCount);
-          
-          if (distribution && distribution.length === 5) {
-            details.distribution = distribution;
-            details.distributionFactor = calculateDistributionFactor(distribution);
-          }
-          
-          // Convert star rating (0-5) to a 0-10 scale
-          starRatingBase = starRating * 2;
-        }
-      }
-      
-      // Apply the count factor to the star rating
-      const weightedStarRating = starRatingBase * details.countFactor;
-      
-      // Apply the distribution factor
-      const distributionAdjustedRating = weightedStarRating * details.distributionFactor;
-      
-      // Get the fakespot data
-      let fakespotModifier = 0;
-      if (row.fakespot && typeof row.fakespot === 'object' && 'value' in row.fakespot) {
-        const fakespotValue = row.fakespot.value as [string, string];
-        if (fakespotValue && fakespotValue.length === 2) {
-          const [productGrade, companyGrade] = fakespotValue;
-          
-          details.fakespotProduct = productGrade || 'B';
-          details.fakespotCompany = companyGrade || 'B';
-          
-          // Convert grades to numeric values (A=10, B=8, C=6, D=3, F=1)
-          const productScore = fakespotLetterToNumber(productGrade);
-          const companyScore = fakespotLetterToNumber(companyGrade);
-          
-          // Weight company score more heavily (70/30 split)
-          const combinedFakespotScore = (productScore * 0.3) + (companyScore * 0.7);
-          details.fakespotScore = combinedFakespotScore;
-          
-          // Scale fakespot score to be a modifier (0.7 to 1.1)
-          // This makes fakespot less impactful as mentioned in the requirements
-          fakespotModifier = 0.7 + (combinedFakespotScore / 25); // 10 = 1.1, 1 = 0.74
-        }
-      }
-      
-      // Combine all factors for the final score
-      const finalScore = distributionAdjustedRating * fakespotModifier;
-      
-      // Clamp the score between 0 and 10
-      return Math.max(0, Math.min(10, finalScore));
-    },
-    render: (row: Product): string => {
-      const score = columnsArray.find(col => col.key === "combinedRating")?.calculate?.(row) || 0;
-      return score.toFixed(1);
-    },
-    getStyle: (row: Product): React.CSSProperties => {
-      const score = columnsArray.find(col => col.key === "combinedRating")?.calculate?.(row) || 0;
-      if (score >= 8) return { backgroundColor: '#e6ffe6' }; // Green
-      if (score >= 6) return { backgroundColor: '#ffffcc' }; // Yellow
-      if (score < 6) return { backgroundColor: '#ffcccc' };  // Red
-      return {};
-    },
-    getSortValue: (row: Product): number => {
-      return columnsArray.find(col => col.key === "combinedRating")?.calculate?.(row) || 0;
-    },
-    getRating: (row: Product): number => {
-      // Use the calculated value as the rating
-      return columnsArray.find(col => col.key === "combinedRating")?.calculate?.(row) || 5;
-    }
-  },
-  {
     key: "rating",
     label: "Star Rating",
     // This is stored as [[number,number],[number,number,number,number,number]].
@@ -334,10 +298,22 @@ const columnsArray: ColumnDefinition[] = [
     // ]`. In the cell, only the average rating should appear. But the popover
     // should show the breakdown. Make it simple for now, we'll make it fancy later.
     dtype: "custom",
-    description: "Out of 5-stars; number of ratings; distribution from 5, 4, 3, 2, 1 stars.",
-    rating: 8,
-    showInTable: false, // Hide this since we're using combinedRating instead
-    notes: () => <div>I have a firm stance on ratings. Anything less than 4.1 is no (all products, not just treadmills). Most important though is to observe the rating <em>distribution</em>. A healthy graph looks like a stair case, most being 5 least being 1 (or maybe just a taller than 2). What scares me is a C shape: mostly 5s, and second-mostly 1s. Smoking gun of either (1) fake ratings; (2) quality control (ticking time-bomb). I'll take significantly less 5s in exchange for a healthy curve. This table's calculator factors in the distribution, not just the score.</div>,
+    description: "Calculation (?)",
+    filterOptions: {min: true, max: false},
+    rating: 9,
+    showInTable: true,
+    notes: () => (
+      <div>
+        <p>I have a firm stance on ratings. Anything less than 4.1 is no (all products, not just treadmills). Most important though is to observe the rating <em>distribution</em>. A healthy graph looks like a stair case, most being 5 least being 1 (or maybe just a taller than 2). What scares me is a C shape: mostly 5s, and second-mostly 1s. Smoking gun of either (1) fake ratings; (2) quality control (ticking time-bomb). I'll take significantly less 5s in exchange for a healthy curve.</p>
+        <p>This rating takes into account:</p>
+        <ul>
+          <li>Star rating (weighted by number of reviews - more reviews = more reliable)</li>
+          <li>Rating distribution (penalizes skewed distributions with high 5-star and high 1-star counts)</li>
+          <li>Fakespot grades for both product and company (company grade weighted more heavily)</li>
+        </ul>
+        <p>The calculation aims to provide a more accurate representation of product quality by accounting for potential fake reviews and quality control issues.</p>
+      </div>
+    ),
     calculate: (row: Product): [[number, number], [number, number, number, number, number]] | undefined => {
       return getAttributeValue<[[number, number], [number, number, number, number, number]]>(row.rating);
     },
@@ -345,9 +321,15 @@ const columnsArray: ColumnDefinition[] = [
       const rating = getAttributeValue<[[number, number], [number, number, number, number, number]]>(row.rating);
       if (!rating) return '';
       const [[avg, count], distribution] = rating;
-      return `${avg.toFixed(1)} (${count} reviews)`;
+      return `${avg.toFixed(1)}`;
     },
-    getRating: (row: Product): number => row.rating?.rating ?? 5
+    getSortValue: (row: Product): number => {
+      return calculateCombinedRating(row);
+    },
+    getRating: (row: Product): number => {
+      // Use the calculated combined rating value as the rating
+      return calculateCombinedRating(row);
+    }
   },
   {
     key: "fakespot",
@@ -733,8 +715,8 @@ if (rankColumn) {
 
     // Process each column that has a rating
     columnsArray.forEach(column => {
-      // Skip the rank column itself and columns with 0 rating
-      if (column.key === "rank" || column.rating === 0) {
+      // Skip the rank column itself, columns with 0 rating, and fakespot (since it's already incorporated into rating)
+      if (column.key === "rank" || column.rating === 0 || column.key === "fakespot") {
         return;
       }
       // Get the rating using the column's getRating function or fallback to 0
@@ -758,7 +740,7 @@ if (rankColumn) {
 // Helper functions for external use
 export const isNumericColumn = (columnId: string): boolean => {
   // Check if the column is one of the known numeric columns
-  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price', 'combinedRating', 'rank'];
+  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price', 'rating', 'rank'];
   if (numericColumns.includes(columnId)) return true;
   
   // Check if the column info indicates it's a number
