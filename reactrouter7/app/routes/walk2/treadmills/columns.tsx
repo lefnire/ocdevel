@@ -1,16 +1,3 @@
-/*
-These are the columns / filters for the table. They can also be read here to und
-a bit about that data type and how to use it. Filtering and sorting should be
-enabled for all columns. Some info on the attributes:
- - label: the name of the column
- - description: column is a bit more info, and ideally could be shown (if it fits) as smaller font under the label?
- - rating: each row has a rating (eg, egofit_m2 has weight=5, maxSpeed=4, etc). Those ratings are how that particular column stacks up out of 10. But not all attributes are equally important, so the rating attribute in *this* file is the "weight" of that rating. That is, if the column (this file) has a rating of 1, and the row's rating is 5, that 5 should be downplayed significantly in the final score. In the end, a new column should be added to the table (and it should be the first one displayed) called "Rank", with a bit of information on this concept in the popover.
- - notes: Each column should have some icon that shows a popover with these notes, so users can better understand the column.
-
- For each row, not all values are always present. The table (and the Rank calculation) should take that into consideration.
-
- Each attribute of each row may have a `notes` attribute, also a function returning jsx. If present, a popover on the cell should show that content.
-*/
 
 import React from "react";
 import type { Product } from "./types";
@@ -21,10 +8,6 @@ const getAttributeValue = <T extends any>(attr: any): T | undefined => {
     return attr.value as T;
   }
   return undefined;
-};
-
-const hasAttributeNotes = (attr: any): boolean => {
-  return attr && typeof attr === 'object' && 'notes' in attr && typeof attr.notes === 'function';
 };
 
 
