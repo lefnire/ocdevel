@@ -132,27 +132,6 @@ const Cell = ({
     const attr = product[columnId as keyof Product];
     const hasNotes = attr && typeof attr === 'object' && 'notes' in attr && typeof (attr as any).notes === 'function';
     
-    if (hasNotes) {
-      const popover = (
-        <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
-          <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
-          <Popover.Body>
-            {(attr as any).notes()}
-          </Popover.Body>
-        </Popover>
-      );
-      
-      return (
-        <div style={cellStyle}>
-          <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
-            <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
-              {displayValue}
-            </span>
-          </OverlayTrigger>
-        </div>
-      );
-    }
-    
     // Special case for rating - always show popover with details
     if (columnId === 'rating') {
       const ratingColumn = columnInfo.rating;
@@ -161,6 +140,13 @@ const Cell = ({
           <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
             <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
             <Popover.Body>
+              {/* Show custom notes if they exist */}
+              {hasNotes && (
+                <div className="mb-2">
+                  {(attr as any).notes()}
+                </div>
+              )}
+              
               {/* Generate rating details */}
               <div>
                 {/* Star Rating */}
@@ -206,6 +192,28 @@ const Cell = ({
           </div>
         );
       }
+    }
+    
+    // For other columns with notes
+    if (hasNotes && columnId !== 'rating') {
+      const popover = (
+        <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
+          <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
+          <Popover.Body>
+            {(attr as any).notes()}
+          </Popover.Body>
+        </Popover>
+      );
+      
+      return (
+        <div style={cellStyle}>
+          <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+            <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
+              {displayValue}
+            </span>
+          </OverlayTrigger>
+        </div>
+      );
     }
     
     // Default rendering without popover
