@@ -1,6 +1,7 @@
 import React from "react";
 import type { Product } from "./types";
 import brands from './brands';
+import dayjs from "dayjs";
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -524,8 +525,38 @@ const columnsArray: ColumnDefinition[] = [
       return age;
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise return 5
-      return getAttributeRating(row.age, 5);
+      // Return the rating property if it exists
+      const existingRating = getAttributeRating(row.age);
+      if (existingRating !== 5) { // 5 is the default from getAttributeRating
+        return existingRating;
+      }
+      
+      const ageValue = getAttributeValue<string>(row.age);
+      if (!ageValue) return 5;
+      
+      // Try to parse the age as a date using dayjs
+      let releaseDate = dayjs(ageValue);
+      
+      // Check if it's a year only (e.g., "2020")
+      if (!releaseDate.isValid() && /^\d{4}$/.test(ageValue)) {
+        releaseDate = dayjs(`${ageValue}-01-01`); // January 1st of that year
+      }
+      
+      // If we couldn't parse a date, return default rating of 5
+      if (!releaseDate.isValid()) {
+        return 5;
+      }
+      
+      // Calculate age in years
+      const today = dayjs();
+      const ageInYears = today.diff(releaseDate, 'year', true);
+      
+      // Calculate rating: 10 for today, 0 for 6+ years old
+      if (ageInYears <= 0) return 10; // For future dates or today
+      if (ageInYears >= 6) return 0;  // For 6+ years old
+      
+      // Linear scale between 0 and 6 years
+      return 10 - (ageInYears * (10 / 6));
     }
   },
   {

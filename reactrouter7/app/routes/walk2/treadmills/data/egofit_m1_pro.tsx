@@ -7,72 +7,52 @@ const info: Product = {
 
   dimensions: {
     value: [38.39, 21.85, 6.89], // 38.39"D x 21.85"W x 6.89"H
-    rating: 7,
-    
     notes: () => <div>Smaller depth than many competitors, which may be beneficial for smaller spaces.</div>
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
+    value: 48.5,
   },
   maxWeight: {
     value: 220,
-    rating: 4,
-    
     notes: () => <div>Lower max weight capacity (220lbs) than many competitors which typically offer 265lbs.</div>
   },
   maxSpeed: {
     value: 3.1,
-    rating: 3,
-    
     notes: () => <div>Lower max speed than many competitors which typically offer 4mph.</div>
   },
   horsePower: {
     value: 2,
-    rating: 3,
-    
     notes: () => <div>2HP is lower than the recommended 2.25HP+ for longevity.</div>
   },
   age: {
     value: "2021-03-30",
-    rating: 3,
-    
     notes: () => <div>Released March 30, 2021 - older model compared to newer options.</div>
   },
   rating: {
-    value: [[4.5, 0], [75, 15, 4, 2, 4]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 8,
-    
+    value: [[4.5, 1066], [74, 15, 4, 2, 5]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
     notes: () => <div>Excellent rating distribution with 75% 5-star ratings.</div>
   },
   fakespot: {
-    value: ["B", ""], // Fakespot B for the product
-    rating: 7,
+    value: ["B", "B"], // Fakespot B for the product
     notes: () => <div>Fakespot B rating indicates generally reliable reviews.</div>
   },
   price: {
     value: 400,
-    rating: 5,
   },
   pickedBy: {
     value: ["public"],
-    rating: 6,
   },
   incline: {
     value: 5,
-    rating: 6,
-    
     notes: () => <div>Has a fixed 5% incline, which is higher than the ideal 3% recommended for knee health. This makes it tall (6.89"H) which may or may not accommodate your desk height for ergonomic peripherals and monitor placement.</div>
   },
   shock: {
     value: false, // Not mentioned in the data
-    rating: 0,
-    
     notes: () => <div>No shock absorption mentioned, which is a feature added in the newer M2 model.</div>
   },
   quiet: {
     value: false, // Not specifically mentioned
-    rating: 0,
+    rating: 5,
   },
   sturdy: {
     value: true, // Assuming based on the brand reputation
@@ -83,11 +63,9 @@ const info: Product = {
   },
   easyLube: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon
