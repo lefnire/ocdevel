@@ -470,6 +470,7 @@ const columnsArray: ColumnDefinition[] = [
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise return 5
+      // reserve 0 for notably shite models
       return getAttributeRating(row.sturdy, 5);
     },
     render: (row: Product): string => {
@@ -556,7 +557,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "shock",
     label: "Shock absorption",
     dtype: "boolean",
-    rating: 8,
+    rating: 5,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
       return getAttributeValue<boolean>(row.shock);
@@ -567,7 +568,7 @@ const columnsArray: ColumnDefinition[] = [
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise return 5
-      return getAttributeRating(row.shock, 5);
+      return getAttributeRating(row.shock, 0);
     }
   },
   {
@@ -586,6 +587,7 @@ const columnsArray: ColumnDefinition[] = [
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise return 5
+      // reserve 0-5 for notably loud models
       return getAttributeRating(row.quiet, 5);
     }
   },
@@ -611,7 +613,34 @@ const columnsArray: ColumnDefinition[] = [
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
     },
-    getRating: (row: Product): number => (row.dimensions as any)?.rating ?? 5
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists
+      const existingRating = getAttributeRating(row.dimensions);
+      if (existingRating !== 5) { // 5 is the default from getAttributeRating
+        return existingRating;
+      }
+      
+      const dimensions = getAttributeValue<[number, number, number]>(row.dimensions);
+      if (!dimensions) return 5;
+      
+      const [depth, width, height] = dimensions;
+      
+      // Calculate score for depth (63" and above = 0, 38" and below = 10)
+      const depthScore = depth >= 63 ? 0 : depth <= 38 ? 10 : 10 - (10 * (depth - 38) / (63 - 38));
+      
+      // Calculate score for width (similar scale)
+      const maxWidth = 28.5;
+      const minWidth = 2;
+      const widthScore = width >= maxWidth ? 0 : width <= minWidth ? 10 : 10 - (10 * (width - minWidth) / (maxWidth - minWidth));
+      
+      // Calculate score for height (similar scale)
+      const maxHeight = 9;
+      const minHeight = 4.5;
+      const heightScore = height >= maxHeight ? 0 : height <= minHeight ? 10 : 10 - (10 * (height - minHeight) / (maxHeight - minHeight));
+      
+      // Average the three scores
+      return (depthScore + widthScore + heightScore) / 3;
+    }
   },
   {
     key: "weight",
@@ -669,7 +698,7 @@ const columnsArray: ColumnDefinition[] = [
       const amazon = getAttributeValue<boolean>(row.amazon);
       return amazon ? '✓' : '';
     },
-    getRating: (row: Product): number => (row.amazon as any)?.rating ?? 5
+    getRating: (row: Product): number => (row.amazon as any)?.rating ?? 0
   },
   {
     key: "countries",

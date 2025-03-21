@@ -1,89 +1,70 @@
 import type {Product} from "../types"
 const info: Product = {
   make: "deerrun",
-  model: "DeerRun",
+  model: "Q1 Mini",
   description: "Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.",
-  link: "",
+  link: "https://amzn.to/4bM8iFn",
 
   dimensions: {
-    value: [45, 20.3, 4.3], // 45"D x 20.3"W x 4.3"H
-    rating: 6,
+    value: [43, 20, 4.3], // 45"D x 20.3"W x 4.3"H
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
+    value: 42,
   },
   maxWeight: {
-    value: 300,
-    rating: 9,
-    
-    notes: () => <div>Higher max weight capacity (300lbs) than many competitors.</div>
+    value: 265,
+    // notes: () => <div>Small but mighty!</div>
   },
   maxSpeed: {
     value: 3.8,
-    rating: 4,
   },
   horsePower: {
-    value: 2.2,
-    rating: 5,
+    value: 2.5,
   },
   age: {
     value: "2024-10-15",
     rating: 8,
-    
-    notes: () => <div>Released October 15, 2024 - very recent model.</div>
   },
   rating: {
-    value: [[4.6, 0], [73, 19, 4, 0, 4]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 8,
-    
-    notes: () => <div>Excellent rating distribution with 73% 5-star ratings and no 2-star ratings.</div>
+    value: [[4.6, 0], [75, 16, 4, 2, 3]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    // rating: 8,
+    // notes: () => <div>Excellent rating distribution with 73% 5-star ratings and no 2-star ratings.</div>
   },
   fakespot: {
-    value: ["", ""], // Not specified in the data
+    value: ["D", "C"],
     rating: 0,
   },
   price: {
-    value: 150,
-    rating: 9,
-    
+    value: 200,
+    sale: 150,
     notes: () => <div>Very affordable price point, especially during sales.</div>
   },
   pickedBy: {
     value: ["me", "public"],
-    rating: 8,
-    
   },
   incline: {
     value: 0,
-    rating: 2,
-    
     notes: () => <div>No incline functionality. Recommendation is to prop the front on a block of wood or foam.</div>
   },
   shock: {
     value: false, // Not mentioned in the data
-    rating: 0,
-    
     notes: () => <div>No shock absorption mentioned, which may be a concern for knee health.</div>
   },
   quiet: {
-    value: false, // Not specifically mentioned
-    rating: 0,
+    // decibels: 45. TODO double-check, and put in table
+    value: true, // Not specifically mentioned
   },
   sturdy: {
-    value: false, // Not specifically mentioned
-    rating: 0,
+    value: false,
   },
   app: {
-    value: false, // Not mentioned in the data
+    value: true,
   },
   easyLube: {
-    value: false, // Not mentioned in the data
-    rating: 0,
+    value: true,
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon
