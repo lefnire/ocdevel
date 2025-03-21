@@ -81,7 +81,6 @@ const info: Product = {
   },
   app: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   easyLube: {
     value: false, // Not mentioned in the data

@@ -79,7 +79,6 @@ const info: Product = {
   },
   app: {
     value: true,
-    rating: 1,
     notes: () => <div>I've seen many treadmills with apps, but never got any of them working until this one. Control
         speed / incline / lights via app, track calories & distance over time. It's more convenient than the controller
         (easier to navigate, no beeps) and removes the controller as a point of failure</div>

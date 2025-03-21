@@ -78,7 +78,6 @@ const info: Product = {
   },
   app: {
     value: false,
-    rating: 1,
   },
   countries: {
     value: ["US", "UK"]

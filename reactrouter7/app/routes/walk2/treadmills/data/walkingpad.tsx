@@ -80,8 +80,6 @@ const info: Product = {
   },
   app: {
     value: true,
-    rating: 7,
-    
     notes: () => <div>Uses an app instead of a controller, which removes a point of failure and tracks stats over time.</div>
   },
   easyLube: {

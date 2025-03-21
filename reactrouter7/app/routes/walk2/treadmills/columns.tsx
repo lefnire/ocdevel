@@ -701,7 +701,10 @@ const columnsArray: ColumnDefinition[] = [
       const app = getAttributeValue<boolean>(row.app);
       return app ? '✓' : '';
     },
-    getRating: (row: Product): number => (row.app as any)?.rating ?? 5
+    getRating: (row: Product): number => {
+      if (row.app?.rating) { return row.app.rating; }
+      return row.app?.value ? 10 : 0;
+    }
   },
   // warranty: () => <div>Buyer peace-of-mind. Can return easily, and buy an extended warranty through Asurion (which I recommend).</div>
 ];
