@@ -1,0 +1,10 @@
+@/routes/walk2/treadmills right now in this folder, the rows (the products, in data/) -each attribute has a rating. this is used to calculate the final score, and for colum sorting, adding a colored square to the cells, etc. I want now for there to be the concept of rating defaults, based on values in that row. Eg, rather than needing to specify the rating for "price" every time (where lower is better), I'd like columns.tsx to have fallback rating calculation functions for each column. In this particular case, it should be like exponential (up to 10), then we can remove the price.rating flag from every file in data/.
+
+So do this for:
+1. price (described above)
+2. `weight` 40lbs or less is good (10), 100lbs is bad (0). Come up with a good calculation for this, based on your judgement>
+3. `maxWeight` - 265 is the baseline. So I suppose that's 6, 300 is really good (9), and anything over is crazy-good.
+4. `maxSpeed` - 4 is the baseline. So for anything baseline related, see if you can come up with a good scoring system. I don't know if we just wanna use 5 for hte baseline, I trust your judgement
+5. horsePower: 2.5 is the baseline
+6. pickedBy: this should be +4 if "me" is in the list, +4 if "trusted" is in the list, +1 if "public", +1 "websites"
+7. `incline`. 3% is the most important incline value, so make that rating of 9. Anything more is just for shits and giggles, so that's 10

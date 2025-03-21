@@ -143,7 +143,7 @@ export default function TopSection() {
     <div className="row g-4 mb-4">
       <div className="col-12 col-md-6">
         <ProductsCard
-          title="Best Walking Pads 2025"
+          title="Best Walking Pads in 2025"
           products={treadmills}
           links={["why_desk", "buying_guide"]}
         />
