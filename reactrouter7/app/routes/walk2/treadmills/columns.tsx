@@ -409,7 +409,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "sturdy",
     label: "Sturdy",
     dtype: "boolean",
-    rating: 10,
+    rating: 9,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
       return getAttributeValue<boolean>(row.sturdy);
@@ -458,7 +458,7 @@ const columnsArray: ColumnDefinition[] = [
     // purposes, it should use dates if possible, and handle non-date strings
     // appropriately
     dtype: "custom",
-    rating: 7,
+    rating: 6,
     showInTable: true,
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
     calculate: (row: Product): string | undefined => {
@@ -481,7 +481,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "pickedBy",
     label: "Favored By",
     dtype: "string",
-    rating: 10,
+    rating: 8,
     showInTable: true,
     notes: () => <div>Call me cocky, but this is my most important flag. I study the <em>hell</em> out of budget mills. I'm glued to reviews, I test them, I see what DIY fixer-type are saying in Discord. So between my picks and the picks of those I trust on the internet, I won't lead you astray. Next would be public picks; popular either by reviews or in forums (Reddit). Worst, IMO, are popular review site picks. CNET, Engadget, Wired - they're not always wrong, but boy do they get treadmills wrong. I think they just sort by popular on Amazon. Most of their top picks are my bottom picks.</div>,
     calculate: (row: Product): string[] | undefined => {
@@ -553,7 +553,7 @@ const columnsArray: ColumnDefinition[] = [
     // the data is stores as [number,number,number], so should be converted to
     // a string like `1"D x 1"W x 1"H` the cells.
     description: 'D" x W" x H"',
-    rating: 3, // adjustment weight (out of 10). 3 means, this isn't that big a deal
+    rating: 2, // adjustment weight (out of 10). 3 means, this isn't that big a deal
     showInTable: true,
     notes: () => <div>(Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
     calculate: (row: Product): [number, number, number] | undefined => {
@@ -563,7 +563,7 @@ const columnsArray: ColumnDefinition[] = [
       const dimensions = getAttributeValue<[number, number, number]>(row.dimensions);
       if (!dimensions) return '';
       const [d, w, h] = dimensions;
-      return `${d}"D x ${w}"W x ${h}"H`;
+      return `${d} x ${w} x ${h}`;
     },
     getStyle: (row: Product): React.CSSProperties => {
       const flag = getAttributeFlag(row.dimensions);
@@ -601,7 +601,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "easyLube",
     label: "Easy Lube",
     dtype: "boolean",
-    rating: 3,
+    rating: 2,
     showInTable: true,
     notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
     calculate: (row: Product): boolean | undefined => {
@@ -623,7 +623,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "amazon",
     label: "Amazon",
     dtype: "boolean",
-    rating: 4,
+    rating: 2,
     showInTable: true,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
     calculate: (row: Product): boolean | undefined => {
