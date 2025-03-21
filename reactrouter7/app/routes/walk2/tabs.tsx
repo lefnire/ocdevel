@@ -6,7 +6,7 @@ import {create} from "zustand/index";
 
 export type TabKey = "why_desk" | "buying_guide" | "care" | "essentials"
 export const tabStore = create<{
-  tab: TabKey
+  tab: TabKey | null
   setTab: (tab: TabKey) => void
 }>()((set, get) => ({
   tab: null,

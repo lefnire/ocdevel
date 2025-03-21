@@ -412,16 +412,13 @@ export default function Treadmills() {
             
             // Special case for make/brand column
             if (columnId === 'make') {
-              const makeA = rowA.original.make;
-              const makeB = rowB.original.make;
-              
-              const brandA = brands[makeA];
-              const brandB = brands[makeB];
-              
-              const ratingA = brandA?.rating || 0;
-              const ratingB = brandB?.rating || 0;
-              
-              return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
+              const columnDef = columnInfo[columnId];
+              if (columnDef && columnDef.getRating) {
+                const ratingA = columnDef.getRating(rowA.original);
+                const ratingB = columnDef.getRating(rowB.original);
+                
+                return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
+              }
             }
             
             // Use getSortValue if available
@@ -534,30 +531,22 @@ export default function Treadmills() {
                {row.getVisibleCells().map(cell => {
                  const columnId = cell.column.id;
                  
-                 // Helper function to get cell-specific rating
+                 // Helper function to get cell-specific rating using the column's getRating function
                  const getCellRating = (row: any, columnId: string): number => {
                    // Skip rating indicators for certain columns
-                   const skipRatingColumns = ['rank', 'model', 'countries', 'combinedRating'];
+                   const skipRatingColumns = ['rank', 'model', 'countries'];
                    if (skipRatingColumns.includes(columnId)) {
                      return 0;
                    }
                    
-                   // Special handling for Brand column
-                   if (columnId === 'make') {
-                     const make = row.original.make;
-                     const brand = brands[make];
-                     if (brand && typeof brand.rating === 'number') {
-                       return brand.rating;
-                     }
-                   } else {
-                     // Get the original cell value directly from the row data
-                     const originalValue = row.original[columnId as keyof Product];
-                     
-                     // Check if the original value is an object with a rating property
-                     if (originalValue && typeof originalValue === 'object' && 'rating' in originalValue) {
-                       return (originalValue as any).rating;
-                     }
+                   // Get the column definition
+                   const columnDef = columnInfo[columnId];
+                   
+                   // Use the column's getRating function if available
+                   if (columnDef && columnDef.getRating) {
+                     return columnDef.getRating(row.original);
                    }
+                   
                    return 0;
                  };
                  

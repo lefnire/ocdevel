@@ -1,0 +1,11 @@
+@/routes/walk2/treadmills/table.tsx @/routes/walk2/treadmills/columns.tsx For each data row, for each attribute, there's a .rating attribute. This is used in various calculations and rendering functions. Now, I want to add a getRating() function to each column definition. If the underlying row.attribute has a .rating property, return that; otherwise, return a default value. This allows us to have universal ratings calculations. Here are some of those default functions to implement:
+
+1. `brand`. we can return `brands[brand].rating` and remove a bunch of custom logic where brand vs product determines which rating to return.
+1. `price` - <=$100 is good (10), >=$1000 is bad (4), and $3000 is terrible (0). Maybe some scaling system with 3000 is that max?
+1. `weight` 40lbs or less is good (10), 100lbs is bad (0). Come up with a good calculation for this, based on your judgement>
+1. `maxWeight` - 265 is the baseline. So I suppose that's 6, 300 is really good (9), and anything over is crazy-good.
+1. `maxSpeed` - 4 is the baseline. So for anything baseline related, see if you can come up with a good scoring system. I don't know if we just wanna use 5 for hte baseline, I trust your judgement
+1. horsePower: 2.5 is the baseline
+1. pickedBy: this should be +4 if "me" is in the list, +4 if "trusted" is in the list, +1 if "public", +1 "websites"
+1. `incline`. 3% is the most important incline value, so make that rating of 9. Anything more is just for shits and giggles, so that's 10
+1. The default fallback function should return 5 (if we don't define the logic, and this attribute doesn't have a value).

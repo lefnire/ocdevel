@@ -1,13 +1,84 @@
-
 import React from "react";
 import type { Product } from "./types";
+import brands from './brands';
 
+// Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
 const getAttributeValue = <T extends any>(attr: any): T | undefined => {
   if (attr && typeof attr === 'object' && 'value' in attr) {
     return attr.value as T;
   }
   return undefined;
+};
+
+// Default function to get rating from an attribute or return a default value
+const getAttributeRating = (attr: any, defaultRating: number = 5): number => {
+  return (attr?.rating as number) ?? defaultRating;
+};
+
+// Helper functions for specific rating calculations
+const calculatePriceRating = (price: number): number => {
+  if (price <= 100) return 10; // $100 or less is good (10)
+  if (price >= 3000) return 0;  // $3000 or more is terrible (0)
+  if (price >= 1000) return 4;  // $1000 or more is bad (4)
+  
+  // Linear scale between price points
+  if (price > 100 && price < 1000) {
+    // Scale from 10 to 4 as price goes from 100 to 1000
+    return 10 - (6 * (price - 100) / 900);
+  } else {
+    // Scale from 4 to 0 as price goes from 1000 to 3000
+    return 4 - (4 * (price - 1000) / 2000);
+  }
+};
+
+const calculateWeightRating = (weight: number): number => {
+  if (weight <= 40) return 10; // 40lbs or less is good (10)
+  if (weight >= 100) return 0; // 100lbs or more is bad (0)
+  
+  // Linear scale between 40 and 100 lbs
+  return 10 - (10 * (weight - 40) / 60);
+};
+
+const calculateMaxWeightRating = (maxWeight: number): number => {
+  if (maxWeight < 265) return Math.max(0, 6 - (265 - maxWeight) / 20); // Below baseline, decrease rating
+  if (maxWeight >= 300) return Math.min(10, 9 + (maxWeight - 300) / 50); // Above 300 is really good (9+)
+  
+  // Linear scale between 265 and 300
+  return 6 + (3 * (maxWeight - 265) / 35);
+};
+
+const calculateMaxSpeedRating = (maxSpeed: number): number => {
+  const baseline = 4;
+  if (maxSpeed < baseline) return Math.max(0, 5 - (baseline - maxSpeed) * 2); // Below baseline
+  if (maxSpeed > baseline) return Math.min(10, 5 + (maxSpeed - baseline) * 1.5); // Above baseline
+  
+  return 5; // Baseline rating
+};
+
+const calculateHorsePowerRating = (horsePower: number): number => {
+  const baseline = 2.5;
+  if (horsePower < baseline) return Math.max(0, 5 - (baseline - horsePower) * 3); // Below baseline
+  if (horsePower > baseline) return Math.min(10, 5 + (horsePower - baseline) * 2); // Above baseline
+  
+  return 5; // Baseline rating
+};
+
+const calculatePickedByRating = (pickedBy: string[]): number => {
+  if (!pickedBy || !Array.isArray(pickedBy)) return 5;
+  
+  let rating = 5; // Start with baseline
+  
+  if (pickedBy.includes("me")) rating += 4;
+  if (pickedBy.includes("trusted")) rating += 4;
+  if (pickedBy.includes("public")) rating += 1;
+  if (pickedBy.includes("websites")) rating += 1;
+  
+  return Math.min(10, rating); // Cap at 10
+};
+
+const calculateInclineRating = (hasIncline: boolean): number => {
+  return hasIncline ? 9 : 3; // 3% incline is important (9), no incline is below average
 };
 
 
@@ -74,6 +145,7 @@ interface ColumnDefinition {
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => any; // Function to get value for sorting
   getFilterValue?: (row: Product) => any; // Function to get value for filtering
+  getRating?: (row: Product) => number; // Function to get the rating for this attribute
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -112,6 +184,10 @@ const columnsArray: ColumnDefinition[] = [
     },
     getStyle: (row: Product): React.CSSProperties => {
       return { fontWeight: 'bold' };
+    },
+    getRating: (row: Product): number => {
+      // Rank is a calculated value, so it doesn't have a direct rating
+      return 10; // Always return the maximum rating for rank
     }
   },
   {
@@ -121,7 +197,11 @@ const columnsArray: ColumnDefinition[] = [
     rating: 0,
     showInTable: true,
     calculate: (row: Product): string => row.model,
-    render: (row: Product): string => row.model
+    render: (row: Product): string => row.model,
+    getRating: (row: Product): number => {
+      // Model doesn't have a rating
+      return 0;
+    }
   },
   {
     key: "make",
@@ -130,8 +210,11 @@ const columnsArray: ColumnDefinition[] = [
     rating: 0,
     showInTable: true,
     calculate: (row: Product): string => row.make,
-    render: (row: Product): string => row.make
+    render: (row: Product): string => row.make,
     // Note: The actual rendering with brand info will be handled in route.tsx
+    getRating: (row: Product): number => {
+      return brands[row.make]?.rating ?? 5;
+    }
   },
   {
     key: "combinedRating",
@@ -235,6 +318,10 @@ const columnsArray: ColumnDefinition[] = [
     },
     getSortValue: (row: Product): number => {
       return columnsArray.find(col => col.key === "combinedRating")?.calculate?.(row) || 0;
+    },
+    getRating: (row: Product): number => {
+      // Use the calculated value as the rating
+      return columnsArray.find(col => col.key === "combinedRating")?.calculate?.(row) || 5;
     }
   },
   {
@@ -259,7 +346,8 @@ const columnsArray: ColumnDefinition[] = [
       if (!rating) return '';
       const [[avg, count], distribution] = rating;
       return `${avg.toFixed(1)} (${count} reviews)`;
-    }
+    },
+    getRating: (row: Product): number => row.rating?.rating ?? 5
   },
   {
     key: "fakespot",
@@ -275,6 +363,7 @@ const columnsArray: ColumnDefinition[] = [
     calculate: (row: Product): [string, string] | undefined => {
       return getAttributeValue<[string, string]>(row.fakespot);
     },
+    getRating: (row: Product): number => row.fakespot?.rating ?? 5,
     render: (row: Product): string => {
       const fakespot = getAttributeValue<[string, string]>(row.fakespot);
       if (!fakespot) return '';
@@ -299,6 +388,15 @@ const columnsArray: ColumnDefinition[] = [
       if (price === undefined) return '';
       return `$${price}`;
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on price
+      if (row.price?.rating !== undefined) {
+        return row.price.rating;
+      }
+      
+      const price = getAttributeValue<number>(row.price);
+      return price !== undefined ? calculatePriceRating(price) : 5;
+    }
   },
   {
     key: "maxWeight",
@@ -317,6 +415,15 @@ const columnsArray: ColumnDefinition[] = [
       if (maxWeight === undefined) return '';
       return `${maxWeight} lbs`;
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on maxWeight
+      if (row.maxWeight?.rating !== undefined) {
+        return row.maxWeight.rating;
+      }
+      
+      const maxWeight = getAttributeValue<number>(row.maxWeight);
+      return maxWeight !== undefined ? calculateMaxWeightRating(maxWeight) : 5;
+    }
   },
   {
     key: "maxSpeed",
@@ -335,6 +442,15 @@ const columnsArray: ColumnDefinition[] = [
       if (maxSpeed === undefined) return '';
       return `${maxSpeed} mph`;
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on maxSpeed
+      if (row.maxSpeed?.rating !== undefined) {
+        return row.maxSpeed.rating;
+      }
+      
+      const maxSpeed = getAttributeValue<number>(row.maxSpeed);
+      return maxSpeed !== undefined ? calculateMaxSpeedRating(maxSpeed) : 5;
+    }
   },
   {
     key: "incline",
@@ -351,6 +467,15 @@ const columnsArray: ColumnDefinition[] = [
       const incline = getAttributeValue<boolean>(row.incline);
       return incline ? '✓' : '';
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on incline
+      if (row.incline?.rating !== undefined) {
+        return row.incline.rating;
+      }
+      
+      const hasIncline = getAttributeValue<boolean>(row.incline);
+      return hasIncline !== undefined ? calculateInclineRating(hasIncline) : 5;
+    }
   },
   {
     key: "sturdy",
@@ -360,6 +485,10 @@ const columnsArray: ColumnDefinition[] = [
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
       return getAttributeValue<boolean>(row.sturdy);
+    },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise return 5
+      return getAttributeRating(row.sturdy, 5);
     },
     render: (row: Product): string => {
       const sturdy = getAttributeValue<boolean>(row.sturdy);
@@ -382,6 +511,15 @@ const columnsArray: ColumnDefinition[] = [
       if (horsePower === undefined) return '';
       return `${horsePower}`;
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on horsePower
+      if (row.horsePower?.rating !== undefined) {
+        return row.horsePower.rating;
+      }
+      
+      const horsePower = getAttributeValue<number>(row.horsePower);
+      return horsePower !== undefined ? calculateHorsePowerRating(horsePower) : 5;
+    }
   },
   {
     key: "age",
@@ -402,6 +540,10 @@ const columnsArray: ColumnDefinition[] = [
       if (!age) return '';
       return age;
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise return 5
+      return getAttributeRating(row.age, 5);
+    }
   },
   {
     key: "pickedBy",
@@ -418,6 +560,15 @@ const columnsArray: ColumnDefinition[] = [
       if (!pickedBy) return '';
       return pickedBy.join(', ');
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on pickedBy
+      if (row.pickedBy?.rating !== undefined) {
+        return row.pickedBy.rating;
+      }
+      
+      const pickedBy = getAttributeValue<string[]>(row.pickedBy);
+      return pickedBy ? calculatePickedByRating(pickedBy) : 5;
+    }
   },
   {
     key: "shock",
@@ -432,6 +583,10 @@ const columnsArray: ColumnDefinition[] = [
       const shock = getAttributeValue<boolean>(row.shock);
       return shock ? '✓' : '';
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise return 5
+      return getAttributeRating(row.shock, 5);
+    }
   },
   {
     key: "quiet",
@@ -447,6 +602,10 @@ const columnsArray: ColumnDefinition[] = [
       const quiet = getAttributeValue<boolean>(row.quiet);
       return quiet ? '✓' : '';
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise return 5
+      return getAttributeRating(row.quiet, 5);
+    }
   },
   {
     key: "dimensions",
@@ -470,6 +629,7 @@ const columnsArray: ColumnDefinition[] = [
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
     },
+    getRating: (row: Product): number => (row.dimensions as any)?.rating ?? 5
   },
   {
     key: "weight",
@@ -487,6 +647,15 @@ const columnsArray: ColumnDefinition[] = [
       if (weight === undefined) return '';
       return `${weight} lbs`;
     },
+    getRating: (row: Product): number => {
+      // Return the rating property if it exists, otherwise calculate based on weight
+      if (row.weight?.rating !== undefined) {
+        return row.weight.rating;
+      }
+      
+      const weight = getAttributeValue<number>(row.weight);
+      return weight !== undefined ? calculateWeightRating(weight) : 5;
+    }
   },
   {
     key: "easyLube",
@@ -502,6 +671,7 @@ const columnsArray: ColumnDefinition[] = [
       const easyLube = getAttributeValue<boolean>(row.easyLube);
       return easyLube ? '✓' : '';
     },
+    getRating: (row: Product): number => (row.easyLube as any)?.rating ?? 5
   },
   {
     key: "amazon",
@@ -517,6 +687,7 @@ const columnsArray: ColumnDefinition[] = [
       const amazon = getAttributeValue<boolean>(row.amazon);
       return amazon ? '✓' : '';
     },
+    getRating: (row: Product): number => (row.amazon as any)?.rating ?? 5
   },
   {
     key: "countries",
@@ -532,6 +703,7 @@ const columnsArray: ColumnDefinition[] = [
       if (!countries) return '';
       return countries.join(', ');
     },
+    getRating: (row: Product): number => (row.countries as any)?.rating ?? 5
   },
   {
     key: "app",
@@ -547,6 +719,7 @@ const columnsArray: ColumnDefinition[] = [
       const app = getAttributeValue<boolean>(row.app);
       return app ? '✓' : '';
     },
+    getRating: (row: Product): number => (row.app as any)?.rating ?? 5
   },
   // warranty: () => <div>Buyer peace-of-mind. Can return easily, and buy an extended warranty through Asurion (which I recommend).</div>
 ];
@@ -564,39 +737,16 @@ if (rankColumn) {
       if (column.key === "rank" || column.rating === 0) {
         return;
       }
-
-      // Get the attribute from the row
-      const attr = row[column.key as keyof Product];
+      // Get the rating using the column's getRating function or fallback to 0
+      const rating = column.getRating ? column.getRating(row) : 0;
       
-      // Skip if attribute doesn't exist
-      if (!attr) {
-        return;
-      }
-
-      // Get the attribute rating
-      let attrRating = 0;
-      if (typeof attr === 'object' && 'rating' in attr && typeof attr.rating === 'number') {
-        attrRating = attr.rating;
-      }
-
       // Skip if no rating
-      if (attrRating === 0) {
+      if (rating === 0) {
         return;
       }
-
-      // Special case for combinedRating - use the calculated value
-      if (column.key === "combinedRating") {
-        const combinedRatingColumn = columnsArray.find(col => col.key === "combinedRating");
-        if (combinedRatingColumn && combinedRatingColumn.calculate) {
-          const score = combinedRatingColumn.calculate(row);
-          totalScore += score * column.rating;
-          totalWeight += column.rating;
-        }
-        return;
-      }
-
-      // For other columns, use the attribute rating and column weight
-      totalScore += attrRating * column.rating;
+      
+      // Add to total score
+      totalScore += rating * column.rating;
       totalWeight += column.rating;
     });
 
