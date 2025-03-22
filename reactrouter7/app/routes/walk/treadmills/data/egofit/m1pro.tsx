@@ -1,11 +1,13 @@
 import type {Product} from "../types"
 import brand from './brand'
+const links = {
+  amazon: "https://amzn.to/4817FEe",
+}
 const info: Product = {
   brand,
   model: "M1 Pro",
   description: "I don't recommend this one, because (1) they've improved knee-health by adding shock absorption and dialing incline from 5% to 3% based on research; (2) increased the max weight and horse power; and (3) I'm sure improved on quality / durability (as a newer edition). The M2 is $100 more, but I truly think it's worth it. Listing M1 here in case you really want to save the $100.",
-  link: "https://amzn.to/4817FEe",
-
+  links,
   dimensions: {
     value: [38.39, 21.85, 6.89], // 38.39"D x 21.85"W x 6.89"H
     notes: () => <div>Smaller depth than many competitors, which may be beneficial for smaller spaces.</div>

@@ -6,8 +6,10 @@ const info: Product = {
   brand,
   model: "E4",
   description: "Motor improvement over E3 (which had a lot of overheating complaints); but removed incline. E5 is upgrade over this one, so if you don't want E3's incline, just get E5.",
-  // link: "https://amzn.to/3xxWWV9",
-  link: "https://www.amazon.com/dp/B0CLH1MNR7?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.NRRCZN113BGN&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.NRRCZN113BGN_1742362488415",
+  links: {
+    // amazon: "https://amzn.to/3xxWWV9",
+    amazon: "https://www.amazon.com/dp/B0CLH1MNR7?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.NRRCZN113BGN&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.NRRCZN113BGN_1742362488415"
+  },
 
   dimensions: {
     value: [47.5, 18.9, 4.4], // TODO what was: 50"D x 20.9"W x 4.72"H

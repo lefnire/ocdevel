@@ -1,10 +1,10 @@
-import type {Product} from "./types"
+import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
   model: "TR1000",
   description: "A commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
-  link: "https://lifespan-fitness.e9ppfh.net/eK0k5j",
+  links: {brand: "https://lifespan-fitness.e9ppfh.net/eK0k5j"},
 
   dimensions: {
     value: [58, 28.5, 7.25], // 58"L x 28.5"W x 7.25"H

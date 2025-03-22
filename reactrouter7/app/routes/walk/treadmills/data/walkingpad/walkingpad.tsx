@@ -3,7 +3,9 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "Z1",
-  link: "https://amzn.to/4kQEnA0",
+  links: {
+    amazon: "https://amzn.to/4kQEnA0"
+  },
 
   dimensions: {
     value: [57, 20.7, 5.5], // 57.17"D x 28.43"W x 51.18"H

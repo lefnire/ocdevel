@@ -270,11 +270,14 @@ const columnsArray: ColumnDefinition[] = [
     rating: 0,
     showInTable: true,
     calculate: (row: Product): string => row.model,
-    render: (row: Product): React.ReactElement => (
-      <a href={row.link} target="_blank" rel="noopener noreferrer">
-        {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
-      </a>
-    ),
+    render: (row: Product): React.ReactElement => {
+      const link = row.links.amazon || row.links.brand
+      return (
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+        </a>
+      )
+    },
     getRating: (row: Product): number => {
       // Model doesn't have a rating
       return 0;

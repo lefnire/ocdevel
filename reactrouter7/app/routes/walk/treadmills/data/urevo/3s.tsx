@@ -4,7 +4,7 @@ const info: Product = {
   brand,
   model: "3S",
   description: "Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it.",
-  link: "https://amzn.to/4bE2JXR",
+  links: {amazon: "https://amzn.to/4bE2JXR"},
 
   dimensions: {
     value: [51.6, 22.1, 6.5], // 51.6"D x 22.1"W x 6.5"H

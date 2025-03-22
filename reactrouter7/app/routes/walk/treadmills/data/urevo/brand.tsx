@@ -1,9 +1,12 @@
 import type {Brand} from '../types'
-const link = "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog"
+const links = {
+  brand: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
+  amazon: "https://amzn.to/4hv7Exf",
+}
 const info: Brand = {
   key: 'urevo',
   name: "Urevo",
-  link,
+  links,
   // overriden in each item
   warranty: {
     value: ["Amazon", "Urevo"],
@@ -21,7 +24,7 @@ const info: Brand = {
     <ol>
       <li>
         <b>
-          <a href={link} target="_blank">Go to their website</a>, sort by Date: new-&gt;old.
+          <a href={links.brand} target="_blank">Go to their website</a>, sort by Date: new-&gt;old.
         </b>
         <div><small>Their website is easier to compare models than Amazon. Newer models are better, since Urevo iterates fast based on user complains. Eg, the SpaceWalk E3 had motor heat complaints; so they improved that with E4; then again with E5 (adding vents).</small></div>
       </li>

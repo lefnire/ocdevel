@@ -4,7 +4,7 @@ const info: Product = {
   brand,
   model: "TR5000",
   description: "The top-tier commercial-grade treadmill from LifeSpan, designed for intensive daily use in professional environments. This is their flagship model with the highest durability and weight capacity.",
-  link: "https://amzn.to/4bOtXN6",
+  links: {amazon: "https://amzn.to/4bOtXN6"},
 
   dimensions: {
     value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H

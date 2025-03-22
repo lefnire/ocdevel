@@ -3,7 +3,10 @@ import type {Brand} from '../types'
 const info: Brand = {
   key: "lifespan",
   name: "LifeSpan",
-  link: "https://www.lifespanfitness.com/pages/treadmill-desks#treadmillDesk",
+  links: {
+    amazon: "https://amzn.to/4iv4NFP",
+    brand: "https://www.lifespanfitness.com/pages/treadmill-desks#treadmillDesk",
+  },
   rating: 5,
   warranty: {},
   notes: () => <div>

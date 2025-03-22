@@ -2,6 +2,7 @@ import type {Brand} from '../types'
 const info: Brand = {
   key: 'goplus',
   name: "GoPlus / Superfit",
+  links: {},
   rating: 1,
   warranty: {},
   notes: () => <div>

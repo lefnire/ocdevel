@@ -5,7 +5,7 @@ const info: Product = {
   brand,
   model: "E3",
   description: "Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.",
-  link: "https://amzn.to/3zxMhLt",
+  links: {amazon: "https://amzn.to/3zxMhLt"},
 
   dimensions: {
     value: [50, 20.9, 4.72], // 50"D x 20.9"W x 4.72"H

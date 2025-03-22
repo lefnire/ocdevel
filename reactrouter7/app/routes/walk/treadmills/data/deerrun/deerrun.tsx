@@ -1,11 +1,13 @@
 import type {Product} from "../types"
 import brand from './brand'
+const links = {
+  amazon: "https://amzn.to/4bM8iFn"
+}
 const info: Product = {
   brand,
   model: "Q1 Mini",
   description: "Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.",
-  link: "https://amzn.to/4bM8iFn",
-
+  links,
   dimensions: {
     value: [43, 20, 4.3], // 45"D x 20.3"W x 4.3"H
   },
