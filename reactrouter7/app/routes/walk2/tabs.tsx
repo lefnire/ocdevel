@@ -159,7 +159,7 @@ export default function Tabs() {
               </p>
 
               {!optionals ? (
-                <Button variant="link" onClick={showOptionals}>Show more essentials...</Button>
+                <Button variant="link" onClick={showOptionals}>Show More Essentials...</Button>
               ) : <>
                 <h5><Link to="/20240110-ergo-mouse-keyboard">Ergonomic keyboard & mouse</Link></h5>
                 <p>When you're walking or stepping, you're moving your arms more than usual. People often develop RSI

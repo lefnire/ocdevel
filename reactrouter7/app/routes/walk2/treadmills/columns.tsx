@@ -2,6 +2,7 @@ import React from "react";
 import type { Product } from "./types";
 import brands from './brands';
 import dayjs from "dayjs";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -270,7 +271,11 @@ const columnsArray: ColumnDefinition[] = [
     rating: 0,
     showInTable: true,
     calculate: (row: Product): string => row.model,
-    render: (row: Product): string => row.model,
+    render: (row: Product): React.ReactElement => (
+      <a href={row.link} target="_blank" rel="noopener noreferrer">
+        {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+      </a>
+    ),
     getRating: (row: Product): number => {
       // Model doesn't have a rating
       return 0;
