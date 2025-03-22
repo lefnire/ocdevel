@@ -36,7 +36,7 @@ export const data = [
   goyouth,
   goplus,
   walkingpad,
-  lifespan_tr1000,
+  // lifespan_tr1000,
   lifespan_tr1200,
   lifespan_tr5000,
   imovr,

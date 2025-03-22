@@ -7,72 +7,55 @@ const info: Product = {
 
   dimensions: {
     value: [49, 21.6, 5.9], // 49"D x 21.6"W x 5.9"H
-    rating: 5,
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
+    value: 50,
   },
   maxWeight: {
-    value: 220,
-    rating: 4,
-    
-    notes: () => <div>Lower max weight capacity (220lbs) than many competitors which typically offer 265lbs.</div>
+    value: 300,
+    // notes: () => <div>Lower max weight capacity (220lbs) than many competitors which typically offer 265lbs.</div>
   },
   maxSpeed: {
-    value: 6,
-    rating: 8,
-    
-    notes: () => <div>Higher max speed (6mph) than many competitors, allowing for faster walking or even light jogging.</div>
+    value: 3.7,
+    // notes: () => <div>Higher max speed (6mph) than many competitors, allowing for faster walking or even light jogging.</div>
   },
   horsePower: {
     value: 2.25,
-    rating: 6,
     notes: () => <div>2.25 HP is the minimum recommended for longevity. Treadmills lower than this won't last (heat build-up, inability to handle the walking load).</div>
   },
   age: {
-    value: "2022-05-09",
-    rating: 5,
-    notes: () => <div>Released May 9, 2022. There may be a newer edition from June 20, 2023.</div>
+    value: "2021-05-25",
+    // notes: () => <div>Released May 9, 2022. There may be a newer edition from June 20, 2023.</div>
   },
   rating: {
-    value: [[4.3, 0], [66, 17, 5, 5, 7]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 7,
-    notes: () => <div>Good distribution with majority 5-star ratings.</div>
+    value: [[4.1, 1944], [61, 17, 6, 6, 10]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    // notes: () => <div>Good distribution with majority 5-star ratings.</div>
   },
   fakespot: {
-    value: ["A", ""], // Fakespot A for the product
-    rating: 8,
-    
+    value: ["A", "B"], // Fakespot A for the product
     notes: () => <div>Fakespot A rating indicates highly reliable reviews.</div>
   },
   price: {
-    value: 340,
-    sale: 300, // $40 Amazon coupon mentioned
-    notes: () => <div>There's currently a $40 Amazon "Apply Coupon" = $300 total. A possibly newer edition is $390 with a $120 coupon (=$270).</div>
+    value: 300,
+    // sale: 300, // $40 Amazon coupon mentioned
+    // notes: () => <div>There's currently a $40 Amazon "Apply Coupon" = $300 total. A possibly newer edition is $390 with a $120 coupon (=$270).</div>
   },
   pickedBy: {
     value: [], // Not specifically picked by anyone according to the data
-    rating: 0,
   },
   incline: {
     value: 0, // No incline mentioned
-    rating: 2,
-    
     notes: () => <div>No incline functionality, which is important for knee health.</div>
   },
   shock: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   quiet: {
     value: false, // Not specifically mentioned
-    rating: 0,
   },
   sturdy: {
     value: true,
-    rating: 8,
-    
+    rating: 5,
     notes: () => <div>Described as surprisingly durable, lasting 2 years with intense usage (6hrs per day, 5 days a week, 220lbs user at 3.5mph).</div>
   },
   app: {
@@ -80,11 +63,9 @@ const info: Product = {
   },
   easyLube: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon

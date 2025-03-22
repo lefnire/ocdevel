@@ -7,76 +7,54 @@ const info: Product = {
 
   dimensions: {
     value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H
-    rating: 3,
-    
     notes: () => <div>Larger dimensions than many consumer models and even the TR1000, which may be an issue for some desk setups.</div>
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
-    
-    notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
+    value: 117, // TODO: Weight not specified in the data
+    // notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
   },
   maxWeight: {
     value: 350,
-    rating: 9,
-    
     notes: () => <div>High max weight capacity (350lbs) compared to most competitors.</div>
   },
   maxSpeed: {
     value: 4,
-    rating: 5,
   },
   horsePower: {
-    value: 3, // Assuming higher than TR1000 based on tier
-    rating: 9,
-    
-    notes: () => <div>Commercial-grade motor likely has higher horsepower and better durability than consumer models and the TR1000.</div>
+    value: 2.25, // Assuming higher than TR1000 based on tier
+    // notes: () => <div>Commercial-grade motor likely has higher horsepower and better durability than consumer models and the TR1000.</div>
   },
   age: {
-    value: "", // TODO: Age not specified in the data
-    rating: 0,
+    value: "2022-11-16",
   },
   rating: {
-    value: [[0, 0], [0, 0, 0, 0, 0]], // TODO: Rating not specified in the data
-    rating: 0,
+    value: [[3.2, 85], [45, 8, 12, 2, 33]],
   },
   fakespot: {
-    value: ["", ""], // Not specified in the data
-    rating: 0,
+    value: ["A", "A"],
   },
   price: {
-    value: 1800,
-    rating: 3,
-    
+    value: 1300,
     notes: () => <div>Significantly higher price point than consumer models and $200 more than the TR1000, reflecting higher-tier commercial-grade quality.</div>
   },
   pickedBy: {
     value: ["public"],
-    rating: 7,
-    
     notes: () => <div>Popular choice for commercial use in coworking spaces, indicating professional-level quality.</div>
   },
   incline: {
     value: 0, // Not mentioned in the data
-    rating: 0,
   },
   shock: {
     value: true, // Assuming based on commercial quality
-    rating: 9,
-    
-    notes: () => <div>Likely has superior shock absorption as a higher-tier commercial-grade treadmill.</div>
+    rating: 4,
+    // notes: () => <div>Likely has superior shock absorption as a higher-tier commercial-grade treadmill.</div>
   },
   quiet: {
     value: true, // Assuming based on commercial quality
-    rating: 9,
-    
-    notes: () => <div>Likely quieter than consumer models and possibly the TR1000 due to higher quality components.</div>
+    // notes: () => <div>Likely quieter than consumer models and possibly the TR1000 due to higher quality components.</div>
   },
   sturdy: {
     value: true,
-    rating: 9,
-    
     notes: () => <div>Commercial-grade construction designed for 6 hours of daily use.</div>
   },
   app: {
@@ -84,11 +62,9 @@ const info: Product = {
   },
   easyLube: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   amazon: {
-    value: false, // Link is to LifeSpan website, not Amazon
-    rating: 0,
+    value: true, // Link is to LifeSpan website, not Amazon
   },
   countries: {
     value: ["US"] // Assuming US availability

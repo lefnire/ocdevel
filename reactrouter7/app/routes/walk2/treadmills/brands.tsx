@@ -50,7 +50,7 @@ const info = {
       Each iteration is just an upgrade of the one before it. So just pick whichever price point you're most comfortable with. They're also increasingly heavy / large, and accommodate increasing weight. So factor that into your decision. Note: I'm not sure what the difference between the models GlowUp, Classic, Power, and Omni. I think the GlowUp means "just the treadmill" where the other ones are different spins on the "and also the desk" - but you'll want to research some.</div>
   },
   imovr: {
-    name: "iMovR",
+    name: "iMovR / Unsit",
     rating: 5,
     warranty: {},
     notes: () => <div>{nonBudgetNote}</div>

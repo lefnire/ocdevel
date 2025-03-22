@@ -6,93 +6,68 @@ const info: Product = {
   link: "https://www.imovr.com/treadmill-desk-workstations.html",
 
   dimensions: {
-    value: [56, 39, 0], // 39″ wide × 56″ long, height not specified
-    rating: 2,
-    
+    value: [56, 39, 5], // 39″ wide × 56″ long, height not specified
     notes: () => <div>Very wide at 39 inches, which may be an issue for some desk setups.</div>
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
-    
-    notes: () => <div>Described as heavy in the data, which may make it difficult to move.</div>
+    value: 162,
   },
   maxWeight: {
     value: 300,
-    rating: 8,
-    
-    notes: () => <div>Good max weight capacity (300lbs), though less than LifeSpan models.</div>
+    // notes: () => <div>Good max weight capacity (300lbs), though less than LifeSpan models.</div>
   },
   maxSpeed: {
     value: 2,
-    rating: 2,
-    
     notes: () => <div>Very low max speed (2mph) compared to most competitors, which typically offer 4mph or more.</div>
   },
   horsePower: {
-    value: 2.5, // Assuming 2.5+ based on premium positioning
-    rating: 7,
-    
-    notes: () => <div>Likely has a high-quality motor given the premium positioning and price point.</div>
+    value: 2, // Assuming 2.5+ based on premium positioning
+    notes: () => <div>Wildly low for such a high-end machine</div>
   },
   age: {
-    value: "", // TODO: Age not specified in the data
-    rating: 0,
   },
   rating: {
-    value: [[0, 0], [0, 0, 0, 0, 0]], // TODO: Rating not specified in the data
-    rating: 0,
+    value: [[5, 4], [1, 0, 0, 0, 0]], // TODO: Rating not specified in the data
   },
   fakespot: {
-    value: ["", ""], // Not specified in the data
-    rating: 0,
+    value: ["A", "A"], // Not specified in the data
   },
   price: {
     value: 2500,
-    rating: 1,
-    
     notes: () => <div>Extremely high price point, even higher than premium LifeSpan models.</div>
   },
   pickedBy: {
-    value: [], // Not specifically picked by the author
-    rating: 0,
-    notes: () => <div>Considered on the internet the highest quality underdesk treadmill, often over Lifespan. The author is stumped by this, as the specs seem better in the Lifespan models.</div>
+    value: ["public"],
+    notes: () => <div>Considered on the internet the highest quality underdesk treadmill, often over Lifespan. I'm is stumped by this, as the specs seem better in the Lifespan models.</div>
   },
   incline: {
-    value: 0, // Not mentioned in the data
-    rating: 0,
+    value: 0,
   },
   shock: {
-    value: true, // Assuming based on premium positioning
-    rating: 8,
-    
-    notes: () => <div>Likely has good shock absorption given the premium positioning and price point.</div>
+    value: false,
+    // notes: () => <div>Likely has good shock absorption given the premium positioning and price point.</div>
   },
   quiet: {
-    value: true, // Assuming based on premium positioning
-    rating: 8,
-    
-    notes: () => <div>Likely quiet given the premium positioning and price point.</div>
+    // 42.9 dB
+    value: true,
+    notes: () => <div>42.9db. Quiet given the premium positioning and price point.</div>
   },
   sturdy: {
     value: true,
-    rating: 9,
-    
-    notes: () => <div>Likely very sturdy given the premium positioning and price point.</div>
+    rating: 10,
+    notes: () => <div>I've not tested it, but those who have swear by its invincibility. I don't doubt this. I just don't like it's value.</div>
   },
   app: {
-    value: false, // Not mentioned in the data
+    value: true,
   },
   easyLube: {
-    value: false, // Not mentioned in the data
-    rating: 0,
+    value: false,
   },
   amazon: {
-    value: false, // Link is to iMovR website, not Amazon
-    rating: 0,
+    value: false,
   },
   countries: {
-    value: ["US"] // Assuming US availability
+    value: ["US"]
   },
 
   pros: [
