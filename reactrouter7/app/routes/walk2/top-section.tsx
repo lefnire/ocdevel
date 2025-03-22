@@ -1,8 +1,6 @@
 import React from "react";
 import {clickAffiliate} from '~/components/analytics'
-import {Button, Container} from "react-bootstrap";
-import {walkingDeskLinks} from "~/content/workflowy/walking-desk-links";
-import {FaYoutube} from "react-icons/fa";
+import {Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
 
@@ -10,24 +8,7 @@ import urevo_3s from './treadmills/data/urevo_3s';
 import urevo_cyberpad from './treadmills/data/urevo_cyberpad';
 import deerrun from './treadmills/data/deerrun';
 import essentials from './essentials-links'
-
-export function VideoButton({href}: {href: string}) {
-  // px-1
-  const padding = {style: {paddingLeft: 1, paddingRight: 1}}
-  return <Button
-    variant='link'
-    size="sm"
-    className="p-1"
-    href={href}
-    target="_blank"
-  >
-    <div className="d-flex align-items-center justify-content-center">
-      <span {...padding} className="ps-0"><FaYoutube size={20} /></span>
-      <span {...padding} className="flex-grow-1">Video</span>
-    </div>
-
-  </Button>
-}
+import {VideoButton} from './utils'
 
 const getPrice = (product: any) => product.price.sale || product.price.value;
 const treadmills = [
