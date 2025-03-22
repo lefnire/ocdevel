@@ -6,6 +6,11 @@ import {FaYoutube} from "react-icons/fa";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
 
+import urevo_3s from './treadmills/data/urevo_3s';
+import urevo_cyberpad from './treadmills/data/urevo_cyberpad';
+import deerrun from './treadmills/data/deerrun';
+import essentials from './essentials-links'
+
 // TOOD locale
 const treadmills = [
     {
@@ -16,7 +21,7 @@ const treadmills = [
         <span>Sturdiest, quietest, most features.</span>
         <a href="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"><FaYoutube /> Video</a>
       </div>,
-      link: walkingDeskLinks["key://cyberpad"],
+      link: urevo_cyberpad.link,
       linkText: "~$500 on Amazon",
       price: 500,
     },
@@ -28,7 +33,7 @@ const treadmills = [
         <span>One size fits all, bang for buck.</span>
         <a href="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"><FaYoutube /> Video</a>
       </div>,
-      link: walkingDeskLinks["key://urevo_3s"],
+      link: urevo_3s.link,
       linkText: "~$350 on Amazon",
       price: 350,
     },
@@ -40,7 +45,7 @@ const treadmills = [
         <span>Test the waters. No incline, 1-2yrs life; but good price.</span>
         <a href="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"><FaYoutube /> Video</a>
       </div>,
-      link: walkingDeskLinks["key://deerrun"],
+      link: deerrun.link,
       linkText: "~$150 on Amazon",
       price: 150,
     },
@@ -52,7 +57,7 @@ const otherProducts = [
     image: '/walk_thumbs/desk.jpg',
     title: 'Desk: FlexiSpot',
     description: 'Electric sit/stand',
-    link: walkingDeskLinks["key://flexispot"],
+    link: essentials.flexispot,
     linkText: "~$150 on Amazon",
     price: 150,
   },
@@ -61,7 +66,7 @@ const otherProducts = [
     image: '/walk_thumbs/mat.jpg',
     title: 'Mat: Urevo',
     description: 'Prevents floor damage, protects knees',
-    link: walkingDeskLinks["key://mat"],
+    link: essentials.mat,
     linkText: "$40 on Amazon",
     price: 40,
   },
@@ -70,7 +75,7 @@ const otherProducts = [
     image: '/walk_thumbs/lube.jpg',
     title: 'Lube: Godora',
     description: 'Silicone treadmill lubricant. Apply every 50hrs',
-    link: walkingDeskLinks["key://lube"],
+    link: essentials.lube,
     linkText: "$35 on Amazon",
     price: 35,
   }

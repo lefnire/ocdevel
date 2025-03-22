@@ -5,7 +5,7 @@ const info: Product = {
   make: "urevo",
   model: "E5",
   description: "This has the most hardware improvements over the below. Eg, improved motor, and vents to dissipate heat, and doesn't have an incline. I don't know why they removed the incline after E3... real bummer. So I recommend propping the head on some yoga blocks or a 2x4.",
-  link: "",
+  link: "https://amzn.to/4jsteob",
 
   dimensions: {
     value: [48.9, 19, 4.5], // 50"D x 20.9"W x 4.72"H

@@ -5,6 +5,7 @@ export const budgetNote = "For lowest price mills, I recommend DeerRun instead. 
 const info = {
   urevo: {
     name: "Urevo",
+    link: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
     // overriden in each item
     warranty: {
       value: ["Amazon", "Urevo"],

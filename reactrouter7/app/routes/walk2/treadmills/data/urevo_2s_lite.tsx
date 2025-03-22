@@ -3,7 +3,7 @@ const info: Product = {
   make: "urevo",
   model: "2S Lite",
   description: "If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S.",
-  link: "",
+  link: "https://amzn.to/3ROlFvN",
 
   dimensions: {
     value: [48.6, 20, 6.06], // 48.6"D x 20"W x 6.06"H

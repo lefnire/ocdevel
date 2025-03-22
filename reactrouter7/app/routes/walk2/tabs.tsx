@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router";
 import React, {useEffect} from "react";
 import {Col, Nav, Row, Tab} from "react-bootstrap";
 import {create} from "zustand/index";
+import essentials from './essentials-links'
 
 export type TabKey = "why_desk" | "buying_guide" | "care" | "essentials"
 export const tabStore = create<{
@@ -90,7 +91,7 @@ export default function Tabs() {
 
             </Tab.Pane>
             <Tab.Pane eventKey="care">
-              <h5><a href="key://lube">Lube</a></h5>
+              <h5><a href={essentials.lube}>Lube</a></h5>
               <div><a href="https://www.youtube.com/watch?v=WG1TDtDhbI0">How-to video</a>. Every so 50 hours or 3 months
                 of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the
                 treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat
@@ -121,13 +122,13 @@ outube.com/watch?v=PcjWc-tjLHA">How-to video</a>. If the belt starts to drift on
             </Tab.Pane>
             <Tab.Pane eventKey="essentials">
 
-              <h5><a href="key://mat">Treadmill Mat</a></h5>
+              <h5><a href={essentials.mat}>Treadmill Mat</a></h5>
               <div>Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
                 the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a
                 protection layer against high-pile carpet, so you're not pulling debris into the hardware.
               </div>
 
-              <h5>Standing Desk: <a href="key://flexispot">Flexispot</a> ($100-200)</h5>
+              <h5>Standing Desk: <a href={essentials.flexispot}>Flexispot</a> ($100-200)</h5>
               <div>My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
                 $1,000 Herman Millers championed on <a
                   href="https://www.reddit.com/r/StandingDesks/">https://www.reddit.com/r/StandingDesks/</a>. But if you
@@ -136,13 +137,13 @@ outube.com/watch?v=PcjWc-tjLHA">How-to video</a>. If the belt starts to drift on
                 after walking or standing all day, you'll need a break sometimes.
               </div>
 
-              <h5>Shoes: Brooks or Hoka (<a href="key://shoes_men">Men</a>, <a href="key://shoes_women">Women</a>)</h5>
+              <h5>Shoes: Brooks or Hoka (<a href={essentials.shoes_men}>Men</a>, <a href={essentials.shoes_women}>Women</a>)</h5>
               <div>There are shoes more tailored towards prolonged walking or standing rather than running. I research
                 what nurses swear by (articles, Reddit, etc) since it's the closest lifestyle to a walking desk. They're
                 quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi
               </div>
 
-              <h5>Standing board: <a href="key://fluidstance">FluidStance PlaneCloud</a></h5>
+              <h5>Standing board: <a href={essentials.fluidstance}>FluidStance PlaneCloud</a></h5>
               <div>Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
                 Standing on a hard surface for prolonged periods is NOT good for you (even with good shoes); it's better
                 to just sit. So my next move was standing-specific mats. When things really changed was in exploring
@@ -175,10 +176,10 @@ outube.com/watch?v=PcjWc-tjLHA">How-to video</a>. If the belt starts to drift on
 
               <div>
                 <ul>
-                  <li>Mouse: <a href="key://slimblade">Slimblade Pro</a> $110</li>
-                  <li>Keyboard: <a href="key://keychron">Keychron Q11</a> $200</li>
+                  <li>Mouse: <a href={essentials.slimblade}>Slimblade Pro</a> $110</li>
+                  <li>Keyboard: <a href={essentials.keychron}>Keychron Q11</a> $200</li>
                 </ul>
-                The two budget picks are Keychron Q11 ($200) and <a href="key://mistel">Mistel Barocco MD770</a> ($144).
+                The two budget picks are Keychron Q11 ($200) and <a href={essentials.mistel}>Mistel Barocco MD770</a> ($144).
                 I own Mistel, but the internet favors Keychron. The splurge pick is <a
                 href="https://www.moergo.com/collections/glove80-keyboards">Glove80</a> ($400)
               </div>
@@ -189,14 +190,14 @@ outube.com/watch?v=PcjWc-tjLHA">How-to video</a>. If the belt starts to drift on
                 are typically lighter) and wear them all day.
               </div>
 
-              <h5>Monitor Arms: <a href="key://vivo">VIVO</a> or <a href="key://mountup">MountUp</a></h5>
+              <h5>Monitor Arms: <a href={essentials.vivo}>VIVO</a> or <a href={essentials.mountup}>MountUp</a></h5>
               <div>I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
                 This allows you to position the monitors in a tighter cluster, since you have flexibility to angle them
                 without worry of the base leaning over the edge. It also allows you to pull the monitors closer to your
                 face, just above your mouse and keyboard, in a way you couldn't do with a stand.
               </div>
 
-              <h5><a href="key://esd_wristband">ESD Wristband</a></h5>
+              <h5><a href={essentials.esd_wristband}>ESD Wristband</a></h5>
               <div>When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
                 to your computer, you'll cause "electrostatic discharge" or ESD. This can be a monitor, peripherals
                 which have any metal components, your laptop itself, etc. This can damage the electronics in the
@@ -207,7 +208,7 @@ outube.com/watch?v=PcjWc-tjLHA">How-to video</a>. If the belt starts to drift on
                 about what you touch.
               </div>
 
-              <h5><a href="key://gloves">Fingerless gloves</a></h5>
+              <h5><a href={essentials.gloves}>Fingerless gloves</a></h5>
               <div>Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
                 doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands
                 themselves.
