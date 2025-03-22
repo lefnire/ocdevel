@@ -222,7 +222,7 @@ function Updates(props: About) {
   return <AboutSection title='Updates' show={show} toggle={toggle}>
     <div className="mb-3 mlg-update ps-3">
       <Card.Title className='mb-1'>2024-01-11: Battle Station</Card.Title>
-      <p>See Tyler's workstation recommendations: <Link to="/blog/20240109-fitness-desk">walking desk</Link> and <Link to="/blog/20240110-ergo-mouse-keyboard">keyboard + mouse.</Link></p>
+      <p>See Tyler's workstation recommendations: <Link to="/walk">walking desk</Link> and <Link to="/blog/20240110-ergo-mouse-keyboard">keyboard + mouse.</Link></p>
     </div>
     {/* git-blame dept */}
     <hr />

@@ -3,7 +3,7 @@ import xmlJs from 'xml-js'
 import reduce from 'lodash/reduce'
 import crypto from 'crypto'
 import {decode} from 'html-entities'
-import {walkingDeskLinks} from "./walking-desk-links.ts";
+const walkingDeskLinks = {};
 
 // export function opmlPlugin({ references, state }) {
 export function transform(code, id) {

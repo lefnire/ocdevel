@@ -8,7 +8,7 @@ import * as b22 from './20240131-vr-ar-work/route.mdx';
 import * as b21 from './20240117-pomodoro-thinkers/route.mdx';
 import * as b20 from './20240111-tylers-setup/route.mdx';
 import * as b19 from './20240110-ergo-mouse-keyboard/route.mdx';
-import * as b18 from './20240109-fitness-desk/route.tsx';
+// import * as b18 from './20240109-fitness-desk/route.tsx';
 import * as b17 from './20240108-ml-gaming-laptop/route.mdx';
 import * as b16 from './20200118-prevent-windows-auto-restart/route.mdx';
 import * as b15 from './20210108-how-to-use-habitica/route'
@@ -29,7 +29,7 @@ import * as b6 from './20201022-aws-batch-efs-mount/route.mdx'
 
 export default [
   // pinned
-  b18,
+  // b18,
   b19,
 
   b26,

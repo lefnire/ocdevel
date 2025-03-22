@@ -493,7 +493,7 @@ export default function Body() {
       </Accordion_>
     </Accordion>
 
-    <div className='mt-2'>Aside: besides gamifying life, my biggest life-hack is <Link to="/blog/20240109-fitness-desk">walking
+    <div className='mt-2'>Aside: besides gamifying life, my biggest life-hack is <Link to="/walk">walking
       desks</Link>. Try it out!
     </div>
   </div>

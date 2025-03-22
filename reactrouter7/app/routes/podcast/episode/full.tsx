@@ -44,7 +44,7 @@ export default function Full(props: EpisodeComponent) {
       title: "Show Notes",
       body: <>
         {podcastKey !== "llh" && <Alert variant="success">
-          Support this show by trying a <Link to="/blog/20240109-fitness-desk">walking desk</Link>!
+          Support this show by trying a <Link to="/walk">walking desk</Link>!
         </Alert>}
         <Markdown_ Content={body} />
       </>
