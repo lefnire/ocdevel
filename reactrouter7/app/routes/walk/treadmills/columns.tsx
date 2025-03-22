@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
 import {getCurrentLink, getPrice} from "./data/utils";
 import { Popover } from 'react-bootstrap';
+import {clickAffiliate} from "~/components/analytics";
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -286,8 +287,18 @@ const columnsArray: ColumnDefinition[] = [
     calculate: (row: Product): string => row.model,
     render: (row: Product): React.ReactElement => {
       const link = getCurrentLink(row);
+      const price = getPrice(row);
+      const onClick = clickAffiliate({
+        label: `${row.brand.key}_${row.key}`,
+        value: price || 0
+      })
       return (
-        <a href={link} target="_blank" rel="noopener noreferrer">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onClick}
+        >
           {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
         </a>
       )
@@ -939,5 +950,5 @@ const info = columnsArray.reduce((obj, item) => {
   return obj;
 }, {} as Record<string, any>);
 
-export { columnsArray, RatingDetails };
+export { columnsArray };
 export default info;

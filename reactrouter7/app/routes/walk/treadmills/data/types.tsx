@@ -40,6 +40,7 @@ export interface Brand {
 export interface Product {
   brand: Brand
   model: string
+  image?: string
   key: string
   description: string | ReactElement
   links: Links

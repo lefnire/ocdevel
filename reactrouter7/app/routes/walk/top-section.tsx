@@ -11,7 +11,7 @@ import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
 
 const treadmills = [
     {
-      key: 'cyberpad',
+      key: 'urevo_cyberpad',
       image: '/walk_thumbs/cyberpad.jpg',
       title: 'Premium: CyberPad',
       description: <div>
@@ -19,7 +19,7 @@ const treadmills = [
         <VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />
       </div>,
       link: getCurrentLink(dataObj.urevo_cyberpad),
-      linkText: `~$${getPrice(dataObj.urevo_cyberpad)} on Amazon`,
+      linkText: `$${getPrice(dataObj.urevo_cyberpad)} on Amazon`,
       price: getPrice(dataObj.urevo_cyberpad),
     },
     {
@@ -31,11 +31,11 @@ const treadmills = [
         <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
       </div>,
       link: getCurrentLink(dataObj.urevo_3s),
-      linkText: `~$${getPrice(dataObj.urevo_3s)} on Amazon`,
+      linkText: `$${getPrice(dataObj.urevo_3s)} on Amazon`,
       price: getPrice(dataObj.urevo_3s),
     },
     {
-      key: 'deerrun',
+      key: 'deerrun_q1mini',
       image: '/walk_thumbs/deerrun.jpg',
       title: 'Budget: DeerRun',
       description: <div>
@@ -43,7 +43,7 @@ const treadmills = [
         <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
       </div>,
       link: getCurrentLink(dataObj.deerrun_q1mini),
-      linkText: `~$${getPrice(dataObj.deerrun_q1mini)} on Amazon`,
+      linkText: `$${getPrice(dataObj.deerrun_q1mini)} on Amazon`,
       price: getPrice(dataObj.deerrun_q1mini),
     },
 ]
@@ -88,8 +88,6 @@ const otherProducts = [
   // }
 ];
 
-
-
 interface Product {
   image: string;
   title: string;
@@ -118,6 +116,7 @@ export function ProductsCard ({ title, links, products }: Products) {
           <a
             href={product.link}
             onClick={clickAffiliate({label: product.key, value: product.price })}
+            rel="noopener noreferrer"
             target="_blank"
             className="btn btn-primary align-self-start"
           >
