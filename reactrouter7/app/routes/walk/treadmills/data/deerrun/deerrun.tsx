@@ -1,6 +1,7 @@
 import type {Product} from "../types"
+import brand from './brand'
 const info: Product = {
-  make: "deerrun",
+  brand,
   model: "Q1 Mini",
   description: "Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.",
   link: "https://amzn.to/4bM8iFn",

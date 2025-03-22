@@ -10,8 +10,22 @@ type BoolVal = Omit<Attribute, 'value'> & { value?: boolean }
 type StringVal = Omit<Attribute, 'value'> & { value?: string }
 type Numval = Omit<Attribute, 'value'> & { value?: number }
 
+export interface Brand {
+  key: string
+  name: string
+  link?: string
+  warranty: {
+    value?: string[]
+    notes?: () => ReactElement
+  }
+  fakespot?: string
+  rating?: number
+  location?: string
+  notes?: () => ReactElement
+}
+
 export interface Product {
-  make: string
+  brand: Brand
   model: string
   description: string | ReactElement
   link: string

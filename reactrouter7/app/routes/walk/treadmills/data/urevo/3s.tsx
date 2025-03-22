@@ -1,7 +1,7 @@
 import type {Product} from "../types"
-import brands from '../brands'
+import brand from './brand'
 const info: Product = {
-  make: "urevo",
+  brand,
   model: "3S",
   description: "Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it.",
   link: "https://amzn.to/4bE2JXR",
@@ -28,7 +28,7 @@ const info: Product = {
     value: [[4.3, 774], [70, 14, 4, 3, 9]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
   },
   fakespot: {
-    value: ["B", brands.urevo.fakespot],
+    value: ["B", brand.fakespot],
   },
   price: {
     value: 465,

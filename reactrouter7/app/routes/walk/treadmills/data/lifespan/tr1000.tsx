@@ -1,58 +1,79 @@
-import type {Product} from "../types"
+import type {Product} from "./types"
+import brand from './brand'
 const info: Product = {
-  make: "lifespan",
-  model: "TR1200",
-  description: "A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
-  link: "https://lifespan-fitness.e9ppfh.net/GmyR4k",
+  brand,
+  model: "TR1000",
+  description: "A commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
+  link: "https://lifespan-fitness.e9ppfh.net/eK0k5j",
 
   dimensions: {
-    value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H
-    notes: () => <div>Larger dimensions than many consumer models and even the TR1000, which may be an issue for some desk setups.</div>
+    value: [58, 28.5, 7.25], // 58"L x 28.5"W x 7.25"H
+    rating: 4,
+    
+    notes: () => <div>Larger dimensions than many consumer models, which may be an issue for some desk setups.</div>
   },
   weight: {
-    value: 117, // TODO: Weight not specified in the data
-    // notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
+    value: 0, // TODO: Weight not specified in the data
+    rating: 0,
+    
+    notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
   },
   maxWeight: {
     value: 350,
+    rating: 9,
+    
     notes: () => <div>High max weight capacity (350lbs) compared to most competitors.</div>
   },
   maxSpeed: {
     value: 4,
+    rating: 5,
   },
   horsePower: {
-    value: 2.25, // Assuming higher than TR1000 based on tier
-    // notes: () => <div>Commercial-grade motor likely has higher horsepower and better durability than consumer models and the TR1000.</div>
+    value: 2.5, // Assuming 2.5+ based on commercial grade
+    rating: 8,
+    
+    notes: () => <div>Commercial-grade motor likely has higher horsepower and better durability than consumer models.</div>
   },
   age: {
-    value: "2022-11-16",
+    value: "", // TODO: Age not specified in the data
+    rating: 0,
   },
   rating: {
-    value: [[3.2, 85], [45, 8, 12, 2, 33]],
+    value: [[0, 0], [0, 0, 0, 0, 0]], // TODO: Rating not specified in the data
+    rating: 0,
   },
   fakespot: {
-    value: ["A", "A"],
+    value: ["", ""], // Not specified in the data
+    rating: 0,
   },
   price: {
-    value: 1300,
-    notes: () => <div>Significantly higher price point than consumer models and $200 more than the TR1000, reflecting higher-tier commercial-grade quality.</div>
+    value: 1600,
+    rating: 3,
+    
+    notes: () => <div>Significantly higher price point than consumer models, reflecting commercial-grade quality.</div>
   },
   pickedBy: {
     value: ["public"],
+    rating: 7,
+    
     notes: () => <div>Popular choice for commercial use in coworking spaces, indicating professional-level quality.</div>
   },
   incline: {
     value: 0, // Not mentioned in the data
+    rating: 0,
   },
   shock: {
     value: true, // Assuming based on commercial quality
-    rating: 4,
-    // notes: () => <div>Likely has superior shock absorption as a higher-tier commercial-grade treadmill.</div>
+    rating: 8,
+    
+    notes: () => <div>Likely has superior shock absorption as a commercial-grade treadmill.</div>
   },
   decibels: {
   },
   sturdy: {
     value: true,
+    rating: 9,
+    
     notes: () => <div>Commercial-grade construction designed for 6 hours of daily use.</div>
   },
   app: {
@@ -60,9 +81,11 @@ const info: Product = {
   },
   easyLube: {
     value: false, // Not mentioned in the data
+    rating: 0,
   },
   amazon: {
-    value: true, // Link is to LifeSpan website, not Amazon
+    value: false, // Link is to LifeSpan website, not Amazon
+    rating: 0,
   },
   countries: {
     value: ["US"] // Assuming US availability
@@ -86,27 +109,21 @@ const info: Product = {
       rating: 8,
       
       notes: () => <div>Designed for extended daily use, indicating superior durability.</div>
-    },
-    {
-      value: "Higher quality than TR1000",
-      rating: 8,
-      
-      notes: () => <div>As a higher-tier model, likely offers improved components and durability over the TR1000.</div>
     }
   ],
   
   cons: [
     {
       value: "Expensive",
-      rating: 2,
-      
-      notes: () => <div>$1800 price point is significantly higher than consumer models and $200 more than the TR1000.</div>
-    },
-    {
-      value: "Very large size",
       rating: 3,
       
-      notes: () => <div>At 63" length, larger dimensions may be challenging for home office setups.</div>
+      notes: () => <div>$1600 price point is significantly higher than consumer models.</div>
+    },
+    {
+      value: "Large size",
+      rating: 4,
+      
+      notes: () => <div>Larger dimensions may be challenging for home office setups.</div>
     }
   ],
 }

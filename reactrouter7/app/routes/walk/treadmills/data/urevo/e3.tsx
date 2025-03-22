@@ -1,7 +1,8 @@
 import type {Product} from "../types"
-import brands, {budgetNote} from '../brands'
+import {budgetNote} from '../utils'
+import brand from './brand'
 const info: Product = {
-  make: "urevo",
+  brand,
   model: "E3",
   description: "Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.",
   link: "https://amzn.to/3zxMhLt",
@@ -28,12 +29,12 @@ const info: Product = {
     value: [[4.3, 1775], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
   },
   fakespot: {
-    value: ["B", brands.urevo.fakespot],
+    value: ["B", brand.fakespot],
     rating: 7,
   },
   price: {
     value: 270,
-    note: () => <div>{budgetNote}</div>
+    notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     value: [], // Not specifically picked by anyone according to the data
@@ -45,7 +46,7 @@ const info: Product = {
   shock: {
     value: true, // Not mentioned in the data
     rating: 5,
-    note: () => <div>8-point silicone absorbers</div>
+    notes: () => <div>8-point silicone absorbers</div>
   },
   decibels: {
     rating: 3,

@@ -4,9 +4,9 @@ import {Button, Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
 
-import urevo_3s from './treadmills/data/urevo_3s';
-import urevo_cyberpad from './treadmills/data/urevo_cyberpad';
-import deerrun from './treadmills/data/deerrun';
+import urevo_3s from './treadmills/data/urevo/3s';
+import urevo_cyberpad from './treadmills/data/urevo/cyberpad';
+import deerrun from './treadmills/data/deerrun/deerrun';
 import essentials from './essentials-links'
 import {VideoButton} from './utils'
 

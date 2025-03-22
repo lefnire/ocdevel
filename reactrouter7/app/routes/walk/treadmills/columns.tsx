@@ -1,6 +1,5 @@
 import React from "react";
-import type { Product } from "./types";
-import brands from './brands';
+import type { Product } from "./data/types";
 import dayjs from "dayjs";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
@@ -282,16 +281,16 @@ const columnsArray: ColumnDefinition[] = [
     }
   },
   {
-    key: "make",
+    key: "brand",
     label: "Brand",
     dtype: "string",
     rating: 0,
     showInTable: true,
-    calculate: (row: Product): string => row.make,
-    render: (row: Product): string => row.make,
+    calculate: (row: Product): string => row.brand.key,
+    render: (row: Product): string => row.brand.name,
     // Note: The actual rendering with brand info will be handled in route.tsx
     getRating: (row: Product): number => {
-      return brands[row.make]?.rating ?? 5;
+      return row.brand?.rating ?? 5;
     }
   },
   {

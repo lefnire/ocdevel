@@ -1,17 +1,19 @@
 import type {Product} from "../types"
-import brands, {budgetNote} from '../brands'
+import {budgetNote} from '../utils'
+import brand from './brand'
 
 const info: Product = {
-  make: "urevo",
-  model: "E5",
-  description: "This has the most hardware improvements over the below. Eg, improved motor, and vents to dissipate heat, and doesn't have an incline. I don't know why they removed the incline after E3... real bummer. So I recommend propping the head on some yoga blocks or a 2x4.",
-  link: "https://amzn.to/4jsteob",
+  brand,
+  model: "E4",
+  description: "Motor improvement over E3 (which had a lot of overheating complaints); but removed incline. E5 is upgrade over this one, so if you don't want E3's incline, just get E5.",
+  // link: "https://amzn.to/3xxWWV9",
+  link: "https://www.amazon.com/dp/B0CLH1MNR7?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.NRRCZN113BGN&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.NRRCZN113BGN_1742362488415",
 
   dimensions: {
-    value: [48.9, 19, 4.5], // 50"D x 20.9"W x 4.72"H
+    value: [47.5, 18.9, 4.4], // TODO what was: 50"D x 20.9"W x 4.72"H
   },
   weight: {
-    value: 37.5, // TODO: Weight not specified in the data
+    value: 42.3,
   },
   maxWeight: {
     value: 265,
@@ -20,42 +22,39 @@ const info: Product = {
     value: 4,
   },
   horsePower: {
-    value: 2.5,
+    value: 2.25,
   },
   age: {
-    value: "2024-08-27",
-    notes: () => <div>Newer model with hardware improvements over previous E* versions.</div>
+    value: "2023-09-12",
   },
   rating: {
     value: [[4.3, 1175], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    notes: () => <div>Good distribution with majority 5-star ratings.</div>
   },
   fakespot: {
-    value: ["B", brands.urevo.fakespot], // Fakespot B for the product
+    value: ["B", brand.fakespot], // Fakespot B for the product
   },
   price: {
-    value: 190,
+    value: 200,
     sale: 170,
-    notes: () => <div>{budgetNote}</div>
+    note: () => <div>{budgetNote}</div>
   },
   pickedBy: {
-    value: ["public"],
+    value: [], // Not specifically picked by anyone according to the data
   },
   incline: {
     value: 0,
-    notes: () => <div>No incline. Since this is the newest E model, it's recommend over E3 which *has* incline. So prop the head on yoga blocks or a 2x4.</div>
+    notes: () => <div>No incline functionality, which is a downgrade from E3.</div>
   },
   shock: {
     value: true,
-    rating: 5,
     notes: () => <div>8-point silicone</div>
   },
   decibels: {
-    rating: 3,
+    // rating: 45,
   },
   sturdy: {
     value: false,
-    rating: 4,
+    rating: 3,
   },
   app: {
     value: false, // Not mentioned in the data
@@ -72,9 +71,14 @@ const info: Product = {
 
   pros: [
     {
-      value: "Better tech",
+      value: "On Amazon",
+      rating: 7,
+      notes: () => <div>Available on Amazon for easy purchasing and returns.</div>
+    },
+    {
+      value: "Improved motor heat",
       rating: 8,
-      notes: () => <div>Improved motor with vents to dissipate heat.</div>
+      notes: () => <div>Motor improvement over E3 which had overheating complaints.</div>
     },
     {
       value: "Shock absorption",

@@ -1,7 +1,7 @@
 import type {Product} from "../types"
-import brands from '../brands'
+import brand from './brand'
 const info: Product = {
-  make: "walkingpad",
+  brand,
   model: "Z1",
   link: "https://amzn.to/4kQEnA0",
 
@@ -32,7 +32,7 @@ const info: Product = {
     // notes: () => <div>Concerning rating distribution with 11% 1-star ratings, indicating potential quality issues.</div>
   },
   fakespot: {
-    value: ["A", brands.walkingpad.fakespot], // Fakespot A for the product
+    value: ["A", brand.fakespot], // Fakespot A for the product
     // notes: () => <div>Fakespot A rating indicates generally reliable reviews, despite the concerning distribution.</div>
   },
   price: {

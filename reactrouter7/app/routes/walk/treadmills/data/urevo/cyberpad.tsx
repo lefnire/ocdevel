@@ -1,10 +1,17 @@
-import type {Product} from "../types"
+import type {Product} from "../types";
+import {USE_AMAZON} from "../utils";
+import brand from './brand'
+
+const link = (
+  USE_AMAZON ? "https://amzn.to/42VhjJE"
+  : "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dcyberpad%2Dfor%2Dhome%2Dtreadmill&afftrack=blog"
+)
+
 const info: Product = {
-  make: "urevo",
+  brand,
   model: "Cyberpad",
   description: "I just got this (Feb 12th 2025) and am in love. It's their newest, most upgraded model via Kickstarter. I'm retiring my 3S as a backup. Quality upgrades over 3S are worth the +$150.",
-  // "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dcyberpad%2Dfor%2Dhome%2Dtreadmill&afftrack=blog"
-  link: "https://amzn.to/42VhjJE",
+  link,
 
   dimensions: {
     value: [47.6, 23.6, 8.7], // 47.6"D x 23.6"W x 8.7"H

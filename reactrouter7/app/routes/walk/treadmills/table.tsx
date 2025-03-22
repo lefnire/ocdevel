@@ -8,12 +8,11 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 import type { SortingState } from '@tanstack/react-table';
-import { data } from './data';
+import data from './data/index';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
 // columnInfo is an object version of columnsArray for direct access by key
-import brands from './brands';
 import { OverlayTrigger, Popover, Form } from 'react-bootstrap';
-import type { Product } from './types';
+import type { Product } from './data/types';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 // Header cell component with notes
@@ -91,38 +90,6 @@ const Cell = ({
   // Get the actual product data
   const product: Product = row.original || row;
   
-  // Special case for make/brand column
-  if (columnId === 'make') {
-    const make = product.make;
-    const brand = brands[make];
-    const brandName = brand?.name || make;
-    
-    if (brand && brand.notes) {
-      return (
-        <div>
-          <OverlayTrigger
-            trigger={["hover","focus"]}
-            placement="right"
-            overlay={
-              <Popover id={`popover-brand-${row.id || `${product.make}-${product.model}`}`}>
-                <Popover.Header as="h3">{brandName}</Popover.Header>
-                <Popover.Body>
-                  {brand.notes()}
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
-              {brandName}
-            </span>
-          </OverlayTrigger>
-        </div>
-      );
-    }
-    
-    return <div>{brandName}</div>;
-  }
-  
   // For other columns, use the render function from columnDef
   if (columnDef && columnDef.render) {
     const displayValue = columnDef.render(product);
@@ -137,7 +104,7 @@ const Cell = ({
       const ratingColumn = columnInfo.rating;
       if (ratingColumn && ratingColumn.notes) {
         const popover = (
-          <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
+          <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.model}`}>
             <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
             <Popover.Body>
               {/* Show custom notes if they exist */}
@@ -197,7 +164,7 @@ const Cell = ({
     // For other columns with notes
     if (hasNotes && columnId !== 'rating') {
       const popover = (
-        <Popover id={`popover-cell-${columnId}-${product.make}-${product.model}`}>
+        <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.model}`}>
           <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
           <Popover.Body>
             {(attr as any).notes()}

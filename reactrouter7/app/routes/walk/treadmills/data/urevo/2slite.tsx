@@ -1,6 +1,7 @@
 import type {Product} from "../types"
+import brand from './brand'
 const info: Product = {
-  make: "urevo",
+  brand,
   model: "2S Lite",
   description: "If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S.",
   link: "https://amzn.to/3ROlFvN",
@@ -30,7 +31,7 @@ const info: Product = {
     // notes: () => <div>Good distribution with majority 5-star ratings, but Fakespot D rating suggests some review reliability issues.</div>
   },
   fakespot: {
-    value: ["C", "B"],
+    value: ["C", brand.fakespot],
     // notes: () => <div>Fakespot D rating suggests potential issues with review authenticity.</div>
   },
   price: {
