@@ -34,12 +34,11 @@ export default function Tabs() {
   return <div className={tab ? 'my-2' : 'd-none'}>
     <Tab.Container
       id="tabs"
-
       activeKey={tab}
       onSelect={(k) => k && setTab(k as TabKey)}
     >
       <Row>
-        <Col sm={3}>
+        <Col sm={2}>
           <Nav variant="underline" className="flex-column">
             <Nav.Item>
               <Nav.Link eventKey="why_desk">{tabs.why_desk}</Nav.Link>
@@ -55,7 +54,7 @@ export default function Tabs() {
             </Nav.Item>
           </Nav>
         </Col>
-        <Col sm={9}>
+        <Col sm={10}>
           <Tab.Content>
             <Tab.Pane eventKey="why_desk">
               <h5>Focus</h5>
@@ -87,7 +86,9 @@ export default function Tabs() {
                 less an issue of quality; and more an issue of using them wisely, like non-continuous use.
               </div>
               <h5>Using this table</h5>
-              <div className="alert alert-warning">TODO</div>
+              <p>TL;DR: sort by Rank, enter a Max Price. </p>
+              <p>Rank is a weighted sum of each rows' attributes. Weighted means, some attributes are more important than others. Eg, App Support has weight=1, where Sturdy has weight=10. You can see how each cell ranks in the bottom corner of that cell.</p>
+              <p>This is particularly interesting for Star Rating. The value shown in the cell is the rating (usually from Amazon). But the bottom-right number is the "adjusted" rating: star ratings, downplayed if too few ratings; modified by the FakeSpot grade (for both the product and company); and taking 1-star skew into consideration. So in reality, that little number is more valuable than the rating itself.</p>
 
             </Tab.Pane>
             <Tab.Pane eventKey="care">
