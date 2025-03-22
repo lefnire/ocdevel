@@ -1,96 +1,76 @@
 import type {Product} from "../types"
+import brands from '../brands'
 const info: Product = {
   make: "walkingpad",
-  model: "WalkingPad",
-  description: "I strongly discourage WalkingPad. It's the one I see the most complaints about online; severe quality issues like motor burnout. I think it's so popular because they landed strong SEO with the name, being exactly what people search for. Please look at the reviews before considering WalkingPad.",
-  link: "https://amzn.to/3HCBP67",
+  model: "Z1",
+  link: "https://amzn.to/4kQEnA0",
 
   dimensions: {
-    value: [57.17, 28.43, 51.18], // 57.17"D x 28.43"W x 51.18"H
-    rating: 3,
-    
-    notes: () => <div>Larger dimensions than many competitors, which may be an issue for some desk setups.</div>
+    value: [57, 20.7, 5.5], // 57.17"D x 28.43"W x 51.18"H
+    // notes: () => <div>Larger dimensions than many competitors, which may be an issue for some desk setups.</div>
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
+    value: 50,
   },
   maxWeight: {
     value: 242,
-    rating: 6,
-    notes: () => <div>Max weight capacity of 242lbs is lower than the 265lbs offered by many competitors.</div>
   },
   maxSpeed: {
-    value: 7.5,
-    rating: 8,
-    
-    notes: () => <div>Higher max speed (7.5mph) than most competitors, allowing for running.</div>
+    value: 4,
+    // notes: () => <div>Higher max speed (7.5mph) than most competitors, allowing for running.</div>
   },
   horsePower: {
     value: 2,
-    rating: 3,
-    
-    notes: () => <div>2 HP is slightly less than most on this list. 2.25 HP or more is preferred for longevity.</div>
   },
   age: {
-    value: "2021-08-12",
+    value: "2024-01-10",
     rating: 4,
-    notes: () => <div>Released August 12, 2021 - older model compared to newer options.</div>
+    // notes: () => <div>Released August 12, 2021 - older model compared to newer options.</div>
   },
   rating: {
-    value: [[4, 0], [55, 21, 8, 5, 11]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 3,
-    
-    notes: () => <div>Concerning rating distribution with 11% 1-star ratings, indicating potential quality issues.</div>
+    value: [[4.4, 107], [70, 15, 5, 4, 6]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    // notes: () => <div>Concerning rating distribution with 11% 1-star ratings, indicating potential quality issues.</div>
   },
   fakespot: {
-    value: ["A", ""], // Fakespot A for the product
-    rating: 7,
-    notes: () => <div>Fakespot A rating indicates generally reliable reviews, despite the concerning distribution.</div>
+    value: ["A", brands.walkingpad.fakespot], // Fakespot A for the product
+    // notes: () => <div>Fakespot A rating indicates generally reliable reviews, despite the concerning distribution.</div>
   },
   price: {
-    value: 750, // Taking the middle of the $500-1000 range
-    rating: 3,
-    
-    notes: () => <div>Price range of $500-1000 is higher than many competitors. The X21 model is $1000.</div>
+    value: 400, // Taking the middle of the $500-1000 range
+    sale: 350,
+    // notes: () => <div>Price range of $500-1000 is higher than many competitors. The X21 model is $1000.</div>
   },
   pickedBy: {
-    value: ["public"], // Listed as popular but not recommended
-    rating: 2,
-    
+    value: ["public", "websites"], // Listed as popular but not recommended
     notes: () => <div>Popular among the public but not recommended due to quality issues.</div>
   },
   incline: {
     value: 0, // Not mentioned in the data
-    rating: 0,
   },
   shock: {
-    value: false, // Not mentioned in the data
-    rating: 0,
+    value: true, // Not mentioned in the data
+    rating: 2,
   },
   decibels: {
   },
   sturdy: {
     value: false,
-    rating: 2,
-    
     notes: () => <div>Many reports of quality issues including motor burnout and belt drift.</div>
   },
   app: {
-    value: true,
-    notes: () => <div>Uses an app instead of a controller, which removes a point of failure and tracks stats over time.</div>
+    value: false,
+    // notes: () => <div>Uses an app instead of a controller, which removes a point of failure and tracks stats over time.</div>
   },
   easyLube: {
-    value: false, // Not mentioned in the data
-    rating: 0,
+    value: true, // Not mentioned in the data
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon
   },
+  bump: -10,
 
   pros: [
     {

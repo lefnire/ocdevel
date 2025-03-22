@@ -67,6 +67,7 @@ const info: Product = {
   countries: {
     value: ["US"]
   },
+  bump: -5,
 
   pros: [
     {

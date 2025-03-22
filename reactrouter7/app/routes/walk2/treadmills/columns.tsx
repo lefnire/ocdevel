@@ -79,7 +79,7 @@ const calculatePickedByRating = (pickedBy: string[]): number => {
 };
 
 const calculateInclineRating = (hasIncline: boolean): number => {
-  return hasIncline ? 9 : 3; // 3% incline is important (9), no incline is below average
+  return hasIncline ? 9 : 0; // 3% incline is important (9), no incline is below average
 };
 
 
@@ -810,7 +810,11 @@ if (rankColumn) {
     });
 
     // Normalize the score to a 0-10 scale
-    return totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
+    totalWeight =  totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
+    if (row.bump) {
+      totalWeight += row.bump
+    }
+    return totalWeight
   };
 }
 

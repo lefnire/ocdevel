@@ -1,5 +1,5 @@
 import type {Product} from "../types"
-import {budgetNote} from '../brands'
+import brands, {budgetNote} from '../brands'
 
 const info: Product = {
   make: "urevo",
@@ -8,79 +8,63 @@ const info: Product = {
   link: "",
 
   dimensions: {
-    value: [50, 20.9, 4.72], // 50"D x 20.9"W x 4.72"H
-    rating: 6,
+    value: [48.9, 19, 4.5], // 50"D x 20.9"W x 4.72"H
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
+    value: 37.5, // TODO: Weight not specified in the data
   },
   maxWeight: {
     value: 265,
-    rating: 8,
   },
   maxSpeed: {
     value: 4,
-    rating: 5,
   },
   horsePower: {
-    value: 2.25,
-    rating: 6,
+    value: 2.5,
   },
   age: {
-    value: "", // TODO: Age not specified in the data
-    rating: 6,
-    notes: () => <div>Newer model with hardware improvements over previous versions.</div>
+    value: "2024-08-27",
+    notes: () => <div>Newer model with hardware improvements over previous E* versions.</div>
   },
   rating: {
-    value: [[4.4, 0], [70, 16, 6, 4, 4]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 7,
+    value: [[4.3, 1175], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
     notes: () => <div>Good distribution with majority 5-star ratings.</div>
   },
   fakespot: {
-    value: ["B", ""], // Fakespot B for the product
-    rating: 7,
-    notes: () => <div>Fakespot B rating indicates generally reliable reviews.</div>
+    value: ["B", brands.urevo.fakespot], // Fakespot B for the product
   },
   price: {
-    value: 200,
+    value: 190,
+    sale: 170,
     notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
-    value: ["me", "public"],
-    rating: 8,
-    
+    value: ["public"],
   },
   incline: {
     value: 0,
-    rating: 2,
-    
-    notes: () => <div>No incline functionality. Recommendation is to prop the head on yoga blocks or a 2x4.</div>
+    notes: () => <div>No incline. Since this is the newest E model, it's recommend over E3 which *has* incline. So prop the head on yoga blocks or a 2x4.</div>
   },
   shock: {
     value: true,
-    rating: 7,
-    
-    notes: () => <div>Has shock absorption for better knee health.</div>
+    rating: 5,
+    notes: () => <div>8-point silicone</div>
   },
   decibels: {
     rating: 3,
-    notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {
-    value: true,
-    rating: 7,
+    value: false,
+    rating: 4,
   },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon

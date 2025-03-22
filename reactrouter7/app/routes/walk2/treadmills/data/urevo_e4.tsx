@@ -1,5 +1,5 @@
 import type {Product} from "../types"
-import {budgetNote} from '../brands'
+import brands, {budgetNote} from '../brands'
 
 const info: Product = {
   make: "urevo",
@@ -8,81 +8,60 @@ const info: Product = {
   link: "",
 
   dimensions: {
-    value: [50, 20.9, 4.72], // 50"D x 20.9"W x 4.72"H
-    rating: 6,
+    value: [47.5, 18.9, 4.4], // TODO what was: 50"D x 20.9"W x 4.72"H
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
-    
-    notes: () => <div>Described as high weight in the data, but exact value not specified.</div>
+    value: 42.3,
   },
   maxWeight: {
     value: 265,
-    rating: 8,
   },
   maxSpeed: {
     value: 4,
-    rating: 5,
-    
-    notes: () => <div>Tagged as #speed:low in the data, but max speed is listed as 4mph which is standard.</div>
   },
   horsePower: {
     value: 2.25,
-    rating: 6,
   },
   age: {
-    value: "", // TODO: Age not specified in the data
-    rating: 5,
+    value: "2023-09-12",
   },
   rating: {
-    value: [[4.4, 0], [70, 16, 6, 4, 4]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 7,
-    notes: () => <div>Good distribution with majority 5-star ratings. Also mentioned separately: 5=69%, 4=15%, 3=6%, 2=3%, 1=7%</div>
+    value: [[4.3, 1175], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
   },
   fakespot: {
-    value: ["B", ""], // Fakespot B for the product
-    rating: 7,
-    notes: () => <div>Fakespot B rating indicates generally reliable reviews.</div>
+    value: ["B", brands.urevo.fakespot], // Fakespot B for the product
   },
   price: {
     value: 200,
+    sale: 170,
     note: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     value: [], // Not specifically picked by anyone according to the data
-    rating: 0,
   },
   incline: {
     value: 0,
-    rating: 2,
-    
     notes: () => <div>No incline functionality, which is a downgrade from E3.</div>
   },
   shock: {
     value: true,
-    rating: 7,
-    
-    notes: () => <div>Has shock absorption for better knee health.</div>
+    notes: () => <div>8-point silicone</div>
   },
   decibels: {
-    rating: 3,
-    notes: () => <div>Described as loud in the data.</div>
+    // rating: 45,
   },
   sturdy: {
-    value: true,
-    rating: 6,
+    value: false,
+    rating: 3,
   },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon

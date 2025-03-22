@@ -1,4 +1,5 @@
 import type {Product} from '../types'
+import brands from '../brands'
 const info: Product = {
   make: "urevo",
   model: "Strol 2S Pro",
@@ -7,40 +8,30 @@ const info: Product = {
 
   dimensions: {
     value: [54.72, 25.37, 6.67],
-    rating: 5,
     notes: () => <div>Depth and height are good, but side-rails add some width (a necessary walking pads that allow speeds over 4mph). So measure the space between your desk legs.</div>
   },
   weight: {
     value: 86,
-    rating: 1,
-    
     notes: () => <div>Woa mama is it heavy! Much of it is in the rails.</div>
   },
   maxWeight: {
     value: 265,
-    rating: 8,
   },
   maxSpeed: {
     value: 7.6,
-    rating: 10,
-    
     notes: () => <div>One of thew quality walking pads which allows running.</div>
   },
   horsePower: {
     value: 2.5,
-    rating: 5,
   },
   age: {
     value: "2024-08-07",
-    rating: 7,
   },
   rating: {
-    value: [[4.3, 772], [70, 14, 4, 3, 9]],
-    rating: 6,
+    value: [[4.3, 774], [70, 14, 4, 3, 9]],
   },
   fakespot: {
-    value: ["A", "B"],
-    rating: 10,
+    value: ["A", brands.urevo.fakespot],
   },
   price: {
     value: 800,
@@ -48,24 +39,18 @@ const info: Product = {
   },
   pickedBy: {
     value: ["me", "trusted", "public"],
-    rating: 9,
-    
   },
   incline: {
     value: 9,
-    rating: 9,
   },
   shock: {
     value: true,
-    rating: 8,
-    notes: () => <div>8-Point silicone (standard)</div>
+    notes: () => <div>8-Point silicone</div>
   },
   decibels: {
   },
   sturdy: {
     value: true,
-    rating: 8,
-    
     notes: () => <div>Very high quality, to accommodate running.</div>
   },
   app: {

@@ -46,6 +46,7 @@ export interface Product {
   countries: Omit<Attribute, 'value'> & {
     value?: string[]
   }
+  bump?: number
   pros?: StringVal[]
   cons?: StringVal[]
 }
