@@ -1,6 +1,6 @@
 import type {Product} from "./types";
 
-export const PAUSE_AMAZON = true;
+export const PAUSE_AMAZON = false;
 export function getCurrentLink(product: Product) {
   if (PAUSE_AMAZON && product.links.amazonPause) {
     return product.links[product.links.amazonPause]

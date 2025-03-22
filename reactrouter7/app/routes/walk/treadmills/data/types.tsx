@@ -22,7 +22,13 @@ export interface Brand {
   name: string
   links?: Links
   warranty: {
-    value?: string[]
+    brand?: number // months
+    amazon?: number // months
+    notes?: () => ReactElement
+  }
+  countries: {
+    brand?: string[]
+    amazon?: string[]
     notes?: () => ReactElement
   }
   fakespot?: string

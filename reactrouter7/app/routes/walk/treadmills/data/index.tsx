@@ -15,6 +15,7 @@ import lifespan_tr1000 from './lifespan/tr1000'
 import lifespan_tr1200 from './lifespan/tr1200'
 import lifespan_tr5000 from './lifespan/tr5000'
 import imovr from './imovr/imovr'
+import sperax_motioneaselitep1 from './sperax/motioneaselitep1'
 
 const index = [
   // Original treadmills
@@ -37,6 +38,7 @@ const index = [
   lifespan_tr1200,
   lifespan_tr5000,
   imovr,
+  sperax_motioneaselitep1,
 ]
 export default index
 

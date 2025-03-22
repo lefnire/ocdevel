@@ -9,7 +9,13 @@ const info: Brand = {
   },
   location: "China",
   rating: 6,
-  warranty: {},
+  warranty: {
+    brand: 3,
+  },
+  countries: {
+    brand: ["US", "UK", "CA", "DE"],
+    amazon: [],
+  },
   fakespot: "B",
   notes: () => <div>Gaining popularity. I'm seeing them on various recommender sites, and with decent love in the underground.</div>
 }

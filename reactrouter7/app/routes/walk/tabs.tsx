@@ -92,7 +92,9 @@ export default function Tabs() {
               </div>
               <p></p>
               <p>Anywhere there's a <span style={{borderBottom: "1px dotted #000"}}>dotted underline</span>, click it for details. I try to make these count.</p>
+              {/*<p>I switch up the default links sometimes when one has a better deal (either price, warranty, or added goodies).</p>*/}
             </Tab.Pane>
+
             <Tab.Pane eventKey="care">
               <h5>Lube</h5>
               <div className="py-1">Every so 50 hours or 3 months of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want <a href={essentials.lube} target="_blank">one with a long syringe</a>, rather than the wobbly tube - those are harder to control. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
