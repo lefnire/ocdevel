@@ -7,49 +7,44 @@ const info: Product = {
 
   dimensions: {
     value: [41.5, 22.8, 7],
-    rating: 7,
-    
     notes: () => <div>They've dialed the depth to the smallest comfortable even for long strides, to minimize space within the home. Part of this is removing face plates (the front is all belt), and part of it is leaning into the incline's modified gait.</div>
   },
   weight: {
     value: 51.36,
-    rating: 5,
   },
   maxWeight: {
     value: 245,
-    rating: 8,
   },
   maxSpeed: {
     value: 3.1,
-    rating: 4,
   },
   horsePower: {
     value: 2.5,
-    rating: 5,
   },
   age: {
-    value: "Unknown, but I think late 2023 / early 2024"
+    value: "2024-01-01",
+    notes: () => <div>Unknown, but I think late 2023 / early 2024</div>
   },
   rating: {
     value: [[4.7, 567], [488/576, 34/576, 25/576, 10/576, 19/576]],
-    rating: 7,
-    notes: () => <div>Ratings from their website</div>
+    notes: () => <div>Ratings from their website.</div>
   },
   fakespot: {
+    // using C since they won't sell this model on Amazon, though they do sell
+    // m1 pro there. Makes me suspicious
+    value: ["C", "B"],
   },
   price: {
     value: 600,
     sale: 500,
   },
   pickedBy: {
-    value: ["me"],
-    rating: 7,
-    
+    value: ["me", "public"],
   },
   incline: {
     value: 3,
     rating: 10,
-    notes: () => <div>Fixed 3%, which is the sports medicine recommendation. They optimized this down from the 5% of the M1 Pro (prior version). </div>
+    notes: () => <div>Fixed 3%, which is the sports medicine recommendation. They optimized this down from the 5% of the M1 Pro (prior version). The fact you don't have to set this every time you use it is great.</div>
   },
   shock: {
     value: true,
@@ -59,7 +54,6 @@ const info: Product = {
   easyLube: {
     value: true,
     rating: 10,
-    
   },
   quiet: {
     value: true,
@@ -67,13 +61,11 @@ const info: Product = {
   },
   sturdy: {
     value: true,
-    rating: 9,
-    
+    rating: 6,
     notes: () => <div>Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer</div>
   },
   amazon: {
     value: false,
-    rating: 0,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>
   },
   app: {
