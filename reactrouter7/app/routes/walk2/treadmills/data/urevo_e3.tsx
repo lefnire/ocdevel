@@ -1,5 +1,5 @@
 import type {Product} from "../types"
-import {budgetNote} from '../brands'
+import brands, {budgetNote} from '../brands'
 const info: Product = {
   make: "urevo",
   model: "E3",
@@ -8,76 +8,60 @@ const info: Product = {
 
   dimensions: {
     value: [50, 20.9, 4.72], // 50"D x 20.9"W x 4.72"H
-    rating: 6,
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
-    rating: 0,
-    
-    notes: () => <div>Described as high weight in the data, but exact value not specified.</div>
+    value: 46,
   },
   maxWeight: {
     value: 265,
-    rating: 8,
   },
   maxSpeed: {
     value: 4,
-    rating: 5,
   },
   horsePower: {
     value: 2.25,
-    rating: 6,
   },
   age: {
-    value: "", // TODO: Age not specified in the data
-    rating: 5,
+    value: "2023-08-28",
   },
   rating: {
-    value: [[4.4, 0], [70, 16, 6, 4, 4]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    rating: 7,
-    notes: () => <div>Good distribution with majority 5-star ratings. Also mentioned separately: 5=68%, 4=16%, 3=6%, 2=4%, 1=6%</div>
+    value: [[4.3, 1775], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
   },
   fakespot: {
-    value: ["B", ""], // Fakespot B for the product
+    value: ["B", brands.urevo.fakespot],
     rating: 7,
-    notes: () => <div>Fakespot B rating indicates generally reliable reviews.</div>
   },
   price: {
-    value: 200,
+    value: 270,
     note: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     value: [], // Not specifically picked by anyone according to the data
-    rating: 0,
   },
   incline: {
     value: 3, // Exact value not specified, but it has incline
-    rating: 8,
-    
-    notes: () => <div>Has incline functionality, which is important for knee health. Only Spacewalk model with incline.</div>
+    notes: () => <div>Kick-stands, so it's on or off. 3%</div>
   },
   shock: {
-    value: false, // Not mentioned in the data
-    rating: 0,
+    value: true, // Not mentioned in the data
+    rating: 5,
+    note: () => <div>8-point silicone absorbers</div>
   },
   decibels: {
     rating: 3,
-    notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {
-    value: true,
-    rating: 5,
+    value: false,
+    rating: 4,
   },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: false, // Not mentioned in the data
-    rating: 0,
   },
   amazon: {
     value: true,
-    rating: 8,
   },
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon
