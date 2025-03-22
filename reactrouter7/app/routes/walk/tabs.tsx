@@ -95,14 +95,14 @@ export default function Tabs() {
             </Tab.Pane>
             <Tab.Pane eventKey="care">
               <h5>Lube</h5>
-              <p>Every so 50 hours or 3 months of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want <a href={essentials.lube} target="_blank">one with a long syringe</a>, rather than the wobbly tube - those are harder to control. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
-              </p>
+              <div className="py-1">Every so 50 hours or 3 months of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want <a href={essentials.lube} target="_blank">one with a long syringe</a>, rather than the wobbly tube - those are harder to control. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
+              </div>
               <h5>Adjusting the belt</h5>
-              <p>If the belt starts to drift one way or another, you take an Alan wrench and tighten <em>the side which is too tight / close (not not the side with slack)</em>. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it&#39;s fixed). Then you just leave it - it&#39;s something I don&#39;t understand, not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.
+              <div className="py-1">If the belt starts to drift one way or another, you take an Alan wrench and tighten <em>the side which is too tight / close (not not the side with slack)</em>. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it&#39;s fixed). Then you just leave it - it&#39;s something I don&#39;t understand, not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.
                 <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
-              </p>
+              </div>
               <h5>Walk 30-45 min, break 1-5 min</h5>
-              <div>Budget mills deal less effectively with heat. To deal with this, reduce the amount of at-one-time
+              <div className="py-1">Budget mills deal less effectively with heat. To deal with this, reduce the amount of at-one-time
                 walking. I recommend 30-45 minutes of walking, and a 1-5 minute break (turn off via remote). The
                 occasional hour or two won&#39;t kill these machines; but running the belt for 8hrs a day might. I&#39;m
                 a fan of the Pomodoro Technique for focus management. You work for 25 minutes (don&#39;t check emails /

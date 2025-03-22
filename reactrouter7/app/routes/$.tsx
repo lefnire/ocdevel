@@ -8,10 +8,9 @@ export default function Redirects({params, matches}) {
     if (path.startsWith("podcast")) {
       navigate("/mlg")
     } else if ([
-      "walk",
       "20240110-fitness-desk",
     ].includes(path)) {
-      navigate("/blog/20240109-fitness-desk")
+      navigate("/walk")
     } else {
       navigate("/")
     }

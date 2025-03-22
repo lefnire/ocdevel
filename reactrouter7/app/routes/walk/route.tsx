@@ -1,4 +1,3 @@
-import {Container, Col, Row} from 'react-bootstrap'
 import Table from './treadmills/table'
 import TopSection from "./top-section";
 
@@ -6,9 +5,6 @@ export default function Route() {
   return <div>
     <TopSection />
     <Table />
-    <Container fluid>
-      <div>Bottom section</div>
-    </Container>
   </div>
 }
 
