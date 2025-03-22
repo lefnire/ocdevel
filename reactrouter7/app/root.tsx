@@ -77,9 +77,10 @@ export default function App() {
       </LinkContainer>
       <Nav>
         <LinkContainer to="/blog" tabIndex="0">Blog</LinkContainer>
-        <LinkContainer to="/mlg" tabIndex="1">MLG</LinkContainer>
-        <LinkContainer to="/llh" tabIndex="2">LLH</LinkContainer>
-        <LinkContainer to='/contact' tabIndex="3">Contact</LinkContainer>
+        <LinkContainer to="/walk" tabIndex="1">Walk</LinkContainer>
+        <LinkContainer to="/mlg" tabIndex="2">MLG</LinkContainer>
+        <LinkContainer to="/llh" tabIndex="3">LLH</LinkContainer>
+        <LinkContainer to='/contact' tabIndex="4">Contact</LinkContainer>
       </Nav>
     </Navbar>
 

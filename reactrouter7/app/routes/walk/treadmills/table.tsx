@@ -586,7 +586,7 @@ export default function Treadmills() {
                            fontWeight: 'bold',
                            opacity: 0.85
                          }}
-                         title={`This attribute's rating: ${rating}/10`}
+                         title={`This attribute's rating: ${rating.toFixed(0)}/10`}
                        >
                          {rating?.toFixed(0)}
                        </div>

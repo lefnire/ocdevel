@@ -32,7 +32,7 @@ export default function Tabs() {
   const navigate = useNavigate()
   useEffect(() => {
     if (!tab) { return; }
-    if (alreadyScrolled.current) { return; }
+    // if (alreadyScrolled.current) { return; }
     alreadyScrolled.current = true;
     setTimeout(() => navigate('#tabs-tabpane-' + tab), 1)
   }, [tab])

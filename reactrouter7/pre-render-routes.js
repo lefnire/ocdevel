@@ -26,7 +26,7 @@ export default function getPrerenderRoutes(forSitemap) {
   const changeFreq = Object.fromEntries(
     routes.map(r => {
       const freq = ['/mlg', '/blog', '/llh'].includes(r) ? 'monthly'
-        : ['/walk', '/blog/20240109-fitness-desk'].includes(r) ? 'weekly'
+        : ['/walk'].includes(r) ? 'daily'
           : 'yearly'
       return [r, freq]
     })
@@ -39,7 +39,7 @@ export default function getPrerenderRoutes(forSitemap) {
   ]
   const priority = Object.fromEntries(
     routes.map(r => {
-      const prio = ['/mlg', '/walk', '/blog/20240109-fitness-desk'].includes(r) ? 1
+      const prio = ['/mlg', '/walk'].includes(r) ? 1
         : ['/blog'].includes(r) ? 0.6
         : 0.3;
       return [r, prio]
