@@ -7,44 +7,48 @@ import {
   getFilteredRowModel,
   useReactTable
 } from '@tanstack/react-table';
-import type { SortingState } from '@tanstack/react-table';
+import type {
+  SortingState,
+  Column,
+  Row,
+  Cell,
+  Table,
+  ColumnDef
+} from '@tanstack/react-table';
 import data from './data/index';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
-// columnInfo is an object version of columnsArray for direct access by key
 import { OverlayTrigger, Popover, Form } from 'react-bootstrap';
 import type { Product } from './data/types';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
-// Header cell component with notes
-const HeaderCell = ({
-  column,
-  info
-}: {
-  column: any,
-  info: any
-}) => {
-  return (
-    <div style={{ whiteSpace: 'nowrap', maxWidth: '130px' }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <span>{info.label}</span>
-        {column.getIsSorted() && (
-         <span style={{ marginLeft: '5px' }}>
-           {column.getIsSorted() === 'asc' ? <FaArrowUp /> : <FaArrowDown />}
-         </span>
-       )}
-      </div>
-    </div>
-  );
+// Custom styles
+const dottedBorderStyle: React.CSSProperties = {
+  borderBottom: '1px dotted #6c757d', // Gray dotted border
+  cursor: 'pointer'
 };
 
+// Header cell component with notes
+const HeaderCell: React.FC<{
+  column: Column<Product, unknown>;
+  info: any;
+}> = ({ column, info }) => (
+  <div className="text-nowrap" style={{ maxWidth: '130px' }}>
+    <div className="d-flex align-items-center">
+      <span>{info.label}</span>
+      {column.getIsSorted() && (
+        <span className="ms-1">
+          {column.getIsSorted() === 'asc' ? <FaArrowUp /> : <FaArrowDown />}
+        </span>
+      )}
+    </div>
+  </div>
+);
+
 // Description component with notes popover
-const ColumnDescription = ({
-  column,
-  info
-}: {
-  column: any,
-  info: any
-}) => {
+const ColumnDescription: React.FC<{
+  column: Column<Product, unknown>;
+  info: any;
+}> = ({ column, info }) => {
   if (!info.description && !info.notes) return <div>&nbsp;</div>;
   
   const popover = (
@@ -59,14 +63,7 @@ const ColumnDescription = ({
   return (
     <div className="mt-1">
       <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-        <span
-          style={{
-            fontSize: '0.75rem',
-            color: '#6c757d',
-            cursor: 'pointer',
-            borderBottom: '1px dotted #6c757d'
-          }}
-        >
+        <span className="small text-secondary" style={dottedBorderStyle}>
           {info.description || 'Info (?)'}
         </span>
       </OverlayTrigger>
@@ -74,217 +71,316 @@ const ColumnDescription = ({
   );
 };
 
-// Cell component with notes and rating indicator
-const Cell = ({
-  row,
-  column,
-  info
-}: {
-  row: any, // Using any to accommodate both Product and Row<Product>
-  column: any,
-  info?: any
-}) => {
-  const columnId = column.id;
-  const columnDef = columnInfo[columnId];
-  
-  // Get the actual product data
-  const product: Product = row.original || row;
-  
-  // For other columns, use the render function from columnDef
-  if (columnDef && columnDef.render) {
-    const displayValue = columnDef.render(product);
-    const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
-    
-    // Check if the attribute has notes
-    const attr = product[columnId as keyof Product];
-    const hasNotes = attr && typeof attr === 'object' && 'notes' in attr && typeof (attr as any).notes === 'function';
-    
-    // Special case for rating - always show popover with details
-    if (columnId === 'rating') {
-      const ratingColumn = columnInfo.rating;
-      if (ratingColumn && ratingColumn.notes) {
-        const popover = (
-          <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
-            <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
-            <Popover.Body>
-              {/* Show custom notes if they exist */}
-              {hasNotes && (
-                <div className="mb-2">
-                  {(attr as any).notes()}
-                </div>
-              )}
-              
-              {/* Generate rating details */}
-              <div>
-                {/* Star Rating */}
-                {product.rating && typeof product.rating === 'object' && 'value' in product.rating && product.rating.value && (
-                  <div>
-                    <strong>Star Rating:</strong> {product.rating.value[0] && product.rating.value[0][0] ? product.rating.value[0][0].toFixed(1) : '0'}/5
-                    ({product.rating.value[0] && product.rating.value[0][1] ? product.rating.value[0][1] : 0} reviews)
-                  </div>
-                )}
-                
-                {/* Rating Distribution */}
-                {product.rating && typeof product.rating === 'object' && 'value' in product.rating && product.rating.value && product.rating.value[1] && (
-                  <div className="mt-2">
-                    <strong>Rating Distribution:</strong>
-                    <div>
-                      5★: {product.rating.value[1][0] || 0},
-                      4★: {product.rating.value[1][1] || 0},
-                      3★: {product.rating.value[1][2] || 0},
-                      2★: {product.rating.value[1][3] || 0},
-                      1★: {product.rating.value[1][4] || 0}
-                    </div>
-                  </div>
-                )}
-                
-                {/* Fakespot Grades */}
-                {product.fakespot && typeof product.fakespot === 'object' && 'value' in product.fakespot && product.fakespot.value && (
-                  <div className="mt-2">
-                    <strong>Fakespot Grades:</strong> Product: {product.fakespot.value[0] || 'B'}, Company: {product.fakespot.value[1] || 'B'}
-                  </div>
-                )}
-              </div>
-            </Popover.Body>
-          </Popover>
-        );
-        
-        return (
-          <div style={cellStyle}>
-            <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-              <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer', fontWeight: 'bold' }}>
-                {displayValue}
-              </span>
-            </OverlayTrigger>
-          </div>
-        );
-      }
-    }
-    
-    // For other columns with notes
-    if (hasNotes && columnId !== 'rating') {
-      const popover = (
-        <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
-          <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
-          <Popover.Body>
-            {(attr as any).notes()}
-          </Popover.Body>
-        </Popover>
-      );
-      
-      return (
-        <div style={cellStyle}>
-          <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-            <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
-              {displayValue}
-            </span>
-          </OverlayTrigger>
-        </div>
-      );
-    }
-    
-    // Default rendering without popover
-    return (
-      <div style={cellStyle}>
-        {displayValue}
-      </div>
-    );
+// Rating details component for the rating popover
+const RatingDetails: React.FC<{ product: Product }> = ({ product }) => {
+  if (!product.rating || typeof product.rating !== 'object' || !('value' in product.rating)) {
+    return null;
   }
-  
-  // Fallback if no render function is defined
-  return <div>{String(row.getValue ? row.getValue(columnId) : product[columnId as keyof Product]) || ''}</div>;
+
+  const ratingValue = product.rating.value;
+  if (!ratingValue) return null;
+
+  return (
+    <div>
+      {/* Star Rating */}
+      {ratingValue[0] && (
+        <div>
+          <strong>Star Rating:</strong> {ratingValue[0][0]?.toFixed(1) || '0'}/5
+          ({ratingValue[0][1] || 0} reviews)
+        </div>
+      )}
+      
+      {/* Rating Distribution */}
+      {ratingValue[1] && (
+        <div className="mt-2">
+          <strong>Rating Distribution:</strong>
+          <div>
+            5★: {ratingValue[1][0] || 0},
+            4★: {ratingValue[1][1] || 0},
+            3★: {ratingValue[1][2] || 0},
+            2★: {ratingValue[1][3] || 0},
+            1★: {ratingValue[1][4] || 0}
+          </div>
+        </div>
+      )}
+      
+      {/* Fakespot Grades */}
+      {product.fakespot && typeof product.fakespot === 'object' && 'value' in product.fakespot && product.fakespot.value && (
+        <div className="mt-2">
+          <strong>Fakespot Grades:</strong> Product: {product.fakespot.value[0] || 'B'}, Company: {product.fakespot.value[1] || 'B'}
+        </div>
+      )}
+    </div>
+  );
 };
 
+// Rating cell component
+const RatingCell: React.FC<{
+  product: Product;
+  displayValue: React.ReactNode;
+  cellStyle: React.CSSProperties;
+  info?: any;
+  hasNotes: boolean | undefined;
+  attr: any;
+}> = ({ product, displayValue, cellStyle, info, hasNotes, attr }) => {
+  const popover = (
+    <Popover id={`popover-cell-rating-${product.brand.key}-${product.key}`}>
+      <Popover.Header as="h3">{info?.label || 'Rating'}</Popover.Header>
+      <Popover.Body>
+        {hasNotes && <div className="mb-2">{(attr as any).notes()}</div>}
+        <RatingDetails product={product} />
+      </Popover.Body>
+    </Popover>
+  );
+  
+  return (
+    <div style={cellStyle}>
+      <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
+        <span className="fw-bold" style={dottedBorderStyle}>
+          {displayValue}
+        </span>
+      </OverlayTrigger>
+    </div>
+  );
+};
+
+// Cell with notes component
+const CellWithNotes: React.FC<{
+  product: Product;
+  columnId: string;
+  displayValue: React.ReactNode;
+  cellStyle: React.CSSProperties;
+  info?: any;
+  attr: any;
+}> = ({ product, columnId, displayValue, cellStyle, info, attr }) => {
+  const popover = (
+    <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
+      <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
+      <Popover.Body>
+        {(attr as any).notes()}
+      </Popover.Body>
+    </Popover>
+  );
+  
+  return (
+    <div style={cellStyle}>
+      <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
+        <span style={dottedBorderStyle}>
+          {displayValue}
+        </span>
+      </OverlayTrigger>
+    </div>
+  );
+};
+
+// Cell component with notes and rating indicator
+const Cell: React.FC<{
+  row: Row<Product>;
+  column: Column<Product, unknown>;
+  info?: any;
+}> = ({ row, column, info }) => {
+  const columnId = column.id;
+  const columnDef = columnInfo[columnId];
+  const product: Product = row.original || row;
+  
+  if (!columnDef || !columnDef.render) {
+    return <div>{String(row.getValue ? row.getValue(columnId) : product[columnId as keyof Product]) || ''}</div>;
+  }
+
+  const displayValue = columnDef.render(product);
+  const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
+  // Check if the attribute has notes
+  const attr = product[columnId as keyof Product];
+  const hasNotes = !!(attr && typeof attr === 'object' && 'notes' in attr && typeof (attr as any).notes === 'function');
+  
+  // Special case for rating column
+  if (columnId === 'rating' && columnInfo.rating?.notes) {
+    return <RatingCell
+      product={product}
+      displayValue={displayValue}
+      cellStyle={cellStyle}
+      info={info}
+      hasNotes={hasNotes}
+      attr={attr}
+    />;
+  }
+  
+  // For other columns with notes
+  if (hasNotes) {
+    return <CellWithNotes
+      product={product}
+      columnId={columnId}
+      displayValue={displayValue}
+      cellStyle={cellStyle}
+      info={info}
+      attr={attr}
+    />;
+  }
+  
+  // Default rendering without popover
+  return <div style={cellStyle}>{displayValue}</div>;
+};
+
+// Numeric filter component
+const NumericFilter: React.FC<{
+  column: Column<Product, unknown>;
+  columnFilterValue: [number, number] | undefined;
+  filterOptions: { min?: boolean; max?: boolean };
+}> = ({ column, columnFilterValue, filterOptions }) => (
+  <div className="w-100 max-w-130px">
+    <div className="d-flex gap-1 mb-1">
+      {filterOptions.min && (
+        <Form.Control
+          type="number"
+          value={columnFilterValue?.[0] ?? ''}
+          onChange={e => {
+            const val = e.target.value ? parseFloat(e.target.value) : undefined;
+            column.setFilterValue((old: [number, number] | undefined) =>
+              old ? [val, old[1]] : [val, undefined]
+            );
+          }}
+          placeholder="Min"
+          className="border rounded fs-7 p-1 w-50px h-24px"
+        />
+      )}
+      {filterOptions.max && (
+        <Form.Control
+          type="number"
+          value={columnFilterValue?.[1] ?? ''}
+          onChange={e => {
+            const val = e.target.value ? parseFloat(e.target.value) : undefined;
+            column.setFilterValue((old: [number, number] | undefined) =>
+              old ? [old[0], val] : [undefined, val]
+            );
+          }}
+          placeholder="Max"
+          className="border rounded fs-7 p-1 w-50px h-24px"
+        />
+      )}
+    </div>
+  </div>
+);
+
+// Boolean filter component
+const BooleanFilter: React.FC<{
+  column: Column<Product, unknown>;
+  columnFilterValue: boolean | undefined;
+}> = ({ column, columnFilterValue }) => (
+  <div className="w-100 max-w-130px">
+    <Form.Select
+      size="sm"
+      value={columnFilterValue === undefined ? '' : String(columnFilterValue)}
+      onChange={e => {
+        const value = e.target.value;
+        if (value === '') {
+          column.setFilterValue(undefined);
+        } else if (value === 'true') {
+          column.setFilterValue(true);
+        } else if (value === 'false') {
+          column.setFilterValue(false);
+        }
+      }}
+      className="mb-1 fs-7 p-1 h-24px"
+    >
+      <option value="">All</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </Form.Select>
+  </div>
+);
+
+// Text filter component
+const TextFilter: React.FC<{
+  column: Column<Product, unknown>;
+  columnFilterValue: string | undefined;
+}> = ({ column, columnFilterValue }) => (
+  <div className="max-w-100px">
+    <Form.Control
+      type="text"
+      value={(columnFilterValue ?? '') as string}
+      onChange={e => column.setFilterValue(e.target.value)}
+      placeholder="Search"
+      className="border rounded mb-1 fs-7 p-1 h-24px"
+    />
+  </div>
+);
 // Filter component
-const Filter = ({ column, table }: { column: any, table: any }) => {
+const Filter: React.FC<{
+  column: Column<Product, unknown>;
+  table: Table<Product>
+}> = ({ column, table }) => {
   const columnId = column.id;
   const columnFilterValue = column.getFilterValue();
   
   // Use numeric filter for numeric columns
   if (isNumericColumn(columnId)) {
-    // Get filter options from column definition
     const columnDef = columnInfo[columnId];
     const filterOptions = columnDef?.filterOptions || { min: true, max: true };
     
     return (
-      <div style={{ maxWidth: '130px' }}>
-        <div className="d-flex gap-1 mb-1">
-          {filterOptions.min && (
-            <Form.Control
-              type="number"
-              value={(columnFilterValue as [number, number])?.[0] ?? ''}
-              onChange={e => {
-                const val = e.target.value ? parseFloat(e.target.value) : undefined;
-                column.setFilterValue((old: [number, number] | undefined) =>
-                  old ? [val, old[1]] : [val, undefined]
-                );
-              }}
-              placeholder="Min"
-              className="border rounded"
-              style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
-            />
-          )}
-          {filterOptions.max && (
-            <Form.Control
-              type="number"
-              value={(columnFilterValue as [number, number])?.[1] ?? ''}
-              onChange={e => {
-                const val = e.target.value ? parseFloat(e.target.value) : undefined;
-                column.setFilterValue((old: [number, number] | undefined) =>
-                  old ? [old[0], val] : [undefined, val]
-                );
-              }}
-              placeholder="Max"
-              className="border rounded"
-              style={{ fontSize: '0.7rem', padding: '1px 3px', width: '50px', height: '24px' }}
-            />
-          )}
-        </div>
-      </div>
+      <NumericFilter
+        column={column}
+        columnFilterValue={columnFilterValue as [number, number] | undefined}
+        filterOptions={filterOptions}
+      />
     );
   }
   
   // Use boolean filter for boolean columns
   if (isBooleanColumn(columnId)) {
     return (
-      <div style={{ maxWidth: '130px' }}>
-        <Form.Select
-          size="sm"
-          value={columnFilterValue === undefined ? '' : String(columnFilterValue)}
-          onChange={e => {
-            const value = e.target.value;
-            if (value === '') {
-              column.setFilterValue(undefined);
-            } else if (value === 'true') {
-              column.setFilterValue(true);
-            } else if (value === 'false') {
-              column.setFilterValue(false);
-            }
-          }}
-          className="mb-1"
-          style={{ fontSize: '0.7rem', padding: '1px 3px', height: '24px' }}
-        >
-          <option value="">All</option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </Form.Select>
-      </div>
+      <BooleanFilter
+        column={column}
+        columnFilterValue={columnFilterValue as boolean | undefined}
+      />
     );
   }
   
   // Use text filter for other columns
   return (
+    <TextFilter
+      column={column}
+      columnFilterValue={columnFilterValue as string | undefined}
+    />
+  );
+};
+
+// Helper function to get cell-specific rating using the column's getRating function
+const getCellRating = (row: Row<Product>, columnId: string): number => {
+  // Skip rating indicators for certain columns
+  const skipRatingColumns = ['rank', 'model', 'countries'];
+  if (skipRatingColumns.includes(columnId)) {
+    return 0;
+  }
+  
+  // Get the column definition
+  const columnDef = columnInfo[columnId];
+  
+  // Use the column's getRating function if available
+  if (columnDef && columnDef.getRating) {
+    return columnDef.getRating(row.original);
+  }
+  
+  return 0;
+};
+
+// Rating indicator component
+const RatingIndicator: React.FC<{ rating: number }> = ({ rating }) => {
+  if (rating <= 0) return null;
+  
+  const bgColorClass = rating >= 7 ? 'bg-success' :
+                       rating >= 4 ? 'bg-warning' :
+                       'bg-danger';
+  
+  const textColorClass = rating >= 4 ? 'text-dark' : 'text-white';
+  
+  return (
     <div
-      style={{ maxWidth: 100 }}
+      className={`position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded opacity-85 ${bgColorClass} ${textColorClass} fw-bold`}
+      style={{ width: '18px', height: '18px', fontSize: '11px' }}
+      title={`This attribute's rating: ${rating.toFixed(0)}/10`}
     >
-      <Form.Control
-        type="text"
-        value={(columnFilterValue ?? '') as string}
-        onChange={e => column.setFilterValue(e.target.value)}
-        placeholder="Search"
-        className="border rounded mb-1"
-        style={{ fontSize: '0.7rem', padding: '1px 3px', height: '24px' }}
-      />
+      {rating.toFixed(0)}
     </div>
   );
 };
@@ -451,11 +547,10 @@ export default function Treadmills() {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
-  
   return (
-    <div style={{ width: '100%' }}>
-      <div className="table-responsive" style={{ overflowX: 'auto' }}>
-       <table className="table table-striped table-bordered">
+    <div className="w-100">
+      <div className="table-responsive">
+        <table className="table table-striped table-bordered">
          {/* Normal table: columns are attributes, rows are products */}
          <thead>
            <tr>
@@ -463,11 +558,8 @@ export default function Treadmills() {
              {table.getHeaderGroups()[0].headers.map(header => (
                <th
                  key={header.id}
-                 style={{
-                   whiteSpace: 'nowrap',
-                   // minWidth: header.id === 'model' || header.id === 'make' ? '130px' : '100px'
-                   minWidth: 90
-                }}
+                 className="text-nowrap"
+                 style={{ minWidth: 90 }}
                >
                  <div>
                    <div
@@ -505,59 +597,12 @@ export default function Treadmills() {
                {/* Each cell in this row represents a different attribute for this product */}
                {row.getVisibleCells().map(cell => {
                  const columnId = cell.column.id;
-                 
-                 // Helper function to get cell-specific rating using the column's getRating function
-                 const getCellRating = (row: any, columnId: string): number => {
-                   // Skip rating indicators for certain columns
-                   const skipRatingColumns = ['rank', 'model', 'countries'];
-                   if (skipRatingColumns.includes(columnId)) {
-                     return 0;
-                   }
-                   
-                   // Get the column definition
-                   const columnDef = columnInfo[columnId];
-                   
-                   // Use the column's getRating function if available
-                   if (columnDef && columnDef.getRating) {
-                     return columnDef.getRating(row.original);
-                   }
-                   
-                   return 0;
-                 };
-                 
-                 // Get the rating for this cell
                  const rating = getCellRating(row, columnId);
                  
                  return (
-                   <td key={cell.id} style={{ position: 'relative' }}>
+                   <td key={cell.id} className="position-relative">
                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                     
-                     {/* Rating indicator - only show if rating exists */}
-                     {rating > 0 && (
-                       <div
-                         style={{
-                           position: 'absolute',
-                           bottom: '0',
-                           right: '0',
-                           width: '18px',
-                           height: '18px',
-                           backgroundColor: rating >= 7 ? '#28a745' : // Bootstrap success
-                                            rating >= 4 ? '#ffc107' : // Bootstrap warning
-                                            '#dc3545',                // Bootstrap danger
-                           borderRadius: '3px',
-                           fontSize: '11px',
-                           display: 'flex',
-                           alignItems: 'center',
-                           justifyContent: 'center',
-                           color: rating >= 4 ? 'black' : 'white',
-                           fontWeight: 'bold',
-                           opacity: 0.85
-                         }}
-                         title={`This attribute's rating: ${rating.toFixed(0)}/10`}
-                       >
-                         {rating?.toFixed(0)}
-                       </div>
-                     )}
+                     <RatingIndicator rating={rating} />
                    </td>
                  );
                })}
