@@ -6,6 +6,7 @@ const links = {
 const info: Product = {
   brand,
   model: "M1 Pro",
+  key: 'm1pro',
   description: "I don't recommend this one, because (1) they've improved knee-health by adding shock absorption and dialing incline from 5% to 3% based on research; (2) increased the max weight and horse power; and (3) I'm sure improved on quality / durability (as a newer edition). The M2 is $100 more, but I truly think it's worth it. Listing M1 here in case you really want to save the $100.",
   links,
   dimensions: {

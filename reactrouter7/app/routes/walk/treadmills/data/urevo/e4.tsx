@@ -5,6 +5,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "E4",
+  key: 'e4',
   description: "Motor improvement over E3 (which had a lot of overheating complaints); but removed incline. E5 is upgrade over this one, so if you don't want E3's incline, just get E5.",
   links: {
     // amazon: "https://amzn.to/3xxWWV9",

@@ -2,6 +2,7 @@ import React from "react";
 import type { Product } from "./data/types";
 import dayjs from "dayjs";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -271,7 +272,7 @@ const columnsArray: ColumnDefinition[] = [
     showInTable: true,
     calculate: (row: Product): string => row.model,
     render: (row: Product): React.ReactElement => {
-      const link = row.links.amazon || row.links.brand
+      const link = getCurrentLink(row);
       return (
         <a href={link} target="_blank" rel="noopener noreferrer">
           {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
@@ -371,10 +372,12 @@ const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>These filters filter by price; but sorting this column sorts by my gut-check on <em>value</em> (cost to quality).</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.price);
+      const currPrice = getPrice(row);
+      return getAttributeValue<number>(currPrice);
     },
     render: (row: Product): string => {
-      const price = getAttributeValue<number>(row.price);
+      const currPrice = getPrice(row)
+      const price = getAttributeValue<number>(currPrice);
       if (price === undefined) return '';
       return `$${price}`;
     },
@@ -383,8 +386,9 @@ const columnsArray: ColumnDefinition[] = [
       if (row.price?.rating !== undefined) {
         return row.price.rating;
       }
-      
-      const price = getAttributeValue<number>(row.price);
+
+      const currPrice = getPrice(row)
+      const price = getAttributeValue<number>(row);
       return price !== undefined ? calculatePriceRating(price) : 5;
     }
   },

@@ -3,14 +3,12 @@ import {clickAffiliate} from '~/components/analytics'
 import {Button, Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
+import {dataObj} from './treadmills/data/index'
 
-import urevo_3s from './treadmills/data/urevo/3s';
-import urevo_cyberpad from './treadmills/data/urevo/cyberpad';
-import deerrun from './treadmills/data/deerrun/deerrun';
 import essentials from './essentials-links'
 import {VideoButton} from './utils'
+import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
 
-const getPrice = (product: any) => product.price.sale || product.price.value;
 const treadmills = [
     {
       key: 'cyberpad',
@@ -20,9 +18,9 @@ const treadmills = [
         <span>Sturdiest, quietest, most features.</span>
         <VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />
       </div>,
-      link: urevo_cyberpad.link,
-      linkText: `~$${getPrice(urevo_cyberpad)} on Amazon`,
-      price: getPrice(urevo_cyberpad),
+      link: getCurrentLink(dataObj.urevo_cyberpad),
+      linkText: `~$${getPrice(dataObj.urevo_cyberpad)} on Amazon`,
+      price: getPrice(dataObj.urevo_cyberpad),
     },
     {
       key: 'urevo_3s',
@@ -32,9 +30,9 @@ const treadmills = [
         <span>One size fits all, bang for buck.</span>
         <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
       </div>,
-      link: urevo_3s.link,
-      linkText: `~$${getPrice(urevo_3s)} on Amazon`,
-      price: getPrice(urevo_3s),
+      link: getCurrentLink(dataObj.urevo_3s),
+      linkText: `~$${getPrice(dataObj.urevo_3s)} on Amazon`,
+      price: getPrice(dataObj.urevo_3s),
     },
     {
       key: 'deerrun',
@@ -44,9 +42,9 @@ const treadmills = [
         <span>Test the waters. No incline, 1-2yrs life; great price.</span>
         <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
       </div>,
-      link: deerrun.link,
-      linkText: `~$${getPrice(deerrun)} on Amazon`,
-      price: getPrice(deerrun),
+      link: getCurrentLink(dataObj.deerrun_q1mini),
+      linkText: `~$${getPrice(dataObj.deerrun_q1mini)} on Amazon`,
+      price: getPrice(dataObj.deerrun_q1mini),
     },
 ]
 

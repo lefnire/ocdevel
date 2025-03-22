@@ -13,6 +13,8 @@ type Numval = Omit<Attribute, 'value'> & { value?: number }
 interface Links {
   amazon?: string
   brand?: string
+  // when pausing Amazon Affil, fall back to this key instead
+  amazonPause?: "amazon" | "brand"
 }
 
 export interface Brand {
@@ -32,6 +34,7 @@ export interface Brand {
 export interface Product {
   brand: Brand
   model: string
+  key: string
   description: string | ReactElement
   links: Links
 

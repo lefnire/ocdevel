@@ -39,3 +39,10 @@ const index = [
   imovr,
 ]
 export default index
+
+export const dataObj = Object.fromEntries(
+  index.map(product => ([
+    `${product.brand.key}_${product.key}`,
+    product
+  ]))
+)

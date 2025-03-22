@@ -6,6 +6,7 @@ const links = {
 const info: Product = {
   brand,
   model: "ComfortDeck M2",
+  key: 'm2',
   description: "Compared to Urevo it's compact and quiet; but not on Amazon, no extended warranty, $100 more. Besides those differences, they're equals, which is why I stopped recommending Egofit",
   links,
 

@@ -1,4 +1,13 @@
-export const USE_AMAZON = false;
+import type {Product} from "./types";
+
+export const PAUSE_AMAZON = true;
+export function getCurrentLink(product: Product) {
+  if (PAUSE_AMAZON && product.links.amazonPause) {
+    return product.links[product.links.amazonPause]
+  }
+  return product.links.amazon || product.links.brand
+}
+export const getPrice = (product: Product) => product.price.sale || product.price.value;
 
 export const nonBudgetNote = "These can bear more weight than the budget picks, and can run continuously for much longer. They're quieter, and they're likely to need less servicing. However, I can't in good faith recommend these, given I haven't needed to service my budget mills after 2 years; I contend that the budget picks are less an issue of quality; and more an issue of using them wisely, like non-continuous use."
 
