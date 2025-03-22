@@ -1,6 +1,6 @@
 import React from "react";
 import {clickAffiliate} from '~/components/analytics'
-import {Container} from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
 import {walkingDeskLinks} from "~/content/workflowy/walking-desk-links";
 import {FaYoutube} from "react-icons/fa";
 import './route.css'
@@ -11,7 +11,25 @@ import urevo_cyberpad from './treadmills/data/urevo_cyberpad';
 import deerrun from './treadmills/data/deerrun';
 import essentials from './essentials-links'
 
-// TOOD locale
+export function VideoButton({href}: {href: string}) {
+  // px-1
+  const padding = {style: {paddingLeft: 1, paddingRight: 1}}
+  return <Button
+    variant='link'
+    size="sm"
+    className="p-1"
+    href={href}
+    target="_blank"
+  >
+    <div className="d-flex align-items-center justify-content-center">
+      <span {...padding} className="ps-0"><FaYoutube size={20} /></span>
+      <span {...padding} className="flex-grow-1">Video</span>
+    </div>
+
+  </Button>
+}
+
+const getPrice = (product: any) => product.price.sale || product.price.value;
 const treadmills = [
     {
       key: 'cyberpad',
@@ -19,11 +37,11 @@ const treadmills = [
       title: 'Premium: CyberPad',
       description: <div>
         <span>Sturdiest, quietest, most features.</span>
-        <a href="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"><FaYoutube /> Video</a>
+        <VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />
       </div>,
       link: urevo_cyberpad.link,
-      linkText: "~$500 on Amazon",
-      price: 500,
+      linkText: `~$${getPrice(urevo_cyberpad)} on Amazon`,
+      price: getPrice(urevo_cyberpad),
     },
     {
       key: 'urevo_3s',
@@ -31,23 +49,23 @@ const treadmills = [
       title: 'Value: 3S',
       description: <div>
         <span>One size fits all, bang for buck.</span>
-        <a href="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"><FaYoutube /> Video</a>
+        <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
       </div>,
       link: urevo_3s.link,
-      linkText: "~$350 on Amazon",
-      price: 350,
+      linkText: `~$${getPrice(urevo_3s)} on Amazon`,
+      price: getPrice(urevo_3s),
     },
     {
       key: 'deerrun',
       image: '/walk_thumbs/deerrun.jpg',
       title: 'Budget: DeerRun',
       description: <div>
-        <span>Test the waters. No incline, 1-2yrs life; but good price.</span>
-        <a href="https://www.youtube.com/embed/ZLHQSqGWFhU?si=Z_scXPhoMVWQLFFl"><FaYoutube /> Video</a>
+        <span>Test the waters. No incline, 1-2yrs life; great price.</span>
+        <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
       </div>,
       link: deerrun.link,
-      linkText: "~$150 on Amazon",
-      price: 150,
+      linkText: `~$${getPrice(deerrun)} on Amazon`,
+      price: getPrice(deerrun),
     },
 ]
 
@@ -74,7 +92,10 @@ const otherProducts = [
     key: 'lube_godora',
     image: '/walk_thumbs/lube.jpg',
     title: 'Lube: Godora',
-    description: 'Silicone treadmill lubricant. Apply every 50hrs',
+    description: <div>
+      <span>Silicone treadmill lubricant. Apply every 50hrs</span>
+      <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
+    </div>,
     link: essentials.lube,
     linkText: "$35 on Amazon",
     price: 35,
