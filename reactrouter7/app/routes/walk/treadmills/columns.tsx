@@ -1,8 +1,8 @@
 import React from "react";
 import type { Product } from "./data/types";
 import dayjs from "dayjs";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
+import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
+import {getCurrentLink, getPrice} from "./data/utils";
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -204,6 +204,11 @@ const calculateRatingCountFactor = (count: number): number => {
   // 1 review = 0.6, 10 reviews = 0.7, 100 reviews = 0.85, 1000+ reviews = 1.0
   return 0.6 + (0.4 * (Math.log10(count) / Math.log10(1000)));
 };
+
+const faMe = <FaUser style={{ color: '#4a86e8' }} />
+const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
+const faPublic = <FaStar style={{ color: '#999999' }} />
+const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -576,14 +581,43 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     rating: 8,
     showInTable: true,
-    notes: () => <div>Call me cocky, but this is my most important flag. I study the <em>hell</em> out of budget mills. I'm glued to reviews, I test them, I see what DIY fixer-type are saying in Discord. So between my picks and the picks of those I trust on the internet, I won't lead you astray. Next would be public picks; popular either by reviews or in forums (Reddit). Worst, IMO, are popular review site picks. CNET, Engadget, Wired - they're not always wrong, but boy do they get treadmills wrong. I think they just sort by popular on Amazon. Most of their top picks are my bottom picks.</div>,
+    notes: () => <div>
+      <div>{faMe} Me. I've tested it, I love it. I often disagree with popular picks from review sites (eg I eschew WalkingPad & GoPlus), so if you trust my judgement on this page, look for this icon.</div>
+      <div>{faTrusted} Trusted Sources. Top picks by gear-heads I follow in hte underground (Discord, Reddit, etc) and I trust their opinions.</div>
+      <div>{faPublic} Public Opinion. Generally just reviews and what's popular.</div>
+      <div>{faWebsites} Websites. What's being recommended on popular review websites. I down-weight these significantly, since most of them just use web-scrapers on Amazon for most-popular treadmills. If I think they actually test the products, I'll flag "Trusted Sources".</div>
+    </div>,
     calculate: (row: Product): string[] | undefined => {
       return getAttributeValue<string[]>(row.pickedBy);
     },
-    render: (row: Product): string => {
+    render: (row: Product): React.ReactElement => {
       const pickedBy = getAttributeValue<string[]>(row.pickedBy);
-      if (!pickedBy) return '';
-      return pickedBy.join(', ');
+      if (!pickedBy || pickedBy.length === 0) return <></>;
+      
+      return (
+        <div style={{ display: 'flex', gap: '8px' }}>
+          {pickedBy.includes("me") && (
+            <span title="Me (Tyler)">
+              {faMe}
+            </span>
+          )}
+          {pickedBy.includes("trusted") && (
+            <span title="Trusted Sources">
+              {faTrusted}
+            </span>
+          )}
+          {pickedBy.includes("public") && (
+            <span title="Popular based on ratings">
+              {faPublic}
+            </span>
+          )}
+          {pickedBy.includes("websites") && (
+            <span title="Recommended on review websites">
+              {faWebsites}
+            </span>
+          )}
+        </div>
+      );
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise calculate based on pickedBy

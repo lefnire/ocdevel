@@ -104,7 +104,7 @@ const Cell = ({
       const ratingColumn = columnInfo.rating;
       if (ratingColumn && ratingColumn.notes) {
         const popover = (
-          <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.model}`}>
+          <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
             <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
             <Popover.Body>
               {/* Show custom notes if they exist */}
@@ -151,7 +151,7 @@ const Cell = ({
         
         return (
           <div style={cellStyle}>
-            <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+            <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
               <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer', fontWeight: 'bold' }}>
                 {displayValue}
               </span>
@@ -164,7 +164,7 @@ const Cell = ({
     // For other columns with notes
     if (hasNotes && columnId !== 'rating') {
       const popover = (
-        <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.model}`}>
+        <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
           <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
           <Popover.Body>
             {(attr as any).notes()}
@@ -174,7 +174,7 @@ const Cell = ({
       
       return (
         <div style={cellStyle}>
-          <OverlayTrigger trigger={["hover","focus"]} placement="right" overlay={popover}>
+          <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
             <span style={{ borderBottom: '1px dotted #007bff', cursor: 'pointer' }}>
               {displayValue}
             </span>
