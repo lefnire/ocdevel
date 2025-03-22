@@ -68,6 +68,7 @@ const info: Product = {
   countries: {
     value: ["US"] // Assuming US availability since it's on Amazon
   },
+  bump: 4,
 
   pros: [
     {

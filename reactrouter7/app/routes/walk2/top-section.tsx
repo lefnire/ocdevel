@@ -140,8 +140,9 @@ export function ProductsCard ({ title, links, products }: Products) {
 export default function TopSection() {
   // TODO replace ./route.css with image loaders for remix
   return <Container>
+    <div className="text-center">This page contains affiliate links</div>
     <div className="row g-4 mb-4">
-      <div className="col-12 col-md-6">
+    <div className="col-12 col-md-6">
         <ProductsCard
           title="Best Walking Pads in 2025"
           products={treadmills}
