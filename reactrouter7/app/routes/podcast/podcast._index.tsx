@@ -84,7 +84,7 @@ function EpisodeList({podcastKey, episodesList, show}: PodcastList) {
       teaser={true}
       i={i}
     />
-    if (i > 0 && i % 3 === 0) {
+    if (i > 0 && i % 5 === 0) {
       return [
         <Adsense key={`ad-${i}`} />,
         episode

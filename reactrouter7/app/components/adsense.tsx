@@ -7,8 +7,8 @@ declare global {
   }
 }
 
-// const AD_CLIENT = "ca-pub-3242350243827794";
-const AD_CLIENT = false;
+const AD_CLIENT = "ca-pub-3242350243827794";
+// const AD_CLIENT = false;
 
 export function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
   const adRef = useRef<HTMLDivElement>(null);
@@ -41,7 +41,7 @@ export function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
         className="adsbygoogle"
         style={{display: "block"}}
         data-ad-format="fluid"
-        data-ad-layout-key="-f9+5v+4m-d8+7b"
+        data-ad-layout-key="-fb+5w+4e-db+86"
         data-ad-client={AD_CLIENT}
         data-ad-slot="8958942863"
       />
