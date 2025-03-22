@@ -2,7 +2,6 @@ import {Container, Col, Row} from 'react-bootstrap'
 import Table from './treadmills/table'
 import TopSection from "./top-section";
 
-
 export default function Route() {
   return <div>
     <TopSection />

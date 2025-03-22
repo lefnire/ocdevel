@@ -1,6 +1,6 @@
 import React from "react";
 import {clickAffiliate} from '~/components/analytics'
-import {Container} from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
 
@@ -144,6 +144,14 @@ export function ProductsCard ({ title, links, products }: Products) {
   </div>
 }
 
+function Overview() {
+  const setTab = tabStore(s => s.setTab)
+  return <div className="text-center">
+    <Button variant="link" onClick={() => setTab("buying_guide")}>How to use this table.</Button>
+    <VideoButton href="https://www.youtube.com/watch?v=_6EiAK-jmYQ" label="Overview"/>
+  </div>
+}
+
 export default function TopSection() {
   // TODO replace ./route.css with image loaders for remix
   return <Container>
@@ -165,5 +173,6 @@ export default function TopSection() {
       </div>
     </div>
     <Tabs />
-    </Container>
+    {/*<Overview />*/}
+  </Container>
 }
