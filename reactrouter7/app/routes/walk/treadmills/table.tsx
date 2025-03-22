@@ -80,11 +80,9 @@ const CellWithPopover: React.FC<{
   displayValue: React.ReactNode;
   cellStyle: React.CSSProperties;
   info?: any;
-  attr: any;
-  hasNotes: boolean;
   popoverContent: React.ReactNode;
   isBold?: boolean;
-}> = ({ product, columnId, displayValue, cellStyle, info, attr, hasNotes, popoverContent, isBold = false }) => {
+}> = ({ product, columnId, displayValue, cellStyle, info, popoverContent, isBold = false }) => {
   const popover = (
     <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
       <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
@@ -123,34 +121,17 @@ const Cell: React.FC<{
   const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
   // Check if the attribute has notes
   const attr = product[columnId as keyof Product];
-  const hasNotes = !!(attr && typeof attr === 'object' && 'notes' in attr && typeof (attr as any).notes === 'function');
-  
-  // Check if the column has a renderPopover function
-  if (columnDef.renderPopover) {
-    return <CellWithPopover
-      product={product}
-      columnId={columnId}
-      displayValue={displayValue}
-      cellStyle={cellStyle}
-      info={info}
-      attr={attr}
-      hasNotes={hasNotes}
-      popoverContent={columnDef.renderPopover(product, hasNotes, attr)}
-      isBold={columnId === 'rating'} // Make rating bold like before
-    />;
-  }
-  
+
+  const popoverContent = columnDef.renderPopover?.(product) || (attr as any)?.notes?.();
   // For columns with notes but no renderPopover
-  if (hasNotes) {
+  if (popoverContent) {
     return <CellWithPopover
       product={product}
       columnId={columnId}
       displayValue={displayValue}
       cellStyle={cellStyle}
       info={info}
-      attr={attr}
-      hasNotes={hasNotes}
-      popoverContent={(attr as any).notes()}
+      popoverContent={popoverContent}
     />;
   }
   

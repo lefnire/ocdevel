@@ -212,49 +212,6 @@ function toFixed0 (val: number | undefined) {
   return val_.toFixed(0);
 }
 
-// Rating details component for the rating popover
-const RatingDetails: React.FC<{ product: Product }> = ({ product }) => {
-  if (!product.rating || typeof product.rating !== 'object' || !('value' in product.rating)) {
-    return null;
-  }
-
-  const ratingValue = product.rating.value;
-  if (!ratingValue) return null;
-
-  return (
-    <div>
-      {/* Star Rating */}
-      {ratingValue[0] && (
-        <div>
-          <strong>Star Rating:</strong> {ratingValue[0][0]?.toFixed(1) || '0'}/5
-          ({ratingValue[0][1] || 0} reviews)
-        </div>
-      )}
-      
-      {/* Rating Distribution */}
-      {ratingValue[1] && (
-        <div className="mt-2">
-          <strong>Rating Distribution:</strong>
-          <div>
-            5★{toFixed0(ratingValue[1][0])}%&nbsp;
-            4★{toFixed0(ratingValue[1][1])}%&nbsp;
-            3★{toFixed0(ratingValue[1][2])}%&nbsp;
-            2★{toFixed0(ratingValue[1][3])}%&nbsp;
-            1★{toFixed0(ratingValue[1][4])}%
-          </div>
-        </div>
-      )}
-      
-      {/* Fakespot Grades */}
-      {product.fakespot && typeof product.fakespot === 'object' && 'value' in product.fakespot && product.fakespot.value && (
-        <div className="mt-2">
-          <strong>Fakespot Grades:</strong> Product: {product.fakespot.value[0] || 'B'}, Company: {product.fakespot.value[1] || 'B'}
-        </div>
-      )}
-    </div>
-  );
-};
-
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faPublic = <FaStar style={{ color: '#999999' }} />
@@ -275,7 +232,7 @@ interface ColumnDefinition {
   getSortValue?: (row: Product) => any; // Function to get value for sorting
   getFilterValue?: (row: Product) => any; // Function to get value for filtering
   getRating?: (row: Product) => number; // Function to get the rating for this attribute
-  renderPopover?: (product: Product, hasNotes: boolean, attr: any) => React.ReactElement; // Function to render the popover body
+  renderPopover?: (row: Product) => React.ReactElement; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -388,13 +345,53 @@ const columnsArray: ColumnDefinition[] = [
       const [[avg, count], distribution] = rating;
       return `${avg.toFixed(1)}`;
     },
-    renderPopover: (product: Product, hasNotes: boolean, attr: any) => {
-      return (
-        <>
-          {hasNotes && <div className="mb-2">{(attr as any).notes()}</div>}
-          <RatingDetails product={product} />
-        </>
-      );
+    renderPopover: (row: Product) => {
+      const notes = row.rating?.notes;
+
+      function renderDistribution() {
+        if (!row.rating || typeof row.rating !== 'object' || !('value' in row.rating)) {
+          return null;
+        }
+
+        const ratingValue = row.rating.value;
+        if (!ratingValue) return null;
+
+        return <div>
+          {/* Star Rating */}
+          {ratingValue[0] && (
+            <div>
+              <strong>Star Rating:</strong> {ratingValue[0][0]?.toFixed(1) || '0'}/5
+              ({ratingValue[0][1] || 0} reviews)
+            </div>
+          )}
+
+          {/* Rating Distribution */}
+          {ratingValue[1] && (
+            <div className="mt-2">
+              <strong>Rating Distribution:</strong>
+              <div>
+                5★{toFixed0(ratingValue[1][0])}%&nbsp;
+                4★{toFixed0(ratingValue[1][1])}%&nbsp;
+                3★{toFixed0(ratingValue[1][2])}%&nbsp;
+                2★{toFixed0(ratingValue[1][3])}%&nbsp;
+                1★{toFixed0(ratingValue[1][4])}%
+              </div>
+            </div>
+          )}
+
+          {/* Fakespot Grades */}
+          {row.fakespot && typeof row.fakespot === 'object' && 'value' in row.fakespot && row.fakespot.value && (
+            <div className="mt-2">
+              <strong>Fakespot Grades:</strong> Product: {row.fakespot.value[0] || 'B'},
+              Company: {row.fakespot.value[1] || 'B'}
+            </div>
+          )}
+        </div>
+      }
+      return <>
+        {notes && <div className="mb-2">{notes()}</div>}
+        {renderDistribution()}
+      </>
     },
     getSortValue: (row: Product): number => {
       return calculateCombinedRating(row);
