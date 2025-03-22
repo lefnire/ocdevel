@@ -12,9 +12,11 @@ import { data } from './data';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
 // columnInfo is an object version of columnsArray for direct access by key
 import brands from './brands';
-import { OverlayTrigger, Popover, Form } from 'react-bootstrap';
+import { OverlayTrigger, Popover, Form, Button } from 'react-bootstrap';
 import type { Product } from './types';
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown, FaPlus } from 'react-icons/fa';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useCompareStore, useCompareNavigation } from './compareStore';
 
 // Header cell component with notes
 const HeaderCell = ({
@@ -91,6 +93,19 @@ const Cell = ({
   // Get the actual product data
   const product: Product = row.original || row;
   
+  // Create a unique key for this product
+  const productKey = `${product.make}-${product.model}`;
+  
+  // Use more specific selectors to prevent unnecessary re-renders
+  const toggleProduct = useCompareStore(state => state.toggleProduct);
+  
+  // Import from compareStore.tsx
+  const useIsSelected = (key: string) =>
+    useCompareStore(state => state.selectedProducts.includes(key));
+  
+  // This will re-render only when the selection state of this specific product changes
+  const selected = useIsSelected(productKey);
+  
   // Special case for make/brand column
   if (columnId === 'make') {
     const make = product.make;
@@ -121,6 +136,39 @@ const Cell = ({
     }
     
     return <div>{brandName}</div>;
+  }
+  
+  // Special case for model column - add compare button
+  if (columnId === 'model') {
+    const displayValue = columnDef.render(product);
+    
+    // Get the current selection state directly
+    const selected = useIsSelected(productKey);
+    
+    // Create a click handler that doesn't cause re-renders
+    const handleClick = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      toggleProduct(productKey);
+    };
+    
+    return (
+      <div className="position-relative">
+        {displayValue}
+        <div
+          className={`position-absolute top-0 end-0 d-flex align-items-center justify-content-center rounded-circle ${selected ? 'bg-primary bg-opacity-10' : ''}`}
+          style={{
+            cursor: 'pointer',
+            width: '20px',
+            height: '20px',
+            color: selected ? '#0056b3' : '#007bff'
+          }}
+          onClick={handleClick}
+          title={selected ? "Remove from comparison" : "Add to comparison"}
+        >
+          <FaPlus size={12} />
+        </div>
+      </div>
+    );
   }
   
   // For other columns, use the render function from columnDef
@@ -328,6 +376,51 @@ export default function Treadmills() {
     { id: 'rank', desc: true }
   ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
+  const [searchParams] = useSearchParams();
+  const selectedProducts = useCompareStore(state => state.selectedProducts);
+  const { navigateToCompare } = useCompareNavigation();
+  
+  // Simplified comparison mode handling with memoization
+  const compareParams = React.useMemo(() => searchParams.getAll('compare'), [searchParams]);
+  const isCompareMode = compareParams.length > 0;
+  
+  // Navigate to clear all filters with useCallback to prevent unnecessary re-renders
+  const navigate = useNavigate();
+  const clearCompare = React.useCallback(() => {
+    navigate('.');
+    setColumnFilters([]);
+  }, [navigate]);
+  
+  // Memoize the model filter to prevent unnecessary recalculations
+  const modelFilter = React.useMemo(() => {
+    if (!isCompareMode) return null;
+    
+    return {
+      id: 'model',
+      value: compareParams.map(param => {
+        const parts = param.split('-');
+        return parts.length > 1 ? parts.slice(1).join('-') : param;
+      })
+    };
+  }, [isCompareMode, compareParams]);
+  
+  // Apply URL filters for comparison with stable dependencies
+  React.useEffect(() => {
+    if (isCompareMode && modelFilter) {
+      setColumnFilters(prev => {
+        // Only update if the filter has changed
+        const existingFilter = prev.find(f => f.id === 'model');
+        if (existingFilter && JSON.stringify(existingFilter) === JSON.stringify(modelFilter)) {
+          return prev;
+        }
+        
+        return [
+          ...prev.filter(filter => filter.id !== 'model'),
+          modelFilter
+        ];
+      });
+    }
+  }, [isCompareMode, modelFilter]);
   
   // Column helper
   const columnHelper = createColumnHelper<Product>();
@@ -359,6 +452,13 @@ export default function Treadmills() {
           enableSorting: true,
           enableColumnFilter: true,
           filterFn: (row, columnId, filterValue) => {
+            // Simplified model column comparison filtering
+            if (columnId === 'model' && Array.isArray(filterValue)) {
+              return filterValue.some(modelName =>
+                row.original.model.toLowerCase().includes(modelName.toLowerCase())
+              );
+            }
+            
             // For numeric columns with range filtering
             if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
@@ -485,8 +585,43 @@ export default function Treadmills() {
     getFilteredRowModel: getFilteredRowModel(),
   });
   
+  // Memoize UI components to prevent unnecessary re-renders
+  const CompareButton = React.useMemo(() => {
+    if (selectedProducts.length === 0) return null;
+    
+    return (
+      <div className="position-fixed bottom-0 end-0 m-4" style={{ zIndex: 1000 }}>
+        <Button
+          variant="primary"
+          onClick={navigateToCompare}
+          className="shadow"
+        >
+          Compare ({selectedProducts.length})
+        </Button>
+      </div>
+    );
+  }, [selectedProducts.length, navigateToCompare]);
+  
+  const ShowAllButton = React.useMemo(() => {
+    if (!isCompareMode) return null;
+    
+    return (
+      <div className="mb-3">
+        <Button
+          variant="outline-secondary"
+          onClick={clearCompare}
+        >
+          ← Show All Products
+        </Button>
+      </div>
+    );
+  }, [isCompareMode, clearCompare]);
+  
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', position: 'relative' }}>
+      {CompareButton}
+      {ShowAllButton}
+      
       <div className="table-responsive" style={{ overflowX: 'auto' }}>
        <table className="table table-striped table-bordered">
          {/* Normal table: columns are attributes, rows are products */}
