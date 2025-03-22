@@ -296,7 +296,7 @@ const columnsArray: ColumnDefinition[] = [
   },
   {
     key: "rating",
-    label: "Star Rating",
+    label: "Stars",
     // This is stored as [[number,number],[number,number,number,number,number]].
     // These values are: `[
     // [ average rating, number of reviews ]
@@ -388,7 +388,7 @@ const columnsArray: ColumnDefinition[] = [
   },
   {
     key: "maxWeight",
-    label: "Max Capacity",
+    label: "Capacity",
     dtype: "number",
     rating: 5,
     showInTable: true,
@@ -486,7 +486,7 @@ const columnsArray: ColumnDefinition[] = [
   },
   {
     key: "horsePower",
-    label: "Horse Power",
+    label: "Horsepower",
     dtype: "number",
     rating: 6,
     showInTable: true,

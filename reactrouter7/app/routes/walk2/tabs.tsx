@@ -13,7 +13,7 @@ export const tabStore = create<{
   optionals: boolean
   showOptionals: () => void
 }>()((set, get) => ({
-  tab: "essentials",
+  tab: null,
   setTab: (tab) => set({tab}),
   optionals: false,
   showOptionals: () => set({optionals: true}),
