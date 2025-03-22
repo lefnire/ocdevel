@@ -3,6 +3,7 @@ import type { Product } from "./data/types";
 import dayjs from "dayjs";
 import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
 import {getCurrentLink, getPrice} from "./data/utils";
+import { Popover } from 'react-bootstrap';
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -205,6 +206,55 @@ const calculateRatingCountFactor = (count: number): number => {
   return 0.6 + (0.4 * (Math.log10(count) / Math.log10(1000)));
 };
 
+function toFixed0 (val: number | undefined) {
+  let val_ = val || 0;
+  if (val_ < 1) { val_ = val_ * 100 }
+  return val_.toFixed(0);
+}
+
+// Rating details component for the rating popover
+const RatingDetails: React.FC<{ product: Product }> = ({ product }) => {
+  if (!product.rating || typeof product.rating !== 'object' || !('value' in product.rating)) {
+    return null;
+  }
+
+  const ratingValue = product.rating.value;
+  if (!ratingValue) return null;
+
+  return (
+    <div>
+      {/* Star Rating */}
+      {ratingValue[0] && (
+        <div>
+          <strong>Star Rating:</strong> {ratingValue[0][0]?.toFixed(1) || '0'}/5
+          ({ratingValue[0][1] || 0} reviews)
+        </div>
+      )}
+      
+      {/* Rating Distribution */}
+      {ratingValue[1] && (
+        <div className="mt-2">
+          <strong>Rating Distribution:</strong>
+          <div>
+            5★{toFixed0(ratingValue[1][0])}%&nbsp;
+            4★{toFixed0(ratingValue[1][1])}%&nbsp;
+            3★{toFixed0(ratingValue[1][2])}%&nbsp;
+            2★{toFixed0(ratingValue[1][3])}%&nbsp;
+            1★{toFixed0(ratingValue[1][4])}%
+          </div>
+        </div>
+      )}
+      
+      {/* Fakespot Grades */}
+      {product.fakespot && typeof product.fakespot === 'object' && 'value' in product.fakespot && product.fakespot.value && (
+        <div className="mt-2">
+          <strong>Fakespot Grades:</strong> Product: {product.fakespot.value[0] || 'B'}, Company: {product.fakespot.value[1] || 'B'}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faPublic = <FaStar style={{ color: '#999999' }} />
@@ -225,6 +275,7 @@ interface ColumnDefinition {
   getSortValue?: (row: Product) => any; // Function to get value for sorting
   getFilterValue?: (row: Product) => any; // Function to get value for filtering
   getRating?: (row: Product) => number; // Function to get the rating for this attribute
+  renderPopover?: (product: Product, hasNotes: boolean, attr: any) => React.ReactElement; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -336,6 +387,14 @@ const columnsArray: ColumnDefinition[] = [
       if (!rating) return '';
       const [[avg, count], distribution] = rating;
       return `${avg.toFixed(1)}`;
+    },
+    renderPopover: (product: Product, hasNotes: boolean, attr: any) => {
+      return (
+        <>
+          {hasNotes && <div className="mb-2">{(attr as any).notes()}</div>}
+          <RatingDetails product={product} />
+        </>
+      );
     },
     getSortValue: (row: Product): number => {
       return calculateCombinedRating(row);
@@ -883,5 +942,5 @@ const info = columnsArray.reduce((obj, item) => {
   return obj;
 }, {} as Record<string, any>);
 
-export { columnsArray };
+export { columnsArray, RatingDetails };
 export default info;

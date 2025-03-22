@@ -71,93 +71,25 @@ const ColumnDescription: React.FC<{
   );
 };
 
-// Rating details component for the rating popover
-const RatingDetails: React.FC<{ product: Product }> = ({ product }) => {
-  if (!product.rating || typeof product.rating !== 'object' || !('value' in product.rating)) {
-    return null;
-  }
 
-  const ratingValue = product.rating.value;
-  if (!ratingValue) return null;
 
-  return (
-    <div>
-      {/* Star Rating */}
-      {ratingValue[0] && (
-        <div>
-          <strong>Star Rating:</strong> {ratingValue[0][0]?.toFixed(1) || '0'}/5
-          ({ratingValue[0][1] || 0} reviews)
-        </div>
-      )}
-      
-      {/* Rating Distribution */}
-      {ratingValue[1] && (
-        <div className="mt-2">
-          <strong>Rating Distribution:</strong>
-          <div>
-            5★: {ratingValue[1][0] || 0},
-            4★: {ratingValue[1][1] || 0},
-            3★: {ratingValue[1][2] || 0},
-            2★: {ratingValue[1][3] || 0},
-            1★: {ratingValue[1][4] || 0}
-          </div>
-        </div>
-      )}
-      
-      {/* Fakespot Grades */}
-      {product.fakespot && typeof product.fakespot === 'object' && 'value' in product.fakespot && product.fakespot.value && (
-        <div className="mt-2">
-          <strong>Fakespot Grades:</strong> Product: {product.fakespot.value[0] || 'B'}, Company: {product.fakespot.value[1] || 'B'}
-        </div>
-      )}
-    </div>
-  );
-};
-
-// Rating cell component
-const RatingCell: React.FC<{
-  product: Product;
-  displayValue: React.ReactNode;
-  cellStyle: React.CSSProperties;
-  info?: any;
-  hasNotes: boolean | undefined;
-  attr: any;
-}> = ({ product, displayValue, cellStyle, info, hasNotes, attr }) => {
-  const popover = (
-    <Popover id={`popover-cell-rating-${product.brand.key}-${product.key}`}>
-      <Popover.Header as="h3">{info?.label || 'Rating'}</Popover.Header>
-      <Popover.Body>
-        {hasNotes && <div className="mb-2">{(attr as any).notes()}</div>}
-        <RatingDetails product={product} />
-      </Popover.Body>
-    </Popover>
-  );
-  
-  return (
-    <div style={cellStyle}>
-      <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-        <span className="fw-bold" style={dottedBorderStyle}>
-          {displayValue}
-        </span>
-      </OverlayTrigger>
-    </div>
-  );
-};
-
-// Cell with notes component
-const CellWithNotes: React.FC<{
+// Cell with popover component
+const CellWithPopover: React.FC<{
   product: Product;
   columnId: string;
   displayValue: React.ReactNode;
   cellStyle: React.CSSProperties;
   info?: any;
   attr: any;
-}> = ({ product, columnId, displayValue, cellStyle, info, attr }) => {
+  hasNotes: boolean;
+  popoverContent: React.ReactNode;
+  isBold?: boolean;
+}> = ({ product, columnId, displayValue, cellStyle, info, attr, hasNotes, popoverContent, isBold = false }) => {
   const popover = (
     <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
       <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
       <Popover.Body>
-        {(attr as any).notes()}
+        {popoverContent}
       </Popover.Body>
     </Popover>
   );
@@ -165,7 +97,7 @@ const CellWithNotes: React.FC<{
   return (
     <div style={cellStyle}>
       <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-        <span style={dottedBorderStyle}>
+        <span className={isBold ? "fw-bold" : ""} style={dottedBorderStyle}>
           {displayValue}
         </span>
       </OverlayTrigger>
@@ -193,27 +125,32 @@ const Cell: React.FC<{
   const attr = product[columnId as keyof Product];
   const hasNotes = !!(attr && typeof attr === 'object' && 'notes' in attr && typeof (attr as any).notes === 'function');
   
-  // Special case for rating column
-  if (columnId === 'rating' && columnInfo.rating?.notes) {
-    return <RatingCell
-      product={product}
-      displayValue={displayValue}
-      cellStyle={cellStyle}
-      info={info}
-      hasNotes={hasNotes}
-      attr={attr}
-    />;
-  }
-  
-  // For other columns with notes
-  if (hasNotes) {
-    return <CellWithNotes
+  // Check if the column has a renderPopover function
+  if (columnDef.renderPopover) {
+    return <CellWithPopover
       product={product}
       columnId={columnId}
       displayValue={displayValue}
       cellStyle={cellStyle}
       info={info}
       attr={attr}
+      hasNotes={hasNotes}
+      popoverContent={columnDef.renderPopover(product, hasNotes, attr)}
+      isBold={columnId === 'rating'} // Make rating bold like before
+    />;
+  }
+  
+  // For columns with notes but no renderPopover
+  if (hasNotes) {
+    return <CellWithPopover
+      product={product}
+      columnId={columnId}
+      displayValue={displayValue}
+      cellStyle={cellStyle}
+      info={info}
+      attr={attr}
+      hasNotes={hasNotes}
+      popoverContent={(attr as any).notes()}
     />;
   }
   
