@@ -55,9 +55,7 @@ const info: Product = {
     value: true,
     rating: 10,
   },
-  quiet: {
-    value: true,
-    rating: 6,
+  decibels: {
   },
   sturdy: {
     value: true,

@@ -60,7 +60,7 @@ const info: Product = {
     rating: 8,
     notes: () => <div>8-Point silicone (standard)</div>
   },
-  quiet: {
+  decibels: {
   },
   sturdy: {
     value: true,

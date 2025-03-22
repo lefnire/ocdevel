@@ -1,4 +1,4 @@
-import type {Product} from "./types"
+import type {Product} from "../types"
 const info: Product = {
   make: "urevo",
   model: "2S Lite",
@@ -63,10 +63,8 @@ const info: Product = {
     
     notes: () => <div>Has shock absorption for better knee health.</div>
   },
-  quiet: {
-    value: false,
+  decibels: {
     rating: 3,
-    
     notes: () => <div>A fair bit louder than Urevo 3S and Egofit M2. Still workable for meetings, but not if you want to be inconspicuous.</div>
   },
   sturdy: {

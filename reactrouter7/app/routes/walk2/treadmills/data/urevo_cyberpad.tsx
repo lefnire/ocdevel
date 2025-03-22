@@ -65,10 +65,8 @@ const info: Product = {
     
     notes: () => <div>The absorption happens at the pistons of the incline mechanism, like spring-loading. This is more robust than silicone absorbers at the deck-level.</div>
   },
-  quiet: {
-    value: true,
-    rating: 8,
-    
+  decibels: {
+    value: 30,
     notes: () => <div>Brushless motor, 30db - 30% quieter than average.</div>
   },
   sturdy: {

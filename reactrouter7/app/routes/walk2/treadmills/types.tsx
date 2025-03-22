@@ -38,7 +38,7 @@ export interface Product {
   }
   incline: Attribute
   shock: BoolVal
-  quiet: BoolVal
+  decibels: Numval
   sturdy: BoolVal
   app: BoolVal
   easyLube: BoolVal

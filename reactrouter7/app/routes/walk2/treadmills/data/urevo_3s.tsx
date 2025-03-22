@@ -63,9 +63,8 @@ const info: Product = {
     
     notes: () => <div>More shock points than Egofit (4 silicon pins, 2 silicon "sandwiches").</div>
   },
-  quiet: {
-    value: true,
-    rating: 7,
+  decibels: {
+    value: 46,
     notes: () => <div>52dB near treadmill, 46dB near microphone - relatively quiet.</div>
   },
   sturdy: {

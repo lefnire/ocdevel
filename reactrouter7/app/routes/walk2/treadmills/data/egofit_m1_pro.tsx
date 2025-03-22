@@ -50,9 +50,7 @@ const info: Product = {
     value: false, // Not mentioned in the data
     notes: () => <div>No shock absorption mentioned, which is a feature added in the newer M2 model.</div>
   },
-  quiet: {
-    value: false, // Not specifically mentioned
-    rating: 5,
+  decibels: {
   },
   sturdy: {
     value: true, // Assuming based on the brand reputation

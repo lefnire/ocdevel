@@ -67,11 +67,7 @@ const info: Product = {
     
     notes: () => <div>Likely has superior shock absorption as a commercial-grade treadmill.</div>
   },
-  quiet: {
-    value: true, // Assuming based on commercial quality
-    rating: 8,
-    
-    notes: () => <div>Likely quieter than consumer models due to higher quality components.</div>
+  decibels: {
   },
   sturdy: {
     value: true,

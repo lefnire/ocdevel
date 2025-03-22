@@ -47,10 +47,8 @@ const info: Product = {
     value: false,
     // notes: () => <div>Likely has good shock absorption given the premium positioning and price point.</div>
   },
-  quiet: {
-    // 42.9 dB
-    value: true,
-    notes: () => <div>42.9db. Quiet given the premium positioning and price point.</div>
+  decibels: {
+    value: 42.9,
   },
   sturdy: {
     value: true,

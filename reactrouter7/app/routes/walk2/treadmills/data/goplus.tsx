@@ -49,9 +49,8 @@ const info: Product = {
   shock: {
     value: false, // Not mentioned in the data
   },
-  quiet: {
-    // 45
-    value: false, // Not specifically mentioned
+  decibels: {
+    value: 45,
   },
   sturdy: {
     value: false,

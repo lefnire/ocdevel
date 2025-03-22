@@ -603,23 +603,37 @@ const columnsArray: ColumnDefinition[] = [
     }
   },
   {
-    key: "quiet",
-    label: "Quiet",
-    dtype: "boolean",
+    key: "decibels",
+    label: "Decibels",
+    dtype: "number",
+    description: "Lower is better",
     rating: 4,
     showInTable: true,
+    filterOptions: { min: false, max: true },
     notes: () => <div>How conducive to meetings and calls is this treadmill. Whispering is 30dB, conversation is 60dB. So it's only conducive if less than 60. I measure these at 2mph, with the decibel meter near the treadmill and near my microphone. I try to record dB here when I can.</div>,
-    calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.quiet);
+    calculate: (row: Product): number | undefined => {
+      return getAttributeValue<number>(row.decibels);
     },
     render: (row: Product): string => {
-      const quiet = getAttributeValue<boolean>(row.quiet);
-      return quiet ? '✓' : '';
+      const decibels = getAttributeValue<number>(row.decibels);
+      if (decibels === undefined) return '';
+      return `${decibels} dB`;
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise return 5
-      // reserve 0-5 for notably loud models
-      return getAttributeRating(row.quiet, 5);
+      // Return the rating property if it exists
+      if (row.decibels?.rating !== undefined) {
+        return row.decibels.rating;
+      }
+      
+      const decibels = getAttributeValue<number>(row.decibels);
+      if (decibels === undefined) return 5; // Default rating if no data
+      
+      // Range from 40dB (best, rating 10) to 80dB (worst, rating 0)
+      if (decibels <= 40) return 10;
+      if (decibels >= 80) return 0;
+      
+      // Linear scale between 40dB and 80dB
+      return 10 - ((decibels - 40) / 4);
     }
   },
   {
@@ -802,10 +816,6 @@ if (rankColumn) {
 
 // Helper functions for external use
 export const isNumericColumn = (columnId: string): boolean => {
-  // Check if the column is one of the known numeric columns
-  const numericColumns = ['weight', 'maxWeight', 'maxSpeed', 'horsePower', 'price', 'rating', 'rank'];
-  if (numericColumns.includes(columnId)) return true;
-  
   // Check if the column info indicates it's a number
   const column = columnsArray.find(col => col.key === columnId);
   return column?.dtype === 'number';

@@ -50,9 +50,8 @@ const info: Product = {
     value: false, // Not mentioned in the data
     notes: () => <div>No shock absorption mentioned, which may be a concern for knee health.</div>
   },
-  quiet: {
-    // decibels: 45. TODO double-check, and put in table
-    value: true, // Not specifically mentioned
+  decibels: {
+    value: 45, //TODO double-check, and put in table
   },
   sturdy: {
     value: false,

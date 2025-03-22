@@ -49,10 +49,7 @@ const info: Product = {
     rating: 4,
     notes: () => <div>Impact-absorbing silicone</div>
   },
-  quiet: {
-    value: true, // Assuming based on commercial quality
-    rating: 10,
-    notes: () => <div>Likely the quietest model in the LifeSpan lineup due to premium components.</div>
+  decibels: {
   },
   sturdy: {
     value: true,

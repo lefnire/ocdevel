@@ -68,9 +68,7 @@ const info: Product = {
     value: false, // Not mentioned in the data
     rating: 0,
   },
-  quiet: {
-    value: false, // Not specifically mentioned
-    rating: 0,
+  decibels: {
   },
   sturdy: {
     value: false,

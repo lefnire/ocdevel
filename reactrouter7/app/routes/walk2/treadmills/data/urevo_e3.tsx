@@ -60,10 +60,8 @@ const info: Product = {
     value: false, // Not mentioned in the data
     rating: 0,
   },
-  quiet: {
-    value: false,
+  decibels: {
     rating: 3,
-    
     notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {

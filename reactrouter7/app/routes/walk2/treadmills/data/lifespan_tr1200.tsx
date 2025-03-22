@@ -49,9 +49,7 @@ const info: Product = {
     rating: 4,
     // notes: () => <div>Likely has superior shock absorption as a higher-tier commercial-grade treadmill.</div>
   },
-  quiet: {
-    value: true, // Assuming based on commercial quality
-    // notes: () => <div>Likely quieter than consumer models and possibly the TR1000 due to higher quality components.</div>
+  decibels: {
   },
   sturdy: {
     value: true,

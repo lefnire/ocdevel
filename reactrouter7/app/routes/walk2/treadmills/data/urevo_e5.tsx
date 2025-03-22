@@ -63,10 +63,8 @@ const info: Product = {
     
     notes: () => <div>Has shock absorption for better knee health.</div>
   },
-  quiet: {
-    value: false,
+  decibels: {
     rating: 3,
-    
     notes: () => <div>Described as loud in the data.</div>
   },
   sturdy: {
