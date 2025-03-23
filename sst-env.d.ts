@@ -5,10 +5,6 @@
 
 declare module "sst" {
   export interface Resource {
-    "MyRouter": {
-      "type": "sst.aws.Router"
-      "url": string
-    }
     "ReactRouter7": {
       "type": "sst.aws.React"
       "url": string
