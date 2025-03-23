@@ -34,7 +34,7 @@ const info: Product = {
     value: "2024-10-10",
   },
   rating: {
-    value: [[4.3, 5], [69,17,5,2,7]],
+    value: [[4.1, 4360], [64,15,6,4,11]],
   },
   fakespot: {
     value: ["C", brand.fakespot],

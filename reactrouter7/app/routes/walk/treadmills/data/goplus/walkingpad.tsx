@@ -2,7 +2,7 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "GoPlus",
+  model: "Walking Pad",
   key: `${brand.key}_goplus`,
   description: "I strongly discourage GoPlus. Forget the Wirecutter pick, they only did it because GoPlus is the most popular Amazon budget mill - it was a grab pick. There are two main models. They have a ton more, so visit their store page to compare. Hover over as many models' star-rating widgets as you can. Notice the distribution, that looks like a \"C\" rather than a stair-case. High 1-stars and 2-stars indicate quality issues. If you have the FakeSpot Chrome Extension, you'll see almost all their models are F and D; meaning the 5-stars are fake. Scan through the reviews, and you'll see countless cases of belt-drift, motor blow-out, and more.",
   links: {

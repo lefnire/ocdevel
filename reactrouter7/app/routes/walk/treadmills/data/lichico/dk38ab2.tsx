@@ -6,27 +6,27 @@ const links = {
     US: ""
   },
   brand: {
-    US: ""
+    US: "https://lichico.com/products/basic-walkingpad",
+    AU: "https://lichico.com.au/products/lichico-dk-38ab-2-walkingpad-aus",
   }
 }
 const info: Product = {
-  model: "Product",
-  key: `${brand.key}_model`,
+  model: "DK-38AB-2",
+  key: `${brand.key}_dk38ab2`,
   description: "",
   links,
   brand,
-  // description: "",
   dimensions: {
-    value: [47.6, 23.6, 8.7], // "D x "W x "H
+    value: [47.2, 20, 4], // "D x "W x "H
   },
   weight: {
-    value: 100,
+    value: 37.5,
   },
   maxWeight: {
     value: 265,
   },
   maxSpeed: {
-    value: 3.5,
+    value: 4,
   },
   horsePower: {
     value: 2.5,
@@ -35,54 +35,51 @@ const info: Product = {
     value: "2024-01-01",
   },
   rating: {
-    value: [[4.1, 100], [70, 20, 0, 0, 10]],
+    value: [[4.2, 1673], [71,8,5,3,13]],
   },
   fakespot: {
-    value: ["C", brand.fakespot],
+    value: ["B", brand.fakespot],
   },
   price: {
-    value: 900,
-    sale: 500,
+    value: 170,
+    sale: 120,
   },
   pickedBy: {
-    value: ["public", "websites"],
+    value: ["websites"],
   },
   incline: {
     value: 0,
   },
   shock: {
     value: false,
-    rating: 5,
-    // notes: () => <div>8-point silicone absorbers</div>
   },
   decibels: {
-    // value: 50,
+    value: 30,
   },
   sturdy: {
     value: false,
     rating: 5,
-    // notes: () => <div>List materials?</div>
   },
   app: {
-    value: false,
+    value: true,
   },
   // bump: 0,
   easyLube: {
-    value: false,
+    value: true,
   },
   amazon: {
     value: true
   },
   material: {
-
+    value: "Alloy Steel"
   },
 
   // warranty: from brands
-  pros: [
-    {value: "", rating: 0, notes: () => <div></div>}
-  ],
-  cons: [
-    {value: "", rating: 0, notes: () => <div></div>}
-  ],
+  // pros: [
+  //   {value: "", rating: 0, notes: () => <div></div>}
+  // ],
+  // cons: [
+  //   {value: "", rating: 0, notes: () => <div></div>}
+  // ],
 }
 export default info

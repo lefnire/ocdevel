@@ -68,7 +68,7 @@ export interface Product {
   easyLube: BoolVal
   amazon: BoolVal
   // Use later
-  material?: string
+  material?: NumVal
   bump?: number
   pros?: StringVal[]
   cons?: StringVal[]
