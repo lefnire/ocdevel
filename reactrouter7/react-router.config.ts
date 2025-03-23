@@ -4,7 +4,7 @@ import getPrerenderRoutes from "./pre-render-routes.js";
 export default {
   // Config options...
   // Server-side render by default, to enable SPA mode set this to `false`
-  // ssr: false,
+  ssr: true,
   
   async prerender() {
     return getPrerenderRoutes(false);

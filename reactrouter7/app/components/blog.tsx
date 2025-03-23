@@ -56,7 +56,7 @@ export function Teaser({p}: BlogPost) {
         <PostDate p={p} />
       </Card.Subtitle>
       {renderContent()}
-      <Link to={'/blog/' + p.id}>Read More</Link>
+      <Link to={url}>Read More</Link>
     </Card.Body>
   </Card>
 }

@@ -20,44 +20,7 @@ export default $config({
         redirects: [`www.${domain}`]
       },
       routes: {
-        "/*": {
-          url: site.url,
-          edge: {
-            viewerRequest: {
-
-              injection: $interpolate`
-                if (
-                    // event.request.uri '/blog/20240109-fitness-desk'
-                    event.request.uri.toLowerCase().includes('walk2')
-                ) {
-                  event.request = {
-                    status: '302',
-                    statusDescription: 'Found',
-                    headers: {
-                      location: [{
-                        key: 'Location',
-                        value: '${site.url}/walk'
-                      }]
-                    }
-                  }
-                }
-              `,
-            },
-          }
-          // rewrite: {
-          //   regex: "^/blog/20240109-fitness-desk$",
-          //   to: "/walk"
-          // }
-        },
-        // // "/blog/20240109-fitness-desk": site.url.apply(url => `${url}/walk`),
-        // "/blog/20240109-fitness-desk": {
-        //   rewrite: {
-        //     regex: "^/api/(.*)$",
-        //     to: "/$1"
-        //   }
-        // },
-        // "/20240110-fitness-desk": site.url.apply(url => `${url}/walk`),
-        // "/podcast": site.url.apply(url => `${url}/mlg`)
+        "/*": site.url,
       }
     });
     return {
