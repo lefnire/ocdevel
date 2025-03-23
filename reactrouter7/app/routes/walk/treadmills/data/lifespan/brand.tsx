@@ -14,6 +14,7 @@ const info: Brand = {
   },
   fakespot: "B",
   rating: 5,
+  bump: -4,
   warranty: {},
   notes: () => <div>
     <div>{nonBudgetNote}</div>

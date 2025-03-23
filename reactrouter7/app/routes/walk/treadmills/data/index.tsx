@@ -19,6 +19,7 @@ import sperax_motioneaselitep1 from './sperax/motioneaselitep1'
 import bifanuo_tm008 from './bifanuo/tm008'
 import yagud_walkingpad from './yagud/walkingpad'
 import lichico_dk38ab2 from './lichico/dk38ab2'
+import elseluck_walkingpad from './elseluck/walkingpad'
 
 const index = [
   // Original treadmills
@@ -45,6 +46,7 @@ const index = [
   bifanuo_tm008,
   yagud_walkingpad,
   lichico_dk38ab2,
+  elseluck_walkingpad,
 ]
 export default index
 

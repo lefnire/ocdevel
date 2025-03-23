@@ -30,6 +30,7 @@ export interface Brand {
   rating?: number
   location?: string
   notes?: () => ReactElement
+  bump?: number
 }
 
 export interface Product {

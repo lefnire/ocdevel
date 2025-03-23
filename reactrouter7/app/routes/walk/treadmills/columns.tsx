@@ -947,9 +947,8 @@ if (rankColumn) {
 
     // Normalize the score to a 0-10 scale
     totalWeight =  totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
-    if (row.bump) {
-      totalWeight += row.bump
-    }
+    const bump = row.bump || row.brand.bump || 0
+    totalWeight += row.bump
     return totalWeight
   };
 }
