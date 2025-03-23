@@ -15,11 +15,12 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import data from './data/index';
+import data, { dataObj } from './data/index';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
-import { OverlayTrigger, Popover, Form } from 'react-bootstrap';
+import { OverlayTrigger, Popover, Form, Button, Badge } from 'react-bootstrap';
 import type { Product } from './data/types';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { useSearchParams, useNavigate } from 'react-router';
 
 // Custom styles
 const dottedBorderStyle: React.CSSProperties = {
@@ -310,6 +311,34 @@ export default function Treadmills() {
   ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
   
+  // URL parameters for comparison
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  
+  // Get comparison keys from URL
+  const compareParam = searchParams.get('compare');
+  const compareKeys = compareParam ? compareParam.split(',') : [];
+  const isCompareMode = compareKeys.length > 0;
+  
+  // Filter data based on comparison keys
+  const filteredData = React.useMemo(() => {
+    if (!isCompareMode) return data;
+    return data.filter(product => compareKeys.includes(product.key));
+  }, [compareKeys, isCompareMode]);
+  
+  // Handle "Show All" button click
+  const handleShowAll = () => {
+    // Remove the compare parameter from the URL
+    searchParams.delete('compare');
+    setSearchParams(searchParams);
+  };
+  
+  // Handle comparison button click
+  const handleCompare = (keys: string[]) => {
+    searchParams.set('compare', keys.join(','));
+    setSearchParams(searchParams);
+  };
+  
   // Column helper
   const columnHelper = createColumnHelper<Product>();
   
@@ -453,7 +482,7 @@ export default function Treadmills() {
   
   // Create table instance
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns,
     state: {
       sorting,
@@ -467,6 +496,22 @@ export default function Treadmills() {
   });
   return (
     <div className="w-100">
+      {/* Show All button when in comparison mode */}
+      {isCompareMode && (
+        <div className="mb-3">
+          <Button
+            variant="outline-primary"
+            onClick={handleShowAll}
+            className="mb-2"
+          >
+            Show All Products
+          </Button>
+          <Badge bg="info" className="ms-2">
+            Comparing {compareKeys.length} products
+          </Badge>
+        </div>
+      )}
+      
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
          {/* Normal table: columns are attributes, rows are products */}
@@ -528,6 +573,21 @@ export default function Treadmills() {
            ))}
          </tbody>
         </table>
+      </div>
+      
+      {/* Comparison buttons */}
+      <div className="mt-4">
+        <h5>Compare Products</h5>
+        <div className="d-flex overflow-auto pb-2">
+          <Button
+            variant="outline-primary"
+            className="me-2 whitespace-nowrap"
+            onClick={() => handleCompare(['egofit_m2', 'urevo_cyberpad'])}
+          >
+            EgoFit vs Urevo
+          </Button>
+          {/* Additional comparison buttons can be added here */}
+        </div>
       </div>
     </div>
   );
