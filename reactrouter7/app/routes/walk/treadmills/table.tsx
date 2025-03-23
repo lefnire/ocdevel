@@ -84,7 +84,7 @@ const CellWithPopover: React.FC<{
   isBold?: boolean;
 }> = ({ product, columnId, displayValue, cellStyle, info, popoverContent, isBold = false }) => {
   const popover = (
-    <Popover id={`popover-cell-${columnId}-${product.brand.key}-${product.key}`}>
+    <Popover id={`popover-cell-${columnId}-${product.key}`}>
       <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
       <Popover.Body>
         {popoverContent}

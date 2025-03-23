@@ -289,7 +289,7 @@ const columnsArray: ColumnDefinition[] = [
       const link = getCurrentLink(row);
       const price = getPrice(row);
       const onClick = clickAffiliate({
-        label: `${row.brand.key}_${row.key}`,
+        label: row.key,
         value: price || 0
       })
       return (

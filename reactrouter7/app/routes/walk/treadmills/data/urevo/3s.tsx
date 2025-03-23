@@ -3,7 +3,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "3S",
-  key: '3s',
+  key: `${brand.key}_3s`,
   description: "Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it.",
   links: {
     amazon: "https://amzn.to/4bE2JXR",

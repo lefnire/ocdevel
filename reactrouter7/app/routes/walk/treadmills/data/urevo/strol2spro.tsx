@@ -3,7 +3,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "Strol 2S Pro",
-  key: 'strol2spro',
+  key: `${brand.key}_strol2spro`,
   description: "If you also want to run (use this away from the walking desk), get this. You flip up the handles and it enables high speed; flip down to put it under your desk (low speed). This will generally be higher quality and last longer than a walking-only pad, due to motor requirements for high speed.",
   links: {
     amazon: "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876",

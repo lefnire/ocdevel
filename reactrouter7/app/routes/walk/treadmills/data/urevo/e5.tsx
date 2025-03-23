@@ -5,7 +5,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "E5",
-  key: 'e5',
+  key: `${brand.key}_e5`,
   description: "This has the most hardware improvements over the below. Eg, improved motor, and vents to dissipate heat, and doesn't have an incline. I don't know why they removed the incline after E3... real bummer. So I recommend propping the head on some yoga blocks or a 2x4.",
   links: {amazon: "https://amzn.to/4jsteob"},
 

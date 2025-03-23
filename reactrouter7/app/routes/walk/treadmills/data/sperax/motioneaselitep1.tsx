@@ -3,7 +3,7 @@ import brand from './brand'
 
 const info: Product = {
   model: "MotionEase Lite P1",
-  key: 'motioneaselitep1',
+  key: `${brand.key}_motioneaselitep1`,
   links: {
     amazon: "https://amzn.to/4hud9w0",
     brand: "https://speraxsports.com/products/walking-pad-vibration-fat-flat",

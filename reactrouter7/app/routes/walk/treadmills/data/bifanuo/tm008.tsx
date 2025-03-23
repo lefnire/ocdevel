@@ -3,7 +3,7 @@ import brand from './brand'
 
 const info: Product = {
   model: "TM008",
-  key: 'tm008',
+  key: `${brand.key}_tm008`,
   links: {
     amazon: "https://amzn.to/4hzpqzs",
     brand: "https://bifanuo.com/product/walking-pad-under-desk-treadmill-treadmills-for-home-office-portable-treadmill-walking-pad-treadmill-under-desk-with-remote-control-led-display-ideal-for-fitness-enthusiasts-2/",

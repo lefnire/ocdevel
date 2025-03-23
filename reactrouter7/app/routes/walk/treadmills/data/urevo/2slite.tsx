@@ -3,7 +3,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "2S Lite",
-  key: '2slite',
+  key: `${brand.key}_2slite`,
   description: "If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S.",
   links: {amazon: "https://amzn.to/3ROlFvN"},
 

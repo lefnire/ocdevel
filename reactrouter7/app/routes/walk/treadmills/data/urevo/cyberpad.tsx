@@ -3,7 +3,7 @@ import brand from './brand'
 
 const info: Product = {
   model: "Cyberpad",
-  key: `cyberpad`,
+  key: `${brand.key}_cyberpad`,
   image: '/walk_thumbs/cyberpad.jpg',
   links: {
     amazon: "https://amzn.to/42VhjJE",

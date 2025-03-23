@@ -3,7 +3,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "iMovR",
-  key: 'imovr',
+  key: `${brand.key}_imovr`,
   description: "Considered on the internet the highest quality underdesk treadmill, often over Lifespan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer Lifespan based on what I've seen.",
   links: {brand: "https://www.imovr.com/treadmill-desk-workstations.html"},
 

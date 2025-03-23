@@ -4,7 +4,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "E3",
-  key: 'e3',
+  key: `${brand.key}_e3`,
   description: "Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.",
   links: {amazon: "https://amzn.to/3zxMhLt"},
 

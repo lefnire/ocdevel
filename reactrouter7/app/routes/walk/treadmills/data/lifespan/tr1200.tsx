@@ -3,7 +3,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "TR1200",
-  key: 'tr1200',
+  key: `${brand.key}_tr1200`,
   description: "A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
   links: {brand: "https://lifespan-fitness.e9ppfh.net/GmyR4k"},
 

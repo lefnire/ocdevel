@@ -11,7 +11,7 @@ import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
 
 const treadmills = [
     {
-      key: 'urevo_cyberpad',
+      key: dataObj.urevo_cyberpad.key,
       image: '/walk_thumbs/cyberpad.jpg',
       title: 'Premium: CyberPad',
       description: <div>
@@ -23,7 +23,7 @@ const treadmills = [
       price: getPrice(dataObj.urevo_cyberpad),
     },
     {
-      key: 'urevo_3s',
+      key: dataObj.urevo_3s.key,
       image: '/walk_thumbs/3s.jpg',
       title: 'Value: 3S',
       description: <div>
@@ -35,7 +35,7 @@ const treadmills = [
       price: getPrice(dataObj.urevo_3s),
     },
     {
-      key: 'deerrun_q1mini',
+      key: dataObj.deerrun_q1mini.key,
       image: '/walk_thumbs/deerrun.jpg',
       title: 'Budget: DeerRun',
       description: <div>

@@ -43,6 +43,7 @@ export function sendEvent(event: Event) {
 }
 type Affiliate = {label: string, value: number}
 export const clickAffiliate = ({label, value}: Affiliate) => () => {
+  debugger
   sendEvent({
     category: "Affiliate",
     action: "AffiliateClick",

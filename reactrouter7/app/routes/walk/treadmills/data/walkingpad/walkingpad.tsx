@@ -3,7 +3,7 @@ import brand from './brand'
 const info: Product = {
   brand,
   model: "Z1",
-  key: 'z1',
+  key: `${brand.key}_z1`,
   links: {
     amazon: "https://amzn.to/4kQEnA0"
   },
