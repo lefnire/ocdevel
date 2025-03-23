@@ -41,6 +41,7 @@ export function Teaser({p}: BlogPost) {
       <div className='fade-post-bottom'></div>
     </div>
   }
+  const url = p.url || `/blog/${p.id}`
 
   return <Card
     key={p.id}
@@ -49,7 +50,7 @@ export function Teaser({p}: BlogPost) {
     <Card.Body>
       <Card.Title>
         {p.pinned && <span className='float-end'>📌</span>}
-        <Link to={'/blog/' + p.id}>{p.title}</Link>
+        <Link to={url}>{p.title}</Link>
       </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">
         <PostDate p={p} />

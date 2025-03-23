@@ -1,4 +1,5 @@
 export const id = '20240109-fitness-desk'
+export const url = "/walk"
 export const date = '2024-01-09'
 export const updated = '2025-01-25'
 export const title = "Walking Desk"
