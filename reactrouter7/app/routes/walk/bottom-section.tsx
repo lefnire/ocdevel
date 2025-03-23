@@ -38,35 +38,51 @@ const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key,
   );
 };
 
+// Helper function to get product combinations based on SEO scores
+const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
+  // Filter products with SEO scores and ensure they're not filtered out
+  const productsWithSEO = data.filter(product => product.seo);
+  
+  // Sort by SEO score (descending)
+  const sortedProducts = [...productsWithSEO].sort((a, b) =>
+    (b.seo || 0) - (a.seo || 0)
+  );
+
+  // Take top N products
+  const topProducts = sortedProducts.slice(0, maxProducts);
+  
+  // Generate all possible unique combinations (pairs)
+  const combinations = [];
+  for (let i = 0; i < topProducts.length; i++) {
+    for (let j = i + 1; j < topProducts.length; j++) {
+      combinations.push({
+        product1Key: topProducts[i].key,
+        product2Key: topProducts[j].key
+      });
+      
+      // Limit the number of combinations
+      if (combinations.length >= maxCombinations) break;
+    }
+    if (combinations.length >= maxCombinations) break;
+  }
+  
+  return combinations;
+};
+
 export default function BottomSection() {
+  // Get top product combinations based on SEO
+  const productCombinations = getTopProductCombinations();
+  
   return <Container>
     <h5 className='text-center'>Popular Comparisons</h5>
     <div className="d-flex overflow-auto pb-2">
-      <CompareButton
-        product1Key="egofit_m2"
-        product2Key="urevo_cyberpad"
-      />
-      <CompareButton
-        product1Key="sperax_motioneaselitep1"
-        product2Key="deerrun_q1mini"
-      />
-      <CompareButton
-        product1Key="walkingpad_z1"
-        product2Key="sperax_motioneaselitep1"
-      />
-      <CompareButton
-        product1Key="imovr_unsit"
-        product2Key="lifespan_tr1200"
-      />
-      <CompareButton
-        product1Key="goplus_goplus"
-        product2Key="goyouth_2in1"
-      />
-      <CompareButton
-        product1Key="walkingpad_z1"
-        product2Key="goplus_goplus"
-      />
-      {/* Add more comparison buttons as needed */}
+      {productCombinations.map((combo, index) => (
+        <CompareButton
+          key={`compare-${index}`}
+          product1Key={combo.product1Key}
+          product2Key={combo.product2Key}
+        />
+      ))}
     </div>
   </Container>
 }
