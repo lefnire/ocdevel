@@ -17,25 +17,25 @@ export default $config({
         name: domain,
         redirects: [`www.${domain}`]
       },
-      // server: {
-      //   edge: {
-      //     viewerRequest: {
-      //       injection: $interpolate`
-      //         if (
-      //           event.request.uri.toLowerCase().includes("fitness-desk")
-      //         ) {
-      //           return {
-      //             statusCode: 302,
-      //             statusDescription: 'Moved Permanently',
-      //             headers: {
-      //               'location': { value: '/walk' }
-      //             }
-      //           };
-      //         }
-      //       `,
-      //     }
-      //   }
-      // }
+      server: {
+        edge: {
+          viewerRequest: {
+            injection: $interpolate`
+              if (
+                event.request.uri.toLowerCase().includes("fitness-desk")
+              ) {
+                return {
+                  statusCode: 302,
+                  statusDescription: 'Moved Permanently',
+                  headers: {
+                    'location': { value: '/walk' }
+                  }
+                };
+              }
+            `,
+          }
+        }
+      }
     });
     return {
       url: site.url,

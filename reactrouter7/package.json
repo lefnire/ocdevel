@@ -11,9 +11,9 @@
   "dependencies": {
     "@mdx-js/react": "^3.1.0",
     "@mdx-js/rollup": "^3.1.0",
-    "@react-router/fs-routes": "^7.3.0",
-    "@react-router/node": "^7.3.0",
-    "@react-router/serve": "^7.3.0",
+    "@react-router/fs-routes": "^7.4.0",
+    "@react-router/node": "^7.4.0",
+    "@react-router/serve": "^7.4.0",
     "@tanstack/react-table": "^8.21.2",
     "ag-grid-react": "^33.1.1",
     "bootstrap": "^5.3.3",
@@ -28,13 +28,13 @@
     "react-icons": "^5.5.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-markdown": "^10.1.0",
-    "react-router": "^7.3.0",
+    "react-router": "^7.4.0",
     "react-router-bootstrap": "^0.26.3",
     "vanilla-cookieconsent": "^3.1.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.3.0",
+    "@react-router/dev": "^7.4.0",
     "@tailwindcss/vite": "^4.0.0",
     "@types/lodash": "^4.17.16",
     "@types/node": "^20",

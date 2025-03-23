@@ -9,10 +9,11 @@
     "deploy:prod": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst deploy --stage=production",
     "remove": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove",
     "remove:dev": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove --stage=dev",
-    "remove:prod": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove --stage=production"
+    "remove:prod": "AWS_PROFILE=admin AWS_REGION=us-east-1 sst remove --stage=production",
+    "upgrade": "sst upgrade"
   },
   "dependencies": {
-    "sst": "^3.9.39"
+    "sst": "3.10.8"
   },
   "devDependencies": {
     "vite-plugin-sitemap": "^0.7.1"
