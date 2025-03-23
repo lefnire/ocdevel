@@ -15,6 +15,7 @@ const info: Product = {
   description: "",
   links,
   brand,
+  seo: 2,
   // description: "",
   dimensions: {
     value: [47.6, 20.1, 4.6], // "D x "W x "H

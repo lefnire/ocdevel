@@ -12,6 +12,7 @@ const info: Product = {
   model: "Walking Pad",
   key: `${brand.key}_walkingpad`,
   description: "",
+  seo: 3,
   links,
   brand,
   // description: "",

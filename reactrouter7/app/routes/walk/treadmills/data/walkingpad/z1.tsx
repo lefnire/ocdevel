@@ -4,6 +4,8 @@ const info: Product = {
   brand,
   model: "Z1",
   key: `${brand.key}_z1`,
+  description: "",
+  seo: 10,
   links: {
     amazon: {
       US: "https://amzn.to/4kQEnA0",

@@ -14,6 +14,7 @@ const info: Product = {
   model: "DK-38AB-2",
   key: `${brand.key}_dk38ab2`,
   description: "",
+  seo: 3,
   links,
   brand,
   dimensions: {

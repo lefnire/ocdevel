@@ -4,6 +4,7 @@ const info: Product = {
   brand,
   model: "TR1200",
   key: `${brand.key}_tr1200`,
+  seo: 3,
   description: "A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
   links: {
     brand: {

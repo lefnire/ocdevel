@@ -7,7 +7,7 @@ interface Attribute {
 }
 type BoolVal = Omit<Attribute, 'value'> & { value?: boolean }
 type StringVal = Omit<Attribute, 'value'> & { value?: string }
-type Numval = Omit<Attribute, 'value'> & { value?: number }
+type NumVal = Omit<Attribute, 'value'> & { value?: number }
 
 interface Links {
   amazon: { [countryCode: string]: string }
@@ -36,6 +36,7 @@ export interface Brand {
 export interface Product {
   brand: Brand
   model: string
+  seo?: number
   image?: string
   key: string
   description: string | ReactElement
@@ -63,7 +64,7 @@ export interface Product {
   }
   incline: Attribute
   shock: BoolVal
-  decibels: Numval
+  decibels: NumVal
   sturdy: BoolVal
   app: BoolVal
   easyLube: BoolVal
