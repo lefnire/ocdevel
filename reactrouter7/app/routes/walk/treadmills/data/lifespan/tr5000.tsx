@@ -5,7 +5,15 @@ const info: Product = {
   model: "TR5000",
   key: `${brand.key}_tr5000`,
   description: "The top-tier commercial-grade treadmill from LifeSpan, designed for intensive daily use in professional environments. This is their flagship model with the highest durability and weight capacity.",
-  links: {amazon: "https://amzn.to/4bOtXN6"},
+  links: {
+    brand: {
+      US:"https://lifespan-fitness.e9ppfh.net/GmyR4k"
+    },
+    amazon: {
+      US: "https://amzn.to/4iWPdmh",
+      CA: "https://amzn.to/4iy2f9Z"
+    }
+  },
 
   dimensions: {
     value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H
@@ -67,9 +75,6 @@ const info: Product = {
   amazon: {
     value: true,
     rating: 0,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability
   },
 
   pros: [

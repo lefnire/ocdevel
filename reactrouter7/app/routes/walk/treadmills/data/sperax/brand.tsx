@@ -1,20 +1,26 @@
 import type {Brand} from '../types'
 
+const links = {
+  amazon: {
+    US: "https://amzn.to/4isyV4I",
+    CA: "https://amzn.to/4hwW7NO"
+  },
+  brand: {
+    // TODO supports all countries
+    US: "https://speraxsports.com/collections/walkingpad",
+    CA: "https://speraxsports.com/collections/walkingpad",
+    UK: "https://speraxsports.com/collections/walkingpad",
+  }
+}
+
 const info: Brand = {
   key: 'sperax',
   name: "Sperax",
-  links: {
-    amazon: "https://amzn.to/4isyV4I",
-    brand: "https://speraxsports.com/collections/walkingpad",
-  },
+  links,
   location: "China",
   rating: 6,
   warranty: {
     brand: 3,
-  },
-  countries: {
-    brand: ["US", "UK", "CA", "DE"],
-    amazon: [],
   },
   fakespot: "B",
   notes: () => <div>Gaining popularity. I'm seeing them on various recommender sites, and with decent love in the underground.</div>

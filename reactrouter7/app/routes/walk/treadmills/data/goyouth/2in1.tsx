@@ -2,10 +2,16 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "GoYouth",
-  key: `${brand.key}_goyouth`,
+  model: "2 in 1",
+  key: `${brand.key}_2in1`,
   description: "My prior main, and I loved it. I upgraded to Egofit for the incline. If you choose GoYouth, go to their store page just to make sure there's nothing newer than the link I posted. These budget brands often release newer versions quite frequently; and newer is better with these.",
-  links: {amazon: "https://amzn.to/3H75BzJ"},
+  links: {
+    amazon: {
+      US: "https://amzn.to/4hx38hC",
+      CA: "https://amzn.to/4bXikDA",
+    },
+    brand: {}
+  },
 
   dimensions: {
     value: [49, 21.6, 5.9], // 49"D x 21.6"W x 5.9"H
@@ -34,7 +40,7 @@ const info: Product = {
     // notes: () => <div>Good distribution with majority 5-star ratings.</div>
   },
   fakespot: {
-    value: ["A", "B"], // Fakespot A for the product
+    value: ["A", brand.fakespot], // Fakespot A for the product
     notes: () => <div>Fakespot A rating indicates highly reliable reviews.</div>
   },
   price: {
@@ -67,9 +73,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
 
   pros: [

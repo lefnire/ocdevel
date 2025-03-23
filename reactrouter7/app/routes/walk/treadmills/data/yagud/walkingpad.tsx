@@ -3,46 +3,45 @@ import brand from './brand'
 
 const links = {
   amazon: {
-    US: ""
+    US: "https://amzn.to/41VZf00",
+    CA: "https://amzn.to/4hBez82",
   },
-  brand: {
-    US: ""
-  }
+  brand: {},
 }
 const info: Product = {
-  model: "Product",
-  key: `${brand.key}_model`,
+  model: "Walking Pad",
+  key: `${brand.key}_walkingpad`,
   description: "",
   links,
   brand,
   // description: "",
   dimensions: {
-    value: [47.6, 23.6, 8.7], // "D x "W x "H
+    value: [45.8, 19.76, 4.13],
   },
   weight: {
-    value: 100,
+    value: 37.9,
   },
   maxWeight: {
     value: 265,
   },
   maxSpeed: {
-    value: 3.5,
+    value: 3.8,
   },
   horsePower: {
     value: 2.5,
   },
   age: {
-    value: "2024-01-01",
+    value: "2024-10-10",
   },
   rating: {
-    value: [[4.1, 100], [70, 20, 0, 0, 10]],
+    value: [[4.3, 5], [69,17,5,2,7]],
   },
   fakespot: {
     value: ["C", brand.fakespot],
   },
   price: {
-    value: 900,
-    sale: 500,
+    value: 130,
+    sale: 90,
   },
   pickedBy: {
     value: ["public", "websites"],
@@ -52,15 +51,12 @@ const info: Product = {
   },
   shock: {
     value: false,
-    rating: 5,
-    // notes: () => <div>8-point silicone absorbers</div>
   },
   decibels: {
     // value: 50,
   },
   sturdy: {
     value: false,
-    rating: 5,
     // notes: () => <div>List materials?</div>
   },
   app: {
@@ -68,18 +64,19 @@ const info: Product = {
   },
   // bump: 0,
   easyLube: {
-    value: false,
+    value: true,
   },
   amazon: {
     value: true
   },
+  material: "Alloy steel"
 
   // warranty: from brands
-  pros: [
-    {value: "", rating: 0, notes: () => <div></div>}
-  ],
-  cons: [
-    {value: "", rating: 0, notes: () => <div></div>}
-  ],
+  // pros: [
+  //   {value: "", rating: 0, notes: () => <div></div>}
+  // ],
+  // cons: [
+  //   {value: "", rating: 0, notes: () => <div></div>}
+  // ],
 }
 export default info

@@ -6,8 +6,11 @@ const info: Product = {
   key: `${brand.key}_3s`,
   description: "Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it.",
   links: {
-    amazon: "https://amzn.to/4bE2JXR",
-
+    amazon: {
+      US: "https://amzn.to/4bE2JXR"
+    },
+    brand: {
+    }
   },
 
   dimensions: {
@@ -66,9 +69,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
   bump: 3,
 

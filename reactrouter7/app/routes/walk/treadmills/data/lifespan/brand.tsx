@@ -4,9 +4,15 @@ const info: Brand = {
   key: "lifespan",
   name: "LifeSpan",
   links: {
-    amazon: "https://amzn.to/4iv4NFP",
-    brand: "https://www.lifespanfitness.com/pages/treadmill-desks#treadmillDesk",
+    amazon: {
+      US: "https://amzn.to/4iv4NFP",
+      CA: "https://amzn.to/4iUdVDO",
+    },
+    brand: {
+      US: "https://www.lifespanfitness.com/pages/treadmill-desks#treadmillDesk"
+    },
   },
+  fakespot: "B",
   rating: 5,
   warranty: {},
   notes: () => <div>

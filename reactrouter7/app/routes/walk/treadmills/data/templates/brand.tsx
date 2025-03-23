@@ -1,7 +1,7 @@
 import type {Brand} from '../types'
 const links = {
-  brand: "",
-  amazon: "",
+  brand: {US: ""},
+  amazon: {US: ""},
 }
 const info: Brand = {
   key: 'brand',
@@ -10,11 +10,6 @@ const info: Brand = {
   // overriden in each item
   warranty: {
     amazon: 2*12,
-    // notes: () => <div></div>
-  },
-  countries: {
-    brand: [],
-    amazon: ["US"],
     // notes: () => <div></div>
   },
   fakespot: "B",

@@ -1,14 +1,21 @@
 import type {Product} from "../types";
 import brand from './brand'
-
+const links = {
+  amazon: {
+    US: "https://amzn.to/4hzpqzs",
+    CA: "https://amzn.to/4ixXL39",
+    UK: "https://amzn.to/4iCSs2w", // not the same one?
+  },
+  brand: {
+    US: "https://bifanuo.com/product/walking-pad-under-desk-treadmill-treadmills-for-home-office-portable-treadmill-walking-pad-treadmill-under-desk-with-remote-control-led-display-ideal-for-fitness-enthusiasts-2/",
+  }
+  // amazonPause: "brand",
+}
 const info: Product = {
   model: "TM008",
   key: `${brand.key}_tm008`,
-  links: {
-    amazon: "https://amzn.to/4hzpqzs",
-    brand: "https://bifanuo.com/product/walking-pad-under-desk-treadmill-treadmills-for-home-office-portable-treadmill-walking-pad-treadmill-under-desk-with-remote-control-led-display-ideal-for-fitness-enthusiasts-2/",
-    // amazonPause: "brand",
-  },
+  description: "",
+  links,
   brand,
   // description: "",
   dimensions: {
@@ -59,9 +66,6 @@ const info: Product = {
   },
   app: {
     value: false,
-  },
-  countries: {
-    value: ["US", "CA", "UK"]
   },
   // bump: 0,
   easyLube: {

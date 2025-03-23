@@ -2,10 +2,16 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "iMovR",
-  key: `${brand.key}_imovr`,
+  model: "Unsit",
+  key: `${brand.key}_unsit`,
   description: "Considered on the internet the highest quality underdesk treadmill, often over Lifespan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer Lifespan based on what I've seen.",
-  links: {brand: "https://www.imovr.com/treadmill-desk-workstations.html"},
+  links: {
+    brand: {
+      US: "https://www.imovr.com/products/unsit-desk-treadmill",
+      CA: "https://www.imovr.com/products/unsit-desk-treadmill",
+    },
+    amazon: {}
+  },
 
   dimensions: {
     value: [56, 39, 5], // 39″ wide × 56″ long, height not specified
@@ -65,9 +71,6 @@ const info: Product = {
   },
   amazon: {
     value: false,
-  },
-  countries: {
-    value: ["US"]
   },
   bump: -5,
 

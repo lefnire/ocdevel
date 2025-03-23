@@ -1,7 +1,14 @@
 import type {Brand} from '../types'
 const links = {
-  brand: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
-  amazon: "https://amzn.to/4hv7Exf",
+  brand: {
+    US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
+    DE: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
+  },
+  amazon: {
+    US: "https://amzn.to/4iNELhj",
+    CA: "https://amzn.to/4hBmCBM",
+    UK: "https://amzn.to/4hBmWR0",
+  },
 }
 const info: Brand = {
   key: 'urevo',
@@ -9,10 +16,11 @@ const info: Brand = {
   links,
   // overriden in each item
   warranty: {
-    value: ["Amazon", "Urevo"],
+    amazon: 12*2,
+    brand: 12*2,
     notes: () => <div>Amazon for peace of mind, but Urevo's is free and 2 years. Tough call.</div>
   },
-  fakespot: "A",
+  fakespot: "B",
   rating: 8,
   notes: () => <div>
     Urevo has the best value (price-to-quality ratio) of my research & testing. Eg, compared to Egofit M2 - they're available on Amazon, with extended warranty, cheaper, less sensitive to pet-hair, for otherwise same quality. They're the default choice by some package deals (like FlexiSpot walking desks). I recommend the Urevo 3S for mid-tier, CyberPad for quality. Their other models have some combination of good price, shock absorption, incline, good motor; but rarely all together. Expand other sections to compare. Note: their prices fluctuate, and there's often an Amazon Coupon (right under the price), check before buying.
@@ -24,7 +32,7 @@ const info: Brand = {
     <ol>
       <li>
         <b>
-          <a href={links.brand} target="_blank">Go to their website</a>, sort by Date: new-&gt;old.
+          <a href={links.brand.US} target="_blank">Go to their website</a>, sort by Date: new-&gt;old.
         </b>
         <div><small>Their website is easier to compare models than Amazon. Newer models are better, since Urevo iterates fast based on user complains. Eg, the SpaceWalk E3 had motor heat complaints; so they improved that with E4; then again with E5 (adding vents).</small></div>
       </li>

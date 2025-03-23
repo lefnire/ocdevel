@@ -1,16 +1,23 @@
 import type {Product} from "../types";
 import brand from './brand'
 
+const links = {
+  amazon: {
+    US: "https://amzn.to/4hud9w0",
+    CA: "https://amzn.to/4ivdDU4",
+  },
+  brand: {
+    US: "https://speraxsports.com/products/walking-pad-vibration-fat-flat",
+    CA: "https://speraxsports.com/products/walking-pad-vibration-fat-flat",
+    UK: "https://speraxsports.com/products/walking-pad-vibration-fat-flat",
+  }
+}
+
 const info: Product = {
   model: "MotionEase Lite P1",
   key: `${brand.key}_motioneaselitep1`,
-  links: {
-    amazon: "https://amzn.to/4hud9w0",
-    brand: "https://speraxsports.com/products/walking-pad-vibration-fat-flat",
-    // TODO
-    amazon_ca: "https://amzn.to/4hAEzAt",
-    // amazonPause: "brand",
-  },
+  description: "No clue what the vibration this is all about, personally think it's a gimmick. I'll update here if I find there's something to it.",
+  links,
   brand,
   // description: "",
   dimensions: {
@@ -60,9 +67,6 @@ const info: Product = {
   app: {
     value: true,
   },
-  countries: {
-    value: ["US", "CA"]
-  },
   // bump: 0,
   easyLube: {
     value: false,
@@ -75,13 +79,6 @@ const info: Product = {
   },
 
   // warranty: from brands
-  pros: [
-    {
-      value: "Vibration",
-      rating: 0,
-      notes: () => <div>I have no idea what this is all about, personally think it's a gimmick. I'll update here if I find there's something to it.</div>
-    }
-  ],
   // cons: [
   //   {value: "", rating: 0, notes: () => <div></div>}
   // ],

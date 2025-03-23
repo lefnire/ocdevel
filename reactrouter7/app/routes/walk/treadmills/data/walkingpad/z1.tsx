@@ -5,7 +5,14 @@ const info: Product = {
   model: "Z1",
   key: `${brand.key}_z1`,
   links: {
-    amazon: "https://amzn.to/4kQEnA0"
+    amazon: {
+      US: "https://amzn.to/4kQEnA0",
+      CA: "https://amzn.to/4bUsuVA",
+      UK: "https://amzn.to/41OdVy6",
+    },
+    brand: {
+      US: "https://www.walkingpad.com/products/walkingpad-z1-under-desk-treadmill",
+    }
   },
 
   dimensions: {
@@ -35,7 +42,7 @@ const info: Product = {
     // notes: () => <div>Concerning rating distribution with 11% 1-star ratings, indicating potential quality issues.</div>
   },
   fakespot: {
-    value: ["A", brand.fakespot], // Fakespot A for the product
+    value: ["B", brand.fakespot], // Fakespot A for the product
     // notes: () => <div>Fakespot A rating indicates generally reliable reviews, despite the concerning distribution.</div>
   },
   price: {
@@ -69,9 +76,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
   bump: -10,
 

@@ -5,14 +5,23 @@ const info: Product = {
   model: "GoPlus",
   key: `${brand.key}_goplus`,
   description: "I strongly discourage GoPlus. Forget the Wirecutter pick, they only did it because GoPlus is the most popular Amazon budget mill - it was a grab pick. There are two main models. They have a ton more, so visit their store page to compare. Hover over as many models' star-rating widgets as you can. Notice the distribution, that looks like a \"C\" rather than a stair-case. High 1-stars and 2-stars indicate quality issues. If you have the FakeSpot Chrome Extension, you'll see almost all their models are F and D; meaning the 5-stars are fake. Scan through the reviews, and you'll see countless cases of belt-drift, motor blow-out, and more.",
-  links: {amazon: "https://amzn.to/4bTDpio"},
+  links: {
+    amazon: {
+      US: "https://amzn.to/4bTDpio",
+      CA: "https://amzn.to/4hC2n78"
+    },
+    brand: {
+      US: "https://www.goplusus.com/collections/treadmill/products/goplus-walking-pad-under-desk-treadmill-with-remote-control-led-display-3-countdown-modes?variant=49821539926232",
+      CA: "https://www.goplusus.com/collections/treadmill/products/goplus-walking-pad-under-desk-treadmill-with-remote-control-led-display-3-countdown-modes?variant=49821539926232"
+    }
+  },
 
   dimensions: {
     value: [43, 19, 4.7], // 52.5"D x 29"W x 44.5"H
     // notes: () => <div>Larger dimensions than many competitors, which may be an issue for some desk setups.</div>
   },
   weight: {
-    value: 0, // TODO: Weight not specified in the data
+    value: 36,
   },
   maxWeight: {
     value: 220,
@@ -30,11 +39,11 @@ const info: Product = {
     notes: () => <div>Released June 9, 2020 - older model compared to newer options.</div>
   },
   rating: {
-    value: [[2, 0], [0, 0, 1, 0, 1]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    value: [[1.7, 3], [0, 0, 37, 0, 63]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
     // notes: () => <div>Concerning rating distribution with 14% 1-star ratings, showing a "C" shape rather than a staircase, which indicates potential quality issues.</div>
   },
   fakespot: {
-    value: ["B", "F"], // Fakespot F for the product
+    value: ["B", brand.fakespot],
     notes: () => <div>Fakespot F rating and "Seller Caution" indicates significant issues with review authenticity.</div>
   },
   price: {
@@ -67,9 +76,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
 
   pros: [

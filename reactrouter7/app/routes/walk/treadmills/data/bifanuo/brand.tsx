@@ -1,7 +1,11 @@
 import type {Brand} from '../types'
 const links = {
-  brand: "https://bifanuo.com/product-category/treadmills/?orderby=date",
-  amazon: "https://amzn.to/41LBozY",
+  brand: {
+    US: "https://bifanuo.com/product-category/treadmills/?orderby=date"
+  },
+  amazon: {
+    US: "https://amzn.to/41LBozY"
+  },
 }
 const info: Brand = {
   key: 'bifanuo',
@@ -11,11 +15,6 @@ const info: Brand = {
   warranty: {
     amazon: 2*12,
     brand: 1,
-    // notes: () => <div></div>
-  },
-  countries: {
-    brand: [],
-    amazon: ["US"],
     // notes: () => <div></div>
   },
   fakespot: "A",

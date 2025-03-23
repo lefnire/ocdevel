@@ -1,7 +1,11 @@
 import type {Product} from "../types"
 import brand from './brand'
 const links = {
-  brand: "https://egofitwalker.com/products/egofit-comfortdeck-m2-under-desk-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog"
+  amazon: {},
+  brand: {
+    US: "https://egofitwalker.com/products/egofit-comfortdeck-m2-under-desk-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
+    UK: "https://egofitwalker.com/products/egofit-comfortdeck-m2-under-desk-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
+  }
 }
 const info: Product = {
   brand,
@@ -37,7 +41,7 @@ const info: Product = {
   fakespot: {
     // using C since they won't sell this model on Amazon, though they do sell
     // m1 pro there. Makes me suspicious
-    value: ["C", "B"],
+    value: ["C", brand.fakespot],
   },
   price: {
     value: 600,
@@ -73,9 +77,6 @@ const info: Product = {
   },
   app: {
     value: false,
-  },
-  countries: {
-    value: ["US", "UK"]
   },
 
   // warranty: from brands

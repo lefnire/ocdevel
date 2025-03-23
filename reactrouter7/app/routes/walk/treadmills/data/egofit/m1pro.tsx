@@ -1,7 +1,13 @@
 import type {Product} from "../types"
 import brand from './brand'
 const links = {
-  amazon: "https://amzn.to/4817FEe",
+  amazon: {
+    US: "https://amzn.to/41SGudN",
+  },
+  brand: {
+    US: "https://egofitwalker.com/products/m1-under-desk-treadmill",
+    UK: "https://egofitwalker.com/products/m1-under-desk-treadmill",
+  }
 }
 const info: Product = {
   brand,
@@ -68,9 +74,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
 
   pros: [

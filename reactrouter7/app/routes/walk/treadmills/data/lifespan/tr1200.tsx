@@ -5,7 +5,15 @@ const info: Product = {
   model: "TR1200",
   key: `${brand.key}_tr1200`,
   description: "A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
-  links: {brand: "https://lifespan-fitness.e9ppfh.net/GmyR4k"},
+  links: {
+    brand: {
+      US:"https://lifespan-fitness.e9ppfh.net/GmyR4k"
+    },
+    amazon: {
+      US: "https://amzn.to/4jcm2Mb",
+      CA: "https://amzn.to/4ixfzve"
+    }
+  },
 
   dimensions: {
     value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H
@@ -33,7 +41,7 @@ const info: Product = {
     value: [[3.2, 85], [45, 8, 12, 2, 33]],
   },
   fakespot: {
-    value: ["A", "A"],
+    value: ["A", brand.fakespot],
   },
   price: {
     value: 1300,

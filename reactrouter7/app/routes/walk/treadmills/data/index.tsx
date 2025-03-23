@@ -8,7 +8,7 @@ import urevo_e4 from './urevo/e4'
 import urevo_e3 from './urevo/e3'
 import deerrun_q1mini from './deerrun/q1mini'
 import egofit_m1pro from './egofit/m1pro'
-import goyouth from './goyouth/goyouth'
+import goyouth_2in1 from './goyouth/2in1'
 import goplus from './goplus/goplus'
 import walkingpad_z1 from './walkingpad/z1'
 import lifespan_tr1000 from './lifespan/tr1000'
@@ -17,6 +17,7 @@ import lifespan_tr5000 from './lifespan/tr5000'
 import imovr from './imovr/imovr'
 import sperax_motioneaselitep1 from './sperax/motioneaselitep1'
 import bifanuo_tm008 from './bifanuo/tm008'
+import yagud_walkingpad from './yagud/walkingpad'
 
 const index = [
   // Original treadmills
@@ -32,7 +33,7 @@ const index = [
   urevo_e3,
   deerrun_q1mini,
   egofit_m1pro,
-  goyouth,
+  goyouth_2in1,
   goplus,
   walkingpad_z1,
   // lifespan_tr1000,
@@ -41,6 +42,7 @@ const index = [
   imovr,
   sperax_motioneaselitep1,
   bifanuo_tm008,
+  yagud_walkingpad,
 ]
 export default index
 

@@ -1,7 +1,13 @@
 import type {Product} from "../types"
 import brand from './brand'
 const links = {
-  amazon: "https://amzn.to/4bM8iFn"
+  amazon: {
+    US: "https://amzn.to/4bM8iFn",
+    CA: "https://amzn.to/4kYbXnJ",
+  },
+  brand: {
+    US: "https://deerruntreadmill.com/products/deerrun-q1-mini-under-desk-treadmill"
+  }
 }
 const info: Product = {
   brand,
@@ -35,8 +41,7 @@ const info: Product = {
     // notes: () => <div>Excellent rating distribution with 73% 5-star ratings and no 2-star ratings.</div>
   },
   fakespot: {
-    value: ["D", "C"],
-    rating: 0,
+    value: ["D", brand.fakespot],
   },
   price: {
     value: 200,
@@ -68,9 +73,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
   bump: 4,
 

@@ -2,8 +2,18 @@ import type {Brand} from '../types'
 const info: Brand = {
   key: 'goplus',
   name: "GoPlus / Superfit",
-  links: {},
+  links: {
+    brand: {
+      US: "https://www.goplusus.com/collections/treadmill",
+      CA: "https://www.goplusus.com/collections/treadmill",
+    },
+    amazon: {
+      US: "https://amzn.to/4ixPPil",
+      CA: "https://amzn.to/4iEn17N"
+    }
+  },
   rating: 1,
+  fakespot: "C",
   warranty: {},
   notes: () => <div>
     <div>GoPlus, somtimes Superfit (and other names too, I'll edit here as I collect).</div>

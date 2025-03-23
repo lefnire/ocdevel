@@ -5,7 +5,12 @@ const info: Product = {
   model: "2S Lite",
   key: `${brand.key}_2slite`,
   description: "If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S.",
-  links: {amazon: "https://amzn.to/3ROlFvN"},
+  links: {
+    amazon: {
+      US: "https://amzn.to/4bT3huF",
+    },
+    brand: {}
+  },
 
   dimensions: {
     value: [48.6, 20, 6.06], // 48.6"D x 20"W x 6.06"H
@@ -32,7 +37,7 @@ const info: Product = {
     // notes: () => <div>Good distribution with majority 5-star ratings, but Fakespot D rating suggests some review reliability issues.</div>
   },
   fakespot: {
-    value: ["C", brand.fakespot],
+    value: ["B", brand.fakespot],
     // notes: () => <div>Fakespot D rating suggests potential issues with review authenticity.</div>
   },
   price: {
@@ -67,9 +72,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
 
   cons: [
