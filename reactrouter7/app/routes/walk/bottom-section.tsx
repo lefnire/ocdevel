@@ -8,9 +8,22 @@ interface CompareButtonProps {
   product1Key: string;
   product2Key: string;
   className?: string;
+  index: number; // Add index prop to cycle through parts
 }
 
-const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key, className = '' }) => {
+// Simple function to get a part by index, cycling through all parts
+function getPart(name: string, index: number): string {
+  if (!name.includes('/')) { return name; }
+  
+  const parts = name.split('/').map(p => p.trim()).filter(p => p);
+  if (parts.length === 0) return name;
+  
+  // Use modulo to cycle through the parts based on index
+  const partIndex = index % parts.length;
+  return parts[partIndex];
+}
+
+const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key, className = '', index }) => {
   const [searchParam, setSearchParams] = useSearchParams();
   
   // Get product objects
@@ -26,13 +39,9 @@ const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key,
     });
   };
 
-  function randomPart(name) {
-    if (!name.includes('/')) { return name; }
-    const parts = name.split('/').map(p => p.trim())
-    return parts[Math.random() * 3]
-  }
-  const brand1 = randomPart(product1.brand.name)
-  const brand2 = randomPart(product2.brand.name)
+  // Use deterministic selection based on button index
+  const brand1 = getPart(product1.brand.name, index);
+  const brand2 = getPart(product2.brand.name, index + 1); // Offset for variety
 
   return (
     <Button
@@ -89,6 +98,7 @@ export default function BottomSection() {
           key={`compare-${index}`}
           product1Key={combo.product1Key}
           product2Key={combo.product2Key}
+          index={index} // Pass the index to cycle through parts
         />
       ))}
     </div>
