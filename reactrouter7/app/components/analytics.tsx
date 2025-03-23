@@ -190,12 +190,10 @@ export function GoogleConsentMode() {
               title: 'Cookies',
               // description: 'This website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
               description: 'This website uses cookies for basic analytics, only enabled after consent.',
-              // acceptAllBtn: 'Accept all',
-              // acceptNecessaryBtn: 'Reject all',
+              acceptAllBtn: 'Accept all',
+              acceptNecessaryBtn: 'Reject all',
               // showPreferencesBtn: 'Manage Individual preferences'
-              acceptAllBtn: 'Accept',
-              acceptNecessaryBtn: 'Reject',
-              showPreferencesBtn: 'Manage'
+              showPreferencesBtn: 'Manage Preferences'
             },
             preferencesModal: {
               title: 'Manage cookie preferences',

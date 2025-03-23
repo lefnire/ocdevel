@@ -7,8 +7,8 @@ declare global {
   }
 }
 
-const AD_CLIENT = "ca-pub-3242350243827794";
-// const AD_CLIENT = false;
+// export const AD_CLIENT = "ca-pub-3242350243827794";
+export const AD_CLIENT = false;
 
 export function Adsense({pageLevelAds=false}: {pageLevelAds?: boolean}) {
   const adRef = useRef<HTMLDivElement>(null);
