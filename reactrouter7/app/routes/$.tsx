@@ -10,6 +10,7 @@ export default function Redirects({params, matches}) {
       navigate("/mlg")
     } else if ([
       "20240110-fitness-desk",
+      //"blog/20240109-fitness-desk"
     ].includes(path)) {
       navigate("/walk")
     } else {
