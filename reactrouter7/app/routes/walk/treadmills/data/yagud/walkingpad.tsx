@@ -70,7 +70,7 @@ const info: Product = {
   amazon: {
     value: true
   },
-  material: "Alloy steel"
+  material: {value: "Alloy steel"},
 
   // warranty: from brands
   // pros: [

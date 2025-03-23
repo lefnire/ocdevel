@@ -25,7 +25,15 @@ const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key,
       return params
     });
   };
-  
+
+  function randomPart(name) {
+    if (!name.includes('/')) { return name; }
+    const parts = name.split('/').map(p => p.trim())
+    return parts[Math.random() * 3]
+  }
+  const brand1 = randomPart(product1.brand.name)
+  const brand2 = randomPart(product2.brand.name)
+
   return (
     <Button
       variant="light"
@@ -33,7 +41,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key,
       className={`me-2 whitespace-nowrap ${className}`}
       onClick={handleCompare}
     >
-      {product1.brand.name} vs {product2.brand.name}
+      {brand1} vs {brand2}
     </Button>
   );
 };

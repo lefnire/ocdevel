@@ -17,10 +17,11 @@ import type {
 } from '@tanstack/react-table';
 import data, { dataObj } from './data/index';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
-import { OverlayTrigger, Popover, Form, Button, Badge } from 'react-bootstrap';
+import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
 import type { Product } from './data/types';
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
 import { useSearchParams, useNavigate } from 'react-router';
+import {FaX} from "react-icons/fa6";
 
 // Custom styles
 const dottedBorderStyle: React.CSSProperties = {
@@ -493,17 +494,20 @@ export default function Treadmills() {
   return (
     <div className="w-100">
       {/* Show All button when in comparison mode */}
-      {isCompareMode && (
+      {isCompareMode && <>
+        <Container>
+          <h3 className='text-center'>{dataObj[compareKeys[0]].brand.name} vs {dataObj[compareKeys[1]].brand.name} (Compared)</h3>
+        </Container>
         <div className="mb-1">
           <Button
             size="sm"
             variant="outline-secondary"
             onClick={handleShowAll}
           >
-            Show All (comparing {compareKeys.length})
+            <FaArrowLeft /> Show All
           </Button>
         </div>
-      )}
+      </>}
       
       <div className="table-responsive">
         <table className="table table-striped table-bordered">

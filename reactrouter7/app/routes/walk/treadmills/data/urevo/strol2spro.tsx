@@ -62,9 +62,6 @@ const info: Product = {
   app: {
     value: true,
   },
-  countries: {
-    value: ["US"]
-  },
-  bump: 3
+  bump: 4
 }
 export default info
