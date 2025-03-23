@@ -2,9 +2,10 @@ import React from "react";
 import type { Product } from "./data/types";
 import dayjs from "dayjs";
 import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
-import {getCurrentLink, getPrice} from "./data/utils";
+import {getCurrentLink, getPrice, getCountryLink, getCountryCodes} from "./data/utils";
 import { Popover } from 'react-bootstrap';
 import {clickAffiliate} from "~/components/analytics";
+import _ from 'lodash';
 
 // Helper functions moved from formatters.tsx
 // Helper functions moved from formatters.tsx
@@ -863,15 +864,38 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "custom", // list of country codes
     rating: 0,
     showInTable: true,
-    calculate: (row: Product): string[] | undefined => {
-      return getAttributeValue<string[]>(row.countries);
+    calculate: (row: Product): string[] => getCountryCodes(row),
+    render: (row: Product): React.ReactElement => {
+      const countryCodes = getCountryCodes(row);
+      if (_.isEmpty(countryCodes)) return <></>;
+      
+      return (
+        <div className="d-flex flex-wrap gap-1">
+          {countryCodes.map(code => {
+            const link = getCountryLink(row, code);
+            if (!link) return <span key={code}>{code}</span>;
+            
+            return (
+              <a
+                key={code}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={clickAffiliate({
+                  label: `${row.key}-${code}`,
+                  value: getPrice(row) || 0
+                })}
+                className="me-1"
+              >
+                {code}
+              </a>
+            );
+          })}
+        </div>
+      );
     },
-    render: (row: Product): string => {
-      const countries = getAttributeValue<string[]>(row.countries);
-      if (!countries) return '';
-      return countries.join(', ');
-    },
-    getRating: (row: Product): number => (row.countries as any)?.rating ?? 5
+    getSortValue: (row: Product): number => getCountryCodes(row).length,
+    getRating: (row: Product): number => getCountryCodes(row).length
   },
   {
     key: "app",

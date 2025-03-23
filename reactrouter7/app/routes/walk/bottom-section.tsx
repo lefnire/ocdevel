@@ -55,12 +55,12 @@ export default function BottomSection() {
         product2Key="sperax_motioneaselitep1"
       />
       <CompareButton
-        product1Key="imovr_imovr"
+        product1Key="imovr_unsit"
         product2Key="lifespan_tr1200"
       />
       <CompareButton
         product1Key="goplus_goplus"
-        product2Key="goyouth_goyouth"
+        product2Key="goyouth_2in1"
       />
       <CompareButton
         product1Key="walkingpad_z1"

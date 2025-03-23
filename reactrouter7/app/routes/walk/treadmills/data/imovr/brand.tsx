@@ -8,7 +8,7 @@ const info: Brand = {
     },
     amazon: {}
   },
-  name: "iMovR / Unsit",
+  name: "iMovR",
   rating: 5,
   fakespot: "B",
   warranty: {},
