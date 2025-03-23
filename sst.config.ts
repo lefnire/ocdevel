@@ -13,19 +13,13 @@ export default $config({
   async run() {
     const site = new sst.aws.React("ReactRouter7", {
       path: "reactrouter7/",
-    });
-    const router = new sst.aws.Router("MyRouter", {
       domain: {
         name: domain,
         redirects: [`www.${domain}`]
       },
-      routes: {
-        "/*": site.url,
-      }
     });
     return {
       url: site.url,
-      router: router.url
     }
   },
 });
