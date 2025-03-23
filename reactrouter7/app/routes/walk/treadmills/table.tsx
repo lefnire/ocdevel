@@ -317,7 +317,9 @@ export default function Treadmills() {
   
   // Get comparison keys from URL
   const compareParam = searchParams.get('compare');
-  const compareKeys = compareParam ? compareParam.split(',') : [];
+  const compareKeys = React.useMemo(() => 
+    compareParam ? compareParam.split(',') : []
+  , [compareParam]);
   const isCompareMode = compareKeys.length > 0;
   
   // Filter data based on comparison keys

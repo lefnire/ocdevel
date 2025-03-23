@@ -11,8 +11,7 @@ interface CompareButtonProps {
 }
 
 const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key, className = '' }) => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParam, setSearchParams] = useSearchParams();
   
   // Get product objects
   const product1 = dataObj[product1Key];
@@ -21,9 +20,10 @@ const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key,
   if (!product1 || !product2) return null;
   
   const handleCompare = () => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set('compare', `${product1Key},${product2Key}`);
-    navigate(`?${newParams.toString()}`);
+    setSearchParams(params => {
+      params.set('compare', `${product1Key},${product2Key}`)
+      return params
+    });
   };
   
   return (
