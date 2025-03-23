@@ -21,18 +21,23 @@ export default $config({
         edge: {
           viewerRequest: {
             injection: $interpolate`
-              if (
-                event.request.uri.toLowerCase().includes("fitness-desk")
-              ) {
-                return {
-                  statusCode: 302,
-                  statusDescription: 'Moved Permanently',
-                  headers: {
-                    'location': { value: '/walk' }
-                  }
-                };
-              }
-            `,
+const uri = event.request.uri.toLowerCase();
+function doRedirect(location) {
+  return {
+    statusCode: 302,
+    statusDescription: 'Moved Permanently',
+    headers: {
+      'location': { value: location }
+    }
+  }
+}
+if (uri.endsWith("-fitness-desk")) {
+  return doRedirect("/walk"); 
+}
+if (uri.startsWith("/podcast")) {
+  return doRedirect("/mlg"); 
+}
+`,
           }
         }
       }
