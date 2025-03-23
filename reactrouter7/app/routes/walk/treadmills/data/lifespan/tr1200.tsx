@@ -22,6 +22,7 @@ const info: Product = {
   },
   weight: {
     value: 117, // TODO: Weight not specified in the data
+    rating: 8,
     // notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
   },
   maxWeight: {
@@ -36,6 +37,7 @@ const info: Product = {
     // notes: () => <div>Commercial-grade motor likely has higher horsepower and better durability than consumer models and the TR1000.</div>
   },
   age: {
+    rating: 10, // timeless
     value: "2022-11-16",
   },
   rating: {
@@ -64,6 +66,7 @@ const info: Product = {
   },
   sturdy: {
     value: true,
+    rating: 10,
     notes: () => <div>Commercial-grade construction designed for 6 hours of daily use.</div>
   },
   app: {
@@ -74,9 +77,6 @@ const info: Product = {
   },
   amazon: {
     value: true, // Link is to LifeSpan website, not Amazon
-  },
-  countries: {
-    value: ["US"] // Assuming US availability
   },
 
   pros: [

@@ -21,6 +21,7 @@ const info: Product = {
   },
   weight: {
     value: 122,
+    rating: 8,
     notes: () => <div>Likely the heaviest of the LifeSpan models due to premium commercial-grade construction.</div>
   },
   maxWeight: {
@@ -35,13 +36,14 @@ const info: Product = {
     notes: () => <div>Premium commercial-grade motor likely has the highest horsepower and durability in the LifeSpan lineup.</div>
   },
   age: {
+    rating: 10,
     value: "2022-11-16",
   },
   rating: {
     value: [[3.2, 85], [45, 8, 12, 2, 33]],
   },
   fakespot: {
-    value: ["A", "B"], // Not specified in the data
+    value: ["A", brand.fakespot], // Not specified in the data
   },
   price: {
     value: 1800,
@@ -63,7 +65,7 @@ const info: Product = {
   },
   sturdy: {
     value: true,
-    rating: 7,
+    rating: 10,
     notes: () => <div>Premium commercial-grade construction designed for 9 hours of daily use, more than the TR1000 and TR1200.</div>
   },
   app: {
@@ -74,7 +76,6 @@ const info: Product = {
   },
   amazon: {
     value: true,
-    rating: 0,
   },
 
   pros: [
