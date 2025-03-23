@@ -333,12 +333,6 @@ export default function Treadmills() {
     setSearchParams(searchParams);
   };
   
-  // Handle comparison button click
-  const handleCompare = (keys: string[]) => {
-    searchParams.set('compare', keys.join(','));
-    setSearchParams(searchParams);
-  };
-  
   // Column helper
   const columnHelper = createColumnHelper<Product>();
   
@@ -498,17 +492,14 @@ export default function Treadmills() {
     <div className="w-100">
       {/* Show All button when in comparison mode */}
       {isCompareMode && (
-        <div className="mb-3">
+        <div className="mb-1">
           <Button
-            variant="outline-primary"
+            size="sm"
+            variant="outline-secondary"
             onClick={handleShowAll}
-            className="mb-2"
           >
-            Show All Products
+            Show All (comparing {compareKeys.length})
           </Button>
-          <Badge bg="info" className="ms-2">
-            Comparing {compareKeys.length} products
-          </Badge>
         </div>
       )}
       
@@ -573,21 +564,6 @@ export default function Treadmills() {
            ))}
          </tbody>
         </table>
-      </div>
-      
-      {/* Comparison buttons */}
-      <div className="mt-4">
-        <h5>Compare Products</h5>
-        <div className="d-flex overflow-auto pb-2">
-          <Button
-            variant="outline-primary"
-            className="me-2 whitespace-nowrap"
-            onClick={() => handleCompare(['egofit_m2', 'urevo_cyberpad'])}
-          >
-            EgoFit vs Urevo
-          </Button>
-          {/* Additional comparison buttons can be added here */}
-        </div>
       </div>
     </div>
   );

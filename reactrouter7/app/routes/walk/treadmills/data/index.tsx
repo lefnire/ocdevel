@@ -10,7 +10,7 @@ import deerrun_q1mini from './deerrun/q1mini'
 import egofit_m1pro from './egofit/m1pro'
 import goyouth from './goyouth/goyouth'
 import goplus from './goplus/goplus'
-import walkingpad from './walkingpad/walkingpad'
+import walkingpad_z1 from './walkingpad/z1'
 import lifespan_tr1000 from './lifespan/tr1000'
 import lifespan_tr1200 from './lifespan/tr1200'
 import lifespan_tr5000 from './lifespan/tr5000'
@@ -34,7 +34,7 @@ const index = [
   egofit_m1pro,
   goyouth,
   goplus,
-  walkingpad,
+  walkingpad_z1,
   // lifespan_tr1000,
   lifespan_tr1200,
   lifespan_tr5000,

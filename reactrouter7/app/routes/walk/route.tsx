@@ -1,10 +1,12 @@
 import Table from './treadmills/table'
 import TopSection from "./top-section";
+import BottomSection from './bottom-section';
 
 export default function Route() {
   return <div>
     <TopSection />
     <Table />
+    <BottomSection />
   </div>
 }
 
