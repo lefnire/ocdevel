@@ -35,22 +35,20 @@ interface Event {
   nonInteraction?: boolean
   transport?: "beacon" | "xhr" | "image"
 }
-export function sendEvent(event: Event) {
-  if (!USE_GA) { return; }
-  if (CookieConsent?.acceptedService('analytics_storage', 'analytics')) {
-    ReactGA.event(event);
-  }
-}
 type Affiliate = {label: string, value: number}
 export const clickAffiliate = ({label, value}: Affiliate) => () => {
-  debugger
-  sendEvent({
+  if (!USE_GA) { return; }
+  if (!CookieConsent?.acceptedService('analytics_storage', 'analytics')) { return; }
+  ReactGA.event({
     category: "Affiliate",
     action: "AffiliateClick",
     label,
     // 12% conversion rate, 3% commission
     value: value * .12 * .03
   })
+  // Track individually. TODO consolidate, use gtag
+  // https://developers.google.com/analytics/devguides/collection/ga4/events?client_type=gtag
+  ReactGA.gtag("event", `aff_${label}`, {})
 }
 
 export function GoogleConsentMode() {
