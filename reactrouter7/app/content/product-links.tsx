@@ -93,6 +93,18 @@ const links: Record<string, AffiliateLink> = {
     wristweights: {
         link: "https://amzn.to/4guIAGd",
         key: "wristweights"
+    },
+    lenovo_legion: {
+        link: "https://www.lenovo.com/us/en/c/laptops/legion-laptops/legion-pro-series",
+        key: "lenovo_legion",
+    },
+    lenovo_legionpro: {
+        link: "https://www.bhphotovideo.com/c/product/1811267-REG/lenovo_83de0008us_16_legion_pro_7.html",
+        key: "lenovo_legionpro"
+    },
+    flydigi_bs1: {
+        link: "https://amzn.to/40qoh6s",
+        key: "flydigi_bs1"
     }
 }
 export default links;
