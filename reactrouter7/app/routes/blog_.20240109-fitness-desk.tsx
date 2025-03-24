@@ -13,3 +13,9 @@ export default function Redirect() {
   }, [])
   return null;
 }
+
+export function links() {
+  return [
+    { rel: "canonical", href: "https://ocdevel.com/walk" },
+  ];
+}

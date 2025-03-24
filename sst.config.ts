@@ -24,7 +24,7 @@ export default $config({
 const uri = event.request.uri.toLowerCase();
 function doRedirect(location) {
   return {
-    statusCode: 302,
+    statusCode: 301,
     statusDescription: 'Moved Permanently',
     headers: {
       'location': { value: location }
