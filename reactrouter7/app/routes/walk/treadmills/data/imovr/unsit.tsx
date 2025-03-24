@@ -38,7 +38,7 @@ const info: Product = {
     value: [[5, 4], [1, 0, 0, 0, 0]], // TODO: Rating not specified in the data
   },
   fakespot: {
-    value: ["A", "A"], // Not specified in the data
+    value: ["A", brand.fakespot], // Not specified in the data
   },
   price: {
     value: 2500,
@@ -67,12 +67,12 @@ const info: Product = {
     value: true,
   },
   easyLube: {
-    value: false,
+    value: 1,
   },
   amazon: {
     value: false,
   },
-  bump: -7,
+  bump: -12,
 
   pros: [
     {
