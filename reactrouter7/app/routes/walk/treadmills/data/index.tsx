@@ -20,6 +20,7 @@ import bifanuo_tm008 from './bifanuo/tm008'
 import yagud_walkingpad from './yagud/walkingpad'
 import lichico_dk38ab2 from './lichico/dk38ab2'
 import elseluck_walkingpad from './elseluck/walkingpad'
+import wellfit_wp017 from './wellfit/wp017'
 
 const index = [
   // Original treadmills
@@ -47,6 +48,7 @@ const index = [
   yagud_walkingpad,
   lichico_dk38ab2,
   elseluck_walkingpad,
+  wellfit_wp017,
 ]
 export default index
 
