@@ -216,7 +216,7 @@ function ClassCalculator() {
 export default function Body() {
   return <div>
     <p>[Update 2024-05-19] I have a {l("/llh/2", "podcast episode for this here.")}</p>
-    <p>This is {l("/contact", "lefnire")}'s usage guide to Habitica. I created Habitica but am no longer with the
+    <p>This is {l("/", "lefnire")}'s usage guide to Habitica. I created Habitica but am no longer with the
       company. Nonetheless, I've rarely missed a day since 2012, and have learned a <em>lot</em> about psychology since
       then through various projects and books, and have integrated the lessons and practices into my Habitica system.
       This system is a tad complex, but once you get dialed it can make Habitica truly improve your life. If you're just

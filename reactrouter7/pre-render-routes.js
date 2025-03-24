@@ -11,7 +11,6 @@ export default function getPrerenderRoutes(forSitemap) {
   const llhRoutes = llhList.map(e => `/llh/${e.id}`)
   const baseRoutes = [
     "/",
-    "/contact",
     "/blog",
     "/mlg",
     "/mlg/resources",

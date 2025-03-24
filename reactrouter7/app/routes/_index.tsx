@@ -1,57 +1,91 @@
-import {Card} from 'react-bootstrap'
-import {Col, Row, Container} from 'react-bootstrap'
-import {Link} from "react-router";
-import type {Route} from "./+types/_index";
+import {Col, Row, Container, Stack, Button, Card} from 'react-bootstrap'
+import {IconButton} from "~/components/utils";
+import {FaCouch} from 'react-icons/fa';
+import {FaDragon} from 'react-icons/fa';
+import {FaEnvelope} from 'react-icons/fa';
+import {FaGithub} from 'react-icons/fa';
+import {FaLinkedin} from 'react-icons/fa';
+import {FaMicrophone} from 'react-icons/fa';
+import {FaYoutube} from 'react-icons/fa';
+import {FaInstagram} from 'react-icons/fa';
+import {SiTiktok} from 'react-icons/si';
+import {FaFacebook} from 'react-icons/fa';
+import { Link } from "react-router";
+import type { Route } from "./+types/_index";
 
 export default function Home() {
-  const img = {
-    style: {width: "100%", maxWidth: 250},
-    className: 'rounded'
-  }
-  const col = {left: {sm:12, md:3, className: 'text-center mb-2'}, right: {sm:12, md:9}}
-  return <Container>
-    <Row>
-      <Col {...col.left}>
-        <img src="/assets/avatar.jfif" {...img} />
-      </Col>
-      <Col {...col.right}>
-        <Card.Title>Tyler Renelle</Card.Title>
-        <Card.Subtitle className='mb-2'>
-          <Link to='/contact'>About me</Link>&nbsp;&bull;&nbsp;
-          <Link to='/blog'>Blog</Link>
-        </Card.Subtitle>
-        <p>OCDevel is just me, Tyler (single-member LLC). I'm an ex-web/mobile developer gone machine learning engineer. I've worked with high-profile clients, mostly part-time contracting. I teach ML and work on fun ML side-projects (see below).</p>
-        {/*<Alert variant='info'><FaSuitcase /> Hire me! See <Link to='/contact'>Contact/Hire page.</Link></Alert>*/}
-      </Col>
-    </Row>
-    <hr />
+  const links = <>
+    <Stack direction="vertical" gap={2}>
+      <IconButton
+        target="_blank"
+        href="https://www.linkedin.com/in/lefnire"
+        Icon={FaLinkedin}
+      >LinkedIn</IconButton>
+      <IconButton
+        target="_blank"
+        href="https://github.com/lefnire"
+        Icon={FaGithub}
+      >Github</IconButton>
+      <IconButton
+        href="mailto:tylerrenelle@gmail.com"
+        Icon={FaEnvelope}
+      >Email</IconButton>
+      {/*<a className="btn btn-primary" href="https://calendly.com/lefnire/60min" target="_blank">Schedule a 60-minute consultation</a>*/}
+    </Stack>
+    <Stack direction="horizontal" gap={2} className="justify-content-center mt-3">
+      {[
+        { href: "https://youtube.com/@ocdevel", Icon: FaYoutube },
+        { href: "https://instagram.com/ocdevel", Icon: FaInstagram },
+        { href: "https://tiktok.com/@lefnire", Icon: SiTiktok },
+        { href: "https://facebook.com/ocdevel", Icon: FaFacebook }
+      ].map(({ href, Icon }) => (
+        <Button
+          key={href}
+          href={href}
+          target="_blank"
+          variant="link"
+          className="p-1 text-dark fs-5"
+        >
+          <Icon />
+        </Button>
+      ))}
+    </Stack>
+  </>
 
-    <Row>
-      <Col {...col.left}>
-        <img src="/assets/MLG-Option-1.jpg" {...img} />
-      </Col>
-      <Col {...col.right}>
-        <Card.Title>Podcasts</Card.Title>
-        <Card.Subtitle className='mb-2'>
-          <Link to='/mlg'>MLG</Link>&nbsp;&bull;&nbsp;
-          <Link to='/mlg'>LLH</Link>
-        </Card.Subtitle>
-        <p>I teach machine learning fundamental concepts, theory, and practicals via a popular podcast <Link to='/mlg'>Machine Learning Guide</Link>. I teach life hacks - tips and tricks that have helped me succeed - in my new podcast <Link to="/llh">Lefnire's Life Hacks</Link>.</p>
-      </Col>
-    </Row>
-    <hr />
+  const about = <div>
+    <h3>Tyler Renelle</h3>
+    <div>
+      <p>Full-stack engineer in machine learning, websites, and mobile apps. Big on workspace ergonomics, especially <Link to="/walk">walking desks</Link>.</p>
+      {/*<p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? <a href="mailto:tylerrenelle@gmail.com">Contact me for consultant work!</a></p>*/}
+    </div>
+  </div>
 
+  const projects = <div>
+    <h3>Projects</h3>
+    <div>
+      <h6><FaMicrophone/> <Link to="/mlg">Machine Learning Guide</Link></h6>
+      <p>This podcast teaches the fundamentals of machine learning and artificial intelligence. Both theory and practical application.</p>
+      <h6><FaMicrophone/> <Link to="/llh">Lefnire's Life Hacks</Link></h6>
+      <p>This podcast teaches useful efficiencies for productivity and health living.</p>
+      <h6><FaCouch/> <a href="https://gnothiai.com" target="_blank">Gnothi</a></h6>
+      <p>A journal that uses AI to provide insights & resources. I created and maintain this open source
+        project.</p>
+      <h6><FaDragon/> <a href="https://habitica.com" target="_blank">Habitica</a></h6>
+      <p>A gamified habit tracker. I created Habitica, but am no longer with the company.</p>
+      <h6><FaGithub/> More</h6>
+      <p>See my Github and LinkedIn profiles for more projects.</p>
+    </div>
+  </div>
+
+  return <Container className='contact-hire'>
     <Row>
-      <Col {...col.left}>
-        <img src="/assets/gnothi192.png" {...img} />
+      <Col xs={12} lg={3} className='text-center'>
+        <img src="assets/avatar.jfif" className='rounded mb-3'/>
+        {links}
       </Col>
-      <Col {...col.right}>
-        <Card.Title>Projects</Card.Title>
-        <Card.Subtitle className='mb-2'>
-          <a href='https://gnothiai.com' target='_blank'>Gnothi</a>&nbsp;&bull;&nbsp;
-          <a href='https://habitica.com' target='_blank'>Habitica</a>
-        </Card.Subtitle>
-        <p>I've built quite a few fun projects, mostly centered around self-improvement - a passion of mine. My two favorites are Habitica (no longer with the company), a gamified habit-tracker; and Gnothi, a journal that uses AI to provide insights & resources. See <Link to='/contact'>about me</Link> for more projects.</p>
+      <Col xs={12} lg={9}>
+        {about}
+        {projects}
       </Col>
     </Row>
   </Container>

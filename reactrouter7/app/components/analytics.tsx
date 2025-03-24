@@ -254,7 +254,7 @@ export function GoogleConsentMode() {
                 },
                 {
                   title: 'More information',
-                  description: 'For any queries in relation to the policy on cookies and your choices, please <a href="/contact">contact me</a>.'
+                  description: 'For any queries in relation to the policy on cookies and your choices, please <a href="/">contact me</a>.'
                 }
               ]
             }
