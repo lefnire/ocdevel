@@ -37,7 +37,7 @@ const info: Product = {
     rating: 8,
   },
   rating: {
-    value: [[4.6, 0], [75, 16, 4, 2, 3]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    value: [[4.6, 96], [75, 16, 4, 2, 3]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
     // rating: 8,
     // notes: () => <div>Excellent rating distribution with 73% 5-star ratings and no 2-star ratings.</div>
   },

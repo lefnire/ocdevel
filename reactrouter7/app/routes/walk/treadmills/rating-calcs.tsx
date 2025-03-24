@@ -245,11 +245,7 @@ export const fakespotLetterToNumber = (letter: string): number => {
  * ```
  * [ product fakespot grade, company fakespot grade ]
  * ```
- * A first sloppy pass was made at implementing this function, but now I want to really
- * dial it in. I want you to assess the logic in this comment thoroughly and make sure
- * the implementation is really strongly as-intended. No need to impelment a ton of
- * safeguards and fallbacks / typescript; the focus is on the conceptual logic. The logic
- * is as follows.
+ * The logic is as follows.
  * - Start with the star rating (row.rating.value[0][0])
  * - If there are too few ratings available, modify the rating to tend towards 4.0. Too
  *   few is subjective (10 is too few), but it should be calculated from the min/max range
@@ -267,12 +263,9 @@ export const calculateCombinedRating = (row: Product): number => {
   const details = {
     starRating: 0,
     ratingCount: 0,
-    countFactor: 0.6,
     distribution: [0, 0, 0, 0, 0],
-    distributionFactor: 1.0,
     fakespotProduct: 'B', // Default to B if not present
     fakespotCompany: 'B', // Default to B if not present
-    fakespotScore: 0
   };
 
   // Get the star rating data
@@ -285,24 +278,11 @@ export const calculateCombinedRating = (row: Product): number => {
     details.starRating = starRating;
     details.ratingCount = ratingCount;
     
-    // Calculate rating count factor using logarithmic scale from the ratingRanges
-    if (ratingCount > 0) {
-      // Using log scale for rating counts since perception of count differences follows logarithmic pattern
-      const logCount = Math.log10(Math.max(1, ratingCount));
-      const logMin = ratingRanges.ratingCounts.log.min;
-      const logMax = ratingRanges.ratingCounts.log.max;
-      
-      // Scale from 0.6 to 1.0 based on log position
-      details.countFactor = 0.6 + (0.4 * (logCount - logMin) / (logMax - logMin));
-    }
-
     if (distribution?.length === 5) {
       details.distribution = distribution;
-      details.distributionFactor = calculateDistributionFactor(distribution);
     }
 
     // Star rating normalization using min-max from ratingRanges
-    // Using linear scale for star ratings since they're already on a standardized scale
     if (starRating <= ratingRanges.starRatings.min) {
       starRatingBase = 0;
     } else if (starRating >= ratingRanges.starRatings.max) {
@@ -313,14 +293,60 @@ export const calculateCombinedRating = (row: Product): number => {
     }
   }
 
-  // Apply the count factor to the star rating
-  const weightedStarRating = starRatingBase * details.countFactor;
+  // Handle the "too few ratings" logic - make the rating tend towards 4.0
+  // 4.0 on a 5-point scale is 80% or 8.0 on our 10-point scale
+  let adjustedRating = starRatingBase;
+  if (details.ratingCount > 0) {
+    // Calculate a weight factor based on the number of ratings
+    // Using log scale for rating counts since perception of count differences follows logarithmic pattern
+    const logCount = Math.log10(Math.max(1, details.ratingCount));
+    const logMin = ratingRanges.ratingCounts.log.min;
+    const logMax = ratingRanges.ratingCounts.log.max;
+    
+    // Weight from 0.0 (few ratings) to 1.0 (many ratings)
+    const ratingWeight = Math.min(1.0, Math.max(0.0, (logCount - logMin) / (logMax - logMin)));
+    
+    // Blend between 8.0 (representing 4.0 stars) and the actual rating based on count
+    // With few ratings, it will be closer to 8.0
+    // With many ratings, it will be closer to the actual rating
+    adjustedRating = (8.0 * (1 - ratingWeight)) + (starRatingBase * ratingWeight);
+  }
 
-  // Apply the distribution factor
-  const distributionAdjustedRating = weightedStarRating * details.distributionFactor;
+  // Apply the distribution factor with focus on 1-star skew
+  let distributionFactor = 1.0;
+  if (details.distribution.length === 5) {
+    const total = _.sum(details.distribution);
+    if (total > 0) {
+      // Calculate percentages
+      const percentages = details.distribution.map(count => (count / total) * 100);
+      const [five, four, three, two, one] = percentages;
+      
+      // Calculate 1-star skew - high 1-star percentage relative to 2,3,4 stars is suspicious
+      // This is a more focused approach than the general C-shape detection
+      const midStarAvg = (four + three + two) / 3;
+      const oneStarRatio = midStarAvg > 0 ? one / midStarAvg : 0;
+      
+      // Penalize high 1-star to mid-star ratio
+      // A ratio of 1.0 means equal 1-stars to average mid-stars
+      // A ratio of 2.0 means twice as many 1-stars as average mid-stars
+      const oneStarPenalty = Math.min(0.5, oneStarRatio * 0.25);
+      
+      // Check for stair-step pattern (ideal distribution)
+      const isStairStep = five >= four && four >= three && three >= two && two >= one;
+      const stairStepBonus = isStairStep ? 0.2 : 0;
+      
+      // Calculate final distribution factor
+      distributionFactor = 1.0 - oneStarPenalty + stairStepBonus;
+      
+      // Clamp the factor between 0.5 and 1.2
+      distributionFactor = Math.max(0.5, Math.min(1.2, distributionFactor));
+    }
+  }
+  
+  const distributionAdjustedRating = adjustedRating * distributionFactor;
 
   // Get the fakespot data
-  let fakespotModifier = 0;
+  let fakespotModifier = 1.0; // Default to neutral
   const fakespotValue = row.fakespot?.value as [string, string] | undefined;
 
   if (fakespotValue?.length === 2) {
@@ -333,10 +359,9 @@ export const calculateCombinedRating = (row: Product): number => {
     const productScore = fakespotLetterToNumber(productGrade);
     const companyScore = fakespotLetterToNumber(companyGrade);
 
-    // Weight company score more heavily (70/30 split)
+    // Weight company score more heavily (70/30 split) as specified in the requirements
     const combinedFakespotScore = (productScore * 0.3) + (companyScore * 0.7);
-    details.fakespotScore = combinedFakespotScore;
-
+    
     // Scale fakespot score to be a modifier (0.7 to 1.1)
     fakespotModifier = 0.7 + (combinedFakespotScore / 25); // 10 = 1.1, 1 = 0.74
   }
@@ -346,41 +371,4 @@ export const calculateCombinedRating = (row: Product): number => {
 
   // Clamp the score between 0 and 10
   return Math.max(0, Math.min(10, finalScore));
-};
-
-export const calculateDistributionFactor = (distribution: number[]): number => {
-  if (!distribution || distribution.length !== 5) return 1.0;
-
-  // Normalize the distribution to percentages
-  const total = _.sum(distribution);
-  if (total === 0) return 1.0;
-
-  const percentages = distribution.map(count => (count / total) * 100);
-  const [five, four, three, two, one] = percentages;
-
-  // Calculate the skew - high 5-star and high 1-star is a bad sign
-  // Ideal distribution is a stair-step pattern (5 > 4 > 3 > 2 > 1)
-
-  // Check for C-shape distribution (high 5s and high 1s)
-  const cShapeFactor = (five * one) / 100; // Higher value means more C-shaped
-
-  // Check for stair-step pattern
-  const isStairStep = five >= four && four >= three && three >= two && two >= one;
-  const stairStepBonus = isStairStep ? 0.2 : 0;
-
-  // Calculate the final factor (0.5 to 1.2)
-  // Higher cShapeFactor means more penalty
-  const factor = 1.0 - (cShapeFactor * 0.5) + stairStepBonus;
-
-  // Clamp the factor between 0.5 and 1.2
-  return Math.max(0.5, Math.min(1.2, factor));
-};
-
-export const calculateRatingCountFactor = (count: number): number => {
-  if (count <= 0) return 0.6;
-  if (count >= 1000) return 1.0;
-
-  // Logarithmic scale to give diminishing returns for higher counts
-  // 1 review = 0.6, 10 reviews = 0.7, 100 reviews = 0.85, 1000+ reviews = 1.0
-  return 0.6 + (0.4 * (Math.log10(count) / Math.log10(1000)));
 };
