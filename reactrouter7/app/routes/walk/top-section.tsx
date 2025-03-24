@@ -4,17 +4,18 @@ import {Button, Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
 import {dataObj} from './treadmills/data/index'
+import essentials, {type AffiliateLink} from '~/content/product-links'
 
-import essentials from './essentials-links'
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
 
-const treadmills = [
+type AffiliateLink_ = AffiliateLink & {linkText: string}
+const treadmills: AffiliateLink_[] = [
     {
       key: dataObj.urevo_cyberpad.key,
       image: '/walk_thumbs/cyberpad.jpg',
       title: 'Premium: CyberPad',
-      description: <div>
+      notes: () => <div>
         <span>Sturdiest, quietest, most features.</span>
         <VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />
       </div>,
@@ -26,7 +27,7 @@ const treadmills = [
       key: dataObj.urevo_3s.key,
       image: '/walk_thumbs/3s.jpg',
       title: 'Value: 3S',
-      description: <div>
+      notes: () => <div>
         <span>One size fits all, bang for buck.</span>
         <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
       </div>,
@@ -38,7 +39,7 @@ const treadmills = [
       key: dataObj.deerrun_q1mini.key,
       image: '/walk_thumbs/deerrun.jpg',
       title: 'Budget: DeerRun',
-      description: <div>
+      notes: () => <div>
         <span>Test the waters. No incline, 1-2yrs life; great price.</span>
         <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
       </div>,
@@ -48,37 +49,19 @@ const treadmills = [
     },
 ]
 
-const otherProducts = [
+const otherProducts: AffiliateLink_[] = [
   {
-    key: 'flexispot',
-    image: '/walk_thumbs/desk.jpg',
-    title: 'Desk: FlexiSpot',
-    description: 'Electric sit/stand',
-    link: essentials.flexispot,
-    linkText: "~$150 on Amazon",
-    price: 150,
+    ...essentials.flexispot_en1,
+    linkText: `$${essentials.flexispot_en1.price} on Amazon`,
   },
   {
-    key: 'mat',
-    image: '/walk_thumbs/mat.jpg',
-    title: 'Mat: Urevo',
-    description: 'Prevents floor damage, protects knees',
-    link: essentials.mat,
-    linkText: "$40 on Amazon",
-    price: 40,
+    ...essentials.urevo_mat,
+    linkText: `$${essentials.urevo_mat.price} on Amazon`,
   },
   {
-    key: 'lube_godora',
-    image: '/walk_thumbs/lube.jpg',
-    title: 'Lube: Godora',
-    description: <div>
-      <span>Silicone treadmill lubricant. Apply every 50hrs</span>
-      <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
-    </div>,
-    link: essentials.lube,
-    linkText: "$35 on Amazon",
-    price: 35,
-  }
+    ...essentials.godora_lube,
+    linkText: `$${essentials.godora_lube.price} on Amazon`,
+  },
   // {
   //   image: '/walk_thumbs/fluidstance.jpg',
   //   title: 'Board: FluidStance',
@@ -88,23 +71,18 @@ const otherProducts = [
   // }
 ];
 
-interface Product {
-  image: string;
-  title: string;
-  description: string | React.ReactElement;
-  link: string;
-  linkText?: string;
-  key: string;
-  price: number;
-}
-
 interface Products {
   title: string
   links: TabKey[]
-  products: Product[]
+  products: AffiliateLink_[]
 }
 export function ProductsCard ({ title, links, products }: Products) {
-  function renderProduct(product: Product) {
+  function renderNotes(d: any) {
+      if (!d) { return null; }
+      if (typeof d === "string") { return d; }
+      return d();
+    }
+  function renderProduct(product: AffiliateLink_) {
     return <div className="mb-4" key={product.key}>
       <div className="d-flex">
         <div className="me-3">
@@ -112,7 +90,7 @@ export function ProductsCard ({ title, links, products }: Products) {
         </div>
         <div className="d-flex flex-column">
           <h6 className="mb-1">{product.title}</h6>
-          <small className="text-body-secondary mb-2">{product.description}</small>
+          <small className="text-body-secondary mb-2">{renderNotes(product.notes)}</small>
           <a
             href={product.link}
             onClick={clickAffiliate({label: product.key, value: product.price })}

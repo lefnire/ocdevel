@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router";
 import React, {useEffect, useRef} from "react";
 import {Badge, Button, Col, Nav, Row, Tab} from "react-bootstrap";
 import {create} from "zustand/index";
-import essentials from './essentials-links'
+import essentials, {affiliateLink} from '~/content/product-links'
 import {VideoButton} from "./utils";
 
 export type TabKey = "why_desk" | "buying_guide" | "care" | "essentials"
@@ -97,7 +97,7 @@ export default function Tabs() {
 
             <Tab.Pane eventKey="care">
               <h5>Lube</h5>
-              <div className="py-1">Every so 50 hours or 3 months of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want <a href={essentials.lube} target="_blank">one with a long syringe</a>, rather than the wobbly tube - those are harder to control. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
+              <div className="py-1">Every so 50 hours or 3 months of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want {affiliateLink(essentials.godora_lube, "one with a long syringe")}, rather than the wobbly tube - those are harder to control. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
               </div>
               <h5>Adjusting the belt</h5>
               <div className="py-1">If the belt starts to drift one way or another, you take an Alan wrench and tighten <em>the side which is too tight / close (not not the side with slack)</em>. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it&#39;s fixed). Then you just leave it - it&#39;s something I don&#39;t understand, not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.
@@ -116,13 +116,13 @@ export default function Tabs() {
 
             </Tab.Pane>
             <Tab.Pane eventKey="essentials">
-              <h5><a href={essentials.mat} target="_blank">Treadmill Mat</a></h5>
+              <h5>{affiliateLink(essentials.urevo_mat, "Treadmill Mat")}</h5>
               <p>Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
                 the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a
                 protection layer against high-pile carpet, so you're not pulling debris into the hardware.
               </p>
 
-              <h5>Standing Desk: <a href={essentials.flexispot} target="_blank">Flexispot</a> ($100-200)</h5>
+              <h5>Standing Desk: {affiliateLink(essentials.flexispot_en1, "Flexispot")} ($100-200)</h5>
               <p>My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
                 $1,000 Herman Millers championed on <a
                   href="https://www.reddit.com/r/StandingDesks/">https://www.reddit.com/r/StandingDesks/</a>. But if you
@@ -131,13 +131,13 @@ export default function Tabs() {
                 after walking or standing all day, you'll need a break sometimes.
               </p>
 
-              <h5>Shoes: Brooks or Hoka (<a href={essentials.shoes_men} target="_blank">Men</a>, <a href={essentials.shoes_women} target="_blank">Women</a>)</h5>
+              <h5>Shoes: Brooks or Hoka ({affiliateLink(essentials.shoes_men, "Men")}, {affiliateLink(essentials.shoes_women, "Women")})</h5>
               <p>There are shoes more tailored towards prolonged walking or standing rather than running. I research
                 what nurses swear by (articles, Reddit, etc) since it's the closest lifestyle to a walking desk. They're
                 quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi
               </p>
 
-              <h5>Standing board: <a href={essentials.fluidstance} target="_blank">FluidStance PlaneCloud</a></h5>
+              <h5>Standing board: {affiliateLink(essentials.fluidstance_planecloud,"FluidStance PlaneCloud")}</h5>
               <p>Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
                 Standing on a hard surface for prolonged periods is NOT good for you (even with good shoes); it's better
                 to just sit. So my next move was standing-specific mats. When things really changed was in exploring
@@ -160,6 +160,13 @@ export default function Tabs() {
                 and to preserve your health you should <em>choose one or the other</em>; and then sit to recover.
               </p>
 
+              {/*<div>*/}
+              {/*  <VideoButton href="https://www.youtube.com/shorts/fHjxqYBIPKA" label="Video 1" />*/}
+              {/*</div>*/}
+              {/*<div>*/}
+              {/*  <VideoButton href="https://www.youtube.com/shorts/BLvJmlB3j7Q" label="Video 2" />*/}
+              {/*</div>*/}
+
               {!optionals ? (
                 <Button variant="link" onClick={showOptionals}>Show More Essentials...</Button>
               ) : <>
@@ -173,16 +180,16 @@ export default function Tabs() {
 
                 <div>
                   <ul>
-                    <li>Mouse: <a href={essentials.slimblade} target="_blank">Slimblade Pro</a> $110</li>
-                    <li>Keyboard: <a href={essentials.keychron} target="_blank">Keychron Q11</a> $200</li>
+                    <li>Mouse: {affiliateLink(essentials.kensington_slimblade, "Slimblade Pro")} $110</li>
+                    <li>Keyboard: {affiliateLink(essentials.keychron_q11,"Keychron Q11")} $200</li>
                   </ul>
-                  The two budget picks are Keychron Q11 ($200) and <a href={essentials.mistel} target="_blank">Mistel Barocco MD770</a> ($144).
+                  The two budget picks are Keychron Q11 ($200) and {affiliateLink(essentials.mistel_md770, "Mistel Barocco MD770")} ($144).
                   I own Mistel, but the internet favors Keychron. The splurge pick is <a
                   href="https://www.moergo.com/collections/glove80-keyboards">Glove80</a> ($400)
                 </div>
                 <p></p>
 
-                <h5><a href={essentials.esd_wristband} target="_blank">ESD Wristband</a></h5>
+                <h5>{affiliateLink(essentials.esdwristband, "ESD Wristband")}</h5>
                 <p>When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
                   to your computer, you'll cause "electrostatic discharge" or ESD. This can be a monitor, peripherals
                   which have any metal components, your laptop itself, etc. This can damage the electronics in the
@@ -193,19 +200,19 @@ export default function Tabs() {
                   about what you touch.
                 </p>
 
-                <h5><a href={essentials.gloves} target="_blank">Fingerless gloves</a></h5>
+                <h5>{affiliateLink(essentials.fingerlessgloves, "Fingerless gloves")}</h5>
                 <p>Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
                   doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands
                   themselves.
                 </p>
 
-                <h5><a href="https://amzn.to/4guIAGd" target="_blank">Wrist weights</a></h5>
+                <h5>{affiliateLink(essentials.wristweights, "Wrist weights")}</h5>
                 <p>If you wanna get really hard-core, use some wrist weights while you walk and type. This will engage
                   your arms, shoulders, and back. I use these ankle weights (so I can crank up the weight, wrist weights
                   are typically lighter) and wear them all day.
                 </p>
 
-                <h5>Monitor Arms: <a href={essentials.vivo}>VIVO</a> or <a href={essentials.mountup}>MountUp</a></h5>
+                <h5>Monitor Arms: {affiliateLink(essentials.vivo, "VIVO")} or {affiliateLink(essentials.mountup, "MountUp")}</h5>
                 <p>I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
                   This allows you to position the monitors in a tighter cluster, since you have flexibility to angle them
                   without worry of the base leaning over the edge. It also allows you to pull the monitors closer to your
