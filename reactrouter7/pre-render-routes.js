@@ -3,7 +3,7 @@ import blog_ from './app/content/blog/metas.js'
 
 export const ssr = false
 
-const blog = ssr ? blog_.filter(b => b.id !== "20240109-fitness-desk") : blog_
+const blog = blog_.filter(b => b.id !== "20240109-fitness-desk")
 
 export default function getPrerenderRoutes(forSitemap) {
   const blogRoutes = blog.map(b => `/blog/${b.id}`)

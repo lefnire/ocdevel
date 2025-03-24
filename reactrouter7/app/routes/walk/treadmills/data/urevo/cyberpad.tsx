@@ -31,7 +31,6 @@ const info: Product = {
   },
   maxWeight: {
     value: 265,
-    rating: 8,
   },
   maxSpeed: {
     value: 4,
