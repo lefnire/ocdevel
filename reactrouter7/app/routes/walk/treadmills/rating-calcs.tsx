@@ -1,17 +1,8 @@
-/*
- * Task: look for functions with a comment above with @minmax(attr). Then modify that function
- * like so:
- * 1. In these @minmax functions, you'll note that the code previously had hard-coded
- *    min/max ranges to use a linear scale to calculate the score. Use instead the
- *    new min/max for that attribute's xRange variable
- * 1. Important: I don't know which of linear-scale, log-scale, or other would be most
- *    appropriate for each function. So I want you to choose with your best judgement
- *    based on how the function comment describes that attribute.
- * 1. You can be fairly destructive if needed in terms of the current scaling logic. It
- *    was a placeholder meant to be replaced with this task.
- */
-
 import data from "./data/index";
+import dayjs from 'dayjs'
+import _ from 'lodash'
+import type {Product} from "~/routes/walk/treadmills/data/types";
+import {getPrice} from "~/routes/walk/treadmills/data/utils";
 
 function getRangeFromVals(vals_: Array<number | undefined>) {
   const vals = vals_.filter(Boolean) as number[]
@@ -85,12 +76,6 @@ export const ratingRanges = (() => {
   };
 })();
 
-import dayjs from 'dayjs'
-import _ from 'lodash'
-import type {Product} from "~/routes/walk/treadmills/data/types";
-import {getPrice} from "~/routes/walk/treadmills/data/utils";
-
-// @minmax(price). The price of this treadmill, lower is better
 export const calculatePriceRating = (price: number): number => {
   // Using log scale since price typically has exponential perceived value
   // (difference between $100-$200 feels bigger than $2000-$2100)
@@ -106,7 +91,6 @@ export const calculatePriceRating = (price: number): number => {
   return 10 * (1 - ((logPrice - logMin) / (logMax - logMin)));
 };
 
-// @minmax(weight). The weight of this treadmill, lower is better
 export const calculateWeightRating = (weight: number): number => {
   // Using linear scale since weight perception is fairly linear
   if (weight <= weightRange.min) return 10;
@@ -116,8 +100,6 @@ export const calculateWeightRating = (weight: number): number => {
   return 10 - (10 * (weight - weightRange.min) / (weightRange.max - weightRange.min));
 };
 
-// @minmax(maxWeight). The max weight capacity (the human) this treadmill
-// can support, higher=better
 export const calculateMaxWeightRating = (maxWeight: number): number => {
   // Using linear scale since weight capacity perception is fairly linear
   if (maxWeight <= maxWeightRange.min) return 0;
@@ -127,7 +109,6 @@ export const calculateMaxWeightRating = (maxWeight: number): number => {
   return 10 * (maxWeight - maxWeightRange.min) / (maxWeightRange.max - maxWeightRange.min);
 };
 
-// @minmax(maxSpeed). The max speed this treadmill can go to, higher=better
 export const calculateMaxSpeedRating = (maxSpeed: number): number => {
   // Using linear scale since speed perception is fairly linear
   if (maxSpeed <= maxSpeedRange.min) return 0;
@@ -137,7 +118,6 @@ export const calculateMaxSpeedRating = (maxSpeed: number): number => {
   return 10 * (maxSpeed - maxSpeedRange.min) / (maxSpeedRange.max - maxSpeedRange.min);
 };
 
-// @minmax(horsePower). The horse power of this treadmill, higher=better
 export const calculateHorsePowerRating = (horsePower: number): number => {
   // Using a logarithmic scale since perceived power often follows a logarithmic curve
   // (difference between 1HP and 2HP feels bigger than 4HP and 5HP)
@@ -152,7 +132,6 @@ export const calculateHorsePowerRating = (horsePower: number): number => {
   return 10 * (logPower - logMin) / (logMax - logMin);
 };
 
-// @minmax(released). When was this treadmill released (how old is it), lower=better.
 export const calculateAgeRating = (ageValue: string | undefined): number => {
   if (!ageValue) return 5;
 
@@ -181,7 +160,6 @@ export const calculateAgeRating = (ageValue: string | undefined): number => {
   return 10 - (ageInYears * (10 / 6));
 }
 
-// @minmax(decibels). The loudness of this treadmill, lower=better.
 export const calculateDecibelsRating = (decibels: number | undefined): number => {
   if (decibels === undefined) return 5; // Default rating if no data
 
@@ -194,10 +172,6 @@ export const calculateDecibelsRating = (decibels: number | undefined): number =>
   return 10 * (1 - ((decibels - decibelsRange.min) / (decibelsRange.max - decibelsRange.min)));
 }
 
-/*
-@minmax(dimensions). The size of this treadill, D"xW"xH". Lower is better for
-each individual dimension, then they're combined.
- */
 export const calculateDimensionsRating = (dimensions: undefined | [number, number, number]): number => {
   if (!dimensions) return 5;
 
@@ -258,15 +232,36 @@ export const fakespotLetterToNumber = (letter: string): number => {
   }
 };
 
-/*
-@minmax(). This requires special handling. Individual item in this function
-will use a min-max scale (again, decide if log or linear with your best judgement).
-These are:
-- row.rating[0][0] - the actual star rating of the product, on Amazon. Consider 4.1 the median (5 out of 10)
-- row.rating[0][1] - the number of ratings globally
-- row.fakespot?.value - the product's fakespot score (A-F)
-- row.brand.fakespot - the brand's fakespot score
+/**
+ * @task: This function calculates the score of a treadmill's rating. The rating looks
+ * like `[[number, number], [number, number, number, number]]` - which breaks down to:
+ * ```
+ * [
+ *   [ star ratings from amazon, number of ratings],
+ *   [ 5-star percentage, 4-star, 3, 2, 1]
+ * ]
+ * ```
+ * Then there's fakespot, which looks like [number, number]. This is:
+ * ```
+ * [ product fakespot grade, company fakespot grade ]
+ * ```
+ * A first sloppy pass was made at implementing this function, but now I want to really
+ * dial it in. I want you to assess the logic in this comment thoroughly and make sure
+ * the implementation is really strongly as-intended. No need to impelment a ton of
+ * safeguards and fallbacks / typescript; the focus is on the conceptual logic. The logic
+ * is as follows.
+ * - Start with the star rating (row.rating.value[0][0])
+ * - If there are too few ratings available, modify the rating to tend towards 4.0. Too
+ *   few is subjective (10 is too few), but it should be calculated from the min/max range
+ *   variables.
+ * - Then comes 1-star skew. The proportion of 1-stars relative to the other stars is
+ *   a smoking gun of quality issues or fake reviews. This should penalize the rating.
+ *   Eg [90, 0, 0, 2, 8] is worse than [60, 30, 5, 4, 1]. Make this logic pretty tight
+ *   and simple though, don't have a bunch of if/else. Really make it clever.
+ * - Then comes fakespot reviews. The company's fakespot should be more impactful
+ *   than the product's fakespot.
  */
+
 export const calculateCombinedRating = (row: Product): number => {
   // Default values
   const details = {
