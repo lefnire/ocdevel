@@ -62,9 +62,9 @@ const links: Record<string, AffiliateLink> = {
         link: "https://shareasale.com/r.cfm?b=1147740&u=4069700&m=74356&urllink=&afftrack=",
         key: "fluidstance_planecloud"
     },
-    kensington_slimblade: {
+    kensington_slimbladepro: {
         link: "https://amzn.to/3tIE30e",
-        key: "kensington_slimblade",
+        key: "kensington_slimbladepro",
     },
     keychron_q11: {
         link: "https://amzn.to/49INDPN",
@@ -105,6 +105,66 @@ const links: Record<string, AffiliateLink> = {
     flydigi_bs1: {
         link: "https://amzn.to/40qoh6s",
         key: "flydigi_bs1"
+    },
+    logitech_mxmaster: {
+        link: "https://amzn.to/3NZ24r3",
+        key: "logitech_mxmaster"
+    },
+    logitech_lift: {
+        link: "https://amzn.to/3HcIZxs",
+        key: "logitech_lift",
+    },
+    logitech_mxvertical: {
+        link: "https://amzn.to/3TOKjOO",
+        key: "logitech_mxvertical",
+    },
+    mx_ergoplus: {
+        link: "https://amzn.to/3Hcq3zd",
+        key: "mx_ergoplus",
+    },
+    m575: {
+        link: "https://amzn.to/3OlJjyf",
+        key: "m575",
+    },
+    elecom_huge: {
+        link: "https://amzn.to/48LYA2N",
+        key: "elecom_huge",
+    },
+    elecom_deftpro: {
+        link: "https://amzn.to/3HgaiY4",
+        key: "elecom_deftpro",
+    },
+    elecom_bitra: {
+        link: "https://amzn.to/3SaKF0O",
+        key: "elecom_bitra",
+    },
+    kensington_orbitfusion: {
+        link: "https://amzn.to/3vu8jg7",
+        key: "kensington_orbitfusion",
+    },
+    kensington_expert: {
+        link: "https://amzn.to/47uPExU",
+        key: "kensington_expert",
+    },
+    slimblade: {
+        link: "https://amzn.to/3RWvpDo",
+        key: "slimblade",
+    },
+    logitech_k860: {
+        link: "https://amzn.to/48QlVQS",
+        key: "logitech_k860",
+    },
+    kensington_profit: {
+        link: "https://amzn.to/3RW7tzZ",
+        key: "kensington_profit",
+    },
+    microsoft_sculpt: {
+        link: "https://amzn.to/3TXILSK",
+        key: "microsoft_sculpt",
+    },
+    keyboard_kickstands: {
+        link: "https://amzn.to/48pzVRX",
+        key: "keyboard_kickstands",
     }
 }
 export default links;

@@ -170,7 +170,7 @@ export default function Tabs() {
               {!optionals ? (
                 <Button variant="link" onClick={showOptionals}>Show More Essentials...</Button>
               ) : <>
-                <h5><Link to="/20240110-ergo-mouse-keyboard">Ergonomic keyboard & mouse</Link></h5>
+                <h5><Link to="/blog/20240110-ergo-mouse-keyboard">Ergonomic keyboard & mouse</Link></h5>
                 <p>When you're walking or stepping, you're moving your arms more than usual. People often develop RSI
                   (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm
                   motion - that type of wrist motion is bad for you. This is amplified big-time on fitness desks, due to
@@ -180,7 +180,7 @@ export default function Tabs() {
 
                 <div>
                   <ul>
-                    <li>Mouse: {affiliateLink(essentials.kensington_slimblade, "Slimblade Pro")} $110</li>
+                    <li>Mouse: {affiliateLink(essentials.kensington_slimbladepro, "Slimblade Pro")} $110</li>
                     <li>Keyboard: {affiliateLink(essentials.keychron_q11,"Keychron Q11")} $200</li>
                   </ul>
                   The two budget picks are Keychron Q11 ($200) and {affiliateLink(essentials.mistel_md770, "Mistel Barocco MD770")} ($144).
