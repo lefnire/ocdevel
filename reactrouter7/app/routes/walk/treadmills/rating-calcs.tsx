@@ -92,55 +92,64 @@ import {getPrice} from "~/routes/walk/treadmills/data/utils";
 
 // @minmax(price). The price of this treadmill, lower is better
 export const calculatePriceRating = (price: number): number => {
-  if (price <= 100) return 10; // $100 or less is good (10)
-  if (price >= 3000) return 0;  // $3000 or more is terrible (0)
-  if (price >= 1000) return 4;  // $1000 or more is bad (4)
-
-  // Linear scale between price points
-  if (price > 100 && price < 1000) {
-    // Scale from 10 to 4 as price goes from 100 to 1000
-    return 10 - (6 * (price - 100) / 900);
-  } else {
-    // Scale from 4 to 0 as price goes from 1000 to 3000
-    return 4 - (4 * (price - 1000) / 2000);
-  }
+  // Using log scale since price typically has exponential perceived value
+  // (difference between $100-$200 feels bigger than $2000-$2100)
+  if (price <= priceRange.min) return 10;
+  if (price >= priceRange.max) return 0;
+  
+  // Log scale transformation
+  const logMin = Math.log(priceRange.min);
+  const logMax = Math.log(priceRange.max);
+  const logPrice = Math.log(price);
+  
+  // Invert the scale since lower price is better
+  return 10 * (1 - ((logPrice - logMin) / (logMax - logMin)));
 };
 
 // @minmax(weight). The weight of this treadmill, lower is better
 export const calculateWeightRating = (weight: number): number => {
-  if (weight <= 40) return 10; // 40lbs or less is good (10)
-  if (weight >= 100) return 0; // 100lbs or more is bad (0)
+  // Using linear scale since weight perception is fairly linear
+  if (weight <= weightRange.min) return 10;
+  if (weight >= weightRange.max) return 0;
 
-  // Linear scale between 40 and 100 lbs
-  return 10 - (10 * (weight - 40) / 60);
+  // Linear scale between min and max weight
+  return 10 - (10 * (weight - weightRange.min) / (weightRange.max - weightRange.min));
 };
 
 // @minmax(maxWeight). The max weight capacity (the human) this treadmill
 // can support, higher=better
 export const calculateMaxWeightRating = (maxWeight: number): number => {
-  if (maxWeight < 265) return Math.max(0, 6 - (265 - maxWeight) / 20); // Below baseline, decrease rating
-  if (maxWeight >= 300) return Math.min(10, 9 + (maxWeight - 300) / 50); // Above 300 is really good (9+)
+  // Using linear scale since weight capacity perception is fairly linear
+  if (maxWeight <= maxWeightRange.min) return 0;
+  if (maxWeight >= maxWeightRange.max) return 10;
 
-  // Linear scale between 265 and 300
-  return 6 + (3 * (maxWeight - 265) / 35);
+  // Linear scale between min and max weight capacity
+  return 10 * (maxWeight - maxWeightRange.min) / (maxWeightRange.max - maxWeightRange.min);
 };
 
 // @minmax(maxSpeed). The max speed this treadmill can go to, higher=better
 export const calculateMaxSpeedRating = (maxSpeed: number): number => {
-  const baseline = 4;
-  if (maxSpeed < baseline) return Math.max(0, 5 - (baseline - maxSpeed) * 2); // Below baseline
-  if (maxSpeed > baseline) return Math.min(10, 5 + (maxSpeed - baseline) * 1.5); // Above baseline
+  // Using linear scale since speed perception is fairly linear
+  if (maxSpeed <= maxSpeedRange.min) return 0;
+  if (maxSpeed >= maxSpeedRange.max) return 10;
 
-  return 5; // Baseline rating
+  // Linear scale between min and max speed
+  return 10 * (maxSpeed - maxSpeedRange.min) / (maxSpeedRange.max - maxSpeedRange.min);
 };
 
 // @minmax(horsePower). The horse power of this treadmill, higher=better
 export const calculateHorsePowerRating = (horsePower: number): number => {
-  const baseline = 2.5;
-  if (horsePower < baseline) return Math.max(0, 5 - (baseline - horsePower) * 3); // Below baseline
-  if (horsePower > baseline) return Math.min(10, 5 + (horsePower - baseline) * 2); // Above baseline
-
-  return 5; // Baseline rating
+  // Using a logarithmic scale since perceived power often follows a logarithmic curve
+  // (difference between 1HP and 2HP feels bigger than 4HP and 5HP)
+  if (horsePower <= horsePowerRange.min) return 0;
+  if (horsePower >= horsePowerRange.max) return 10;
+  
+  // Log scale transformation
+  const logMin = Math.log(horsePowerRange.min);
+  const logMax = Math.log(horsePowerRange.max);
+  const logPower = Math.log(horsePower);
+  
+  return 10 * (logPower - logMin) / (logMax - logMin);
 };
 
 // @minmax(released). When was this treadmill released (how old is it), lower=better.
@@ -176,12 +185,13 @@ export const calculateAgeRating = (ageValue: string | undefined): number => {
 export const calculateDecibelsRating = (decibels: number | undefined): number => {
   if (decibels === undefined) return 5; // Default rating if no data
 
-  // Range from 40dB (best, rating 10) to 80dB (worst, rating 0)
-  if (decibels <= 40) return 10;
-  if (decibels >= 80) return 0;
+  // Using linear scale on the decibel values since decibels are already logarithmic
+  // (the decibel scale itself accounts for how humans perceive sound intensity)
+  if (decibels <= decibelsRange.min) return 10;
+  if (decibels >= decibelsRange.max) return 0;
 
-  // Linear scale between 40dB and 80dB
-  return 10 - ((decibels - 40) / 4);
+  // Invert the scale since lower decibels is better
+  return 10 * (1 - ((decibels - decibelsRange.min) / (decibelsRange.max - decibelsRange.min)));
 }
 
 /*
@@ -193,20 +203,25 @@ export const calculateDimensionsRating = (dimensions: undefined | [number, numbe
 
   const [depth, width, height] = dimensions;
 
-  // Calculate score for depth (63" and above = 0, 38" and below = 10)
-  const depthScore = depth >= 63 ? 0 : depth <= 38 ? 10 : 10 - (10 * (depth - 38) / (63 - 38));
+  // Calculate score for depth (lower is better)
+  const depthScore = depth >= dimensionsRange.depth.max ? 0 :
+                     depth <= dimensionsRange.depth.min ? 10 :
+                     10 - (10 * (depth - dimensionsRange.depth.min) /
+                          (dimensionsRange.depth.max - dimensionsRange.depth.min));
 
-  // Calculate score for width (similar scale)
-  const maxWidth = 28.5;
-  const minWidth = 2;
-  const widthScore = width >= maxWidth ? 0 : width <= minWidth ? 10 : 10 - (10 * (width - minWidth) / (maxWidth - minWidth));
+  // Calculate score for width (lower is better)
+  const widthScore = width >= dimensionsRange.width.max ? 0 :
+                     width <= dimensionsRange.width.min ? 10 :
+                     10 - (10 * (width - dimensionsRange.width.min) /
+                          (dimensionsRange.width.max - dimensionsRange.width.min));
 
-  // Calculate score for height (similar scale)
-  const maxHeight = 9;
-  const minHeight = 4.5;
-  const heightScore = height >= maxHeight ? 0 : height <= minHeight ? 10 : 10 - (10 * (height - minHeight) / (maxHeight - minHeight));
+  // Calculate score for height (lower is better)
+  const heightScore = height >= dimensionsRange.height.max ? 0 :
+                      height <= dimensionsRange.height.min ? 10 :
+                      10 - (10 * (height - dimensionsRange.height.min) /
+                           (dimensionsRange.height.max - dimensionsRange.height.min));
 
-  // Average the three scores
+  // Average the three scores - using linear scale since dimensions are physical measurements
   return (depthScore + widthScore + heightScore) / 3;
 }
 
@@ -274,15 +289,33 @@ export const calculateCombinedRating = (row: Product): number => {
 
     details.starRating = starRating;
     details.ratingCount = ratingCount;
-    details.countFactor = calculateRatingCountFactor(ratingCount);
+    
+    // Calculate rating count factor using logarithmic scale from the ratingRanges
+    if (ratingCount > 0) {
+      // Using log scale for rating counts since perception of count differences follows logarithmic pattern
+      const logCount = Math.log10(Math.max(1, ratingCount));
+      const logMin = ratingRanges.ratingCounts.log.min;
+      const logMax = ratingRanges.ratingCounts.log.max;
+      
+      // Scale from 0.6 to 1.0 based on log position
+      details.countFactor = 0.6 + (0.4 * (logCount - logMin) / (logMax - logMin));
+    }
 
     if (distribution?.length === 5) {
       details.distribution = distribution;
       details.distributionFactor = calculateDistributionFactor(distribution);
     }
 
-    // Convert star rating (0-5) to a 0-10 scale
-    starRatingBase = starRating * 2;
+    // Star rating normalization using min-max from ratingRanges
+    // Using linear scale for star ratings since they're already on a standardized scale
+    if (starRating <= ratingRanges.starRatings.min) {
+      starRatingBase = 0;
+    } else if (starRating >= ratingRanges.starRatings.max) {
+      starRatingBase = 10;
+    } else {
+      starRatingBase = 10 * (starRating - ratingRanges.starRatings.min) /
+                      (ratingRanges.starRatings.max - ratingRanges.starRatings.min);
+    }
   }
 
   // Apply the count factor to the star rating
