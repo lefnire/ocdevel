@@ -49,6 +49,7 @@ const info: Product = {
   },
   incline: {
     value: 10,
+    method: "auto"
   },
   shock: {
     value: true,
@@ -67,8 +68,7 @@ const info: Product = {
   },
   // bump: 0,
   easyLube: {
-    value: false,
-    rating: 6,
+    value: 6,
   },
   amazon: {
     value: true

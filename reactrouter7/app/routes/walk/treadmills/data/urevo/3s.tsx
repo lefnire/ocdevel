@@ -64,7 +64,7 @@ const info: Product = {
     value: true,
   },
   easyLube: {
-    value: false,
+    value: 5,
     notes: () => <div>The rails are elevated, so you have to fish your fingers under the belt to pull it up and apply lubricant.</div>
   },
   amazon: {

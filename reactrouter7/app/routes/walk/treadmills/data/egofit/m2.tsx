@@ -61,8 +61,7 @@ const info: Product = {
     notes: () => <div>They added this honey-comb thingy (watch their videos) to compress the walking pad when you land; with different firmness across the pad based on phase of step. </div>
   },
   easyLube: {
-    value: true,
-    rating: 10,
+    value: 10,
   },
   decibels: {
   },

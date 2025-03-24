@@ -72,7 +72,7 @@ const info: Product = {
     value: false, // Not mentioned in the data
   },
   easyLube: {
-    value: true,
+    value: 10,
   },
   amazon: {
     value: true,

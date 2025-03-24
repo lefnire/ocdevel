@@ -74,7 +74,7 @@ const info: Product = {
     // notes: () => <div>Uses an app instead of a controller, which removes a point of failure and tracks stats over time.</div>
   },
   easyLube: {
-    value: true, // Not mentioned in the data
+    value: 10, // Not mentioned in the data
   },
   amazon: {
     value: true,

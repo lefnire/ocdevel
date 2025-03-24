@@ -70,7 +70,7 @@ const info: Product = {
     value: true,
   },
   easyLube: {
-    value: true,
+    value: 5,
   },
   amazon: {
     value: true,

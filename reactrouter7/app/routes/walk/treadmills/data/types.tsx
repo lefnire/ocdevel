@@ -62,12 +62,14 @@ export interface Product {
   pickedBy: Omit<Attribute, 'value'> & {
     value?: Array<"me" | "trusted" | "public" | "websites">
   }
-  incline: Attribute
+  incline: Attribute | {
+    method?: "manual" | "static" | "auto"
+  }
   shock: BoolVal
   decibels: NumVal
   sturdy: BoolVal
   app: BoolVal
-  easyLube: BoolVal
+  easyLube: NumVal
   amazon: BoolVal
   // Use later
   material?: StringVal

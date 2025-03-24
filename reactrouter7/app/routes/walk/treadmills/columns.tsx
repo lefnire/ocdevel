@@ -816,9 +816,9 @@ const columnsArray: ColumnDefinition[] = [
     },
     render: (row: Product): string => {
       const easyLube = getAttributeValue<boolean>(row.easyLube);
-      return easyLube ? '✓' : '';
+      return easyLube > 7 ? '✓' : '';
     },
-    getRating: (row: Product): number => (row.easyLube as any)?.rating ?? 5
+    getRating: (row: Product): number => (row.easyLube as any)?.value ?? 5
   },
   {
     key: "amazon",

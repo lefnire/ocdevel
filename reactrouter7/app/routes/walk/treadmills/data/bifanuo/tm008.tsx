@@ -69,7 +69,7 @@ const info: Product = {
   },
   // bump: 0,
   easyLube: {
-    value: false,
+    value: 5,
   },
   amazon: {
     value: true

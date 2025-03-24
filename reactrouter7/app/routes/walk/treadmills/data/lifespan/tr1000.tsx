@@ -81,8 +81,7 @@ const info: Product = {
     value: false, // Not mentioned in the data
   },
   easyLube: {
-    value: false, // Not mentioned in the data
-    rating: 0,
+    rating: 4,
   },
   amazon: {
     value: false, // Link is to LifeSpan website, not Amazon
