@@ -505,18 +505,27 @@ const columnsArray: ColumnDefinition[] = [
   {
     key: "incline",
     label: "Incline",
-    dtype: "number", // Changed from boolean to number
+    dtype: "number",
     description: "Favor 3% (?)",
     rating: 6,
     showInTable: true,
+    filterOptions: { min: true, max: false },
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
     calculate: (row: Product): number | undefined => {
       return getAttributeValue<number>(row.incline);
     },
-    render: (row: Product): string => {
+    render: (row: Product): React.ReactElement => {
       const incline = getAttributeValue<number>(row.incline);
-      if (incline === undefined || incline === 0) return '';
-      return `${incline}%`;
+      const method = row.incline && typeof row.incline === 'object' ? row.incline.method : undefined;
+      
+      if (incline === undefined || incline === 0) return <></>;
+      
+      return (
+        <div>
+          {`${incline}%`}
+          {method && <small className="text-muted ms-1">{method}</small>}
+        </div>
+      );
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise calculate based on incline
