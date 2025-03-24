@@ -1,3 +1,4 @@
+
 import React from "react";
 import type { Product } from "./data/types";
 import dayjs from "dayjs";
@@ -6,13 +7,31 @@ import {getCurrentLink, getPrice, getCountryLink, getCountryCodes} from "./data/
 import { Popover } from 'react-bootstrap';
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
+import data from './data/index'
+
+/*
+ * Task: look for functions with a comment above with @minmax(attr). Then modify that function
+ * like so:
+ * 1. define outside the function (ie memoized) the range of possible values from data.
+ *    This will look like `data[i][attr]?.value`
+ * 1. also define in that variable the median. Use that in the annotated functions
+ *    if the passed argument is undefined
+ * 1. In these @minmax functions, you'll note that the code previously had hard-coded
+ *    min/max ranges to use a linear scale to calculate the score. Use instead the
+ *    new min/max for that attribute.
+ * 1. Important: I don't know which of linear-scale, log-scale, or other would be most
+ *    appropriate for each function. So I want you to choose with your best judgement
+ *    based on how the function comment describes that attribute.
+ * 1. You can be fairly destructive if needed in terms of the current scaling logic. It
+ *    was a placeholder meant to be replaced with this task.
+ */
 
 // Default function to get rating from an attribute or return a default value
 const getAttributeRating = (attr: any, defaultRating: number = 5): number => {
   return attr?.rating ?? defaultRating;
 };
 
-// Helper functions for specific rating calculations
+// @minmax(price). The price of this treadmill, lower is better
 const calculatePriceRating = (price: number): number => {
   if (price <= 100) return 10; // $100 or less is good (10)
   if (price >= 3000) return 0;  // $3000 or more is terrible (0)
@@ -28,6 +47,7 @@ const calculatePriceRating = (price: number): number => {
   }
 };
 
+// @minmax(weight). The weight of this treadmill, lower is better
 const calculateWeightRating = (weight: number): number => {
   if (weight <= 40) return 10; // 40lbs or less is good (10)
   if (weight >= 100) return 0; // 100lbs or more is bad (0)
@@ -36,6 +56,8 @@ const calculateWeightRating = (weight: number): number => {
   return 10 - (10 * (weight - 40) / 60);
 };
 
+// @minmax(maxWeight). The max weight capacity (the human) this treadmill
+// can support, higher=better
 const calculateMaxWeightRating = (maxWeight: number): number => {
   if (maxWeight < 265) return Math.max(0, 6 - (265 - maxWeight) / 20); // Below baseline, decrease rating
   if (maxWeight >= 300) return Math.min(10, 9 + (maxWeight - 300) / 50); // Above 300 is really good (9+)
@@ -44,6 +66,7 @@ const calculateMaxWeightRating = (maxWeight: number): number => {
   return 6 + (3 * (maxWeight - 265) / 35);
 };
 
+// @minmax(maxSpeed). The max speed this treadmill can go to, higher=better
 const calculateMaxSpeedRating = (maxSpeed: number): number => {
   const baseline = 4;
   if (maxSpeed < baseline) return Math.max(0, 5 - (baseline - maxSpeed) * 2); // Below baseline
@@ -52,6 +75,7 @@ const calculateMaxSpeedRating = (maxSpeed: number): number => {
   return 5; // Baseline rating
 };
 
+// @minmax(horsePower). The horse power of this treadmill, higher=better
 const calculateHorsePowerRating = (horsePower: number): number => {
   const baseline = 2.5;
   if (horsePower < baseline) return Math.max(0, 5 - (baseline - horsePower) * 3); // Below baseline
@@ -93,7 +117,15 @@ const fakespotLetterToNumber = (letter: string): number => {
   }
 };
 
-// Function to calculate the combined rating
+/*
+@minmax(). This requires special handling. Individual item in this function
+will use a min-max scale (again, decide if log or linear with your best judgement).
+These are:
+- row.rating[0][0] - the actual star rating of the product, on Amazon. Consider 4.1 the median (5 out of 10)
+- row.rating[0][1] - the number of ratings globally
+- row.fakespot?.value - the product's fakespot score (A-F)
+- row.brand.fakespot - the brand's fakespot score
+ */
 const calculateCombinedRating = (row: Product): number => {
   // Default values
   const details = {
@@ -539,37 +571,34 @@ const columnsArray: ColumnDefinition[] = [
     render: (row: Product): string => {
       return (row.age?.value as string | undefined) ?? '';
     },
+    // @minmax(released). When was this treadmill released (how old is it), lower=better.
     getRating: (row: Product): number => {
       // Return the rating property if it exists
-      const existingRating = getAttributeRating(row.age);
-      if (existingRating !== 5) { 
-        return existingRating;
-      }
-      
-      const ageValue = row.age?.value as string | undefined;
+      if (typeof row?.age?.rating !== "undefined") { row.age.rating }
+      const ageValue = row.age?.value
       if (!ageValue) return 5;
-      
+
       // Try to parse the age as a date using dayjs
       let releaseDate = dayjs(ageValue);
-      
+
       // Check if it's a year only (e.g., "2020")
       if (!releaseDate.isValid() && /^\d{4}$/.test(ageValue)) {
         releaseDate = dayjs(`${ageValue}-01-01`); // January 1st of that year
       }
-      
+
       // If we couldn't parse a date, return default rating of 5
       if (!releaseDate.isValid()) {
         return 5;
       }
-      
+
       // Calculate age in years
       const today = dayjs();
       const ageInYears = today.diff(releaseDate, 'year', true);
-      
+
       // Calculate rating: 10 for today, 0 for 6+ years old
       if (ageInYears <= 0) return 10; // For future dates or today
       if (ageInYears >= 6) return 0;  // For 6+ years old
-      
+
       // Linear scale between 0 and 6 years
       return 10 - (ageInYears * (10 / 6));
     }
@@ -637,6 +666,7 @@ const columnsArray: ColumnDefinition[] = [
       const decibels = row.decibels?.value as number | undefined;
       return decibels !== undefined ? `${decibels} dB` : '';
     },
+    // @minmax(decibels). The loudness of this treadmill, lower=better.
     getRating: (row: Product): number => {
       if (row.decibels?.rating !== undefined) {
         return row.decibels.rating;
@@ -672,6 +702,10 @@ const columnsArray: ColumnDefinition[] = [
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
     },
+    /*
+    @minmax(dimensions). The size of this treadill, D"xW"xH". Lower is better for
+    each individual dimension, then they're combined.
+     */
     getRating: (row: Product): number => {
       // Return the rating property if it exists
       const existingRating = getAttributeRating(row.dimensions);
