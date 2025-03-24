@@ -245,7 +245,7 @@ interface ColumnDefinition {
 const columnsArray: ColumnDefinition[] = [
   {
     key: "rank",
-    label: "Rank",
+    label: "Score",
     dtype: "number",
     rating: 10,
     showInTable: true,
@@ -334,7 +334,7 @@ const columnsArray: ColumnDefinition[] = [
     dtype: "custom",
     description: "Calculation (?)",
     filterOptions: {min: true, max: false},
-    rating: 9,
+    rating: 10,
     showInTable: true,
     notes: () => (
       <div>
@@ -414,28 +414,6 @@ const columnsArray: ColumnDefinition[] = [
     }
   },
   {
-    key: "fakespot",
-    label: "Fakespot",
-    // Stored as [string, string] which is [product rating, company rating], where
-    // ratings are A-F. Show in the cell both values, with an icon indicating product
-    // or company
-    dtype: "custom",
-    description: "Product score, company score.",
-    rating: 5,
-    showInTable: false, // Hide this since we're using combinedRating instead
-    notes: () => <div>If the product has a low score, I'll give leeway if the company has a high score. Fakespot is great for eye-balling scam products. But.. they tend to have a lot of false positives. I use their score to adjust the ratings; but not as heavily as they do.</div>,
-    calculate: (row: Product): [string, string] | undefined => {
-      return getAttributeValue<[string, string]>(row.fakespot);
-    },
-    getRating: (row: Product): number => row.fakespot?.rating ?? 5,
-    render: (row: Product): string => {
-      const fakespot = getAttributeValue<[string, string]>(row.fakespot);
-      if (!fakespot) return '';
-      const [product, company] = fakespot;
-      return `P: ${product}, C: ${company}`;
-    }
-  },
-  {
     key: "price",
     label: "Price",
     dtype: "number",
@@ -469,7 +447,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "maxWeight",
     label: "Capacity",
     dtype: "number",
-    rating: 5,
+    rating: 6,
     showInTable: true,
     filterOptions: { min: true, max: false },
     // description: "Pounds",
@@ -496,7 +474,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "maxSpeed",
     label: "Max Speed",
     dtype: "number",
-    description: "Rails (?)",
+    description: "Info (?)",
     rating: 3,
     showInTable: true,
     filterOptions: { min: true, max: false },
@@ -548,7 +526,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "sturdy",
     label: "Sturdy",
     dtype: "boolean",
-    rating: 9,
+    rating: 10,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
       return getAttributeValue<boolean>(row.sturdy);
@@ -567,7 +545,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "horsePower",
     label: "Horsepower",
     dtype: "number",
-    rating: 6,
+    rating: 8,
     showInTable: true,
     filterOptions: { min: true, max: false },
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
@@ -719,7 +697,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "decibels",
     label: "Decibels",
     dtype: "number",
-    description: "Lower is better",
+    // description: "Lower is better",
     rating: 4,
     showInTable: true,
     filterOptions: { min: false, max: true },
@@ -846,7 +824,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "amazon",
     label: "Amazon",
     dtype: "boolean",
-    rating: 2,
+    rating: 1,
     showInTable: true,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
     calculate: (row: Product): boolean | undefined => {
@@ -902,7 +880,7 @@ const columnsArray: ColumnDefinition[] = [
     label: "App",
     dtype: "boolean",
     notes: () => <div>A nice-to-have, but not a deal maker.Some mills work with an app, so your controller isn't a point of failure. In the early days, a dead controller meant a dead mill - as companies didn't provide replacements. But that's less common these days. Apps also tally walking metrics.</div>,
-    rating: 1,
+    rating: 0,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
       return getAttributeValue<boolean>(row.app);

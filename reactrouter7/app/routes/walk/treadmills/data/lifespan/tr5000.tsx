@@ -38,6 +38,7 @@ const info: Product = {
   age: {
     rating: 10,
     value: "2022-11-16",
+    notes: () => <div>I'm overriding this attribute because Lifespan is a "buy it for life" brand, age isn't a factor.</div>
   },
   rating: {
     value: [[3.2, 85], [45, 8, 12, 2, 33]],
