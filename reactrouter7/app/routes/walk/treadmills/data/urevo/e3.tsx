@@ -48,6 +48,7 @@ const info: Product = {
   },
   incline: {
     value: 3, // Exact value not specified, but it has incline
+    method: "manual",
     notes: () => <div>Kick-stands, so it's on or off. 3%</div>
   },
   shock: {

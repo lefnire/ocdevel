@@ -49,6 +49,7 @@ const info: Product = {
   },
   incline: {
     value: 8, // Exact value not specified, but it has incline
+    method: "auto"
     // notes: () => <div>Has incline functionality, which is important for knee health.</div>
   },
   shock: {

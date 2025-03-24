@@ -46,6 +46,7 @@ const info: Product = {
   },
   incline: {
     value: 9,
+    method: "auto"
   },
   shock: {
     value: true,

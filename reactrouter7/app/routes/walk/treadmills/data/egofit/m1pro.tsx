@@ -55,6 +55,7 @@ const info: Product = {
   },
   incline: {
     value: 5,
+    method: "fixed",
     notes: () => <div>Has a fixed 5% incline, which is higher than the ideal 3% recommended for knee health. This makes it tall (6.89"H) which may or may not accommodate your desk height for ergonomic peripherals and monitor placement.</div>
   },
   shock: {

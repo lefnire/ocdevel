@@ -67,7 +67,7 @@ const info: Product = {
   },
   incline: {
     value: 12,
-    rating: 9,
+    method: "auto",
     notes: () => <div>Goes really high! Don't get greedy with those calories though, 3% for those knees baby.</div>
   },
   shock: {

@@ -52,7 +52,7 @@ const info: Product = {
   },
   incline: {
     value: 3,
-    rating: 10,
+    method: "fixed",
     notes: () => <div>Fixed 3%, which is the sports medicine recommendation. They optimized this down from the 5% of the M1 Pro (prior version). The fact you don't have to set this every time you use it is great.</div>
   },
   shock: {
