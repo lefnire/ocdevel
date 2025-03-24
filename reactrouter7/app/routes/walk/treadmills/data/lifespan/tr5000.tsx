@@ -21,7 +21,6 @@ const info: Product = {
   },
   weight: {
     value: 122,
-    rating: 8,
     notes: () => <div>Likely the heaviest of the LifeSpan models due to premium commercial-grade construction.</div>
   },
   maxWeight: {

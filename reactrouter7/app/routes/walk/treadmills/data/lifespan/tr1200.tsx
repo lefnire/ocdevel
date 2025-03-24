@@ -22,7 +22,6 @@ const info: Product = {
   },
   weight: {
     value: 117, // TODO: Weight not specified in the data
-    rating: 8,
     // notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
   },
   maxWeight: {

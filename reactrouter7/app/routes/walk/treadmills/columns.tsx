@@ -7,18 +7,9 @@ import { Popover } from 'react-bootstrap';
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
 
-// Helper functions moved from formatters.tsx
-// Helper functions moved from formatters.tsx
-const getAttributeValue = <T extends any>(attr: any): T | undefined => {
-  if (attr && typeof attr === 'object' && 'value' in attr) {
-    return attr.value as T;
-  }
-  return undefined;
-};
-
 // Default function to get rating from an attribute or return a default value
 const getAttributeRating = (attr: any, defaultRating: number = 5): number => {
-  return (attr?.rating as number) ?? defaultRating;
+  return attr?.rating ?? defaultRating;
 };
 
 // Helper functions for specific rating calculations
@@ -91,8 +82,6 @@ const calculateInclineRating = (incline: number): number => {
   return Math.round(9 * (incline / 3));
 };
 
-
-// Helper functions moved from calculator.tsx
 const fakespotLetterToNumber = (letter: string): number => {
   switch (letter) {
     case 'A': return 10;
@@ -104,7 +93,7 @@ const fakespotLetterToNumber = (letter: string): number => {
   }
 };
 
-// Function to calculate the combined rating (moved from combinedRating column)
+// Function to calculate the combined rating
 const calculateCombinedRating = (row: Product): number => {
   // Default values
   const details = {
@@ -120,23 +109,22 @@ const calculateCombinedRating = (row: Product): number => {
   
   // Get the star rating data
   let starRatingBase = 0;
-  if (row.rating && typeof row.rating === 'object' && 'value' in row.rating) {
-    const ratingValue = row.rating.value as [[number, number], [number, number, number, number, number]];
-    if (ratingValue && ratingValue.length === 2) {
-      const [[starRating, ratingCount], distribution] = ratingValue;
-      
-      details.starRating = starRating;
-      details.ratingCount = ratingCount;
-      details.countFactor = calculateRatingCountFactor(ratingCount);
-      
-      if (distribution && distribution.length === 5) {
-        details.distribution = distribution;
-        details.distributionFactor = calculateDistributionFactor(distribution);
-      }
-      
-      // Convert star rating (0-5) to a 0-10 scale
-      starRatingBase = starRating * 2;
+  const ratingValue = row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
+  
+  if (ratingValue?.length === 2) {
+    const [[starRating, ratingCount], distribution] = ratingValue;
+    
+    details.starRating = starRating;
+    details.ratingCount = ratingCount;
+    details.countFactor = calculateRatingCountFactor(ratingCount);
+    
+    if (distribution?.length === 5) {
+      details.distribution = distribution;
+      details.distributionFactor = calculateDistributionFactor(distribution);
     }
+    
+    // Convert star rating (0-5) to a 0-10 scale
+    starRatingBase = starRating * 2;
   }
   
   // Apply the count factor to the star rating
@@ -147,26 +135,24 @@ const calculateCombinedRating = (row: Product): number => {
   
   // Get the fakespot data
   let fakespotModifier = 0;
-  if (row.fakespot && typeof row.fakespot === 'object' && 'value' in row.fakespot) {
-    const fakespotValue = row.fakespot.value as [string, string];
-    if (fakespotValue && fakespotValue.length === 2) {
-      const [productGrade, companyGrade] = fakespotValue;
-      
-      details.fakespotProduct = productGrade || 'B';
-      details.fakespotCompany = companyGrade || 'B';
-      
-      // Convert grades to numeric values (A=10, B=8, C=6, D=3, F=1)
-      const productScore = fakespotLetterToNumber(productGrade);
-      const companyScore = fakespotLetterToNumber(companyGrade);
-      
-      // Weight company score more heavily (70/30 split)
-      const combinedFakespotScore = (productScore * 0.3) + (companyScore * 0.7);
-      details.fakespotScore = combinedFakespotScore;
-      
-      // Scale fakespot score to be a modifier (0.7 to 1.1)
-      // This makes fakespot less impactful as mentioned in the requirements
-      fakespotModifier = 0.7 + (combinedFakespotScore / 25); // 10 = 1.1, 1 = 0.74
-    }
+  const fakespotValue = row.fakespot?.value as [string, string] | undefined;
+  
+  if (fakespotValue?.length === 2) {
+    const [productGrade, companyGrade] = fakespotValue;
+    
+    details.fakespotProduct = productGrade || 'B';
+    details.fakespotCompany = companyGrade || 'B';
+    
+    // Convert grades to numeric values (A=10, B=8, C=6, D=3, F=1)
+    const productScore = fakespotLetterToNumber(productGrade);
+    const companyScore = fakespotLetterToNumber(companyGrade);
+    
+    // Weight company score more heavily (70/30 split)
+    const combinedFakespotScore = (productScore * 0.3) + (companyScore * 0.7);
+    details.fakespotScore = combinedFakespotScore;
+    
+    // Scale fakespot score to be a modifier (0.7 to 1.1)
+    fakespotModifier = 0.7 + (combinedFakespotScore / 25); // 10 = 1.1, 1 = 0.74
   }
   
   // Combine all factors for the final score
@@ -180,7 +166,7 @@ const calculateDistributionFactor = (distribution: number[]): number => {
   if (!distribution || distribution.length !== 5) return 1.0;
   
   // Normalize the distribution to percentages
-  const total = distribution.reduce((sum, count) => sum + count, 0);
+  const total = _.sum(distribution);
   if (total === 0) return 1.0;
   
   const percentages = distribution.map(count => (count / total) * 100);
@@ -213,8 +199,8 @@ const calculateRatingCountFactor = (count: number): number => {
   return 0.6 + (0.4 * (Math.log10(count) / Math.log10(1000)));
 };
 
-function toFixed0 (val: number | undefined) {
-  let val_ = val || 0;
+function toFixed0(val: number | undefined) {
+  let val_ = val ?? 0;
   if (val_ < 1) { val_ = val_ * 100 }
   return val_.toFixed(0);
 }
@@ -269,20 +255,16 @@ const columnsArray: ColumnDefinition[] = [
     ),
     calculate: (row: Product): number => {
       // This will be defined after all columns are created
-      // It needs to reference the other columns' calculate functions
       return 0; // Placeholder, will be updated later
     },
     render: (row: Product): string => {
-      const score = columnsArray.find(col => col.key === "rank")?.calculate?.(row) || 0;
+      const score = columnsArray.find(col => col.key === "rank")?.calculate?.(row) ?? 0;
       return score.toFixed(1);
     },
-    getStyle: (row: Product): React.CSSProperties => {
+    getStyle: (): React.CSSProperties => {
       return { fontWeight: 'bold' };
     },
-    getRating: (row: Product): number => {
-      // Rank is a calculated value, so it doesn't have a direct rating
-      return 10; // Always return the maximum rating for rank
-    }
+    getRating: (): number => 10 // Always return the maximum rating for rank
   },
   {
     key: "model",
@@ -296,8 +278,9 @@ const columnsArray: ColumnDefinition[] = [
       const price = getPrice(row);
       const onClick = clickAffiliate({
         label: row.key,
-        value: price || 0
-      })
+        value: price ?? 0
+      });
+      
       return (
         <a
           href={link}
@@ -307,12 +290,9 @@ const columnsArray: ColumnDefinition[] = [
         >
           {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
         </a>
-      )
+      );
     },
-    getRating: (row: Product): number => {
-      // Model doesn't have a rating
-      return 0;
-    }
+    getRating: (): number => 0 // Model doesn't have a rating
   },
   {
     key: "brand",
@@ -322,10 +302,7 @@ const columnsArray: ColumnDefinition[] = [
     showInTable: true,
     calculate: (row: Product): string => row.brand.key,
     render: (row: Product): string => row.brand.name,
-    // Note: The actual rendering with brand info will be handled in route.tsx
-    getRating: (row: Product): number => {
-      return row.brand?.rating ?? 5;
-    }
+    getRating: (row: Product): number => row.brand?.rating ?? 5
   },
   {
     key: "rating",
@@ -354,69 +331,64 @@ const columnsArray: ColumnDefinition[] = [
       </div>
     ),
     calculate: (row: Product): [[number, number], [number, number, number, number, number]] | undefined => {
-      return getAttributeValue<[[number, number], [number, number, number, number, number]]>(row.rating);
+      return row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
     },
     render: (row: Product): string => {
-      const rating = getAttributeValue<[[number, number], [number, number, number, number, number]]>(row.rating);
-      if (!rating) return '';
-      const [[avg, count], distribution] = rating;
-      return `${avg.toFixed(1)}`;
+      const ratingValue = row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
+      if (!ratingValue) return '';
+      const [[avg]] = ratingValue;
+      return avg.toFixed(1);
     },
     renderPopover: (row: Product) => {
       const notes = row.rating?.notes;
-
+      
       function renderDistribution() {
-        if (!row.rating || typeof row.rating !== 'object' || !('value' in row.rating)) {
-          return null;
-        }
-
-        const ratingValue = row.rating.value;
+        const ratingValue = row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
         if (!ratingValue) return null;
-
-        return <div>
-          {/* Star Rating */}
-          {ratingValue[0] && (
+        
+        const [[starRating, reviewCount], distribution] = ratingValue;
+        const fakespotValue = row.fakespot?.value as [string, string] | undefined;
+        
+        return (
+          <div>
+            {/* Star Rating */}
             <div>
-              <strong>Star Rating:</strong> {ratingValue[0][0]?.toFixed(1) || '0'}/5
-              ({ratingValue[0][1] || 0} reviews)
+              <strong>Star Rating:</strong> {starRating?.toFixed(1) ?? '0'}/5
+              ({reviewCount ?? 0} reviews)
             </div>
-          )}
 
-          {/* Rating Distribution */}
-          {ratingValue[1] && (
+            {/* Rating Distribution */}
             <div className="mt-2">
               <strong>Rating Distribution:</strong>
               <div>
-                5★{toFixed0(ratingValue[1][0])}%&nbsp;
-                4★{toFixed0(ratingValue[1][1])}%&nbsp;
-                3★{toFixed0(ratingValue[1][2])}%&nbsp;
-                2★{toFixed0(ratingValue[1][3])}%&nbsp;
-                1★{toFixed0(ratingValue[1][4])}%
+                5★{toFixed0(distribution?.[0])}%&nbsp;
+                4★{toFixed0(distribution?.[1])}%&nbsp;
+                3★{toFixed0(distribution?.[2])}%&nbsp;
+                2★{toFixed0(distribution?.[3])}%&nbsp;
+                1★{toFixed0(distribution?.[4])}%
               </div>
             </div>
-          )}
 
-          {/* Fakespot Grades */}
-          {row.fakespot && typeof row.fakespot === 'object' && 'value' in row.fakespot && row.fakespot.value && (
-            <div className="mt-2">
-              <strong>Fakespot Grades:</strong> Product: {row.fakespot.value[0] || 'B'},
-              Company: {row.fakespot.value[1] || 'B'}
-            </div>
-          )}
-        </div>
+            {/* Fakespot Grades */}
+            {fakespotValue && (
+              <div className="mt-2">
+                <strong>Fakespot Grades:</strong> Product: {fakespotValue[0] ?? 'B'},
+                Company: {fakespotValue[1] ?? 'B'}
+              </div>
+            )}
+          </div>
+        );
       }
-      return <>
-        {notes && <div className="mb-2">{notes()}</div>}
-        {renderDistribution()}
-      </>
+      
+      return (
+        <>
+          {notes && <div className="mb-2">{notes()}</div>}
+          {renderDistribution()}
+        </>
+      );
     },
-    getSortValue: (row: Product): number => {
-      return calculateCombinedRating(row);
-    },
-    getRating: (row: Product): number => {
-      // Use the calculated combined rating value as the rating
-      return calculateCombinedRating(row);
-    }
+    getSortValue: (row: Product): number => calculateCombinedRating(row),
+    getRating: (row: Product): number => calculateCombinedRating(row)
   },
   {
     key: "price",
@@ -428,14 +400,12 @@ const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>These filters filter by price; but sorting this column sorts by my gut-check on <em>value</em> (cost to quality).</div>,
     calculate: (row: Product): number | undefined => {
-      const currPrice = getPrice(row);
-      return getAttributeValue<number>(currPrice);
+      const price = getPrice(row);
+      return price?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const currPrice = getPrice(row)
-      const price = getAttributeValue<number>(currPrice);
-      if (price === undefined) return '';
-      return `$${price}`;
+      const price = getPrice(row)?.value as number | undefined;
+      return price !== undefined ? `$${price}` : '';
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise calculate based on price
@@ -443,8 +413,7 @@ const columnsArray: ColumnDefinition[] = [
         return row.price.rating;
       }
 
-      const currPrice = getPrice(row)
-      const price = getAttributeValue<number>(row);
+      const price = getPrice(row)?.value as number | undefined;
       return price !== undefined ? calculatePriceRating(price) : 5;
     }
   },
@@ -458,21 +427,15 @@ const columnsArray: ColumnDefinition[] = [
     // description: "Pounds",
     // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.maxWeight);
+      return row.maxWeight?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const maxWeight = getAttributeValue<number>(row.maxWeight);
-      if (maxWeight === undefined) return '';
-      return `${maxWeight} lbs`;
+      const maxWeight = row.maxWeight?.value as number | undefined;
+      return maxWeight !== undefined ? `${maxWeight} lbs` : '';
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on maxWeight
-      if (row.maxWeight?.rating !== undefined) {
-        return row.maxWeight.rating;
-      }
-      
-      const maxWeight = getAttributeValue<number>(row.maxWeight);
-      return maxWeight !== undefined ? calculateMaxWeightRating(maxWeight) : 5;
+      // Return the rating property if it exists, otherwise calculate
+      return row.maxWeight?.rating ?? calculateMaxWeightRating(row.maxWeight?.value as number ?? 0);
     }
   },
   {
@@ -485,21 +448,14 @@ const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.maxSpeed);
+      return row.maxSpeed?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const maxSpeed = getAttributeValue<number>(row.maxSpeed);
-      if (maxSpeed === undefined) return '';
-      return `${maxSpeed} mph`;
+      const maxSpeed = row.maxSpeed?.value as number | undefined;
+      return maxSpeed !== undefined ? `${maxSpeed} mph` : '';
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on maxSpeed
-      if (row.maxSpeed?.rating !== undefined) {
-        return row.maxSpeed.rating;
-      }
-      
-      const maxSpeed = getAttributeValue<number>(row.maxSpeed);
-      return maxSpeed !== undefined ? calculateMaxSpeedRating(maxSpeed) : 5;
+      return row.maxSpeed?.rating ?? calculateMaxSpeedRating(row.maxSpeed?.value as number ?? 0);
     }
   },
   {
@@ -512,13 +468,13 @@ const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.incline);
+      return row.incline?.value as number | undefined;
     },
     render: (row: Product): React.ReactElement => {
-      const incline = getAttributeValue<number>(row.incline);
-      const method = row.incline && typeof row.incline === 'object' ? row.incline.method : undefined;
+      const incline = row.incline?.value as number | undefined;
+      const method = row.incline?.method;
       
-      if (incline === undefined || incline === 0) return <></>;
+      if (!incline) return <></>;
       
       return (
         <div>
@@ -528,15 +484,7 @@ const columnsArray: ColumnDefinition[] = [
       );
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on incline
-      if (row.incline?.rating !== undefined) {
-        return row.incline.rating;
-      }
-
-      const inclineValue = getAttributeValue<number>(row.incline);
-      if (inclineValue === undefined) return 0; // No incline data means no incline
-      
-      return calculateInclineRating(inclineValue);
+      return row.incline?.rating ?? calculateInclineRating(row.incline?.value as number ?? 0);
     }
   },
   {
@@ -546,16 +494,13 @@ const columnsArray: ColumnDefinition[] = [
     rating: 10,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.sturdy);
+      return row.sturdy?.value as boolean | undefined;
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise return 5
-      // reserve 0 for notably shite models
       return getAttributeRating(row.sturdy, 5);
     },
     render: (row: Product): string => {
-      const sturdy = getAttributeValue<boolean>(row.sturdy);
-      return sturdy ? '✓' : '';
+      return (row.sturdy?.value as boolean | undefined) ? '✓' : '';
     },
   },
   {
@@ -567,21 +512,14 @@ const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.horsePower);
+      return row.horsePower?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const horsePower = getAttributeValue<number>(row.horsePower);
-      if (horsePower === undefined) return '';
-      return `${horsePower}`;
+      const horsePower = row.horsePower?.value as number | undefined;
+      return horsePower !== undefined ? `${horsePower}` : '';
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on horsePower
-      if (row.horsePower?.rating !== undefined) {
-        return row.horsePower.rating;
-      }
-      
-      const horsePower = getAttributeValue<number>(row.horsePower);
-      return horsePower !== undefined ? calculateHorsePowerRating(horsePower) : 5;
+      return row.horsePower?.rating ?? calculateHorsePowerRating(row.horsePower?.value as number ?? 0);
     }
   },
   {
@@ -596,21 +534,19 @@ const columnsArray: ColumnDefinition[] = [
     showInTable: true,
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
     calculate: (row: Product): string | undefined => {
-      return getAttributeValue<string>(row.age);
+      return row.age?.value as string | undefined;
     },
     render: (row: Product): string => {
-      const age = getAttributeValue<string>(row.age);
-      if (!age) return '';
-      return age;
+      return (row.age?.value as string | undefined) ?? '';
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists
       const existingRating = getAttributeRating(row.age);
-      if (existingRating !== 5) { // 5 is the default from getAttributeRating
+      if (existingRating !== 5) { 
         return existingRating;
       }
       
-      const ageValue = getAttributeValue<string>(row.age);
+      const ageValue = row.age?.value as string | undefined;
       if (!ageValue) return 5;
       
       // Try to parse the age as a date using dayjs
@@ -651,45 +587,23 @@ const columnsArray: ColumnDefinition[] = [
       <div>{faWebsites} Websites. What's being recommended on popular review websites. I down-weight these significantly, since most of them just use web-scrapers on Amazon for most-popular treadmills. If I think they actually test the products, I'll flag "Trusted Sources".</div>
     </div>,
     calculate: (row: Product): string[] | undefined => {
-      return getAttributeValue<string[]>(row.pickedBy);
+      return row.pickedBy?.value as string[] | undefined;
     },
     render: (row: Product): React.ReactElement => {
-      const pickedBy = getAttributeValue<string[]>(row.pickedBy);
-      if (!pickedBy || pickedBy.length === 0) return <></>;
+      const pickedBy = row.pickedBy?.value as string[] | undefined;
+      if (_.isEmpty(pickedBy)) return <></>;
       
       return (
         <div style={{ display: 'flex', gap: '8px' }}>
-          {pickedBy.includes("me") && (
-            <span title="Me (Tyler)">
-              {faMe}
-            </span>
-          )}
-          {pickedBy.includes("trusted") && (
-            <span title="Trusted Sources">
-              {faTrusted}
-            </span>
-          )}
-          {pickedBy.includes("public") && (
-            <span title="Popular based on ratings">
-              {faPublic}
-            </span>
-          )}
-          {pickedBy.includes("websites") && (
-            <span title="Recommended on review websites">
-              {faWebsites}
-            </span>
-          )}
+          {pickedBy?.includes("me") && <span title="Me (Tyler)">{faMe}</span>}
+          {pickedBy?.includes("trusted") && <span title="Trusted Sources">{faTrusted}</span>}
+          {pickedBy?.includes("public") && <span title="Popular based on ratings">{faPublic}</span>}
+          {pickedBy?.includes("websites") && <span title="Recommended on review websites">{faWebsites}</span>}
         </div>
       );
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on pickedBy
-      if (row.pickedBy?.rating !== undefined) {
-        return row.pickedBy.rating;
-      }
-      
-      const pickedBy = getAttributeValue<string[]>(row.pickedBy);
-      return pickedBy ? calculatePickedByRating(pickedBy) : 5;
+      return row.pickedBy?.rating ?? calculatePickedByRating(row.pickedBy?.value as string[] ?? []);
     }
   },
   {
@@ -699,14 +613,12 @@ const columnsArray: ColumnDefinition[] = [
     rating: 5,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.shock);
+      return row.shock?.value as boolean | undefined;
     },
     render: (row: Product): string => {
-      const shock = getAttributeValue<boolean>(row.shock);
-      return shock ? '✓' : '';
+      return (row.shock?.value as boolean | undefined) ? '✓' : '';
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise return 5
       return getAttributeRating(row.shock, 0);
     }
   },
@@ -714,26 +626,23 @@ const columnsArray: ColumnDefinition[] = [
     key: "decibels",
     label: "Decibels",
     dtype: "number",
-    // description: "Lower is better",
     rating: 4,
     showInTable: true,
     filterOptions: { min: false, max: true },
     notes: () => <div>How conducive to meetings and calls is this treadmill. Whispering is 30dB, conversation is 60dB. So it's only conducive if less than 60. I measure these at 2mph, with the decibel meter near the treadmill and near my microphone. I try to record dB here when I can.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.decibels);
+      return row.decibels?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const decibels = getAttributeValue<number>(row.decibels);
-      if (decibels === undefined) return '';
-      return `${decibels} dB`;
+      const decibels = row.decibels?.value as number | undefined;
+      return decibels !== undefined ? `${decibels} dB` : '';
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists
       if (row.decibels?.rating !== undefined) {
         return row.decibels.rating;
       }
       
-      const decibels = getAttributeValue<number>(row.decibels);
+      const decibels = row.decibels?.value as number | undefined;
       if (decibels === undefined) return 5; // Default rating if no data
       
       // Range from 40dB (best, rating 10) to 80dB (worst, rating 0)
@@ -747,21 +656,18 @@ const columnsArray: ColumnDefinition[] = [
   {
     key: "dimensions",
     label: "Dimensions",
-    // the options are number|string|boolean|custom. See the comment below
-    // on how this is custom, for the correct conversion of the original data
-    // into the table.
     dtype: "custom",
     // the data is stores as [number,number,number], so should be converted to
     // a string like `1"D x 1"W x 1"H` the cells.
     description: 'D" x W" x H"',
-    rating: 2, // adjustment weight (out of 10). 3 means, this isn't that big a deal
+    rating: 2,
     showInTable: true,
     notes: () => <div>(Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
     calculate: (row: Product): [number, number, number] | undefined => {
-      return getAttributeValue<[number, number, number]>(row.dimensions);
+      return row.dimensions?.value as [number, number, number] | undefined;
     },
     render: (row: Product): string => {
-      const dimensions = getAttributeValue<[number, number, number]>(row.dimensions);
+      const dimensions = row.dimensions?.value as [number, number, number] | undefined;
       if (!dimensions) return '';
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
@@ -769,11 +675,11 @@ const columnsArray: ColumnDefinition[] = [
     getRating: (row: Product): number => {
       // Return the rating property if it exists
       const existingRating = getAttributeRating(row.dimensions);
-      if (existingRating !== 5) { // 5 is the default from getAttributeRating
+      if (existingRating !== 5) {
         return existingRating;
       }
       
-      const dimensions = getAttributeValue<[number, number, number]>(row.dimensions);
+      const dimensions = row.dimensions?.value as [number, number, number] | undefined;
       if (!dimensions) return 5;
       
       const [depth, width, height] = dimensions;
@@ -804,21 +710,14 @@ const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>As long as it has wheels and tilt-stoppers, weight won't be a problem.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.weight);
+      return row.weight?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const weight = getAttributeValue<number>(row.weight);
-      if (weight === undefined) return '';
-      return `${weight} lbs`;
+      const weight = row.weight?.value as number | undefined;
+      return weight !== undefined ? `${weight} lbs` : '';
     },
     getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on weight
-      if (row.weight?.rating !== undefined) {
-        return row.weight.rating;
-      }
-      
-      const weight = getAttributeValue<number>(row.weight);
-      return weight !== undefined ? calculateWeightRating(weight) : 5;
+      return row.weight?.rating ?? calculateWeightRating(row.weight?.value as number ?? 0);
     }
   },
   {
@@ -829,13 +728,13 @@ const columnsArray: ColumnDefinition[] = [
     showInTable: true,
     notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
     calculate: (row: Product): number | undefined => {
-      return getAttributeValue<number>(row.easyLube);
+      return row.easyLube?.value as number | undefined;
     },
     render: (row: Product): string => {
-      const easyLube = getAttributeValue<number>(row.easyLube) ?? 5;
+      const easyLube = row.easyLube?.value as number ?? 5;
       return easyLube > 7 ? '✓' : '';
     },
-    getRating: (row: Product): number => (row.easyLube as any)?.value ?? 5
+    getRating: (row: Product): number => row.easyLube?.value ?? 5
   },
   {
     key: "amazon",
@@ -845,13 +744,12 @@ const columnsArray: ColumnDefinition[] = [
     showInTable: true,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
     calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.amazon);
+      return row.amazon?.value as boolean | undefined;
     },
     render: (row: Product): string => {
-      const amazon = getAttributeValue<boolean>(row.amazon);
-      return amazon ? '✓' : '';
+      return (row.amazon?.value as boolean | undefined) ? '✓' : '';
     },
-    getRating: (row: Product): number => (row.amazon as any)?.rating ?? 0
+    getRating: (row: Product): number => row.amazon?.rating ?? 0
   },
   {
     key: "countries",
@@ -878,7 +776,7 @@ const columnsArray: ColumnDefinition[] = [
                 rel="noopener noreferrer"
                 onClick={clickAffiliate({
                   label: `${row.key}-${code}`,
-                  value: getPrice(row) || 0
+                  value: getPrice(row) ?? 0
                 })}
                 className="me-1"
               >
@@ -900,18 +798,15 @@ const columnsArray: ColumnDefinition[] = [
     rating: 0,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.app);
+      return row.app?.value as boolean | undefined;
     },
     render: (row: Product): string => {
-      const app = getAttributeValue<boolean>(row.app);
-      return app ? '✓' : '';
+      return (row.app?.value as boolean | undefined) ? '✓' : '';
     },
     getRating: (row: Product): number => {
-      if (row.app?.rating) { return row.app.rating; }
-      return row.app?.value ? 10 : 0;
+      return row.app?.rating ?? ((row.app?.value as boolean | undefined) ? 10 : 0);
     }
   },
-  // warranty: () => <div>Buyer peace-of-mind. Can return easily, and buy an extended warranty through Asurion (which I recommend).</div>
 ];
 
 // Now define the rank calculation function that uses all other columns
@@ -923,12 +818,13 @@ if (rankColumn) {
 
     // Process each column that has a rating
     columnsArray.forEach(column => {
-      // Skip the rank column itself, columns with 0 rating, and fakespot (since it's already incorporated into rating)
+      // Skip the rank column itself, columns with 0 rating, and fakespot
       if (column.key === "rank" || column.rating === 0 || column.key === "fakespot") {
         return;
       }
-      // Get the rating using the column's getRating function or fallback to 0
-      const rating = column.getRating ? column.getRating(row) : 0;
+      
+      // Get the rating using the column's getRating function
+      const rating = column.getRating?.(row) ?? 0;
       
       // Skip if no rating
       if (rating === 0) {
@@ -941,24 +837,22 @@ if (rankColumn) {
     });
 
     // Normalize the score to a 0-10 scale
-    totalWeight =  totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
-    const bump = row.bump || row.brand.bump || 0
-    totalWeight += bump
-    return totalWeight
+    const normalizedScore = totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
+    
+    // Apply any bump from product or brand
+    const bump = row.bump ?? row.brand.bump ?? 0;
+    
+    return normalizedScore + bump;
   };
 }
 
 // Helper functions for external use
 export const isNumericColumn = (columnId: string): boolean => {
-  // Check if the column info indicates it's a number
-  const column = columnsArray.find(col => col.key === columnId);
-  return column?.dtype === 'number';
+  return columnsArray.find(col => col.key === columnId)?.dtype === 'number';
 };
 
 export const isBooleanColumn = (columnId: string): boolean => {
-  // Check if the column info indicates it's a boolean
-  const column = columnsArray.find(col => col.key === columnId);
-  return column?.dtype === 'boolean';
+  return columnsArray.find(col => col.key === columnId)?.dtype === 'boolean';
 };
 
 // Convert the array to an object for backward compatibility
