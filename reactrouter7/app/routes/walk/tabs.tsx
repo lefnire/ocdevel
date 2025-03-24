@@ -81,8 +81,8 @@ export default function Tabs() {
               <h5>Non-budget</h5>
               <p>These can bear more weight than the budget picks, and can run continuously for much longer. They're quieter, and they're likely to need less servicing. However, I can't in good faith recommend these, given I haven't needed to service my budget mills after 2 years; I contend that the budget picks are less an issue of quality; and more an issue of using them wisely, like non-continuous use.</p>
               <h5>Using the table below</h5>
-              <p>TL;DR: sort by <strong>Rank</strong>, enter a <strong>Price</strong> max.</p>
-              <p><strong>Rank</strong> is a weighted sum of each rows' attributes. "Weighted" because some attributes are more important than others. Eg, <strong>App</strong> support has <code>weight=1</code>, where <strong>Sturdy</strong> has <code>weight=10</code>. You can see how each cell ranks in the bottom corner of that cell, eg <Badge bg="success">10</Badge></p>
+              <p>TL;DR: sort by <strong>Score</strong>, enter a <strong>Price</strong> max.</p>
+              <p><strong>Score</strong> is a weighted sum of each rows' attributes. "Weighted" because some attributes are more important than others. Eg, <strong>App</strong> support has <code>weight=1</code>, where <strong>Sturdy</strong> has <code>weight=10</code>. You can see how each cell ranks in the bottom corner of that cell, eg <Badge bg="success">10</Badge></p>
               <div>This is particularly interesting for <strong>Star Rating</strong>. The value shown in the cell is the rating (usually from Amazon). But the bottom-right number is the adjusted rating:
                 <ul className="m-0">
                   <li>star ratings, downplayed if too few ratings present</li>
