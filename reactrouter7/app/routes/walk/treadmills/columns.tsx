@@ -82,8 +82,13 @@ const calculatePickedByRating = (pickedBy: string[]): number => {
   return Math.min(10, rating); // Cap at 10
 };
 
-const calculateInclineRating = (hasIncline: boolean): number => {
-  return hasIncline ? 9 : 0; // 3% incline is important (9), no incline is below average
+const calculateInclineRating = (incline: number): number => {
+  if (incline === undefined || incline === 0) return 0; // No incline is below average
+  if (incline >= 3) return 9; // 3% or more incline is very good (9)
+  if (incline > 3) return 10; // More than 3% is exceptional (10), but only slightly better
+  
+  // Linear scale between 0 and 3%
+  return Math.round(9 * (incline / 3));
 };
 
 
@@ -500,26 +505,29 @@ const columnsArray: ColumnDefinition[] = [
   {
     key: "incline",
     label: "Incline",
-    dtype: "boolean",
+    dtype: "number", // Changed from boolean to number
     description: "Favor 3% (?)",
     rating: 6,
     showInTable: true,
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
-    calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.incline);
+    calculate: (row: Product): number | undefined => {
+      return getAttributeValue<number>(row.incline);
     },
     render: (row: Product): string => {
-      const incline = getAttributeValue<boolean>(row.incline);
-      return incline ? '✓' : '';
+      const incline = getAttributeValue<number>(row.incline);
+      if (incline === undefined || incline === 0) return '';
+      return `${incline}%`;
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise calculate based on incline
       if (row.incline?.rating !== undefined) {
         return row.incline.rating;
       }
+
+      const inclineValue = getAttributeValue<number>(row.incline);
+      if (inclineValue === undefined) return 0; // No incline data means no incline
       
-      const hasIncline = getAttributeValue<boolean>(row.incline);
-      return hasIncline !== undefined ? calculateInclineRating(hasIncline) : 5;
+      return calculateInclineRating(inclineValue);
     }
   },
   {
@@ -811,11 +819,11 @@ const columnsArray: ColumnDefinition[] = [
     rating: 2,
     showInTable: true,
     notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
-    calculate: (row: Product): boolean | undefined => {
-      return getAttributeValue<boolean>(row.easyLube);
+    calculate: (row: Product): number | undefined => {
+      return getAttributeValue<number>(row.easyLube);
     },
     render: (row: Product): string => {
-      const easyLube = getAttributeValue<boolean>(row.easyLube);
+      const easyLube = getAttributeValue<number>(row.easyLube) ?? 5;
       return easyLube > 7 ? '✓' : '';
     },
     getRating: (row: Product): number => (row.easyLube as any)?.value ?? 5
