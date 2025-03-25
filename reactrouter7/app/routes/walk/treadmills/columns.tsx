@@ -235,7 +235,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "maxWeight",
     label: "Capacity",
     dtype: "number",
-    rating: 6,
+    rating: 5,
     showInTable: true,
     filterOptions: { min: true, max: false },
     // description: "Pounds",
@@ -308,7 +308,7 @@ const columnsArray: ColumnDefinition[] = [
     rating: 10,
     showInTable: true,
     calculate: (row: Product): boolean | undefined => {
-      return row.sturdy?.value as boolean | undefined;
+      return row.sturdy?.rating as boolean | undefined;
     },
     getRating: (row: Product): number => {
       return getAttributeRating(row.sturdy, 5);
@@ -321,7 +321,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "horsePower",
     label: "Horsepower",
     dtype: "number",
-    rating: 8,
+    rating: 9,
     showInTable: true,
     filterOptions: { min: true, max: false },
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,

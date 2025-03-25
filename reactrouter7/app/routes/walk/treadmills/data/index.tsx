@@ -23,6 +23,7 @@ import elseluck_walkingpad from './elseluck/walkingpad'
 import wellfit_wp017 from './wellfit/wp017'
 import wellfit_wp021 from './wellfit/wp021'
 import citysports_cswp8 from './citysports/cswp8'
+import trailviber_walkingpad from './trailviber/walkingpad'
 
 const index = [
   // Original treadmills
@@ -53,6 +54,7 @@ const index = [
   wellfit_wp017,
   wellfit_wp021,
   citysports_cswp8,
+  trailviber_walkingpad,
 ]
 export default index
 
