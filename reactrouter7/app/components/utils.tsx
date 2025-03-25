@@ -158,5 +158,5 @@ export function TLDR({children}) {
 }
 
 export function BattleStation() {
-  return <p>This is part of my <Link to="/blog/20240111-tylers-setup">battlestation setup</Link>, where I discuss fitness desks, ergo peripherals, laptops, and more.</p>;
+  return <p>This is part of my <Link to="/blog/20240111-tylers-setup">battlestation setup</Link>, where I discuss treadmill desks, ergo peripherals, laptops, and more.</p>;
 }

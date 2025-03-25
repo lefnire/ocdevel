@@ -3,7 +3,7 @@ import { FaRegMinusSquare as CollapseIcon } from "react-icons/fa";
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'
-export const title = "Fitness Desk"
+export const title = "Treadmill Desk"
 export const jsx = true
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {create} from "zustand";
