@@ -22,6 +22,7 @@ import lichico_dk38ab2 from './lichico/dk38ab2'
 import elseluck_walkingpad from './elseluck/walkingpad'
 import wellfit_wp017 from './wellfit/wp017'
 import wellfit_wp021 from './wellfit/wp021'
+import citysports_cswp8 from './citysports/cswp8'
 
 const index = [
   // Original treadmills
@@ -51,6 +52,7 @@ const index = [
   elseluck_walkingpad,
   wellfit_wp017,
   wellfit_wp021,
+  citysports_cswp8,
 ]
 export default index
 

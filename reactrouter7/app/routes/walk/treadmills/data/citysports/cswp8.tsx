@@ -1,0 +1,83 @@
+import type {Product} from "../types";
+import brand from './brand'
+
+const links = {
+  amazon: {
+    US: "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
+    CA: "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
+    UK: "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
+  },
+  brand: {
+  }
+}
+const info: Product = {
+  model: "CS-WP8",
+  key: `${brand.key}_cswp8`,
+  description: "",
+  links,
+  brand,
+  // description: "",
+  dimensions: {
+    value: [50.39, 22.83, 5.51], // "D x "W x "H
+  },
+  weight: {
+    value: 50,
+  },
+  maxWeight: {
+    value: 265,
+  },
+  maxSpeed: {
+    value: 3.8,
+  },
+  horsePower: {
+    // it's measured as 550 Watts. How the heck to I convert that?
+    value: 2.5,
+  },
+  age: {
+    value: "2023-05-11",
+  },
+  rating: {
+    value: [[4.3, 299], [67,17,5,4,7]],
+  },
+  fakespot: {
+    value: ["D", brand.fakespot],
+  },
+  price: {
+    value: 230,
+  },
+  pickedBy: {
+    value: [],
+  },
+  incline: {
+    value: 0,
+    // method: "auto"
+  },
+  shock: {
+    value: false,
+    rating: 5,
+    // notes: () => <div>8-point silicone absorbers</div>
+  },
+  decibels: {
+    value: 50,
+  },
+  sturdy: {
+    value: false,
+    rating: 5,
+    // notes: () => <div>List materials?</div>
+  },
+  app: {
+    value: false,
+  },
+  // bump: 0,
+  easyLube: {
+    value: 5,
+  },
+  amazon: {
+    value: true
+  },
+  material: {
+    value: "Alloy Steel"
+  },
+
+}
+export default info
