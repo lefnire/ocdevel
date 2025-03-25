@@ -16,7 +16,7 @@ import type {
   ColumnDef
 } from '@tanstack/react-table';
 import data, { dataObj, type Product } from './rows';
-import { columnsArray, columnsObj, isNumericColumn, isBooleanColumn } from './columns';
+import { columnsArray, columnsObj } from './columns';
 import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
 import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
 import { useSearchParams, useNavigate } from 'react-router';
@@ -232,7 +232,7 @@ const Filter: React.FC<{
   const columnFilterValue = column.getFilterValue();
   
   // Use numeric filter for numeric columns
-  if (isNumericColumn(columnId)) {
+  if (columnsObj[columnId].dtype === "number") {
     const columnDef = columnsObj[columnId];
     const filterOptions = columnDef?.filterOptions || { min: true, max: true };
     
@@ -246,7 +246,7 @@ const Filter: React.FC<{
   }
   
   // Use boolean filter for boolean columns
-  if (isBooleanColumn(columnId)) {
+  if (columnsObj[columnId].dtype === "boolean") {
     return (
       <BooleanFilter
         column={column}
@@ -344,7 +344,7 @@ export default function Treadmills() {
           enableColumnFilter: true,
           filterFn: (row, columnId, filterValue) => {
             // For numeric columns with range filtering
-            if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
+            if (columnsObj[columnId].dtype === "number" && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
               const columnDef = columnsObj[columnId];
               const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
@@ -372,7 +372,7 @@ export default function Treadmills() {
             }
             
             // For boolean columns
-            if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
+            if (columnsObj[columnId].dtype === "boolean" && typeof filterValue === 'boolean') {
               const columnDef = columnsObj[columnId];
               const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               

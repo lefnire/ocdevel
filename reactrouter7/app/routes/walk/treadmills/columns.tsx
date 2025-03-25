@@ -2,20 +2,9 @@
 import React from "react";
 import type { Product } from "./rows";
 import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
-import {getCurrentLink, getPrice, getCountryLink, getCountryCodes} from "./utils";
+import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
-
-// Default function to get rating from an attribute or return a default value
-export const getAttributeRating = (attr: any, defaultRating: number = 5): number => {
-  return attr?.rating ?? defaultRating;
-};
-
-function toFixed0(val: number | undefined) {
-  let val_ = val ?? 0;
-  if (val_ < 1) { val_ = val_ * 100 }
-  return val_.toFixed(0);
-}
 
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
@@ -26,15 +15,14 @@ const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 interface ColumnDefinition {
   key: string;
   label: string;
-  dtype: string;
+  dtype: "boolean" | "string" | "number";
   hideScore?: boolean;
   description?: string;
   notes?: () => React.ReactElement;
-  getValue?: (row: Product) => any; // Function to calculate the value
+  getValue: (row: Product) => string | number | boolean | undefined;
   render?: (row: Product) => string | React.ReactElement; // Function to render the value
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
-  getSortValue?: (row: Product) => any; // Function to get value for sorting
-  getFilterValue?: (row: Product) => any; // Function to get value for filtering
+  getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
   renderPopover?: (row: Product) => React.ReactElement; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
@@ -62,21 +50,17 @@ export const columnsArray: ColumnDefinition[] = [
         </ul>
       </div>
     ),
-    getValue: (row: Product): number => row.total.score,
-    render: (row: Product): string => {
-      return row.total.score.toFixed(1);
-    },
-    getStyle: (): React.CSSProperties => {
-      return { fontWeight: 'bold' };
-    },
+    getValue: (row) => row.total.score,
+    render: (row) => row.total.score.toFixed(1),
+    getStyle: (): React.CSSProperties => ({ fontWeight: 'bold' }),
   },
   {
     key: "model",
     label: "Model",
     dtype: "string",
     hideScore: true,
-    getValue: (row: Product): string => row.model,
-    render: (row: Product): React.ReactElement => {
+    getValue: (row): string => row.model,
+    render: (row): React.ReactElement => {
       const link = getCurrentLink(row);
       const price = getPrice(row);
       const onClick = clickAffiliate({
@@ -101,18 +85,12 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Brand",
     dtype: "string",
     hideScore: true,
-    getValue: (row: Product): string => row.brand.key,
-    render: (row: Product): string => row.brand.name,
+    getValue: (row) => row.brand.name,
+    render: (row) => row.brand.name,
   },
   {
     key: "rating",
     label: "Stars",
-    // This is stored as [[number,number],[number,number,number,number,number]].
-    // These values are: `[
-    // [ average rating, number of reviews ]
-    // [ 5-stars, 4-stars, 3-stars, 2-stars, 1-star]
-    // ]`. In the cell, only the average rating should appear. But the popover
-    // should show the breakdown. Make it simple for now, we'll make it fancy later.
     dtype: "number",
     description: "Calculation (?)",
     filterOptions: {min: true, max: false},
@@ -128,17 +106,14 @@ export const columnsArray: ColumnDefinition[] = [
         <p>The calculation aims to provide a more accurate representation of product quality by accounting for potential fake reviews and quality control issues.</p>
       </div>
     ),
-    getValue: (row: Product): [[number, number], [number, number, number, number, number]] | undefined => {
-      return row.rating.value as [[number, number], [number, number, number, number, number]] | undefined;
-    },
-    getFilterValue: (row: Product) => row.rating?.value?.[0]?.[0],
-    render: (row: Product): string => {
-      const ratingValue = row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
+    getValue: (row) => row.rating.value?.[0]?.[0],
+    render: (row) => {
+      const ratingValue = row.rating?.value
       if (!ratingValue) return '';
       const [[avg]] = ratingValue;
       return avg.toFixed(1);
     },
-    renderPopover: (row: Product) => {
+    renderPopover: (row) => {
       const notes = row.rating?.notes;
 
       function renderDistribution() {
@@ -186,7 +161,6 @@ export const columnsArray: ColumnDefinition[] = [
         </>
       );
     },
-    getSortValue: row => row.rating.score,
   },
   {
     key: "price",
@@ -195,10 +169,8 @@ export const columnsArray: ColumnDefinition[] = [
     description: "Sorting (?)",
     filterOptions: { min: false, max: true },
     notes: () => <div>These filters filter by price; but sorting this column sorts by my gut-check on <em>value</em> (cost to quality).</div>,
-    getValue: (row: Product): number | undefined => {
-      return getPrice(row);
-    },
-    render: (row: Product): string => {
+    getValue: (row) => getPrice(row),
+    render: (row) => {
       const price = getPrice(row);
       return price !== undefined ? `$${price}` : '';
     },
@@ -210,11 +182,9 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     // description: "Pounds",
     // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.maxWeight?.value as number | undefined;
-    },
-    render: (row: Product): string => {
-      const maxWeight = row.maxWeight?.value as number | undefined;
+    getValue: (row) => row.maxWeight?.value,
+    render: (row) => {
+      const maxWeight = row.maxWeight?.value;
       return maxWeight !== undefined ? `${maxWeight} lbs` : '';
     },
   },
@@ -225,11 +195,9 @@ export const columnsArray: ColumnDefinition[] = [
     description: "Info (?)",
     filterOptions: { min: true, max: false },
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.maxSpeed?.value as number | undefined;
-    },
-    render: (row: Product): string => {
-      const maxSpeed = row.maxSpeed?.value as number | undefined;
+    getValue: (row) => row.maxSpeed?.value,
+    render: (row) => {
+      const maxSpeed = row.maxSpeed?.value;
       return maxSpeed !== undefined ? `${maxSpeed} mph` : '';
     },
   },
@@ -240,10 +208,8 @@ export const columnsArray: ColumnDefinition[] = [
     description: "Favor 3% (?)",
     filterOptions: { min: true, max: false },
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.incline?.value;
-    },
-    render: (row: Product): React.ReactElement => {
+    getValue: (row) => row.incline?.value,
+    render: (row) => {
       const incline = row.incline?.value
       const method = row.incline?.method;
 
@@ -261,11 +227,9 @@ export const columnsArray: ColumnDefinition[] = [
     key: "sturdy",
     label: "Sturdy",
     dtype: "boolean",
-    getValue: (row: Product): boolean | undefined => {
-      return row.sturdy?.value as boolean | undefined;
-    },
-    render: (row: Product): string => {
-      return (row.sturdy?.value as boolean | undefined) ? '✓' : '';
+    getValue: (row) => row.sturdy?.value,
+    render: (row) => {
+      return (row.sturdy?.score) ? '✓' : '';
     },
   },
   {
@@ -274,11 +238,9 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "number",
     filterOptions: { min: true, max: false },
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.horsePower?.value as number | undefined;
-    },
-    render: (row: Product): string => {
-      const horsePower = row.horsePower?.value as number | undefined;
+    getValue: (row) => row.horsePower?.value,
+    render: (row) => {
+      const horsePower = row.horsePower?.value;
       return horsePower !== undefined ? `${horsePower}` : '';
     },
   },
@@ -289,14 +251,10 @@ export const columnsArray: ColumnDefinition[] = [
     // sort / filter), but sometimes it's a textual description. So for sort / filter
     // purposes, it should use dates if possible, and handle non-date strings
     // appropriately
-    dtype: "custom",
+    dtype: "string",
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
-    getValue: (row: Product): string | undefined => {
-      return row.age?.value as string | undefined;
-    },
-    render: (row: Product): string => {
-      return (row.age?.value as string | undefined) ?? '';
-    },
+    getValue: (row: Product) => row.age?.value,
+    render: (row: Product): string => row.age?.value ?? "",
   },
   {
     key: "pickedBy",
@@ -308,10 +266,12 @@ export const columnsArray: ColumnDefinition[] = [
       <div>{faPublic} Public Opinion. Generally just reviews and what's popular.</div>
       <div>{faWebsites} Websites. What's being recommended on popular review websites. I down-weight these significantly, since most of them just use web-scrapers on Amazon for most-popular treadmills. If I think they actually test the products, I'll flag "Trusted Sources".</div>
     </div>,
-    getValue: (row: Product): string[] | undefined => {
-      return row.pickedBy?.value as string[] | undefined;
+    getValue: (row) => {
+      const val = row.pickedBy?.value;
+      return val ? val.join('') : '';
     },
-    render: (row: Product): React.ReactElement => {
+    getSortValue: (row) => row.pickedBy.score,
+    render: (row) => {
       const pickedBy = row.pickedBy?.value as string[] | undefined;
       if (_.isEmpty(pickedBy)) return <></>;
 
@@ -329,11 +289,9 @@ export const columnsArray: ColumnDefinition[] = [
     key: "shock",
     label: "Shock absorption",
     dtype: "boolean",
-    getValue: (row: Product): boolean | undefined => {
-      return row.shock?.value as boolean | undefined;
-    },
-    render: (row: Product): string => {
-      return (row.shock?.value as boolean | undefined) ? '✓' : '';
+    getValue: (row) => row.shock?.value,
+    render: (row) => {
+      return (row.shock?.value) ? '✓' : '';
     },
   },
   {
@@ -342,32 +300,28 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "number",
     filterOptions: { min: false, max: true },
     notes: () => <div>How conducive to meetings and calls is this treadmill. Whispering is 30dB, conversation is 60dB. So it's only conducive if less than 60. I measure these at 2mph, with the decibel meter near the treadmill and near my microphone. I try to record dB here when I can.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.decibels?.value as number | undefined;
-    },
-    render: (row: Product): string => {
-      const decibels = row.decibels?.value as number | undefined;
-      return decibels !== undefined ? `${decibels} dB` : '';
+    getValue: (row) => row.decibels?.value,
+    render: (row) => {
+      const decibels = row.decibels?.value;
+      return decibels ? `${decibels} dB` : '';
     },
   },
   {
     key: "dimensions",
     label: "Dimensions",
-    dtype: "custom",
+    dtype: "string",
     // the data is stores as [number,number,number], so should be converted to
     // a string like `1"D x 1"W x 1"H` the cells.
     description: 'D" x W" x H"',
     notes: () => <div>(Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
-    getValue: (row: Product): [number, number, number] | undefined => {
-      return row.dimensions?.value as [number, number, number] | undefined;
-    },
-    render: (row: Product): string => {
-      const dimensions = row.dimensions?.value as [number, number, number] | undefined;
+    getValue: (row) => row.dimensions?.value?.join(''),
+    render: (row) => {
+      const dimensions = row.dimensions?.value;
       if (!dimensions) return '';
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
     },
-
+    getSortValue: (row) => row.dimensions.score
   },
   {
     key: "weight",
@@ -375,12 +329,10 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "number",
     filterOptions: { min: false, max: true },
     notes: () => <div>As long as it has wheels and tilt-stoppers, weight won't be a problem.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.weight?.value as number | undefined;
-    },
-    render: (row: Product): string => {
-      const weight = row.weight?.value as number | undefined;
-      return weight !== undefined ? `${weight} lbs` : '';
+    getValue: (row) => row.weight?.value,
+    render: (row) => {
+      const weight = row.weight?.value;
+      return weight ? `${weight} lbs` : '';
     },
   },
   {
@@ -388,11 +340,9 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Easy Lube",
     dtype: "boolean",
     notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
-    getValue: (row: Product): number | undefined => {
-      return row.easyLube?.value as number | undefined;
-    },
-    render: (row: Product): string => {
-      const easyLube = row.easyLube?.value as number ?? 5;
+    getValue: (row) => row.easyLube?.value,
+    render: (row) => {
+      const easyLube = row.easyLube?.score;
       return easyLube > 7 ? '✓' : '';
     },
   },
@@ -402,20 +352,18 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "boolean",
     hideScore: true,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
-    getValue: (row: Product): boolean | undefined => {
-      return row.amazon?.value as boolean | undefined;
-    },
-    render: (row: Product): string => {
-      return (row.amazon?.value as boolean | undefined) ? '✓' : '';
+    getValue: (row) => row.amazon?.value,
+    render: (row) => {
+      return (row.amazon?.value) ? '✓' : '';
     },
   },
   {
     key: "links",
     label: "Countries",
     hideScore: true,
-    dtype: "custom", // list of country codes
-    getValue: (row: Product): string[] => getCountryCodes(row),
-    render: (row: Product): React.ReactElement => {
+    dtype: "string", // list of country codes
+    getValue: (row) => getCountryCodes(row).join(''),
+    render: (row) => {
       const countryCodes = getCountryCodes(row);
       if (_.isEmpty(countryCodes)) return <></>;
 
@@ -454,23 +402,12 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>A nice-to-have, but not a deal maker.Some mills work with an app, so your controller isn't a point
       of failure. In the early days, a dead controller meant a dead mill - as companies didn't provide replacements. But
       that's less common these days. Apps also tally walking metrics.</div>,
-    getValue: (row: Product): boolean | undefined => {
-      return row.app?.value as boolean | undefined;
-    },
-    render: (row: Product): string => {
-      return (row.app?.value as boolean | undefined) ? '✓' : '';
+    getValue: (row) => row.app?.value,
+    render: (row) => {
+      return (row.app?.value) ? '✓' : '';
     },
   }
 ];
-
-// Helper functions for external use
-export const isNumericColumn = (columnId: string): boolean => {
-  return columnsArray.find(col => col.key === columnId)?.dtype === 'number';
-};
-
-export const isBooleanColumn = (columnId: string): boolean => {
-  return columnsArray.find(col => col.key === columnId)?.dtype === 'boolean';
-};
 
 // Convert the array to an object for backward compatibility
 export const columnsObj = Object.fromEntries(

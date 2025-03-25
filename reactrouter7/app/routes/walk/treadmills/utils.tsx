@@ -36,3 +36,9 @@ export const getCountryCodes = (row: Product, includeBrand=false): string[] => {
 };
 
 export const getPrice = (product: Product) => product.price.sale || product.price.value;
+
+export function toFixed0(val: number | undefined) {
+  let val_ = val ?? 0;
+  if (val_ < 1) { val_ = val_ * 100 }
+  return val_.toFixed(0);
+}
