@@ -27,6 +27,7 @@ interface ColumnDefinition {
   key: string;
   label: string;
   dtype: string;
+  hideScore?: boolean;
   description?: string;
   notes?: () => React.ReactElement;
   getValue?: (row: Product) => any; // Function to calculate the value
@@ -42,11 +43,12 @@ interface ColumnDefinition {
 }
 
 // Define the column info array
-const columnsArray: ColumnDefinition[] = [
+export const columnsArray: ColumnDefinition[] = [
   {
     key: "total",
     label: "Score",
     dtype: "number",
+    hideScore: true,
     description: "Calculation (?)",
     filterOptions: { min: true, max: false },
     notes: () => (
@@ -72,6 +74,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "model",
     label: "Model",
     dtype: "string",
+    hideScore: true,
     getValue: (row: Product): string => row.model,
     render: (row: Product): React.ReactElement => {
       const link = getCurrentLink(row);
@@ -97,6 +100,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "brand",
     label: "Brand",
     dtype: "string",
+    hideScore: true,
     getValue: (row: Product): string => row.brand.key,
     render: (row: Product): string => row.brand.name,
   },
@@ -396,6 +400,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "amazon",
     label: "Amazon",
     dtype: "boolean",
+    hideScore: true,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
     getValue: (row: Product): boolean | undefined => {
       return row.amazon?.value as boolean | undefined;
@@ -407,6 +412,7 @@ const columnsArray: ColumnDefinition[] = [
   {
     key: "links",
     label: "Countries",
+    hideScore: true,
     dtype: "custom", // list of country codes
     getValue: (row: Product): string[] => getCountryCodes(row),
     render: (row: Product): React.ReactElement => {
@@ -444,6 +450,7 @@ const columnsArray: ColumnDefinition[] = [
     key: "app",
     label: "App",
     dtype: "boolean",
+    hideScore: true,
     notes: () => <div>A nice-to-have, but not a deal maker.Some mills work with an app, so your controller isn't a point
       of failure. In the early days, a dead controller meant a dead mill - as companies didn't provide replacements. But
       that's less common these days. Apps also tally walking metrics.</div>,
@@ -466,11 +473,9 @@ export const isBooleanColumn = (columnId: string): boolean => {
 };
 
 // Convert the array to an object for backward compatibility
-const info = columnsArray.reduce((obj, item) => {
-  obj[item.key] = { ...item };
-  delete obj[item.key].key; // Remove the key property from the object
-  return obj;
-}, {} as Record<string, any>);
-
-export { columnsArray };
-export default info;
+export const columnsObj = Object.fromEntries(
+  columnsArray.map(column => ([
+    column.key,
+    column
+  ]))
+)

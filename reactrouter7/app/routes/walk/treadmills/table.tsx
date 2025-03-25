@@ -16,7 +16,7 @@ import type {
   ColumnDef
 } from '@tanstack/react-table';
 import data, { dataObj, type Product } from './rows';
-import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
+import { columnsArray, columnsObj, isNumericColumn, isBooleanColumn } from './columns';
 import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
 import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
 import { useSearchParams, useNavigate } from 'react-router';
@@ -111,7 +111,7 @@ const Cell: React.FC<{
   info?: any;
 }> = ({ row, column, info }) => {
   const columnId = column.id;
-  const columnDef = columnInfo[columnId];
+  const columnDef = columnsObj[columnId];
   const product: Product = row.original || row;
   
   if (!columnDef || !columnDef.render) {
@@ -233,7 +233,7 @@ const Filter: React.FC<{
   
   // Use numeric filter for numeric columns
   if (isNumericColumn(columnId)) {
-    const columnDef = columnInfo[columnId];
+    const columnDef = columnsObj[columnId];
     const filterOptions = columnDef?.filterOptions || { min: true, max: true };
     
     return (
@@ -346,7 +346,7 @@ export default function Treadmills() {
             // For numeric columns with range filtering
             if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
-              const columnDef = columnInfo[columnId];
+              const columnDef = columnsObj[columnId];
               const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               
               if (value === undefined || value === null) return false;
@@ -373,7 +373,7 @@ export default function Treadmills() {
             
             // For boolean columns
             if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
-              const columnDef = columnInfo[columnId];
+              const columnDef = columnsObj[columnId];
               const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               
               if (typeof value === 'boolean') {
@@ -385,7 +385,7 @@ export default function Treadmills() {
             
             // For string columns
             if (typeof filterValue === 'string') {
-              const columnDef = columnInfo[columnId];
+              const columnDef = columnsObj[columnId];
               const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               
               if (value === undefined || value === null) return false;
@@ -400,7 +400,7 @@ export default function Treadmills() {
             return true;
           },
           sortingFn: (rowA, rowB, columnId) => {
-            const columnDef = columnInfo[columnId];
+            const columnDef = columnsObj[columnId];
 
             // Use getSortValue if available
             if (columnDef?.getSortValue) {
@@ -507,7 +507,7 @@ export default function Treadmills() {
                        {/* Add description with popover below the filter */}
                        <ColumnDescription
                          column={header.column}
-                         info={columnInfo[header.column.id as keyof typeof columnInfo]}
+                         info={columnsObj[header.column.id as keyof typeof columnsObj]}
                        />
                      </div>
                    ) : null}
@@ -524,11 +524,7 @@ export default function Treadmills() {
                {row.getVisibleCells().map(cell => {
                  const columnId = cell.column.id;
                  const score = (
-                   [
-                     'total',
-                     'model',
-                     'brand',
-                   ].includes(columnId) ? 0
+                   columnsObj[columnId].hideScore ? 0
                    : (row.original?.[columnId]?.score || 0)
                  )
                  

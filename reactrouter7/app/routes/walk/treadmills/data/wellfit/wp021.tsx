@@ -16,7 +16,7 @@ const info: Product = {
   brand,
   // description: "",
   dimensions: {
-    value: [43,18, 4.7], // "D x "W x "H
+    value: [43, 18, 4.7], // "D x "W x "H
   },
   weight: {
     value: 30,

@@ -1,4 +1,4 @@
-import type {Brand, Product as ProductObj} from './types'
+import type {Brand, Product as ProductObj} from './data/types'
 import * as s from './scoring/index'
 import {produce} from 'immer'
 import _ from 'lodash'
