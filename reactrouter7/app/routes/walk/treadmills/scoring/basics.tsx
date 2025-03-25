@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import _ from 'lodash'
-import {getPrice} from "../utils";
+import {getCountryCodes, getPrice} from "../utils";
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
 
@@ -23,6 +23,10 @@ export const price: ScoreFn = (p) => {
   // Invert the scale since lower price is better
   return 10 * (1 - ((logPrice - logMin) / (logMax - logMin)));
 };
+
+export const links: ScoreFn = (p) => {
+  return getCountryCodes(p).length
+}
 
 export const weight: ScoreFn = (p) => {
   const val = p.weight.value;

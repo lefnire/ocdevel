@@ -264,12 +264,6 @@ const Filter: React.FC<{
   );
 };
 
-// Helper function to get cell-specific rating using the column's getRating function
-const getCellScore = (row: Row<Product>, columnId: string): number => {
-  const score = row.original?.[columnId]?.score;
-  return score ?? 0
-};
-
 // Rating indicator component
 const Score: React.FC<{ score: number }> = ({ score }) => {
   if (score <= 0) return null;
@@ -327,13 +321,10 @@ export default function Treadmills() {
   
   // Create columns
   const columns = React.useMemo(() => {
-    // Filter columns to only include those marked for display in the table
-    const visibleColumns = columnsArray.filter(col => col.showInTable !== false);
-    
-    return visibleColumns.map(colDef => {
+    return columnsArray.map(colDef => {
       return columnHelper.accessor(
         // Use the calculate function if available, otherwise use the key directly
-        row => colDef.calculate ? colDef.calculate(row) : row[colDef.key as keyof Product],
+        row => colDef.getValue ? colDef.getValue(row) : row[colDef.key as keyof Product],
         {
           id: colDef.key,
           header: ({ column }) => (
@@ -356,7 +347,7 @@ export default function Treadmills() {
             if (isNumericColumn(columnId) && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
               const columnDef = columnInfo[columnId];
-              const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
+              const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               
               if (value === undefined || value === null) return false;
               
@@ -383,7 +374,7 @@ export default function Treadmills() {
             // For boolean columns
             if (isBooleanColumn(columnId) && typeof filterValue === 'boolean') {
               const columnDef = columnInfo[columnId];
-              const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
+              const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               
               if (typeof value === 'boolean') {
                 return value === filterValue;
@@ -395,7 +386,7 @@ export default function Treadmills() {
             // For string columns
             if (typeof filterValue === 'string') {
               const columnDef = columnInfo[columnId];
-              const value = columnDef?.calculate ? columnDef.calculate(row.original) : row.getValue(columnId);
+              const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
               
               if (value === undefined || value === null) return false;
               
@@ -410,18 +401,7 @@ export default function Treadmills() {
           },
           sortingFn: (rowA, rowB, columnId) => {
             const columnDef = columnInfo[columnId];
-            
-            // Special case for make/brand column
-            if (columnId === 'make') {
-              const columnDef = columnInfo[columnId];
-              if (columnDef && columnDef.getRating) {
-                const ratingA = columnDef.getRating(rowA.original);
-                const ratingB = columnDef.getRating(rowB.original);
-                
-                return ratingA > ratingB ? 1 : ratingA < ratingB ? -1 : 0;
-              }
-            }
-            
+
             // Use getSortValue if available
             if (columnDef?.getSortValue) {
               const valueA = columnDef.getSortValue(rowA.original);
@@ -436,9 +416,9 @@ export default function Treadmills() {
             }
             
             // Use calculate if available
-            if (columnDef?.calculate) {
-              const valueA = columnDef.calculate(rowA.original);
-              const valueB = columnDef.calculate(rowB.original);
+            if (columnDef?.getValue) {
+              const valueA = columnDef.getValue(rowA.original);
+              const valueB = columnDef.getValue(rowB.original);
               
               if (typeof valueA === 'number' && typeof valueB === 'number') {
                 return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
@@ -543,7 +523,14 @@ export default function Treadmills() {
                {/* Each cell in this row represents a different attribute for this product */}
                {row.getVisibleCells().map(cell => {
                  const columnId = cell.column.id;
-                 const score = getCellScore(row, columnId);
+                 const score = (
+                   [
+                     'total',
+                     'model',
+                     'brand',
+                   ].includes(columnId) ? 0
+                   : (row.original?.[columnId]?.score || 0)
+                 )
                  
                  return (
                    <td key={cell.id} className="position-relative">

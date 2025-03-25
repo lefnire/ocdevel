@@ -8,6 +8,7 @@ import index from "./data/index";
 type Score = {score: number}
 export type Product = ProductObj & {
   dimensions: ProductObj['dimensions'] & Score
+  links: ProductObj['links'] & Score
   weight: ProductObj['weight'] & Score
   maxWeight: ProductObj['maxWeight'] & Score
   maxSpeed: ProductObj['maxSpeed'] & Score
@@ -30,11 +31,14 @@ function hydrate(d: Product) {
   if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
     d.brand.warranty.amazon = 2 * 12 // Asurion
   }
-  d.brand.rating = d.brand.rating ?? 5
+  d.brand.score = d.brand.rating ?? 5
   d.brand.bump = d.brand.bump ?? 0
 
   d.dimensions = d.dimensions || {}
   d.dimensions.score = s.dimensions(d)
+
+  d.links = d.links || {amazon: {}, brand: {}}
+  d.links.score = s.links(d)
 
   d.weight = d.weight || {}
   d.weight.score = s.weight(d)

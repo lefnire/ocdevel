@@ -16,7 +16,7 @@ export const columnWeights = {
   weight: 1,
   easyLube: 2,
   amazon: 1,
-  countries: 0,
+  links: 0,
   app: 0,
 }
 export const total: ScoreFn = (row) => {
