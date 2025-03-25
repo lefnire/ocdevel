@@ -1,8 +1,6 @@
 import _ from 'lodash'
-import type {Product} from "../types";
 import * as r from './value-ranges'
-
-type ScoreFn = (p: Product) => number
+import type {ScoreFn} from './utils'
 
 const fakespotLetterToNumber = (letter: string): number => {
   switch (letter) {

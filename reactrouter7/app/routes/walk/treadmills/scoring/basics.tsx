@@ -1,10 +1,8 @@
 import dayjs from 'dayjs'
 import _ from 'lodash'
-import type {Product} from "../types";
 import {getPrice} from "../utils";
 import * as r from './value-ranges'
-
-type ScoreFn = (p: Product) => number
+import type {ScoreFn} from './utils'
 
 export const price: ScoreFn = (p) => {
   const val = getPrice(p);

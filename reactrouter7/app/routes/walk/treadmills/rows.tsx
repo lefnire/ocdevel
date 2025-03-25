@@ -7,7 +7,6 @@ import index from "./data/index";
 
 type Score = {score: number}
 export type Product = ProductObj & {
-  total: number
   dimensions: ProductObj['dimensions'] & Score
   weight: ProductObj['weight'] & Score
   maxWeight: ProductObj['maxWeight'] & Score
@@ -24,7 +23,7 @@ export type Product = ProductObj & {
   app: ProductObj['app'] & Score
   easyLube: ProductObj['easyLube'] & Score
   amazon: ProductObj['amazon'] & Score
-  score: number
+  total: Score
 }
 
 function hydrate(d: Product) {
@@ -78,7 +77,8 @@ function hydrate(d: Product) {
 
   d.amazon = d.amazon || {}
   d.amazon.score = s.amazon(d)
-  // d.total = s.total(d)
+
+  d.total = {score: s.total(d)}
 }
 
 const hydrated = data.map(p => produce(p, hydrate))
