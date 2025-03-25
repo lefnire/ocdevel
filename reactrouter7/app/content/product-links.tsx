@@ -42,6 +42,12 @@ const links: Record<string, AffiliateLink> = {
         price: 35,
         link: "https://amzn.to/3E7YUPw"
     },
+    sekoday_lube: {
+        key: "sekoday_lube",
+        title: "Sekoday Lube",
+        price: 8,
+        link: "https://amzn.to/4hHO151"
+    },
     flexispot_en1: {
         link: "https://amzn.to/40Kddmd",
         key: 'flexispot_en1',

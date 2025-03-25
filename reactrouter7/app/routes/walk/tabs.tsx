@@ -96,8 +96,8 @@ export default function Tabs() {
             </Tab.Pane>
 
             <Tab.Pane eventKey="care">
-              <h5>Lube</h5>
-              <div className="py-1">Every so 50 hours or 3 months of use, apply this lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want {affiliateLink(essentials.godora_lube, "one with a long syringe")}, rather than the wobbly tube - those are harder to control. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
+              <h5>Lubrication</h5>
+              <div className="py-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces heat build-up on the pad; which heat would be transferred to the motor, which would cause degradation. You'll want one with a firm applicator; wobbly tubes are hard to control. {affiliateLink(essentials.godora_lube, "Godora")} is easier, {affiliateLink(essentials.sekoday_lube, "Sekoday")} is cheaper. <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
               </div>
               <h5>Adjusting the belt</h5>
               <div className="py-1">If the belt starts to drift one way or another, you take an Alan wrench and tighten <em>the side which is too tight / close (not not the side with slack)</em>. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it&#39;s fixed). Then you just leave it - it&#39;s something I don&#39;t understand, not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.
@@ -137,7 +137,49 @@ export default function Tabs() {
                 quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi
               </p>
 
-              <h5>Standing board: {affiliateLink(essentials.fluidstance_planecloud,"FluidStance PlaneCloud")}</h5>
+              <h5><Link to="/blog/20240110-ergo-mouse-keyboard">Ergonomic keyboard & mouse</Link></h5>
+                <p>When you're walking or stepping, you're moving your arms more than usual. People often develop RSI
+                  (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm
+                  motion - that type of wrist motion is bad for you. This is amplified big-time on fitness desks, due to
+                  the fitness motion. It could take 6 months, it could take a 5 years, but almost everyone I've talked to
+                  who have fitness desks have experienced an RSI uptick. Ergo peripherals solve this definitively.
+                </p>
+              <div>
+                  <ul>
+                    <li>Mouse: {affiliateLink(essentials.kensington_slimbladepro, "Slimblade Pro")} $110</li>
+                    <li>Keyboard: {affiliateLink(essentials.keychron_q11,"Keychron Q11")} $200</li>
+                  </ul>
+                  The two budget picks are Keychron Q11 ($200) and {affiliateLink(essentials.mistel_md770, "Mistel Barocco MD770")} ($144).
+                  I own Mistel, but the internet favors Keychron. The splurge pick is <a
+                  href="https://www.moergo.com/collections/glove80-keyboards">Glove80</a> ($400)
+                </div>
+                <p></p>
+
+
+
+              {/*<div>
+                <VideoButton href="https://www.youtube.com/shorts/fHjxqYBIPKA" label="Video 1" />
+              </div>
+              <div>
+                <VideoButton href="https://www.youtube.com/shorts/BLvJmlB3j7Q" label="Video 2" />
+              </div>*/}
+
+              {!optionals ? (
+                <Button variant="link" onClick={showOptionals}>Show More Essentials...</Button>
+              ) : <>
+
+                <h5>{affiliateLink(essentials.esdwristband, "ESD Wristband")}</h5>
+                <p>When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
+                  to your computer, you'll cause "electrostatic discharge" or ESD. This can be a monitor, peripherals
+                  which have any metal components, your laptop itself, etc. This can damage the electronics in the
+                  components you touched, and your computer (the current sent from the component through the connecting
+                  wire). There are two solutions: (1) make sure all the components you touch are plastic (SlimBlade and
+                  MD770 are), and never touch anything else (you monitor, laptop, etc) while walking; this is what I do.
+                  Or (2) buy an anti-static wristband, clamp it to something grounded, and now you don't have to worry
+                  about what you touch.
+                </p>
+
+                <h5>Standing board: {affiliateLink(essentials.fluidstance_planecloud,"FluidStance PlaneCloud")}</h5>
               <p>Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
                 Standing on a hard surface for prolonged periods is NOT good for you (even with good shoes); it's better
                 to just sit. So my next move was standing-specific mats. When things really changed was in exploring
@@ -160,57 +202,17 @@ export default function Tabs() {
                 and to preserve your health you should <em>choose one or the other</em>; and then sit to recover.
               </p>
 
-              {/*<div>*/}
-              {/*  <VideoButton href="https://www.youtube.com/shorts/fHjxqYBIPKA" label="Video 1" />*/}
-              {/*</div>*/}
-              {/*<div>*/}
-              {/*  <VideoButton href="https://www.youtube.com/shorts/BLvJmlB3j7Q" label="Video 2" />*/}
-              {/*</div>*/}
-
-              {!optionals ? (
-                <Button variant="link" onClick={showOptionals}>Show More Essentials...</Button>
-              ) : <>
-                <h5><Link to="/blog/20240110-ergo-mouse-keyboard">Ergonomic keyboard & mouse</Link></h5>
-                <p>When you're walking or stepping, you're moving your arms more than usual. People often develop RSI
-                  (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm
-                  motion - that type of wrist motion is bad for you. This is amplified big-time on fitness desks, due to
-                  the fitness motion. It could take 6 months, it could take a 5 years, but almost everyone I've talked to
-                  who have fitness desks have experienced an RSI uptick. Ergo peripherals solve this definitively.
-                </p>
-
-                <div>
-                  <ul>
-                    <li>Mouse: {affiliateLink(essentials.kensington_slimbladepro, "Slimblade Pro")} $110</li>
-                    <li>Keyboard: {affiliateLink(essentials.keychron_q11,"Keychron Q11")} $200</li>
-                  </ul>
-                  The two budget picks are Keychron Q11 ($200) and {affiliateLink(essentials.mistel_md770, "Mistel Barocco MD770")} ($144).
-                  I own Mistel, but the internet favors Keychron. The splurge pick is <a
-                  href="https://www.moergo.com/collections/glove80-keyboards">Glove80</a> ($400)
-                </div>
-                <p></p>
-
-                <h5>{affiliateLink(essentials.esdwristband, "ESD Wristband")}</h5>
-                <p>When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
-                  to your computer, you'll cause "electrostatic discharge" or ESD. This can be a monitor, peripherals
-                  which have any metal components, your laptop itself, etc. This can damage the electronics in the
-                  components you touched, and your computer (the current sent from the component through the connecting
-                  wire). There are two solutions: (1) make sure all the components you touch are plastic (SlimBlade and
-                  MD770 are), and never touch anything else (you monitor, laptop, etc) while walking; this is what I do.
-                  Or (2) buy an anti-static wristband, clamp it to something grounded, and now you don't have to worry
-                  about what you touch.
-                </p>
-
                 <h5>{affiliateLink(essentials.fingerlessgloves, "Fingerless gloves")}</h5>
                 <p>Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
                   doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands
                   themselves.
                 </p>
 
-                <h5>{affiliateLink(essentials.wristweights, "Wrist weights")}</h5>
+                {/*<h5>{affiliateLink(essentials.wristweights, "Wrist weights")}</h5>
                 <p>If you wanna get really hard-core, use some wrist weights while you walk and type. This will engage
                   your arms, shoulders, and back. I use these ankle weights (so I can crank up the weight, wrist weights
                   are typically lighter) and wear them all day.
-                </p>
+                </p>*/}
 
                 <h5>Monitor Arms: {affiliateLink(essentials.vivo, "VIVO")} or {affiliateLink(essentials.mountup, "MountUp")}</h5>
                 <p>I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.

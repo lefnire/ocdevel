@@ -3,7 +3,6 @@ import brand from './brand'
 
 const links = {
   amazon: {
-    US: ""
   },
   brand: {
     US: "https://lichico.com/products/basic-walkingpad",
