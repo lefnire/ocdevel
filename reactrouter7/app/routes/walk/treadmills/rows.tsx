@@ -3,7 +3,6 @@ import * as s from './scoring/index'
 import {produce} from 'immer'
 import _ from 'lodash'
 import data from './data/index'
-import index from "./data/index";
 
 type Score = {score: number}
 export type Product = ProductObj & {
@@ -45,6 +44,9 @@ function hydrate(d: Product) {
 
   d.maxWeight = d.maxWeight || {}
   d.maxWeight.score = s.maxWeight(d)
+
+  d.maxSpeed = d.maxSpeed || {}
+  d.maxSpeed.score = s.maxSpeed(d)
 
   d.horsePower = d.horsePower ||{ }
   d.horsePower.score = s.horsePower(d)

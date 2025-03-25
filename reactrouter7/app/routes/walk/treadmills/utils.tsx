@@ -1,4 +1,4 @@
-import type {Product} from "./types";
+import type {Product} from "./data/types";
 import _ from "lodash"
 
 export const PAUSE_AMAZON = false;

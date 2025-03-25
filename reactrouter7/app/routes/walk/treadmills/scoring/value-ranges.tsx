@@ -1,5 +1,5 @@
 import _ from "lodash";
-import type {Product} from "../types";
+import type {Product} from "../data/types";
 import data from "../data";
 import {getPrice} from "../utils";
 

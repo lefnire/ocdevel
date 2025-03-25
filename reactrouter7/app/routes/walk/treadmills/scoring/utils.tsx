@@ -1,3 +1,3 @@
-import type {Product} from "../types";
+import type {Product} from "../data/types";
 
 export type ScoreFn = (p: Product) => number

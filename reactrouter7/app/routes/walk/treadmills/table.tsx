@@ -288,7 +288,7 @@ const Score: React.FC<{ score: number }> = ({ score }) => {
 export default function Treadmills() {
   // Initialize sorting state with Rank column in descending order
   const [sorting, setSorting] = React.useState<SortingState>([
-    { id: 'score', desc: true }
+    { id: 'total', desc: true }
   ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
   

@@ -5,6 +5,7 @@ import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
 
 export const price: ScoreFn = (p) => {
+  if (p.price?.rating) { return p.price.rating }
   const val = getPrice(p);
   if (_.isUndefined(val)) {
     // no easy guess
@@ -29,6 +30,7 @@ export const links: ScoreFn = (p) => {
 }
 
 export const weight: ScoreFn = (p) => {
+  if (p.weight?.rating) { return p.weight.rating }
   const val = p.weight.value;
   if (_.isUndefined(val)) {
     // no easy guess
@@ -43,6 +45,8 @@ export const weight: ScoreFn = (p) => {
 };
 
 export const maxWeight: ScoreFn = (p) => {
+  if (p.maxWeight?.rating) { return p.maxWeight.rating }
+
   const val = p.maxWeight.value;
   if (_.isUndefined(val)) {
     // typically 265
@@ -57,6 +61,8 @@ export const maxWeight: ScoreFn = (p) => {
 };
 
 export const maxSpeed: ScoreFn = (p) => {
+  if (p.maxSpeed?.rating) { return p.maxSpeed.rating }
+
   // Commonly 4.0, but often the unlisted / hidden ones turn out to be 3.8
   const val = p.maxSpeed.value; // ?? 3.8
   if (_.isUndefined(val)) {
@@ -72,6 +78,8 @@ export const maxSpeed: ScoreFn = (p) => {
 };
 
 export const horsePower: ScoreFn = (p) => {
+  if (p.horsePower?.rating) { return p.horsePower.rating }
+
   const val = p.horsePower.value; // 2.25
   if (_.isUndefined(val)) {
     // if not advertised, usually lower than median (eg 2.25).
@@ -91,6 +99,8 @@ export const horsePower: ScoreFn = (p) => {
 };
 
 export const age: ScoreFn = (p) => {
+  if (p.age?.rating) { return p.age.rating }
+
   const val = p.age.value;
   if (_.isUndefined(val)) {
     // no easy guess
@@ -123,6 +133,7 @@ export const age: ScoreFn = (p) => {
 }
 
 export const decibels: ScoreFn = (p) => {
+  if (p.decibels?.rating) { return p.decibels.rating }
   const val = p.decibels.value;
   if (_.isUndefined(val)) {
     // Typically 45-50
@@ -139,6 +150,7 @@ export const decibels: ScoreFn = (p) => {
 }
 
 export const dimensions: ScoreFn = (p) => {
+  if (p.dimensions?.rating) { return p.dimensions.rating }
   const val = p.dimensions.value;
   if (val?.length !== 3) { return 5; }
 
@@ -167,6 +179,7 @@ export const dimensions: ScoreFn = (p) => {
 }
 
 export const pickedBy: ScoreFn = (p) => {
+  if (p.pickedBy?.rating) { return p.pickedBy.rating }
   const val = p.pickedBy.value
   if (!val?.length) { return 0; }
 
@@ -181,6 +194,7 @@ export const pickedBy: ScoreFn = (p) => {
 };
 
 export const incline: ScoreFn = (p) => {
+  if (p.incline?.rating) { return p.incline.rating }
   const val = p.incline.value
   if (!val) { return 0; }
   if (val >= 3) return 9; // 3% or more incline is very good (9)
@@ -191,29 +205,32 @@ export const incline: ScoreFn = (p) => {
 };
 
 export const shock: ScoreFn = (p) => {
+  if (p.shock?.rating) { return p.shock.rating }
   const val = p.shock.value
-  if (p.shock.rating) { return p.shock.rating; }
   if (val) { return 0; }
   return 5;
 }
 
 export const sturdy: ScoreFn = (p) => {
+  if (p.sturdy?.rating) { return p.sturdy.rating }
   const val = p.sturdy.value
-  if (p.sturdy.rating) { return p.sturdy.rating; }
   if (val) { return 0; }
   return 5;
 }
 
 export const app: ScoreFn = (p) => {
+  if (p.app?.rating) { return p.app.rating }
   const val = p.app.value
   if (!val) { return 0; }
   return 10;
 }
 
 export const easyLube: ScoreFn = (p) => {
-  return p.easyLube?.rating ?? p.easyLube?.value ?? 5;
+  if (p.easyLube?.rating) { return p.easyLube.rating }
+  return p.easyLube?.value ?? 5;
 }
 
 export const amazon: ScoreFn = (p) => {
+  if (p.amazon?.rating) { return p.amazon.rating }
   return p.amazon.value ? 10 : 0;
 }
