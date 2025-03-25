@@ -226,8 +226,8 @@ export const fakespotLetterToNumber = (letter: string): number => {
     case 'A': return 10;
     case 'B': return 8;
     case 'C': return 6;
-    case 'D': return 3;
-    case 'F': return 1;
+    case 'D': return 2;
+    case 'F': return 0;
     default: return 8; // Default to "B" if not present
   }
 };
@@ -362,8 +362,11 @@ export const calculateCombinedRating = (row: Product): number => {
     // Weight company score more heavily (70/30 split) as specified in the requirements
     const combinedFakespotScore = (productScore * 0.3) + (companyScore * 0.7);
     
-    // Scale fakespot score to be a modifier (0.7 to 1.1)
-    fakespotModifier = 0.7 + (combinedFakespotScore / 25); // 10 = 1.1, 1 = 0.74
+    // Scale fakespot score to be a modifier (0.5 to 1.2)
+    // This gives more impact to fakespot grades:
+    // A,A (10) = 1.2 (20% boost)
+    // F,F (1) = 0.5 (50% reduction)
+    fakespotModifier = 0.5 + (combinedFakespotScore / 14.3); // 10 = 1.2, 1 = 0.57
   }
 
   // Combine all factors for the final score
