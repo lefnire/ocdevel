@@ -112,19 +112,22 @@ const Cell: React.FC<{
 }> = ({ row, column, info }) => {
   const columnId = column.id;
   const columnDef = columnsObj[columnId];
-  const product: Product = row.original || row;
+  const product: Product = row.original;
   
+  // If no column definition or render function, return empty div
   if (!columnDef || !columnDef.render) {
-    return <div>{String(row.getValue ? row.getValue(columnId) : product[columnId as keyof Product]) || ''}</div>;
+    return <div></div>;
   }
 
   const displayValue = columnDef.render(product);
   const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
-  // Check if the attribute has notes
-  const attr = product[columnId as keyof Product];
-
-  const popoverContent = columnDef.renderPopover?.(product) || (attr as any)?.notes?.();
-  // For columns with notes but no renderPopover
+  
+  // Get popover content if available
+  const popoverContent = columnDef.renderPopover?.(product) ||
+                         (typeof product[columnId as keyof Product] === 'object' &&
+                          (product[columnId as keyof Product] as any)?.notes?.());
+  
+  // For columns with popover content
   if (popoverContent) {
     return <CellWithPopover
       product={product}
@@ -268,10 +271,8 @@ const Filter: React.FC<{
 const Score: React.FC<{ score: number }> = ({ score }) => {
   if (score <= 0) return null;
   
-  const bgColorClass = score >= 7 ? 'bg-success' :
-                       score >= 4 ? 'bg-warning' :
-                       'bg-danger';
-  
+  // Determine color based on score
+  const bgColorClass = score >= 7 ? 'bg-success' : score >= 4 ? 'bg-warning' : 'bg-danger';
   const textColorClass = score >= 4 ? 'text-dark' : 'text-white';
   
   return (
@@ -343,57 +344,32 @@ export default function Treadmills() {
           enableSorting: true,
           enableColumnFilter: true,
           filterFn: (row, columnId, filterValue) => {
+            const columnDef = columnsObj[columnId];
+            const value = columnDef.getValue(row.original);
+            
+            if (value === undefined || value === null) return false;
+            
             // For numeric columns with range filtering
-            if (columnsObj[columnId].dtype === "number" && Array.isArray(filterValue)) {
+            if (columnDef.dtype === "number" && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
-              const columnDef = columnsObj[columnId];
-              const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
-              
-              if (value === undefined || value === null) return false;
-              
               const numValue = typeof value === 'number' ? value : parseFloat(String(value));
               if (isNaN(numValue)) return false;
               
-              // Get filter options from column definition
-              const filterOptions = columnDef?.filterOptions || { min: true, max: true };
+              const filterOptions = columnDef.filterOptions || { min: true, max: true };
               
-              // Only apply min/max filters based on filterOptions
-              let passesFilter = true;
+              if (filterOptions.min && min !== undefined && numValue < min) return false;
+              if (filterOptions.max && max !== undefined && numValue > max) return false;
               
-              if (filterOptions.min && min !== undefined) {
-                passesFilter = passesFilter && numValue >= min;
-              }
-              
-              if (filterOptions.max && max !== undefined) {
-                passesFilter = passesFilter && numValue <= max;
-              }
-              
-              return passesFilter;
+              return true;
             }
             
             // For boolean columns
-            if (columnsObj[columnId].dtype === "boolean" && typeof filterValue === 'boolean') {
-              const columnDef = columnsObj[columnId];
-              const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
-              
-              if (typeof value === 'boolean') {
-                return value === filterValue;
-              }
-              
-              return false;
+            if (columnDef.dtype === "boolean" && typeof filterValue === 'boolean') {
+              return value === filterValue;
             }
             
             // For string columns
             if (typeof filterValue === 'string') {
-              const columnDef = columnsObj[columnId];
-              const value = columnDef?.getValue ? columnDef.getValue(row.original) : row.getValue(columnId);
-              
-              if (value === undefined || value === null) return false;
-              
-              if (typeof value === 'string') {
-                return value.toLowerCase().includes(filterValue.toLowerCase());
-              }
-              
               return String(value).toLowerCase().includes(filterValue.toLowerCase());
             }
             
@@ -401,37 +377,13 @@ export default function Treadmills() {
           },
           sortingFn: (rowA, rowB, columnId) => {
             const columnDef = columnsObj[columnId];
-
-            // Use getSortValue if available
-            if (columnDef?.getSortValue) {
-              const valueA = columnDef.getSortValue(rowA.original);
-              const valueB = columnDef.getSortValue(rowB.original);
-              
-              if (typeof valueA === 'number' && typeof valueB === 'number') {
-                return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
-              }
-              
-              // String comparison
-              return String(valueA).localeCompare(String(valueB));
-            }
             
-            // Use calculate if available
-            if (columnDef?.getValue) {
-              const valueA = columnDef.getValue(rowA.original);
-              const valueB = columnDef.getValue(rowB.original);
-              
-              if (typeof valueA === 'number' && typeof valueB === 'number') {
-                return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
-              }
-              
-              // String comparison
-              return String(valueA).localeCompare(String(valueB));
-            }
+            // Use getSortValue if available, otherwise use getValue
+            const getValueFn = columnDef.getSortValue || columnDef.getValue;
+            const valueA = getValueFn(rowA.original);
+            const valueB = getValueFn(rowB.original);
             
-            // Default sorting
-            const valueA = rowA.getValue(columnId);
-            const valueB = rowB.getValue(columnId);
-            
+            // Compare based on data type
             if (typeof valueA === 'number' && typeof valueB === 'number') {
               return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
             }
@@ -444,8 +396,8 @@ export default function Treadmills() {
   }, []);
   
   // Create table instance
-  const table = useReactTable({
-    data: filteredData,
+  const table = useReactTable<Product>({
+    data: filteredData as Product[],
     columns,
     state: {
       sorting,
@@ -523,10 +475,9 @@ export default function Treadmills() {
                {/* Each cell in this row represents a different attribute for this product */}
                {row.getVisibleCells().map(cell => {
                  const columnId = cell.column.id;
-                 const score = (
-                   columnsObj[columnId].hideScore ? 0
-                   : (row.original?.[columnId]?.score || 0)
-                 )
+                 const columnDef = columnsObj[columnId];
+                 // Only show score if hideScore is not true and the attribute has a score
+                 const score = columnDef.hideScore ? 0 : (row.original[columnId]?.score || 0);
                  
                  return (
                    <td key={cell.id} className="position-relative">
