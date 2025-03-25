@@ -50,7 +50,7 @@ const info: Product = {
     // notes: () => <div>Premium price point reflecting top-tier commercial-grade quality. $400 more than the TR1200 and $600 more than the TR1000.</div>
   },
   pickedBy: {
-    value: [],
+    value: ["trusted", "public"],
     notes: () => <div>Popular choice for commercial use in coworking spaces, indicating professional-level quality.</div>
   },
   incline: {

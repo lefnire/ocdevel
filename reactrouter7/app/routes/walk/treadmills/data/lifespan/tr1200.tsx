@@ -51,7 +51,7 @@ const info: Product = {
     notes: () => <div>Significantly higher price point than consumer models and $200 more than the TR1000, reflecting higher-tier commercial-grade quality.</div>
   },
   pickedBy: {
-    value: ["public"],
+    value: ["trusted", "public"],
     notes: () => <div>Popular choice for commercial use in coworking spaces, indicating professional-level quality.</div>
   },
   incline: {

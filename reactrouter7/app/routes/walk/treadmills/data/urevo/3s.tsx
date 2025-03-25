@@ -71,7 +71,7 @@ const info: Product = {
   amazon: {
     value: true,
   },
-  bump: 7,
+  bump: 5,
 
   cons: [
     {
