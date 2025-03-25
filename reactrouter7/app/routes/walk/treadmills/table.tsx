@@ -15,10 +15,10 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import data, { dataObj } from './data/index';
+import data, { dataObj } from './rows';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
 import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
-import type { Product } from './data/types';
+import type { Product } from './types';
 import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
 import { useSearchParams, useNavigate } from 'react-router';
 import {FaX} from "react-icons/fa6";

@@ -1,13 +1,10 @@
 
 import React from "react";
-import type { Product } from "./data/types";
-import dayjs from "dayjs";
+import type { Row as Product } from "./rows";
 import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
-import {getCurrentLink, getPrice, getCountryLink, getCountryCodes} from "./data/utils";
-import { Popover } from 'react-bootstrap';
+import {getCurrentLink, getPrice, getCountryLink, getCountryCodes} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
-import * as calcs from './rating-calcs'
 
 // Default function to get rating from an attribute or return a default value
 export const getAttributeRating = (attr: any, defaultRating: number = 5): number => {
@@ -146,7 +143,7 @@ const columnsArray: ColumnDefinition[] = [
       </div>
     ),
     calculate: (row: Product): [[number, number], [number, number, number, number, number]] | undefined => {
-      return row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
+      return row.rating.value as [[number, number], [number, number, number, number, number]] | undefined;
     },
     render: (row: Product): string => {
       const ratingValue = row.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
@@ -202,8 +199,8 @@ const columnsArray: ColumnDefinition[] = [
         </>
       );
     },
-    getSortValue: calcs.calculateCombinedRating,
-    getRating: calcs.calculateCombinedRating
+    getSortValue: row => row.rating.score,
+    getRating: row => row.rating.score
   },
   {
     key: "price",
@@ -221,15 +218,7 @@ const columnsArray: ColumnDefinition[] = [
       const price = getPrice(row);
       return price !== undefined ? `$${price}` : '';
     },
-    getRating: (row: Product): number => {
-      // Return the rating property if it exists, otherwise calculate based on price
-      if (row.price?.rating !== undefined) {
-        return row.price.rating;
-      }
-
-      const price = getPrice(row)
-      return price !== undefined ? calcs.calculatePriceRating(price) : 5;
-    }
+    getRating: (row: Product) => row.price.score
   },
   {
     key: "maxWeight",
@@ -249,7 +238,7 @@ const columnsArray: ColumnDefinition[] = [
     },
     getRating: (row: Product): number => {
       // Return the rating property if it exists, otherwise calculate
-      return row.maxWeight?.rating ?? calcs.calculateMaxWeightRating(row.maxWeight?.value as number ?? 0);
+      return row.maxWeight.score
     }
   },
   {
@@ -269,7 +258,7 @@ const columnsArray: ColumnDefinition[] = [
       return maxSpeed !== undefined ? `${maxSpeed} mph` : '';
     },
     getRating: (row: Product): number => {
-      return row.maxSpeed?.rating ?? calcs.calculateMaxSpeedRating(row.maxSpeed?.value as number ?? 0);
+      return row.maxSpeed.score
     }
   },
   {
@@ -298,7 +287,7 @@ const columnsArray: ColumnDefinition[] = [
       );
     },
     getRating: (row: Product): number => {
-      return row.incline?.rating ?? calcs.calculateInclineRating(row.incline?.value as number ?? 0);
+      return row.incline.score
     }
   },
   {
@@ -333,7 +322,7 @@ const columnsArray: ColumnDefinition[] = [
       return horsePower !== undefined ? `${horsePower}` : '';
     },
     getRating: (row: Product): number => {
-      return row.horsePower?.rating ?? calcs.calculateHorsePowerRating(row.horsePower?.value as number ?? 0);
+      return row.horsePower.score
     }
   },
   {
@@ -356,7 +345,7 @@ const columnsArray: ColumnDefinition[] = [
     getRating: (row: Product): number => {
       // Return the rating property if it exists
       if (typeof row?.age?.rating !== "undefined") { row.age.rating }
-      return calcs.calculateAgeRating(row.age?.value)
+      return row.age.score
     }
   },
   {
@@ -388,7 +377,7 @@ const columnsArray: ColumnDefinition[] = [
       );
     },
     getRating: (row: Product): number => {
-      return row.pickedBy?.rating ?? calcs.calculatePickedByRating(row.pickedBy?.value as string[] ?? []);
+      return row.pickedBy.score
     }
   },
   {
@@ -404,7 +393,7 @@ const columnsArray: ColumnDefinition[] = [
       return (row.shock?.value as boolean | undefined) ? '✓' : '';
     },
     getRating: (row: Product): number => {
-      return getAttributeRating(row.shock, 0);
+      return row.shock.core
     }
   },
   {
@@ -423,10 +412,7 @@ const columnsArray: ColumnDefinition[] = [
       return decibels !== undefined ? `${decibels} dB` : '';
     },
     getRating: (row: Product): number => {
-      if (row.decibels?.rating !== undefined) {
-        return row.decibels.rating;
-      }
-      return calcs.calculateDecibelsRating(row.decibels?.value)
+      row.decibels.score
     }
   },
   {
@@ -450,11 +436,7 @@ const columnsArray: ColumnDefinition[] = [
     },
 
     getRating: (row: Product): number => {
-      // Return the rating property if it exists
-      if (typeof row.dimensions?.rating !== "undefined") {
-        return row.dimensions.rating;
-      }
-      return calcs.calculateDimensionsRating(row.dimensions?.value)
+      row.dimensions.score
     }
   },
   {
@@ -473,7 +455,7 @@ const columnsArray: ColumnDefinition[] = [
       return weight !== undefined ? `${weight} lbs` : '';
     },
     getRating: (row: Product): number => {
-      return row.weight?.rating ?? calcs.calculateWeightRating(row.weight?.value as number ?? 0);
+      return row.weight.score
     }
   },
   {
@@ -490,7 +472,7 @@ const columnsArray: ColumnDefinition[] = [
       const easyLube = row.easyLube?.value as number ?? 5;
       return easyLube > 7 ? '✓' : '';
     },
-    getRating: (row: Product): number => row.easyLube?.value ?? 5
+    getRating: (row: Product): number => row.easyLube.score
   },
   {
     key: "amazon",
@@ -505,7 +487,7 @@ const columnsArray: ColumnDefinition[] = [
     render: (row: Product): string => {
       return (row.amazon?.value as boolean | undefined) ? '✓' : '';
     },
-    getRating: (row: Product): number => row.amazon?.rating ?? 0
+    getRating: (row: Product): number => row.amazon.score
   },
   {
     key: "countries",
@@ -560,7 +542,7 @@ const columnsArray: ColumnDefinition[] = [
       return (row.app?.value as boolean | undefined) ? '✓' : '';
     },
     getRating: (row: Product): number => {
-      return row.app?.rating ?? ((row.app?.value as boolean | undefined) ? 10 : 0);
+      return row.app.score
     }
   },
 ];
@@ -578,12 +560,8 @@ if (rankColumn) {
       if (column.key === "rank" || column.rating === 0 || column.key === "fakespot") {
         return;
       }
-
-      // Get the rating using the column's getRating function
-      const rating = column.getRating?.(row) ?? 0;
-
-      // Skip if no rating
-      if (rating === 0) {
+      const rating = row[column]?.score
+      if (!rating) {
         return;
       }
 

@@ -1,52 +1,92 @@
-import {Brand, Product} from './data/types'
-import * as r from './value-ranges'
-import dayjs from 'dayjs'
+import type {Brand, Product} from './types'
+import * as s from './scoring/index'
 import {produce} from 'immer'
 import _ from 'lodash'
 import data from './data/index'
+import index from "./data/index";
 
-function hydrateProduct(product: Product) {
-  return produce(product, d => {
-    d.brand.fakespot = d.brand.fakespot || "B"
-    if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
-      d.brand.warranty.amazon = 2 * 12 // Asurion
-    }
-    d.brand.rating = d.brand.rating ?? 5
-    d.brand.bump = d.brand.bump ?? 0
-
-    d.dimensions.value = d.dimensions.value || [
-      r.dimensions.depth.median,
-      r.dimensions.width.median,
-      r.dimensions.height.median,
-    ]
-    // No easy guess
-    d.weight.value = d.weight.value ?? r.weight.median
-    // Common default is 265
-    d.maxWeight.value = d.maxWeight.value ?? 265
-    // Commonly 4.0, but often the unlisted / hidden ones turn out to be 3.8
-    d.maxSpeed.value = d.maxSpeed.value ?? 3.8
-    // Commonly 2.5, but if not listed it's suspicious
-    d.horsePower.value = d.horsePower.value ?? 2.25
-    // No easy value, just set to 2 years ago
-    d.age.value = d.age.value ?? dayjs().subtract(2, 'year').toISOString()
-    // TODO parse date here
-    d.rating.value = d.rating.value ?? [
-      [4.0, 0],
-      [0, 0, 0, 0, 0]
-    ]
-    d.fakespot.value = d.fakespot.value ?? ["B", d.brand.fakespot]
-    d.price.value = d.price.value ?? r.price.median
-    d.pickedBy.value = d.pickedBy.value || []
-    d.incline.value = d.incline.value || 0
-    d.shock.value = d.shock.value || false
-    d.decibels.value = d.decibels.value || 50
-    d.sturdy.value = d.stury.value || 5
-    d.app.value = d.app.value || false
-    d.easyLube.value = d.easyLube.value || 5
-    d.amazon.value = d.amazon.value || false
-    d.material.value = d.material.value || "Alloy Steel"
-  })
+type Score = {score: number}
+export type Row = Product & {
+  total: number
+  dimensions: Product['dimensions'] & Score
+  weight: Product['weight'] & Score
+  maxWeight: Product['maxWeight'] & Score
+  maxSpeed: Product['maxSpeed'] & Score
+  horsePower: Product['horsePower'] & Score
+  age: Product['age'] & Score
+  rating: Product['rating'] & Score
+  price: Product['price'] & Score
+  pickedBy: Product['pickedBy'] & Score
+  incline: Product['incline'] & Score
+  shock: Product['shock'] & Score
+  decibels: Product['decibels'] & Score
+  sturdy: Product['sturdy'] & Score
+  app: Product['app'] & Score
+  easyLube: Product['easyLube'] & Score
+  amazon: Product['amazon'] & Score
+  score: number
 }
 
-const hydrated = data.map(hydrateProduct)
+function hydrate(d: Row) {
+  if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
+    d.brand.warranty.amazon = 2 * 12 // Asurion
+  }
+  d.brand.rating = d.brand.rating ?? 5
+  d.brand.bump = d.brand.bump ?? 0
+
+  d.dimensions = d.dimensions || {}
+  d.dimensions.score = s.dimensions(d)
+
+  d.weight = d.weight || {}
+  d.weight.score = s.weight(d)
+
+  d.maxWeight = d.maxWeight || {}
+  d.maxWeight.score = s.maxWeight(d)
+
+  d.horsePower = d.horsePower ||{ }
+  d.horsePower.score = s.horsePower(d)
+
+  d.age = d.age || {}
+  d.age.score = s.age(d)
+
+  d.rating = d.rating || {}
+  d.rating.score = s.rating(d)
+
+  d.price = d.price || {}
+  d.price.score = s.price(d)
+
+  d.pickedBy = d.pickedBy || {}
+  d.pickedBy.score = s.pickedBy(d)
+
+  d.incline = d.incline || {}
+  d.incline.score = s.incline(d)
+
+  d.shock = d.shock || {}
+  d.shock.score = s.shock(d)
+
+  d.decibels = d.decibels || {}
+  d.decibels.score = s.decibels(d)
+
+  d.sturdy = d.sturdy || {}
+  d.sturdy.score = s.sturdy(d)
+
+  d.app = d.app || {}
+  d.app.score = s.app(d)
+
+  d.easyLube = d.easyLube || {}
+  d.easyLube.score = s.easyLube(d)
+
+  d.amazon = d.amazon || {}
+  d.amazon.score = s.amazon(d)
+  // d.total = s.total(d)
+}
+
+const hydrated = data.map(p => produce(p, hydrate))
 export default hydrated
+
+export const dataObj = Object.fromEntries(
+  hydrated.map(product => ([
+    product.key,
+    product
+  ]))
+)

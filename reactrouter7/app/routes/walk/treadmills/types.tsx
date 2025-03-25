@@ -5,9 +5,10 @@ interface Attribute {
   rating?: number
   notes? : () => ReactElement
 }
-type BoolVal = Omit<Attribute, 'value'> & { value?: boolean }
-type StringVal = Omit<Attribute, 'value'> & { value?: string }
-type NumVal = Omit<Attribute, 'value'> & { value?: number }
+type CustomVal = Omit<Attribute, 'value'>
+type BoolVal = CustomVal & { value?: boolean }
+type StringVal = CustomVal & { value?: string }
+type NumVal = CustomVal & { value?: number }
 
 interface Links {
   amazon: { [countryCode: string]: string }
@@ -41,7 +42,7 @@ export interface Product {
   description: string | ReactElement
   links: Links
 
-  dimensions: Attribute | {
+  dimensions: CustomVal & {
     // depth, width, height
     value?: [number, number, number],
   },
@@ -50,19 +51,19 @@ export interface Product {
   maxSpeed: Attribute
   horsePower: Attribute
   age: StringVal
-  rating: Omit<Attribute, 'value'> & {
+  rating: CustomVal & {
     value?: [[number, number], [number, number, number, number, number]]
   }
-  fakespot: Omit<Attribute, 'value'> & {
+  fakespot: CustomVal & {
     value?: [string, string]
   }
   price: Attribute & {
     sale?: number
   }
-  pickedBy: Omit<Attribute, 'value'> & {
+  pickedBy: CustomVal & {
     value?: Array<"me" | "trusted" | "public" | "websites">
   }
-  incline: Attribute | {
+  incline: NumVal & {
     method?: "manual" | "static" | "auto"
   }
   shock: BoolVal

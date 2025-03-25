@@ -7,7 +7,7 @@ import {dataObj} from './treadmills/data/index'
 import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
-import {getCurrentLink, getPrice} from "~/routes/walk/treadmills/data/utils";
+import {getCurrentLink, getPrice} from "./treadmills/utils";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [

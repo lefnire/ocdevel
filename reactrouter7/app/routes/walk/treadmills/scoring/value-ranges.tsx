@@ -1,7 +1,7 @@
 import _ from "lodash";
-import type {Product} from "~/routes/walk/treadmills/data/types";
-import data from "~/routes/walk/treadmills/data";
-import {getPrice} from "~/routes/walk/treadmills/data/utils";
+import type {Product} from "../types";
+import data from "../data";
+import {getPrice} from "../utils";
 
 function getRangeFromVals(vals_: Array<number | undefined>) {
   const vals = vals_.filter(Boolean) as number[]
