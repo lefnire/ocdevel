@@ -32,7 +32,6 @@ export interface Brand {
   notes?: () => ReactElement
   bump?: number
 }
-
 export interface Product {
   brand: Brand
   model: string
@@ -43,6 +42,7 @@ export interface Product {
   links: Links
 
   dimensions: Attribute | {
+    // depth, width, height
     value?: [number, number, number],
   },
   weight: Attribute

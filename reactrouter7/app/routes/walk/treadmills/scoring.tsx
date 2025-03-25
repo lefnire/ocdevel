@@ -3,88 +3,17 @@ import dayjs from 'dayjs'
 import _ from 'lodash'
 import type {Product} from "~/routes/walk/treadmills/data/types";
 import {getPrice} from "~/routes/walk/treadmills/data/utils";
-
-function getRangeFromVals(vals_: Array<number | undefined>) {
-  const vals = vals_.filter(Boolean) as number[]
-  const min = Math.min(...vals);
-  const max = Math.max(...vals);
-  const median = _.sortBy(vals)[Math.floor(vals.length / 2)];
-  return { min, max, median };
-}
-function getRangeFromFn(getterFn: (product: Product) => number | undefined) {
-  return getRangeFromVals(data.map(getterFn))
-}
-
-export const priceRange = getRangeFromFn(item => getPrice(item))
-export const weightRange = getRangeFromFn(item => item.weight?.value)
-export const maxWeightRange = getRangeFromFn(item => item.maxWeight?.value)
-export const maxSpeedRange = getRangeFromFn(item => item.maxSpeed?.value)
-export const horsePowerRange = getRangeFromFn(item => item.horsePower?.value)
-export const decibelsRange = getRangeFromFn(item => item.decibels?.value)
-export const dimensionsRange = (() => {
-  const dimensions = {
-    depth: [] as number[],
-    width: [] as number[],
-    height: [] as number[]
-  };
-
-  data.forEach(item => {
-    const dims = item.dimensions?.value as [number, number, number] | undefined;
-    if (dims) {
-      dimensions.depth.push(dims[0]);
-      dimensions.width.push(dims[1]);
-      dimensions.height.push(dims[2]);
-    }
-  });
-
-  return {
-    depth: getRangeFromVals(dimensions.depth),
-    width: getRangeFromVals(dimensions.width),
-    height: getRangeFromVals(dimensions.height),
-  };
-})();
-
-// Rating ranges for combined rating calculations
-export const ratingRanges = (() => {
-  const starRatings: number[] = [];
-  const ratingCounts: number[] = [];
-  const fakespotGrades: string[] = [];
-
-  data.forEach(item => {
-    const ratingValue = item.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
-    if (ratingValue?.length === 2) {
-      const [[starRating, ratingCount]] = ratingValue;
-      if (starRating) starRatings.push(starRating);
-      if (ratingCount) ratingCounts.push(ratingCount);
-    }
-
-    const fakespotValue = item.fakespot?.value as [string, string] | undefined;
-    if (fakespotValue?.[0]) {
-      fakespotGrades.push(fakespotValue[0]);
-    }
-  });
-
-  return {
-    starRatings: getRangeFromVals(starRatings),
-    ratingCounts: {
-      ...getRangeFromVals(ratingCounts),
-      log: {
-        min: Math.log10(Math.max(1, Math.min(...ratingCounts))),
-        max: Math.log10(Math.max(...ratingCounts))
-      }
-    }
-  };
-})();
+import * as r from './value-ranges'
 
 export const calculatePriceRating = (price: number): number => {
   // Using log scale since price typically has exponential perceived value
   // (difference between $100-$200 feels bigger than $2000-$2100)
-  if (price <= priceRange.min) return 10;
-  if (price >= priceRange.max) return 0;
+  if (price <= r.price.min) return 10;
+  if (price >= r.price.max) return 0;
   
   // Log scale transformation
-  const logMin = Math.log(priceRange.min);
-  const logMax = Math.log(priceRange.max);
+  const logMin = Math.log(r.price.min);
+  const logMax = Math.log(r.price.max);
   const logPrice = Math.log(price);
   
   // Invert the scale since lower price is better
@@ -93,40 +22,40 @@ export const calculatePriceRating = (price: number): number => {
 
 export const calculateWeightRating = (weight: number): number => {
   // Using linear scale since weight perception is fairly linear
-  if (weight <= weightRange.min) return 10;
-  if (weight >= weightRange.max) return 0;
+  if (weight <= r.weight.min) return 10;
+  if (weight >= r.weight.max) return 0;
 
   // Linear scale between min and max weight
-  return 10 - (10 * (weight - weightRange.min) / (weightRange.max - weightRange.min));
+  return 10 - (10 * (weight - r.weight.min) / (r.weight.max - r.weight.min));
 };
 
 export const calculateMaxWeightRating = (maxWeight: number): number => {
   // Using linear scale since weight capacity perception is fairly linear
-  if (maxWeight <= maxWeightRange.min) return 0;
-  if (maxWeight >= maxWeightRange.max) return 10;
+  if (maxWeight <= r.maxWeight.min) return 0;
+  if (maxWeight >= r.maxWeight.max) return 10;
 
   // Linear scale between min and max weight capacity
-  return 10 * (maxWeight - maxWeightRange.min) / (maxWeightRange.max - maxWeightRange.min);
+  return 10 * (maxWeight - r.maxWeight.min) / (r.maxWeight.max - r.maxWeight.min);
 };
 
 export const calculateMaxSpeedRating = (maxSpeed: number): number => {
   // Using linear scale since speed perception is fairly linear
-  if (maxSpeed <= maxSpeedRange.min) return 0;
-  if (maxSpeed >= maxSpeedRange.max) return 10;
+  if (maxSpeed <= r.maxSpeed.min) return 0;
+  if (maxSpeed >= r.maxSpeed.max) return 10;
 
   // Linear scale between min and max speed
-  return 10 * (maxSpeed - maxSpeedRange.min) / (maxSpeedRange.max - maxSpeedRange.min);
+  return 10 * (maxSpeed - r.maxSpeed.min) / (r.maxSpeed.max - r.maxSpeed.min);
 };
 
 export const calculateHorsePowerRating = (horsePower: number): number => {
   // Using a logarithmic scale since perceived power often follows a logarithmic curve
   // (difference between 1HP and 2HP feels bigger than 4HP and 5HP)
-  if (horsePower <= horsePowerRange.min) return 0;
-  if (horsePower >= horsePowerRange.max) return 10;
+  if (horsePower <= r.horsePower.min) return 0;
+  if (horsePower >= r.horsePower.max) return 10;
   
   // Log scale transformation
-  const logMin = Math.log(horsePowerRange.min);
-  const logMax = Math.log(horsePowerRange.max);
+  const logMin = Math.log(r.horsePower.min);
+  const logMax = Math.log(r.horsePower.max);
   const logPower = Math.log(horsePower);
   
   return 10 * (logPower - logMin) / (logMax - logMin);
@@ -165,11 +94,11 @@ export const calculateDecibelsRating = (decibels: number | undefined): number =>
 
   // Using linear scale on the decibel values since decibels are already logarithmic
   // (the decibel scale itself accounts for how humans perceive sound intensity)
-  if (decibels <= decibelsRange.min) return 10;
-  if (decibels >= decibelsRange.max) return 0;
+  if (decibels <= r.decibels.min) return 10;
+  if (decibels >= r.decibels.max) return 0;
 
   // Invert the scale since lower decibels is better
-  return 10 * (1 - ((decibels - decibelsRange.min) / (decibelsRange.max - decibelsRange.min)));
+  return 10 * (1 - ((decibels - r.decibels.min) / (r.decibels.max - r.decibels.min)));
 }
 
 export const calculateDimensionsRating = (dimensions: undefined | [number, number, number]): number => {
@@ -178,22 +107,22 @@ export const calculateDimensionsRating = (dimensions: undefined | [number, numbe
   const [depth, width, height] = dimensions;
 
   // Calculate score for depth (lower is better)
-  const depthScore = depth >= dimensionsRange.depth.max ? 0 :
-                     depth <= dimensionsRange.depth.min ? 10 :
-                     10 - (10 * (depth - dimensionsRange.depth.min) /
-                          (dimensionsRange.depth.max - dimensionsRange.depth.min));
+  const depthScore = depth >= r.dimensions.depth.max ? 0 :
+                     depth <= r.dimensions.depth.min ? 10 :
+                     10 - (10 * (depth - r.dimensions.depth.min) /
+                          (r.dimensions.depth.max - r.dimensions.depth.min));
 
   // Calculate score for width (lower is better)
-  const widthScore = width >= dimensionsRange.width.max ? 0 :
-                     width <= dimensionsRange.width.min ? 10 :
-                     10 - (10 * (width - dimensionsRange.width.min) /
-                          (dimensionsRange.width.max - dimensionsRange.width.min));
+  const widthScore = width >= r.dimensions.width.max ? 0 :
+                     width <= r.dimensions.width.min ? 10 :
+                     10 - (10 * (width - r.dimensions.width.min) /
+                          (r.dimensions.width.max - r.dimensions.width.min));
 
   // Calculate score for height (lower is better)
-  const heightScore = height >= dimensionsRange.height.max ? 0 :
-                      height <= dimensionsRange.height.min ? 10 :
-                      10 - (10 * (height - dimensionsRange.height.min) /
-                           (dimensionsRange.height.max - dimensionsRange.height.min));
+  const heightScore = height >= r.dimensions.height.max ? 0 :
+                      height <= r.dimensions.height.min ? 10 :
+                      10 - (10 * (height - r.dimensions.height.min) /
+                           (r.dimensions.height.max - r.dimensions.height.min));
 
   // Average the three scores - using linear scale since dimensions are physical measurements
   return (depthScore + widthScore + heightScore) / 3;
@@ -282,14 +211,14 @@ export const calculateCombinedRating = (row: Product): number => {
       details.distribution = distribution;
     }
 
-    // Star rating normalization using min-max from ratingRanges
-    if (starRating <= ratingRanges.starRatings.min) {
+    // Star rating normalization using min-max from r.rating
+    if (starRating <= r.rating.starRatings.min) {
       starRatingBase = 0;
-    } else if (starRating >= ratingRanges.starRatings.max) {
+    } else if (starRating >= r.rating.starRatings.max) {
       starRatingBase = 10;
     } else {
-      starRatingBase = 10 * (starRating - ratingRanges.starRatings.min) /
-                      (ratingRanges.starRatings.max - ratingRanges.starRatings.min);
+      starRatingBase = 10 * (starRating - r.rating.starRatings.min) /
+                      (r.rating.starRatings.max - r.rating.starRatings.min);
     }
   }
 
@@ -300,8 +229,8 @@ export const calculateCombinedRating = (row: Product): number => {
     // Calculate a weight factor based on the number of ratings
     // Using log scale for rating counts since perception of count differences follows logarithmic pattern
     const logCount = Math.log10(Math.max(1, details.ratingCount));
-    const logMin = ratingRanges.ratingCounts.log.min;
-    const logMax = ratingRanges.ratingCounts.log.max;
+    const logMin = r.rating.ratingCounts.log.min;
+    const logMax = r.rating.ratingCounts.log.max;
     
     // Weight from 0.0 (few ratings) to 1.0 (many ratings)
     const ratingWeight = Math.min(1.0, Math.max(0.0, (logCount - logMin) / (logMax - logMin)));
