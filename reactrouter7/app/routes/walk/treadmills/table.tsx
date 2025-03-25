@@ -15,10 +15,9 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import data, { dataObj } from './rows';
+import data, { dataObj, type Product } from './rows';
 import columnInfo, { columnsArray, isNumericColumn, isBooleanColumn } from './columns';
 import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
-import type { Product } from './types';
 import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
 import { useSearchParams, useNavigate } from 'react-router';
 import {FaX} from "react-icons/fa6";
@@ -266,41 +265,28 @@ const Filter: React.FC<{
 };
 
 // Helper function to get cell-specific rating using the column's getRating function
-const getCellRating = (row: Row<Product>, columnId: string): number => {
-  // Skip rating indicators for certain columns
-  const skipRatingColumns = ['rank', 'model', 'countries'];
-  if (skipRatingColumns.includes(columnId)) {
-    return 0;
-  }
-  
-  // Get the column definition
-  const columnDef = columnInfo[columnId];
-  
-  // Use the column's getRating function if available
-  if (columnDef && columnDef.getRating) {
-    return columnDef.getRating(row.original);
-  }
-  
-  return 0;
+const getCellScore = (row: Row<Product>, columnId: string): number => {
+  const score = row.original?.[columnId]?.score;
+  return score ?? 0
 };
 
 // Rating indicator component
-const RatingIndicator: React.FC<{ rating: number }> = ({ rating }) => {
-  if (rating <= 0) return null;
+const Score: React.FC<{ score: number }> = ({ score }) => {
+  if (score <= 0) return null;
   
-  const bgColorClass = rating >= 7 ? 'bg-success' :
-                       rating >= 4 ? 'bg-warning' :
+  const bgColorClass = score >= 7 ? 'bg-success' :
+                       score >= 4 ? 'bg-warning' :
                        'bg-danger';
   
-  const textColorClass = rating >= 4 ? 'text-dark' : 'text-white';
+  const textColorClass = score >= 4 ? 'text-dark' : 'text-white';
   
   return (
     <div
       className={`position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded opacity-85 ${bgColorClass} ${textColorClass} fw-bold`}
       style={{ width: '18px', height: '18px', fontSize: '11px' }}
-      title={`This attribute's rating: ${rating.toFixed(0)}/10`}
+      title={`This attribute's score: ${score.toFixed(0)}/10`}
     >
-      {rating.toFixed(0)}
+      {score.toFixed(0)}
     </div>
   );
 };
@@ -557,12 +543,12 @@ export default function Treadmills() {
                {/* Each cell in this row represents a different attribute for this product */}
                {row.getVisibleCells().map(cell => {
                  const columnId = cell.column.id;
-                 const rating = getCellRating(row, columnId);
+                 const score = getCellScore(row, columnId);
                  
                  return (
                    <td key={cell.id} className="position-relative">
                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                     <RatingIndicator rating={rating} />
+                     <Score score={score} />
                    </td>
                  );
                })}

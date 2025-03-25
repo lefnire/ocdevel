@@ -1,4 +1,4 @@
-import type {Brand, Product} from './types'
+import type {Brand, Product as ProductObj} from './types'
 import * as s from './scoring/index'
 import {produce} from 'immer'
 import _ from 'lodash'
@@ -6,28 +6,28 @@ import data from './data/index'
 import index from "./data/index";
 
 type Score = {score: number}
-export type Row = Product & {
+export type Product = ProductObj & {
   total: number
-  dimensions: Product['dimensions'] & Score
-  weight: Product['weight'] & Score
-  maxWeight: Product['maxWeight'] & Score
-  maxSpeed: Product['maxSpeed'] & Score
-  horsePower: Product['horsePower'] & Score
-  age: Product['age'] & Score
-  rating: Product['rating'] & Score
-  price: Product['price'] & Score
-  pickedBy: Product['pickedBy'] & Score
-  incline: Product['incline'] & Score
-  shock: Product['shock'] & Score
-  decibels: Product['decibels'] & Score
-  sturdy: Product['sturdy'] & Score
-  app: Product['app'] & Score
-  easyLube: Product['easyLube'] & Score
-  amazon: Product['amazon'] & Score
+  dimensions: ProductObj['dimensions'] & Score
+  weight: ProductObj['weight'] & Score
+  maxWeight: ProductObj['maxWeight'] & Score
+  maxSpeed: ProductObj['maxSpeed'] & Score
+  horsePower: ProductObj['horsePower'] & Score
+  age: ProductObj['age'] & Score
+  rating: ProductObj['rating'] & Score
+  price: ProductObj['price'] & Score
+  pickedBy: ProductObj['pickedBy'] & Score
+  incline: ProductObj['incline'] & Score
+  shock: ProductObj['shock'] & Score
+  decibels: ProductObj['decibels'] & Score
+  sturdy: ProductObj['sturdy'] & Score
+  app: ProductObj['app'] & Score
+  easyLube: ProductObj['easyLube'] & Score
+  amazon: ProductObj['amazon'] & Score
   score: number
 }
 
-function hydrate(d: Row) {
+function hydrate(d: Product) {
   if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
     d.brand.warranty.amazon = 2 * 12 // Asurion
   }

@@ -560,7 +560,7 @@ if (rankColumn) {
       if (column.key === "rank" || column.rating === 0 || column.key === "fakespot") {
         return;
       }
-      const rating = row[column]?.score
+      const rating = row[column.key]?.score
       if (!rating) {
         return;
       }
