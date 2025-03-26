@@ -111,6 +111,13 @@ export function GoogleConsentMode() {
       // See: https://cookieconsent.orestbida.com/reference/configuration-reference.html#guioptions
       // ...
 
+      guiOptions: {
+        consentModal: {
+          // layout: 'bar inline',
+          equalWeightButtons: false,
+        }
+      },
+
       // Trigger consent update when user choices change
       onFirstConsent: () => {
         updateGtagConsent();
