@@ -11,12 +11,10 @@ import type { Route } from "./+types/root";
 // import "./app.css";
 import "./root.scss";
 import React, {useEffect} from "react";
-import ReactGA from "react-ga4";
 import {Button, Nav, Navbar, Stack} from "react-bootstrap";
 import {LinkContainer} from "~/components/utils";
 import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
 import {SiTiktok} from "react-icons/si";
-import {GoogleConsentMode} from '~/components/analytics'
 
 export const links: Route.LinksFunction = () => [
   // {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -57,7 +55,7 @@ export function Layout({children}: { children: React.ReactNode }) {
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="google-adsense-account" content="ca-pub-3242350243827794"/>
       {import.meta.env.PROD && <>
-        <script defer data-domain="ocdevel.com" src="https://plausible.io/js/script.js"></script>
+        <script defer data-domain="ocdevel.com" src="https://plausible.io/js/script.pageview-props.tagged-events.js"></script>
       </>}
 
       <Meta/>
@@ -74,7 +72,6 @@ export function Layout({children}: { children: React.ReactNode }) {
 
 export default function App() {
   return <div>
-    <GoogleConsentMode />
     <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
       <LinkContainer to="/">
         <Navbar.Brand>OCDevel</Navbar.Brand>

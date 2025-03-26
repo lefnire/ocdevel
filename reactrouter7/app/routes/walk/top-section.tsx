@@ -1,5 +1,4 @@
 import React from "react";
-import {clickAffiliate} from '~/components/analytics'
 import {Button, Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
@@ -109,7 +108,6 @@ export function ProductsCard ({ title, links, products }: Products) {
           <small className="text-body-secondary mb-2">{renderNotes(product.notes)}</small>
           <a
             href={product.link}
-            onClick={clickAffiliate({label: product.key, value: product.price })}
             rel="noopener noreferrer"
             target="_blank"
             className={`btn btn-primary align-self-start plausible-event-name=affiliate plausible-event-product=${product.key}`}
