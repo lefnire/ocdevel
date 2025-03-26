@@ -1,0 +1,14 @@
+#cc-main,
+#cc-main .cm,
+#cc-main .pm {
+    --cc-modal-transition-duration: 0;
+}
+
+/*#cc-main .cm__btn-group {*/
+/*    gap: 10px;*/
+/*    flex-direction: row !important;*/
+/*}*/
+
+/*#cc-main .cm__btn--secondary {*/
+/*    margin-top: 0px !important;*/
+/*}*/
