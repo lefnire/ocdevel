@@ -383,7 +383,7 @@ export const columnsArray: ColumnDefinition[] = [
                   label: `${row.key}-${code}`,
                   value: getPrice(row) ?? 0
                 })}
-                className="me-1"
+                className={`me-1 plausible-event-name=affiliate plausible-event-product=${row.key}`}
               >
                 {code}
               </a>

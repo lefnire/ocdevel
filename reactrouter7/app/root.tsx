@@ -56,6 +56,10 @@ export function Layout({children}: { children: React.ReactNode }) {
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name="google-adsense-account" content="ca-pub-3242350243827794"/>
+      {import.meta.env.PROD && <>
+        <script defer data-domain="ocdevel.com" src="https://plausible.io/js/script.js"></script>
+      </>}
+
       <Meta/>
       <Links/>
     </head>
