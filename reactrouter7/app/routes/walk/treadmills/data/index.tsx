@@ -1,5 +1,6 @@
 import urevo_cyberpad from './urevo/cyberpad'
 import urevo_strol2spro from './urevo/strol2spro'
+import egofit_m2t from './egofit/m2t'
 import egofit_m2 from './egofit/m2'
 import urevo_3s from './urevo/3s'
 import urevo_2slite from './urevo/2slite'
@@ -30,7 +31,8 @@ const index = [
   urevo_cyberpad,
   urevo_strol2spro,
   egofit_m2,
-  
+  egofit_m2t,
+
   // New treadmills from OPML conversion
   urevo_3s,
   urevo_2slite,

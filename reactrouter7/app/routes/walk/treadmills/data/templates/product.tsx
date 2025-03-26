@@ -73,6 +73,7 @@ const info: Product = {
   },
   amazon: {
     value: true
+    // <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>
   },
   material: {
 

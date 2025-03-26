@@ -3,29 +3,28 @@ import brand from './brand'
 const links = {
   amazon: {},
   brand: {
-    US: "https://egofitwalker.com/products/egofit-comfortdeck-m2-under-desk-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
-    UK: "https://egofitwalker.com/products/egofit-comfortdeck-m2-under-desk-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
+    US: "https://egofitwalker.com/products/egofit-m2t-foldable-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
+    UK: "https://egofitwalker.com/products/egofit-m2t-foldable-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
   }
 }
 const info: Product = {
   brand,
-  model: "M2",
-  key: `${brand.key}_m2`,
-  description: "Compared to Urevo it's compact and quiet; but not on Amazon, no extended warranty, $100 more. Besides those differences, they're equals, which is why I stopped recommending Egofit",
+  model: "M2T",
+  key: `${brand.key}_m2t`,
   links,
 
   dimensions: {
-    value: [41.5, 22.8, 7],
+    value: [41.5, 27.4, 7],
     notes: () => <div>They've dialed the depth to the smallest comfortable even for long strides, to minimize space within the home. Part of this is removing face plates (the front is all belt), and part of it is leaning into the incline's modified gait.</div>
   },
   weight: {
-    value: 51.36,
+    value: 62,
   },
   maxWeight: {
     value: 245,
   },
   maxSpeed: {
-    value: 3.1,
+    value: 3.73,
   },
   horsePower: {
     value: 2.5,
@@ -35,7 +34,7 @@ const info: Product = {
     notes: () => <div>Unknown, but I think late 2023 / early 2024</div>
   },
   rating: {
-    value: [[4.7, 567], [488/576, 34/576, 25/576, 10/576, 19/576]],
+    value: [[4.67, 576], [488/576, 34/576, 25/576, 10/576, 19/576]],
     notes: () => <div>Ratings from their website.</div>
   },
   fakespot: {
@@ -44,11 +43,11 @@ const info: Product = {
     value: ["C", brand.fakespot],
   },
   price: {
-    value: 600,
-    sale: 500,
+    value: 660,
+    sale: 560,
   },
   pickedBy: {
-    value: ["me", "public"],
+    value: [],
   },
   incline: {
     value: 3,
@@ -58,7 +57,6 @@ const info: Product = {
   shock: {
     value: true,
     rating: 5,
-    notes: () => <div>They added this honey-comb thingy (watch their videos) to compress the walking pad when you land; with different firmness across the pad based on phase of step. </div>
   },
   easyLube: {
     value: 10,
