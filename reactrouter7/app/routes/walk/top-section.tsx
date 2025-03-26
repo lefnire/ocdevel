@@ -8,6 +8,10 @@ import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "./treadmills/utils";
+import {useSearchParams} from "react-router";
+import {type CompareProps, useCompare} from "~/routes/walk/treadmills/compare";
+import type {Product} from "~/routes/walk/treadmills/rows";
+import {FaArrowLeft} from "react-icons/fa";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
@@ -127,7 +131,20 @@ function Overview() {
   </div>
 }
 
-export default function TopSection() {
+export default function TopSection({
+  isCompareMode,
+  filteredData
+}: CompareProps) {
+  if (isCompareMode) {
+    const label = filteredData.map((row: Product) => {
+      return `${row.brand.name} ${row.model}`
+    }).join(' vs ')
+    return <Container>
+      <h3 className='text-center my-0'>{label} (Compared)</h3>
+      <div className='text-center'>This page contains affiliate links</div>
+    </Container>
+  }
+
   // TODO replace ./route.css with image loaders for remix
   return <Container className='mt-0'>
     <div className="text-center my-1">This page contains affiliate links</div>

@@ -15,12 +15,11 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import data, { dataObj, type Product } from './rows';
+import type { Product } from './rows';
 import { columnsArray, columnsObj } from './columns';
 import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
 import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
-import { useSearchParams, useNavigate } from 'react-router';
-import {FaX} from "react-icons/fa6";
+import type {CompareProps} from "~/routes/walk/treadmills/compare";
 
 // Custom styles
 const dottedBorderStyle: React.CSSProperties = {
@@ -286,37 +285,17 @@ const Score: React.FC<{ score: number }> = ({ score }) => {
   );
 };
 
-export default function Treadmills() {
+export default function ProductTable({
+  isCompareMode,
+  filteredData,
+  handleShowAll,
+}: CompareProps) {
   // Initialize sorting state with Rank column in descending order
   const [sorting, setSorting] = React.useState<SortingState>([
     { id: 'total', desc: true }
   ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
-  
-  // URL parameters for comparison
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
-  
-  // Get comparison keys from URL
-  const compareParam = searchParams.get('compare');
-  const compareKeys = React.useMemo(() => 
-    compareParam ? compareParam.split(',') : []
-  , [compareParam]);
-  const isCompareMode = compareKeys.length > 0;
-  
-  // Filter data based on comparison keys
-  const filteredData = React.useMemo(() => {
-    if (!isCompareMode) return data;
-    return data.filter(product => compareKeys.includes(product.key));
-  }, [compareKeys, isCompareMode]);
-  
-  // Handle "Show All" button click
-  const handleShowAll = () => {
-    // Remove the compare parameter from the URL
-    searchParams.delete('compare');
-    setSearchParams(searchParams);
-  };
-  
+
   // Column helper
   const columnHelper = createColumnHelper<Product>();
   
@@ -394,7 +373,7 @@ export default function Treadmills() {
       );
     });
   }, []);
-  
+
   // Create table instance
   const table = useReactTable<Product>({
     data: filteredData as Product[],
@@ -412,21 +391,15 @@ export default function Treadmills() {
   return (
     <div className="w-100">
       {/* Show All button when in comparison mode */}
-      {isCompareMode && <>
-        <Container>
-          <h3 className='text-center'>{dataObj[compareKeys[0]].brand.name} vs {dataObj[compareKeys[1]].brand.name} (Compared)</h3>
-        </Container>
-        <div className="mb-1">
-          <Button
-            size="sm"
-            variant="outline-secondary"
-            onClick={handleShowAll}
-          >
-            <FaArrowLeft /> Show All
-          </Button>
-        </div>
-      </>}
-      
+      {isCompareMode && <div className='mb-1'>
+        <Button
+          size="sm"
+          variant="outline-secondary"
+          onClick={handleShowAll}
+        >
+          <FaArrowLeft /> Show All
+        </Button>
+      </div>}
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
          {/* Normal table: columns are attributes, rows are products */}

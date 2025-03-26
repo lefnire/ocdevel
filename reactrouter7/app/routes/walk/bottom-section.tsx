@@ -1,15 +1,7 @@
 import React from 'react';
 import {Button, Container} from 'react-bootstrap';
-import { useNavigate, useSearchParams } from 'react-router';
 import data, { dataObj } from './treadmills/data/index';
-
-// CompareButton component for comparing two products
-interface CompareButtonProps {
-  product1Key: string;
-  product2Key: string;
-  className?: string;
-  index: number; // Add index prop to cycle through parts
-}
+import {type CompareProps} from "~/routes/walk/treadmills/compare";
 
 // Simple function to get a part by index, cycling through all parts
 function getPart(name: string, index: number): string {
@@ -23,21 +15,24 @@ function getPart(name: string, index: number): string {
   return parts[partIndex];
 }
 
-const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key, className = '', index }) => {
-  const [searchParam, setSearchParams] = useSearchParams();
-  
+type CompareButtonProps = CompareProps & {
+  key1: string;
+  key2: string;
+  index: number; // Add index prop to cycle through parts
+  handleCompare: CompareProps['handleCompare']
+}
+const CompareButton: React.FC<CompareButtonProps> = ({
+  key1,
+  key2,
+  index,
+  handleCompare
+}) => {
+
   // Get product objects
-  const product1 = dataObj[product1Key];
-  const product2 = dataObj[product2Key];
+  const product1 = dataObj[key1];
+  const product2 = dataObj[key2];
   
   if (!product1 || !product2) return null;
-  
-  const handleCompare = () => {
-    setSearchParams(params => {
-      params.set('compare', `${product1Key},${product2Key}`)
-      return params
-    });
-  };
 
   // Use deterministic selection based on button index
   const brand1 = getPart(product1.brand.name, index);
@@ -47,8 +42,8 @@ const CompareButton: React.FC<CompareButtonProps> = ({ product1Key, product2Key,
     <Button
       variant="light"
       size="sm"
-      className={`me-2 whitespace-nowrap ${className}`}
-      onClick={handleCompare}
+      className="me-2 whitespace-nowrap"
+      onClick={() => handleCompare(key1, key2)}
     >
       {brand1} vs {brand2}
     </Button>
@@ -86,7 +81,8 @@ const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
   return combinations;
 };
 
-export default function BottomSection() {
+export default function BottomSection(props: CompareProps) {
+  if (props.isCompareMode) { return null; }
   // Get top product combinations based on SEO
   const productCombinations = getTopProductCombinations();
   
@@ -96,9 +92,10 @@ export default function BottomSection() {
       {productCombinations.map((combo, index) => (
         <CompareButton
           key={`compare-${index}`}
-          product1Key={combo.product1Key}
-          product2Key={combo.product2Key}
+          key1={combo.product1Key}
+          key2={combo.product2Key}
           index={index} // Pass the index to cycle through parts
+          {...props}
         />
       ))}
     </div>
