@@ -17,10 +17,8 @@ export interface AffiliateLink {
 }
 
 export function affiliateLink(product: AffiliateLink, label: string) {
-    const onClick = clickAffiliate({label: product.key, value: product.price});
     return <a
         href={product.link}
-        onClick={onClick}
         target="_blank"
         className={`plausible-event-name=affiliate plausible-event-product=${product.key}`}
         rel="noopener noreferrer"

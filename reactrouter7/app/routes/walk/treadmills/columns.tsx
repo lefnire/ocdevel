@@ -62,11 +62,6 @@ export const columnsArray: ColumnDefinition[] = [
     getValue: (row): string => row.model,
     render: (row): React.ReactElement => {
       const link = getCurrentLink(row);
-      const price = getPrice(row);
-      const onClick = clickAffiliate({
-        label: row.key,
-        value: price ?? 0
-      });
 
       return (
         <a
@@ -74,7 +69,6 @@ export const columnsArray: ColumnDefinition[] = [
           target="_blank"
           rel="noopener noreferrer"
           className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
-          onClick={onClick}
         >
           {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
         </a>
@@ -380,10 +374,6 @@ export const columnsArray: ColumnDefinition[] = [
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={clickAffiliate({
-                  label: `${row.key}-${code}`,
-                  value: getPrice(row) ?? 0
-                })}
                 className={`me-1 plausible-event-name=affiliate plausible-event-product=${row.key}`}
               >
                 {code}
