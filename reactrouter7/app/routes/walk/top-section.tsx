@@ -1,6 +1,6 @@
 import React from "react";
 import {clickAffiliate} from '~/components/analytics'
-import {Button, Container} from "react-bootstrap";
+import {Badge, Button, Container} from "react-bootstrap";
 import './route.css'
 import Tabs, {tabStore, type TabKey, tabs} from './tabs'
 import {dataObj} from './treadmills/data/index'
@@ -8,10 +8,10 @@ import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "./treadmills/utils";
-import {useSearchParams} from "react-router";
-import {type CompareProps, useCompare} from "~/routes/walk/treadmills/compare";
 import type {Product} from "~/routes/walk/treadmills/rows";
-import {FaArrowLeft} from "react-icons/fa";
+import {useStore} from "./treadmills/store";
+import {useShallow} from "zustand/react/shallow";
+import {columnsObj} from "~/routes/walk/treadmills/columns";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
@@ -131,18 +131,35 @@ function Overview() {
   </div>
 }
 
-export default function TopSection({
-  isCompareMode,
-  filteredData
-}: CompareProps) {
-  if (isCompareMode) {
+function CompareMode() {
+  const [filteredData, urlFilters] = useStore(useShallow(s => [
+    s.filteredData,
+    s.urlFilters
+  ]))
+  function renderHeader() {
+    if (urlFilters.length) {
+      return <div>
+        Filters:
+        {urlFilters.map(filter => (
+          <Badge className='ms-1' key={filter.id}>{columnsObj[filter.id].label}={filter.value}</Badge>
+        ))}
+      </div>
+    }
     const label = filteredData.map((row: Product) => {
       return `${row.brand.name} ${row.model}`
     }).join(' vs ')
-    return <Container>
-      <h3 className='text-center my-0'>{label} (Compared)</h3>
-      <div className='text-center'>This page contains affiliate links</div>
-    </Container>
+    return <h3 className='text-center my-0'>{label} (Compared)</h3>
+  }
+  return <Container>
+    {renderHeader()}
+    <div className='text-center'>This page contains affiliate links</div>
+  </Container>
+}
+
+export default function TopSection() {
+  const isCompareMode = useStore(s => s.isCompareMode)
+  if (isCompareMode) {
+    return <CompareMode/>
   }
 
   // TODO replace ./route.css with image loaders for remix

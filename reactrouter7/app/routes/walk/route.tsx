@@ -1,14 +1,14 @@
 import Table from './treadmills/table'
 import TopSection from "./top-section";
 import BottomSection from './bottom-section';
-import {useCompare} from "~/routes/walk/treadmills/compare";
+import {SearchListener} from "./treadmills/store";
 
 export default function Route() {
-  const compareProps = useCompare()
   return <div>
-    <TopSection {...compareProps} />
-    <Table {...compareProps} />
-    <BottomSection {...compareProps} />
+    <SearchListener />
+    <TopSection />
+    <Table />
+    <BottomSection />
   </div>
 }
 

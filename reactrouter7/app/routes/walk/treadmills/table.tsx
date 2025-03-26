@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import {
   createColumnHelper,
   flexRender,
@@ -19,8 +19,9 @@ import type { Product } from './rows';
 import { columnsArray, columnsObj } from './columns';
 import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
 import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
-import type {CompareProps} from "./compare";
-import { useSearchParams } from "react-router";
+import {useStore} from "./store";
+import {useNavigate, useSearchParams} from "react-router";
+import {useShallow} from "zustand/react/shallow";
 
 // Custom styles
 const dottedBorderStyle: React.CSSProperties = {
@@ -285,71 +286,42 @@ const Score: React.FC<{ score: number }> = ({ score }) => {
     </div>
   );
 };
-export default function ProductTable({
-  isCompareMode,
-  filteredData,
-  handleShowAll,
-}: CompareProps) {
+export default function ProductTable() {
   // Access URL search parameters
-  const [searchParams] = useSearchParams();
+  const navigate = useNavigate()
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const [
+    isCompareMode,
+    filteredData,
+    urlFilters,
+  ] = useStore(useShallow(s => [
+    s.isCompareMode,
+    s.filteredData,
+    s.urlFilters,
+  ]))
   
   // Initialize sorting state with Rank column in descending order
   const [sorting, setSorting] = React.useState<SortingState>([
     { id: 'total', desc: true }
   ]);
-  const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
 
-  // Apply filters from URL search parameters
+  const [columnFilters, setColumnFilters] = useState<any[]>([])
+
   useEffect(() => {
-    const newFilters: any[] = [];
-    
-    // Look for filter parameters in the URL (format: filter_columnId=value)
-    searchParams.forEach((value, key) => {
-      if (key.startsWith('filter_')) {
-        const columnId = key.replace('filter_', '');
-        
-        // Only add filter if the column exists
-        if (columnsObj[columnId]) {
-          const columnDef = columnsObj[columnId];
-          
-          // Handle different data types
-          if (columnDef.dtype === "number") {
-            // For numeric columns, check if it's a range (min-max)
-            if (value.includes('-')) {
-              const [min, max] = value.split('-').map(v => parseFloat(v));
-              newFilters.push({
-                id: columnId,
-                value: [min, max]
-              });
-            } else {
-              // Single value treated as minimum
-              newFilters.push({
-                id: columnId,
-                value: [parseFloat(value), undefined]
-              });
-            }
-          } else if (columnDef.dtype === "boolean") {
-            // For boolean columns
-            newFilters.push({
-              id: columnId,
-              value: value.toLowerCase() === 'true'
-            });
-          } else {
-            // For string columns
-            newFilters.push({
-              id: columnId,
-              value: value
-            });
-          }
-        }
-      }
-    });
-    
-    // Update column filters
-    if (newFilters.length > 0) {
-      setColumnFilters(newFilters);
+    if (urlFilters.length > 0) {
+      setColumnFilters(urlFilters)
     }
-  }, [searchParams]);
+  }, [urlFilters])
+
+  const handleShowAll = () => {
+    setColumnFilters([])
+    useStore.setState({urlFilters: [], compareKeys: [], isCompareMode: false})
+    navigate('/walk')
+    // Remove the compare parameter from the URL
+    // searchParams.delete('compare');
+    // setSearchParams(searchParams);
+  };
+
   // Column helper
   const columnHelper = createColumnHelper<Product>();
   
