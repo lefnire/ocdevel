@@ -140,7 +140,7 @@ export function GoogleConsentMode() {
               // title: 'We use cookies',
               title: 'Cookies',
               // description: 'This website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.',
-              description: 'This website uses Google Analytics to help me understand how visitors use the site.',
+              description: 'I use Google Analytics to see which topics interest viewers',
               acceptAllBtn: 'Accept',
               acceptNecessaryBtn: 'Reject',
             },
