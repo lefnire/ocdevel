@@ -9,6 +9,6 @@ export default function Series(props) {
 export function meta() {
   return [
     { title: `${mlgShow.title} Podcast` },
-    { name: "description", content: mlgShow.teaser }
+    { name: "description", content: mlgShow.body }
   ]
 }

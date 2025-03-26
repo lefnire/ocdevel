@@ -44,21 +44,9 @@ function AboutSection({children, title, top=false}: AboutSection) {
   </>
 }
 
-function ShowMoreLess({show}: { show: ShowType }) {
-  const [showMore, setShowMore] = useState(false)
-
-  return <div className="mt-2">
-    {showMore ? show.body : show.teaser}
-    <a
-      className='ms-2 text-primary text-decoration-underline pointer'
-      onClick={() => setShowMore(!showMore)}
-    >Show {showMore ? "less" : "more"}</a>
-  </div>
-}
-
 function Links({podcastKey}: About) {
-  const matches = useMatches()
   if (podcastKey === "llh") { return null; }
+  return null;
   const common = {
     div: {xs: 12, md: 6, className: 'p-1'},
   }
@@ -66,7 +54,6 @@ function Links({podcastKey}: About) {
 
   function SuggestEpisode() {
     // no longer working
-    return null;
     return <Col {...common.div}>
       <IconButton
         {...btn}
@@ -104,7 +91,6 @@ function Links({podcastKey}: About) {
 
   function Community() {
     // Discord gone after Dept
-    return null;
     return <Popover_
       content={<div>Join fellow learners on Discord to ask questions and network</div>}
       opts={{placement: 'bottom'}}
@@ -155,7 +141,9 @@ function PodcastLinks({podcastKey, show}: About) {
           Icon={SiRss}
         >Custom (RSS)</IconButton>
       </ButtonGroup>
-      <ShowMoreLess show={show} />
+      <div className="mt-2">
+        {show.body}
+      </div>
     </>
   }
 
@@ -178,22 +166,14 @@ function PodcastLinks({podcastKey, show}: About) {
       >Spotify</IconButton>
       <IconButton
         {...btn}
-        href='https://podcasts.google.com/feed/aHR0cHM6Ly9tYWNoaW5lbGVhcm5pbmdndWlkZS5saWJzeW4uY29tL3Jzcw=='
-        Icon={RiGooglePlayLine}
-      >Google Podcasts</IconButton>
-      <IconButton
-        {...btn}
-        href="http://www.stitcher.com/s?fid=130679&refid=stpr"
-        Icon={SiStitcher}
-      >Stitcher</IconButton>
-      <IconButton
-        {...btn}
         href="http://machinelearningguide.libsyn.com/rss"
         rel="nofollow"
         Icon={SiRss}
       >Custom (RSS)</IconButton>
     </ButtonGroup>
-    <ShowMoreLess show={show} />
+    <div className="mt-2">
+      {show.body}
+    </div>
   </>
 }
 
@@ -201,8 +181,9 @@ function PodcastImage({podcastKey, show}: About) {
   // git-blame: links underneath; click to show
   return <div>
     <div className="logo mb-3">
-      <img
+      <Image
         width={290} height={290}
+        priority="true"
         src={podcastKey === "llh" ? img_llh : img_mlg}
         alt={show.title}
       />

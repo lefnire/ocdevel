@@ -9,6 +9,6 @@ export default function Series() {
 export function meta() {
   return [
     { title: `${llhShow.title} Podcast` },
-    { name: "description", content: llhShow.teaser }
+    { name: "description", content: llhShow.body }
   ]
 }
