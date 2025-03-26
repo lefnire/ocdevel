@@ -105,7 +105,7 @@ const links: Record<string, AffiliateLink> = {
         key: "lenovo_legion",
     },
     lenovo_legionpro: {
-        link: "https://www.bhphotovideo.com/c/product/1811267-REG/lenovo_83de0008us_16_legion_pro_7.html",
+        link: "https://amzn.to/4iH8Y1l",
         key: "lenovo_legionpro"
     },
     flydigi_bs1: {
