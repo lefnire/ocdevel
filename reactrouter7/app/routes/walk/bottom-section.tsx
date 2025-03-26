@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button, Container} from 'react-bootstrap';
 import data, { dataObj } from './treadmills/data/index';
-import {useSearchParams} from "react-router";
-import {useStore} from "./treadmills/store";
+import {type CompareProps} from "~/routes/walk/treadmills/compare";
 
 // Simple function to get a part by index, cycling through all parts
 function getPart(name: string, index: number): string {
@@ -16,23 +15,18 @@ function getPart(name: string, index: number): string {
   return parts[partIndex];
 }
 
-type CompareButtonProps = {
+type CompareButtonProps = CompareProps & {
   key1: string;
   key2: string;
   index: number; // Add index prop to cycle through parts
+  handleCompare: CompareProps['handleCompare']
 }
 const CompareButton: React.FC<CompareButtonProps> = ({
   key1,
   key2,
   index,
+  handleCompare
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  function handleCompare() {
-    setSearchParams(params => {
-      params.set('compare', `${key1},${key2}`)
-      return params
-    });
-  }
 
   // Get product objects
   const product1 = dataObj[key1];
@@ -49,7 +43,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({
       variant="light"
       size="sm"
       className="me-2 whitespace-nowrap"
-      onClick={handleCompare}
+      onClick={() => handleCompare(key1, key2)}
     >
       {brand1} vs {brand2}
     </Button>
@@ -87,9 +81,8 @@ const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
   return combinations;
 };
 
-export default function BottomSection() {
-  const isCompareMode = useStore(s => s.isCompareMode)
-  if (isCompareMode) { return null; }
+export default function BottomSection(props: CompareProps) {
+  if (props.isCompareMode) { return null; }
   // Get top product combinations based on SEO
   const productCombinations = getTopProductCombinations();
   
@@ -102,6 +95,7 @@ export default function BottomSection() {
           key1={combo.product1Key}
           key2={combo.product2Key}
           index={index} // Pass the index to cycle through parts
+          {...props}
         />
       ))}
     </div>
