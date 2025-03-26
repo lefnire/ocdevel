@@ -2,6 +2,10 @@ import React, {type ReactElement} from 'react'
 import {VideoButton} from "~/routes/walk/utils";
 import {clickAffiliate} from "~/components/analytics";
 
+import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp'
+import img_flexispot_en1 from '~/assets/products/flexispot_en1.jpg?w=100&h=100&format=webp'
+import img_godora_lube from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp'
+
 // TODO consolidate this with Product
 export interface AffiliateLink {
     title?: string
@@ -26,14 +30,14 @@ const links: Record<string, AffiliateLink> = {
     urevo_mat: {
         key: "urevo_mat",
         title: "Mat: Urevo",
-        image: '/walk_thumbs/mat.jpg',
+        image: img_urevo_mat,
         link: "https://amzn.to/3WrW0v5",
         notes: 'Prevents floor damage, protects knees',
         price: 40
     },
     godora_lube: {
         key: "godora_lube",
-        image: '/walk_thumbs/lube.jpg',
+        image: img_godora_lube,
         title: 'Lube: Godora',
         notes: () => <div>
           <span>Silicone treadmill lubricant. Apply every 50hrs</span>
@@ -51,7 +55,7 @@ const links: Record<string, AffiliateLink> = {
     flexispot_en1: {
         link: "https://amzn.to/40Kddmd",
         key: 'flexispot_en1',
-        image: '/walk_thumbs/desk.jpg',
+        image: img_flexispot_en1,
         title: 'Desk: FlexiSpot',
         notes: 'Electric sit/stand',
         price: 150,

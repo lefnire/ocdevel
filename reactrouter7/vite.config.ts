@@ -7,6 +7,7 @@ import {vitePluginOpml} from "./app/content/workflowy/vite-plugin-opml.ts";
 import remarkGfm from 'remark-gfm';
 import Sitemap from 'vite-plugin-sitemap'
 import getPrerenderRoutes from "./pre-render-routes.js"
+import { imagetools } from 'vite-imagetools'
 
 const siteMapArgs = getPrerenderRoutes(true);
 
@@ -33,6 +34,7 @@ export default defineConfig({
       outDir: "build/client",
     }),
 
+    imagetools()
   ],
 
   css: {

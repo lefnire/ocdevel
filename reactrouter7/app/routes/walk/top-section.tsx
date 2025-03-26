@@ -8,16 +8,19 @@ import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "./treadmills/utils";
-import {useSearchParams} from "react-router";
 import {type CompareProps, useCompare} from "~/routes/walk/treadmills/compare";
 import type {Product} from "~/routes/walk/treadmills/rows";
-import {FaArrowLeft} from "react-icons/fa";
+
+import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp'
+import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp'
+import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp'
+import { Image } from "@unpic/react";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
     {
       key: dataObj.urevo_cyberpad.key,
-      image: '/walk_thumbs/cyberpad.jpg',
+      image: img_urevo_cyberpad,
       title: 'Premium: CyberPad',
       notes: () => <div>
         <span>Sturdiest, quietest, most features.</span>
@@ -29,7 +32,7 @@ const treadmills: AffiliateLink_[] = [
     },
     {
       key: dataObj.urevo_3s.key,
-      image: '/walk_thumbs/3s.jpg',
+      image: img_urevo_3s,
       title: 'Value: 3S',
       notes: () => <div>
         <span>One size fits all, bang for buck.</span>
@@ -41,7 +44,7 @@ const treadmills: AffiliateLink_[] = [
     },
     {
       key: dataObj.deerrun_q1mini.key,
-      image: '/walk_thumbs/deerrun.jpg',
+      image: img_deerrun_q1mini,
       title: 'Budget: DeerRun',
       notes: () => <div>
         <span>Test the waters. No incline, 1-2yrs life; great price.</span>
@@ -90,7 +93,16 @@ export function ProductsCard ({ title, links, products }: Products) {
     return <div className="mb-4" key={product.key}>
       <div className="d-flex">
         <div className="me-3">
-          <img src={product.image} className="product-thumbnail" alt={product.title} />
+          <Image
+            src={product.image}
+            width={100}
+            height={100}
+            priority
+            background="#808080"
+            layout="constrained"
+            // className="product-thumbnail"
+            alt={product.title}
+          />
         </div>
         <div className="d-flex flex-column">
           <h6 className="mb-1">{product.title}</h6>

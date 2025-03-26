@@ -13,16 +13,14 @@ import {RiSpotifyLine} from 'react-icons/ri'
 import {SiRss} from 'react-icons/si'
 import {SiStitcher} from 'react-icons/si'
 import {icons, Popover_} from "~/components/utils";
-// import scout from "../../../assets/MLG-Option-1.jpg";
-// import deptLogo from "../../../assets/dept.jpg";
 import {IconButton} from "~/components/utils";
 import useStore from "~/store/episodes";
-import {FaBusinessTime} from "react-icons/fa";
-import {FaUserPlus} from "react-icons/fa";
 import type {ShowType} from "~/content/podcast/types";
 import {useShallow} from "zustand/react/shallow";
 
-const scout = "/assets/MLG-Option-1.jpg"
+import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp'
+import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp"
+import { Image } from '@unpic/react'
 
 interface About {
   podcastKey: "mlg" | "llh"
@@ -204,8 +202,8 @@ function PodcastImage({podcastKey, show}: About) {
   return <div>
     <div className="logo mb-3">
       <img
-        width="290" height="290"
-        src={podcastKey === "llh" ? "/llh290.png" : scout}
+        width={290} height={290}
+        src={podcastKey === "llh" ? img_llh : img_mlg}
         alt={show.title}
       />
     </div>

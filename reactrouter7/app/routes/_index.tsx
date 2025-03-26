@@ -13,6 +13,9 @@ import {FaFacebook} from 'react-icons/fa';
 import { Link } from "react-router";
 import type { Route } from "./+types/_index";
 
+import {Image} from '@unpic/react'
+import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp'
+
 export default function Home() {
   const links = <>
     <Stack direction="vertical" gap={2}>
@@ -80,7 +83,12 @@ export default function Home() {
   return <Container className='contact-hire'>
     <Row>
       <Col xs={12} lg={3} className='text-center'>
-        <img src="assets/avatar.jfif" className='rounded mb-3'/>
+        <Image
+          src={img_tyler}
+          width={200}
+          height={200}
+          className='rounded mb-3'
+        />
         {links}
       </Col>
       <Col xs={12} lg={9}>
