@@ -43,7 +43,6 @@ export function loader(props: Route.LoaderArgs) {
 export default function Full({loaderData}: Route.ComponentProps) {
   const props = loaderData
   const {episode: e, podcastKey, show, transcript, i=null} = loaderData
-  debugger
   const title = buildTitle(props)
 
   const resources = (

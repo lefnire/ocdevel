@@ -1,32 +1,21 @@
-import {Badge, Card} from "react-bootstrap";
+import {Badge, Card, Col, Row} from "react-bootstrap";
 import {Link} from "react-router";
 import React, {useMemo} from "react";
 import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast.tsx'
+import {FaCirclePlay} from "react-icons/fa6";
 
 export default function Teaser(props: EpisodeComponent) {
   const {podcastKey, episode: e, i} = props
   const link = `/${podcastKey}/${e.id}`
   const title = buildTitle(props)
 
-  const player = useMemo(() => <Player {...props} />, [])
-
   function renderContent() {
     if (e.archived) {
       return <div className='text-muted'>This episode is archived. As I'm re-doing the podcast, some episodes are
         outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
     }
-    if (e.empty || !e.default) {
-      return <Markdown_ Content={e.teaser} teaser />
-    }
-    return <>
-      <div className='fade-post'>
-        <Markdown_ Content={e.teaser} teaser/>
-        {e.teaser && <hr />}
-        <Markdown_ Content={e.default} teaser />
-        <div className='fade-post-bottom' />
-      </div>
-      <Link to={link}>Read More</Link>
-    </>
+    return <p className='mt-2'>{e.teaser}</p>
+    // git-blame for faded body render
   }
 
   function renderDebugging() {
@@ -40,13 +29,25 @@ export default function Teaser(props: EpisodeComponent) {
 
   return <Card className={`mb-3 card-post`}>
     <Card.Body>
-      <Card.Title>
-        <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
-      </Card.Title>
-      <DateHeader {...props} />
-      {player}
-      {renderDebugging()}
-      {renderContent()}
+      <Row className="align-items-center">
+        <Col>
+          <Card.Title>
+            <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
+          </Card.Title>
+          <DateHeader {...props} />
+          {renderDebugging()}
+          {renderContent()}
+        </Col>
+        <Col xs="auto" className="d-flex align-items-center">
+          <Link to={link} className="ms-auto">
+            <FaCirclePlay
+              size={75}
+              className="text-black"
+              style={{ cursor: 'pointer' }}
+            />
+          </Link>
+        </Col>
+      </Row>
     </Card.Body>
   </Card>
 }

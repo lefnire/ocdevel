@@ -47,7 +47,7 @@ export default function PodcastLayout({loaderData}: Route.ComponentProps) {
 
   return <>
     {renderNavBar()}
-    <Container fluid className="podcasts">
+    <Container fluid={isResources} className="podcasts">
       {renderResourcesInfo()}
       <Row>
         <Col {...col.left} className='sidebar'>

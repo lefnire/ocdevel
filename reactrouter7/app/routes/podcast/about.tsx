@@ -228,14 +228,8 @@ function Podcasts(props: About) {
     title='About'
     top={true}
   >
-    <Row>
-      <Col>
-        <PodcastImage {...props} />
-      </Col>
-      <Col>
-        <PodcastLinks {...props} />
-      </Col>
-    </Row>
+    <PodcastImage {...props} />
+    <PodcastLinks {...props} />
     <Links {...props} />
   </AboutSection>
 }
