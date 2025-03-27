@@ -18,7 +18,7 @@ export default function PodcastLayout({loaderData}: Route.ComponentProps) {
   const {podcastKey, show} = loaderData
 
   return <>
-    <Navbar />
+    {podcastKey === 'mlg' && <Navbar />}
     <Container className={`podcast-${podcastKey}`}>
       <Row>
         <Col xs={12} md={5} className='sidebar'>

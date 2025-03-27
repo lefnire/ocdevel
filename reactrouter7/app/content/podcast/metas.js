@@ -140,7 +140,7 @@ export const mlgShow = {
 
   teaser: "Machine learning audio course. Teaches ML fundamentals, models (shallow and deep), math, and more.",
 
-  body: "MLG teaches the fundamentals of machine learning and artificial intelligence. It covers intuition, models, math, languages, frameworks, etc. Where your other ML resources provide the trees, I provide the forest. Consider MLG your syllabus, with highly-curated resources for each episode's details at ocdevel.com. Audio is a great supplement during exercise, commute, chores, etc.",
+  body: "A machine learning podcast teaching the fundamentals of machine learning and artificial intelligence. It covers intuition, models, neural networks, math, languages, frameworks, etc. Where visual ML resources provide the trees, I provide the forest. Podcasts are a great supplement during exercise, commute, chores, etc.",
 
   useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
 };
@@ -165,6 +165,6 @@ export const llhShow = {
   image: "",
   date: new Date("05/09/2024"),
   teaser: "Unusual hacks in efficiencies, productivity, and health, primarily focused around a work-from-home office environment.",
-  body: "Over the years of developing productivity apps, making off-topic life-hack suggestions in MLG, etc; I decided to make a podcast dedicated to all my weird tips and tricks for improved productivity and efficiency in your life. Things like treadmill desks for work and study; healthy food for busy people; how to get to sleep faster, etc. Much of these lessons come from developing Habitica (a life-hack of its own), and knowing its community (with their great insights).",
+  body: "Life and tech hacks podcast. Over the years of developing productivity apps, making off-topic life-hack suggestions in MLG, etc; I decided to make a podcast dedicated to all my weird tips and tricks for improved productivity and efficiency in your life. Things like treadmill desks for work and study; healthy food for busy people; how to get to sleep faster, etc. Much of these lessons come from developing Habitica (a life-hack of its own), and knowing its community (with their great insights).",
   useLibsynPlayer: true
 }

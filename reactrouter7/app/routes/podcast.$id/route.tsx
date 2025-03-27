@@ -129,7 +129,7 @@ function ResourcesFlat({nids}: {nids: string[]}) {
 
 export function meta({data}: Route.MetaArgs) {
   return [
-    {title: `${data.episode.title} | ${data.show.title}`},
+    {title: `${data.episode.title} | ${data.show.title} Podcast`},
     {name: "description", content: data.episode.teaser}
   ]
 }
