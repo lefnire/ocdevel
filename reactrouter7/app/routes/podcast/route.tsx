@@ -2,17 +2,20 @@ import React from 'react';
 import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap'
 import {Outlet, Link, useMatches} from 'react-router';
 import {LinkContainer} from "~/components/utils"
-import Filters from "./sidebar/filters"
-import About from "./sidebar/about"
-import type {ShowType} from "~/content/podcast/types";
+import Filters from "./filters"
+import About from "./about"
+import type {Route} from './+types/route.tsx'
+import {loadShow} from './loaders'
 
-interface PodcastLayout {
-  podcastKey: "mlg" | "llh"
-  show: ShowType
+export function loader(props: Route.LoaderArgs) {
+  return loadShow(props)
 }
-export default function PodcastLayout({podcastKey, show}: PodcastLayout) {
+
+export default function PodcastLayout({loaderData}: Route.ComponentProps) {
   const matches = useMatches()
-  const isResources = matches[matches.length - 1].pathname === '/mlg/resources'
+  // const podcastKey = matches[1].id
+  const {podcastKey, show, episodesList} = loaderData
+  const isResources = matches.length > 2 && matches[2].id === 'mlg.resources'
 
   const col = isResources ?
     {left: {xs:12, md:4}, right: {xs:12, md:8}} :
@@ -53,9 +56,16 @@ export default function PodcastLayout({podcastKey, show}: PodcastLayout) {
           </Row>
         </Col>
         <Col {...col.right}>
-          <Outlet />
+          <Outlet context={{show, podcastKey, episodesList}} />
         </Col>
       </Row>
     </Container>
   </>
+}
+
+export function meta({data}: Route.MetaArgs) {
+  return [
+    {title: `${data.show.title} Podcast`},
+    {name: "description", content: data.show.body}
+  ]
 }

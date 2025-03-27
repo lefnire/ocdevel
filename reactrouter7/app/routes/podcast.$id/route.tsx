@@ -1,13 +1,21 @@
 import React, {useMemo} from "react";
-import {Card, Alert, Badge} from 'react-bootstrap'
+import {Card, Alert} from 'react-bootstrap'
 import {Accordion_} from "~/components/utils";
-import {Link} from "react-router";
+import {Link, Outlet, useOutletContext} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import {ResourceNode} from '~/routes/mlg.resources'
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import {Comments} from "~/components/comments";
-import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from './utils'
+import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast'
+import {loadShow} from "~/routes/podcast/loaders";
+import type {Route} from './+types/route.tsx'
+
+export function loader(props: Route.LoaderArgs) {
+  const parts = props.request.url.split('/')
+  const id = parts[parts.length - 1]
+  return loadShow(props, id)
+}
 
 function ResourcesFlat({nids}: {nids: string[]}) {
   let seen: Record<string, boolean> = {}
@@ -27,8 +35,9 @@ function ResourcesFlat({nids}: {nids: string[]}) {
   </div>
 }
 
-export default function Full(props: EpisodeComponent) {
-  const {episode: e, teaser, podcastKey, show, i=null} = props
+export default function Full({loaderData}: Route.ComponentProps) {
+  const props = loaderData
+  const {episode: e, podcastKey, show, i=null} = loaderData
   const title = buildTitle(props)
 
   const resources = (
@@ -38,15 +47,14 @@ export default function Full(props: EpisodeComponent) {
 
   const player = useMemo(() => <Player {...props} />, [])
 
-  const body = e.default
   const items = [
-    (body && {
+    (!e.empty && {
       title: "Show Notes",
       body: <>
         {podcastKey !== "llh" && <Alert variant="success">
           Support this show by trying a <Link to="/walk">walking desk</Link>!
         </Alert>}
-        <Markdown_ Content={body} />
+        <Outlet />
       </>
     }),
     (resources && {
@@ -84,4 +92,11 @@ export default function Full(props: EpisodeComponent) {
       </Card.Footer>}
     </Card>
   </div>
+}
+
+export function meta({data}: Route.MetaArgs) {
+  return [
+    {title: `${data.episode.title} | ${data.show.title}`},
+    {name: "description", content: data.episode.teaser}
+  ]
 }

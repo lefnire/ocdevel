@@ -14,6 +14,7 @@ export default function getPrerenderRoutes(forSitemap) {
     "/blog",
     "/mlg",
     "/mlg/resources",
+    "/mlg/recommend",
     "/llh",
     "/walk",
   ]

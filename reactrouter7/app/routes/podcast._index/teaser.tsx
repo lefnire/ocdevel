@@ -1,7 +1,7 @@
 import {Badge, Card} from "react-bootstrap";
 import {Link} from "react-router";
 import React, {useMemo} from "react";
-import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from './utils'
+import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast.tsx'
 
 export default function Teaser(props: EpisodeComponent) {
   const {podcastKey, episode: e, i} = props

@@ -7,3 +7,4 @@ export const created = "2018-05-28"
 export const guid = "f89f0db7-f2c6-414c-b893-fad3bee483cd"
 export const libsynEpisode = 16622990
 export const teaser = 'Two tips that helped me the most while learning ML. 1) Study on the treadmill; 2) 20% 80% hard/medium content split (1h/day)'
+export const empty = true

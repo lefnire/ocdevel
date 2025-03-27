@@ -1,15 +1,27 @@
-import React, {useCallback, useState, useMemo, useEffect, useRef} from "react";
+import React, {useState, useMemo} from "react";
 import filter from 'lodash/filter'
 import {Button, ButtonGroup} from 'react-bootstrap'
 import useStore from "~/store/episodes";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
 
-import Teaser from './episode/teaser';
-import type { Route } from "../+types/mlg._index";
+import Teaser from './teaser';
 import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/content/podcast/types'
 import {Adsense, AdsenseScript} from "~/components/adsense"
+import {useOutletContext} from "react-router";
+import type {LoaderReturn} from '../podcast/loaders'
+
+export default function Index() {
+  const {podcastKey, show, episodesList} = useOutletContext<LoaderReturn>()
+  const props = {podcastKey, show, episodesList}
+  return <div>
+    <FilterButtons {...props} />
+    <EpisodeList {...props} />
+    {podcastKey === "mlg" && <AdsenseScript />}
+  </div>
+}
+
 
 type PodcastList = Route.LoaderArgs & {
   episodesList: EpisodeType[]
@@ -106,13 +118,3 @@ function EpisodeList({podcastKey, episodesList, show}: PodcastList) {
     </InfiniteScroll>
   </div>
 }
-
-export default function Index(props: PodcastList) {
-  const {podcastKey} = props
-  return <div>
-    <FilterButtons {...props} />
-    <EpisodeList {...props} />
-    {podcastKey === "mlg" && <AdsenseScript />}
-  </div>
-}
-
