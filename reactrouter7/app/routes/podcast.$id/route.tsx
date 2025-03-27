@@ -89,7 +89,7 @@ export default function PodcastId({loaderData}: Route.ComponentProps) {
 
         <p className='mt-2'>{e.teaser}</p>
         {podcastKey !== "llh" && <Alert variant="success">
-          Stay healthy while you learn, try a <Link to="/walk">walking desk</Link>!
+          <Link to="/walk">Try a walking desk</Link> to stay healthy while you study or work!
         </Alert>}
       </Card.Body>
       {items.map((item, i) => (

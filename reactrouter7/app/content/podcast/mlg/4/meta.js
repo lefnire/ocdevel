@@ -9,4 +9,4 @@ export const file = {
   duration: "21:54"
 }
 export const libsynEpisode = 5440755
-export const teaser = "Overview of machine learning algorithms. Infer/predict -> error/loss -> train/learn. Supervised, unsupervised, reinforcement learning."
+export const teaser = "Introduces the core intuition behind machine learning algorithms by breaking down the prediction, error, and training loop. Explains key terms like features, weights, models, and matrices, and outlines the differences between supervised, unsupervised, and reinforcement learning with examples.."

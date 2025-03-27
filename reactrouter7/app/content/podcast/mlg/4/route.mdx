@@ -1,24 +1,74 @@
 export * from './meta.js'
 
-Learning (ML)
-- 3-step process
-  - Infer / Predict
-  - Error / Loss
-  - Train / Learn
-- First as batch from spreadsheet, then "online" going forward
-  - Pre-train your "model"
-  - "Examples"
-  - "Weights"
-- Housing cost example
-  - "Features"
-  - Infer cost based on num_rooms, sq_foot, etc
-  - Error / Loss function
+### The AI Hierarchy
+- Artificial Intelligence is divided into subfields such as reasoning, planning, and learning.
+- Machine Learning is the learning subfield of AI.
+- Machine learning consists of three phases:
+  1. **Predict (Infer)**
+  2. **Error (Loss)**
+  3. **Train (Learn)**
 
-Categories
-- Supervised learning
-  - Vision (CNN)
-  - Speech (RNN)
-- Unsupervised
-  - Market segmentation
-- Reinforcement & Semi-Supervised
-  - Planning (DQN): Games (chess, Mario); Robot movement
+### Core Intuition
+- An algorithm makes a prediction.
+- An error function evaluates how wrong the prediction was.
+- The model adjusts its internal weights (training) to improve.
+
+### Example: House Price Prediction
+- Input: Spreadsheet with features like bedrooms, bathrooms, square footage, distance to downtown.
+- Output: Predicted price.
+- The algorithm iterates over data, learns patterns, and creates a model.
+- A **model** = algorithm + learned weights.
+- **Features** = individual columns used for prediction.
+- **Weights** = coefficients applied to each feature.
+- The process mimics algebra: rows = equations, entire spreadsheet = matrix.
+- Training adjusts weights to minimize error.
+
+### Feature Types
+- **Numerical**: e.g., number of bedrooms.
+- **Nominal (Categorical)**: e.g., yes/no for downtown location.
+- Feature engineering can involve transforming raw inputs into more usable formats.
+
+### Linear Algebra Connection
+- Machine learning uses linear algebra to process data matrices.
+- Each row is an equation; training solves for best-fit weights across the matrix.
+
+## Categories of Machine Learning
+
+### 1. Supervised Learning
+- Algorithm is explicitly trained with labeled data (e.g., price of a house).
+- Examples:
+  - **Regression** (predicting a number): linear regression
+  - **Classification** (predicting a label): logistic regression
+
+### 2. Unsupervised Learning
+- No labels are given; the algorithm finds structure in the data.
+- Common task: **clustering** (e.g., user segmentation for ads).
+- Learns patterns without predefined classes.
+
+### 3. Reinforcement Learning
+- Agent takes actions in an environment to maximize cumulative reward.
+- Example: mouse in a maze trying to find cheese.
+- Includes rewards (+points for cheese) and penalties (–points for failure or time).
+- Learns policies for optimal behavior.
+- Algorithms: Deep Q-Networks, policy optimization.
+- Used in games, robotics, and real-time decision systems.
+
+## Terminology Recap
+- **Algorithm**: Code that defines a learning strategy (e.g., linear regression).
+- **Model**: Algorithm + learned weights (trained state).
+- **Features**: Input variables (columns).
+- **Weights**: Coefficients learned for each feature.
+- **Matrix**: Tabular representation of input data.
+
+## Learning Path and Structure
+- Machine learning is a subfield of AI.
+- Machine learning itself splits into:
+  - Supervised Learning
+  - Unsupervised Learning
+  - Reinforcement Learning
+- Each category includes multiple algorithms.
+
+## Resources
+- [MachineLearningMastery.com](https://machinelearningmastery.com): Accessible articles on ML basics.
+- *The Master Algorithm* by Pedro Domingos: Introductory audio-accessible book on ML.
+- Podcast’s own curated learning paths: [ocdevel.com/mlg/resources](http://ocdevel.com/mlg/resources)

@@ -16,7 +16,7 @@ export default function Resources({loaderData}: Route.ComponentProps) {
     <Navbar />
     <Container fluid className="resources">
       <div className='mb-3 mlg-update ps-3 small'>
-        These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. Support this show by trying a <Link to="/walk">walking desk</Link>!. [Updated 2020-10-28]
+        [Updated 2020-10-28] These are resources to learn machine learning & data science. The resources are in tree-structure, in descending order of value. Use the Filters on the left to narrow your search. Hover over each button for more help. To suggest a resource, or discuss/contend resources listed here, comment <a href="https://github.com/lefnire/ocdevel/issues/43" target="_blank">here</a>. <Link to="/walk">Try a walking desk</Link> to stay healthy while you study or work!
       </div>
       <Row>
         <Col xs={12} md={4} className='sidebar'>

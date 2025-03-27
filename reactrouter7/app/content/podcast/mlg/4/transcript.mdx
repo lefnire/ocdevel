@@ -1,0 +1,111 @@
+[00:01:08] February 12th, 2017, and this is episode four, Algorithms Intuition. In this fourth episode, we're finally going to get into the details of machine learning. So let's recall how machine learning fits into the overall artificial intelligence puzzle.
+
+[00:01:24] Artificial intelligence is broken down into multiple subfields, such as reasoning and knowledge representation, search and planning, and then there's learning. And learning has its roots dug into all of the other subfields. In each subfield, you might perform an action, and then you might make a mistake, and that learning from your mistake part is learning.
+
+[00:01:46] So machine learning is broken down into three steps. Infer or predict, error or loss, train or learn. When I say or, it means that these are synonymous words. So, infer or predict, Error or loss, train or learn. So let's do an example where we're playing chess. In chess, I might make a move. I might move the pawn.
+
+[00:02:09] And then let's pretend that immediately I can know how bad that decision was. Obviously that's not the case, but let's just pretend. Immediately I know how bad was that move. So the move itself was a prediction. I made a prediction to make a move, and then I made the move. And then determining how bad that was is called the error or loss function, which is step two of the machine learning process error or loss function.
+
+[00:02:31] The error or loss function tells me how badly I did. And then I train myself. I learn. So if my error function said that was a really, really, really bad move, then I'm going to update my model, what's called a model, I'll get back to that in a bit, by substantially reducing some numbers. These numbers are called weights.
+
+[00:02:54] But if I made a good move, then the error function might tell me to reinforce my weights. Good job. So infer or predict, error or loss function, and train or learn. So like I said, when I use the word or, it means that one or the other of these words might be used when you're reading a textbook or watching some video series.
+
+[00:03:15] I'm just going to start using one or the other word myself going forward, so I might only use the word error function instead of loss function. So here's how the process of machine learning usually works. Let's use an example that we're trying to predict the price of a house on the real estate market of Portland, Oregon, and this is kind of funny in machine learning.
+
+[00:03:35] You're going to see a lot of commonly used examples over and over. I call these the hello worlds of machine learning. where they reference a data set like a professor or a textbook or a video series will reference some very common data sets such as the iris flower data set or the Portland, Oregon real estate market data set.
+
+[00:03:57] So let's use the real estate example. What we're going to try to do is be able to predict The cost of a house in Portland, Oregon, given a number of circumstances. So for example, where is the house located? How close is it to downtown? What are the number of bedrooms, number of bathrooms, square footage, et cetera.
+
+[00:04:17] Now, the way that the machine learning process works is that you typically. Pre train your model by uploading a giant spreadsheet. Let's say 1, 000, 000 rows, 1, 000, 000 houses in Portland, Oregon, where we already know the price of the house. We upload this to our algorithm. So in machine learning, there are many algorithms It's dedicated to specific tasks.
+
+[00:04:42] So for example, in the next episode, you'll see linear regression is one of the best algorithms used for this exact type of scenario. You import your spreadsheet into your linear regression algorithm, for example, and the algorithm trains its model. It pre trains sort of. It takes all these rows, row for row for row for row and trains and trains and trains and trains until it thinks that it has a very good sense of what it takes to determine the cost of a house in Portland, Oregon.
+
+[00:05:15] So that initial step, it's kind of like pre training, but it's actually that's training. That's machine learning. That's part of that whole. three step process that we're talking about. And then going forward, now what you can do now that you have a trained model is that you can predict the price of a house that you've never seen before based on your model.
+
+[00:05:36] And then let's say that you're the real estate agent. You sold this house to some young couple. They haggled you down. So you gave them the price that came out of this machine learning algorithm, the predicted price, and they haggled you down to 30, 000 less. You go back to your machine learning algorithm and you say, dude, what are you trying to embarrass me?
+
+[00:05:57] It was 30, 000 less. And so you tell it that, and it goes back and it retrains its model. So every new example going forward is another piece of a training step. So that first phase of uploading your spreadsheet and training your model, that kind of pre training phase, I mean, that's just called training.
+
+[00:06:16] And then every new step, every one single example going forward, where you retrain your model is called. Okay, so we used a few words here. I'm going to tackle these words one by one. When I say algorithm, that's a piece of software written in Python and TensorFlow, typically. We're going to talk about languages and frameworks in a future episode, but that's a very popular starting ground in machine learning these days, Python and TensorFlow.
+
+[00:06:42] An algorithm is something like this. Say 100 lines of Python and TensorFlow code, which, for example, spells out the linear regression mathematical algorithm. Now, when you pipe in your spreadsheet, a million examples of houses that came with their prices tied to them, your algorithm Runs over those rows and crunches some numbers to determine what it finds in common with all of these houses that really determines the cost and it saves that information on disk or in a database or in memory, but kind of tied to the algorithm itself and the algorithm.
+
+[00:07:20] Plus the saved data sort of the the stored pattern the combination of those two things is called the model so the model is the algorithm plus the pattern that it has learned now the Spreadsheet that you import into your algorithm It has rows and columns the rows are the houses themselves house 1 house 2 house 3 house 4 Etc.
+
+[00:07:44] The columns are called features features are Pieces of the house that contribute to your prediction. So for example, number of bedrooms, number of bathrooms, square footage and distance to downtown. Each one of those pieces of a house is called a feature. So the rows are the houses and the columns are the Are the features of each of those houses and then typically at the end of the spreadsheet, the last column, the cost of the house and the machine learning algorithm, what it will do is it will take out that last column and remove it, put it aside and then consume the rest of the data.
+
+[00:08:22] of the spreadsheet, which is each house and all of its features. Now features sort of deserve a podcast episode of its own. Features can be multiple types of information. So for example, number of bedrooms, number of square footage, those are numbers, so those are numeral features. There can be nominal features, which are sort of categorical.
+
+[00:08:42] So is this house downtown or is it not rather than using distance to downtown? Yes or no, that's a nominal binary. Or you can say accepts what types of animals cats, Dogs or birds. That's a nominal feature that allows three classes and it's features that are the most important part of the learning process.
+
+[00:09:03] The algorithm determines what coefficient to put next to what feature and what you get is an equation. So that's the important part to realize. The algorithm will look at your row a single row at a time. This house has four bedrooms, two bathrooms, 800 square footage. I don't know about houses, so I'm obviously getting this wrong and is one mile to downtown.
+
+[00:09:29] Those are numbers. Those are numbers associated with each feature and the algorithm. What it learns is what number to multiply. Each of those features by this is called in mathematics a coefficient in machine learning algorithms It's called a weight. So let's say that the algorithm goes over all of your houses Row by row by row looks at all the features And determines that the best way to determine the cost of the house is multiplying the number of bedrooms by 0.
+
+[00:10:02] 3, the number of bathrooms by 0. 7, the square footage by 0. 5, and then what you get is a number. So the things that the algorithm learns is the weights, or the coefficients, that it puts next to the features. And the features are your variables, x, y, and z, in algebra. In fact, algebra is a primary math of machine learning.
+
+[00:10:27] It's actually linear algebra that we're going to be using in machine learning. What linear algebra does is it allows you to take a bunch of equations and stack them on top of each other and then solve for all of them together. And that's exactly what you're doing. When you pipe your spreadsheet into your algorithm, each row is basically a Algebraic equation where the machine learning algorithm is learning the coefficients next to each feature the whole Combination of rows by columns your entire spreadsheet is called a matrix in mathematics So your machine learning algorithm is working with a matrix of features in order to compute each A matrix of coefficients averages them all together, boils them down to a single formula that can then be used to make a prediction for the cost of a house in Portland, Oregon.
+
+[00:11:18] So that's very jam packed and we're going to be piecing this apart over coming episodes. So don't worry if you didn't understand it this time through, but let's take it from the top. Machine learning is three steps infer slash predict. An error or loss function and the train slash learn step. What we do is we will import a giant spreadsheet of a million houses from Portland, Oregon, and all of their features, whether it be number of houses, square footage, or distance to downtown.
+
+[00:11:51] And the last column of the spreadsheet is the actual price of each of those houses. The machine learning algorithm will take it row by row and actually make a prediction like a shot in the dark. Part of the algorithm will tell it how bad it did for that one row. How far were you off in that single instance?
+
+[00:12:12] That's the error function. The error function will tell you a number or a vector of numbers on how far off you were from your prediction. The machine learning algorithm will then update its coefficients or weights. That's the training process or the learning process. If the error function said you were off by a huge margin, then it will substantially change its numbers.
+
+[00:12:34] If it was off by a small amount, it will change its numbers by a small amount. And then now going forward, we can make predictions on new houses on the market that don't already have a price assigned to them. The machine learning algorithm will use this. It's algebraic. It's equation that it has constructed.
+
+[00:12:49] Make a prediction, a numeric prediction. We can give that to the buyers of the house. And if we are wrong about that prediction, we can tell the machine learning algorithm it was wrong by what amount using the error function and it will retrain its model. And that step is called online learning. Okay. So that's the general approach, but machine learning is actually broken down into three categories of algorithms.
+
+[00:13:15] Supervised learning, unsupervised learning, and reinforcement learning. Supervised learning is what I just described to you. Everything I just described to you up until this point is actually falls under the category of supervised learning. What supervised learning does is you train it with a bunch of information.
+
+[00:13:35] That spreadsheet that you upload. You train it on data. And you can train it on data going forward. But the point is that you're training it. You are training it. So it's like you have a newspaper in your hand and you're spanking it good dog or bad dog based on whether it got a prediction correct or incorrect.
+
+[00:13:52] Examples of this type of algorithm are Linear regression and logistic regression. So those are two types. Again, one will give you, for example, a number output. So the price of a house, that's one type of supervised learning algorithm, what's called a continuous function. So based on the inputs, you get a number and another type of supervised learning algorithm will predict for you a class.
+
+[00:14:17] So is what I'm looking at. A cat or a dog or a tree or what? That's supervised learning. Unsupervised learning is a little bit different. The machine will take your examples, the new rows that you give it, and it'll toss it into a bin. For example, this is called clustering, a sub branch of unsupervised learning.
+
+[00:14:36] It'll kind of put it in a bin, but that bin doesn't have a class. It's not like I'm putting this ball into the cats category and putting this ball into the dogs category. I'm looking at this ball and it. I'm kind of turning around in my hand. It's blue and it's a little bit misshapen. I'm actually just going to put it in this bin over here and then I pick up a new ball and this one's red and it's got spikes.
+
+[00:14:58] I'm going to put it in that bin over there. But when the human asks me kind of what I'm calling these bins or why I made my decisions, I can't really explain it. It's just that these balls over here have some something in common. A lot more in common with each other than compared to these balls over in this bin.
+
+[00:15:14] So unsupervised learning is the machine learning algorithm kind of figures out what is in common between this and that and segments portions of a data population. So an example of where. Unsupervised learning might be used is in user segmentation in advertising. So I want to determine based on user actions on Amazon.
+
+[00:15:37] com, what they click and whatnot, what kind of ad to show them. These types of users I will show ad one and these types of users I will show ad two. And that's market segmentation. Supervised and unsupervised learning are obviously a little bit different than each other. But as a machine learning engineer or a data scientist, In a professional setting, you're probably going to be using a mixture of both of these algorithms on a day to day basis for your job.
+
+[00:16:02] They're different, but they generally use the same types of mathematical equations. And don't be afraid that you're going to have to kind of make a giant mind shift from one to the next. On the other hand, Reinforcement learning is a totally different beast. Reinforcement learning, to me, is where most of the fun and the action is happening in machine learning right now.
+
+[00:16:24] I consider reinforcement learning to be sort of the real AI in machine learning. The stuff that makes you think. Is this thing thinking? It's the real juice and meat. It's the stuff that DeepMind is most heavily involved in. And it's also the stuff that sort of reaches its roots into the field of planning and searching and reasoning and knowledge representation in the other fields of artificial intelligence.
+
+[00:16:49] Supervised learning is really interesting because it applies to fields like vision and speech. You can imagine, for example, where you are training a machine learning algorithm on a corpus of dialogue, and it learns kind of what makes sentence structure common from one sentence to the next. So that it can actually construct a sentence on its own and have a conversation with you.
+
+[00:17:12] That's supervised learning. But reinforcement learning is involved in taking actions, taking steps. So for example, robots taking a step in an environment. Or an artificial intelligent bad guy in a video game trying to figure out how best to kill you. The way reinforcement learning works is that you give it a goal.
+
+[00:17:34] You Let's pretend that we've got a mouse in a maze trying to find cheese at the end of the maze. The goal is the cheese at the end of the maze, and then you give it a system of reward and punishment. That's the reinforcement step. So let's say that if it gets the cheese, it gets a hundred points, and if it falls into a pit of doom, then it loses a hundred points.
+
+[00:17:57] The reinforcement machine learning algorithm We'll figure out on its own what are the rules of the game, what are the actions it can take, and the best strategy to achieving its goal. So unlike supervised learning, Where you the programmer train the algorithm, which with a bunch of data and it learns the equation for what all this data has in common.
+
+[00:18:20] In order to predict a numeric value or a class, a reinforcement algorithm learns from its own behavior. What actions to take in an environment. So reinforcement learning is sort of action oriented and it trains itself. So you can see why this is the really juicy, cool stuff. Now, unfortunately I'm not very savvy on the world of reinforcement learning.
+
+[00:18:44] I'm actually learning. A lot of those algorithms myself right now, and also it's not a field that presents itself to people who are just getting started in the world of machine learning algorithms early on reinforcement learning is an advanced topic in machine learning. So we're not going to cover reinforcement learning for a long while.
+
+[00:19:03] Many, many, many episodes down the pike. But just to kind of give you a general idea of how they implement these algorithms, a common algorithm I see these days is called deep Q networks. So it uses deep learning machine learning algorithms in order to determine the best course of actions. A course of actions is called a pipeline.
+
+[00:19:23] Policy in reinforcement learning towards achieving a goal. You give it negative points for certain things in an environment and positive points for certain things in an environment and kind of the key to the puzzle for making a reinforcement learning algorithm solve its puzzle quickly and effectively is this thing called the floor is lava.
+
+[00:19:41] Basically every step the mouse takes in the maze is minus one. And so it wants to get to its goal as fast as possible. The floor is lava being alive hurts. So I need that cheese ASAP. So those are the general principles of machine learning. So starting from the top, again, this is all very hierarchical artificial intelligence, a subfield of artificial intelligence is machine learning.
+
+[00:20:05] Machine learning is broken down into three subfields, supervised learning, unsupervised learning. And reinforcement learning, and then in each subfield of machine learning, there are multiple algorithms. So for example, in supervised learning, there's linear regression, logistic regression, etc. And we're going to be in the next episode talking about linear regression, sort of the 101 hello world machine learning algorithm.
+
+[00:20:32] Now I'm going to go on a tiny little break, maybe three weeks. I'm going to put this podcast series out on Reddit and some other places. And I just want to see how interested people are in this series. If I see a lot of interest expressed, then of course I'm going to absolutely continue and I will do so in post haste.
+
+[00:20:50] If I don't see a lot of interest right away, then I will continue, but maybe I'll do it a little bit slower. I want some feedback. If you guys could go to ocdevel. com forward slash podcast series. It's forward slash machine learning and click on any episode and go into the comment section or you can just email me at Tyler Rinelli, T Y L E R R E N E L L E at gmail.
+
+[00:21:11] com with any feedback. I want to know are these podcast episodes, are they too rushed? Are they too basic? Again, my goal is to teach you machine learning. Anybody who wants to know machine learning, he doesn't have to come from a programming background or a mathematics background. Just let me know overall kind of how this approach is working for you.
+
+[00:21:30] And if there's any suggestions or improvements that you have as far as resources for this podcast episode, I'm going to post an article by machine learning mastery. com, which is a very good series of articles on introductory topics in machine learning. It's sort of what this podcast aims to be, but in article format.
+
+[00:21:49] And then, um, I'm going to recommend the Master Algorithm. The Master Algorithm is a really good book. It's sort of like this episode and potentially the next four or five episodes where I'm going to be spelling out the basics of some very, very important Fundamental machine learning algorithms. And the reason I like it is that you can actually, it's, it's very introductory, very accessible for newbies, and it's also an audio format.
+
+[00:22:13] And I'm going to try to be recommending as often as possible audio format, machine learning. And mathematics resources, because like I said in a prior episode, the best way to learn machine learning is through books and especially courses like the Coursera and Udacity courses that I'm going to recommend later, but having an audio supplementary backup resource while you're running or cleaning or commuting.
+
+[00:22:39] There's a lot of time in the day that a lot of people could learn some really valuable information from audio resources that's wasted. So as often as possible, I'm going to recommend audio resources. So check out that book, the master algorithm, and I hope to see you in the next episode.
