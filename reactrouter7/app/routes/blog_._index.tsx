@@ -4,11 +4,12 @@ import moment from "dayjs"
 import sortBy from "lodash/sortBy"
 import {Teaser} from '~/components/blog.tsx'
 import metas from "~/content/blog/metas.js"
+import {Container} from "react-bootstrap";
 
 export default function List() {
-  return <div>
+  return <Container>
     {metas.map(p => <Teaser key={p.id} p={p} />)}
-  </div>
+  </Container>
 }
 
 export function meta() {

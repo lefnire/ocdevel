@@ -1,10 +1,9 @@
 import {
   Link, NavLink,
-  useLocation,
   useNavigate
 } from "react-router";
-import {Button, Modal} from 'react-bootstrap'
-import React, {Suspense, useCallback} from "react";
+import {Button} from 'react-bootstrap'
+import React, {type ReactElement, useCallback} from "react";
 import {FaArrowLeft} from "react-icons/fa"
 import {Popover, OverlayTrigger, Accordion, Alert} from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
@@ -71,13 +70,6 @@ export const BackButton = ({to}: BackButton) => {
   </Button>
 };
 
-const Modal_ = <Modal show={true} animation={false}>
-  <Modal.Header>
-    <Modal.Title>Loading...</Modal.Title>
-  </Modal.Header>
-</Modal>
-
-
 export const dateFmt = 'MMM DD, YYYY';
 
 export function Popover_({children, content, id=null, title=null, opts={}}) {
@@ -126,7 +118,10 @@ export const icons = {
   right: <BiChevronRight />
 }
 
-export function Accordion_({items}) {
+interface Accordion_ {
+  items: {title: string, body: ReactElement}[]
+}
+export function Accordion_({items}: Accordion_) {
   if (!items?.length) {return null}
   return <Accordion defaultActiveKey="0">
     {compact(items).map((item, i) => <Accordion.Item key={""+i} eventKey={""+i}>

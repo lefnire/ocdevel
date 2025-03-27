@@ -1,6 +1,6 @@
 import wf from '../../workflowy/mlg-resources.opml'
 
-console.log(wf)
+// console.log(wf)
 
 export const picks = {
   ordered: {t: "Complete In Order", d: "Complete each section in order before moving on the next (unless specified as optional)."},

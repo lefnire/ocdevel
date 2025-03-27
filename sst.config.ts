@@ -11,12 +11,13 @@ export default $config({
     };
   },
   async run() {
+    const isProd = $app.stage === "production";
     const site = new sst.aws.React("ReactRouter7", {
       path: "reactrouter7/",
-      domain: {
+      domain: (isProd ? {
         name: domain,
         redirects: [`www.${domain}`]
-      },
+      } : undefined),
       server: {
         edge: {
           viewerRequest: {
@@ -44,6 +45,7 @@ if (uri.startsWith("/podcast")) {
     });
     return {
       url: site.url,
+      isProd,
     }
   },
 });
