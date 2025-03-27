@@ -29,8 +29,9 @@ export function useCompare(): CompareProps {
 
   const handleShowAll = () => {
     // Remove the compare parameter from the URL
-    searchParams.delete('compare');
-    setSearchParams(searchParams);
+    navigate('/walk')
+    // searchParams.delete('compare');
+    // setSearchParams(searchParams);
   };
 
   const handleCompare = (key1: string, key2: string) => {
