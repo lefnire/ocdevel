@@ -51,9 +51,6 @@ export default function Full({loaderData}: Route.ComponentProps) {
     (!e.empty && {
       title: "Show Notes",
       body: <>
-        {podcastKey !== "llh" && <Alert variant="success">
-          Support this show by trying a <Link to="/walk">walking desk</Link>!
-        </Alert>}
         <Outlet />
       </>
     }),
@@ -68,21 +65,27 @@ export default function Full({loaderData}: Route.ComponentProps) {
       title: "Transcript",
       body: <Markdown_ Content={e.transcript} />
     }),
-  ]
+  ].filter(Boolean)
 
   return <div>
     <BackButton to={podcastKey === "llh" ? "/llh" : "/mlg"} />
     <Card>
       <Card.Body>
-
         <Card.Title>{title}</Card.Title>
         <DateHeader {...props} />
         {player}
 
-        <Markdown_ Content={e.teaser} />
-        <Accordion_ items={items} />
-
+        <p className='mt-2'>{e.teaser}</p>
+        {podcastKey !== "llh" && <Alert variant="success">
+          Stay healthy while you learn, try a <Link to="/walk">walking desk</Link>!
+        </Alert>}
       </Card.Body>
+      {items.map((item, i) => (
+        <Card.Body key={i}>
+          <Card.Title>{item.title}</Card.Title>
+          <Card.Body>{item.body}</Card.Body>
+        </Card.Body>
+      ))}
       {e.guid && <Card.Footer>
         <Comments
           shortname="ocdevel"
