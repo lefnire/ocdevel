@@ -1,15 +1,14 @@
-
 import React from "react";
 import type { Product } from "./rows";
 import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
 import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
-
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faPublic = <FaStar style={{ color: '#999999' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
+import {UPDATED} from './data/index'
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -161,9 +160,9 @@ export const columnsArray: ColumnDefinition[] = [
     key: "price",
     label: "Price",
     dtype: "number",
-    description: "Sorting (?)",
+    description: "Info (?)",
     filterOptions: { min: false, max: true },
-    notes: () => <div>These filters filter by price; but sorting this column sorts by my gut-check on <em>value</em> (cost to quality).</div>,
+    notes: () => <div>Last price I saw this at ({UPDATED})</div>,
     getValue: (row) => getPrice(row),
     render: (row) => {
       const price = getPrice(row);

@@ -25,6 +25,8 @@ import wellfit_wp017 from './wellfit/wp017'
 import wellfit_wp021 from './wellfit/wp021'
 import citysports_cswp8 from './citysports/cswp8'
 import trailviber_walkingpad from './trailviber/walkingpad'
+import superun_06mini from './superun/06mini'
+import superun_06normal from './superun/06normal'
 
 const index = [
   // Original treadmills
@@ -57,8 +59,11 @@ const index = [
   wellfit_wp021,
   citysports_cswp8,
   trailviber_walkingpad,
+  superun_06mini,
+  superun_06normal,
 ]
 export default index
+export const UPDATED = "2025-03-27"
 
 export const dataObj = Object.fromEntries(
   index.map(product => ([
