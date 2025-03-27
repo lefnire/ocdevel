@@ -3,7 +3,7 @@ import {Card, Alert} from 'react-bootstrap'
 import {Link, Outlet, useOutletContext} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
-import {ResourceNode} from '~/routes/mlg.resources'
+import {ResourceNode} from '~/routes/mlg.resources/route'
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import {Comments} from "~/components/comments";
 import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast'
@@ -31,7 +31,7 @@ export function loader(props: Route.LoaderArgs) {
     const filePath = path.resolve(transcriptPath);
     transcript = fs.readFileSync(filePath, 'utf8');
   } catch (error) {
-    console.error(`Error loading transcript for episode ${id}:`, error);
+    // console.error(`Error loading transcript for episode ${id}:`, error);
   }
 
   return {

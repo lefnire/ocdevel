@@ -2,10 +2,11 @@ import React from 'react';
 import {Row, Col, Container, Navbar, Nav} from 'react-bootstrap'
 import {Outlet, Link, useMatches} from 'react-router';
 import {LinkContainer} from "~/components/utils"
-import Filters from "./filters"
+import Filters from "../mlg.resources/filters"
 import About from "./about"
 import type {Route} from './+types/route.tsx'
 import {loadShow} from './loaders'
+import _ from 'lodash'
 
 export function loader(props: Route.LoaderArgs) {
   return loadShow(props)
@@ -15,7 +16,8 @@ export default function PodcastLayout({loaderData}: Route.ComponentProps) {
   const matches = useMatches()
   // const podcastKey = matches[1].id
   const {podcastKey, show, episodesList} = loaderData
-  const isResources = matches.length > 2 && matches[2].id === 'mlg.resources'
+  const isResources = _.last(matches).id === 'mlg.resources'
+  console.log(matches)
 
   const col = isResources ?
     {left: {xs:12, md:4}, right: {xs:12, md:8}} :

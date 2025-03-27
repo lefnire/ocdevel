@@ -1,25 +1,15 @@
-import React, {useState} from "react";
-import {Link, useMatches} from "react-router";
-import {Button, ButtonGroup, Card} from 'react-bootstrap'
-import {Col, Row} from 'react-bootstrap'
-import {FaDiscord} from 'react-icons/fa'
+import React from "react";
+import {ButtonGroup, Card} from 'react-bootstrap'
+import {Col} from 'react-bootstrap'
 import {FaYoutube} from 'react-icons/fa'
-import {FaEnvelope} from 'react-icons/fa'
-import {FaGithub} from 'react-icons/fa'
 import {FaItunesNote} from 'react-icons/fa'
-import {FaLightbulb} from 'react-icons/fa'
-import {RiGooglePlayLine} from 'react-icons/ri'
 import {RiSpotifyLine} from 'react-icons/ri'
 import {SiRss} from 'react-icons/si'
-import {SiStitcher} from 'react-icons/si'
-import {icons, Popover_} from "~/components/utils";
 import {IconButton} from "~/components/utils";
-import useStore from "~/store/episodes";
 import type {ShowType} from "~/content/podcast/types";
-import {useShallow} from "zustand/react/shallow";
 
-import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp'
-import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp"
+import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=6'
+import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=6"
 import { Image } from '@unpic/react'
 
 interface About {
@@ -27,91 +17,33 @@ interface About {
   show: ShowType
 }
 
-type AboutSection = React.PropsWithChildren<{title: string, top?: boolean}>
-function AboutSection({children, title, top=false}: AboutSection) {
-  const [showAbout, toggleAbout] = useStore(useShallow(state => [state.showAbout, state.toggleAbout]))
-  return <>
-    <Card.Header
-      className={`pointer border-bottom-0 ${top ? '' : 'border-top'}`}
-      onClick={toggleAbout}
-    >
-      <Card.Title className='text-center mb-0'>
-        {showAbout ? icons.down : icons.right}{' '}
-        {title}
-      </Card.Title>
-    </Card.Header>
-    {showAbout && <Card.Body>{children}</Card.Body>}
-  </>
+// git-blame: moved them to ./extras
+// git-blame: dept links
+
+export default function About(props: About) {
+  return <Col className='sidebar-podcasts'>
+    <Card className='border-0'>
+      <PodcastImage {...props} />
+      <Card.Title className='text-center'>{props.show.title}</Card.Title>
+      <PodcastLinks {...props} />
+    </Card>
+  </Col>
 }
 
-function Links({podcastKey}: About) {
-  if (podcastKey === "llh") { return null; }
-  return null;
-  const common = {
-    div: {xs: 12, md: 6, className: 'p-1'},
-  }
-  const btn = {variant: 'light'}
-
-  function SuggestEpisode() {
-    // no longer working
-    return <Col {...common.div}>
-      <IconButton
-        {...btn}
-        href="/mlg/recommend"
-        Icon={FaLightbulb}
-        >Suggest Episode</IconButton>
-    </Col>
-  }
-
-  function MailingList() {
-    return <Popover_
-      content={<div>Get notified of new episodes and announcements</div>}
-      opts={{placement: 'bottom'}}
-    >
-      <Col {...common.div}>
-        <IconButton {...btn} href="http://eepurl.com/cUUWfD" target="_blank" Icon={FaEnvelope}>
-          Mailing List
-        </IconButton>
-      </Col>
-    </Popover_>
-  }
-
-  function PodcastProject() {
-    return <Popover_
-      content={<div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>}
-      opts={{placement: 'bottom'}}
-    >
-      <Col {...common.div}>
-        <IconButton {...btn} href="https://github.com/lefnire/gnothi" target='_blank' Icon={FaGithub}>
-          Podcast Project
-        </IconButton>
-      </Col>
-    </Popover_>
-  }
-
-  function Community() {
-    // Discord gone after Dept
-    return <Popover_
-      content={<div>Join fellow learners on Discord to ask questions and network</div>}
-      opts={{placement: 'bottom'}}
-    >
-      <Col {...common.div}>
-        <IconButton {...btn} href="https://discord.gg/2j2RUVbu" target='_blank' Icon={FaDiscord}>
-          Community
-        </IconButton>
-      </Col>
-    </Popover_>
-  }
-
-  return <>
-    <hr />
-    <Row>
-      <SuggestEpisode />
-      <MailingList />
-      <PodcastProject />
-      <Community />
-    </Row>
-  </>
+function PodcastImage({podcastKey, show}: About) {
+  // git-blame: links underneath; click to show
+  return <div>
+    <div className="logo mb-3">
+      <Image
+        width={290} height={290}
+        priority={true}
+        background="#EEEEEE"
+        src={podcastKey === "llh" ? img_llh : img_mlg}
+        alt={show.title}
+      />
+    </div>
+    {/*<MLGLinks />*/}
+  </div>
 }
 
 function PodcastLinks({podcastKey, show}: About) {
@@ -175,61 +107,4 @@ function PodcastLinks({podcastKey, show}: About) {
       {show.body}
     </div>
   </>
-}
-
-function PodcastImage({podcastKey, show}: About) {
-  // git-blame: links underneath; click to show
-  return <div>
-    <div className="logo mb-3">
-      <Image
-        width={290} height={290}
-        priority="true"
-        src={podcastKey === "llh" ? img_llh : img_mlg}
-        alt={show.title}
-      />
-    </div>
-    {/*<MLGLinks />*/}
-  </div>
-}
-
-function Updates(props: About) {
-  // hiding for now; bring bakc later
-  return null;
-  const show = useStore(s => s.showUpdates)
-  const toggle = useStore(s => s.toggleUpdates)
-  
-  return <AboutSection title='Updates' show={show} toggle={toggle}>
-    <div className="mb-3 mlg-update ps-3">
-      <Card.Title className='mb-1'>2024-01-11: Battle Station</Card.Title>
-      <p>See Tyler's workstation recommendations: <Link to="/walk">walking desk</Link> and <Link to="/blog/20240110-ergo-mouse-keyboard">keyboard + mouse.</Link></p>
-    </div>
-    {/* git-blame dept */}
-    <hr />
-    <div className="text-muted mb-3 ps-3">
-      <Card.Title className='mb-1'>2020-12-19: Podcast re-do</Card.Title>
-      <p>I'm re-doing MLG (2nd edition) to refresh resources & concepts to 2021. Starting now use <Link to="/mlg/resources">Resources</Link>, and ignore the resources discussed in the episodes. Then I can to keep resources updated without editing episodes. I'm removing checkpoints and irrelevant episodes to make room for new ones - so if you see see "holes" that's normal. I'll keep the Bitcoin Trading episode, as it's info-packed, but the podcast project is now <a href='https://gnothiai.com' target='_blank'>Gnothi</a>.</p>
-    </div>
-  </AboutSection>
-}
-
-export default function About(props: About) {
-  return <Col className='sidebar-podcasts'>
-    <Card className='border-0'>
-      <Podcasts {...props} />
-      <Updates {...props} />
-    </Card>
-  </Col>
-}
-
-// git-blame: dept links
-
-function Podcasts(props: About) {
-  return <AboutSection
-    title='About'
-    top={true}
-  >
-    <PodcastImage {...props} />
-    <PodcastLinks {...props} />
-    <Links {...props} />
-  </AboutSection>
 }

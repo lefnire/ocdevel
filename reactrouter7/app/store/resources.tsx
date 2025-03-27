@@ -83,7 +83,7 @@ export function useFilteredTree() {
   const filters = useStore(state => state.filters)
   const learnStyles = useStore(state => state.learnStyles)
 
-  console.log(filters)
+  // console.log(filters)
 
   return recurseTree(filters, learnStyles)
 }

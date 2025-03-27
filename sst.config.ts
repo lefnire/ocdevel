@@ -14,9 +14,6 @@ export default $config({
     const isProd = $app.stage === "production";
     const site = new sst.aws.React("ReactRouter7", {
       path: "reactrouter7/",
-      environment: {
-        is_prod: isProd
-      },
       domain: (isProd ? {
         name: domain,
         redirects: [`www.${domain}`]
