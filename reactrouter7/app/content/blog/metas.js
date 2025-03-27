@@ -8,7 +8,6 @@ import * as b22 from './20240131-vr-ar-work/meta.js';
 import * as b21 from './20240117-pomodoro-thinkers/meta.js';
 import * as b20 from './20240111-tylers-setup/meta.js';
 import * as b19 from './20240110-ergo-mouse-keyboard/meta.js';
-import * as b18 from './20240109-fitness-desk/meta.js';
 import * as b17 from './20240108-ml-gaming-laptop/meta.js';
 import * as b16 from './20200118-prevent-windows-auto-restart/meta.js';
 import * as b15 from './20210108-how-to-use-habitica/meta.js'
@@ -29,7 +28,6 @@ import * as b6 from './20201022-aws-batch-efs-mount/meta.js'
 
 const metas = [
   // pinned
-  b18,
   b19,
 
   b26,

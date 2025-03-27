@@ -4,60 +4,60 @@
 import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 
-import * as mlg001 from './mlg/001/meta.js'
-import * as mlg002 from './mlg/002/meta.js'
-import * as mlg003 from './mlg/003/meta.js'
-import * as mlg004 from './mlg/004/meta.js'
-import * as mlg005 from './mlg/005/meta.js'
-import * as mlg006 from './mlg/006/meta.js'
-import * as mlg007 from './mlg/007/meta.js'
-import * as mlg008 from './mlg/008/meta.js'
-import * as mlg009 from './mlg/009/meta.js'
-import * as mlg010 from './mlg/010/meta.js'
-import * as mlg011 from './mlg/011/meta.js'
-import * as mlg012 from './mlg/012/meta.js'
-import * as mlg013 from './mlg/013/meta.js'
-import * as mlg014 from './mlg/014/meta.js'
-import * as mlg015 from './mlg/015/meta.js'
-import * as mlg016 from './mlg/016/meta.js'
-import * as mlg017 from './mlg/017/meta.js'
-import * as mlg018 from './mlg/018/meta.js'
-import * as mlg019 from './mlg/019/meta.js'
-import * as mlg020 from './mlg/020/meta.js'
-import * as mlg021 from './mlg/021/meta.js'
-import * as mlg022 from './mlg/022/meta.js'
-import * as mlg023 from './mlg/023/meta.js'
-import * as mlg024 from './mlg/024/meta.js'
-import * as mlg025 from './mlg/025/meta.js'
-import * as mlg026 from './mlg/026/meta.js'
-import * as mlg027 from './mlg/027/meta.js'
-import * as mlg028 from './mlg/028/meta.js'
-import * as mlg029 from './mlg/029/meta.js'
-import * as mlg030 from './mlg/030/meta.js'
-import * as mla001 from './mla/001/meta.js'
-import * as mla002 from './mla/002/meta.js'
-import * as mla003 from './mla/003/meta.js'
-import * as mla004 from './mla/004/meta.js'
-import * as mla005 from './mla/005/meta.js'
-import * as mla006 from './mla/006/meta.js'
-import * as mla007 from './mla/007/meta.js'
-import * as mla008 from './mla/008/meta.js'
-import * as mla009 from './mla/009/meta.js'
-import * as mla010 from './mla/010/meta.js'
-import * as mla011 from './mla/011/meta.js'
-import * as mla012 from './mla/012/meta.js'
-import * as mlg031 from './mlg/031/meta.js'
-import * as mlg032 from './mlg/032/meta.js'
-import * as mla013 from './mla/013/meta.js'
-import * as mla014 from './mla/014/meta.js'
-import * as mla015 from './mla/015/meta.js'
-import * as mla016 from './mla/016/meta.js'
-import * as mla017 from './mla/017/meta.js'
-import * as mla018 from './mla/018/meta.js'
-import * as mla019 from './mla/019/meta.js'
-import * as mla020 from './mla/020/meta.js'
-import * as mlg033 from './mlg/033/meta.js'
-import * as mla022 from './mla/022/meta.js'
+import * as mlg1 from './mlg/1/meta.js'
+import * as mlg2 from './mlg/2/meta.js'
+import * as mlg3 from './mlg/3/meta.js'
+import * as mlg4 from './mlg/4/meta.js'
+import * as mlg5 from './mlg/5/meta.js'
+import * as mlg6 from './mlg/6/meta.js'
+import * as mlg7 from './mlg/7/meta.js'
+import * as mlg8 from './mlg/8/meta.js'
+import * as mlg9 from './mlg/9/meta.js'
+import * as mlg10 from './mlg/10/meta.js'
+import * as mlg11 from './mlg/11/meta.js'
+import * as mlg12 from './mlg/12/meta.js'
+import * as mlg13 from './mlg/13/meta.js'
+import * as mlg14 from './mlg/14/meta.js'
+import * as mlg15 from './mlg/15/meta.js'
+import * as mlg16 from './mlg/16/meta.js'
+import * as mlg17 from './mlg/17/meta.js'
+import * as mlg18 from './mlg/18/meta.js'
+import * as mlg19 from './mlg/19/meta.js'
+import * as mlg20 from './mlg/20/meta.js'
+import * as mlg21 from './mlg/21/meta.js'
+import * as mlg22 from './mlg/22/meta.js'
+import * as mlg23 from './mlg/23/meta.js'
+import * as mlg24 from './mlg/24/meta.js'
+import * as mlg25 from './mlg/25/meta.js'
+import * as mlg26 from './mlg/26/meta.js'
+import * as mlg27 from './mlg/27/meta.js'
+import * as mlg28 from './mlg/28/meta.js'
+import * as mlg29 from './mlg/29/meta.js'
+import * as mlg30 from './mlg/30/meta.js'
+import * as mla1 from './mla/1/meta.js'
+import * as mla2 from './mla/2/meta.js'
+import * as mla3 from './mla/3/meta.js'
+import * as mla4 from './mla/4/meta.js'
+import * as mla5 from './mla/5/meta.js'
+import * as mla6 from './mla/6/meta.js'
+import * as mla7 from './mla/7/meta.js'
+import * as mla8 from './mla/8/meta.js'
+import * as mla9 from './mla/9/meta.js'
+import * as mla10 from './mla/10/meta.js'
+import * as mla11 from './mla/11/meta.js'
+import * as mla12 from './mla/12/meta.js'
+import * as mlg31 from './mlg/31/meta.js'
+import * as mlg32 from './mlg/32/meta.js'
+import * as mla13 from './mla/13/meta.js'
+import * as mla14 from './mla/14/meta.js'
+import * as mla15 from './mla/15/meta.js'
+import * as mla16 from './mla/16/meta.js'
+import * as mla17 from './mla/17/meta.js'
+import * as mla18 from './mla/18/meta.js'
+import * as mla19 from './mla/19/meta.js'
+import * as mla20 from './mla/20/meta.js'
+import * as mlg33 from './mlg/33/meta.js'
+import * as mla22 from './mla/22/meta.js'
 
 import * as llh001 from './llh/1/meta.js'
 import * as llh002 from './llh/2/meta.js'
@@ -65,64 +65,64 @@ import * as llh003 from './llh/3/meta.js'
 import * as llh004 from './llh/4/meta.js'
 
 export const mlgList = map([
-  mlg001,
-  mlg002,
-  mlg003,
-  mlg004,
-  mlg005,
-  mlg006,
-  mlg007,
-  mlg008,
-  mlg009,
-  mlg010,
-  mlg011,
-  mlg012,
-  mlg013,
-  mlg014,
-  mlg015,
-  mlg016,
-  mlg017,
-  mlg018,
-  mlg019,
-  mlg020,
-  mlg021,
-  mlg022,
-  mlg023,
-  mlg024,
-  mlg025,
-  mlg026,
-  mlg027,
-  mlg028,
-  mlg029,
-  mlg030,
+  mlg1,
+  mlg2,
+  mlg3,
+  mlg4,
+  mlg5,
+  mlg6,
+  mlg7,
+  mlg8,
+  mlg9,
+  mlg10,
+  mlg11,
+  mlg12,
+  mlg13,
+  mlg14,
+  mlg15,
+  mlg16,
+  mlg17,
+  mlg18,
+  mlg19,
+  mlg20,
+  mlg21,
+  mlg22,
+  mlg23,
+  mlg24,
+  mlg25,
+  mlg26,
+  mlg27,
+  mlg28,
+  mlg29,
+  mlg30,
 
-  mla001,
-  mla002,
-  mla003,
-  mla004,
-  mla005,
-  mla006,
-  mla007,
-  mla008,
-  mla009,
-  mla010,
-  mla011,
-  mla012,
+  mla1,
+  mla2,
+  mla3,
+  mla4,
+  mla5,
+  mla6,
+  mla7,
+  mla8,
+  mla9,
+  mla10,
+  mla11,
+  mla12,
 
-  mlg031,
-  mlg032,
+  mlg31,
+  mlg32,
 
-  mla013,
-  mla014,
-  mla015,
-  mla016,
-  mla017,
-  mla018,
-  mla019,
-  mla020,
+  mla13,
+  mla14,
+  mla15,
+  mla16,
+  mla17,
+  mla18,
+  mla19,
+  mla20,
 
-  mlg033,
-  mla022,
+  mlg33,
+  mla22,
 ], e => ({
   mlg: !e.mla,
   id: e.mla ? `mla-${e.episode}` : e.episode,

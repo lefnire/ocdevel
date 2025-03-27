@@ -1,9 +1,0 @@
-export const id = '20240109-fitness-desk'
-export const url = "/walk"
-export const date = '2024-01-09'
-export const updated = '2025-01-25'
-export const title = "Walking Desk"
-export const pinned = true
-export const affiliate = true
-export const teaser = "Comparison of treadmill desk options. Under-desk walking pads: Egofit, Urevo, GoYouth, GoPlus, WalkingPad, Lifespan, iMovR. A video showing how and when to use each option. Links to stand/sit desks, monitor arms, and ergonomic peripherals."
-export const jsx = true;

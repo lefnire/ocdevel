@@ -27,8 +27,7 @@ export function loader(props: Route.LoaderArgs) {
   // Load the transcript, if available
   // FIXME better way to look these up
   const [series, epId] = id.startsWith('mla') ? id.split('-') : ['mlg', id]
-  const padded = _.padStart(epId, 3, "0")
-  const transcriptPath = `./app/content/podcast/${series}/${padded}/transcript.mdx`
+  const transcriptPath = `./app/content/podcast/${series}/${epId}/transcript.mdx`
   let transcript: string | null = null
   // Check if we have a transcript path for this episode
   try {

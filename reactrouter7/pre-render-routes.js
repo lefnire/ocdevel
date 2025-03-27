@@ -1,9 +1,7 @@
 import {mlgList, llhList} from "./app/content/podcast/metas.js";
-import blog_ from './app/content/blog/metas.js'
+import blog from './app/content/blog/metas.js'
 
 export const ssr = false
-
-const blog = blog_.filter(b => b.id !== "20240109-fitness-desk")
 
 export default function getPrerenderRoutes(forSitemap) {
   const blogRoutes = blog.map(b => `/blog/${b.id}`)
