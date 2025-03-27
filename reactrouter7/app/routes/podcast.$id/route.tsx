@@ -1,29 +1,34 @@
 import React, {useMemo} from "react";
 import {Card, Alert} from 'react-bootstrap'
-import {Link, Outlet, useOutletContext} from "react-router";
+import {Link, Outlet} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
-import {ResourceNode} from '~/routes/mlg.resources/route'
+import {ResourceNode} from '~/routes/mlg.resources/tree'
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import {Comments} from "~/components/comments";
-import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast'
-import {loadShow} from "~/routes/podcast/loaders";
+import {Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast'
 import type {Route} from './+types/route.tsx'
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash'
+import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
+
 
 export function loader(props: Route.LoaderArgs) {
-  const parts = props.request.url.split('/')
+  const {request} = props
+  const podcastKey = request.url.includes('/llh') ? 'llh' : 'mlg'
+  const pod = {
+    mlg: {show: mlgShow, obj: mlgObj},
+    llh: {show: llhShow, obj: llhObj}
+  }[podcastKey]
+  const parts = request.url.split('/')
   const id = parts[parts.length - 1]
-  const data = loadShow(props, id)
 
+  // Load the transcript, if available
   // FIXME better way to look these up
   const [series, epId] = id.startsWith('mla') ? id.split('-') : ['mlg', id]
   const padded = _.padStart(epId, 3, "0")
   const transcriptPath = `./app/content/podcast/${series}/${padded}/transcript.mdx`
-
-  
   let transcript: string | null = null
   // Check if we have a transcript path for this episode
   try {
@@ -35,12 +40,15 @@ export function loader(props: Route.LoaderArgs) {
   }
 
   return {
-    ...data,
-    transcript
+    podcastKey,
+    show: pod.show,
+    episode: pod.obj[id],
+    transcript,
+    i: null // can't remember what for?
   }
 }
 
-export default function Full({loaderData}: Route.ComponentProps) {
+export default function PodcastId({loaderData}: Route.ComponentProps) {
   const props = loaderData
   const {episode: e, podcastKey, show, transcript, i=null} = loaderData
   const title = buildTitle(props)

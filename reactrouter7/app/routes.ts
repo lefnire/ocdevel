@@ -49,9 +49,9 @@ export default [
       ])
 
     ]),
+    route("mlg/resources", "routes/mlg.resources/route.tsx", {id: "mlg.resources"}),
     route("mlg", "routes/podcast/route.tsx", {id: "mlg"}, [
       index("routes/podcast._index/route.tsx", {id: "mlg._index"}),
-      route("resources", "routes/mlg.resources/route.tsx", {id: "mlg.resources"}),
       route("recommend", "routes/mlg.recommend.tsx", {id: 'mlg.recommend'}),
       layout("routes/podcast.$id/route.tsx", {id: "mlg._podcast.$id"}, [
         route("1", "content/podcast/mlg/001/route.mdx", {id: "mlg.1"}),

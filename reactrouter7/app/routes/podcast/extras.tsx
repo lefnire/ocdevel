@@ -1,12 +1,12 @@
-import {ButtonGroup, Card, Col, Row} from "react-bootstrap";
+import {Card, Col, Row} from "react-bootstrap";
 import {IconButton, icons, Popover_} from "~/components/utils";
 import {FaDiscord, FaEnvelope, FaGithub, FaItunesNote, FaLightbulb, FaYoutube} from "react-icons/fa";
-import {RiSpotifyLine} from "react-icons/ri";
-import {SiRss} from "react-icons/si";
 import React from "react";
 import useStore from "~/store/episodes";
 import {Link} from "react-router";
 import {useShallow} from "zustand/react/shallow";
+import type {Route} from './+types/route.tsx'
+type Props = Route.ComponentProps['loaderData']
 
 type AboutSection = React.PropsWithChildren<{title: string, top?: boolean}>
 function AboutSection({children, title, top=false}: AboutSection) {
@@ -25,7 +25,7 @@ function AboutSection({children, title, top=false}: AboutSection) {
   </>
 }
 
-function Links({podcastKey}: About) {
+function Links({podcastKey}: Props) {
   if (podcastKey === "llh") { return null; }
   return null;
   const common = {
@@ -95,7 +95,7 @@ function Links({podcastKey}: About) {
   </>
 }
 
-function Updates(props: About) {
+function Updates(props: Props) {
   // hiding for now; bring bakc later
   return null;
   const show = useStore(s => s.showUpdates)

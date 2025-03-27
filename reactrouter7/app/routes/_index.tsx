@@ -14,7 +14,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/_index";
 
 import {Image} from '@unpic/react'
-import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp'
+import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp&effort=6'
 
 export default function Home() {
   const links = <>
@@ -85,6 +85,7 @@ export default function Home() {
       <Col xs={12} lg={3} className='text-center'>
         <Image
           src={img_tyler}
+          priority="true"
           width={200}
           height={200}
           className='rounded mb-3'

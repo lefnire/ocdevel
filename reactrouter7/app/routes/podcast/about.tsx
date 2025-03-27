@@ -11,16 +11,13 @@ import type {ShowType} from "~/content/podcast/types";
 import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=6'
 import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=6"
 import { Image } from '@unpic/react'
-
-interface About {
-  podcastKey: "mlg" | "llh"
-  show: ShowType
-}
+import type {Route} from './+types/route.tsx'
+type Props = Route.ComponentProps['loaderData']
 
 // git-blame: moved them to ./extras
 // git-blame: dept links
 
-export default function About(props: About) {
+export default function About(props: Props) {
   return <Col className='sidebar-podcasts'>
     <Card className='border-0'>
       <PodcastImage {...props} />
@@ -30,13 +27,13 @@ export default function About(props: About) {
   </Col>
 }
 
-function PodcastImage({podcastKey, show}: About) {
+function PodcastImage({podcastKey, show}: Props) {
   // git-blame: links underneath; click to show
   return <div>
     <div className="logo mb-3">
       <Image
         width={290} height={290}
-        priority={true}
+        priority="true"
         background="#EEEEEE"
         src={podcastKey === "llh" ? img_llh : img_mlg}
         alt={show.title}
@@ -46,7 +43,7 @@ function PodcastImage({podcastKey, show}: About) {
   </div>
 }
 
-function PodcastLinks({podcastKey, show}: About) {
+function PodcastLinks({podcastKey, show}: Props) {
   const btn = {size: 'sm', variant: 'light', target: '_blank'}
 
   if (podcastKey === "llh") {

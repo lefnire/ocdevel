@@ -9,27 +9,28 @@ import Teaser from './teaser';
 import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/content/podcast/types'
 import {Adsense, AdsenseScript} from "~/components/adsense"
-import {useOutletContext} from "react-router";
-import type {LoaderReturn} from '../podcast/loaders'
+import {llhShow, mlgShow, llhList, mlgList} from "~/content/podcast/metas.js";
+import type {Route} from './+types/route.tsx'
 
-export default function Index() {
-  const {podcastKey, show, episodesList} = useOutletContext<LoaderReturn>()
-  const props = {podcastKey, show, episodesList}
+export function loader({request}: Route.LoaderArgs) {
+  const llh = request.url.includes('/llh')
+  if (llh) {
+    return {podcastKey: "llh", show: llhShow, episodesList: llhList}
+  }
+  return {podcastKey: "mlg", show: mlgShow, episodesList: mlgList}
+}
+
+type ComponentProps = Route.ComponentProps['loaderData']
+export default function Index({loaderData}: Route.ComponentProps) {
+  const {podcastKey} = loaderData
   return <div>
-    <FilterButtons {...props} />
-    <EpisodeList {...props} />
+    <FilterButtons {...loaderData} />
+    <EpisodeList {...loaderData} />
     {podcastKey === "mlg" && <AdsenseScript />}
   </div>
 }
 
-
-type PodcastList = Route.LoaderArgs & {
-  episodesList: EpisodeType[]
-  show: ShowType
-  podcastKey: "mlg" | "llh"
-}
-
-function FilterButtons ({podcastKey}: PodcastList) {
+function FilterButtons ({podcastKey}: ComponentProps) {
   const [showMla, showMlg, newFirst, toggleNewFirst, setMla, setMlg] = useStore(useShallow(
     s => [s.mla, s.mlg, s.newFirst, s.toggleNewFirst, s.setMla, s.setMlg]
   ))
@@ -64,7 +65,7 @@ function FilterButtons ({podcastKey}: PodcastList) {
   </div>
 }
 
-function EpisodeList({podcastKey, episodesList, show}: PodcastList) {
+function EpisodeList({podcastKey, episodesList, show}: ComponentProps) {
   const sortedEps = useMemo(() => {
     return sortBy(episodesList, e => e.created)
   }, [podcastKey])
