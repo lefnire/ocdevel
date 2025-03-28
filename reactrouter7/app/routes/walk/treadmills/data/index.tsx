@@ -28,6 +28,8 @@ import trailviber_walkingpad from './trailviber/walkingpad'
 import superun_06mini from './superun/06mini'
 import superun_06normal from './superun/06normal'
 import lysole_walkingpad from './lysole/walkingpad'
+import rythmfun_ap01 from './rythmfun/ap01'
+import rythmfun_ap02 from './rythmfun/ap02'
 
 const index = [
   // Original treadmills
@@ -63,9 +65,11 @@ const index = [
   superun_06mini,
   superun_06normal,
   lysole_walkingpad,
+  rythmfun_ap01,
+  rythmfun_ap02,
 ]
 export default index
-export const UPDATED = "2025-03-27"
+export const UPDATED = "2025-03-28"
 
 export const dataObj = Object.fromEntries(
   index.map(product => ([
