@@ -82,7 +82,7 @@ const info: Product = {
         speed / incline / lights via app, track calories & distance over time. It's more convenient than the controller
         (easier to navigate, no beeps) and removes the controller as a point of failure</div>
   },
-  bump: 10,
+  bump: {extra: 10},
   easyLube: {
     value: 3,
   },

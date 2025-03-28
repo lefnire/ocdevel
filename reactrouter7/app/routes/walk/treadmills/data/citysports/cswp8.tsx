@@ -68,7 +68,7 @@ const info: Product = {
   app: {
     value: false,
   },
-  // bump: 0,
+  bump: {},
   easyLube: {
     value: 5,
   },

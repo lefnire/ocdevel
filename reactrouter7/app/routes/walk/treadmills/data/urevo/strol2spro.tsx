@@ -63,6 +63,6 @@ const info: Product = {
   app: {
     value: true,
   },
-  bump: 4
+  bump: {extra: 4}
 }
 export default info

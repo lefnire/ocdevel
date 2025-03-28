@@ -13,7 +13,6 @@ const info: Product = {
   model: "DK-38AB-2",
   key: `${brand.key}_dk38ab2`,
   description: "",
-  seo: 3,
   links,
   brand,
   dimensions: {
@@ -63,7 +62,7 @@ const info: Product = {
   app: {
     value: true,
   },
-  // bump: 0,
+  bump: {seo: ["","",""]},
   easyLube: {
     value: 10,
   },

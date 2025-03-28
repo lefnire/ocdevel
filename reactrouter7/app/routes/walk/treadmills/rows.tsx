@@ -31,7 +31,7 @@ function hydrate(d: Product) {
     d.brand.warranty.amazon = 2 * 12 // Asurion
   }
   d.brand.score = d.brand.rating ?? 5
-  d.brand.bump = d.brand.bump ?? 0
+  d.brand.bump = d.brand.bump ?? {}
 
   d.dimensions = d.dimensions || {}
   d.dimensions.score = s.dimensions(d)

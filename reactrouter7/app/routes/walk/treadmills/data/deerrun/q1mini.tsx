@@ -12,7 +12,6 @@ const links = {
 const info: Product = {
   brand,
   key: `${brand.key}_q1mini`,
-  seo: 3,
   model: "Q1 Mini",
   description: "Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.",
   links,
@@ -75,7 +74,7 @@ const info: Product = {
   amazon: {
     value: true,
   },
-  bump: 4,
+  bump: {extra: 4, seo: ["","",""]},
 
   pros: [
     {

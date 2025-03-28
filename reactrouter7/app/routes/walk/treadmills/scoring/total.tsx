@@ -1,4 +1,5 @@
 import type {ScoreFn} from "./utils";
+import type {Bump} from '../data/types'
 
 export const columnWeights = {
   rating: 10,
@@ -19,6 +20,16 @@ export const columnWeights = {
   links: 0,
   app: 0,
 }
+
+// Helper function to calculate bump value from a Bump object
+const calculateBumpValue = (bumpObj?: Bump): number => {
+  return (
+    (bumpObj?.up?.length ?? 0)
+    - (bumpObj?.down?.length ?? 0)
+    + (bumpObj?.extra ?? 0)
+  )
+};
+
 export const total: ScoreFn = (row) => {
   let totalScore = 0;
   let totalWeight = 0;
@@ -36,8 +47,12 @@ export const total: ScoreFn = (row) => {
   // Normalize the score to a 0-10 scale
   const normalizedScore = totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
 
-  // Apply any bump from product or brand
-  const bump = row.bump ?? row.brand.bump ?? 0;
+  // Calculate bumps from product and brand
+  const productBump = calculateBumpValue(row.bump);
+  const brandBump = calculateBumpValue(row.brand.bump);
+  
+  // Apply combined bump value
+  const totalBump = productBump + brandBump;
 
-  return normalizedScore + bump;
+  return normalizedScore + totalBump;
 };

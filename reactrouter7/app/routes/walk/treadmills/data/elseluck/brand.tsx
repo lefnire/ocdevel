@@ -18,6 +18,6 @@ const info: Brand = {
   },
   fakespot: "C",
   rating: 5,
-  bump: -1,
+  bump: {extra: -1},
 }
 export default info

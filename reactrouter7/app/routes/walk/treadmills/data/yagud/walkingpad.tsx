@@ -12,7 +12,6 @@ const info: Product = {
   model: "Walking Pad",
   key: `${brand.key}_walkingpad`,
   description: "",
-  seo: 3,
   links,
   brand,
   // description: "",
@@ -63,7 +62,7 @@ const info: Product = {
   app: {
     value: false,
   },
-  // bump: 0,
+  bump: {seo: ["","",""]},
   easyLube: {
     value: 10,
   },

@@ -17,6 +17,17 @@ interface Links {
   amazonPause?: "amazon" | "brand"
   notes?: () => ReactElement
 }
+// Add a modifier to this brand or product from things I see online
+export interface Bump {
+  // list of URLs complaining
+  up?: string[]
+  // list of URLs glowing
+  down?: string[]
+  // list of URLs pedaling
+  seo?: string[]
+  // extra from research (eg years before I started collecting this)
+  extra?: number
+}
 
 export interface Brand {
   key: string
@@ -31,7 +42,7 @@ export interface Brand {
   rating?: number
   location?: string
   notes?: () => ReactElement
-  bump?: number
+  bump?: Bump
 }
 export interface Product {
   brand: Brand
@@ -74,7 +85,7 @@ export interface Product {
   amazon: BoolVal
   // Use later
   material?: StringVal
-  bump?: number
+  bump?: Bump
   pros?: StringVal[]
   cons?: StringVal[]
 }
