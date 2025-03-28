@@ -4,7 +4,7 @@ const info: Product = {
   brand,
   model: "TR5000",
   key: `${brand.key}_tr5000`,
-  description: "The top-tier commercial-grade treadmill from LifeSpan, designed for intensive daily use in professional environments. This is their flagship model with the highest durability and weight capacity.",
+  description: "The top-tier commercial-grade treadmill from LifeSpan, designed for intensive daily use in professional environments. This is their flagship model with the highest durability and weight capacity. Premium commercial-grade construction designed for 9 hours of daily use, more than the TR1000 and TR1200.",
   links: {
     brand: {
       US:"https://lifespan-fitness.e9ppfh.net/GmyR4k"
@@ -50,8 +50,6 @@ const info: Product = {
     // notes: () => <div>Premium price point reflecting top-tier commercial-grade quality. $400 more than the TR1200 and $600 more than the TR1000.</div>
   },
   pickedBy: {
-    value: ["trusted", "public"],
-    notes: () => <div>Popular choice for commercial use in coworking spaces, indicating professional-level quality.</div>
   },
   incline: {
     value: 0,
@@ -63,21 +61,12 @@ const info: Product = {
   },
   decibels: {
   },
-  sturdy: {
-    value: true,
-    rating: 10,
-    notes: () => <div>Premium commercial-grade construction designed for 9 hours of daily use, more than the TR1000 and TR1200.</div>
-  },
   app: {
     value: false,
   },
   easyLube: {
     value: 4,
   },
-  amazon: {
-    value: true,
-  },
-
   pros: [
     {
       value: "Commercial use",

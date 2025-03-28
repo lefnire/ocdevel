@@ -12,7 +12,7 @@ const info: Brand = {
   // overriden in each item
   warranty: {
   },
+  pickedBy: {},
   fakespot: "D",
-  rating: 5,
 }
 export default info

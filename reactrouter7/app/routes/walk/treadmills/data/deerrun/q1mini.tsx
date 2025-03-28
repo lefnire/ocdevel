@@ -49,7 +49,8 @@ const info: Product = {
     notes: () => <div>Very affordable price point, especially during sales.</div>
   },
   pickedBy: {
-    value: ["me", "public"],
+    me: 4,
+    websites: [{value: 3}],
   },
   incline: {
     value: 0,
@@ -62,20 +63,12 @@ const info: Product = {
   decibels: {
     value: 45, //TODO double-check, and put in table
   },
-  sturdy: {
-    value: false,
-  },
   app: {
     value: true,
   },
   easyLube: {
     value: 5,
   },
-  amazon: {
-    value: true,
-  },
-  bump: {extra: 4, seo: ["","",""]},
-
   pros: [
     {
       value: "Very affordable",

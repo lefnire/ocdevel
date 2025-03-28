@@ -48,7 +48,8 @@ const info: Product = {
     sale: 500,
   },
   pickedBy: {
-    value: ["me", "public"],
+    me: 2,
+    websites: [{value: 3}]
   },
   incline: {
     value: 3,
@@ -64,13 +65,6 @@ const info: Product = {
     value: 10,
   },
   decibels: {
-  },
-  sturdy: {
-    value: true,
-    rating: 4,
-  },
-  amazon: {
-    value: false,
   },
   app: {
     value: false,

@@ -45,7 +45,6 @@ const info: Product = {
     sale: 290,
   },
   pickedBy: {
-    value: [],
   },
   incline: {
     value: 10,
@@ -59,19 +58,11 @@ const info: Product = {
   decibels: {
     value: 45,
   },
-  sturdy: {
-    value: false,
-    rating: 5,
-  },
   app: {
     value: true,
   },
-  bump: {},
   easyLube: {
     value: 6,
-  },
-  amazon: {
-    value: true
   },
   material: {
     value: "Carbon Steel"

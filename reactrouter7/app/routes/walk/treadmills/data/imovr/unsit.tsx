@@ -4,7 +4,7 @@ const info: Product = {
   brand,
   model: "Unsit",
   key: `${brand.key}_unsit`,
-  description: "Considered on the internet the highest quality underdesk treadmill, often over Lifespan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer Lifespan based on what I've seen.",
+  description: "Considered on the internet the highest quality underdesk treadmill, often over LifeSpan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer LifeSpan based on what I've seen. Those who've used it swear by its invincibility. I don't doubt this. I just don't like it's value.",
   links: {
     brand: {
       US: "https://www.imovr.com/products/unsit-desk-treadmill",
@@ -45,8 +45,8 @@ const info: Product = {
     notes: () => <div>Extremely high price point, even higher than premium LifeSpan models.</div>
   },
   pickedBy: {
-    value: ["public"],
-    notes: () => <div>Considered on the internet the highest quality underdesk treadmill, often over Lifespan. I'm is stumped by this, as the specs seem better in the Lifespan models.</div>
+    me: -5,
+    trusted: [{value: 1}],
   },
   incline: {
     value: 0,
@@ -58,21 +58,12 @@ const info: Product = {
   decibels: {
     value: 42.9,
   },
-  sturdy: {
-    value: true,
-    rating: 10,
-    notes: () => <div>I've not tested it, but those who have swear by its invincibility. I don't doubt this. I just don't like it's value.</div>
-  },
   app: {
     value: true,
   },
   easyLube: {
     value: 1,
   },
-  amazon: {
-    value: false,
-  },
-  bump: {extra: -12},
 
   pros: [
     {

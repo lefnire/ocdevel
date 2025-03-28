@@ -18,6 +18,6 @@ const info: Brand = {
     // notes: () => <div></div>
   },
   fakespot: "D",
-  rating: 5,
+  pickedBy: {}
 }
 export default info

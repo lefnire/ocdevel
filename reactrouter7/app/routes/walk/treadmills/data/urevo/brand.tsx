@@ -21,7 +21,12 @@ const info: Brand = {
     notes: () => <div>Amazon for peace of mind, but Urevo's is free and 2 years. Tough call.</div>
   },
   fakespot: "B",
-  rating: 8,
+  pickedBy: {
+    me: 3,
+    trusted: [
+      {label: "Affiliate Rebel", value: 3}
+    ]
+  },
   notes: () => <div>
     Urevo has the best value (price-to-quality ratio) of my research & testing. Eg, compared to Egofit M2 - they're available on Amazon, with extended warranty, cheaper, less sensitive to pet-hair, for otherwise same quality. They're the default choice by some package deals (like FlexiSpot walking desks). I recommend the Urevo 3S for mid-tier, CyberPad for quality. Their other models have some combination of good price, shock absorption, incline, good motor; but rarely all together. Expand other sections to compare. Note: their prices fluctuate, and there's often an Amazon Coupon (right under the price), check before buying.
 

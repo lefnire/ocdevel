@@ -10,6 +10,7 @@ const faPublic = <FaStar style={{ color: '#999999' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data/index'
+import {pickedBy} from "~/routes/walk/treadmills/scoring";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -171,6 +172,42 @@ export const columnsArray: ColumnDefinition[] = [
     },
   },
   {
+    key: "pickedBy",
+    label: "Favored By",
+    dtype: "string",
+    notes: () => <div>
+      <div>{faMe} Me. I've tested it, I love it. I often disagree with popular picks from review sites (eg I eschew WalkingPad & GoPlus), so if you trust my judgement on this page, look for this icon.</div>
+      <div>{faTrusted} Trusted Sources. Top picks by gear-heads I follow in hte underground (Discord, Reddit, etc) and I trust their opinions.</div>
+      <div>{faAffiliate} Affiliate Rebels. Popular purchase after someone reads my content, does their own research, and selects something else. When there's a trend, this is a high signal.</div>
+      {/*<div>{faPublic} Public Opinion. Generally just reviews and what's popular.</div>*/}
+      <div>{faWebsites} Websites. What's being recommended on popular review websites. This weighs little, since most of them just use web-scrapers on Amazon for most-popular treadmills. If I think they actually test the products, I'll flag "Trusted Sources".</div>
+    </div>,
+    getValue: (row) => {
+      return Object.keys(row.pickedBy || {})?.join('') || '';
+    },
+    getSortValue: (row) => row.pickedBy.score,
+    render: (row) => {
+      const rPick = row.pickedBy
+      const bPick = row.brand.pickedBy
+      const picks = {
+        me: (rPick?.me ?? bPick?.me ?? 0) > 0,
+        trusted: _.sumBy(rPick?.trusted || bPick?.trusted || [], "value") > 0,
+        websites: _.sumBy(rPick?.websites || bPick?.websites || [], "value") > 0
+      }
+      if (!(picks.me || picks.trusted || picks.websites)) return <></>;
+
+      return (
+        <div style={{ display: 'flex', gap: '8px' }}>
+          {picks.me && <span title="Me (Tyler)">{faMe}</span>}
+          {picks.trusted && <span title="Trusted Sources">{faTrusted}</span>}
+          {/*{pickedBy?.includes("affiliate") && <span title="Affiliate Rebels">{faAffiliate}</span>}*/}
+          {/*{pickedBy?.includes("public") && <span title="Popular based on ratings">{faPublic}</span>}*/}
+          {picks.websites && <span title="Recommended on review websites">{faWebsites}</span>}
+        </div>
+      );
+    },
+  },
+  {
     key: "maxWeight",
     label: "Capacity",
     dtype: "number",
@@ -218,15 +255,16 @@ export const columnsArray: ColumnDefinition[] = [
       );
     },
   },
-  {
-    key: "sturdy",
-    label: "Sturdy",
-    dtype: "boolean",
-    getValue: (row) => row.sturdy?.value,
-    render: (row) => {
-      return (row.sturdy?.score) ? '✓' : '';
-    },
-  },
+  // inferred via Favored By
+  // {
+  //   key: "sturdy",
+  //   label: "Sturdy",
+  //   dtype: "boolean",
+  //   getValue: (row) => row.pickedBy?.score,
+  //   render: (row) => {
+  //     return (row.pickedBy?.score > 5) ? '✓' : '';
+  //   },
+  // },
   {
     key: "horsePower",
     label: "Horsepower",
@@ -250,37 +288,6 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
     getValue: (row: Product) => row.age?.value,
     render: (row: Product): string => row.age?.value ?? "",
-  },
-  {
-    key: "pickedBy",
-    label: "Favored By",
-    dtype: "string",
-    notes: () => <div>
-      <div>{faMe} Me. I've tested it, I love it. I often disagree with popular picks from review sites (eg I eschew WalkingPad & GoPlus), so if you trust my judgement on this page, look for this icon.</div>
-      <div>{faTrusted} Trusted Sources. Top picks by gear-heads I follow in hte underground (Discord, Reddit, etc) and I trust their opinions.</div>
-      <div>{faAffiliate} Affiliate Rebels. Popular purchase after someone reads my content, does their own research, and selects something else. When there's a trend, this is a high signal.</div>
-      <div>{faPublic} Public Opinion. Generally just reviews and what's popular.</div>
-      <div>{faWebsites} Websites. What's being recommended on popular review websites. I down-weight these significantly, since most of them just use web-scrapers on Amazon for most-popular treadmills. If I think they actually test the products, I'll flag "Trusted Sources".</div>
-    </div>,
-    getValue: (row) => {
-      const val = row.pickedBy?.value;
-      return val ? val.join('') : '';
-    },
-    getSortValue: (row) => row.pickedBy.score,
-    render: (row) => {
-      const pickedBy = row.pickedBy?.value as string[] | undefined;
-      if (_.isEmpty(pickedBy)) return <></>;
-
-      return (
-        <div style={{ display: 'flex', gap: '8px' }}>
-          {pickedBy?.includes("me") && <span title="Me (Tyler)">{faMe}</span>}
-          {pickedBy?.includes("trusted") && <span title="Trusted Sources">{faTrusted}</span>}
-          {pickedBy?.includes("affiliate") && <span title="Affiliate Rebels">{faAffiliate}</span>}
-          {pickedBy?.includes("public") && <span title="Popular based on ratings">{faPublic}</span>}
-          {pickedBy?.includes("websites") && <span title="Recommended on review websites">{faWebsites}</span>}
-        </div>
-      );
-    },
   },
   {
     key: "shock",
@@ -349,9 +356,12 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "boolean",
     hideScore: true,
     notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
-    getValue: (row) => row.amazon?.value,
+    getValue: (row) => {
+      return !!Object.keys(row.links?.amazon)?.length
+    },
     render: (row) => {
-      return (row.amazon?.value) ? '✓' : '';
+      const hasAmazon = !!Object.keys(row.links?.amazon)?.length
+      return hasAmazon ? '✓' : '';
     },
   },
   {

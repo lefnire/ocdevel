@@ -16,7 +16,7 @@ const info: Product = {
   },
 
   brand,
-  description: "I just got this (Feb 12th 2025) and am in love. It's their newest, most upgraded model via Kickstarter. I'm retiring my 3S as a backup. Quality upgrades over 3S are worth the +$150.",
+  description: "I just got this (Feb 12th 2025) and am in love. It's their newest, most upgraded model via Kickstarter. I'm retiring my 3S as a backup. Quality upgrades over 3S are worth the +$150. Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer",
   dimensions: {
     value: [47.6, 23.6, 8.7], // 47.6"D x 23.6"W x 8.7"H
     notes: () => <div>Extremely tall. The back legs are 8.7", much taller than most mills. So make sure your standing desk is tall enough. Indeed, after switching from Urevo 3S to this, I had to raise my monitor arms.</div>
@@ -52,8 +52,9 @@ const info: Product = {
     sale: 500,
   },
   pickedBy: {
-    value: ["me", "trusted", "public"],
-
+    me: 10,
+    trusted: [{value: 3}],
+    websites: [{value: 1}]
   },
   incline: {
     value: 12,
@@ -70,24 +71,14 @@ const info: Product = {
     value: 30,
     notes: () => <div>Brushless motor, 30db - 30% quieter than average.</div>
   },
-  sturdy: {
-    value: true,
-    rating: 9,
-    
-    notes: () => <div>Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer</div>
-  },
   app: {
     value: true,
     notes: () => <div>I've seen many treadmills with apps, but never got any of them working until this one. Control
         speed / incline / lights via app, track calories & distance over time. It's more convenient than the controller
         (easier to navigate, no beeps) and removes the controller as a point of failure</div>
   },
-  bump: {extra: 10},
   easyLube: {
     value: 3,
-  },
-  amazon: {
-    value: true
   },
 
   // warranty: from brands

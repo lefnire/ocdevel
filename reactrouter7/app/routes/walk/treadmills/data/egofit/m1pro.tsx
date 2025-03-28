@@ -50,7 +50,7 @@ const info: Product = {
     value: 400,
   },
   pickedBy: {
-    value: ["public"],
+    websites: [{value: 3}],
   },
   incline: {
     value: 5,
@@ -63,20 +63,12 @@ const info: Product = {
   },
   decibels: {
   },
-  sturdy: {
-    value: true, // Assuming based on the brand reputation
-    rating: 6,
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 5, // Not mentioned in the data
   },
-  amazon: {
-    value: true,
-  },
-  bump: {seo: ["","",""]},
 
   pros: [
     {

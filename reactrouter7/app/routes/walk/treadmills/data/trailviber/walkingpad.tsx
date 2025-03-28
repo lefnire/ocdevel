@@ -45,7 +45,9 @@ const info: Product = {
     sale: 330,
   },
   pickedBy: {
-    value: [],
+    trusted: [
+      {label: "Affiliate Rebel", value: 1}
+    ]
   },
   incline: {
     value: 12,
@@ -59,20 +61,11 @@ const info: Product = {
   decibels: {
     // value: 50,
   },
-  sturdy: {
-    value: false,
-    rating: 5,
-    // notes: () => <div>List materials?</div>
-  },
   app: {
     value: false,
   },
-  bump: {},
   easyLube: {
     value: 5,
-  },
-  amazon: {
-    value: true
   },
   material: {
     value: "Alloy Steel"

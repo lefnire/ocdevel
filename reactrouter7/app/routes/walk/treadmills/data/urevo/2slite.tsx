@@ -45,7 +45,7 @@ const info: Product = {
     sale: 270,
   },
   pickedBy: {
-    value: ["me", "public"],
+    me: 1,
   },
   incline: {
     value: 8, // Exact value not specified, but it has incline
@@ -61,18 +61,11 @@ const info: Product = {
     rating: 3,
     notes: () => <div>A fair bit louder than Urevo 3S and Egofit M2. Still workable for meetings, but not if you want to be inconspicuous.</div>
   },
-  sturdy: {
-    value: true,
-    rating: 6,
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 5, // Not mentioned in the data
-  },
-  amazon: {
-    value: true,
   },
 
   cons: [

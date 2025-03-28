@@ -44,7 +44,9 @@ const info: Product = {
     sale: 400,
   },
   pickedBy: {
-    value: ["me", "trusted", "public"],
+    me: 3,
+    trusted: [{value: 1}],
+    websites: [{value: 1}]
   },
   incline: {
     value: 9,
@@ -56,13 +58,8 @@ const info: Product = {
   },
   decibels: {
   },
-  sturdy: {
-    value: true,
-    notes: () => <div>Very high quality, to accommodate running.</div>
-  },
   app: {
     value: true,
   },
-  bump: {extra: 4}
 }
 export default info

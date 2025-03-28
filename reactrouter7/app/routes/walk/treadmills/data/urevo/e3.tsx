@@ -44,7 +44,7 @@ const info: Product = {
     notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
-    value: [], // Not specifically picked by anyone according to the data
+    me: -1,
   },
   incline: {
     value: 3, // Exact value not specified, but it has incline
@@ -59,18 +59,11 @@ const info: Product = {
   decibels: {
     rating: 3,
   },
-  sturdy: {
-    value: false,
-    rating: 4,
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 7, // Not mentioned in the data
-  },
-  amazon: {
-    value: true,
   },
 
   pros: [

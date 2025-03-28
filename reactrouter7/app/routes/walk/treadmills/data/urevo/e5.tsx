@@ -46,7 +46,7 @@ const info: Product = {
     notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
-    value: ["public"],
+    me: 0,
   },
   incline: {
     value: 0,
@@ -60,21 +60,11 @@ const info: Product = {
   decibels: {
     rating: 3,
   },
-  sturdy: {
-    value: false,
-    rating: 4,
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 5, // Not mentioned in the data
-  },
-  amazon: {
-    value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
 
   pros: [

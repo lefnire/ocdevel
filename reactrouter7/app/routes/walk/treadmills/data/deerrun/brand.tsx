@@ -13,7 +13,10 @@ const info: Brand = {
   links,
   name: "DeerRun",
   fakespot: "C",
-  rating: 6,
+  pickedBy: {
+    me: 6,
+    websites: [{value: 1}]
+  },
   warranty: {},
 };
 export default info;

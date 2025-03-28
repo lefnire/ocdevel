@@ -9,7 +9,7 @@ const info: Brand = {
     amazon: {}
   },
   name: "iMovR",
-  rating: 5,
+  pickedBy: {},
   fakespot: "B",
   warranty: {},
   notes: () => <div>{nonBudgetNote}</div>

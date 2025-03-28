@@ -18,11 +18,14 @@ const info: Brand = {
   name: "Sperax",
   links,
   location: "China",
-  rating: 6,
   warranty: {
     brand: 3,
   },
   fakespot: "B",
+  pickedBy: {
+    websites: [{value: 3}],
+    trusted: [{value: 1}]
+  },
   notes: () => <div>Gaining popularity. I'm seeing them on various recommender sites, and with decent love in the underground.</div>
 }
 export default info

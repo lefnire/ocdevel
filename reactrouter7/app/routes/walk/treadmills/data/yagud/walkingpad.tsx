@@ -44,7 +44,7 @@ const info: Product = {
     sale: 90,
   },
   pickedBy: {
-    value: ["public", "websites"],
+    websites: [{value: 2}]
   },
   incline: {
     value: 0,
@@ -55,19 +55,11 @@ const info: Product = {
   decibels: {
     // value: 50,
   },
-  sturdy: {
-    value: false,
-    // notes: () => <div>List materials?</div>
-  },
   app: {
     value: false,
   },
-  bump: {seo: ["","",""]},
   easyLube: {
     value: 10,
-  },
-  amazon: {
-    value: true
   },
   material: {value: "Alloy steel"},
 

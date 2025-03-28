@@ -12,7 +12,7 @@ const info: Brand = {
   },
   name: "GoYouth",
   fakespot: "B",
-  rating: 3,
+  pickedBy: {},
   warranty: {}
 }
 export default info

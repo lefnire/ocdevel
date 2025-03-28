@@ -3,6 +3,18 @@ import _ from 'lodash'
 import {getCountryCodes, getPrice} from "../utils";
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
+import type {PickedBy} from "~/routes/walk/treadmills/data/types";
+
+const scorePickedBy = (pickedBy: undefined | PickedBy) => {
+  pickedBy = pickedBy || {}
+  const me = (pickedBy?.me ?? 0) * 0.45
+  const trusted = _.sumBy(pickedBy?.trusted ?? [], "value") * .45
+  const websites = _.sumBy(pickedBy?.websites ?? [], "value") * .1
+  return me + trusted + websites
+}
+export const brand: ScoreFn = (p) => {
+  return scorePickedBy(p.brand.pickedBy)
+}
 
 export const price: ScoreFn = (p) => {
   if (p.price?.rating) { return p.price.rating }
@@ -179,19 +191,14 @@ export const dimensions: ScoreFn = (p) => {
 }
 
 export const pickedBy: ScoreFn = (p) => {
-  if (p.pickedBy?.rating) { return p.pickedBy.rating }
-  const val = p.pickedBy.value
-  if (!val?.length) { return 0; }
-
-  let rating = 5; // Start with baseline
-
-  if (val.includes("me")) rating += 3;
-  if (val.includes("trusted")) rating += 4;
-  if (val.includes("affiliate")) rating += 1;
-  if (val.includes("public")) rating += 1;
-  if (val.includes("websites")) rating += 1;
-
-  return Math.min(10, rating); // Cap at 10
+  const baseline = 3; // so we'r enot showing a bunch of 0s
+  const me = (p.pickedBy?.me ?? p.brand.pickedBy?.me ?? 0)
+  const trusted = (p.pickedBy?.trusted ?? p.brand.pickedBy?.trusted ?? [])
+  const websites = (p.pickedBy?.websites ?? p.brand.pickedBy?.websites ?? [])
+  return baseline + scorePickedBy({me, trusted, websites})
+  // const pProduct = scorePickedBy(p.pickedBy)
+  // const pBrand = scorePickedBy(p.brand.pickedBy)
+  // return (pProduct * .5)+ (pBrand * .5)
 };
 
 export const incline: ScoreFn = (p) => {
@@ -212,12 +219,6 @@ export const shock: ScoreFn = (p) => {
   return 5;
 }
 
-export const sturdy: ScoreFn = (p) => {
-  if (p.sturdy?.rating) { return p.sturdy.rating }
-  const val = p.sturdy.value
-  if (val) { return 0; }
-  return 5;
-}
 
 export const app: ScoreFn = (p) => {
   if (p.app?.rating) { return p.app.rating }
@@ -229,9 +230,4 @@ export const app: ScoreFn = (p) => {
 export const easyLube: ScoreFn = (p) => {
   if (p.easyLube?.rating) { return p.easyLube.rating }
   return p.easyLube?.value ?? 5;
-}
-
-export const amazon: ScoreFn = (p) => {
-  if (p.amazon?.rating) { return p.amazon.rating }
-  return p.amazon.value ? 10 : 0;
 }

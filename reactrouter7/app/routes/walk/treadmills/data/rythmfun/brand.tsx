@@ -15,6 +15,8 @@ const info: Brand = {
   warranty: {
   },
   fakespot: "C",
-  rating: 5,
+  pickedBy: {
+    me: -1
+  }
 }
 export default info

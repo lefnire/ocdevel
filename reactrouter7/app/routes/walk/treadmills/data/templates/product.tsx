@@ -45,7 +45,9 @@ const info: Product = {
     sale: 500,
   },
   pickedBy: {
-    value: ["public", "websites"],
+    // me: 1,
+    // trusted: [{value: 1}],
+    // websites: [{value: 1}],
   },
   incline: {
     value: 0,
@@ -59,25 +61,13 @@ const info: Product = {
   decibels: {
     // value: 50,
   },
-  sturdy: {
-    value: false,
-    rating: 5,
-    // notes: () => <div>List materials?</div>
-  },
   app: {
     value: false,
   },
-  bump: {},
   easyLube: {
     value: 5,
   },
-  amazon: {
-    value: true
-    // <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>
-  },
-  material: {
-
-  },
+  material: {},
 
   // warranty: from brands
   pros: [

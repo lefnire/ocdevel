@@ -18,7 +18,6 @@ const info: Brand = {
     // notes: () => <div></div>
   },
   fakespot: "A",
-  rating: 5,
   // notes: () => <div>
   //   <div><b>Choosing the latest model</b></div>
   //   <div>

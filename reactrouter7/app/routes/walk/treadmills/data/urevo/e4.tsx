@@ -43,10 +43,10 @@ const info: Product = {
   price: {
     value: 200,
     sale: 170,
-    note: () => <div>{budgetNote}</div>
+    notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
-    value: [], // Not specifically picked by anyone according to the data
+    me: -1
   },
   incline: {
     value: 0,
@@ -59,21 +59,11 @@ const info: Product = {
   decibels: {
     // rating: 45,
   },
-  sturdy: {
-    value: false,
-    rating: 3,
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 5, // Not mentioned in the data
-  },
-  amazon: {
-    value: true,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability since it's on Amazon
   },
 
   pros: [

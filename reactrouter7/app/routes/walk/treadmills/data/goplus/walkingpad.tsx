@@ -50,9 +50,7 @@ const info: Product = {
     value: 135,
   },
   pickedBy: {
-    value: ["public", "websites"], // Listed as popular but not recommended
-    rating: 1,
-    notes: () => <div>Extremely popular but not recommended due to quality issues.</div>
+    websites: [{value: 5}],
   },
   incline: {
     value: 0, // Not mentioned in the data
@@ -63,19 +61,11 @@ const info: Product = {
   decibels: {
     value: 45,
   },
-  sturdy: {
-    value: false,
-    rating: 0,
-    notes: () => <div>Many reports of quality issues including belt drift and motor burnout.</div>
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 10,
-  },
-  amazon: {
-    value: true,
   },
 
   pros: [

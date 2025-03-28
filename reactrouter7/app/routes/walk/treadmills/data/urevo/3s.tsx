@@ -4,7 +4,7 @@ const info: Product = {
   brand,
   model: "3S",
   key: `${brand.key}_3s`,
-  description: "Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it.",
+  description: "Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it. The incline mechanism has a focal-point closer to the center, adding better stability to the structure than 2S Lite or EgoFit (which have triangle structure). The overall build quality (including the remote) is better than 2S Lite and EgoFit.",
   links: {
     amazon: {
       US: "https://amzn.to/4bE2JXR"
@@ -42,7 +42,8 @@ const info: Product = {
     sale: 300,
   },
   pickedBy: {
-    value: ["me", "public"],
+    me: 9,
+    trusted: [{label: "Affiliate Rebel", value: 1}]
   },
   incline: {
     value: 9,
@@ -56,11 +57,6 @@ const info: Product = {
     value: 46,
     notes: () => <div>52dB near treadmill, 46dB near microphone - relatively quiet.</div>
   },
-  sturdy: {
-    value: true,
-    rating: 7,
-    notes: () => <div>The incline mechanism has a focal-point closer to the center, adding better stability to the structure than 2S Lite or EgoFit (which have triangle structure). The overall build quality (including the remote) is better than 2S Lite and EgoFit.</div>
-  },
   app: {
     value: true,
   },
@@ -68,10 +64,6 @@ const info: Product = {
     value: 5,
     notes: () => <div>The rails are elevated, so you have to fish your fingers under the belt to pull it up and apply lubricant.</div>
   },
-  amazon: {
-    value: true,
-  },
-  bump: {extra: 5},
 
   cons: [
     {

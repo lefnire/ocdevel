@@ -19,10 +19,8 @@ export type Product = ProductObj & {
   incline: ProductObj['incline'] & Score
   shock: ProductObj['shock'] & Score
   decibels: ProductObj['decibels'] & Score
-  sturdy: ProductObj['sturdy'] & Score
   app: ProductObj['app'] & Score
   easyLube: ProductObj['easyLube'] & Score
-  amazon: ProductObj['amazon'] & Score
   total: Score
 }
 
@@ -30,8 +28,8 @@ function hydrate(d: Product) {
   if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
     d.brand.warranty.amazon = 2 * 12 // Asurion
   }
-  d.brand.score = d.brand.rating ?? 5
-  d.brand.bump = d.brand.bump ?? {}
+  d.brand.pickedBy = d.brand.pickedBy || {}
+  d.brand.score = s.brand(d)
 
   d.dimensions = d.dimensions || {}
   d.dimensions.score = s.dimensions(d)
@@ -72,17 +70,11 @@ function hydrate(d: Product) {
   d.decibels = d.decibels || {}
   d.decibels.score = s.decibels(d)
 
-  d.sturdy = d.sturdy || {}
-  d.sturdy.score = s.sturdy(d)
-
   d.app = d.app || {}
   d.app.score = s.app(d)
 
   d.easyLube = d.easyLube || {}
   d.easyLube.score = s.easyLube(d)
-
-  d.amazon = d.amazon || {}
-  d.amazon.score = s.amazon(d)
 
   d.total = {score: s.total(d)}
 }

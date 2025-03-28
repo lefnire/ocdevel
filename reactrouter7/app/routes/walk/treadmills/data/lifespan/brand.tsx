@@ -13,8 +13,11 @@ const info: Brand = {
     },
   },
   fakespot: "B",
-  rating: 5,
-  bump: {},
+  pickedBy: {
+    me: 0,
+    websites: [{value: 3}],
+    trusted: [{value: 10}]
+  },
   warranty: {},
   notes: () => <div>
     <div>{nonBudgetNote}</div>

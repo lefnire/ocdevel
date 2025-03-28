@@ -44,7 +44,7 @@ const info: Product = {
     sale: 120,
   },
   pickedBy: {
-    value: ["websites"],
+    websites: [{value: 3}],
   },
   incline: {
     value: 0,
@@ -55,19 +55,11 @@ const info: Product = {
   decibels: {
     value: 30,
   },
-  sturdy: {
-    value: false,
-    rating: 5,
-  },
   app: {
     value: true,
   },
-  bump: {seo: ["","",""]},
   easyLube: {
     value: 10,
-  },
-  amazon: {
-    value: true
   },
   material: {
     value: "Alloy Steel"

@@ -47,7 +47,11 @@ const info: Product = {
     sale: 90,
   },
   pickedBy: {
-    value: ["public", "websites"],
+    websites: [{
+      label: "Chicago Tribune",
+      url: "https://reviews.chicagotribune.com/sports-and-fitness/exercise-equipment/best-walking-pads",
+      value: 1
+    }]
   },
   incline: {
     value: 0,
@@ -60,19 +64,11 @@ const info: Product = {
   decibels: {
     value: 45,
   },
-  sturdy: {
-    value: false,
-    // notes: () => <div>Iron</div>
-  },
   app: {
     value: false,
   },
-  bump: {},
   easyLube: {
     value: 5,
-  },
-  amazon: {
-    value: true
   },
 
   // warranty: from brands

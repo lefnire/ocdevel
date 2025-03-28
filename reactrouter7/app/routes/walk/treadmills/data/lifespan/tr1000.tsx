@@ -4,8 +4,13 @@ const info: Product = {
   brand,
   model: "TR1000",
   key: `${brand.key}_tr1000`,
-  description: "A commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use.",
-  links: {brand: "https://lifespan-fitness.e9ppfh.net/eK0k5j"},
+  description: "A commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use. Commercial-grade construction designed for 6 hours of daily use.",
+  links: {
+    brand: {
+      US: "https://lifespan-fitness.e9ppfh.net/eK0k5j"
+    },
+    amazon: {}
+  },
 
   dimensions: {
     value: [58, 28.5, 7.25], // 58"L x 28.5"W x 7.25"H
@@ -53,12 +58,6 @@ const info: Product = {
     
     notes: () => <div>Significantly higher price point than consumer models, reflecting commercial-grade quality.</div>
   },
-  pickedBy: {
-    value: ["public"],
-    rating: 7,
-    
-    notes: () => <div>Popular choice for commercial use in coworking spaces, indicating professional-level quality.</div>
-  },
   incline: {
     value: 0, // Not mentioned in the data
     rating: 0,
@@ -71,24 +70,11 @@ const info: Product = {
   },
   decibels: {
   },
-  sturdy: {
-    value: true,
-    rating: 9,
-    
-    notes: () => <div>Commercial-grade construction designed for 6 hours of daily use.</div>
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     rating: 4,
-  },
-  amazon: {
-    value: false, // Link is to LifeSpan website, not Amazon
-    rating: 0,
-  },
-  countries: {
-    value: ["US"] // Assuming US availability
   },
 
   pros: [

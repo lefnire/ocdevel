@@ -9,10 +9,7 @@ const info: Brand = {
   links,
   // overriden in each item
   warranty: {
-    amazon: 2*12,
-    // notes: () => <div></div>
   },
   fakespot: "C",
-  rating: 5,
 }
 export default info

@@ -17,6 +17,11 @@ const info: Brand = {
     brand: 2*12
   },
   fakespot: "C",
-  rating: 5,
+  pickedBy: {
+    websites: [
+      {value: 1},
+      {label: "Reddit discussion", value: 1}
+    ]
+  }
 }
 export default info

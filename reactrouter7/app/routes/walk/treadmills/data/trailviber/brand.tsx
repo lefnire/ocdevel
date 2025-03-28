@@ -8,11 +8,8 @@ const info: Brand = {
   name: "TrailViber",
   links,
   // overriden in each item
-  warranty: {
-    amazon: 2*12,
-    // notes: () => <div></div>
-  },
+  warranty: {},
   fakespot: "F",
-  rating: 5,
+  pickedBy: {}
 }
 export default info

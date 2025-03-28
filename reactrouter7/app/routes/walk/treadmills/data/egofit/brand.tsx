@@ -11,9 +11,11 @@ const info: Brand = {
       UK: "https://egofitwalker.com/collections/all-products?sca_ref=5484370.9SQi3qcg7q"
     }
   },
-  name: "Egofit",
+  name: "EgoFit",
   fakespot: "B",
   warranty: {},
-  rating: 7,
+  pickedBy: {
+    websites: [{value: 3}]
+  }
 }
 export default info

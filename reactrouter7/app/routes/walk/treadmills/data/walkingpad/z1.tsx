@@ -5,8 +5,7 @@ const info: Product = {
   brand,
   model: "Z1",
   key: `${brand.key}_z1`,
-  description: "",
-  bump: {seo: _.times(10, "")},
+  description: "Popular among the public but not recommended due to quality issues. Many reports of quality issues including motor burnout and belt drift.",
   links: {
     amazon: {
       US: "https://amzn.to/4kQEnA0",
@@ -54,8 +53,7 @@ const info: Product = {
     // notes: () => <div>Price range of $500-1000 is higher than many competitors. The X21 model is $1000.</div>
   },
   pickedBy: {
-    value: ["public", "websites"], // Listed as popular but not recommended
-    notes: () => <div>Popular among the public but not recommended due to quality issues.</div>
+    websites: [{value: 10}]
   },
   incline: {
     value: 0, // Not mentioned in the data
@@ -66,19 +64,12 @@ const info: Product = {
   },
   decibels: {
   },
-  sturdy: {
-    value: false,
-    notes: () => <div>Many reports of quality issues including motor burnout and belt drift.</div>
-  },
   app: {
     value: false,
     // notes: () => <div>Uses an app instead of a controller, which removes a point of failure and tracks stats over time.</div>
   },
   easyLube: {
     value: 10, // Not mentioned in the data
-  },
-  amazon: {
-    value: true,
   },
 
   pros: [

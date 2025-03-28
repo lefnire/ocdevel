@@ -49,7 +49,9 @@ const info: Product = {
     sale: 160,
   },
   pickedBy: {
-    value: ["public", "websites"],
+    me: 2,
+    trusted: [{value: 2}],
+    websites: [{value: 3}],
   },
   incline: {
     value: 0,
@@ -59,20 +61,14 @@ const info: Product = {
     rating: 5,
     // notes: () => <div>8-point silicone absorbers</div>
   },
-  sturdy: {
-    value: true,
-    rating: 5,
-    notes: () => <div>Metal, Acrylonitrile Butadiene Styrene (ABS)</div>
-  },
   app: {
     value: true,
   },
-  bump: {},
   easyLube: {
     value: 5,
   },
-  amazon: {
-    value: true
+  material: {
+    value: "Metal, Acrylonitrile Butadiene Styrene (ABS)"
   },
   decibels: {
     value: 45,

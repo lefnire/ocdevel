@@ -10,6 +10,7 @@ const links = {
 const info: Product = {
   brand,
   model: "M2T",
+  description: "",
   key: `${brand.key}_m2t`,
   links,
 
@@ -47,7 +48,6 @@ const info: Product = {
     sale: 560,
   },
   pickedBy: {
-    value: [],
   },
   incline: {
     value: 3,
@@ -62,13 +62,6 @@ const info: Product = {
     value: 10,
   },
   decibels: {
-  },
-  sturdy: {
-    value: true,
-    rating: 4,
-  },
-  amazon: {
-    value: false,
   },
   app: {
     value: false,

@@ -49,7 +49,7 @@ const info: Product = {
     // notes: () => <div>There's currently a $40 Amazon "Apply Coupon" = $300 total. A possibly newer edition is $390 with a $120 coupon (=$270).</div>
   },
   pickedBy: {
-    value: [], // Not specifically picked by anyone according to the data
+    websites: [{value: 1}]
   },
   incline: {
     value: 0, // No incline mentioned
@@ -60,19 +60,11 @@ const info: Product = {
   },
   decibels: {
   },
-  sturdy: {
-    value: true,
-    rating: 5,
-    notes: () => <div>Described as surprisingly durable, lasting 2 years with intense usage (6hrs per day, 5 days a week, 220lbs user at 3.5mph).</div>
-  },
   app: {
     value: false, // Not mentioned in the data
   },
   easyLube: {
     value: 5, // Not mentioned in the data
-  },
-  amazon: {
-    value: true,
   },
 
   pros: [

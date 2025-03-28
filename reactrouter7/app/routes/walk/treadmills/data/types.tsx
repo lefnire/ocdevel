@@ -18,15 +18,16 @@ interface Links {
   notes?: () => ReactElement
 }
 // Add a modifier to this brand or product from things I see online
-export interface Bump {
+type PickedBy_ = {
+  label?: "affiliate" | "custom" | string,
+  url?: string,
+  value: number
+}
+export interface PickedBy {
   // list of URLs complaining
-  up?: string[]
-  // list of URLs glowing
-  down?: string[]
-  // list of URLs pedaling
-  seo?: string[]
-  // extra from research (eg years before I started collecting this)
-  extra?: number
+  me?: number
+  trusted?: PickedBy_[]
+  websites?: PickedBy_[]
 }
 
 export interface Brand {
@@ -39,10 +40,9 @@ export interface Brand {
     notes?: () => ReactElement
   }
   fakespot: string
-  rating?: number
   location?: string
   notes?: () => ReactElement
-  bump?: Bump
+  pickedBy?: PickedBy
 }
 export interface Product {
   brand: Brand
@@ -71,21 +71,16 @@ export interface Product {
   price: Attribute & {
     sale?: number
   }
-  pickedBy: CustomVal & {
-    value?: Array<"me" | "trusted" | "affiliate" | "public" | "websites">
-  }
   incline: NumVal & {
-    method?: "manual" | "static" | "auto"
+    method?: "manual" | "fixed" | "auto"
   }
   shock: BoolVal
   decibels: NumVal
-  sturdy: BoolVal
   app: BoolVal
   easyLube: NumVal
-  amazon: BoolVal
   // Use later
   material?: StringVal
-  bump?: Bump
+  pickedBy?: PickedBy
   pros?: StringVal[]
   cons?: StringVal[]
 }

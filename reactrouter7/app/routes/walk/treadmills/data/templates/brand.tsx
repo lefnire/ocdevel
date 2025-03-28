@@ -8,17 +8,14 @@ const info: Brand = {
   name: "Brand",
   links,
   // overriden in each item
-  warranty: {
-    amazon: 2*12,
-    // notes: () => <div></div>
-  },
+  warranty: {},
   fakespot: "B",
-  rating: 5,
-  notes: () => <div>
-    <div><b>Choosing the latest model</b></div>
-    <div>
-      Often these brands don't show the latest models on their storefront. So go to their website, sort by latest, copy the modle name, paste into Amazon.
-    </div>
-  </div>
+  pickedBy: {},
+  // notes: () => <div>
+  //   <div><b>Choosing the latest model</b></div>
+  //   <div>
+  //     Often these brands don't show the latest models on their storefront. So go to their website, sort by latest, copy the modle name, paste into Amazon.
+  //   </div>
+  // </div>
 }
 export default info
