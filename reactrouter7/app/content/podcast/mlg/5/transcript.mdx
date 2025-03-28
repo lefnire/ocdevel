@@ -1,0 +1,185 @@
+[00:00:00] Welcome back to Machine Learning Guide. I'm your host, Tyler Elli. MLG teaches the fundamentals of machine learning and artificial intelligence. It covers intuition models, math languages, frameworks, and more where your other machine learning resources provide the trees I provide. The forest visual is the best primary learning modality.
+
+[00:00:20] But audio is a great supplement during exercise, commute and chores. Consider MLG your syllabus with highly curated resources for each episode's details@ocdeve.com slash mlg. Speaking of curation, I'm a curator of life hacks, my favorite hack being treadmill desks. While you study machine learning or work on your machine learning projects, walk.
+
+[00:00:45] This helps improve focus by increasing blood flow and endorphins. This maintains consistency and energy, alertness, focus and mood. Get your CDC recommended 10,000 steps while studying or working. I get about 20,000 steps per day walking just two miles per hour, which is sustainable without instability at the mouse or keyboard.
+
+[00:01:03] Save time and money on your fitness goals. See a link to my favorite walking desk setup in the show notes. This is episode five, linear Regression. In this episode, we're finally gonna get into the nitty gritty, your first machine learning algorithm, linear regression. Now, let's recall about machine learning that it's a very hierarchical field, starting at the top, something I call mathematical decision making.
+
+[00:01:24] I don't actually know what they call this. Super field can be broken down into artificial intelligence. Statistics, operations, research, control theory, and some other fields. Artificial intelligence is broken down into machine learning. That's where we are. And then ML is broken down into supervised learning, unsupervised learning, and reinforcement learning.
+
+[00:01:42] So we're gonna go down the supervised learning rabbit hole. You'll find the supervised learning is your bread and butter, professionally and even maybe academically in in machine learning. Of course you're gonna be dabbling with unsupervised learning. It doesn't come up quite as often as supervised learning, where reinforcement learning is a little bit more like level 99 territory.
+
+[00:02:00] You're not gonna see that stuff until end game. So here we are in supervised learning, and supervised learning can be broken down into two more subcategories, classification and regression. So classifiers and regressors. A classifier is a supervised learning algorithm that will tell you the class of a thing.
+
+[00:02:20] So if I'm looking at a picture, am I looking at a dog or a cat or a tree? The classifier will tell me what I'm looking at, what class of things I'm looking at. A regressor will give you a number. A continuous variable. So the output of your regressor function of your supervised learning regressor algorithm will give you a number.
+
+[00:02:39] 1, 2, 3, 4, 5. We're gonna talk about classification in the next episode on logistic regression, but in this episode we're gonna talk about linear regression, which is a regressor supervised learning algorithm to give you a continuous variable. It is the hello world. Of all machine learning, this is where everybody starts.
+
+[00:02:57] If linear regression, everyone starts here even before they, they go off and specialize in vision or robotics or control theory or something that's kind of level 50. When you unlock the class system, everyone starts at the beginning no matter what your field is. Linear regression. And the example that we're gonna be using in linear regression is the exact example from the last episode with the Portland housing costs estimation.
+
+[00:03:21] That's a linear regression example, because you're guessing the cost, the numeric cost of a house, given the features. So recall, we have a three step process in machine learning, predict, figure out how bad you did, which is the cost or error function. And then learn from your mistake, which is the training or fit steps.
+
+[00:03:40] So you're gonna find in machine learning that there's like 10 words for any given word synonym hell. So the predict phase could be predict or hypothesis, or objective or estimate. The error can either be an error or a loss. And the training step can either be called learning or training or fitting or any number of things.
+
+[00:03:59] You're probably gonna see train most often, so I'll use that myself. But let's start at the first step, which is to make a prediction. The way you make a prediction is by way of a function called a hypothesis function or an objective function. And it usually looks like either H with parentheses and X inside of it.
+
+[00:04:18] And the H stands for hypothesis. So it's your hypothesis function. The X is going to be your example, so you're gonna put into it a house. The house has, remember it has features such as number of bedrooms, square footage, number of bathrooms, distance to downtown. So X actually gets broken up into X one, X two, X three, and X four.
+
+[00:04:37] The multiple features inside of the function, inside of the hypothesis function, we take that X, that one row. We break it up into its features, and then the body of the hypothesis function is multiplying each of those features by a coefficient. So it looks like an algebraic equation. So what you have is H of X, you know, H with parentheses and an X inside of the parentheses.
+
+[00:05:00] Equals theta, one times x, one theta, two times x, two theta, three times X three, et cetera. Those thetas, um, sometimes you'll hear W for weight or a coefficient if you're talking to a mathematician, a coefficient. Those are the things that you're gonna be multiplying by your features. In order that the sum of that equation gives you your estimation, your prediction.
+
+[00:05:27] So for example, let's say that we want to estimate the house cost of a house that has 800 square feet, one bedroom and one bathroom. I. What we want to learn, the whole process of learning is learning the coefficients, the parameters, the thetas, the Ws, W for weight, theta for, I don't know, the thing that goes in front of the X value.
+
+[00:05:51] So what do we multiply the square footage by Blank times square footage, blank times 800 plus blank times one for one bedroom. Plus blank times one for one bathroom. So we're gonna learn those blanks and going forward, we're just gonna call them theta. Now what I'm gonna do in order to make this episode a little bit easier to visualize, I'm gonna lop off all those Thetas except for one, we're only gonna be working with one XX one, which is the square footage of a house.
+
+[00:06:25] So we're gonna pretend that the. Cost of a house depends only on the square footage of a house. Obviously that's inaccurate, and in fact, if you are using very few features in your hypothesis function, then your outputs are gonna be incorrect. Generally speaking up into a point, the more features you have, the more accurate your output is gonna be.
+
+[00:06:47] But just for visualization sake, we're gonna pretend that the cost of a house depends. Only on the square footage of a house, so H with parentheses and X inside of it. The hypothesis function equals theta one times X one. Okay, so we're on the predict step. Remember, there's a three step process to the machine learning.
+
+[00:07:08] System. One is to make a prediction. One is to figure out how off you were, and then one is to learn. So what we're gonna do, we're gonna, we're gonna make a prediction with our hypothesis function. We are going to import a spreadsheet of houses in Portland, Oregon, and their actual prices on the market. It.
+
+[00:07:27] So remember, every row is a house and every column is a feature of each of those houses, but we've lopped off all the features but one, so right now we just have one row, one column, one row, one column, one row. So it's gonna be house one has 800 square foot, house two has 900 square foot, and then the second column is gonna be the actual cost of the house.
+
+[00:07:50] What's called a label. And before we go any further, let's try to visualize what we're looking at here. So we have an X value, which is the square footage of each house, and a Y value, which is the label, which is the actual cost of the house. So we have an x axis and a y axis. The X axis being the feature, the Y axis being the actual cost of the house.
+
+[00:08:14] And what we're gonna get is a scatterplot, a bunch of dots, kind of in the shape of a football or a skinny cloud, and it's pointing up and right. Northeast. So that's all of our data. Those are all our houses with all of their square footage and their actual costs gives us a cloud pointing northeast. And what we're trying to learn is a hypothesis function that'll send a line right through the center of that football.
+
+[00:08:41] So a bad hypothesis function, one, one with horrible theta parameters will maybe be pointing. Down and right Southeast would be the opposite of what we're trying to achieve. And the very good hypothesis function will shoot northeast right through the center of that football. Now, if you think about the function of this line, Y equals theta times X.
+
+[00:09:02] It looks similar to something you may have seen in algebra Y equals mx plus B. Point slope formula, which is exactly the formula for a line sloping, which is exactly what we're doing here. We're trying to come up with a hypothesis function that's creating an angled line that goes through most of our data, so it looks very similar, theta X, but there's no B on the flip side is MX plus B point slope formula.
+
+[00:09:29] Okay, so we can replace M with theta. And let's talk about this B parameter. What is B in this point? Slope formula. If you do recall from your algebra class what B is, it's called a bias. It kind of shifts the line left or right before it even starts sloping. So it's where does your line cross over the x axis?
+
+[00:09:50] Where does it begin? And then that MX bit is tells it it's slope. So let's pull that into our equation. We have H equals theta one x. Plus theta zero. That's gonna be our equivalent of mx plus B. Theta one x plus theta zero or theta zero is our bias parameter. What is a bias parameter? A bias parameter is kind of like an average or a starting ground if you don't have any other information.
+
+[00:10:19] So what would happen if we got a house that. Didn't have any data on the square footage. Well then square foot would be zero, which would zero out that fatal one parameter leaving us only with the bias parameter. In other words, what it's saying is what is the cost of a house? If we don't know Jack. The cost of a house, if we don't know anything in the Portland market, is gonna be the average cost of a house in Portland area, maybe $250,000.
+
+[00:10:49] I don't know what it is, but it's like somebody asking you how much would it cost to live in Portland? And you're saying, Hey, it depends, you know, it depends on where you are. The number of square foot, no, no, no, just how much does it cost to live in Portland? You're like, no, it depends on the square foot.
+
+[00:11:03] No, no, no. How much does it cost to live in Portland? Fine. $250,000. I don't know. That bias parameter is where do you start if you don't have any information, it's like the average, and it's where you start moving from once you start applying your other parameters. So our new linear regression hypothesis function is h equals theta one times x one plus theta zero.
+
+[00:11:28] Okay. So now that we have a visualization in mind, let's return to our prediction step, step one of the machine learning process. And linear regression is basically what it's gonna do is it's gonna put these labels, these y values on one side of a flashcard, right? And it's gonna look at the other side, the forward facing side of the flashcard that says the square footage of the house.
+
+[00:11:48] And it's gonna make a random shot in the dark. Guess it seems kind of weird, but you'll see why it does this in a bit. It's gonna look at 800 square foot house in Portland. It's gonna say, um. $10 and you're like, $10. Really? This is a house. You know? It's like, hey, I don't know. I haven't, I haven't looked at any costs yet.
+
+[00:12:05] And I'm like, okay. It picks up the next card and it says, uh, $20. This one's 900, 900 square feet, and on the back it actually says $200,000, but it can't see these values yet. Goes through it, it makes a prediction for every house. Uh, $10, $5, $3, $2, $7. Once it gets to the end, now it's allowed to collect all the cards.
+
+[00:12:27] Flip 'em over and it's, oh my gosh, it slaps its head and it says that one is way off. So what it does now, now is the cost step, step two, figuring out how bad it did. It's called the cost function or the error function. And it's a very simple function. It's a very simple formula. It's basically just the average of all of its mistakes.
+
+[00:12:48] So the distance between its estimation why hat. Or H of X and the actual value, the label, or Y, so H minus Y, but we want to average all these. So we're gonna sum 'em all up and we're gonna divide 'em by the number of examples. Now it's a little bit more tricky than this. There's actually a twist to the puzzle.
+
+[00:13:06] We're actually going to sum up the square differences of the actual and the prediction. So it's gonna be prediction minus actual quantity squared, and that square doubles as an absolute value. 'cause you don't want positive and negative differences to be canceling each other out in this average.
+
+[00:13:23] Quantity square sum the whole thing up divided by two M. So we have two twos. We have a square and we have a two in the denominator. These come to play in gradient descent. You'll see them in a bit, but the main reason they're there is so that we can take a derivative. You'll see that in a bit. Now, in order to visualize the cost function, we had our hypothesis function on a table, an XY graph.
+
+[00:13:45] Okay, imagine that that's on a table in a kitchen and it looks, got that football cloud of dots, the scatterplot. Now we're gonna move to a new table, and on top of this table is a bowl. So this is now a three dimensional graph. We have the X and Y plane and a bowl on top of it going up, which is the Z axis.
+
+[00:14:06] And the way we're gonna visualize our cost function is. The X axis might be theta zero or theta one, and the Y axis will be the other theta. So let's say the X axis is theta zero, and the Y axis is theta one, and the error is into the error. So at some value of theta zero and theta one, we have an error of 100.
+
+[00:14:30] For example, when we plugged in our random shot in the dark, guess. In the initial pass when I was kind of going through the flashcards, I was going through all of the houses. The linear regression algorithm was going through all the houses and taking a guess, and taking a guess, and taking a guess, and it was way off.
+
+[00:14:46] It had assumed some random values for theta zero and theta one, just to start with so that it can know how bad it had done. How bad it had done is a value returned by the cost function, and it is on that Z axis, that up and down axis. It's in the bowl somewhere. So it's a dot inside of a bowl. Now we move on to the learning phase.
+
+[00:15:10] What we want to do is we want to take that dot and move it down into the very bottom of the bowl where the error is zero. We want, right now the error is way high in the bowl. The dot that we have with our theta parameters, theta one and theta zero, the way they're set right now gives us a result Way up here.
+
+[00:15:32] The rim of the bowl, but we want to take that dot and we want to move it down the bowl. The way we do that is through a process called gradient descent, and at last you learn your first learning algorithm. Gradient Descent. Gradient descent uses calculus. Okay Calculus. To take the derivative of the cost function in order to take a step, one step at a time, take that dot and move it down the bowl.
+
+[00:16:00] Until we found the place on the XY plane of Theta zero and theta one, where the Z value, the cost value is minimized at the bottom of the bull. So how gradient descent works is like this, you take the derivative of your cost function where you are in the graph, so you're a dot on a bowl. High up on the bowl.
+
+[00:16:25] You take the derivative of that function with respect to that point. And if you know anything about calculus. What a derivative tells you is the slope of your point in that function. So if you can imagine taking a piece of paper and pushing it against the dot, so kind of pretend that the bowl is really, really thin, paper thin.
+
+[00:16:45] So the dot could be either on the inside or the outside of the bowl. It doesn't matter. And you push a piece of paper against that dot. The piece of paper has a certain slope, like it's pointing kind of downwards, right? Really steep. That is the tangent line or the derivative of your cost function at that point.
+
+[00:17:04] And what it tells you is that you're doing really bad. If your slope is really steep, it means you're very far from zero. So what gradient descent does is this. It says, okay, guys. You're gonna need to take a big step, uh, I'm gonna say 12 inches Southwest. 12 inches Southwest. So south, let's say is theta one and west is theta two.
+
+[00:17:31] So those guys change their number. They changed their number, so you just updated your th theta parameters. That's the learning process is changing your theta parameters, learning your weights so that your function is now more accurate. Now you can imagine what just happened on our hypothesis function.
+
+[00:17:50] 'cause we actually just changed the original theta parameters that are inside of our hypothesis function. You can imagine we. Remember that football graph, the scatterplot, that cloud, and we have an X and y axis. This is the other table to our left and we, when we made our first initial prediction, wild guess, shot in the dark, that was really bad.
+
+[00:18:10] Saying houses cost to hunt $10 and $20. Our line maybe was pointing southeast, right? The exact opposite of what we want it to be, which is northeast and right down the center of the football. This step, that gradient descent just took by taking a derivative of the cost function in order to reduce to, to minimize the value that the cost function outputs.
+
+[00:18:34] By changing the theta parameters, it's like grabbing our line and rotating it. Counter-clockwise. One big step. So gradient descent now steps back and it's like, oh, okay. Yeah, yeah, yeah. We're getting close. We're getting close. That was a, that was a good step. And scratches its chin and it says. Okay. I'm gonna, I'm gonna take another derivative here.
+
+[00:18:55] So we got our new theta parameters in place. Our new hypothesis function, our new cost function. Um, why don't you take, in order to minimize your cost, another step Southwest, let's do a nine inches so, and four inches west. So that's another iteration of the gradient descent process. So it takes that step, it changes theta one, and it changes theta two smaller this time.
+
+[00:19:23] Now we're closer to the bottom of the bowl in our cost function and our line and our hypothesis function just rotated even a little bit more. Counterclockwise. Now the line is actually touching some of the dots in our scatter plot from our original spreadsheet. And gradient descent says, okay. Okay, we're really close guys.
+
+[00:19:40] We're really close now. I want you to take just one more baby step. I took the derivative and I've determined that you just have to take one more baby step Southwest. So our theta parameters are updated. Theta one gets a alteration, theta two gets an alteration. Our hypothesis function has changed and we got a line going right down the center of the football.
+
+[00:20:00] So gradient descent has learned for us the, the parameters that will give us the smallest error, they call it minimizing the cost or minimizing the error, traversing the bowl in our error graph all the way to the bottom of the bowl so that our hypothesis function is most accurate. So that's kind of cool.
+
+[00:20:21] You actually see math in real life. You're using the derivative of a function in order to figure out how big of a step to take in which direction to change your coefficients so that you now have a more accurate function. This process of learning is also called function estimation because you are estimating the parameters of your function, that will give you a more accurate output.
+
+[00:20:46] Now, I want you to note you're never really gonna get a cost function of zero. In order for the cost function to be zero. All of our examples have to be exactly on our hypothesis function line. So it's like one, you know, X is one and Y is one, X is two, and Y is two, X is three, and Y is three. That's you'll ne.
+
+[00:21:06] You're never gonna see that in the real world. Remember we had like a cloud that looks kinda like a football and the line goes right down the center. The error is not zero, the error is the squared difference of the errors. All the points to the line that we created, which is some number, some positive number.
+
+[00:21:28] But when it's right down the center and it looks like it's just, it's fitting the graph just so then the error is minimized, and that's the ideal place for our line to be. By the way, the error function in this case where it's the square difference and all summed up and divided by two M, this is called the mean squared error.
+
+[00:21:49] Now, real quick, I'm going to tell you the equation for gradient descent, and remember that gradient descent is taking the derivative of the cost function. Okay, the derivative of the cost function and the cost function, one more time. The cost function is your hypothesis, your prediction minus the actual value, so Y hat minus y, quantity squared, all of those.
+
+[00:22:15] The sum of all of those in your spreadsheet divided by two times, m divided by two m and m is the number of examples in your training set. Now to take the derivative of a function, you don't need to know calculus right now. You can know some of the very basics. There's some rules. There's some rules where you don't actually have to go through this derivative process.
+
+[00:22:38] And if you know if there's a power in front of a function, you can just take that out and put it in front and subtract that by one. You do these little tricks of the trade, and that's the reason that we have these twos in there, the two at the bottom, the two M divided by two M and the two at the top square.
+
+[00:22:52] Well, when you take a derivative of the cost function, those that two comes out in front and it kind of cancels itself out. What we get in the end is this is the, this is the gradient descent algorithm. Um, theta zero equals. What it was before, minus alpha times one over m times the sum of the differences.
+
+[00:23:19] Y hat minus Y. So you took a step, you took, you had theta zero. The bias parameter take a step in some direction by some amount. By the way, that alpha variable is called the learning rate, and I'm not gonna talk about it. I'm gonna let you explore this in the details from the resources section. Fatal one is fatal one, so what it was before minus alpha times one over m times the sum of Y hat minus Y times XI the feature, and you don't need to remember that.
+
+[00:23:53] Let it go in one ear and out the other. This is more for people who are just mathematically inclined and curious. You're gonna learn all of the details of this in the resources section that I'm gonna talk about later. Okay? So that was a lot of information, a lot of information. I'm going to basically start from the top.
+
+[00:24:09] I like to do this a lot. You, I'm sure you've noticed by now. I like to start from the top and do it all over again. Now that we have all the pieces in place, let's do it all over again. Machine learning is broken down into supervised, unsupervised, and reinforcement. Supervis is the case in which you are training your algorithm with a bunch of data.
+
+[00:24:27] So Portland, Oregon housing costs sounds like a supervised learning algorithm to me. In supervised, we have classification and regression. Regression is coming up with a number. Classification is coming up with a class like a cat, dog, or tree. Well, in Portland, Oregon, we're trying to figure out the cost of a house.
+
+[00:24:44] So it sounds like regression to me. Linear regression is the most fundamental machine learning algorithm whatsoever, but also, of course, it is a regression algorithm for estimating a number. So we're gonna use linear regression. We have three steps. We make a prediction, we figure out how bad we did with our cost function, and then we train.
+
+[00:25:06] We learn how to fix that mistake. In the prediction step, we have our hypothesis function. Every machine learning algorithm has a different hypothesis function. The hypothesis function will change from algorithm to algorithm as well as the cost function. The cost function will change because the hypothesis function is different.
+
+[00:25:25] Remember that the cost function is based on the hypothesis function, and then of course the training step for every machine learning algorithm will change because taking the derivative of your cost function will be different depending on the function. In the linear regression model, your hypothesis function looks like this.
+
+[00:25:44] H of X equals theta zero, which is your bias parameter, which tells you the average that you're working with If you didn't have any other information to work with, plus theta one times x. Theta one is your weight or your coefficient that you're trying to learn. You're trying to learn the bias parameter as well.
+
+[00:26:04] You're trying to learn the theta parameters, and X is the feature that's gonna come into this function for every row that we're looking at. We make a prediction with the hypothesis function. We'll call that prediction y hat. And in the initial batch of things, we will go through our spreadsheet one row at a time.
+
+[00:26:24] Make a prediction. Make a prediction. Make a prediction. Random shot in the dark. We're gonna use theta one and theta zero are gonna be random values. And we're gonna get random results. Step two, our cost function will tell us how bad we did, how far from the truth we were on average. It's called the mean squared error in the case of linear regression.
+
+[00:26:47] And it, it is the average of the differences between our estimations and their actual values. The equation looks like this one divided by two m. Times the sum of. All the differences squared. So H of X minus y squared for every row, sum 'em all up, divided by two over M cost function. That tells us how bad we did on average, and it's a function which puts us as a dot on a bowl in 3D.
+
+[00:27:21] We use gradient descent to move that dot down step by step by step to the bottom of the bowl to minimize the error. And the error is a function of our theta parameters. So we find the point in 3D space where our.is at the bottom of the bowl. We find what the values of theta zero and theta one are on the table.
+
+[00:27:46] Such that that error is minimized. And now we have learned our hypothesis function, the theta one and theta zero parameters. We now have those handy and we can make predictions in the future. And the way we visualize gradient descent is as. Moving down that cost function, that bowl towards the bottom of the bowl, which is the same as changing the parameters of our hypothesis function, so that we're like grabbing a hold of the line, which was a bad, random shot in the dark initially, and cha, you know, rotating it clockwise or counterclockwise until it.
+
+[00:28:23] Fits that data set most effectively. The point at which the error function is minimized, it'll never be perfect, but there is definitely a point where the error is minimal. Alright, the savvy amongst you will recall that something is missing here. Something is missing. It is that I have removed all the features, but one, I have reduced our situation to something called uni variate linear regression.
+
+[00:28:53] One variable, one feature, which is the square footage of the house, but that's not how linear regression works in the wild. Of course, you have many features, the number of bedrooms, the number of bathrooms, the distance to downtown, whether it's in a safe or dangerous neighborhood, et cetera, will determine the cost of the house, all things considered.
+
+[00:29:12] And then of course, the bias parameter, which is basically the start zone or average that we're working with in this, in this housing market. With multiple variables or multiple features. We are dealing with something called mul multivariate linear regression, and it's basically the same as uni variate, linear regression, but it's more difficult to visualize in your mind when I'm describing it to you in audio.
+
+[00:29:37] So I'm actually not gonna go into the technical details of multivariate linear regression. It's so similar to uni variate that making the transition, when you see the details online, you'll, you'll, you'll understand right away, you'll be able to make that shift. But basically our hypothesis function is gonna be.
+
+[00:29:53] H of X equals theta zero, plus theta, one times x, one plus theta, two times X two, et cetera. We're learning all the theta parameters through the gradient descent process, but I'm not gonna describe the multivariate linear regression model to you. Instead, I'm going to point you to the resource. The resources section of this podcast boils down to one resource, one resource alone.
+
+[00:30:21] It is the Andrew ing Coursera course. Andrew NG ing Coursera is C-O-U-R-S-E-R-A. And if you've been around the machine learning community for longer than a month, that you will have heard this recommendation a million times over Stack overflow and Quora and Reddit. And wherever you may hang out. This is the most recommended resource for getting started in machine learning period.
+
+[00:30:50] It is a course, so it's an online course. It's like a 12 week program or something. You can go really fast. It's self-paced. I finished mine in three weeks, but more than recommending it to you, I require of you to take this course. This is the most essential starting ground for picking up machine learning.
+
+[00:31:10] If you start trying to learn machine learning from any other resources, you're not gonna have enough of the fundamentals in place. I read very many books. I started reading textbooks. I watched a lot of YouTube video series. I listened to audio books and podcasts. When I was first starting to learn machine learning, I had heard this Coursera course touted over and over and over, and I avoided it because I'm not, because I don't typically like to learn from MOOCs.
+
+[00:31:36] M-O-O-C-S, I don't remember what it stands for, but these online. Courses I'd rather learn from a book. So I avoided it for a while, which was a big mistake because when I finally hunkered down and took the course, it just pulled the curtains and I saw everything for what it was. And I slapped my forehead and I said, why did I wait so long to take this course?
+
+[00:31:56] Andrew ing is the best teacher on the planet for machine learning. That course has you doing. Programming exercises in MATLAB and quizzes and tests, and again, it's self-paced and there's great visualizations in the videos. It's the course equivalent of what I'm trying to achieve with this podcast. So it's complete 1 0 1, it's gonna be using a lot of math, but he teaches you the math along the way.
+
+[00:32:19] But like I say in the introduction to this podcast, with audio being an inferior medium, Andrew Inc's course is far and away the superior medium to learning machine learning. So. I'm not recommending it to you. I am assigning it to you. I'm requiring that you start there. If you haven't already taken the Andrew in Coursera course, don't fool yourself into thinking you don't have enough time or that you'll do it.
+
+[00:32:43] When you do have more time in your life. Just do 20 minutes a day, even 10 minutes a day. It's self-paced, but it's, it's super fast. It's pretty easy, and you're gonna wanna start chipping away at it now sooner than later so that you're prepared for the good stuff. Once it starts rolling along, like deep learning and recurrent neural networks, when I start talking about all that good stuff.
+
+[00:33:03] Additionally, in cases like this episode, I'm not going to be posting show notes with the algorithms. I'm actually gonna be posting Andrew ings. Show notes. I'm going to direct you to the Coursera page with the notes from his courses. The links are gated. They're authenticated, so you're gonna have to create an account on Coursera first before you can access these links, but better today than tomorrow.
+
+[00:33:24] Anyway, get that account set up, sign up for the class, and get started. So that's it for this episode. The next episode is gonna be on logistic regression, which is a classifier version of supervised learning. And if you haven't already yet, please do give me a rating on iTunes U or Stitcher or Google Play.
+
+[00:33:42] I want to thank everybody from the Reddit community who came over and subscribed, so we got some subscribers, and I'm definitely gonna be moving forward with this podcast. I hope to do an episode every Saturday or every other Saturday. Once I've got a good schedule down, I'll keep you guys in the loop.
+
+[00:33:57] See you next episode.

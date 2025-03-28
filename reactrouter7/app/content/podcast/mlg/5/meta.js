@@ -9,4 +9,4 @@ export const file = {
   duration: "33:40"
 }
 export const libsynEpisode = 5440754
-export const teaser = "Introduction to the first machine-learning algorithm, the 'hello world' of supervised learning - Linear Regression"
+export const teaser = "Linear Regression is introduced as the foundational entry-point to machine learning, exploring its hierarchy, types, and applicability in regression tasks. The episode breaks down the process of using linear regression, including prediction, evaluation with cost functions, and learning through gradient descent."
