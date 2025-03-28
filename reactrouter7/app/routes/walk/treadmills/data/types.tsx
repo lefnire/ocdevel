@@ -61,7 +61,7 @@ export interface Product {
     sale?: number
   }
   pickedBy: CustomVal & {
-    value?: Array<"me" | "trusted" | "public" | "websites">
+    value?: Array<"me" | "trusted" | "affiliate" | "public" | "websites">
   }
   incline: NumVal & {
     method?: "manual" | "static" | "auto"

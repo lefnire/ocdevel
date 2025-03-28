@@ -1,6 +1,6 @@
 import React from "react";
 import type { Product } from "./rows";
-import { FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe } from "react-icons/fa";
+import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign} from "react-icons/fa";
 import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
@@ -8,6 +8,7 @@ const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faPublic = <FaStar style={{ color: '#999999' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
+const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data/index'
 
 // Column type definition with added properties
@@ -257,6 +258,7 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>
       <div>{faMe} Me. I've tested it, I love it. I often disagree with popular picks from review sites (eg I eschew WalkingPad & GoPlus), so if you trust my judgement on this page, look for this icon.</div>
       <div>{faTrusted} Trusted Sources. Top picks by gear-heads I follow in hte underground (Discord, Reddit, etc) and I trust their opinions.</div>
+      <div>{faAffiliate} Affiliate Rebels. Popular purchase after someone reads my content, does their own research, and selects something else. When there's a trend, this is a high signal.</div>
       <div>{faPublic} Public Opinion. Generally just reviews and what's popular.</div>
       <div>{faWebsites} Websites. What's being recommended on popular review websites. I down-weight these significantly, since most of them just use web-scrapers on Amazon for most-popular treadmills. If I think they actually test the products, I'll flag "Trusted Sources".</div>
     </div>,
@@ -273,6 +275,7 @@ export const columnsArray: ColumnDefinition[] = [
         <div style={{ display: 'flex', gap: '8px' }}>
           {pickedBy?.includes("me") && <span title="Me (Tyler)">{faMe}</span>}
           {pickedBy?.includes("trusted") && <span title="Trusted Sources">{faTrusted}</span>}
+          {pickedBy?.includes("affiliate") && <span title="Affiliate Rebels">{faAffiliate}</span>}
           {pickedBy?.includes("public") && <span title="Popular based on ratings">{faPublic}</span>}
           {pickedBy?.includes("websites") && <span title="Recommended on review websites">{faWebsites}</span>}
         </div>

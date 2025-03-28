@@ -27,6 +27,7 @@ import citysports_cswp8 from './citysports/cswp8'
 import trailviber_walkingpad from './trailviber/walkingpad'
 import superun_06mini from './superun/06mini'
 import superun_06normal from './superun/06normal'
+import lysole_walkingpad from './lysole/walkingpad'
 
 const index = [
   // Original treadmills
@@ -61,6 +62,7 @@ const index = [
   trailviber_walkingpad,
   superun_06mini,
   superun_06normal,
+  lysole_walkingpad,
 ]
 export default index
 export const UPDATED = "2025-03-27"

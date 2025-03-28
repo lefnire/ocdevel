@@ -185,8 +185,9 @@ export const pickedBy: ScoreFn = (p) => {
 
   let rating = 5; // Start with baseline
 
-  if (val.includes("me")) rating += 4;
+  if (val.includes("me")) rating += 3;
   if (val.includes("trusted")) rating += 4;
+  if (val.includes("affiliate")) rating += 1;
   if (val.includes("public")) rating += 1;
   if (val.includes("websites")) rating += 1;
 
