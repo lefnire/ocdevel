@@ -25,13 +25,9 @@ OUTPUT_FILE_PATH = "./transcription.mdx"  # Path to save the transcription
 SYSTEM_PROMPT = """
 I'll give you transcripts of my podcast episodes. I want you to then give me two things for each: 
 1. A 2 sentence teaser
-2. A podcast show-notes in Markdown format. Give actual code, wrapped in triple back-ticks.
+2. A podcast show-notes in Markdown format.  Give actual code, wrapped in triple back-ticks.
 
-Don't mention "the host" or "in this episode" - no 3rd person or meta analysis. Just raw data and facts. 
-If a person needs to be used (unlikely), use the 1st person. Don't make it sound marketing-like 
-(eg "thrilling whirlwind"), make it sound "just the facts please", very bland almost Wikipedia. 
-Don't add any meta details from the episode, eg podcast updates or what comes next. 
-This should be a raw, robotic, data dump of the most salient contents of the episode.
+Don't mention "the host" or "in this episode" - no 3rd person or meta analysis. Just raw data and facts. Don't use any marketing language; again, raw data. Don't add any meta details from the episode, eg podcast updates or what comes next. For the show-notes, don't just make it an overview of topics covered; actually print the salient information.
 """
 
 
