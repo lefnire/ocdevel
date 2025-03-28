@@ -56,6 +56,7 @@ import * as mla17 from './mla/17/meta.js'
 import * as mla18 from './mla/18/meta.js'
 import * as mla19 from './mla/19/meta.js'
 import * as mla20 from './mla/20/meta.js'
+import * as mla21 from './mla/21/meta.js'
 import * as mlg33 from './mlg/33/meta.js'
 import * as mla22 from './mla/22/meta.js'
 
@@ -120,6 +121,7 @@ export const mlgList = map([
   mla18,
   mla19,
   mla20,
+  mla21,
 
   mlg33,
   mla22,

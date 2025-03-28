@@ -1,13 +1,34 @@
 import {GoogleConsentMode} from "~/components/analytics";
 import {Button, Nav, Navbar, Stack} from "react-bootstrap";
 import {LinkContainer} from "~/components/utils";
-import {Outlet} from "react-router";
+import {Outlet, useSearchParams} from "react-router";
 import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
 import {SiTiktok} from "react-icons/si";
-import React from "react";
+import React, {useEffect} from "react";
+
+function ClearUtm() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  useEffect(() => {
+    return;
+    setTimeout(() => {
+      let deleted = false
+      for (const k of ['utm_source', 'utm_campaign', 'utm_medium']) {
+        if (searchParams.get(k)) {
+          searchParams.delete(k)
+          deleted = true
+        }
+      }
+      if (deleted) {
+        setSearchParams(searchParams)
+      }
+    }, 1)
+  }, [])
+  return null
+}
 
 export default function Layout() {
   return <div>
+    <ClearUtm />
     <GoogleConsentMode />
     <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
       <LinkContainer to="/">

@@ -19,7 +19,7 @@ from openai import OpenAI
 # Configuration
 MAX_DURATION = 1450  # Maximum duration in seconds for OpenAI transcription (slightly under 1500 for safety)
 AUDIO_FILE_PATH = "./audio.mp3"  # Path to the input audio file
-OUTPUT_FILE_PATH = "./transcription.mdx"  # Path to save the transcription
+OUTPUT_FILE_PATH = "./transcript.mdx"  # Path to save the transcription
 
 # System prompt for processing the transcription
 SYSTEM_PROMPT = """
