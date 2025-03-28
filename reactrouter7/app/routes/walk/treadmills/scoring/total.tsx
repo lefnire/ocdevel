@@ -32,10 +32,7 @@ export const total: ScoreFn = (row) => {
     totalScore += score * weight;
     totalWeight += weight;
   });
-  debugger
 
   // Normalize the score to a 0-10 scale
-  const normalizedScore = totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
-
-  return normalizedScore;
+  return totalWeight > 0 ? (totalScore / totalWeight) * 10 : 0;
 };

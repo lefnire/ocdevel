@@ -5,5 +5,5 @@ export const updated = '2025-03-22'
 export const title = "Best Walking Pads 2025"
 export const pinned = true
 export const affiliate = true
-export const teaser = "Comparison of treadmill desk options. Under-desk walking pads: Egofit, Urevo, GoYouth, GoPlus, WalkingPad, Lifespan, iMovR. A video showing how and when to use each option. Links to stand/sit desks, monitor arms, and ergonomic peripherals."
+export const teaser = "Comparison of treadmill desk options. Under-desk walking pads, videos showing how and when to use each option, standing desks, monitor arms, and ergonomic peripherals. Walking pads compared include [placeholder], and more."
 export const jsx = true;

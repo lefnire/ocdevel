@@ -30,6 +30,7 @@ import superun_06normal from './superun/06normal'
 import lysole_walkingpad from './lysole/walkingpad'
 import rythmfun_ap01 from './rythmfun/ap01'
 import rythmfun_ap02 from './rythmfun/ap02'
+import _ from 'lodash'
 
 const index = [
   // Original treadmills
@@ -76,4 +77,20 @@ export const dataObj = Object.fromEntries(
     product.key,
     product
   ]))
+)
+
+export const seoScored = (index
+  .map((row) => ({
+    ...row,
+    seo: _.sumBy(
+      (row.pickedBy?.websites || row.brand.pickedBy?.websites || []),
+      'value'
+    )
+  }))
+  .filter((row) => Boolean(row.seo))
+  .sort((a, b) => b.seo - a.seo)
+);
+
+export const seoLabels = _.uniq(seoScored
+  .map(row => row.brand.name.replaceAll(' / ', ', '))
 )

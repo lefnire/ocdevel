@@ -3,6 +3,7 @@ import brand from './brand'
 
 const links = {
   amazon: {
+    US: "https://amzn.to/42mflRO",
   },
   brand: {
     US: "https://lichico.com/products/basic-walkingpad",
@@ -44,7 +45,10 @@ const info: Product = {
     sale: 120,
   },
   pickedBy: {
-    websites: [{value: 3}],
+    websites: [
+      {value: 2},
+      {label: "Chicago Tribune", value: 1, url: "https://reviews.chicagotribune.com/sports-and-fitness/exercise-equipment/best-walking-pads"}
+    ],
   },
   incline: {
     value: 0,

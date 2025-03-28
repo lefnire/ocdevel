@@ -51,7 +51,10 @@ const info: Product = {
   pickedBy: {
     me: 2,
     trusted: [{value: 2}],
-    websites: [{value: 3}],
+    websites: [
+      {value: 2},
+      {label: "Chicago Tribune", value: 1, url: "https://reviews.chicagotribune.com/sports-and-fitness/exercise-equipment/best-walking-pads"}
+    ],
   },
   incline: {
     value: 0,

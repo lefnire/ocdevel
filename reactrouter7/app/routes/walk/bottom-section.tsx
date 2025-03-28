@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Container} from 'react-bootstrap';
-import data, { dataObj } from './treadmills/data/index';
+import { seoScored, dataObj, seoLabels } from './treadmills/data/index';
 import {type CompareProps} from "~/routes/walk/treadmills/compare";
 
 // Simple function to get a part by index, cycling through all parts
@@ -52,16 +52,9 @@ const CompareButton: React.FC<CompareButtonProps> = ({
 
 // Helper function to get product combinations based on SEO scores
 const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
-  // Filter products with SEO scores and ensure they're not filtered out
-  const productsWithSEO = data.filter(product => product.bump?.seo?.length);
-  
-  // Sort by SEO score (descending)
-  const sortedProducts = [...productsWithSEO].sort((a, b) =>
-    (b.bump.seo.length ?? 0) - (a.bump.seo.length ?? 0)
-  );
 
   // Take top N products
-  const topProducts = sortedProducts.slice(0, maxProducts);
+  const topProducts = seoScored.slice(0, maxProducts);
   
   // Generate all possible unique combinations (pairs)
   const combinations = [];

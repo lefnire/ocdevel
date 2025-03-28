@@ -18,6 +18,7 @@ const info: Brand = {
   },
   fakespot: "C",
   pickedBy: {
+    me: -2,
     websites: [
       {value: 1},
       {label: "Reddit discussion", value: 1}

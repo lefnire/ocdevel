@@ -2,6 +2,7 @@ import Table from './treadmills/table'
 import TopSection from "./top-section";
 import BottomSection from './bottom-section';
 import {useCompare} from "~/routes/walk/treadmills/compare";
+import {seoLabels} from "~/routes/walk/treadmills/data";
 
 export default function Route() {
   const compareProps = useCompare()
@@ -13,10 +14,10 @@ export default function Route() {
 }
 
 export function meta() {
+  const brands = seoLabels.slice(0, 20).join(', ')
   return [
     { title: "Best Walking Pads 2025" },
-    // TODO optimize per https://trends.google.com/trends/explore?date=today%203-m&geo=US&q=walking%20pad,treadmill%20desk,walking%20desk&hl=en-GB
-    { name: "description", content: "Best under desk walking pads for treadmill desks. Urevo, Egofit, LifeSpan, Sperax, CitySports, Yagud, Ancheer, KingSmith, DeerRun, and more." },
+    { name: "description", content: `Best under desk walking pads for treadmill desks in 2025. ${brands}, and more.` },
   ]
 }
 

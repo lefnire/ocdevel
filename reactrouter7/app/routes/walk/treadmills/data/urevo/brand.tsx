@@ -22,9 +22,13 @@ const info: Brand = {
   },
   fakespot: "B",
   pickedBy: {
-    me: 3,
+    me: 2,
     trusted: [
-      {label: "Affiliate Rebel", value: 3}
+      {label: "Affiliate Rebel", value: 2}
+    ],
+    websites: [
+      {value: 2},
+      {label: "Chicago Tribune", value: 1, url: "https://reviews.chicagotribune.com/sports-and-fitness/exercise-equipment/best-walking-pads"}
     ]
   },
   notes: () => <div>

@@ -15,7 +15,7 @@ const info: Brand = {
   fakespot: "B",
   pickedBy: {
     me: 0,
-    websites: [{value: 3}],
+    websites: [{value: 5}],
     trusted: [{value: 10}]
   },
   warranty: {},
