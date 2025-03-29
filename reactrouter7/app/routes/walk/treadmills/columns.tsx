@@ -1,8 +1,15 @@
 import React from "react";
 import type { Product } from "./rows";
 import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign} from "react-icons/fa";
-import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0, ScoreInfo} from "./utils";
-import {clickAffiliate} from "~/components/analytics";
+import {
+  getCurrentLink,
+  getPrice,
+  getCountryLink,
+  getCountryCodes,
+  toFixed0,
+  ScoreInfo,
+  countries
+} from "./utils";
 import _ from 'lodash';
 import { clickableStyle } from './modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
@@ -11,8 +18,8 @@ const faPublic = <FaStar style={{ color: '#999999' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data/index'
-import {pickedBy} from "~/routes/walk/treadmills/scoring";
 import {Affiliate} from "~/content/product-links";
+import {ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -375,29 +382,34 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string", // list of country codes
     getValue: (row) => getCountryCodes(row).join(''),
     render: (row, clickHandler) => {
-      const countryCodes = getCountryCodes(row);
-      if (_.isEmpty(countryCodes)) return <></>;
-
+      const siteNames = {amazon: "Amazon", brand: row.brand.name}
+      debugger
       return (
         <div
-          className="d-flex flex-wrap gap-1"
-          onClick={clickHandler}
-          style={clickHandler ? clickableStyle : undefined}
+          className="d-flex flex-wrap"
+          // onClick={clickHandler}
+          // style={clickHandler ? clickableStyle : undefined}
         >
-          {countryCodes.map(code => {
-            const link = getCountryLink(row, code);
-            if (!link) return <span key={code}>{code}</span>;
-            const affiliate = {key: row.key, link}
-            return (
-              <Affiliate
-                key={code}
-                product={affiliate}
-                className={`me-1`}
-                onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
-              >
-                {code}
-              </Affiliate>
-            );
+          {countries.order.flatMap(code => {
+            if (!row.linksFull[code]?.product) { return null; }
+            return <DropdownButton
+              as={ButtonGroup}
+              title={code}
+              size="sm"
+              variant="link"
+              id={`link-picker-${row.key}-${code}`}
+            >
+              {countries.buyOrder.map((site, i) => {
+                if (!row.linksFull[code].product[site]) { return null; }
+                return <Dropdown.Item
+                  eventKey={i}
+                  href={row.linksFull[code].product[site]}
+                >
+                  {countries.emojis[code]} {siteNames[site]}
+                </Dropdown.Item>
+              })}
+            </DropdownButton>
+
           })}
         </div>
       );

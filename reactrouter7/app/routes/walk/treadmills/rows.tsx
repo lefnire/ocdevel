@@ -3,11 +3,14 @@ import * as s from './scoring/index'
 import {produce} from 'immer'
 import _ from 'lodash'
 import data from './data/index'
+import {type LinksFull, hydrateLinks} from "./utils";
 
 type Score = {score: number}
+
 export type Product = ProductObj & {
   dimensions: ProductObj['dimensions'] & Score
   links: ProductObj['links'] & Score
+  linksFull: LinksFull
   weight: ProductObj['weight'] & Score
   maxWeight: ProductObj['maxWeight'] & Score
   maxSpeed: ProductObj['maxSpeed'] & Score
@@ -36,6 +39,9 @@ function hydrate(d: Product) {
 
   d.links = d.links || {amazon: {}, brand: {}}
   d.links.score = s.links(d)
+
+  // Create the comprehensive linksFull structure
+  d.linksFull = hydrateLinks(d)
 
   d.weight = d.weight || {}
   d.weight.score = s.weight(d)

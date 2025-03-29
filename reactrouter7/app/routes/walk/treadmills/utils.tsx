@@ -57,3 +57,95 @@ export function ScoreInfo() {
     </div>
   </>
 }
+
+// FIXME make these dynamic (pulled from available options in dat)
+export const countries = {
+  order: ["US", "CA", "UK"],
+  buyOrder: ["amazon", "brand"],
+  emojis: {"US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧"}
+}
+
+// Type for the country-specific links
+type CountryLinks = {
+  amazon?: string,
+  brand?: string
+} | boolean;
+
+export type LinksFull = {
+  [countryCode: string]: {
+    product: CountryLinks
+    brand: CountryLinks
+    either: CountryLinks
+  }
+}
+
+/**
+ * Creates a structured links object with product, brand, and fallback links organized by country
+ * @param row Product object containing links
+ * @returns LinksFull object with links organized by country and source
+ */
+export function hydrateLinks(row: Product): LinksFull {
+  const linksFull: LinksFull = {};
+
+  // Process each country in the defined order
+  countries.order.forEach(code => {
+    // Initialize country entry with all false values
+    linksFull[code] = {
+      product: false,
+      brand: false,
+      either: false
+    };
+    
+    // Track if we found any links for this country
+    let foundProductLink = false;
+    let foundBrandLink = false;
+    
+    // Process sites in reverse order for more elegant assignment
+    [...countries.buyOrder].reverse().forEach(site => {
+      // Check for product links
+      if (row.links?.[site]?.[code]) {
+        if (!foundProductLink) {
+          linksFull[code].product = {
+            [site]: row.links[site][code]
+          };
+          foundProductLink = true;
+        } else if (typeof linksFull[code].product === 'object') {
+          // Add to existing object if we already found a link
+          (linksFull[code].product as CountryLinks)[site] = row.links[site][code];
+        }
+      }
+      
+      // Check for brand links
+      if (row.brand?.links?.[site]?.[code]) {
+        if (!foundBrandLink) {
+          linksFull[code].brand = {
+            [site]: row.brand.links[site][code]
+          };
+          foundBrandLink = true;
+        } else if (typeof linksFull[code].brand === 'object') {
+          // Add to existing object if we already found a link
+          (linksFull[code].brand as CountryLinks)[site] = row.brand.links[site][code];
+        }
+      }
+      
+      // Set either links (giving preference to product links over brand links)
+      const productLink = row.links?.[site]?.[code];
+      const brandLink = row.brand?.links?.[site]?.[code];
+      
+      if (productLink || brandLink) {
+        const link = productLink || brandLink;
+        
+        if (linksFull[code].either === false) {
+          linksFull[code].either = { [site]: link };
+        } else if (typeof linksFull[code].either === 'object') {
+          // Only add if we don't already have this site
+          if (!(site in linksFull[code].either)) {
+            (linksFull[code].either as CountryLinks)[site] = link;
+          }
+        }
+      }
+    });
+  });
+  
+  return linksFull;
+}
