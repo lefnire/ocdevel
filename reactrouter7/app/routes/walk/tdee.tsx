@@ -82,33 +82,38 @@ export default function TDECalculator() {
     return met * weightInKg * timeValue;
   };
 
-  // Calculate walking calories
-  const calculateCalories = () => {
-    // Calculate walking calories
-    const walkingCalories = calculateWalkingCalories();
-    
-    setCalories(walkingCalories);
-  };
+  // git-blame for auto conversion between metric/imperial. I think that's overboard.
 
   return (
     <Container>
       <h4 className="text-center">Walking Calorie Calculator</h4>
       <div className="text-center">Calculate how many calories you can burn while using a walking pad. This adds to your <a href="https://www.calculator.net/tdee-calculator.html" target="_blank">TDEE</a> (Total Daily Energy Expenditure).</div>
       <Form>
-        <Form.Group className="mb-2" controlId="formUnits">
+        <Form.Group className="mb-2">
           <Form.Label className="mb-0">Units</Form.Label>
-          <Form.Control
-            as="select"
-            value={unit}
-            onChange={(e) => setUnit(e.target.value as UnitSystem)}
-          >
-            <option value="metric">Metric</option>
-            <option value="imperial">Imperial</option>
-          </Form.Control>
+          <div className="d-flex">
+            <Form.Check
+              type="radio"
+              id="unitImperial"
+              label="Imperial"
+              name="unitSystem"
+              checked={unit === 'imperial'}
+              onChange={() => setUnit('imperial')}
+              className="me-3"
+            />
+            <Form.Check
+              type="radio"
+              id="unitMetric"
+              label="Metric"
+              name="unitSystem"
+              checked={unit === 'metric'}
+              onChange={() => setUnit('metric')}
+            />
+          </div>
         </Form.Group>
 
         <Row>
-          <Col md={6}>
+          <Col md={3}>
             <Form.Group className="mb-1" controlId="formAge">
               <Form.Label className="mb-0">Age</Form.Label>
               <Form.Control
@@ -119,7 +124,7 @@ export default function TDECalculator() {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={3}>
             <Form.Group className="mb-1" controlId="formGender">
               <Form.Label className="mb-0">Gender</Form.Label>
               <Form.Control
@@ -132,10 +137,7 @@ export default function TDECalculator() {
               </Form.Control>
             </Form.Group>
           </Col>
-        </Row>
-
-        <Row>
-          <Col md={6}>
+          <Col md={3}>
             <Form.Group className="mb-1" controlId="formHeight">
               <Form.Label className="mb-0">Height ({unit === 'metric' ? 'cm' : 'inches'})</Form.Label>
               <Form.Control
@@ -146,7 +148,7 @@ export default function TDECalculator() {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={3}>
             <Form.Group className="mb-1" controlId="formWeight">
               <Form.Label className="mb-0">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</Form.Label>
               <Form.Control
@@ -160,7 +162,7 @@ export default function TDECalculator() {
         </Row>
 
         <Row>
-          <Col md={6}>
+          <Col md={4}>
             <Form.Group className="mb-1" controlId="formTime">
               <Form.Label className="mb-0">Time (hours)</Form.Label>
               <Form.Control
@@ -171,7 +173,7 @@ export default function TDECalculator() {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={4}>
             <Form.Group className="mb-1" controlId="formSpeed">
               <Form.Label className="mb-0">Speed ({unit === 'metric' ? 'km/h' : 'mph'})</Form.Label>
               <Form.Control
@@ -182,43 +184,48 @@ export default function TDECalculator() {
               />
             </Form.Group>
           </Col>
+          <Col md={4}>
+            <Form.Group className="mb-1" controlId="formIncline">
+              <Form.Label className="mb-0">Incline (%)</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter incline in percentage"
+                value={incline}
+                onChange={(e) => setIncline(e.target.value === '' ? '' : Number(e.target.value))}
+              />
+            </Form.Group>
+          </Col>
         </Row>
-
-        <Form.Group className="mb-1" controlId="formIncline">
-          <Form.Label className="mb-0">Incline (%)</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter incline in percentage"
-            value={incline}
-            onChange={(e) => setIncline(e.target.value === '' ? '' : Number(e.target.value))}
-          />
-        </Form.Group>
-
-        <Button variant="primary" className="mt-2" onClick={calculateCalories}>
-          Calculate Calories
-        </Button>
+        {/* No button needed - calculation is automatic */}
       </Form>
 
-      {calories !== null && (
-        <div className="mt-3 p-3 border rounded">
-          <Row>
-            <Col>
-              <div className="mb-2">
-                <strong>Calories Burned from Walking:</strong>
-                <p className="font-weight-bold">{calories.toFixed(2)} calories</p>
-              </div>
-              <div className="small text-muted">
-                This calculation is based on your weight, walking speed, incline, and time.
-                It uses MET (Metabolic Equivalent of Task) values adjusted for these factors.
-              </div>
-            </Col>
-          </Row>
-          <div className="mt-2 small text-muted">
-            This is an approximation based on general formulas. Individual results may vary.
-            Consult with a healthcare professional for personalized advice.
+      <div className="mt-3 p-3 border rounded">
+        {weight ? (
+          <>
+            <Row>
+              <Col>
+                <div className="mb-2">
+                  <strong>Calories Burned from Walking:</strong>
+                  <p className="font-weight-bold">{calories !== null ? calories.toFixed(2) : '0'} calories</p>
+                </div>
+                <div className="small text-muted">
+                  This calculation is based on your weight, walking speed, incline, and time.
+                  It uses MET (Metabolic Equivalent of Task) values adjusted for these factors.
+                </div>
+              </Col>
+            </Row>
+            <div className="mt-2 small text-muted">
+              This is an approximation based on general formulas. Individual results may vary.
+              Consult with a healthcare professional for personalized advice.
+            </div>
+          </>
+        ) : (
+          <div className="text-center text-muted">
+            <p>Please enter your weight to calculate calories burned.</p>
+            <p className="small">Weight is required for an accurate calculation.</p>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </Container>
   );
 }
