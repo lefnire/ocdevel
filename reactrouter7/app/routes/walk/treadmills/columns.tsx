@@ -92,6 +92,24 @@ export const columnsArray: ColumnDefinition[] = [
     getValue: (row) => row.model.value,
     format: (row) => row.model.value,
     renderModalTitle: (row) => row.model.value,
+    renderModal: (row) => {
+      const siteNames = {amazon: "Amazon", brand: "Company Website"}
+      const links = countries.order.flatMap(code => (
+        countries.buyOrder.map((site, i) => {
+          if (!row.linksFull[code]?.product?.[site]) { return null; }
+          const aff = {key: row.key, link: row.linksFull[code].product[site]}
+          return <div key={`link-brand-${row.key}-${code}-${site}`}>
+            <Affiliate product={aff}>
+              {countries.emojis[code]} {siteNames[site]}
+            </Affiliate>
+          </div>
+        })
+      ))
+      return <div>
+        {links}
+        {row.brand.notes?.()}
+      </div>
+    }
   },
   {
     key: "price",
