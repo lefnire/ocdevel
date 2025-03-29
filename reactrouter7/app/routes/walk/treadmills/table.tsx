@@ -17,16 +17,11 @@ import type {
 } from '@tanstack/react-table';
 import type { Product } from './rows';
 import { columnsArray, columnsObj } from './columns';
-import {OverlayTrigger, Popover, Form, Button, Badge, Container} from 'react-bootstrap';
-import {FaArrowUp, FaArrowDown, FaArrowLeft} from 'react-icons/fa';
-import type {CompareProps} from "./compare";
+import { Form, Button, Badge, Container } from 'react-bootstrap';
+import { FaArrowUp, FaArrowDown, FaArrowLeft } from 'react-icons/fa';
+import type { CompareProps } from "./compare";
 import { useSearchParams } from "react-router";
-
-// Custom styles
-const dottedBorderStyle: React.CSSProperties = {
-  borderBottom: '1px dotted #6c757d', // Gray dotted border
-  cursor: 'pointer'
-};
+import { ModalProvider, useModal, clickableStyle } from './modal';
 
 // Header cell component with notes
 const HeaderCell: React.FC<{
@@ -45,37 +40,37 @@ const HeaderCell: React.FC<{
   </div>
 );
 
-// Description component with notes popover
+// Description component with notes modal
 const ColumnDescription: React.FC<{
   column: Column<Product, unknown>;
   info: any;
 }> = ({ column, info }) => {
+  const { openModal } = useModal();
+  
   if (!info.description && !info.notes) return <div>&nbsp;</div>;
   
-  const popover = (
-    <Popover id={`popover-desc-${column.id}`}>
-      <Popover.Header as="h3">{info.label}</Popover.Header>
-      <Popover.Body>
-        {info.notes ? info.notes() : <div>{info.description}</div>}
-      </Popover.Body>
-    </Popover>
-  );
+  const handleClick = () => {
+    const content = info.notes ? info.notes() : <div>{info.description}</div>;
+    openModal(`desc-${column.id}`, info.label, content);
+  };
 
   return (
     <div className="mt-1">
-      <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-        <span className="small text-secondary" style={dottedBorderStyle}>
-          {info.description || 'Info (?)'}
-        </span>
-      </OverlayTrigger>
+      <span
+        className="small text-secondary"
+        style={clickableStyle}
+        onClick={handleClick}
+      >
+        {info.description || 'Info (?)'}
+      </span>
     </div>
   );
 };
 
 
 
-// Cell with popover component
-const CellWithPopover: React.FC<{
+// Cell with modal component
+const CellWithModal: React.FC<{
   product: Product;
   columnId: string;
   displayValue: React.ReactNode;
@@ -84,22 +79,21 @@ const CellWithPopover: React.FC<{
   popoverContent: React.ReactNode;
   isBold?: boolean;
 }> = ({ product, columnId, displayValue, cellStyle, info, popoverContent, isBold = false }) => {
-  const popover = (
-    <Popover id={`popover-cell-${columnId}-${product.key}`}>
-      <Popover.Header as="h3">{info?.label || columnId}</Popover.Header>
-      <Popover.Body>
-        {popoverContent}
-      </Popover.Body>
-    </Popover>
-  );
+  const { openModal } = useModal();
+  
+  const handleClick = () => {
+    openModal(`cell-${columnId}-${product.key}`, info?.label || columnId, popoverContent);
+  };
   
   return (
     <div style={cellStyle}>
-      <OverlayTrigger trigger={["hover","focus"]} placement="bottom" overlay={popover}>
-        <span className={isBold ? "fw-bold" : ""} style={dottedBorderStyle}>
-          {displayValue}
-        </span>
-      </OverlayTrigger>
+      <span
+        className={isBold ? "fw-bold" : ""}
+        style={clickableStyle}
+        onClick={handleClick}
+      >
+        {displayValue}
+      </span>
     </div>
   );
 };
@@ -127,9 +121,9 @@ const Cell: React.FC<{
                          (typeof product[columnId as keyof Product] === 'object' &&
                           (product[columnId as keyof Product] as any)?.notes?.());
   
-  // For columns with popover content
+  // For columns with modal content
   if (popoverContent) {
-    return <CellWithPopover
+    return <CellWithModal
       product={product}
       columnId={columnId}
       displayValue={displayValue}
@@ -285,7 +279,7 @@ const Score: React.FC<{ score: number }> = ({ score }) => {
     </div>
   );
 };
-export default function ProductTable({
+function ProductTable({
   isCompareMode,
   filteredData,
   handleShowAll,
@@ -519,5 +513,14 @@ export default function ProductTable({
         </table>
       </div>
     </div>
+  );
+}
+
+// Export the wrapped component with ModalProvider
+export default function WrappedProductTable(props: CompareProps) {
+  return (
+    <ModalProvider>
+      <ProductTable {...props} />
+    </ModalProvider>
   );
 }
