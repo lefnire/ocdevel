@@ -460,7 +460,7 @@ function ProductTable({
              <tr key={row.id}>
                {/* Each cell in this row represents a different attribute for this product */}
                {row.getVisibleCells().map(cell => {
-                 const columnId = cell.column.id;
+                 const columnId = cell.column.id as keyof Product;
                  const columnDef = columnsObj[columnId];
                  // Only show score if hideScore is not true and the attribute has a score
                  const score = columnDef.hideScore ? 0 : (row.original[columnId]?.score || 0);

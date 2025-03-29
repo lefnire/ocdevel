@@ -29,7 +29,8 @@ export const total: ScoreFn = (row) => {
     if (!score) { return; }
 
     // Add to total score
-    totalScore += score * weight;
+    // toFixed() to add more stability, otherwise I get hydration errors against Score
+    totalScore += score.toFixed(3) * weight;
     totalWeight += weight;
   });
 
