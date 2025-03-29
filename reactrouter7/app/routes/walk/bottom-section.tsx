@@ -2,47 +2,44 @@ import React, {useRef} from 'react';
 import {Button, Container} from 'react-bootstrap';
 import { seoScored, dataObj } from './treadmills/data/index';
 import {type CompareProps} from "~/routes/walk/treadmills/compare";
-import _ from 'lodash'
+import type {Product} from "~/routes/walk/treadmills/data/types";
 
-// Helper function to get product combinations based on SEO scores
-const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
-  const topProducts = seoScored.slice(0, maxProducts);
-  
-  // Generate all possible unique combinations (pairs)
-  const combinations = [];
-  for (let i = 0; i < topProducts.length; i++) {
-    for (let j = i + 1; j < topProducts.length; j++) {
-      combinations.push({
-        a: topProducts[i],
-        b: topProducts[j]
-      });
-      
-      // Limit the number of combinations
-      if (combinations.length >= maxCombinations) break;
-    }
-    if (combinations.length >= maxCombinations) break;
+type KeyBrand = {key: string, brand: string}
+const availableNames = Object.fromEntries(seoScored.map(row => ([
+  row.key,
+  row.brand.name.includes(' / ') ? row.brand.name.split(' / ') : [row.brand.name]
+])))
+const combinations: [KeyBrand, KeyBrand][] = [];
+let i = 0;
+let j = 1;
+let k = 2;
+while (true) {
+  if (Object.keys(availableNames).length < 2) { break; }
+  const [a, b] = [seoScored[i], seoScored[j]];
+  let brandA = availableNames[a.key].shift()
+  if (!availableNames[a.key].length) {
+    i = k;
+    k += 1;
+    delete availableNames[a.key]
   }
-  
-  return combinations;
-};
+  let brandB = availableNames[b.key].shift()
+  if (!availableNames[b.key].length) {
+    j = k;
+    k += 1;
+    delete availableNames[b.key]
+  }
+  combinations.push([
+    {key: a.key, brand: brandA!},
+    {key: b.key, brand: brandB!},
+  ])
+}
 
 export default function BottomSection(props: CompareProps) {
-  const i = useRef(0)
   if (props.isCompareMode) { return null; }
   // Get top product combinations based on SEO
-  const productCombinations = getTopProductCombinations();
 
-  function getBrandPart(name: string, j: number) {
-    if (!name.includes(' / ')) { return name; }
-    const parts = name.split(' / ')
-    return parts[j % parts.length]
-  }
-
-  function renderButton(combo: {a: any, b: any}, j: number) {
-    const {a, b} = combo
-    const brandA = getBrandPart(a.brand.name, j)
-    const brandB = getBrandPart(b.brand.name, j)
-    i.current = i.current + 1
+  function renderButton(combo: typeof combinations[0], i: number) {
+    const [a, b] = combo
     return (
       <Button
         key={`compare-${i}`}
@@ -51,7 +48,8 @@ export default function BottomSection(props: CompareProps) {
         className="me-2 whitespace-nowrap"
         onClick={() => props.handleCompare(a.key, b.key)}
       >
-        {brandA} vs {brandB}
+        {/*{a.brand} {dataObj[a.key].model} vs {b.brand} {dataObj[b.key].model}*/}
+        {a.brand} vs {b.brand}
       </Button>
     );
   }
@@ -59,7 +57,7 @@ export default function BottomSection(props: CompareProps) {
   return <Container>
     <h5 className='text-center'>Popular Comparisons</h5>
     <div className="d-flex overflow-auto pb-2">
-      {productCombinations.map(renderButton)}
+      {combinations.map(renderButton)}
     </div>
   </Container>
 }
