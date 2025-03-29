@@ -96,7 +96,16 @@ const Cell: React.FC<{
   
   // Create click handler for modal if popover content exists
   const handleClick = popoverContent ? () => {
-    openModal(`cell-${columnId}-${product.key}`, info?.label || columnId, popoverContent);
+    const title = (() => {
+      if (info?.renderModalTitle) {
+        return info.renderModalTitle(product)
+      }
+      return [
+        columnsObj.model.getValue(product),
+        (info?.label) || columnId
+      ].join(' - ')
+    })()
+    openModal(`cell-${columnId}-${product.key}`, title, popoverContent);
   } : undefined;
 
   // Case 1: If render function is provided, use it and pass the click handler

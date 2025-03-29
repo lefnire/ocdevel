@@ -35,6 +35,7 @@ interface ColumnDefinition {
   columnStyle?: React.CSSProperties;
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
+  renderModalTitle?: (row: Product) => string;
   renderModal?: (row: Product) => React.ReactNode; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
@@ -63,13 +64,14 @@ export const columnsArray: ColumnDefinition[] = [
     hideScore: true,
     getValue: (row) => row.brand.name,
     format: (row) => row.brand.name,
+    renderModalTitle: (row) => row.brand.name,
     renderModal: (row) => {
       const siteNames = {amazon: "Amazon", brand: row.brand.name}
       const links = countries.order.flatMap(code => (
         countries.buyOrder.map((site, i) => {
           if (!row.linksFull[code]?.product?.[site]) { return null; }
           const aff = {key: row.key, link: row.linksFull[code].product[site]}
-          return <div key={`link-brand-${row.key}-${code}`}>
+          return <div key={`link-brand-${row.key}-${code}-${site}`}>
             <Affiliate product={aff}>
               {countries.emojis[code]} {siteNames[site]}
             </Affiliate>
@@ -88,7 +90,8 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     hideScore: true,
     getValue: (row) => row.model,
-    format: (row) => row.model
+    format: (row) => row.model,
+    renderModalTitle: (row) => row.model,
   },
   {
     key: "price",
@@ -415,11 +418,13 @@ export const columnsArray: ColumnDefinition[] = [
               size="sm"
               variant="link"
               id={`link-picker-${row.key}-${code}`}
+              key={`link-picker-${row.key}-${code}`}
             >
               {countries.buyOrder.map((site, i) => {
                 if (!row.linksFull[code].product[site]) { return null; }
                 return <Dropdown.Item
                   eventKey={i}
+                  key={`link-picker-${row.key}-${code}-${site}`}
                   href={row.linksFull[code].product[site]}
                   target="_blank"
                   className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
