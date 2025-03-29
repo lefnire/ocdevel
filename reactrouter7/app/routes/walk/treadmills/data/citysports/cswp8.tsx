@@ -45,7 +45,7 @@ const info: Product = {
     value: 230,
   },
   pickedBy: {
-    websites: [{value: 1}],
+    websites: [{value: 10}], // current Google trend
   },
   incline: {
     value: 0,
