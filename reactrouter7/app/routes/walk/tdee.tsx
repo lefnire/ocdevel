@@ -7,28 +7,32 @@ export default function TDECalculator() {
   const [gender, setGender] = useState<string>('male');
   const [height, setHeight] = useState<number | ''>(''); // cm or inches
   const [weight, setWeight] = useState<number | ''>(''); // kg or lbs
-  const [time, setTime] = useState<number | ''>('');
-  const [speed, setSpeed] = useState<number | ''>(''); // km/h or mph
-  const [incline, setIncline] = useState<number | ''>('');
+  const [time, setTime] = useState<number | ''>(2); // Time in hours, default to 2
+  const [speed, setSpeed] = useState<number | ''>(unit === 'metric' ? 3.21869 : 2); // km/h or mph, default to 2mph
+  const [incline, setIncline] = useState<number | ''>(0); // Default incline to 0
   const [tdee, setTDEE] = useState<number | null>(null);
 
   const calculateTDEE = () => {
-    // Implement the TDEE calculation logic here, considering units
-    // This is a placeholder, replace with the actual formula
+    // Implement a more accurate TDEE calculation logic here, considering units
+    // This is an approximation, consult a professional for accurate results
     let calculatedTDEE = 0;
-    if (unit === 'metric') {
-      calculatedTDEE =
-        (weight ? parseFloat(weight.toString()) : 0) *
-        (speed ? parseFloat(speed.toString()) : 0) *
-        (incline ? parseFloat(incline.toString()) : 0);
+    let bmr = 0;
+
+    // Harris-Benedict equation (simplified)
+    if (gender === 'male') {
+      bmr = (10 * (weight ? parseFloat(weight.toString()) : 0)) + (6.25 * (height ? parseFloat(height.toString()) : 0)) - (5 * (age ? parseFloat(age.toString()) : 0)) + 5;
     } else {
-      // Imperial calculation (example, needs proper conversion and formula)
-      calculatedTDEE =
-        (weight ? parseFloat(weight.toString()) : 0) *
-        (speed ? parseFloat(speed.toString()) : 0) *
-        (incline ? parseFloat(incline.toString()) : 0) *
-        1.2;
+      bmr = (10 * (weight ? parseFloat(weight.toString()) : 0)) + (6.25 * (height ? parseFloat(height.toString()) : 0)) - (5 * (age ? parseFloat(age.toString()) : 0)) - 161;
     }
+
+    // Activity factor (walking) - this is a rough estimate
+    const activityFactor = 1.375;
+
+    // Walking energy expenditure (very simplified)
+    const walkingEnergy = (speed ? parseFloat(speed.toString()) : 0) * ((incline ? parseFloat(incline.toString()) : 0) === 0 ? 1 : (incline ? parseFloat(incline.toString()) : 0)) * (time ? parseFloat(time.toString()) : 0);
+
+    calculatedTDEE = (bmr * activityFactor) + walkingEnergy;
+
     setTDEE(calculatedTDEE);
   };
 
@@ -104,12 +108,12 @@ export default function TDECalculator() {
         <Row>
           <Col md={6}>
             <Form.Group className="mb-1" controlId="formTime">
-              <Form.Label className="mb-0">Time (minutes)</Form.Label>
+              <Form.Label className="mb-0">Time (hours)</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter time in minutes"
+                placeholder="Enter time in hours"
                 value={time}
-                onChange={(e) => setTime(e.target.value === '' ? '' : parseInt(e.target.value))}
+                onChange={(e) => setTime(e.target.value === '' ? '' : parseFloat(e.target.value))}
               />
             </Form.Group>
           </Col>
@@ -146,7 +150,7 @@ export default function TDECalculator() {
           <Col md={6}>
             <div>
               <h4>Your TDEE:</h4>
-              <p>{tdee ? tdee.toFixed(2) : '0'} calories</p>
+              <p>{tdee ? tdee.toFixed(2) : '0'} calories (approximation)</p>
             </div>
           </Col>
         </Row>

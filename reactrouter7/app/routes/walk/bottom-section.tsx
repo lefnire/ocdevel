@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {Button, Container} from 'react-bootstrap';
 import { seoScored, dataObj } from './treadmills/data/index';
 import {type CompareProps} from "~/routes/walk/url-listener";
-import type {Product} from "~/routes/walk/treadmills/data/types";
+import TDECalculator from "~/routes/walk/tdee";
 
 type KeyBrand = {key: string, brand: string}
 const availableNames = Object.fromEntries(seoScored.map(row => ([
@@ -64,5 +64,6 @@ export default function BottomSection(props: CompareProps) {
     <div className="d-flex overflow-auto pb-2">
       {combinations.map(renderButton)}
     </div>
+    <TDECalculator />
   </Container>
 }

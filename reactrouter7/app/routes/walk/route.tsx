@@ -3,7 +3,6 @@ import TopSection from "./top-section";
 import BottomSection from './bottom-section';
 import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
 import {seoLabels} from "~/routes/walk/treadmills/data";
-import TDECalculator from "~/routes/walk/tdee";
 
 export default function Route() {
   const compareProps = useCompare()
@@ -16,7 +15,6 @@ export default function Route() {
     <TopSection {...props} />
     <Table {...props} />
     <BottomSection {...props} />
-    <TDECalculator />
   </div>
 }
 
