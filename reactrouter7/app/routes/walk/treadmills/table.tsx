@@ -305,6 +305,9 @@ function ProductTable({
           
           // Handle different data types
           if (columnDef.dtype === "number") {
+            // Get filter options for this column
+            const filterOptions = columnDef.filterOptions || { min: true, max: true };
+            
             // For numeric columns, check if it's a range (min-max)
             if (value.includes('-')) {
               const [min, max] = value.split('-').map(v => parseFloat(v));
@@ -313,11 +316,27 @@ function ProductTable({
                 value: [min, max]
               });
             } else {
-              // Single value treated as minimum
-              newFilters.push({
-                id: columnId,
-                value: [parseFloat(value), undefined]
-              });
+              // Single value - treat according to filterOptions
+              const parsedValue = parseFloat(value);
+              if (filterOptions.min && !filterOptions.max) {
+                // If only min is enabled, treat as minimum
+                newFilters.push({
+                  id: columnId,
+                  value: [parsedValue, undefined]
+                });
+              } else if (!filterOptions.min && filterOptions.max) {
+                // If only max is enabled, treat as maximum
+                newFilters.push({
+                  id: columnId,
+                  value: [undefined, parsedValue]
+                });
+              } else {
+                // If both are enabled or neither is specified, default to minimum
+                newFilters.push({
+                  id: columnId,
+                  value: [parsedValue, undefined]
+                });
+              }
             }
           } else if (columnDef.dtype === "boolean") {
             // For boolean columns
@@ -335,7 +354,7 @@ function ProductTable({
         }
       }
     });
-    
+
     // Update column filters
     if (newFilters.length > 0) {
       setColumnFilters(newFilters);
