@@ -1,4 +1,4 @@
-import React, {type ReactElement} from 'react'
+import React, {type PropsWithChildren, type ReactElement} from 'react'
 import {VideoButton} from "~/routes/walk/utils";
 import {clickAffiliate} from "~/components/analytics";
 
@@ -23,6 +23,28 @@ export function affiliateLink(product: AffiliateLink, label: string) {
         className={`plausible-event-name=affiliate plausible-event-product=${product.key}`}
         rel="noopener noreferrer"
     >{label}</a>
+}
+// FIXME combine with affiliateLink above (change all the mdx files)
+// FIXME move the image imports somwhere else, so they're not included in keyboards/mice
+export function Affiliate({product, children, ...props}: PropsWithChildren<{
+    product: AffiliateLink,
+    className?: string
+}>) {
+    const {className, ...rest} = props
+    const classes = [
+      "plausible-event-name=affiliate",
+      `plausible-event-product=${product.key}`,
+      (className || "")
+    ].join(' ')
+    return <a
+      href={product.link}
+      target="_blank"
+      className={classes}
+      rel="noopener noreferrer"
+      {...rest}
+    >
+        {children}
+    </a>
 }
 
 const links: Record<string, AffiliateLink> = {

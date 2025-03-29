@@ -1,7 +1,7 @@
 import React from "react";
 import type { Product } from "./rows";
 import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign} from "react-icons/fa";
-import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0} from "./utils";
+import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0, ScoreInfo} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
 import { clickableStyle } from './modal';
@@ -12,6 +12,7 @@ const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data/index'
 import {pickedBy} from "~/routes/walk/treadmills/scoring";
+import {Affiliate} from "~/content/product-links";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -24,6 +25,7 @@ interface ColumnDefinition {
   getValue: (row: Product) => string | number | boolean | undefined;
   format?: (row: Product) => string; // Function to format the value as a string (for simple cases)
   render?: (row: Product, clickHandler?: () => void) => React.ReactNode; // Function to render the value with optional click handler
+  columnStyle?: React.CSSProperties;
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
   renderModal?: (row: Product) => React.ReactNode; // Function to render the popover body
@@ -39,49 +41,13 @@ export const columnsArray: ColumnDefinition[] = [
     key: "total",
     label: "Score",
     dtype: "number",
+    columnStyle: {maxWidth: 90},
     hideScore: true,
-    description: "Calculation (?)",
     filterOptions: { min: true, max: false },
-    notes: () => (
-      <div>
-        This score is calculated based on each product's attribute ratings and the importance of each attribute.
-        Higher scores indicate better overall performance. The calculation takes into account:
-        <ul>
-          <li>Each attribute's rating (out of 10)</li>
-          <li>The importance weight of each attribute (defined in columns.tsx)</li>
-          <li>Special handling for complex attributes like star ratings and Fakespot grades</li>
-        </ul>
-      </div>
-    ),
+    notes: () => <ScoreInfo />,
     getValue: (row) => row.total.score,
     format: (row) => row.total.score.toFixed(1),
     getStyle: (): React.CSSProperties => ({ fontWeight: 'bold' }),
-  },
-  {
-    key: "model",
-    label: "Model",
-    dtype: "string",
-    hideScore: true,
-    getValue: (row): string => row.model,
-    render: (row, clickHandler): React.ReactElement => {
-      const link = getCurrentLink(row);
-
-      // Create a wrapper div that can handle the modal click
-      // but let the link handle its own click without propagation
-      return (
-        <div onClick={clickHandler} style={clickHandler ? clickableStyle : undefined}>
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
-            onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
-          >
-            {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
-          </a>
-        </div>
-      );
-    },
   },
   {
     key: "brand",
@@ -92,29 +58,65 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.brand.name,
   },
   {
+    key: "model",
+    label: "Model",
+    dtype: "string",
+    hideScore: true,
+    getValue: (row) => row.model,
+    format: (row) => row.model
+  },
+  {
+    key: "price",
+    label: "Price",
+    dtype: "number",
+    filterOptions: { min: false, max: true },
+    notes: () => <div>Last price I saw this at ({UPDATED})</div>,
+    getValue: (row) => getPrice(row),
+    format: (row) => {
+      const price = getPrice(row);
+      return price !== undefined ? `$${price}` : '';
+    },
+    render: (row, clickHandler): React.ReactElement => {
+      const link = getCurrentLink(row);
+      const price = getPrice(row);
+      const affiliate = {key: row.key, link}
+
+      // Create a wrapper div that can handle the modal click
+      // but let the link handle its own click without propagation
+      return (
+        <div onClick={clickHandler} style={clickHandler ? clickableStyle : undefined}>
+          <Affiliate
+            product={affiliate}
+            onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
+          >
+            ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+          </Affiliate>
+        </div>
+      );
+    },
+  },
+  {
     key: "rating",
     label: "Stars",
+    // columnStyle: {maxWidth: 100},
     dtype: "number",
-    description: "Calculation (?)",
     filterOptions: {min: true, max: false},
     notes: () => (
       <div>
-        <p>I have a firm stance on ratings. Anything less than 4.1 is no (all products, not just treadmills). Most important though is to observe the rating <em>distribution</em>. A healthy graph looks like a stair case, most being 5 least being 1 (or maybe just a taller than 2). What scares me is a C shape: mostly 5s, and second-mostly 1s. Smoking gun of either (1) fake ratings; (2) quality control (ticking time-bomb). I'll take significantly less 5s in exchange for a healthy curve.</p>
-        <p>This rating takes into account:</p>
+        <p>I have a firm stance on ratings. Anything less than 4.1 is no (all products, not just treadmills). Most important though is to observe the rating <em>distribution</em>. A healthy graph looks like a stair-case, most being 5 least being 1 or 2. What scares me is a C shape: mostly 5s, and second-mostly 1s. Smoking gun of either (1) fake ratings; (2) quality control (ticking time-bomb). I'll take significantly less 5s in exchange for a healthy curve.</p>
+        <p>The rating score (bottom right number) takes into account:</p>
         <ul>
-          <li>Star rating (weighted by number of reviews - more reviews = more reliable)</li>
-          <li>Rating distribution (penalizes skewed distributions with high 5-star and high 1-star counts)</li>
-          <li>Fakespot grades for both product and company (company grade weighted more heavily)</li>
+          <li>Star rating, usually from Amazon. Pulled towards 4.1 if too few reviews.</li>
+          <li>Rating distribution. Penalize skewed distributions with high 5-star and high 1-star counts)</li>
+          <li>FakeSpot grades for both product and company. Company grade weighted more heavily.</li>
         </ul>
-        <p>The calculation aims to provide a more accurate representation of product quality by accounting for potential fake reviews and quality control issues.</p>
       </div>
     ),
     getValue: (row) => row.rating.value?.[0]?.[0],
     format: (row) => {
-      const ratingValue = row.rating?.value
-      if (!ratingValue) return '';
-      const [[avg]] = ratingValue;
-      return avg.toFixed(1);
+      const rating = row.rating.value?.[0]?.[0]
+      if (!rating) return '';
+      return rating.toFixed(1);
     },
     renderModal: (row) => {
       const notes = row.rating?.notes;
@@ -163,19 +165,6 @@ export const columnsArray: ColumnDefinition[] = [
           {renderDistribution()}
         </>
       );
-    },
-  },
-  {
-    key: "price",
-    label: "Price",
-    dtype: "number",
-    description: "Info (?)",
-    filterOptions: { min: false, max: true },
-    notes: () => <div>Last price I saw this at ({UPDATED})</div>,
-    getValue: (row) => getPrice(row),
-    format: (row) => {
-      const price = getPrice(row);
-      return price !== undefined ? `$${price}` : '';
     },
   },
   {
@@ -235,7 +224,6 @@ export const columnsArray: ColumnDefinition[] = [
     key: "maxSpeed",
     label: "Max Speed",
     dtype: "number",
-    description: "Info (?)",
     filterOptions: { min: true, max: false },
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
     getValue: (row) => row.maxSpeed?.value,
@@ -248,7 +236,7 @@ export const columnsArray: ColumnDefinition[] = [
     key: "incline",
     label: "Incline",
     dtype: "number",
-    description: "Favor 3% (?)",
+    description: "Favor 3%",
     filterOptions: { min: true, max: false },
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
     getValue: (row) => row.incline?.value,
@@ -302,8 +290,13 @@ export const columnsArray: ColumnDefinition[] = [
   },
   {
     key: "shock",
-    label: "Shock absorption",
+    label: "Shock",
     dtype: "boolean",
+    notes: () => {
+      return <>
+        <div>Most will have 8-point or 6-point silicone absorbers. These are rubbers between two layers of deck, which compress when you land. A few cheap mills won't have shock absorption at all. Mills with incline whose focal point is near the center (eg CyberPad) have natural extra absorption, as the incline mechanism bobs on pistons.</div>
+      </>
+    },
     getValue: (row) => row.shock?.value,
     format: (row) => {
       return (row.shock?.value) ? '✓' : '';
@@ -327,8 +320,8 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     // the data is stores as [number,number,number], so should be converted to
     // a string like `1"D x 1"W x 1"H` the cells.
-    description: 'D" x W" x H"',
-    notes: () => <div>(Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
+    description: 'D"xW"xH"',
+    notes: () => <div>Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
     getValue: (row) => row.dimensions?.value?.join(''),
     format: (row) => {
       const dimensions = row.dimensions?.value;
@@ -394,18 +387,16 @@ export const columnsArray: ColumnDefinition[] = [
           {countryCodes.map(code => {
             const link = getCountryLink(row, code);
             if (!link) return <span key={code}>{code}</span>;
-
+            const affiliate = {key: row.key, link}
             return (
-              <a
+              <Affiliate
                 key={code}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`me-1 plausible-event-name=affiliate plausible-event-product=${row.key}`}
+                product={affiliate}
+                className={`me-1`}
                 onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
               >
                 {code}
-              </a>
+              </Affiliate>
             );
           })}
         </div>

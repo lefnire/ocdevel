@@ -61,7 +61,7 @@ const ColumnDescription: React.FC<{
         style={clickableStyle}
         onClick={handleClick}
       >
-        {info.description || 'Info (?)'}
+        {info.description || 'Details'}
       </span>
     </div>
   );
@@ -442,39 +442,42 @@ function ProductTable({
          <thead>
            <tr>
              {/* Each column header */}
-             {table.getHeaderGroups()[0].headers.map(header => (
-               <th
-                 key={header.id}
-                 className="text-nowrap"
-                 style={{ minWidth: 90 }}
-               >
-                 <div>
-                   <div
-                     {...{
-                       className: header.column.getCanSort()
-                         ? 'cursor-pointer select-none'
-                         : '',
-                       onClick: header.column.getToggleSortingHandler(),
-                     }}
-                   >
-                     {flexRender(
-                       header.column.columnDef.header,
-                       header.getContext()
-                     )}
-                   </div>
-                   {header.column.getCanFilter() ? (
-                     <div>
-                       <Filter column={header.column} table={table} />
-                       {/* Add description with popover below the filter */}
-                       <ColumnDescription
-                         column={header.column}
-                         info={columnsObj[header.column.id as keyof typeof columnsObj]}
-                       />
+             {table.getHeaderGroups()[0].headers.map(header => {
+               const customDef = columnsObj[header.column.id]
+               return (
+                 <th
+                   key={header.id}
+                   className="text-nowrap"
+                   style={customDef.columnStyle || {minWidth: 80}}
+                 >
+                   <div>
+                     <div
+                       {...{
+                         className: header.column.getCanSort()
+                           ? 'cursor-pointer select-none'
+                           : '',
+                         onClick: header.column.getToggleSortingHandler(),
+                       }}
+                     >
+                       {flexRender(
+                         header.column.columnDef.header,
+                         header.getContext()
+                       )}
                      </div>
-                   ) : null}
-                 </div>
-               </th>
-             ))}
+                     {header.column.getCanFilter() ? (
+                       <div>
+                         <Filter column={header.column} table={table}/>
+                         {/* Add description with popover below the filter */}
+                         <ColumnDescription
+                           column={header.column}
+                           info={customDef}
+                         />
+                       </div>
+                     ) : null}
+                   </div>
+                 </th>
+               )
+             })}
            </tr>
          </thead>
          <tbody>

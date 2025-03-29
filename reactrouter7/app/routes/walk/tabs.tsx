@@ -5,6 +5,7 @@ import {Badge, Button, Col, Nav, Row, Tab} from "react-bootstrap";
 import {create} from "zustand/index";
 import essentials, {affiliateLink} from '~/content/product-links'
 import {VideoButton} from "./utils";
+import {ScoreInfo} from "~/routes/walk/treadmills/utils";
 
 export type TabKey = "why_desk" | "buying_guide" | "care" | "essentials"
 export const tabStore = create<{
@@ -82,14 +83,7 @@ export default function Tabs() {
               <p>These can bear more weight than the budget picks, and can run continuously for much longer. They're quieter, and they're likely to need less servicing. However, I can't in good faith recommend these, given I haven't needed to service my budget mills after 2 years; I contend that the budget picks are less an issue of quality; and more an issue of using them wisely, like non-continuous use.</p>
               <h5>Using the table below</h5>
               <p>TL;DR: sort by <strong>Score</strong>, enter a <strong>Price</strong> max.</p>
-              <p><strong>Score</strong> is a weighted sum of each rows' attributes. "Weighted" because some attributes are more important than others. Eg, <strong>App</strong> support has <code>weight=1</code>, where <strong>Sturdy</strong> has <code>weight=10</code>. You can see how each cell ranks in the bottom corner of that cell, eg <Badge bg="success">10</Badge></p>
-              <div>This is particularly interesting for <strong>Star Rating</strong>. The value shown in the cell is the rating (usually from Amazon). But the bottom-right number is the adjusted rating:
-                <ul className="m-0">
-                  <li>star ratings, downplayed if too few ratings present</li>
-                  <li>modified by the FakeSpot grade, for both the product and company</li>
-                  <li>and taking 1-star skew into consideration</li>
-                </ul> So in reality, that little number is more valuable than the rating itself.
-              </div>
+              <ScoreInfo />
               <p></p>
               <p>Anywhere there's a <span style={{borderBottom: "1px dotted #000"}}>dotted underline</span>, click it for details. I try to make these count.</p>
               {/*<p>I switch up the default links sometimes when one has a better deal (either price, warranty, or added goodies).</p>*/}
