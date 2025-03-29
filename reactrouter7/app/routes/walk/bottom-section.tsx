@@ -1,59 +1,11 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Button, Container} from 'react-bootstrap';
-import { seoScored, dataObj, seoLabels } from './treadmills/data/index';
+import { seoScored, dataObj } from './treadmills/data/index';
 import {type CompareProps} from "~/routes/walk/treadmills/compare";
-
-// Simple function to get a part by index, cycling through all parts
-function getPart(name: string, index: number): string {
-  if (!name.includes('/')) { return name; }
-  
-  const parts = name.split('/').map(p => p.trim()).filter(p => p);
-  if (parts.length === 0) return name;
-  
-  // Use modulo to cycle through the parts based on index
-  const partIndex = index % parts.length;
-  return parts[partIndex];
-}
-
-type CompareButtonProps = CompareProps & {
-  key1: string;
-  key2: string;
-  index: number; // Add index prop to cycle through parts
-  handleCompare: CompareProps['handleCompare']
-}
-const CompareButton: React.FC<CompareButtonProps> = ({
-  key1,
-  key2,
-  index,
-  handleCompare
-}) => {
-
-  // Get product objects
-  const product1 = dataObj[key1];
-  const product2 = dataObj[key2];
-  
-  if (!product1 || !product2) return null;
-
-  // Use deterministic selection based on button index
-  const brand1 = getPart(product1.brand.name, index);
-  const brand2 = getPart(product2.brand.name, index + 1); // Offset for variety
-
-  return (
-    <Button
-      variant="light"
-      size="sm"
-      className="me-2 whitespace-nowrap"
-      onClick={() => handleCompare(key1, key2)}
-    >
-      {brand1} vs {brand2}
-    </Button>
-  );
-};
+import _ from 'lodash'
 
 // Helper function to get product combinations based on SEO scores
 const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
-
-  // Take top N products
   const topProducts = seoScored.slice(0, maxProducts);
   
   // Generate all possible unique combinations (pairs)
@@ -61,8 +13,8 @@ const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
   for (let i = 0; i < topProducts.length; i++) {
     for (let j = i + 1; j < topProducts.length; j++) {
       combinations.push({
-        product1Key: topProducts[i].key,
-        product2Key: topProducts[j].key
+        a: topProducts[i],
+        b: topProducts[j]
       });
       
       // Limit the number of combinations
@@ -75,22 +27,39 @@ const getTopProductCombinations = (maxProducts = 10, maxCombinations = 30) => {
 };
 
 export default function BottomSection(props: CompareProps) {
+  const i = useRef(0)
   if (props.isCompareMode) { return null; }
   // Get top product combinations based on SEO
   const productCombinations = getTopProductCombinations();
+
+  function getBrandPart(name: string, j: number) {
+    if (!name.includes(' / ')) { return name; }
+    const parts = name.split(' / ')
+    return parts[j % parts.length]
+  }
+
+  function renderButton(combo: {a: any, b: any}, j: number) {
+    const {a, b} = combo
+    const brandA = getBrandPart(a.brand.name, j)
+    const brandB = getBrandPart(b.brand.name, j)
+    i.current = i.current + 1
+    return (
+      <Button
+        key={`compare-${i}`}
+        variant="light"
+        size="sm"
+        className="me-2 whitespace-nowrap"
+        onClick={() => props.handleCompare(a.key, b.key)}
+      >
+        {brandA} vs {brandB}
+      </Button>
+    );
+  }
   
   return <Container>
     <h5 className='text-center'>Popular Comparisons</h5>
     <div className="d-flex overflow-auto pb-2">
-      {productCombinations.map((combo, index) => (
-        <CompareButton
-          key={`compare-${index}`}
-          key1={combo.product1Key}
-          key2={combo.product2Key}
-          index={index} // Pass the index to cycle through parts
-          {...props}
-        />
-      ))}
+      {productCombinations.map(renderButton)}
     </div>
   </Container>
 }
