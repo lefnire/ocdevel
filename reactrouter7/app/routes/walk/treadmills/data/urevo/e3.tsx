@@ -45,6 +45,8 @@ const info: Product = {
   },
   pickedBy: {
     me: -1,
+    websites: [],
+    trusted: []
   },
   incline: {
     value: 3, // Exact value not specified, but it has incline

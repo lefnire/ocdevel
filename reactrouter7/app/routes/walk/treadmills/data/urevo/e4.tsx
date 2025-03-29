@@ -46,7 +46,9 @@ const info: Product = {
     notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
-    me: -1
+    me: -1,
+    websites: [],
+    trusted: []
   },
   incline: {
     value: 0,
