@@ -1,7 +1,8 @@
 import React from "react";
 import type { Product } from "./rows";
-import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign} from "react-icons/fa";
-import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0} from "./utils";
+import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign, FaChevronDown} from "react-icons/fa";
+import { Dropdown, ButtonGroup, DropdownButton } from 'react-bootstrap';
+import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0, getBrandLinks, getBrandPrimaryLink, getModelLinks, getLinkType} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
@@ -25,6 +26,7 @@ interface ColumnDefinition {
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
   renderPopover?: (row: Product) => React.ReactElement; // Function to render the popover body
+  renderAdditionalContent?: (row: Product) => React.ReactNode; // Function to render additional content below the main value
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -61,18 +63,36 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     hideScore: true,
     getValue: (row): string => row.model,
-    render: (row): React.ReactElement => {
-      const link = getCurrentLink(row);
-
+    render: (row): string => row.model,
+    renderAdditionalContent: (row) => {
+      const modelLinks = getModelLinks(row);
+      const primaryLink = getCurrentLink(row);
+      const primaryLinkType = getLinkType(row, primaryLink, "Amazon");
+      
+      if (modelLinks.length === 0) return null;
+      
       return (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
-        >
-          {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
-        </a>
+        <div className="mt-1">
+          <DropdownButton
+            as={ButtonGroup}
+            title={primaryLinkType}
+            id={`dropdown-model-${row.key}`}
+            size="sm"
+            variant="link"
+          >
+            {modelLinks.map((item, index) => (
+              <Dropdown.Item
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
+              >
+                {item.label}
+              </Dropdown.Item>
+            ))}
+          </DropdownButton>
+        </div>
       );
     },
   },
@@ -83,6 +103,37 @@ export const columnsArray: ColumnDefinition[] = [
     hideScore: true,
     getValue: (row) => row.brand.name,
     render: (row) => row.brand.name,
+    renderAdditionalContent: (row) => {
+      const brandLinks = getBrandLinks(row);
+      const primaryLink = getBrandPrimaryLink(row);
+      const primaryLinkType = getLinkType(row, primaryLink, "Brand");
+      
+      if (brandLinks.length === 0) return null;
+      
+      return (
+        <div className="mt-1">
+          <DropdownButton
+            as={ButtonGroup}
+            title={primaryLinkType}
+            id={`dropdown-brand-${row.key}`}
+            size="sm"
+            variant="link"
+          >
+            {brandLinks.map((item, index) => (
+              <Dropdown.Item
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
+              >
+                {item.label}
+              </Dropdown.Item>
+            ))}
+          </DropdownButton>
+        </div>
+      );
+    },
   },
   {
     key: "rating",
@@ -369,31 +420,12 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Countries",
     hideScore: true,
     dtype: "string", // list of country codes
-    getValue: (row) => getCountryCodes(row).join(''),
+    getValue: (row) => getCountryCodes(row, true).join(''),
     render: (row) => {
-      const countryCodes = getCountryCodes(row);
-      if (_.isEmpty(countryCodes)) return <></>;
+      const countryCodes = getCountryCodes(row, true);
+      if (_.isEmpty(countryCodes)) return '';
 
-      return (
-        <div className="d-flex flex-wrap gap-1">
-          {countryCodes.map(code => {
-            const link = getCountryLink(row, code);
-            if (!link) return <span key={code}>{code}</span>;
-
-            return (
-              <a
-                key={code}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`me-1 plausible-event-name=affiliate plausible-event-product=${row.key}`}
-              >
-                {code}
-              </a>
-            );
-          })}
-        </div>
-      );
+      return countryCodes.join(', ');
     },
     getSortValue: (row: Product): number => row.links.score,
   },

@@ -98,6 +98,41 @@ const CellWithModal: React.FC<{
   );
 };
 
+// Cell with modal and additional content
+const CellWithModalAndContent: React.FC<{
+  product: Product;
+  columnId: string;
+  displayValue: React.ReactNode;
+  cellStyle: React.CSSProperties;
+  info?: any;
+  popoverContent: React.ReactNode;
+  additionalContent: React.ReactNode;
+  isBold?: boolean;
+}> = ({ product, columnId, displayValue, cellStyle, info, popoverContent, additionalContent, isBold = false }) => {
+  const { openModal } = useModal();
+  
+  const handleClick = () => {
+    // const title = info?.label || columnId
+    const title = `${product.model} - ${info?.label || columnId}`
+    openModal(`cell-${columnId}-${product.key}`, title, popoverContent);
+  };
+  
+  return (
+    <div style={cellStyle}>
+      <div>
+        <span
+          className={isBold ? "fw-bold" : ""}
+          style={popoverContent ? clickableStyle : undefined}
+          onClick={popoverContent ? handleClick : undefined}
+        >
+          {displayValue}
+        </span>
+      </div>
+      {additionalContent}
+    </div>
+  );
+};
+
 // Cell component with notes and rating indicator
 const Cell: React.FC<{
   row: Row<Product>;
@@ -108,12 +143,12 @@ const Cell: React.FC<{
   const columnDef = columnsObj[columnId];
   const product: Product = row.original;
   
-  // If no column definition or render function, return empty div
-  if (!columnDef || !columnDef.render) {
+  // If no column definition, return empty div
+  if (!columnDef) {
     return <div></div>;
   }
 
-  const displayValue = columnDef.render(product);
+  const displayValue = columnDef.getValue ? columnDef.getValue(product) : '';
   const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
   
   // Get popover content if available
@@ -121,20 +156,42 @@ const Cell: React.FC<{
                          (typeof product[columnId as keyof Product] === 'object' &&
                           (product[columnId as keyof Product] as any)?.notes?.());
   
-  // For columns with modal content
-  if (popoverContent) {
-    return <CellWithModal
+  // Check if column has renderAdditionalContent function
+  const additionalContent = columnDef.renderAdditionalContent?.(product);
+  
+  // For columns with additional content
+  if (additionalContent) {
+    return <CellWithModalAndContent
       product={product}
       columnId={columnId}
       displayValue={displayValue}
       cellStyle={cellStyle}
       info={info}
       popoverContent={popoverContent}
+      additionalContent={additionalContent}
+      isBold={columnId === 'total'}
+    />;
+  }
+  
+  // For columns with modal content only
+  if (popoverContent) {
+    // Use custom render if provided, otherwise use getValue
+    const renderedValue = columnDef.render ? columnDef.render(product) : displayValue;
+    
+    return <CellWithModal
+      product={product}
+      columnId={columnId}
+      displayValue={renderedValue}
+      cellStyle={cellStyle}
+      info={info}
+      popoverContent={popoverContent}
+      isBold={columnId === 'total'}
     />;
   }
   
   // Default rendering without popover
-  return <div style={cellStyle}>{displayValue}</div>;
+  const renderedValue = columnDef.render ? columnDef.render(product) : displayValue;
+  return <div style={cellStyle}>{renderedValue}</div>;
 };
 
 // Numeric filter component
