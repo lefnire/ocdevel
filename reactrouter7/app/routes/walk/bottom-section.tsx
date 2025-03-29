@@ -60,7 +60,7 @@ export default function BottomSection(props: CompareProps) {
   }
   
   return <Container>
-    <h5 className='text-center'>Popular Comparisons</h5>
+    <h4 className='text-center'>Popular Comparisons</h4>
     <div className="d-flex overflow-auto pb-2">
       {combinations.map(renderButton)}
     </div>

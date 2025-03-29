@@ -33,31 +33,6 @@ export default function TDECalculator() {
   const [incline, setIncline] = useState<NumberOrEmpty>(0); // Default incline to 0%
   const [calories, setCalories] = useState<number | null>(null);
 
-  // Use a ref to track previous unit value to only convert when unit actually changes
-  const prevUnitRef = React.useRef<UnitSystem | null>(null);
-  
-  useEffect(() => {
-    // Skip the first render or if unit hasn't changed
-    if (prevUnitRef.current === null || prevUnitRef.current === unit) {
-      prevUnitRef.current = unit;
-      return;
-    }
-    
-    // Only convert if the unit has actually changed
-    if (speed !== '') {
-      const speedValue = Number(speed);
-      if (unit === 'metric') {
-        // If switching to metric, convert from mph to km/h
-        setSpeed(parseFloat(convertToMetric.speed(speedValue).toFixed(2)));
-      } else {
-        // If switching to imperial, convert from km/h to mph
-        setSpeed(parseFloat(convertToImperial.speed(speedValue).toFixed(2)));
-      }
-    }
-    
-    prevUnitRef.current = unit;
-  }, [unit, speed]);
-
   // Helper function to safely parse numeric values
   const parseNumeric = (value: NumberOrEmpty): number => {
     if (value === '') return 0;
@@ -117,7 +92,7 @@ export default function TDECalculator() {
 
   return (
     <Container>
-      <h3 className="text-center">Walking Calorie Calculator</h3>
+      <h4 className="text-center">Walking Calorie Calculator</h4>
       <div className="text-center">Calculate how many calories you can burn while using a walking pad. This adds to your <a href="https://www.calculator.net/tdee-calculator.html" target="_blank">TDEE</a> (Total Daily Energy Expenditure).</div>
       <Form>
         <Form.Group className="mb-2" controlId="formUnits">
