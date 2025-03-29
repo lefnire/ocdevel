@@ -4,6 +4,7 @@ import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign} from
 import {getCurrentLink, getPrice, getCountryLink, getCountryCodes, toFixed0} from "./utils";
 import {clickAffiliate} from "~/components/analytics";
 import _ from 'lodash';
+import { clickableStyle } from './modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faPublic = <FaStar style={{ color: '#999999' }} />
@@ -21,10 +22,11 @@ interface ColumnDefinition {
   description?: string;
   notes?: () => React.ReactElement;
   getValue: (row: Product) => string | number | boolean | undefined;
-  render?: (row: Product) => string | React.ReactElement; // Function to render the value
+  format?: (row: Product) => string; // Function to format the value as a string (for simple cases)
+  render?: (row: Product, clickHandler?: () => void) => React.ReactNode; // Function to render the value with optional click handler
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
-  renderPopover?: (row: Product) => React.ReactElement; // Function to render the popover body
+  renderModal?: (row: Product) => React.ReactNode; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -52,7 +54,7 @@ export const columnsArray: ColumnDefinition[] = [
       </div>
     ),
     getValue: (row) => row.total.score,
-    render: (row) => row.total.score.toFixed(1),
+    format: (row) => row.total.score.toFixed(1),
     getStyle: (): React.CSSProperties => ({ fontWeight: 'bold' }),
   },
   {
@@ -61,18 +63,23 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     hideScore: true,
     getValue: (row): string => row.model,
-    render: (row): React.ReactElement => {
+    render: (row, clickHandler): React.ReactElement => {
       const link = getCurrentLink(row);
 
+      // Create a wrapper div that can handle the modal click
+      // but let the link handle its own click without propagation
       return (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
-        >
-          {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
-        </a>
+        <div onClick={clickHandler} style={clickHandler ? clickableStyle : undefined}>
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
+            onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
+          >
+            {row.model} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+          </a>
+        </div>
       );
     },
   },
@@ -82,7 +89,7 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     hideScore: true,
     getValue: (row) => row.brand.name,
-    render: (row) => row.brand.name,
+    format: (row) => row.brand.name,
   },
   {
     key: "rating",
@@ -103,13 +110,13 @@ export const columnsArray: ColumnDefinition[] = [
       </div>
     ),
     getValue: (row) => row.rating.value?.[0]?.[0],
-    render: (row) => {
+    format: (row) => {
       const ratingValue = row.rating?.value
       if (!ratingValue) return '';
       const [[avg]] = ratingValue;
       return avg.toFixed(1);
     },
-    renderPopover: (row) => {
+    renderModal: (row) => {
       const notes = row.rating?.notes;
 
       function renderDistribution() {
@@ -166,7 +173,7 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>Last price I saw this at ({UPDATED})</div>,
     getValue: (row) => getPrice(row),
-    render: (row) => {
+    format: (row) => {
       const price = getPrice(row);
       return price !== undefined ? `$${price}` : '';
     },
@@ -186,7 +193,7 @@ export const columnsArray: ColumnDefinition[] = [
       return Object.keys(row.pickedBy || {})?.join('') || '';
     },
     getSortValue: (row) => row.pickedBy.score,
-    render: (row) => {
+    render: (row, clickHandler) => {
       const rPick = row.pickedBy
       const bPick = row.brand.pickedBy
       const picks = {
@@ -197,7 +204,11 @@ export const columnsArray: ColumnDefinition[] = [
       if (!(picks.me || picks.trusted || picks.websites)) return <></>;
 
       return (
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div
+          style={{ display: 'flex', gap: '8px' }}
+          onClick={clickHandler}
+          {...(clickHandler && { style: { ...clickableStyle, display: 'flex', gap: '8px' } })}
+        >
           {picks.me && <span title="Me (Tyler)">{faMe}</span>}
           {picks.trusted && <span title="Trusted Sources">{faTrusted}</span>}
           {/*{pickedBy?.includes("affiliate") && <span title="Affiliate Rebels">{faAffiliate}</span>}*/}
@@ -215,7 +226,7 @@ export const columnsArray: ColumnDefinition[] = [
     // description: "Pounds",
     // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
     getValue: (row) => row.maxWeight?.value,
-    render: (row) => {
+    format: (row) => {
       const maxWeight = row.maxWeight?.value;
       return maxWeight !== undefined ? `${maxWeight} lbs` : '';
     },
@@ -228,7 +239,7 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
     getValue: (row) => row.maxSpeed?.value,
-    render: (row) => {
+    format: (row) => {
       const maxSpeed = row.maxSpeed?.value;
       return maxSpeed !== undefined ? `${maxSpeed} mph` : '';
     },
@@ -241,14 +252,14 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
     getValue: (row) => row.incline?.value,
-    render: (row) => {
+    render: (row, clickHandler) => {
       const incline = row.incline?.value
       const method = row.incline?.method;
 
       if (!incline) return <></>;
 
       return (
-        <div>
+        <div onClick={clickHandler} style={clickHandler ? clickableStyle : undefined}>
           {`${incline}%`}
           {method && <small className="text-muted ms-1">{method}</small>}
         </div>
@@ -272,7 +283,7 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
     getValue: (row) => row.horsePower?.value,
-    render: (row) => {
+    format: (row) => {
       const horsePower = row.horsePower?.value;
       return horsePower !== undefined ? `${horsePower}` : '';
     },
@@ -287,14 +298,14 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
     getValue: (row: Product) => row.age?.value,
-    render: (row: Product): string => row.age?.value ?? "",
+    format: (row: Product): string => row.age?.value ?? "",
   },
   {
     key: "shock",
     label: "Shock absorption",
     dtype: "boolean",
     getValue: (row) => row.shock?.value,
-    render: (row) => {
+    format: (row) => {
       return (row.shock?.value) ? '✓' : '';
     },
   },
@@ -305,7 +316,7 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>How conducive to meetings and calls is this treadmill. Whispering is 30dB, conversation is 60dB. So it's only conducive if less than 60. I measure these at 2mph, with the decibel meter near the treadmill and near my microphone. I try to record dB here when I can.</div>,
     getValue: (row) => row.decibels?.value,
-    render: (row) => {
+    format: (row) => {
       const decibels = row.decibels?.value;
       return decibels ? `${decibels} dB` : '';
     },
@@ -319,7 +330,7 @@ export const columnsArray: ColumnDefinition[] = [
     description: 'D" x W" x H"',
     notes: () => <div>(Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
     getValue: (row) => row.dimensions?.value?.join(''),
-    render: (row) => {
+    format: (row) => {
       const dimensions = row.dimensions?.value;
       if (!dimensions) return '';
       const [d, w, h] = dimensions;
@@ -334,7 +345,7 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>As long as it has wheels and tilt-stoppers, weight won't be a problem.</div>,
     getValue: (row) => row.weight?.value,
-    render: (row) => {
+    format: (row) => {
       const weight = row.weight?.value;
       return weight ? `${weight} lbs` : '';
     },
@@ -345,7 +356,7 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "boolean",
     notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
     getValue: (row) => row.easyLube?.value,
-    render: (row) => {
+    format: (row) => {
       const easyLube = row.easyLube?.score;
       return easyLube > 7 ? '✓' : '';
     },
@@ -359,7 +370,7 @@ export const columnsArray: ColumnDefinition[] = [
     getValue: (row) => {
       return !!Object.keys(row.links?.amazon)?.length
     },
-    render: (row) => {
+    format: (row) => {
       const hasAmazon = !!Object.keys(row.links?.amazon)?.length
       return hasAmazon ? '✓' : '';
     },
@@ -370,12 +381,16 @@ export const columnsArray: ColumnDefinition[] = [
     hideScore: true,
     dtype: "string", // list of country codes
     getValue: (row) => getCountryCodes(row).join(''),
-    render: (row) => {
+    render: (row, clickHandler) => {
       const countryCodes = getCountryCodes(row);
       if (_.isEmpty(countryCodes)) return <></>;
 
       return (
-        <div className="d-flex flex-wrap gap-1">
+        <div
+          className="d-flex flex-wrap gap-1"
+          onClick={clickHandler}
+          style={clickHandler ? clickableStyle : undefined}
+        >
           {countryCodes.map(code => {
             const link = getCountryLink(row, code);
             if (!link) return <span key={code}>{code}</span>;
@@ -387,6 +402,7 @@ export const columnsArray: ColumnDefinition[] = [
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`me-1 plausible-event-name=affiliate plausible-event-product=${row.key}`}
+                onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
               >
                 {code}
               </a>
@@ -406,7 +422,7 @@ export const columnsArray: ColumnDefinition[] = [
       of failure. In the early days, a dead controller meant a dead mill - as companies didn't provide replacements. But
       that's less common these days. Apps also tally walking metrics.</div>,
     getValue: (row) => row.app?.value,
-    render: (row) => {
+    format: (row) => {
       return (row.app?.value) ? '✓' : '';
     },
   }

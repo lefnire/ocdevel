@@ -69,34 +69,7 @@ const ColumnDescription: React.FC<{
 
 
 
-// Cell with modal component
-const CellWithModal: React.FC<{
-  product: Product;
-  columnId: string;
-  displayValue: React.ReactNode;
-  cellStyle: React.CSSProperties;
-  info?: any;
-  popoverContent: React.ReactNode;
-  isBold?: boolean;
-}> = ({ product, columnId, displayValue, cellStyle, info, popoverContent, isBold = false }) => {
-  const { openModal } = useModal();
-  
-  const handleClick = () => {
-    openModal(`cell-${columnId}-${product.key}`, info?.label || columnId, popoverContent);
-  };
-  
-  return (
-    <div style={cellStyle}>
-      <span
-        className={isBold ? "fw-bold" : ""}
-        style={clickableStyle}
-        onClick={handleClick}
-      >
-        {displayValue}
-      </span>
-    </div>
-  );
-};
+// CellWithModal component has been integrated into the Cell component
 
 // Cell component with notes and rating indicator
 const Cell: React.FC<{
@@ -104,37 +77,52 @@ const Cell: React.FC<{
   column: Column<Product, unknown>;
   info?: any;
 }> = ({ row, column, info }) => {
+  const { openModal } = useModal();
   const columnId = column.id;
   const columnDef = columnsObj[columnId];
   const product: Product = row.original;
   
-  // If no column definition or render function, return empty div
-  if (!columnDef || !columnDef.render) {
+  // If no column definition, return empty div
+  if (!columnDef) {
     return <div></div>;
   }
 
-  const displayValue = columnDef.render(product);
   const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
   
   // Get popover content if available
-  const popoverContent = columnDef.renderPopover?.(product) ||
+  const popoverContent = columnDef.renderModal?.(product) ||
                          (typeof product[columnId as keyof Product] === 'object' &&
                           (product[columnId as keyof Product] as any)?.notes?.());
   
-  // For columns with modal content
-  if (popoverContent) {
-    return <CellWithModal
-      product={product}
-      columnId={columnId}
-      displayValue={displayValue}
-      cellStyle={cellStyle}
-      info={info}
-      popoverContent={popoverContent}
-    />;
+  // Create click handler for modal if popover content exists
+  const handleClick = popoverContent ? () => {
+    openModal(`cell-${columnId}-${product.key}`, info?.label || columnId, popoverContent);
+  } : undefined;
+
+  // Case 1: If render function is provided, use it and pass the click handler
+  if (columnDef.render) {
+    return <div style={cellStyle}>{columnDef.render(product, handleClick)}</div>;
   }
   
-  // Default rendering without popover
-  return <div style={cellStyle}>{displayValue}</div>;
+  // Case 2: If format function is provided, use it and attach click handler if needed
+  if (columnDef.format) {
+    const formattedValue = columnDef.format(product);
+    
+    if (handleClick) {
+      return (
+        <div style={cellStyle}>
+          <span style={clickableStyle} onClick={handleClick}>
+            {formattedValue}
+          </span>
+        </div>
+      );
+    }
+    
+    return <div style={cellStyle}>{formattedValue}</div>;
+  }
+  
+  // Default case: no render or format function
+  return <div style={cellStyle}></div>;
 };
 
 // Numeric filter component
