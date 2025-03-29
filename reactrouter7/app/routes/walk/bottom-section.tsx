@@ -9,25 +9,29 @@ const availableNames = Object.fromEntries(seoScored.map(row => ([
   row.key,
   row.brand.name.includes(' / ') ? row.brand.name.split(' / ') : [row.brand.name]
 ])))
+const seenCombos: {[combo: string]: boolean} = {}
 const combinations: [KeyBrand, KeyBrand][] = [];
 let i = 0;
-let j = 1;
-let k = 2;
+let j = seoScored.length - 1;
 while (true) {
   if (Object.keys(availableNames).length < 2) { break; }
   const [a, b] = [seoScored[i], seoScored[j]];
   let brandA = availableNames[a.key].shift()
   if (!availableNames[a.key].length) {
-    i = k;
-    k += 1;
+    i += 1;
     delete availableNames[a.key]
   }
   let brandB = availableNames[b.key].shift()
   if (!availableNames[b.key].length) {
-    j = k;
-    k += 1;
+    j -= 1;
     delete availableNames[b.key]
   }
+
+  // TODO delete this if we show models too
+  if (seenCombos[`${brandA}${brandB}`]) { continue; }
+  seenCombos[`${brandA}${brandB}`] = true;
+  if (brandA === brandB) { continue; }
+
   combinations.push([
     {key: a.key, brand: brandA!},
     {key: b.key, brand: brandB!},
