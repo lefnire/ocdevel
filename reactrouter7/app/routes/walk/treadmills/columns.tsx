@@ -404,8 +404,11 @@ export const columnsArray: ColumnDefinition[] = [
                 return <Dropdown.Item
                   eventKey={i}
                   href={row.linksFull[code].product[site]}
+                  target="_blank"
+                  className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
+                  rel="noopener noreferrer"
                 >
-                  {countries.emojis[code]} {siteNames[site]}
+                  {siteNames[site]}
                 </Dropdown.Item>
               })}
             </DropdownButton>

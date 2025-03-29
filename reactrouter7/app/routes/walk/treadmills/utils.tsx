@@ -66,16 +66,13 @@ export const countries = {
 }
 
 // Type for the country-specific links
-type CountryLinks = {
-  amazon?: string,
-  brand?: string
-} | boolean;
+type CountryLinks = Record<string, string>;
 
 export type LinksFull = {
   [countryCode: string]: {
-    product: CountryLinks
-    brand: CountryLinks
-    either: CountryLinks
+    product: CountryLinks | false
+    brand: CountryLinks | false
+    either: CountryLinks | false
   }
 }
 
@@ -85,67 +82,37 @@ export type LinksFull = {
  * @returns LinksFull object with links organized by country and source
  */
 export function hydrateLinks(row: Product): LinksFull {
-  const linksFull: LinksFull = {};
-
-  // Process each country in the defined order
-  countries.order.forEach(code => {
-    // Initialize country entry with all false values
-    linksFull[code] = {
-      product: false,
-      brand: false,
-      either: false
+  // Ensure links objects exist
+  const productLinks = row.links || { amazon: {}, brand: {} };
+  const brandLinks = row.brand?.links || { amazon: {}, brand: {} };
+  
+  // Create result object with all countries from the defined order
+  return _.reduce(countries.order, (result, countryCode) => {
+    // Get links for this country from all sources
+    const linksForCountry = _.reduce(countries.buyOrder, (acc, site) => {
+      // Get links from product and brand
+      const productLink = productLinks[site]?.[countryCode];
+      const brandLink = brandLinks[site]?.[countryCode];
+      
+      // Only add non-empty links
+      if (productLink) acc.product[site] = productLink;
+      if (brandLink) acc.brand[site] = brandLink;
+      if (productLink || brandLink) acc.either[site] = productLink || brandLink;
+      
+      return acc;
+    }, {
+      product: {} as CountryLinks,
+      brand: {} as CountryLinks,
+      either: {} as CountryLinks
+    });
+    
+    // Convert empty objects to false for cleaner representation
+    result[countryCode] = {
+      product: _.isEmpty(linksForCountry.product) ? false : linksForCountry.product,
+      brand: _.isEmpty(linksForCountry.brand) ? false : linksForCountry.brand,
+      either: _.isEmpty(linksForCountry.either) ? false : linksForCountry.either
     };
     
-    // Track if we found any links for this country
-    let foundProductLink = false;
-    let foundBrandLink = false;
-    
-    // Process sites in reverse order for more elegant assignment
-    [...countries.buyOrder].reverse().forEach(site => {
-      // Check for product links
-      if (row.links?.[site]?.[code]) {
-        if (!foundProductLink) {
-          linksFull[code].product = {
-            [site]: row.links[site][code]
-          };
-          foundProductLink = true;
-        } else if (typeof linksFull[code].product === 'object') {
-          // Add to existing object if we already found a link
-          (linksFull[code].product as CountryLinks)[site] = row.links[site][code];
-        }
-      }
-      
-      // Check for brand links
-      if (row.brand?.links?.[site]?.[code]) {
-        if (!foundBrandLink) {
-          linksFull[code].brand = {
-            [site]: row.brand.links[site][code]
-          };
-          foundBrandLink = true;
-        } else if (typeof linksFull[code].brand === 'object') {
-          // Add to existing object if we already found a link
-          (linksFull[code].brand as CountryLinks)[site] = row.brand.links[site][code];
-        }
-      }
-      
-      // Set either links (giving preference to product links over brand links)
-      const productLink = row.links?.[site]?.[code];
-      const brandLink = row.brand?.links?.[site]?.[code];
-      
-      if (productLink || brandLink) {
-        const link = productLink || brandLink;
-        
-        if (linksFull[code].either === false) {
-          linksFull[code].either = { [site]: link };
-        } else if (typeof linksFull[code].either === 'object') {
-          // Only add if we don't already have this site
-          if (!(site in linksFull[code].either)) {
-            (linksFull[code].either as CountryLinks)[site] = link;
-          }
-        }
-      }
-    });
-  });
-  
-  return linksFull;
+    return result;
+  }, {} as LinksFull);
 }
