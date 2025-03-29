@@ -1,52 +1,131 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
+// Define types for better type safety
+type UnitSystem = 'metric' | 'imperial';
+type Gender = 'male' | 'female';
+type NumberOrEmpty = number | '';
+
+// Unit conversion functions
+const convertToMetric = {
+  weight: (lbs: number): number => lbs * 0.453592, // lbs to kg
+  height: (inches: number): number => inches * 2.54, // inches to cm
+  speed: (mph: number): number => mph * 1.60934, // mph to km/h
+};
+
+const convertToImperial = {
+  weight: (kg: number): number => kg / 0.453592, // kg to lbs
+  height: (cm: number): number => cm / 2.54, // cm to inches
+  speed: (kmh: number): number => kmh / 1.60934, // km/h to mph
+};
+
 export default function TDECalculator() {
-  const [unit, setUnit] = useState<string>('imperial'); // 'metric' or 'imperial'
-  const [age, setAge] = useState<number | ''>('');
-  const [gender, setGender] = useState<string>('male');
-  const [height, setHeight] = useState<number | ''>(''); // cm or inches
-  const [weight, setWeight] = useState<number | ''>(''); // kg or lbs
-  const [time, setTime] = useState<number | ''>(2); // Time in hours, default to 2
-  const [speed, setSpeed] = useState<number | ''>(unit === 'metric' ? 3.21869 : 2); // km/h or mph, default to 2mph
-  const [incline, setIncline] = useState<number | ''>(0); // Default incline to 0
-  const [tdee, setTDEE] = useState<number | null>(null);
+  const [unit, setUnit] = useState<UnitSystem>('imperial');
+  const [age, setAge] = useState<NumberOrEmpty>('');
+  const [gender, setGender] = useState<Gender>('male');
+  const [height, setHeight] = useState<NumberOrEmpty>(''); // cm or inches
+  const [weight, setWeight] = useState<NumberOrEmpty>(''); // kg or lbs
+  const [time, setTime] = useState<NumberOrEmpty>(2); // Time in hours, default to 2
+  // Set default speed based on selected unit
+  const [speed, setSpeed] = useState<NumberOrEmpty>(() =>
+    unit === 'metric' ? parseFloat(convertToMetric.speed(2).toFixed(2)) : 2
+  );
+  const [incline, setIncline] = useState<NumberOrEmpty>(0); // Default incline to 0%
+  const [calories, setCalories] = useState<number | null>(null);
 
-  const calculateTDEE = () => {
-    // Implement a more accurate TDEE calculation logic here, considering units
-    // This is an approximation, consult a professional for accurate results
-    let calculatedTDEE = 0;
-    let bmr = 0;
-
-    // Harris-Benedict equation (simplified)
-    if (gender === 'male') {
-      bmr = (10 * (weight ? parseFloat(weight.toString()) : 0)) + (6.25 * (height ? parseFloat(height.toString()) : 0)) - (5 * (age ? parseFloat(age.toString()) : 0)) + 5;
-    } else {
-      bmr = (10 * (weight ? parseFloat(weight.toString()) : 0)) + (6.25 * (height ? parseFloat(height.toString()) : 0)) - (5 * (age ? parseFloat(age.toString()) : 0)) - 161;
+  // Use a ref to track previous unit value to only convert when unit actually changes
+  const prevUnitRef = React.useRef<UnitSystem | null>(null);
+  
+  useEffect(() => {
+    // Skip the first render or if unit hasn't changed
+    if (prevUnitRef.current === null || prevUnitRef.current === unit) {
+      prevUnitRef.current = unit;
+      return;
     }
+    
+    // Only convert if the unit has actually changed
+    if (speed !== '') {
+      const speedValue = Number(speed);
+      if (unit === 'metric') {
+        // If switching to metric, convert from mph to km/h
+        setSpeed(parseFloat(convertToMetric.speed(speedValue).toFixed(2)));
+      } else {
+        // If switching to imperial, convert from km/h to mph
+        setSpeed(parseFloat(convertToImperial.speed(speedValue).toFixed(2)));
+      }
+    }
+    
+    prevUnitRef.current = unit;
+  }, [unit, speed]);
 
-    // Activity factor (walking) - this is a rough estimate
-    const activityFactor = 1.375;
+  // Helper function to safely parse numeric values
+  const parseNumeric = (value: NumberOrEmpty): number => {
+    if (value === '') return 0;
+    return typeof value === 'number' ? value : Number(value);
+  };
 
-    // Walking energy expenditure (very simplified)
-    const walkingEnergy = (speed ? parseFloat(speed.toString()) : 0) * ((incline ? parseFloat(incline.toString()) : 0) === 0 ? 1 : (incline ? parseFloat(incline.toString()) : 0)) * (time ? parseFloat(time.toString()) : 0);
+  // No longer needed as we're only calculating walking calories
 
-    calculatedTDEE = (bmr * activityFactor) + walkingEnergy;
+  // Calculate calories burned from walking
+  const calculateWalkingCalories = (): number => {
+    const weightValue = parseNumeric(weight);
+    const speedValue = parseNumeric(speed);
+    const inclineValue = parseNumeric(incline);
+    const timeValue = parseNumeric(time);
+    
+    // Convert to metric if using imperial
+    const weightInKg = unit === 'imperial' ? convertToMetric.weight(weightValue) : weightValue;
+    const speedInKmh = unit === 'imperial' ? convertToMetric.speed(speedValue) : speedValue;
+    
+    // MET value calculation based on speed and incline
+    // MET = Metabolic Equivalent of Task, 1 MET = 1 kcal/kg/hour at rest
+    let met = 2.0; // Base MET for very slow walking
+    
+    // Adjust MET based on speed (km/h)
+    if (speedInKmh < 3.2) {
+      met = 2.0;
+    } else if (speedInKmh < 4.0) {
+      met = 2.8;
+    } else if (speedInKmh < 4.8) {
+      met = 3.0;
+    } else if (speedInKmh < 5.6) {
+      met = 3.5;
+    } else if (speedInKmh < 6.4) {
+      met = 4.3;
+    } else if (speedInKmh < 7.2) {
+      met = 5.0;
+    } else {
+      met = 6.0;
+    }
+    
+    // Adjust MET for incline (approximate adjustment)
+    // Each 1% of incline increases MET by about 8-10%
+    const inclineMultiplier = 1 + (inclineValue * 0.08);
+    met *= inclineMultiplier;
+    
+    // Calculate calories: MET * weight in kg * time in hours
+    return met * weightInKg * timeValue;
+  };
 
-    setTDEE(calculatedTDEE);
+  // Calculate walking calories
+  const calculateCalories = () => {
+    // Calculate walking calories
+    const walkingCalories = calculateWalkingCalories();
+    
+    setCalories(walkingCalories);
   };
 
   return (
     <Container>
-      <h3 className="text-center">Calorie Calculator</h3>
-      <div className="text-center">Similar to a TDEE (Total Daily Calorie Expenditure) calculator like <a href="https://www.calculator.net/tdee-calculator.html" target="_blank">this one</a>, this will calculate how much you can burn walking each day.</div>
+      <h3 className="text-center">Walking Calorie Calculator</h3>
+      <div className="text-center">Calculate how many calories you can burn while using a walking pad. This adds to your <a href="https://www.calculator.net/tdee-calculator.html" target="_blank">TDEE</a> (Total Daily Energy Expenditure).</div>
       <Form>
         <Form.Group className="mb-2" controlId="formUnits">
           <Form.Label className="mb-0">Units</Form.Label>
           <Form.Control
             as="select"
             value={unit}
-            onChange={(e) => setUnit(e.target.value)}
+            onChange={(e) => setUnit(e.target.value as UnitSystem)}
           >
             <option value="metric">Metric</option>
             <option value="imperial">Imperial</option>
@@ -61,7 +140,7 @@ export default function TDECalculator() {
                 type="number"
                 placeholder="Enter age"
                 value={age}
-                onChange={(e) => setAge(e.target.value === '' ? '' : parseInt(e.target.value))}
+                onChange={(e) => setAge(e.target.value === '' ? '' : Number(e.target.value))}
               />
             </Form.Group>
           </Col>
@@ -71,7 +150,7 @@ export default function TDECalculator() {
               <Form.Control
                 as="select"
                 value={gender}
-                onChange={(e) => setGender(e.target.value)}
+                onChange={(e) => setGender(e.target.value as Gender)}
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -88,7 +167,7 @@ export default function TDECalculator() {
                 type="number"
                 placeholder={`Enter height in ${unit === 'metric' ? 'cm' : 'inches'}`}
                 value={height}
-                onChange={(e) => setHeight(e.target.value === '' ? '' : parseInt(e.target.value))}
+                onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))}
               />
             </Form.Group>
           </Col>
@@ -99,7 +178,7 @@ export default function TDECalculator() {
                 type="number"
                 placeholder={`Enter weight in ${unit === 'metric' ? 'kg' : 'lbs'}`}
                 value={weight}
-                onChange={(e) => setWeight(e.target.value === '' ? '' : parseInt(e.target.value))}
+                onChange={(e) => setWeight(e.target.value === '' ? '' : Number(e.target.value))}
               />
             </Form.Group>
           </Col>
@@ -113,7 +192,7 @@ export default function TDECalculator() {
                 type="number"
                 placeholder="Enter time in hours"
                 value={time}
-                onChange={(e) => setTime(e.target.value === '' ? '' : parseFloat(e.target.value))}
+                onChange={(e) => setTime(e.target.value === '' ? '' : Number(e.target.value))}
               />
             </Form.Group>
           </Col>
@@ -124,7 +203,7 @@ export default function TDECalculator() {
                 type="number"
                 placeholder={`Enter speed in ${unit === 'metric' ? 'km/h' : 'mph'}`}
                 value={speed}
-                onChange={(e) => setSpeed(e.target.value === '' ? '' : parseFloat(e.target.value))}
+                onChange={(e) => setSpeed(e.target.value === '' ? '' : Number(e.target.value))}
               />
             </Form.Group>
           </Col>
@@ -136,24 +215,34 @@ export default function TDECalculator() {
             type="number"
             placeholder="Enter incline in percentage"
             value={incline}
-            onChange={(e) => setIncline(e.target.value === '' ? '' : parseFloat(e.target.value))}
+            onChange={(e) => setIncline(e.target.value === '' ? '' : Number(e.target.value))}
           />
         </Form.Group>
 
-        <Button variant="primary" onClick={calculateTDEE}>
-          Calculate TDEE
+        <Button variant="primary" className="mt-2" onClick={calculateCalories}>
+          Calculate Calories
         </Button>
       </Form>
 
-      {tdee !== null && (
-        <Row>
-          <Col md={6}>
-            <div>
-              <h4>Your TDEE:</h4>
-              <p>{tdee ? tdee.toFixed(2) : '0'} calories (approximation)</p>
-            </div>
-          </Col>
-        </Row>
+      {calories !== null && (
+        <div className="mt-3 p-3 border rounded">
+          <Row>
+            <Col>
+              <div className="mb-2">
+                <strong>Calories Burned from Walking:</strong>
+                <p className="font-weight-bold">{calories.toFixed(2)} calories</p>
+              </div>
+              <div className="small text-muted">
+                This calculation is based on your weight, walking speed, incline, and time.
+                It uses MET (Metabolic Equivalent of Task) values adjusted for these factors.
+              </div>
+            </Col>
+          </Row>
+          <div className="mt-2 small text-muted">
+            This is an approximation based on general formulas. Individual results may vary.
+            Consult with a healthcare professional for personalized advice.
+          </div>
+        </div>
       )}
     </Container>
   );
