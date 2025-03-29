@@ -7,10 +7,11 @@ import type {PickedBy} from "~/routes/walk/treadmills/data/types";
 
 const scorePickedBy = (pickedBy: undefined | PickedBy) => {
   pickedBy = pickedBy || {}
-  const me = (pickedBy?.me ?? 0) * 0.45
-  const trusted = _.sumBy(pickedBy?.trusted ?? [], "value") * .45
+  const me = (pickedBy?.me ?? 0) * 0.40
+  const trusted = _.sumBy(pickedBy?.trusted ?? [], "value") * .40
+  const affiliate = _.sumBy(pickedBy?.affiliate ?? [], "value") * .1
   const websites = _.sumBy(pickedBy?.websites ?? [], "value") * .1
-  return me + trusted + websites
+  return me + trusted + websites + affiliate
 }
 export const brand: ScoreFn = (p) => {
   return scorePickedBy(p.brand.pickedBy)
@@ -195,7 +196,8 @@ export const pickedBy: ScoreFn = (p) => {
   const me = (p.pickedBy?.me ?? p.brand.pickedBy?.me ?? 0)
   const trusted = (p.pickedBy?.trusted ?? p.brand.pickedBy?.trusted ?? [])
   const websites = (p.pickedBy?.websites ?? p.brand.pickedBy?.websites ?? [])
-  return baseline + scorePickedBy({me, trusted, websites})
+  const affiliate = (p.pickedBy?.affiliate ?? p.brand.pickedBy?.affiliate ?? [])
+  return baseline + scorePickedBy({me, trusted, websites, affiliate})
   // const pProduct = scorePickedBy(p.pickedBy)
   // const pBrand = scorePickedBy(p.brand.pickedBy)
   // return (pProduct * .5)+ (pBrand * .5)

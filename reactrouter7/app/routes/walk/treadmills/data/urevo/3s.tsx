@@ -51,7 +51,7 @@ const info: Product = {
   },
   pickedBy: {
     me: 9,
-    trusted: [{label: "Affiliate Rebel", value: 1}]
+    affiliate: [{value: 1}]
   },
   incline: {
     value: 9,

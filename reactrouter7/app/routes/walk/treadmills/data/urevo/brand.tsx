@@ -23,8 +23,8 @@ const info: Brand = {
   fakespot: "B",
   pickedBy: {
     me: 2,
-    trusted: [
-      {label: "Affiliate Rebel", value: 2}
+    affiliate: [
+      {value: 2}
     ],
     websites: [
       {value: 2},

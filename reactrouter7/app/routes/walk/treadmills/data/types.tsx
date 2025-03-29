@@ -28,6 +28,7 @@ export interface PickedBy {
   me?: number
   trusted?: PickedBy_[]
   websites?: PickedBy_[]
+  affiliate?: PickedBy_[]
 }
 
 export interface Brand {
