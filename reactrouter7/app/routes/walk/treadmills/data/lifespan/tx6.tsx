@@ -33,7 +33,7 @@ const info: Product = {
   },
   age: {
     rating: 10,
-    value: "2024-29-2024",
+    value: "2024-01-29",
     notes: () => <div>I'm overriding this attribute because Lifespan is a "buy it for life" brand, age isn't a factor.</div>
   },
   rating: {
