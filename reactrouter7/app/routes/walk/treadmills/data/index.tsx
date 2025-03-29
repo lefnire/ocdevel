@@ -15,6 +15,7 @@ import walkingpad_z1 from './walkingpad/z1'
 // import lifespan_tr1000 from './lifespan/tr1000'
 import lifespan_tr1200 from './lifespan/tr1200'
 import lifespan_tr5000 from './lifespan/tr5000'
+import lifespan_tx6 from './lifespan/tx6'
 import imovr_unsit from './imovr/unsit'
 import sperax_motioneaselitep1 from './sperax/motioneaselitep1'
 import bifanuo_tm008 from './bifanuo/tm008'
@@ -53,6 +54,7 @@ const index = [
   // lifespan_tr1000,
   lifespan_tr1200,
   lifespan_tr5000,
+  lifespan_tx6,
   imovr_unsit,
   sperax_motioneaselitep1,
   bifanuo_tm008,

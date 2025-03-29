@@ -7,7 +7,8 @@ const info: Product = {
   description: "A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use (6 hours at a time).",
   links: {
     brand: {
-      US:"https://lifespan-fitness.e9ppfh.net/GmyR4k"
+      US: "https://lifespan-fitness.e9ppfh.net/N94Yz1",
+      CA: "https://lifespan-fitness.e9ppfh.net/N94Yz1",
     },
     amazon: {
       US: "https://amzn.to/4jcm2Mb",

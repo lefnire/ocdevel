@@ -7,7 +7,8 @@ const info: Product = {
   description: "The top-tier commercial-grade treadmill from LifeSpan, designed for intensive daily use in professional environments. This is their flagship model with the highest durability and weight capacity. Premium commercial-grade construction designed for 9 hours of daily use, more than the TR1000 and TR1200.",
   links: {
     brand: {
-      US:"https://lifespan-fitness.e9ppfh.net/GmyR4k"
+      US: "https://lifespan-fitness.e9ppfh.net/4GoBJ3",
+      CA: "https://lifespan-fitness.e9ppfh.net/4GoBJ3",
     },
     amazon: {
       US: "https://amzn.to/4iWPdmh",

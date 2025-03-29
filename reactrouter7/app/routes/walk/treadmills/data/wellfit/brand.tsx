@@ -19,6 +19,10 @@ const info: Brand = {
   fakespot: "C",
   pickedBy: {
     me: -2,
+    trusted: [
+      {label: 'Reddit Upset', value: -1, url: "https://www.reddit.com/r/WalkingPads/s/IoKxzPV8U5"},
+      {label: "Reddit Upset", value: -1, url: "https://www.reddit.com/r/WalkingPads/comments/1jifmbr/comment/mjir36a/"}
+    ],
     websites: [
       {value: 1},
       {label: "Reddit discussion", value: 1}
