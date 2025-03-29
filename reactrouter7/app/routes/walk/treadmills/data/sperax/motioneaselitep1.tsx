@@ -14,9 +14,13 @@ const links = {
 }
 
 const info: Product = {
-  model: "MotionEase Lite P1",
+  model: {
+    value: "MotionEase Lite P1",
+    notes: () => <div>
+      No clue what the vibration this is all about, personally think it's a gimmick. I'll update here if I find there's something to it.
+    </div>
+  },
   key: `${brand.key}_motioneaselitep1`,
-  description: "No clue what the vibration this is all about, personally think it's a gimmick. I'll update here if I find there's something to it.",
   links,
   brand,
   // description: "",

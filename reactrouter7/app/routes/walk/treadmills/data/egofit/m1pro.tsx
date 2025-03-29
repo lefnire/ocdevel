@@ -11,9 +11,21 @@ const links = {
 }
 const info: Product = {
   brand,
-  model: "M1 Pro",
+  model: {
+    value: "M1 Pro",
+    notes: () => <div>
+      <p>I don't recommend this one, because (1) they've improved knee-health by adding shock absorption and dialing incline from 5% to 3% based on research; (2) increased the max weight and horse power; and (3) I'm sure improved on quality / durability (as a newer edition). The M2 is $100 more, but I truly think it's worth it. Listing M1 here in case you really want to save the $100.</p>
+      <h5>Pro: Incline</h5>
+      <div>Has a fixed 5% incline, which is beneficial for knee health, though 3% is considered ideal.</div>
+      <h5>Pro: Compact size</h5>
+      <div>Smaller depth (38.39") than many competitors, which may be beneficial for smaller spaces.</div>
+      <h5>Con: 2HP & max weight 220lbs</h5>
+      <div>Lower horsepower (2HP) and max weight capacity (220lbs) than recommended for longevity and heavier users.</div>
+      <h5>Con: Older model</h5>
+      <div>The M2 model offers improvements in knee-health with shock absorption and a more ideal 3% incline, increased max weight and horse power, and likely improved quality/durability.</div>
+    </div>
+  },
   key: `${brand.key}_m1pro`,
-  description: "I don't recommend this one, because (1) they've improved knee-health by adding shock absorption and dialing incline from 5% to 3% based on research; (2) increased the max weight and horse power; and (3) I'm sure improved on quality / durability (as a newer edition). The M2 is $100 more, but I truly think it's worth it. Listing M1 here in case you really want to save the $100.",
   links,
   dimensions: {
     value: [38.39, 21.85, 6.89], // 38.39"D x 21.85"W x 6.89"H
@@ -73,33 +85,5 @@ const info: Product = {
     value: 5, // Not mentioned in the data
   },
 
-  pros: [
-    {
-      value: "Incline",
-      rating: 6,
-      notes: () => <div>Has a fixed 5% incline, which is beneficial for knee health, though 3% is considered ideal.</div>
-    },
-    {
-      value: "Compact size",
-      rating: 8,
-      
-      notes: () => <div>Smaller depth (38.39") than many competitors, which may be beneficial for smaller spaces.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "2HP & max weight 220lbs",
-      rating: 3,
-      
-      notes: () => <div>Lower horsepower (2HP) and max weight capacity (220lbs) than recommended for longevity and heavier users.</div>
-    },
-    {
-      value: "Older model",
-      rating: 4,
-      
-      notes: () => <div>The M2 model offers improvements in knee-health with shock absorption and a more ideal 3% incline, increased max weight and horse power, and likely improved quality/durability.</div>
-    }
-  ],
 }
 export default info

@@ -12,8 +12,17 @@ const links = {
 const info: Product = {
   brand,
   key: `${brand.key}_q1mini`,
-  model: "Q1 Mini",
-  description: "Most popular of the very-budget picks. The common 3 are DeerRun, Sperax, and Yagud. But Sperax and Yagud have lower ratings and worse FakeSpot scores on Amazon; and I see a lot of complaints and returns.",
+  model: {
+    value: "Q1 Mini",
+    notes: () => <div>
+      <h5>Pro: Very affordable</h5>
+      <div>Cheapest you'll find, especially on a sale. The pro option (increased quality and horse power) sometimes drops to this price, so check before buying.</div>
+      <h5>Con: Low-ish quality</h5>
+      <div>This won't last you more than 1-2 years. But if you're just testing the waters, it's a good way to go. Get the Amazon warranty!</div>
+      <h5>Con: No incline</h5>
+      <div>No incline functionality, which is important for knee health. Recommendation is to prop the front on a block of wood or foam.</div>
+    </div>
+  },
   links,
   dimensions: {
     value: [43, 20, 4.3], // 45"D x 20.3"W x 4.3"H
@@ -46,7 +55,6 @@ const info: Product = {
   price: {
     value: 200,
     sale: 150,
-    notes: () => <div>Very affordable price point, especially during sales.</div>
   },
   pickedBy: {
     me: 4,
@@ -69,28 +77,6 @@ const info: Product = {
   easyLube: {
     value: 5,
   },
-  pros: [
-    {
-      value: "Very affordable",
-      rating: 9,
-      
-      notes: () => <div>Cheapest you'll find, especially on a sale. The pro option (increased quality and horse power) sometimes drops to this price, so check before buying.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Low-ish quality",
-      rating: 3,
-      
-      notes: () => <div>This won't last you more than a year. But if you're just testing the waters, it's a good way to go.</div>
-    },
-    {
-      value: "No incline",
-      rating: 3,
-      
-      notes: () => <div>No incline functionality, which is important for knee health. Recommendation is to prop the front on a block of wood or foam.</div>
-    }
-  ],
+
 }
 export default info

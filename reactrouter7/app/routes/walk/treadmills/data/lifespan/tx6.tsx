@@ -2,9 +2,13 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "TX6",
+  model: {
+    value: "TX6",
+    notes: () => <div>
+      Newest commercial-grade treadmill from LifeSpan, designed for intensive daily use. Their last model was some 10 years ago, so this is a big deal. Very highest durability and weight capacity. Premium commercial-grade construction designed for 9 hours of daily use.
+    </div>
+  },
   key: `${brand.key}_tx6`,
-  description: "Newest commercial-grade treadmill from LifeSpan, designed for intensive daily use. Their last model was some 10 years ago, so this is a big deal. Very highest durability and weight capacity. Premium commercial-grade construction designed for 9 hours of daily use.",
   links: {
     brand: {
       US:"https://lifespan-fitness.e9ppfh.net/3JoMjn",

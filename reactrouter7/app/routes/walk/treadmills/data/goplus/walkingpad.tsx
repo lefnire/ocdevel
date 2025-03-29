@@ -2,9 +2,23 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "Walking Pad",
+  model: {
+    value: "Walking Pad",
+    notes: () => <div>
+      <p>I strongly discourage GoPlus. Forget the Wirecutter pick, they only did it because GoPlus is the most popular Amazon budget mill - it was a grab pick. There are two main models. They have a ton more, so visit their store page to compare. Hover over as many models' star-rating widgets as you can. Notice the distribution, that looks like a \"C\" rather than a stair-case. High 1-stars and 2-stars indicate quality issues. If you have the FakeSpot Chrome Extension, you'll see almost all their models are F and D; meaning the 5-stars are fake. Scan through the reviews, and you'll see countless cases of belt-drift, motor blow-out, and more.</p>
+      <h5>Pro: Extremely popular</h5>
+      <div>One of the most popular budget treadmills out there.</div>
+      <h5>Con: Belt drift</h5>
+      <div>Many reports of belt drift issues.</div>
+      <h5>Con: Motor burnout</h5>
+      <div>Frequent complaints about motor burnout.</div>
+      <h5>Con: Console errors</h5>
+      <div>Reports of console errors and failure to start.</div>
+      <h5>Con: Poor review distribution</h5>
+      <div>Strong 1-star skew, indicating quality issues. FakeSpot F, and "Seller Caution".</div>
+    </div>
+  },
   key: `${brand.key}_goplus`,
-  description: "I strongly discourage GoPlus. Forget the Wirecutter pick, they only did it because GoPlus is the most popular Amazon budget mill - it was a grab pick. There are two main models. They have a ton more, so visit their store page to compare. Hover over as many models' star-rating widgets as you can. Notice the distribution, that looks like a \"C\" rather than a stair-case. High 1-stars and 2-stars indicate quality issues. If you have the FakeSpot Chrome Extension, you'll see almost all their models are F and D; meaning the 5-stars are fake. Scan through the reviews, and you'll see countless cases of belt-drift, motor blow-out, and more.",
   links: {
     amazon: {
       US: "https://amzn.to/4bTDpio",
@@ -67,40 +81,5 @@ const info: Product = {
   easyLube: {
     value: 10,
   },
-
-  pros: [
-    {
-      value: "Extremely popular",
-      rating: 5,
-      notes: () => <div>One of the most popular budget treadmills on Amazon.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Belt drift",
-      rating: 2,
-      
-      notes: () => <div>Many reports of belt drift issues.</div>
-    },
-    {
-      value: "Motor burnout",
-      rating: 1,
-      
-      notes: () => <div>Frequent complaints about motor burnout.</div>
-    },
-    {
-      value: "Console errors",
-      rating: 2,
-      
-      notes: () => <div>Reports of console errors and failure to start.</div>
-    },
-    {
-      value: "Poor review distribution",
-      rating: 1,
-      
-      notes: () => <div>Strong 1-star skew, indicating quality issues. FakeSpot F, and "Seller Caution".</div>
-    }
-  ],
 }
 export default info

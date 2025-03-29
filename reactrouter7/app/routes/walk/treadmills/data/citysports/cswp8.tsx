@@ -11,9 +11,8 @@ const links = {
   }
 }
 const info: Product = {
-  model: "CS-WP8",
+  model: {value: "CS-WP8"},
   key: `${brand.key}_cswp8`,
-  description: "",
   links,
   brand,
   // description: "",

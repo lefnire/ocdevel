@@ -10,9 +10,8 @@ const links = {
   }
 }
 const info: Product = {
-  model: "Walking Pad",
+  model: {value: "Walking Pad"},
   key: `${brand.key}_walkingpad`,
-  description: "",
   links,
   brand,
   // description: "",

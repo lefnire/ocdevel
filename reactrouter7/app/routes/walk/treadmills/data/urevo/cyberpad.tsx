@@ -2,7 +2,18 @@ import type {Product} from "../types";
 import brand from './brand'
 
 const info: Product = {
-  model: "Cyberpad",
+  model: {
+    value: "Cyberpad",
+    notes: () => <div>
+      <p>I just got this (Feb 12th 2025) and am in love. It's their newest, most upgraded model via Kickstarter. I'm retiring my 3S as a backup. Quality upgrades over 3S are worth the +$150. Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer</p>
+      <h5>Pro: Durable, quiet, high incline</h5>
+      <div>So far the hightest quality mill I've owned. LifeSpan is higher quality (I've used them at coworking spaces, and collected research) - but too expensive for my taste.</div>
+      <h5>Con: Tall!</h5>
+      <div>8" in the back. It's the first mill I've owned which pushes my standing desk boundaries, so make sure your desk is tall enough (measure)</div>
+      <h5>Con: No Running</h5>
+      <div>Only their Strol models support speeds past 4mph. But this being a premium-tier price point, I'd hoped it'd support higher speeds. So go Strol if you need to run.</div>
+    </div>
+  },
   key: `${brand.key}_cyberpad`,
   image: '/walk_thumbs/cyberpad.jpg',
   links: {
@@ -16,7 +27,6 @@ const info: Product = {
   },
 
   brand,
-  description: "I just got this (Feb 12th 2025) and am in love. It's their newest, most upgraded model via Kickstarter. I'm retiring my 3S as a backup. Quality upgrades over 3S are worth the +$150. Uses alloy materials, and a specialized motor (MegaMotor & Dyson's brushless). Big upgrade over most treadmills; will likely last much longer",
   dimensions: {
     value: [47.6, 23.6, 8.7], // 47.6"D x 23.6"W x 8.7"H
     notes: () => <div>Extremely tall. The back legs are 8.7", much taller than most mills. So make sure your standing desk is tall enough. Indeed, after switching from Urevo 3S to this, I had to raise my monitor arms.</div>
@@ -83,12 +93,6 @@ const info: Product = {
 
   // warranty: from brands
 
-  cons: [
-    {
-      value: "No Running",
-      rating: 0,
-      notes: () => <div>Only their Strol models support speeds past 4mph. But this being a premium-tier price point, I'd hoped it'd support higher speeds. So go Strol if you need to run.</div>
-    }
-  ],
+
 }
 export default info

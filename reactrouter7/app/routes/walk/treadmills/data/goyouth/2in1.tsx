@@ -2,9 +2,17 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "2 in 1",
+  model: {
+    value: "2 in 1",
+    notes: () => <div>
+      My prior main, and I loved it. I upgraded to EgoFit (then again to Urevo) for the incline. If you choose GoYouth, go to their store page just to make sure there's nothing newer than the link I posted. These budget brands often release newer versions quite frequently; and newer is better with these.
+      <h5>Pro: Surprisingly durable</h5>
+      <div>I've used it for 2yrs, around 6hrs per day 5 days a week. I'm 220lbs and I walk 3.5mph. That's very intense usage to have lasted that long. It started develop creaks and groans, which I believe is due to damage I put on the walking pad from the usage, so I returned it under extended warranty.</div>
+      <h5>Controller sucks</h5>
+      <div>(At least for my older version) But can easily be replaced for free. Just deal with it. The first one will have button-presses miss-firing (as in, activating a different button's action). To fix this, buy a compatible controller battery along with the treadmill and replace the one in the controller immediately. I think they just run out while sitting in the warehouse. After 1.5yrs, I nonetheless had to do a hard replacement, which GoYouth did for free via Amazon messaging center. It was easy, came fast, and didn't phase me. This isn't a fluke; you'll see in the reviews many have experienced this scenario.</div>
+    </div>
+  },
   key: `${brand.key}_2in1`,
-  description: "My prior main, and I loved it. I upgraded to Egofit for the incline. If you choose GoYouth, go to their store page just to make sure there's nothing newer than the link I posted. These budget brands often release newer versions quite frequently; and newer is better with these.",
   links: {
     amazon: {
       US: "https://amzn.to/4hx38hC",
@@ -66,40 +74,5 @@ const info: Product = {
   easyLube: {
     value: 5, // Not mentioned in the data
   },
-
-  pros: [
-    {
-      value: "Surprisingly durable",
-      rating: 8,
-      
-      notes: () => <div>I've been using it for 2yrs, around 6hrs per day 5 days a week. I'm 220lbs and I walk 3.5mph. That's very intense usage to have lasted this long. Just recently it started to develop creaks and groans, which I believe is due to damage I put on the walking pad from the usage. But I think it has another 6 months left in it before I need to use the extended warranty.</div>
-    },
-    {
-      value: "Smaller than many others",
-      rating: 7,
-      notes: () => <div>Making it fit under more desks. No rails.</div>
-    },
-    {
-      value: "Up to 6mph",
-      rating: 8,
-      
-      notes: () => <div>I like to walk 3.5mph while working; faster than most walking treadmills allow. I wouldn't recommend using this to run/sprint though, unless you absolutely must (no nearby gym, bad weather, etc). While it's quite durable, I fear my 220lbs landing too hard on the pad would cause cracks.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Controller sucks",
-      rating: 4,
-      
-      notes: () => <div>But can easily be replaced for free. Just deal with it. The first one will have button-presses miss-firing (as in, activating a different button's action). To fix this, buy a compatible controller battery along with the treadmill and replace the one in the controller immediately. I think they just run out while sitting in the warehouse. After 1.5yrs, I nonetheless had to do a hard replacement, which GoYouth did for free via Amazon messaging center. It was easy, came fast, and didn't phase me. This isn't a fluke; you'll see in the reviews many have experienced this scenario.</div>
-    },
-    {
-      value: "Low max weight",
-      rating: 3,
-      
-      notes: () => <div>220 is lower than 265 average of the budget picks.</div>
-    }
-  ],
 }
 export default info

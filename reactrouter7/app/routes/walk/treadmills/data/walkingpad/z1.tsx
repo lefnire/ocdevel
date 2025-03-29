@@ -3,9 +3,21 @@ import _ from 'lodash'
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "Z1",
+  model: {
+    value: "Z1",
+    notes: () => <div>
+      Popular among the public but not recommended due to quality issues. Many reports of quality issues including motor burnout and belt drift.
+      <h5>Folds up for stow-away</h5>
+      <div>This mill folds in half, and you can either store it under your bed or vertically like a box. Only mill which does this. Personally I don't care, because most mills can tilt against a wall and take up less depth-space that way than a folded WalkingPad anyway.</div>
+      {/*<h5>App instead of controller</h5>*/}
+      {/*<div>Many of these mills use a dedicated controller, which adds a point of failure (the cheapest point of failure in many cases). Not only does an app remove that liability; but also tracks stats over time, which most mills lack.</div>*/}
+      {/*<h5>Running speed</h5>*/}
+      {/*<div>Doubles as a proper treadmill at 7.5mph, much higher than most of the mills listed (including the quality mills). So if you want the choice between walking desk and actual treadmill, this is a great pick.</div>*/}
+      {/*<h5>Major bad reviews</h5>*/}
+      {/*<div>Including motor issues and frequent belt drift. Each of these models ha a high 1-star skew, which is very concerning. I've seen a lot of complaints even outside of Amazon (esp. Reddit). I personally would never buy a WalkingPad; but they are very popular among those who read my content and later make a choice, which is why I'm listing it. I strongly advise doing some heavy review research.</div>*/}
+    </div>
+  },
   key: `${brand.key}_z1`,
-  description: "Popular among the public but not recommended due to quality issues. Many reports of quality issues including motor burnout and belt drift.",
   links: {
     amazon: {
       US: "https://amzn.to/4kQEnA0",
@@ -72,34 +84,5 @@ const info: Product = {
     value: 10, // Not mentioned in the data
   },
 
-  pros: [
-    {
-      value: "Folds up for stow-away",
-      rating: 8,
-      
-      notes: () => <div>This mill folds in half, and you can either store it under your bed or vertically like a box. Only mill which does this. Personally I don't care, because most mills can tilt against a wall and take up less depth-space that way than a folded WalkingPad anyway.</div>
-    },
-    {
-      value: "App instead of controller",
-      rating: 7,
-      
-      notes: () => <div>Many of these mills use a dedicated controller, which adds a point of failure (the cheapest point of failure in many cases). Not only does an app remove that liability; but also tracks stats over time, which most mills lack.</div>
-    },
-    {
-      value: "Running speed",
-      rating: 8,
-      
-      notes: () => <div>Doubles as a proper treadmill at 7.5mph, much higher than most of the mills listed (including the quality mills). So if you want the choice between walking desk and actual treadmill, this is a great pick.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Major bad reviews",
-      rating: 1,
-      
-      notes: () => <div>Including motor issues and frequent belt drift. Each of these models ha a high 1-star skew, which is very concerning. I've seen a lot of complaints even outside of Amazon (esp. Reddit). I personally would never buy a WalkingPad; but they are very popular among those who read my content and later make a choice, which is why I'm listing it. I strongly advise doing some heavy review research.</div>
-    }
-  ],
 }
 export default info

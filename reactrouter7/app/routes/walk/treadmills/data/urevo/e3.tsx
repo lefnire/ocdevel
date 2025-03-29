@@ -3,9 +3,20 @@ import {budgetNote} from '../utils'
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "E3",
+  model: {
+    value: "E3",
+    notes: () => <div>
+      <p>Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.</p>
+      <p>{budgetNote}</p>
+      <h5>Incline</h5>
+      <div>Has incline functionality, which is important for knee health. Rare for ultra-budgets.</div>
+      <h5>Con: Motor overheating</h5>
+      <div>People complain about the motor smelling burnt. Urevo recommends only walking 30-45 minutes at a time, then giving it a break.</div>
+      <h5>Loud</h5>
+      <div>Described as loud which may be an issue for meetings or calls.</div>
+    </div>
+  },
   key: `${brand.key}_e3`,
-  description: "Only Spacewalk with in a incline; but people complain about the motor smelling burnt (I've seen less complaints about the motor actually going out). Urevo replies recommending only walking 30-45m at a time, then giving it a break. This aligns with the Pomodoro Technique, and I frankly recommend it for all budget treadmills. Just might be more important with this particular one.",
   links: {
     amazon: {
       US: "https://amzn.to/3zxMhLt",
@@ -41,7 +52,6 @@ const info: Product = {
   },
   price: {
     value: 270,
-    notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     me: -1,
@@ -68,31 +78,6 @@ const info: Product = {
     value: 7, // Not mentioned in the data
   },
 
-  pros: [
-    {
-      value: "Incline",
-      rating: 8,
-      notes: () => <div>Has incline functionality, which is important for knee health.</div>
-    },
-    {
-      value: "On Amazon",
-      rating: 7,
-      notes: () => <div>Available on Amazon for easy purchasing and returns.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Motor overheating",
-      rating: 2,
-      
-      notes: () => <div>People complain about the motor smelling burnt. Urevo recommends only walking 30-45 minutes at a time, then giving it a break.</div>
-    },
-    {
-      value: "Loud",
-      rating: 4,
-      notes: () => <div>Described as loud which may be an issue for meetings or calls.</div>
-    }
-  ],
+
 }
 export default info

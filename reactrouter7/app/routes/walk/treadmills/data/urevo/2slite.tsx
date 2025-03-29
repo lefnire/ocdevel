@@ -2,9 +2,17 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "2S Lite",
+  model: {
+    value: "2S Lite",
+    notes: () => <div>
+      <p>If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S.</p>
+      <h5>Con: Durability</h5>
+      <div>The 3S is more durable, at roughly the same price, so I'd get the 3s.</div>
+      <h5>Con: Loud</h5>
+      <div>A fair bit louder than Urevo 3S and Egofit M2. Still workable for meetings, but not if you want to be inconspicuous.</div>
+    </div>
+  },
   key: `${brand.key}_2slite`,
-  description: "If 3S is just a tad too expensive for you, this one is a peg down in cost and quality. It supports incline (set it to 3%), has plenty of shock absorption, is new, available on Amazon, and $100 cheaper than 3S.",
   links: {
     amazon: {
       US: "https://amzn.to/4bT3huF",
@@ -68,17 +76,6 @@ const info: Product = {
     value: 5, // Not mentioned in the data
   },
 
-  cons: [
-    {
-      value: "Loud",
-      rating: 4,
-      notes: () => <div>A fair bit louder than Urevo 3S and Egofit M2. Still workable for meetings, but not if you want to be inconspicuous.</div>
-    },
-    {
-      value: "Bulky",
-      rating: 3,
-      notes: () => <div>Larger size may be an issue for some desk setups.</div>
-    }
-  ],
+
 }
 export default info

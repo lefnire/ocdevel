@@ -9,7 +9,7 @@ const links = {
   }
 }
 const info: Product = {
-  model: "WP021",
+  model: {value: "WP021"},
   key: `${brand.key}_wp021`,
   description: "",
   links,

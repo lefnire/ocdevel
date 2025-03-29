@@ -10,9 +10,11 @@ const links = {
   }
 }
 const info: Product = {
-  model: "Product",
+  model: {
+    value: "Product",
+    // notes: () => <div></div>
+  },
   key: `${brand.key}_model`,
-  description: "",
   links,
   brand,
   // description: "",
@@ -68,13 +70,5 @@ const info: Product = {
     value: 5,
   },
   material: {},
-
-  // warranty: from brands
-  pros: [
-    {value: "", rating: 0, notes: () => <div></div>}
-  ],
-  cons: [
-    {value: "", rating: 0, notes: () => <div></div>}
-  ],
 }
 export default info

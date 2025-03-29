@@ -11,9 +11,8 @@ const links = {
   }
 }
 const info: Product = {
-  model: "DK-38AB-2",
+  model: {value: "DK-38AB-2"},
   key: `${brand.key}_dk38ab2`,
-  description: "",
   links,
   brand,
   dimensions: {

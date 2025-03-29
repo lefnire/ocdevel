@@ -2,9 +2,21 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "Unsit",
+  model: {
+    value: "Unsit",
+    notes: () => <div>
+      <p>Considered on the internet the highest quality underdesk treadmill. Which has me stumped, because so many of the specs seem better in the LifeSpan models. I personally would prefer LifeSpan based on what I've seen. Those who've used it swear by its invincibility. I don't doubt this. I just don't like it's value.</p>
+      <h5>Pro: High quality reputation</h5>
+      <div>Considered on the internet the highest quality underdesk treadmill, often copmared to Lifespan.</div>
+      <h5>Con: Wide, heavy</h5>
+      <div>Very wide at 39 inches and described as heavy, which may make it difficult to fit in some spaces or move around.</div>
+      <h5>Con: Expensive</h5>
+      <div>At $2500, it's significantly more expensive than most competitors, including premium LifeSpan models.</div>
+      <h5>Con: Slow, and low HP</h5>
+      <div>Max speed of only 2mph is very low compared to most competitors, which typically offer 4mph or more. And 2 HP - I actually think that's concerning, not just a nuissance. </div>
+    </div>
+  },
   key: `${brand.key}_unsit`,
-  description: "Considered on the internet the highest quality underdesk treadmill, often over LifeSpan. Which has me stumped, because so many of the specs seem better in the Lifespan models. I personally would prefer LifeSpan based on what I've seen. Those who've used it swear by its invincibility. I don't doubt this. I just don't like it's value.",
   links: {
     brand: {
       US: "https://www.imovr.com/products/unsit-desk-treadmill",
@@ -42,7 +54,6 @@ const info: Product = {
   },
   price: {
     value: 2500,
-    notes: () => <div>Extremely high price point, even higher than premium LifeSpan models.</div>
   },
   pickedBy: {
     me: -5,
@@ -64,35 +75,5 @@ const info: Product = {
   easyLube: {
     value: 1,
   },
-
-  pros: [
-    {
-      value: "Highest quality reputation",
-      rating: 8,
-      
-      notes: () => <div>Considered on the internet the highest quality underdesk treadmill, often over Lifespan.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Wide, heavy",
-      rating: 3,
-      
-      notes: () => <div>Very wide at 39 inches and described as heavy, which may make it difficult to fit in some spaces or move around.</div>
-    },
-    {
-      value: "Expensive",
-      rating: 1,
-      
-      notes: () => <div>At $2500, it's significantly more expensive than most competitors, including premium LifeSpan models.</div>
-    },
-    {
-      value: "Slow",
-      rating: 2,
-      
-      notes: () => <div>Max speed of only 2mph is very low compared to most competitors, which typically offer 4mph or more.</div>
-    }
-  ],
 }
 export default info

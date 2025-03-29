@@ -9,9 +9,11 @@ const links = {
 }
 const info: Product = {
   brand,
-  model: "M2",
+  model: {
+    value: "M2",
+    notes: () => <div>Compared to Urevo it's compact and quiet; but not on Amazon, no extended warranty, $100 more. Besides those differences, they're equals, which is why I stopped recommending Egofit</div>
+  },
   key: `${brand.key}_m2`,
-  description: "Compared to Urevo it's compact and quiet; but not on Amazon, no extended warranty, $100 more. Besides those differences, they're equals, which is why I stopped recommending Egofit",
   links,
 
   dimensions: {

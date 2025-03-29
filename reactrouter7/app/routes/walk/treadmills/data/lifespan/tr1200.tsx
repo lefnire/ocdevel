@@ -2,9 +2,25 @@ import type {Product} from "../types"
 import brand from './brand'
 const info: Product = {
   brand,
-  model: "TR1200",
+  model: {
+    value: "TR1200",
+    notes: () => <div>
+      <p>A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use (6 hours at a time).</p>
+      <h5>Pro: Commercial use</h5>
+      <div>I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.</div>
+      <h5>Pro: High max weight capacity</h5>
+      <div>350 pounds capacity is significantly higher than most consumer models.</div>
+      <h5>Pro: Recommended for 6 hours daily use</h5>
+      <div>Designed for extended daily use, indicating superior durability.</div>
+      <h5>Pro: Higher quality than TR1000</h5>
+      <div>As a higher-tier model, likely offers improved components and durability over the TR1000.</div>
+      <h5>Con: Expensive</h5>
+      <div>$1800 price point is significantly higher than consumer models and $200 more than the TR1000.</div>
+      <h5>Con: Very large size</h5>
+      <div>At 63" length, larger dimensions may be challenging for home office setups.</div>
+    </div>
+  },
   key: `${brand.key}_tr1200`,
-  description: "A higher-tier commercial-grade treadmill often seen in coworking spaces. LifeSpan is known for high-quality, durable treadmills suitable for extended daily use (6 hours at a time).",
   links: {
     brand: {
       US: "https://lifespan-fitness.e9ppfh.net/N94Yz1",
@@ -48,7 +64,6 @@ const info: Product = {
   },
   price: {
     value: 1300,
-    notes: () => <div>Significantly higher price point than consumer models and $200 more than the TR1000, reflecting higher-tier commercial-grade quality.</div>
   },
   pickedBy: {
   },
@@ -69,46 +84,6 @@ const info: Product = {
     value: 4, // Not mentioned in the data
   },
 
-  pros: [
-    {
-      value: "Commercial use",
-      rating: 9,
-      
-      notes: () => <div>I've seen Lifespans in coworking spaces often (I've used them there too, they're so smooth, quiet... incredible machines. Huge though). If these are picked for industrial use by someone in charge of this task, instead of iMovR, that's enough for me to blind-faith the same selection.</div>
-    },
-    {
-      value: "High max weight capacity",
-      rating: 9,
-      
-      notes: () => <div>350 pounds capacity is significantly higher than most consumer models.</div>
-    },
-    {
-      value: "Recommended for 6 hours daily use",
-      rating: 8,
-      
-      notes: () => <div>Designed for extended daily use, indicating superior durability.</div>
-    },
-    {
-      value: "Higher quality than TR1000",
-      rating: 8,
-      
-      notes: () => <div>As a higher-tier model, likely offers improved components and durability over the TR1000.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "Expensive",
-      rating: 2,
-      
-      notes: () => <div>$1800 price point is significantly higher than consumer models and $200 more than the TR1000.</div>
-    },
-    {
-      value: "Very large size",
-      rating: 3,
-      
-      notes: () => <div>At 63" length, larger dimensions may be challenging for home office setups.</div>
-    }
-  ],
+
 }
 export default info

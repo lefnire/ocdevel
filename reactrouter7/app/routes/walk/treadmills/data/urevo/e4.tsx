@@ -4,9 +4,25 @@ import brand from './brand'
 
 const info: Product = {
   brand,
-  model: "E4",
+  model: {
+    value: "E4",
+    notes: () => <div>
+      <p>Motor improvement over E3 (which had a lot of overheating complaints); but removed incline. E5 is upgrade over this one, so if you don't want E3's incline, just get E5.</p>
+      <p>{budgetNote}</p>
+      <h5>Pro: Improved motor heat</h5>
+      <div>Motor improvement over E3 which had overheating complaints.</div>
+      <h5>Pro: Shock absorption</h5>
+      <div>Has shock absorption for better knee health.</div>
+      <h5>Pro: Affordable</h5>
+      <div>Good value at $200.</div>
+      <h5>Con: No incline</h5>
+      <div>Lacks incline functionality which is important for knee health.</div>
+      <h5>Loud</h5>
+      <div>I found it too loud for comfort in meetings.</div>
+    </div>
+
+  },
   key: `${brand.key}_e4`,
-  description: "Motor improvement over E3 (which had a lot of overheating complaints); but removed incline. E5 is upgrade over this one, so if you don't want E3's incline, just get E5.",
   links: {
     amazon: {
       // US: "https://amzn.to/3xxWWV9",
@@ -43,7 +59,6 @@ const info: Product = {
   price: {
     value: 200,
     sale: 170,
-    notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     me: -1,
@@ -68,40 +83,6 @@ const info: Product = {
     value: 5, // Not mentioned in the data
   },
 
-  pros: [
-    {
-      value: "On Amazon",
-      rating: 7,
-      notes: () => <div>Available on Amazon for easy purchasing and returns.</div>
-    },
-    {
-      value: "Improved motor heat",
-      rating: 8,
-      notes: () => <div>Motor improvement over E3 which had overheating complaints.</div>
-    },
-    {
-      value: "Shock absorption",
-      rating: 7,
-      notes: () => <div>Has shock absorption for better knee health.</div>
-    },
-    {
-      value: "Affordable",
-      rating: 8,
-      notes: () => <div>Good value at $200.</div>
-    }
-  ],
-  
-  cons: [
-    {
-      value: "No incline",
-      rating: 3,
-      notes: () => <div>Lacks incline functionality which is important for knee health.</div>
-    },
-    {
-      value: "Loud",
-      rating: 4,
-      notes: () => <div>Described as loud which may be an issue for meetings or calls.</div>
-    }
-  ],
+
 }
 export default info

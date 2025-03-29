@@ -12,9 +12,8 @@ const links = {
   // amazonPause: "brand",
 }
 const info: Product = {
-  model: "TM008",
+  model: {value: "TM008"},
   key: `${brand.key}_tm008`,
-  description: "",
   links,
   brand,
   // description: "",

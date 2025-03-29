@@ -9,9 +9,11 @@ const links = {
   }
 }
 const info: Product = {
-  model: "06 Mini",
+  model: {
+    value: "06 Mini",
+    notes: () => <div>Also on that link is 06 Normal and Pro. Upgrade if your budget allows</div>
+  },
   key: `${brand.key}_06mini`,
-  description: "Also on that link is 06 Normal and Pro. Upgrade if your budget allows",
   links,
   brand,
   // description: "",

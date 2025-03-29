@@ -4,9 +4,24 @@ import brand from './brand'
 
 const info: Product = {
   brand,
-  model: "E5",
+  model: {
+    value: "E5",
+    notes: () => <div>
+      <p>This has the most hardware improvements over the below. Eg, improved motor, and vents to dissipate heat, and doesn't have an incline. I don't know why they removed the incline after E3... real bummer. So I recommend propping the head on some yoga blocks or a 2x4.</p>
+      <p>{budgetNote}</p>
+      <h5>Better tech</h5>
+      <div>Improved motor with vents to dissipate heat.</div>
+      <h5>Shock absorption</h5>
+      <div>Has shock absorption for better knee health.</div>
+      <h5>Affordable</h5>
+      <div>Good value at $200.</div>
+      <h5>No incline</h5>
+      <div>Lacks incline functionality which is important for knee health.</div>
+      <h5>Loud</h5>
+      <div>Described as loud which may be an issue for meetings or calls.</div>
+    </div>
+  },
   key: `${brand.key}_e5`,
-  description: "This has the most hardware improvements over the below. Eg, improved motor, and vents to dissipate heat, and doesn't have an incline. I don't know why they removed the incline after E3... real bummer. So I recommend propping the head on some yoga blocks or a 2x4.",
   links: {
     amazon: {
       US: "https://amzn.to/4jsteob",
@@ -43,7 +58,6 @@ const info: Product = {
   price: {
     value: 190,
     sale: 170,
-    notes: () => <div>{budgetNote}</div>
   },
   pickedBy: {
     // me: 0,
@@ -69,35 +83,6 @@ const info: Product = {
     value: 5, // Not mentioned in the data
   },
 
-  pros: [
-    {
-      value: "Better tech",
-      rating: 8,
-      notes: () => <div>Improved motor with vents to dissipate heat.</div>
-    },
-    {
-      value: "Shock absorption",
-      rating: 7,
-      notes: () => <div>Has shock absorption for better knee health.</div>
-    },
-    {
-      value: "Affordable",
-      rating: 8,
-      notes: () => <div>Good value at $200.</div>
-    }
-  ],
   
-  cons: [
-    {
-      value: "No incline",
-      rating: 3,
-      notes: () => <div>Lacks incline functionality which is important for knee health.</div>
-    },
-    {
-      value: "Loud",
-      rating: 4,
-      notes: () => <div>Described as loud which may be an issue for meetings or calls.</div>
-    }
-  ],
 }
 export default info

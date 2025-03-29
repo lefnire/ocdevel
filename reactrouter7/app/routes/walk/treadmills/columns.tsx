@@ -66,11 +66,11 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.brand.name,
     renderModalTitle: (row) => row.brand.name,
     renderModal: (row) => {
-      const siteNames = {amazon: "Amazon", brand: row.brand.name}
+      const siteNames = {amazon: "Amazon", brand: "Company Website"}
       const links = countries.order.flatMap(code => (
         countries.buyOrder.map((site, i) => {
-          if (!row.linksFull[code]?.product?.[site]) { return null; }
-          const aff = {key: row.key, link: row.linksFull[code].product[site]}
+          if (!row.linksFull[code]?.brand?.[site]) { return null; }
+          const aff = {key: row.key, link: row.linksFull[code].brand[site]}
           return <div key={`link-brand-${row.key}-${code}-${site}`}>
             <Affiliate product={aff}>
               {countries.emojis[code]} {siteNames[site]}
@@ -89,9 +89,9 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Model",
     dtype: "string",
     hideScore: true,
-    getValue: (row) => row.model,
-    format: (row) => row.model,
-    renderModalTitle: (row) => row.model,
+    getValue: (row) => row.model.value,
+    format: (row) => row.model.value,
+    renderModalTitle: (row) => row.model.value,
   },
   {
     key: "price",

@@ -46,11 +46,10 @@ export interface Brand {
 }
 export interface Product {
   brand: Brand
-  model: string
+  model: StringVal
   seo?: number
   image?: string
   key: string
-  description: string | ReactElement
   links: Links
 
   dimensions: CustomVal & {
