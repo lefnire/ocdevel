@@ -1,15 +1,20 @@
 import Table from './treadmills/table'
 import TopSection from "./top-section";
 import BottomSection from './bottom-section';
-import {useCompare} from "~/routes/walk/treadmills/compare";
+import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
 import {seoLabels} from "~/routes/walk/treadmills/data";
 
 export default function Route() {
   const compareProps = useCompare()
+  const urlFilters = useUrlFilters()
+  const props = {
+    ...compareProps,
+    ...urlFilters
+  }
   return <div>
-    <TopSection {...compareProps} />
-    <Table {...compareProps} />
-    <BottomSection {...compareProps} />
+    <TopSection {...props} />
+    <Table {...props} />
+    <BottomSection {...props} />
   </div>
 }
 

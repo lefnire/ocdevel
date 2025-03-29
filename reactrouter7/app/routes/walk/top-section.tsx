@@ -7,7 +7,7 @@ import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "./treadmills/utils";
-import {type CompareProps} from "~/routes/walk/treadmills/compare";
+import {type CompareProps} from "~/routes/walk/url-listener";
 import type {Product} from "~/routes/walk/treadmills/rows";
 
 import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=6'
@@ -143,11 +143,17 @@ function Overview() {
 
 export default function TopSection({
   isCompareMode,
-  filteredData
+  filteredData,
+  isFiltered,
 }: CompareProps) {
+  if (isFiltered) {
+    return <Container>
+      <div className='text-center'>Showing filtered data. This page contains affiliate links</div>
+    </Container>
+  }
   if (isCompareMode) {
     const label = filteredData.map((row: Product) => {
-      return `${row.brand.name} ${row.model}`
+      return `${row.brand.name} ${row.model.value}`
     }).join(' vs ')
     return <Container>
       <h3 className='text-center my-0'>{label} (Compared)</h3>

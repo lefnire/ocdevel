@@ -1,13 +1,15 @@
 import {useNavigate, useSearchParams} from "react-router";
-import {useEffect, useMemo, useState} from "react";
-import {columnsObj} from "./columns";
-import data, {type Product} from './rows'
+import {useEffect, useMemo, useRef, useState} from "react";
+import {columnsObj} from "./treadmills/columns";
+import data, {type Product} from './treadmills/rows'
 
 export interface CompareProps {
   compareKeys: string[]
   isCompareMode: boolean
   filteredData: Product[]
   handleCompare: (key1: string, key2: string) => void
+  isFiltered: boolean
+  columnFilters: any[]
 }
 export function useCompare(): CompareProps {
   // URL parameters for comparison
@@ -111,9 +113,12 @@ export function useUrlFilters() {
     });
 
     // Update column filters
-    if (newFilters.length > 0) {
+    // if (newFilters.length > 0) {
       setColumnFilters(newFilters);
-    }
+    // }
   }, [searchParams]);
-  return columnFilters;
+  return {
+    columnFilters,
+    isFiltered: columnFilters.length > 0,
+  }
 }

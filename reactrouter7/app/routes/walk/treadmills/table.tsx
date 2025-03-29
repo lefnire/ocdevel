@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useRef} from "react";
 import {
   createColumnHelper,
   flexRender,
@@ -19,7 +19,7 @@ import type { Product } from './rows';
 import { columnsArray, columnsObj } from './columns';
 import { Form, Button, Badge, Container } from 'react-bootstrap';
 import { FaArrowUp, FaArrowDown, FaArrowLeft } from 'react-icons/fa';
-import {type CompareProps, useUrlFilters} from "./compare";
+import {type CompareProps} from "../url-listener";
 import {useNavigate, useSearchParams} from "react-router";
 import { ModalProvider, useModal, clickableStyle } from './modal';
 
@@ -279,6 +279,8 @@ const Score: React.FC<{ score: number }> = ({ score }) => {
 function ProductTable({
   isCompareMode,
   filteredData,
+  isFiltered,
+  columnFilters: urlFilters
 }: CompareProps) {
   // Access URL search parameters
   const navigate = useNavigate()
@@ -288,10 +290,10 @@ function ProductTable({
     { id: 'total', desc: true }
   ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
-  const urlFilters = useUrlFilters()
 
   const handleShowAll = () => {
     // Remove the compare parameter from the URL
+    setColumnFilters([])
     navigate('/walk')
     // searchParams.delete('compare');
     // setSearchParams(searchParams);
@@ -399,7 +401,7 @@ function ProductTable({
   return (
     <div className="w-100">
       {/* Show All button when in comparison mode */}
-      {isCompareMode && <div className='mb-1'>
+      {(isCompareMode || isFiltered) && <div className='mb-1'>
         <Button
           size="sm"
           variant="outline-secondary"
