@@ -63,6 +63,24 @@ export const columnsArray: ColumnDefinition[] = [
     hideScore: true,
     getValue: (row) => row.brand.name,
     format: (row) => row.brand.name,
+    renderModal: (row) => {
+      const siteNames = {amazon: "Amazon", brand: row.brand.name}
+      const links = countries.order.flatMap(code => (
+        countries.buyOrder.map((site, i) => {
+          if (!row.linksFull[code]?.product?.[site]) { return null; }
+          const aff = {key: row.key, link: row.linksFull[code].product[site]}
+          return <div key={`link-brand-${row.key}-${code}`}>
+            <Affiliate product={aff}>
+              {countries.emojis[code]} {siteNames[site]}
+            </Affiliate>
+          </div>
+        })
+      ))
+      return <div>
+        {links}
+        {row.brand.notes?.()}
+      </div>
+    }
   },
   {
     key: "model",
@@ -383,14 +401,13 @@ export const columnsArray: ColumnDefinition[] = [
     getValue: (row) => getCountryCodes(row).join(''),
     render: (row, clickHandler) => {
       const siteNames = {amazon: "Amazon", brand: row.brand.name}
-      debugger
       return (
         <div
           className="d-flex flex-wrap"
           // onClick={clickHandler}
           // style={clickHandler ? clickableStyle : undefined}
         >
-          {countries.order.flatMap(code => {
+          {countries.order.map(code => {
             if (!row.linksFull[code]?.product) { return null; }
             return <DropdownButton
               as={ButtonGroup}
