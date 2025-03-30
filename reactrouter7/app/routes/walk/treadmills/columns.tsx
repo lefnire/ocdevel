@@ -15,7 +15,6 @@ import _ from 'lodash';
 import {clickableStyle, useModal} from './modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
-const faPublic = <FaStar style={{ color: '#999999' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data/index'

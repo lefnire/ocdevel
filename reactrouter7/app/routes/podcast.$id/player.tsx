@@ -1,20 +1,10 @@
 import type {EpisodeComponent} from '~/routes/podcast/types'
-import {useEffect, useState} from "react";
+import {type PropsWithChildren, useState} from "react";
+import React from "react";
 
-const lazyIframe = false
+const CLICK_TO_PLAY = false;
+
 function Player_({episode: e}: EpisodeComponent) {
-  const [hideIframe, setHideIframe] = useState(lazyIframe);
-
-  useEffect(() => {
-    if (!lazyIframe) { return; }
-    const idleCallback = (
-      typeof window !== "undefined" && window.requestIdleCallback
-      || ((fn) => setTimeout(fn, 200))
-    );
-    idleCallback(() => setHideIframe(false));
-  }, []);
-  if (hideIframe) { return <div>Loading...</div>}
-
   const color = e.archived ? '6c757d' : '111111';
   return <iframe
     title="Embed Player"
@@ -23,19 +13,59 @@ function Player_({episode: e}: EpisodeComponent) {
     width="100%"
     scrolling="no"
     allowFullScreen={undefined}
-    webkitallowfullscreen="true"
-    mozallowfullscreen="true"
-    oallowfullscreen="true"
-    msallowfullscreen="true"
+    // Using data attributes for non-standard attributes
+    data-webkit-allowfullscreen="true"
+    data-moz-allowfullscreen="true"
+    data-o-allowfullscreen="true"
+    data-ms-allowfullscreen="true"
     style={{border: "none"}}
-    loading={lazyIframe ? "lazy" : undefined}
+    loading="lazy"
   />
+}
+
+function ClickToPlay({children}: PropsWithChildren) {
+  const [showIframe, setShowIframe] = useState(false);
+
+  if (!showIframe){
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        onClick={() => setShowIframe(true)}
+        style={{
+          height: "100%",
+          width: "100%",
+          cursor: "pointer",
+          backgroundColor: "#f8f9fa",
+          borderRadius: "8px",
+          border: "1px solid #dee2e6"
+        }}
+      >
+        <div className="d-flex align-items-center">
+          {/* Simple black play triangle */}
+          <div
+            style={{
+              width: 0,
+              height: 0,
+              borderTop: "8px solid transparent",
+              borderBottom: "8px solid transparent",
+              borderLeft: "12px solid #212529",
+              marginRight: "8px"
+            }}
+          />
+          <span className="text-secondary">Click to Play Episode</span>
+        </div>
+      </div>
+    );
+  }
+  return children
 }
 
 export function Player(props: EpisodeComponent) {
   if (!props.episode.libsynEpisode) { return null; }
+  const player = <Player_ {...props} />
+  const wrapped = CLICK_TO_PLAY ? <ClickToPlay>{player}</ClickToPlay> : player
   // Create a wrapper div with the exact height to prevent layout shift
   return <div style={{ height: "128px", width: "100%" }}>
-    <Player_ {...props} />
+    {wrapped}
   </div>
 }

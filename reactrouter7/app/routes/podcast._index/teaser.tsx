@@ -30,25 +30,12 @@ export default function Teaser(props: EpisodeComponent) {
 
   return <Card className={`mb-3 card-post`}>
     <Card.Body>
-      <Row className="align-items-center">
-        <Col>
-          <Card.Title>
-            <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
-          </Card.Title>
-          <DateHeader {...props} />
-          {renderDebugging()}
-          {renderContent()}
-        </Col>
-        <Col xs="auto" className="d-flex align-items-center">
-          <Link to={link} className="ms-auto">
-            <FaCirclePlay
-              size={75}
-              className="text-black"
-              style={{ cursor: 'pointer' }}
-            />
-          </Link>
-        </Col>
-      </Row>
+      <Card.Title>
+        <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
+      </Card.Title>
+      <DateHeader {...props} />
+      {renderDebugging()}
+      {renderContent()}
     </Card.Body>
   </Card>
 }
