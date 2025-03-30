@@ -58,6 +58,8 @@ const info: Product = {
   },
   pickedBy: {
     me: 4,
+    trusted: [{value: 1}],
+    affiliate: [{value: 1}],
     websites: [{value: 3}],
   },
   incline: {

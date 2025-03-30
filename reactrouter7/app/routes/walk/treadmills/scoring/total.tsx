@@ -3,7 +3,7 @@ import type {ScoreFn} from "./utils";
 export const columnWeights = {
   pickedBy: 15, // only one to break 10
   rating: 10,
-  horsePower: 7,
+  horsePower: 10,
   incline: 5,
   age: 5,
   shock: 5,

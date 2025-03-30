@@ -33,6 +33,8 @@ import superun_06normal from './superun/06normal'
 import lysole_walkingpad from './lysole/walkingpad'
 import rythmfun_ap01 from './rythmfun/ap01'
 import rythmfun_ap02 from './rythmfun/ap02'
+import sunny_sft723007 from './sunny/sft723007'
+import sunny_sft724064 from './sunny/sft724064'
 import _ from 'lodash'
 
 const index = [
@@ -74,6 +76,8 @@ const index = [
   lysole_walkingpad,
   rythmfun_ap01,
   rythmfun_ap02,
+  sunny_sft723007,
+  sunny_sft724064,
 ]
 export default index
 export const UPDATED = "2025-03-28"

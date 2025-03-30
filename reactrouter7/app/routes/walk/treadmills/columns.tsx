@@ -107,7 +107,7 @@ export const columnsArray: ColumnDefinition[] = [
       ))
       return <div>
         {links}
-        {row.brand.notes?.()}
+        {row.model.notes?.()}
       </div>
     }
   },
