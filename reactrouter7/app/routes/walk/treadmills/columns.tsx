@@ -71,7 +71,7 @@ export const columnsArray: ColumnDefinition[] = [
         {renderCountryLinks(row, 'brand')}
         {row.brand.notes?.()}
       </div>
-    }
+    },
   },
   {
     key: "model",
@@ -86,7 +86,22 @@ export const columnsArray: ColumnDefinition[] = [
         {renderCountryLinks(row, 'product')}
         {row.model.notes?.()}
       </div>
-    }
+    },
+    notes: () => <div>
+      <h5>Choosing the Right Model</h5>
+      <p>Newer is almost always better, due to technology iteration. So before you buy anything - even if you found something you like in this table - do the following:</p>
+      <ol>
+        <li>Go to the company's website (find this by clicking on the brand in this table)</li>
+        <li>Find their Walking Pads section, and sort by "Date, new to old".</li>
+        <li>Pick a model you like, favoring newer, based on budget & preference.</li>
+      </ol>
+      <h5>Finding it on Amazon</h5>
+      <p>On a company's Amazon store, you can't sort by newest. So follow the steps above, then:</p>
+      <ol>
+        <li>Copy the model name from the company site.</li>
+        <li>Paste it into Amazon. Amazon listings rarely include the model name in the title (no clue why), but it's often buried in the specifications somewhere, so the search will usually work. Otherwise you'll have to eye-ball it from the photos.</li>
+      </ol>
+    </div>
   },
   {
     key: "price",
