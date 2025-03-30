@@ -1,7 +1,9 @@
 import type {PickedBy, Product} from "./data/types";
+import type {Product as Row} from './rows'
 import _ from "lodash"
 import React from "react";
 import {Badge} from "react-bootstrap";
+import {Affiliate} from "~/content/product-links";
 
 export const PAUSE_AMAZON = false;
 export function getCurrentLink(product: Product) {
@@ -62,8 +64,8 @@ export function ScoreInfo() {
 export const countries = {
   order: ["US", "CA", "UK", "EU", "AU"],
   buyOrder: ["amazon", "brand"],
-  emojis: {"US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧", "EU": "🇺", "AU": "🇦🇺"}
-}
+  emojis: {"US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧", "EU": "🇪🇺", "AU": "🇦🇺"}
+} as const
 
 // Type for the country-specific links
 type CountryLinks = Record<string, string>;
@@ -115,4 +117,23 @@ export function hydrateLinks(row: Product): LinksFull {
     
     return result;
   }, {} as LinksFull);
+}
+
+export function renderCountryLinks(row: Row, objType: 'product'|'brand', oneCountry?:string) {
+  const siteNames = {amazon: "Amazon", brand: "Company Website"}
+  const countries_ = oneCountry ? [oneCountry] : countries.order
+  const links = countries_.flatMap(code => (
+    countries.buyOrder.map((site, i) => {
+      // @ts-ignore
+      const val = row.linksFull[code]?.[objType]?.[site] as any as string
+      if (!val) { return null; }
+      const aff = {key: row.key, link: val}
+      return <div key={`link-brand-${row.key}-${code}-${site}`}>
+        <Affiliate product={aff}>
+          {countries.emojis[code]} {siteNames[site]}
+        </Affiliate>
+      </div>
+    })
+  ))
+  return links
 }

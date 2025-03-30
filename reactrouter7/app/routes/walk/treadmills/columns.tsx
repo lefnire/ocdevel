@@ -8,10 +8,11 @@ import {
   getCountryCodes,
   toFixed0,
   ScoreInfo,
-  countries
+  countries,
+  renderCountryLinks
 } from "./utils";
 import _ from 'lodash';
-import { clickableStyle } from './modal';
+import {clickableStyle, useModal} from './modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faPublic = <FaStar style={{ color: '#999999' }} />
@@ -19,7 +20,7 @@ const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data/index'
 import {Affiliate} from "~/content/product-links";
-import {ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
+import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -66,20 +67,8 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.brand.name,
     renderModalTitle: (row) => row.brand.name,
     renderModal: (row) => {
-      const siteNames = {amazon: "Amazon", brand: "Company Website"}
-      const links = countries.order.flatMap(code => (
-        countries.buyOrder.map((site, i) => {
-          if (!row.linksFull[code]?.brand?.[site]) { return null; }
-          const aff = {key: row.key, link: row.linksFull[code].brand[site]}
-          return <div key={`link-brand-${row.key}-${code}-${site}`}>
-            <Affiliate product={aff}>
-              {countries.emojis[code]} {siteNames[site]}
-            </Affiliate>
-          </div>
-        })
-      ))
       return <div>
-        {links}
+        {renderCountryLinks(row, 'brand')}
         {row.brand.notes?.()}
       </div>
     }
@@ -93,20 +82,8 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.model.value,
     renderModalTitle: (row) => row.model.value,
     renderModal: (row) => {
-      const siteNames = {amazon: "Amazon", brand: "Company Website"}
-      const links = countries.order.flatMap(code => (
-        countries.buyOrder.map((site, i) => {
-          if (!row.linksFull[code]?.product?.[site]) { return null; }
-          const aff = {key: row.key, link: row.linksFull[code].product[site]}
-          return <div key={`link-brand-${row.key}-${code}-${site}`}>
-            <Affiliate product={aff}>
-              {countries.emojis[code]} {siteNames[site]}
-            </Affiliate>
-          </div>
-        })
-      ))
       return <div>
-        {links}
+        {renderCountryLinks(row, 'product')}
         {row.model.notes?.()}
       </div>
     }
@@ -418,8 +395,9 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Countries",
     hideScore: true,
     dtype: "string", // list of country codes
-    getValue: (row) => getCountryCodes(row).join(''),
+    getValue: (row) => getCountryCodes(row, true).join(''),
     render: (row, clickHandler) => {
+      const {openModal} = useModal()
       const siteNames = {amazon: "Amazon", brand: row.brand.name}
       return (
         <div
@@ -428,7 +406,24 @@ export const columnsArray: ColumnDefinition[] = [
           // style={clickHandler ? clickableStyle : undefined}
         >
           {countries.order.map(code => {
-            if (!row.linksFull[code]?.product) { return null; }
+            if (!row.linksFull[code]?.product) {
+              if (!row.linksFull[code]?.brand) { return null; }
+              return <div
+                key={`just-brand-${code}-${row.key}`}
+                className='btn btn-sm btn-link'
+                onClick={() => openModal(
+                  `countries-${code}-${row.key}`,
+                  `${row.brand.name} ${row.model.value}`,
+                  <div>
+                    <p>I couldn't find this product in {code}, but the brand sells does sell there. So see if you can find it or similar.</p>
+                    {renderCountryLinks(row, 'brand', code)}
+                  </div>
+                )}
+              >
+                {code}
+              </div>
+
+            }
             return <DropdownButton
               as={ButtonGroup}
               title={code}
@@ -438,13 +433,18 @@ export const columnsArray: ColumnDefinition[] = [
               key={`link-picker-${row.key}-${code}`}
             >
               {countries.buyOrder.map((site, i) => {
-                if (!row.linksFull[code].product[site]) { return null; }
+                // @ts-ignore
+                const productLink = row.linksFull[code]?.product?.[site] as string
+                if (!productLink) { return null; }
                 return <Dropdown.Item
                   eventKey={i}
                   key={`link-picker-${row.key}-${code}-${site}`}
-                  href={row.linksFull[code].product[site]}
+                  href={productLink}
                   target="_blank"
-                  className={`plausible-event-name=affiliate plausible-event-product=${row.key}`}
+                  className={[
+                    'plausible-event-name=affiliate',
+                    `plausible-event-product=${row.key}`,
+                  ].join(' ')}
                   rel="noopener noreferrer"
                 >
                   {siteNames[site]}
