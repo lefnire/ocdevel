@@ -277,9 +277,7 @@ const Score: React.FC<{ score: number }> = ({ score }) => {
   );
 };
 function ProductTable({
-  isCompareMode,
   filteredData,
-  isFiltered,
   columnFilters: urlFilters
 }: ListenerProps) {
   // Access URL search parameters
@@ -291,20 +289,14 @@ function ProductTable({
   ]);
   const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
 
-  const handleShowAll = () => {
-    // Remove the compare parameter from the URL
-    setColumnFilters([])
-    navigate('/walk')
-    // searchParams.delete('compare');
-    // setSearchParams(searchParams);
-  };
+
 
   // Apply filters from URL search parameters
   useEffect(() => {
     // Update column filters
-    if (urlFilters.length > 0) {
+    // if (urlFilters.length > 0) {
       setColumnFilters(urlFilters);
-    }
+    // }
   }, [urlFilters]);
   // Column helper
   const columnHelper = createColumnHelper<Product>();
@@ -400,16 +392,6 @@ function ProductTable({
   });
   return (
     <div className="w-100">
-      {/* Show All button when in comparison mode */}
-      {(isCompareMode || isFiltered) && <div className='mb-1'>
-        <Button
-          size="sm"
-          variant="outline-secondary"
-          onClick={handleShowAll}
-        >
-          <FaArrowLeft /> Show All
-        </Button>
-      </div>}
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
          {/* Normal table: columns are attributes, rows are products */}

@@ -14,7 +14,8 @@ import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp
 import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=6'
 import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=6'
 import { Image } from "@unpic/react";
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
+import {FaArrowLeft} from "react-icons/fa";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
@@ -80,7 +81,7 @@ const otherProducts: AffiliateLink_[] = [
 
 interface Products {
   title: string
-  links: TabKey[]
+  links: Array<keyof typeof contentSections>
   products: AffiliateLink_[]
 }
 export function ProductsCard ({ title, links, products }: Products) {
@@ -133,32 +134,17 @@ export function ProductsCard ({ title, links, products }: Products) {
   </div>
 }
 
-function Overview() {
-  const setTab = tabStore(s => s.setTab)
-  return <div className="text-center">
-    <Button variant="link" onClick={() => setTab("buying_guide")}>How to use this table.</Button>
-    <VideoButton href="https://www.youtube.com/watch?v=_6EiAK-jmYQ" label="Overview"/>
-  </div>
-}
+// function Overview() {
+//   const setTab = tabStore(s => s.setTab)
+//   return <div className="text-center">
+//     <Button variant="link" onClick={() => setTab("buying_guide")}>How to use this table.</Button>
+//     <VideoButton href="https://www.youtube.com/watch?v=_6EiAK-jmYQ" label="Overview"/>
+//   </div>
+// }
 
-export default function TopSection({
-  isCompareMode,
-  filteredData,
-  isFiltered,
-}: ListenerProps) {
-  if (isFiltered) {
-    return <Container>
-      <div className='text-center'>Showing filtered data. This page contains affiliate links</div>
-    </Container>
-  }
-  if (isCompareMode) {
-    const label = filteredData.map((row: Product) => {
-      return `${row.brand.name} ${row.model.value}`
-    }).join(' vs ')
-    return <Container>
-      <h3 className='text-center my-0'>{label} (Compared)</h3>
-      <div className='text-center'>This page contains affiliate links</div>
-    </Container>
+export default function TopSection(props: ListenerProps) {
+  if (props.isCompareMode || props.isFiltered) {
+    return <ReducedTop {...props} />
   }
 
   // TODO replace ./route.css with image loaders for remix
@@ -181,5 +167,38 @@ export default function TopSection({
       </div>
     </div>
     {/*<Overview />*/}
+  </Container>
+}
+
+function ReducedTop({isCompareMode, isFiltered, filteredData}: ListenerProps) {
+  const navigate = useNavigate()
+  const handleShowAll = () => {
+    navigate('/walk')
+    // searchParams.delete('compare');
+    // setSearchParams(searchParams);
+  };
+
+  function renderContent() {
+    if (isFiltered) {
+      return <div>Showing filtered data. This page contains affiliate links</div>
+    }
+    const label = filteredData.map((row: Product) => {
+      return `${row.brand.name} ${row.model.value}`
+    }).join(' vs ')
+    return <>
+      <h3 className='my-0'>{label} (Compared)</h3>
+      <div>This page contains affiliate links</div>
+    </>
+  }
+
+  return <Container className='d-flex flex-column align-items-center gap-2 mb-2 my-2'>
+    {renderContent()}
+    <Button
+      size="sm"
+      variant="outline-secondary"
+      onClick={handleShowAll}
+    >
+      <FaArrowLeft /> Show All
+    </Button>
   </Container>
 }
