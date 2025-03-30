@@ -12,6 +12,8 @@ import egofit_m1pro from './egofit/m1pro'
 import goyouth_2in1 from './goyouth/2in1'
 import goplus_walkingpad from './goplus/walkingpad'
 import walkingpad_z1 from './walkingpad/z1'
+import walkingpad_z3 from './walkingpad/z3'
+import walkingpad_c2 from './walkingpad/c2'
 // import lifespan_tr1000 from './lifespan/tr1000'
 import lifespan_tr1200 from './lifespan/tr1200'
 import lifespan_tr5000 from './lifespan/tr5000'
@@ -51,6 +53,8 @@ const index = [
   goyouth_2in1,
   goplus_walkingpad,
   walkingpad_z1,
+  walkingpad_z3,
+  walkingpad_c2,
   // lifespan_tr1000,
   lifespan_tr1200,
   lifespan_tr5000,
