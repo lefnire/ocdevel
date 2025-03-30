@@ -35,6 +35,7 @@ import rythmfun_ap01 from './rythmfun/ap01'
 import rythmfun_ap02 from './rythmfun/ap02'
 import sunny_sft723007 from './sunny/sft723007'
 import sunny_sft724064 from './sunny/sft724064'
+import mobvoi_treadmillplus from './mobvoi/treadmillplus'
 import _ from 'lodash'
 
 const index = [
@@ -78,6 +79,7 @@ const index = [
   rythmfun_ap02,
   sunny_sft723007,
   sunny_sft724064,
+  mobvoi_treadmillplus,
 ]
 export default index
 export const UPDATED = "2025-03-28"

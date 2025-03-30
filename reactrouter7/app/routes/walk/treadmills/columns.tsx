@@ -415,8 +415,8 @@ export const columnsArray: ColumnDefinition[] = [
                   `countries-${code}-${row.key}`,
                   `${row.brand.name} ${row.model.value}`,
                   <div>
-                    <p>I couldn't find this product in {code}, but the brand sells does sell there. So see if you can find it or similar.</p>
                     {renderCountryLinks(row, 'brand', code)}
+                    <p>I couldn't find this product in {code}, but the brand does sell there. So see if you can find it or similar.</p>
                   </div>
                 )}
               >
