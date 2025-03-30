@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Button, Container} from 'react-bootstrap';
 import { seoScored, dataObj } from './treadmills/data/index';
-import {type CompareProps} from "~/routes/walk/url-listener";
+import {type ListenerProps} from "~/routes/walk/url-listener";
 import CalorieCalc from "~/routes/walk/calorie-calc";
 
 type KeyBrand = {key: string, brand: string}
@@ -38,7 +38,7 @@ while (true) {
   ])
 }
 
-export default function BottomSection(props: CompareProps) {
+export default function BottomSection(props: ListenerProps) {
   if (props.isCompareMode) { return null; }
   if (props.isFiltered) { return null; }
   // Get top product combinations based on SEO

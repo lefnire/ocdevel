@@ -1,19 +1,20 @@
 import React from "react";
 import {Button, Container} from "react-bootstrap";
 import './route.css'
-import Tabs, {tabStore, type TabKey, tabs} from './tabs'
+import {contentSections} from './content-section'
 import {dataObj} from './treadmills/data/index'
 import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "./treadmills/utils";
-import {type CompareProps} from "~/routes/walk/url-listener";
+import {type ListenerProps} from "~/routes/walk/url-listener";
 import type {Product} from "~/routes/walk/treadmills/rows";
 
 import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=6'
 import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=6'
 import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=6'
 import { Image } from "@unpic/react";
+import {Link} from "react-router";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
@@ -119,7 +120,6 @@ export function ProductsCard ({ title, links, products }: Products) {
     </div>
   }
 
-  const setTab = tabStore(s => s.setTab);
   return <div className="card h-100">
     <div className="card-body">
       <h6 className="card-subtitle mb-2 text-body-secondary">{title}</h6>
@@ -127,7 +127,7 @@ export function ProductsCard ({ title, links, products }: Products) {
     </div>
     <div className="card-body">
       {links.map(l => (
-        <a key={l} onClick={() => setTab(l)} className="card-link">{tabs[l]}</a>
+        <Link key={l} to={`#${l}`} className="card-link">{contentSections[l]}</Link>
       ))}
     </div>
   </div>
@@ -145,7 +145,7 @@ export default function TopSection({
   isCompareMode,
   filteredData,
   isFiltered,
-}: CompareProps) {
+}: ListenerProps) {
   if (isFiltered) {
     return <Container>
       <div className='text-center'>Showing filtered data. This page contains affiliate links</div>
@@ -180,7 +180,6 @@ export default function TopSection({
         />
       </div>
     </div>
-    <Tabs />
     {/*<Overview />*/}
   </Container>
 }

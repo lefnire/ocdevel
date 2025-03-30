@@ -29,8 +29,17 @@ const info: Brand = {
     notes: () => <div>Frame: 10 Years | Parts: 2 Years | Labor: 1 Year</div>
   },
   notes: () => <div>
-    <div>{nonBudgetNote}</div>
-    <div>Each iteration is just an upgrade of the one before it. So just pick whichever price point you're most comfortable with. They're also increasingly heavy / large, and accommodate increasing weight. So factor that into your decision. Note: I'm not sure what the difference between the models GlowUp, Classic, Power, and Omni. I think the GlowUp means "just the treadmill" where the other ones are different spins on the "and also the desk" - but you'll want to research some.</div>
+    <div>LifeSpan is the most famous, long-standing quality walking pad company. Previously I was very anti-LifeSpan, since:</div>
+    <ol>
+      <li>There's no incline</li>
+      <li>They hadn't released anything new in a decade</li>
+        <li>The cost was so outrageous, I'd rather buy a new budget mill every 2 years for 12 years for the same price.</li>
+      </ol>
+        <p>But recently, they released the TX6, a newer model with <em>very</em> impressive specifications (4.5 HP motor, 6mph max speed, 400lb capacity, etc); lowered weight and dimensions. And they brought all their prices down significantly. Now I think they're compelling. So much so that I'm re-thinking my whole budget angle, since the price gap is no longer so severe.</p>
+    <h5>TX6</h5>
+    <p>This is your guy, ignore the below.</p>
+    <h5>TR1000, TR1200, TR5000</h5>
+    <p>Each iteration is just an upgrade of the one before it. So just pick whichever price point you're most comfortable with. They're also increasingly heavy / large, and accommodate increasing weight. So factor that into your decision. Note: I'm not sure what the difference between the models GlowUp, Classic, Power, and Omni. I think the GlowUp means "just the treadmill" where the other ones are different spins on the "and also the desk" - but you'll want to research some.</p>
   </div>
 }
 export default info

@@ -3,6 +3,7 @@ import TopSection from "./top-section";
 import BottomSection from './bottom-section';
 import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
 import {seoLabels} from "~/routes/walk/treadmills/data";
+import ContentSection from "~/routes/walk/content-section";
 
 export default function Route() {
   const compareProps = useCompare()
@@ -15,6 +16,7 @@ export default function Route() {
     <TopSection {...props} />
     <Table {...props} />
     <BottomSection {...props} />
+    <ContentSection {...props} />
   </div>
 }
 

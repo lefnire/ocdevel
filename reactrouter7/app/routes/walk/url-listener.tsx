@@ -3,7 +3,7 @@ import {useEffect, useMemo, useRef, useState} from "react";
 import {columnsObj} from "./treadmills/columns";
 import data, {type Product} from './treadmills/rows'
 
-export interface CompareProps {
+export interface ListenerProps {
   compareKeys: string[]
   isCompareMode: boolean
   filteredData: Product[]
@@ -11,7 +11,7 @@ export interface CompareProps {
   isFiltered: boolean
   columnFilters: any[]
 }
-export function useCompare(): CompareProps {
+export function useCompare(): ListenerProps {
   // URL parameters for comparison
   const [searchParams, setSearchParams] = useSearchParams();
 

@@ -19,7 +19,7 @@ import type { Product } from './rows';
 import { columnsArray, columnsObj } from './columns';
 import { Form, Button, Badge, Container } from 'react-bootstrap';
 import { FaArrowUp, FaArrowDown, FaArrowLeft } from 'react-icons/fa';
-import {type CompareProps} from "../url-listener";
+import {type ListenerProps} from "../url-listener";
 import {useNavigate, useSearchParams} from "react-router";
 import { ModalProvider, useModal, clickableStyle } from './modal';
 
@@ -281,7 +281,7 @@ function ProductTable({
   filteredData,
   isFiltered,
   columnFilters: urlFilters
-}: CompareProps) {
+}: ListenerProps) {
   // Access URL search parameters
   const navigate = useNavigate()
   
@@ -482,7 +482,7 @@ function ProductTable({
 }
 
 // Export the wrapped component with ModalProvider
-export default function WrappedProductTable(props: CompareProps) {
+export default function WrappedProductTable(props: ListenerProps) {
   return (
     <ModalProvider>
       <ProductTable {...props} />
