@@ -13,7 +13,7 @@ const links = {
 const info: Product = {
   model: {
     value: "C2",
-    // notes: () => <div></div>
+    notes: brand.notes
   },
   key: `${brand.key}_c2`,
   links,

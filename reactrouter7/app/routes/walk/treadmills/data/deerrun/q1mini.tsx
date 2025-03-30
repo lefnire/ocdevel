@@ -4,10 +4,10 @@ const links = {
   amazon: {
     US: "https://amzn.to/4bM8iFn",
     CA: "https://amzn.to/4kYbXnJ",
+    EU: "https://amzn.to/3XBIoOF",
   },
   brand: {
     US: "https://deerruntreadmill.com/products/deerrun-q1-mini-under-desk-treadmill",
-    EU: "https://amzn.to/3Y7GVQc",
   }
 }
 const info: Product = {

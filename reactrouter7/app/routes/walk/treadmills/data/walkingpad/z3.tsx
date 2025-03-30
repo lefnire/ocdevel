@@ -11,7 +11,7 @@ const links = {
 const info: Product = {
   model: {
     value: "Z3",
-    notes: () => <div>1.0 HP motor powering 4.0mph? This is a hello-no for me.</div>
+    notes: brand.notes,
   },
   key: `${brand.key}_z3`,
   links,
