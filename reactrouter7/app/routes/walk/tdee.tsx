@@ -3,7 +3,6 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 // Define types for better type safety
 type UnitSystem = 'metric' | 'imperial';
-type Gender = 'male' | 'female';
 type NumberOrEmpty = number | '';
 
 // Unit conversion functions
@@ -21,8 +20,8 @@ const convertToImperial = {
 
 export default function TDECalculator() {
   const [unit, setUnit] = useState<UnitSystem>('imperial');
-  const [age, setAge] = useState<NumberOrEmpty>('');
-  const [gender, setGender] = useState<Gender>('male');
+  // Age is not used in MET-based walking calorie calculations
+  // Gender is not used in MET-based walking calorie calculations
   const [height, setHeight] = useState<NumberOrEmpty>(''); // cm or inches
   const [weight, setWeight] = useState<NumberOrEmpty>(''); // kg or lbs
   const [time, setTime] = useState<NumberOrEmpty>(2); // Time in hours, default to 2
@@ -113,31 +112,9 @@ export default function TDECalculator() {
         </Form.Group>
 
         <Row>
-          <Col md={3}>
-            <Form.Group className="mb-1" controlId="formAge">
-              <Form.Label className="mb-0">Age</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter age"
-                value={age}
-                onChange={(e) => setAge(e.target.value === '' ? '' : Number(e.target.value))}
-              />
-            </Form.Group>
-          </Col>
-          <Col md={3}>
-            <Form.Group className="mb-1" controlId="formGender">
-              <Form.Label className="mb-0">Gender</Form.Label>
-              <Form.Control
-                as="select"
-                value={gender}
-                onChange={(e) => setGender(e.target.value as Gender)}
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </Form.Control>
-            </Form.Group>
-          </Col>
-          <Col md={3}>
+          {/* Age field removed - not used in MET-based walking calorie calculations */}
+          {/* Gender field removed - not used in MET-based walking calorie calculations */}
+          <Col md={6}>
             <Form.Group className="mb-1" controlId="formHeight">
               <Form.Label className="mb-0">Height ({unit === 'metric' ? 'cm' : 'inches'})</Form.Label>
               <Form.Control
@@ -148,7 +125,7 @@ export default function TDECalculator() {
               />
             </Form.Group>
           </Col>
-          <Col md={3}>
+          <Col md={6}>
             <Form.Group className="mb-1" controlId="formWeight">
               <Form.Label className="mb-0">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</Form.Label>
               <Form.Control
@@ -162,7 +139,7 @@ export default function TDECalculator() {
         </Row>
 
         <Row>
-          <Col md={4}>
+          <Col md={6}>
             <Form.Group className="mb-1" controlId="formTime">
               <Form.Label className="mb-0">Time (hours)</Form.Label>
               <Form.Control
@@ -173,7 +150,7 @@ export default function TDECalculator() {
               />
             </Form.Group>
           </Col>
-          <Col md={4}>
+          <Col md={6}>
             <Form.Group className="mb-1" controlId="formSpeed">
               <Form.Label className="mb-0">Speed ({unit === 'metric' ? 'km/h' : 'mph'})</Form.Label>
               <Form.Control
