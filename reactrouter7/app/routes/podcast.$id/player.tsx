@@ -1,12 +1,12 @@
 import type {EpisodeComponent} from '~/routes/podcast/types'
 import {useEffect, useState} from "react";
 
-const lazyIframe = true
+const lazyIframe = false
 function Player_({episode: e}: EpisodeComponent) {
   const [hideIframe, setHideIframe] = useState(lazyIframe);
 
   useEffect(() => {
-    console.log(window?.requestIdleCallback)
+    if (!lazyIframe) { return; }
     const idleCallback = (
       typeof window !== "undefined" && window.requestIdleCallback
       || ((fn) => setTimeout(fn, 200))

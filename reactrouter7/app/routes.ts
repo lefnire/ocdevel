@@ -28,7 +28,7 @@ export default [
       )
     ]),
     route("mlg/resources", "routes/mlg.resources/route.tsx", {id: "mlg.resources"}),
-    route("mlg", "routes/podcast/route.tsx", {id: "mlg"}, [
+    route("mlg", "routes/podcast/route_mlg.tsx", {id: "mlg"}, [
       index("routes/podcast._index/route.tsx", {id: "mlg._index"}),
       route("recommend", "routes/mlg.recommend.tsx", {id: 'mlg.recommend'}),
       layout("routes/podcast.$id/route.tsx", {id: "mlg._podcast.$id"},
@@ -39,7 +39,7 @@ export default [
         })
       )
     ]),
-    route("llh", "routes/podcast/route.tsx", {id: "llh"}, [
+    route("llh", "routes/podcast/route_llh.tsx", {id: "llh"}, [
       index("routes/podcast._index/route.tsx", {id: "llh._index"}),
       layout("routes/podcast.$id/route.tsx", {id: "llh._podcast.$id"},
         llhList.map((ep: Id) => {

@@ -1,22 +1,38 @@
-import React from "react";
-import {ButtonGroup, Card} from 'react-bootstrap'
-import {Col} from 'react-bootstrap'
+import React from 'react';
+import {Row, Col, Container, ButtonGroup, Card} from 'react-bootstrap'
+import {Outlet} from 'react-router';
+import Navbar from './navbar'
 import {FaYoutube} from 'react-icons/fa'
 import {FaItunesNote} from 'react-icons/fa'
 import {RiSpotifyLine} from 'react-icons/ri'
 import {SiRss} from 'react-icons/si'
 import {IconButton} from "~/components/utils";
-
-import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=max'
-import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=max"
 import { Image } from '@unpic/react'
-import type {Route} from './+types/route.tsx'
-type Props = Route.ComponentProps['loaderData']
+import type {Route} from './+types/route_mlg'
+
+type Props = Route.ComponentProps['loaderData'] & {img: string}
+export default function Podcast(props: Props) {
+  return <>
+    <Container className={`podcast-${props.podcastKey}`}>
+      <Row>
+        <Col xs={12} md={5} className='sidebar'>
+          <Row>
+            <About {...props} />
+          </Row>
+        </Col>
+        <Col xs={12} md={7}>
+          <Outlet />
+        </Col>
+      </Row>
+    </Container>
+  </>
+}
+
 
 // git-blame: moved them to ./extras
 // git-blame: dept links
 
-export default function About(props: Props) {
+function About(props: Props) {
   return <Col className='sidebar-podcasts'>
     <Card className='border-0'>
       <PodcastImage {...props} />
@@ -26,7 +42,7 @@ export default function About(props: Props) {
   </Col>
 }
 
-function PodcastImage({podcastKey, show}: Props) {
+function PodcastImage({podcastKey, show, img}: Props) {
   // git-blame: links underneath; click to show
   // git-blame: attempted sourcesets with avif/webp fallback
   return <div>
@@ -34,13 +50,13 @@ function PodcastImage({podcastKey, show}: Props) {
       <Image
         width={290} height={290}
 
-        // priority="true"
+        // priority={true}
         loading="eager"
-        fetchPriority="high"
+        fetchpriority="high"
         decoding="async"
 
         background="#EEEEEE"
-        src={podcastKey === "llh" ? img_llh : img_mlg}
+        src={img}
         alt={show.title}
       />
     </div>
