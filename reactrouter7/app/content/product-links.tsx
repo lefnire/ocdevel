@@ -101,7 +101,7 @@ const links: Record<string, AffiliateLink> = {
         key: "keychron_q11",
     },
     mistel_md770: {
-        link: "https://amzn.to/3U0tBue",
+        link: "https://amzn.to/3RqQJ47",
         key: "mistel_md770",
     },
     esdwristband: {

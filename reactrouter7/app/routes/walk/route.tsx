@@ -1,9 +1,11 @@
 import Table from './treadmills/table'
 import TopSection from "./top-section";
-import BottomSection from './bottom-section';
+import CompareButtons from './compare-buttons';
 import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
 import {seoLabels} from "~/routes/walk/treadmills/data";
 import ContentSection from "~/routes/walk/content-section";
+import CalorieCalc from "~/routes/walk/calorie-calc";
+import React from "react";
 
 export default function Route() {
   const compareProps = useCompare()
@@ -15,7 +17,8 @@ export default function Route() {
   return <div>
     <TopSection {...props} />
     <Table {...props} />
-    <BottomSection {...props} />
+    <CalorieCalc />
+    <CompareButtons {...props} />
     <ContentSection {...props} />
   </div>
 }

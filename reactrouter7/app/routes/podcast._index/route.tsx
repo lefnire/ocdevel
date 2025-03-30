@@ -7,7 +7,7 @@ import sortBy from "lodash/sortBy";
 
 import Teaser from './teaser';
 import {useShallow} from "zustand/react/shallow";
-import type {EpisodeType, ShowType} from '~/content/podcast/types'
+import type {EpisodeType, ShowType} from '~/route/podcast/types'
 import {Adsense, AdsenseScript} from "~/components/adsense"
 import {llhShow, mlgShow, llhList, mlgList} from "~/content/podcast/metas.js";
 import type {Route} from './+types/route.tsx'

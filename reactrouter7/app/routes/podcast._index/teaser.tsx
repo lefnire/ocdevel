@@ -1,7 +1,8 @@
 import {Badge, Card, Col, Row} from "react-bootstrap";
 import {Link} from "react-router";
 import React, {useMemo} from "react";
-import {type EpisodeComponent, Player, Markdown_, DateHeader, buildTitle} from '~/components/podcast.tsx'
+import {DateHeader, buildTitle} from '~/routes/podcast/utils'
+import type {EpisodeComponent} from '~/routes/podcast/types'
 import {FaCirclePlay} from "react-icons/fa6";
 
 export default function Teaser(props: EpisodeComponent) {

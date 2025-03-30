@@ -34,3 +34,10 @@ export interface EpisodeType {
   date: string
   updated: string
 }
+export interface EpisodeComponent {
+  episode: EpisodeType
+  teaser?: boolean
+  i?: number // debugging MLG/MLA numbering issue
+  podcastKey: "llh" | "mlg"
+  show: ShowType
+}

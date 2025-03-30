@@ -6,7 +6,7 @@ import {FaItunesNote} from 'react-icons/fa'
 import {RiSpotifyLine} from 'react-icons/ri'
 import {SiRss} from 'react-icons/si'
 import {IconButton} from "~/components/utils";
-import type {ShowType} from "~/content/podcast/types";
+import type {ShowType} from "~/route/podcast/types";
 
 import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=6'
 import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=6"

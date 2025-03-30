@@ -89,8 +89,7 @@ export default function WalkingCalorieCalculator() {
     setCalories(calculatedCalories);
   }, [weight, speed, incline, time, unit]);
 
-  return <div>
-    <hr/>
+  return <Container>
     <h4 className="text-center">Walking Calorie Calculator</h4>
     <p className="text-center text-muted">Calculate how many calories you can burn while using a walking pad. This adds to
       your <a href="https://www.calculator.net/tdee-calculator.html" target="_blank">TDEE</a> (Total Daily Energy
@@ -191,5 +190,5 @@ export default function WalkingCalorieCalculator() {
       )}
     </div>
 
-  </div>
+  </Container>
 }
