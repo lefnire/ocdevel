@@ -92,44 +92,30 @@ export default function WalkingCalorieCalculator() {
   return <div>
     <hr/>
     <h4 className="text-center">Walking Calorie Calculator</h4>
-    <div className="text-center">Calculate how many calories you can burn while using a walking pad. This adds to
+    <p className="text-center text-muted">Calculate how many calories you can burn while using a walking pad. This adds to
       your <a href="https://www.calculator.net/tdee-calculator.html" target="_blank">TDEE</a> (Total Daily Energy
       Expenditure).
-    </div>
-    <Form>
-
-
-      <Row>
-        {/* Age field removed - not used in MET-based walking calorie calculations */}
-        {/* Gender field removed - not used in MET-based walking calorie calculations */}
-        {/* Height field removed - not used in MET-based walking calorie calculations */}
-        <Col md={6}>
-          <Form.Group className="mb-2">
+    </p>
+    <Form className='mt-1'>
+      {/* Age, Gender, and Height fields removed - not used in MET-based walking calorie calculations */}
+      
+      {/* First row - Units and Weight side by side */}
+      <Row className="mb-2">
+        <Col md={1} sm={0}></Col>
+        <Col md={2}>
+          <Form.Group controlId="formUnits">
             <Form.Label className="mb-0">Units</Form.Label>
-            <div className="d-flex">
-              <Form.Check
-                type="radio"
-                id="unitImperial"
-                label="Imperial"
-                name="unitSystem"
-                checked={unit === 'imperial'}
-                onChange={() => setUnit('imperial')}
-                className="me-3"
-              />
-              <Form.Check
-                type="radio"
-                id="unitMetric"
-                label="Metric"
-                name="unitSystem"
-                checked={unit === 'metric'}
-                onChange={() => setUnit('metric')}
-              />
-            </div>
+            <Form.Select
+              value={unit}
+              onChange={(e) => setUnit(e.target.value as UnitSystem)}
+            >
+              <option value="imperial">Imperial</option>
+              <option value="metric">Metric</option>
+            </Form.Select>
           </Form.Group>
         </Col>
-
-        <Col md={6}>
-          <Form.Group className="mb-1" controlId="formWeight">
+        <Col md={2}>
+          <Form.Group controlId="formWeight">
             <Form.Label className="mb-0">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</Form.Label>
             <Form.Control
               type="number"
@@ -139,42 +125,40 @@ export default function WalkingCalorieCalculator() {
             />
           </Form.Group>
         </Col>
-      </Row>
-
-      <Row>
-        <Col md={4}>
-          <Form.Group className="mb-1" controlId="formTime">
+        <Col md={2}>
+          <Form.Group controlId="formTime">
             <Form.Label className="mb-0">Time (hours)</Form.Label>
             <Form.Control
               type="number"
-              placeholder="Enter time in hours"
+              placeholder="Enter time"
               value={time}
               onChange={(e) => setTime(e.target.value === '' ? '' : Number(e.target.value))}
             />
           </Form.Group>
         </Col>
-        <Col md={4}>
-          <Form.Group className="mb-1" controlId="formSpeed">
+        <Col md={2}>
+          <Form.Group controlId="formSpeed">
             <Form.Label className="mb-0">Speed ({unit === 'metric' ? 'km/h' : 'mph'})</Form.Label>
             <Form.Control
               type="number"
-              placeholder={`Enter speed in ${unit === 'metric' ? 'km/h' : 'mph'}`}
+              placeholder="Enter speed"
               value={speed}
               onChange={(e) => setSpeed(e.target.value === '' ? '' : Number(e.target.value))}
             />
           </Form.Group>
         </Col>
-        <Col md={4}>
-          <Form.Group className="mb-1" controlId="formIncline">
+        <Col md={2}>
+          <Form.Group controlId="formIncline">
             <Form.Label className="mb-0">Incline (%)</Form.Label>
             <Form.Control
               type="number"
-              placeholder="Enter incline in percentage"
+              placeholder="Enter incline"
               value={incline}
               onChange={(e) => setIncline(e.target.value === '' ? '' : Number(e.target.value))}
             />
           </Form.Group>
         </Col>
+        <Col md={1} sm={0}></Col>
       </Row>
       {/* No button needed - calculation is automatic */}
     </Form>
