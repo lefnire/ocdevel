@@ -61,17 +61,6 @@ body {
 
 
 .sidebar {
-  .logo {
-    $logoMax: 290px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      flex: 1;
-      max-width: 290px;
-    }
-  }
   &.sidebar-profile {
     .card {border: none;}
     div.logo img {

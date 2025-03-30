@@ -44,8 +44,9 @@ export function IconButton({
 
 interface BackButton {
   to?: string
+  label?: string
 }
-export const BackButton = ({to}: BackButton) => {
+export const BackButton = ({to, label="Back"}: BackButton) => {
   const navigate = useNavigate();
 
   const onClick = useCallback(() => {
@@ -61,7 +62,7 @@ export const BackButton = ({to}: BackButton) => {
     variant="link"
     onClick={onClick}
   >
-    <FaArrowLeft /> Back
+    <FaArrowLeft /> {label}
   </Button>
 };
 

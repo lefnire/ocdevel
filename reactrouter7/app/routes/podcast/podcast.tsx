@@ -46,7 +46,7 @@ function PodcastImage({podcastKey, show, img}: Props) {
   // git-blame: links underneath; click to show
   // git-blame: attempted sourcesets with avif/webp fallback
   return <div>
-    <div className="logo mb-3">
+    <div className="mb-3 d-none d-md-flex justify-content-center align-items-center">
       <Image
         width={290} height={290}
 

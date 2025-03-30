@@ -85,7 +85,9 @@ export default function Home() {
       <Col xs={12} lg={3} className='text-center'>
         <Image
           src={img_tyler}
-          priority="true"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
           width={200}
           height={200}
           className='rounded mb-3'

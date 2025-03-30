@@ -43,7 +43,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
   ].filter(Boolean)
 
   return <div>
-    <BackButton to={podcastKey === "llh" ? "/llh" : "/mlg"} />
+    <BackButton to={podcastKey === "llh" ? "/llh" : "/mlg"} label={"All Episodes"} />
     <Card>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
