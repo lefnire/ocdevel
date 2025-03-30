@@ -3,49 +3,48 @@ import brand from './brand'
 
 const links = {
   amazon: {
-    US: "https://amzn.to/3XyGqPa"
+    US: ""
   },
   brand: {
-    US: "https://www.walkingpad.com/products/walkingpad-c2-foldable-walking-machine",
-    EU: "https://amzn.to/442i2cu"
+    US: ""
   }
 }
 const info: Product = {
   model: {
-    value: "C2",
+    value: "Product",
     // notes: () => <div></div>
   },
-  key: `${brand.key}_c2`,
+  key: `${brand.key}_model`,
   links,
   brand,
   // description: "",
   dimensions: {
-    value: [56.9, 20.4, 4.9], // "D x "W x "H
+    value: [47.6, 23.6, 8.7], // "D x "W x "H
   },
   weight: {
-    value: 55,
+    value: 100,
   },
   maxWeight: {
-    value: 220,
+    value: 265,
   },
   maxSpeed: {
-    value: 3.7,
+    value: 3.5,
   },
   horsePower: {
-    value: 2.0,
+    value: 2.5,
   },
   age: {
-    value: "2021-08-30",
+    value: "2024-01-01",
   },
   rating: {
-    value: [[4.0, 206], [61,14,5,4,16]],
+    value: [[4.1, 100], [70, 20, 0, 0, 10]],
   },
   fakespot: {
-    value: ["A", brand.fakespot],
+    value: ["C", brand.fakespot],
   },
   price: {
-    value: 500,
-    sale: 400,
+    value: 900,
+    sale: 500,
   },
   pickedBy: {
     // me: 1,
@@ -58,7 +57,7 @@ const info: Product = {
   },
   shock: {
     value: false,
-    rating: 1,
+    rating: 5,
     // notes: () => <div>8-point silicone absorbers</div>
   },
   decibels: {
@@ -68,8 +67,8 @@ const info: Product = {
     value: false,
   },
   easyLube: {
-    value: 10,
+    value: 5,
   },
-  material: { value: "Aluminum" },
+  material: {},
 }
 export default info

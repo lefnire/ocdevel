@@ -2,7 +2,7 @@ import type {Brand} from '../types'
 const links = {
   brand: {
     US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
-    DE: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
+    EU: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%3Fsort%5Fby%3Dcreated%2Ddescending&afftrack=blog",
   },
   amazon: {
     US: "https://amzn.to/4iNELhj",

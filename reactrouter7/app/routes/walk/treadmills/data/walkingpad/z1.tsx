@@ -23,6 +23,7 @@ const info: Product = {
       US: "https://amzn.to/4kQEnA0",
       CA: "https://amzn.to/4bUsuVA",
       UK: "https://amzn.to/41OdVy6",
+      EU: "https://amzn.to/3QYs3zT"
     },
     brand: {
       US: "https://www.walkingpad.com/products/walkingpad-z1-under-desk-treadmill",

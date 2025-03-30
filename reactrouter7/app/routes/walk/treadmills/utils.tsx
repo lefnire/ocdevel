@@ -60,9 +60,9 @@ export function ScoreInfo() {
 
 // FIXME make these dynamic (pulled from available options in dat)
 export const countries = {
-  order: ["US", "CA", "UK"],
+  order: ["US", "CA", "UK", "EU", "AU"],
   buyOrder: ["amazon", "brand"],
-  emojis: {"US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧"}
+  emojis: {"US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧", "EU": "🇺", "AU": "🇦🇺"}
 }
 
 // Type for the country-specific links
