@@ -7,7 +7,7 @@ import {Card, Alert, Table} from 'react-bootstrap'
 import {useFilteredTree} from "~/store/resources";
 import startsWith from "lodash/startsWith";
 
-import {ReactMarkdown_} from "~/components/markdown";
+import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";
 import {icons, Popover_} from "~/components/utils";
 import {filterKeys, filters} from '~/content/podcast/resources/filters'
 import {flat, picks} from '~/content/podcast/resources'

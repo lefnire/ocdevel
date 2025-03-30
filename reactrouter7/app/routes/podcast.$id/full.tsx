@@ -7,7 +7,6 @@ import {ResourceNode} from '~/routes/mlg.resources/tree'
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
-import {Markdown_} from './markdown'
 import {Player} from './player'
 import type {Route} from './+types/route.tsx'
 
@@ -39,7 +38,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
     }),
     (transcript && {
       title: "Transcript",
-      body: <Markdown_ Content={transcript} />
+      body: <div style={{whiteSpace: 'pre-wrap'}}>{transcript}</div>
     }),
   ].filter(Boolean)
 
