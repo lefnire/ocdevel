@@ -103,7 +103,7 @@ export function ProductsCard ({ title, links, products }: Products) {
             height={100}
 
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
             // priority="true"
 

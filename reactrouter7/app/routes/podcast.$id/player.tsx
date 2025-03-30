@@ -2,7 +2,7 @@ import type {EpisodeComponent} from '~/routes/podcast/types'
 import {type PropsWithChildren, useState} from "react";
 import React from "react";
 
-const CLICK_TO_PLAY = false;
+const CLICK_TO_PLAY = true;
 
 function Player_({episode: e}: EpisodeComponent) {
   const color = e.archived ? '6c757d' : '111111';

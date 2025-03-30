@@ -86,7 +86,7 @@ export default function Home() {
         <Image
           src={img_tyler}
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
           width={200}
           height={200}

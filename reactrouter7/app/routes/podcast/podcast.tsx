@@ -52,7 +52,7 @@ function PodcastImage({podcastKey, show, img}: Props) {
 
         // priority={true}
         loading="eager"
-        fetchpriority="high"
+        fetchPriority="high"
         decoding="async"
 
         background="#EEEEEE"
