@@ -1,7 +1,7 @@
 import type {EpisodeComponent} from '~/routes/podcast/types'
 import {useEffect, useState} from "react";
 
-const lazyIframe = false
+const lazyIframe = true
 function Player_({episode: e}: EpisodeComponent) {
   const [hideIframe, setHideIframe] = useState(lazyIframe);
 

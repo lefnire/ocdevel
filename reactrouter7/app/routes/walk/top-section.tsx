@@ -10,9 +10,12 @@ import {getCurrentLink, getPrice} from "./treadmills/utils";
 import {type ListenerProps} from "~/routes/walk/url-listener";
 import type {Product} from "~/routes/walk/treadmills/rows";
 
-import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=6'
-import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=6'
-import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=6'
+// import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=6'
+// import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=6'
+// import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=6'
+import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=avif&effort=max'
+import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=avif&effort=max'
+import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'
 import { Image } from "@unpic/react";
 import {Link, useNavigate} from "react-router";
 import {FaArrowLeft} from "react-icons/fa";
@@ -98,7 +101,12 @@ export function ProductsCard ({ title, links, products }: Products) {
             src={product.image}
             width={100}
             height={100}
-            priority="true"
+
+            loading="eager"
+            renderPriority="high"
+            decoding="async"
+            // priority="true"
+
             background="#808080"
             layout="constrained"
             // className="product-thumbnail"

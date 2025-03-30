@@ -1,9 +1,9 @@
 import React, {type PropsWithChildren, type ReactElement} from 'react'
 import {VideoButton} from "~/routes/walk/utils";
 
-import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp'
-import img_flexispot_en1 from '~/assets/products/flexispot_en1.jpg?w=100&h=100&format=webp'
-import img_godora_lube from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp'
+import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp&effort=max'
+import img_flexispot_en1 from '~/assets/products/flexispot_en1.jpg?w=100&h=100&format=webp&effort=max'
+import img_godora_lube from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp&effort=max'
 
 // TODO consolidate this with Product
 export interface AffiliateLink {
