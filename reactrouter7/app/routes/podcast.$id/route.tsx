@@ -46,6 +46,12 @@ export default function PodcastId(props: Route.ComponentProps) {
 export function meta({data}: Route.MetaArgs) {
   return [
     {title: `${data.episode.title} | ${data.show.title} Podcast`},
-    {name: "description", content: data.episode.teaser}
+    {name: "description", content: data.episode.teaser},
+    // Possibly helps with LCP on the iframe? Need to revisit
+    {
+      tagName: "link",
+      rel: "preconnect",
+      href: "https://play.libsyn.com",
+    },
   ]
 }

@@ -17,7 +17,7 @@ export default [
   layout("routes/layout.tsx", [
     index("routes/_index.tsx"),
     route("walk", "routes/walk/route.tsx"),
-    route("blog", "routes/blog.tsx", [
+    route("blog", "routes/blog/route.tsx", [
       index("routes/blog._index.tsx"),
       layout("routes/blog.$id.tsx",
         blogList.map((ep: Id) => {

@@ -6,14 +6,9 @@ import {Button} from 'react-bootstrap'
 import React, {type ReactElement, useCallback} from "react";
 import {FaArrowLeft} from "react-icons/fa"
 import {Popover, OverlayTrigger, Accordion, Alert} from "react-bootstrap";
-import ReactMarkdown from "react-markdown";
 import {FiMinusSquare, FiPlusSquare} from "react-icons/fi";
 import {BiChevronDown, BiChevronRight} from "react-icons/bi";
 import compact from 'lodash/compact'
-
-// export function useQuery() {
-//   return new URLSearchParams(useLocation().search);
-// }
 
 export function IconButton({
   Icon,
@@ -85,30 +80,6 @@ export function Popover_({children, content, id=null, title=null, opts={}}) {
   return <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} {...opts}>
     {children}
   </OverlayTrigger>
-}
-
-const renderers = {
-  // TODO convert h2 to h3
-  // heading: (props) => {
-  //   return createElement(`h${props.level}`, getCoreProps(props), props.children)
-  // },
-  link: ({href, children}) => {
-    if (href[0] === '/') {
-      return <Link to={href}>{children}</Link>
-    }
-    return <a href={href} target='_blank'>{children}</a>
-  }
-}
-
-export function ReactMarkdown_(props) {
-  const {children, source, ...rest} = props
-
-  const props_ = {
-    ...rest,
-    children: children || source,
-    components: props.renderers? {...renderers, ...props.renderers} : renderers
-  }
-  return <ReactMarkdown {...props_}/>
 }
 
 export const icons = {

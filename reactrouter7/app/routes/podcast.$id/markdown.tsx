@@ -1,5 +1,5 @@
 // TODO remove this file! Lots changed, I think most of it is unnecessary
-import {ReactMarkdown_} from "~/components/utils";
+import {ReactMarkdown_} from "~/components/markdown";
 import React from "react";
 
 const teaserRenderers = {

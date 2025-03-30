@@ -1,40 +1,27 @@
-import { MDXProvider } from '@mdx-js/react';
-import { Link } from 'react-router';
-import {type BlogPost} from "./utils.tsx";
+import ReactMarkdown from "react-markdown";
+import React from "react";
+import {Link} from "react-router";
 
-const CustomLink = ({ href, children }) => {
-  if (href.startsWith('/')) {
-    return <Link
-      to={href}
-    >{children}</Link>;
+const renderers = {
+  // TODO convert h2 to h3
+  // heading: (props) => {
+  //   return createElement(`h${props.level}`, getCoreProps(props), props.children)
+  // },
+  link: ({href, children}) => {
+    if (href[0] === '/') {
+      return <Link to={href}>{children}</Link>
+    }
+    return <a href={href} target='_blank'>{children}</a>
   }
-  return <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    {children}
-  </a>;
-};
-
-
-
-
-export const components = {
-  a: CustomLink,
-  // You can add other custom components here
 }
 
-// TODO I can't get this working, just using `components` directly where MDX is rendered for now
-export function MyMDXProvider({children}) {
-  return <MDXProvider components={components}>
-    {children}
-  </MDXProvider>
-}
+export function ReactMarkdown_(props) {
+  const {children, source, ...rest} = props
 
-export function renderBlogPost(p: BlogPost) {
-  if (p.jsx) {
-    return p.default()
+  const props_ = {
+    ...rest,
+    children: children || source,
+    components: props.renderers? {...renderers, ...props.renderers} : renderers
   }
-  return <p.default components={components} />
+  return <ReactMarkdown {...props_}/>
 }

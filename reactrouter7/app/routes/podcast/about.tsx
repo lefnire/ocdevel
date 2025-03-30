@@ -6,10 +6,11 @@ import {FaItunesNote} from 'react-icons/fa'
 import {RiSpotifyLine} from 'react-icons/ri'
 import {SiRss} from 'react-icons/si'
 import {IconButton} from "~/components/utils";
-import type {ShowType} from "~/route/podcast/types";
 
-import img_llh from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=6'
-import img_mlg from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=6"
+// import img_llh_webp from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=max'
+// import img_mlg_webp from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=max"
+import img_llh_avif from '~/assets/logos/llh290.png?w=290&h=290&format=avif&effort=max'
+import img_mlg_avif from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=avif&effort=max"
 import { Image } from '@unpic/react'
 import type {Route} from './+types/route.tsx'
 type Props = Route.ComponentProps['loaderData']
@@ -29,13 +30,42 @@ export default function About(props: Props) {
 
 function PodcastImage({podcastKey, show}: Props) {
   // git-blame: links underneath; click to show
+  // const imgs = {
+  //   llh: {
+  //     webp: img_llh_webp,
+  //     avif: img_llh_avif,
+  //   },
+  //   mlg: {
+  //     webp: img_mlg_webp,
+  //     avif: img_mlg_avif,
+  //   }
+  // }[podcastKey] as {webp: string, avif: string}
+  // return <picture>
+  //   {Object.entries(imgs).map(([key, src]) => <source
+  //     srcset={src}
+  //     type={`image/${key}`}
+  //   />)}
+  //   <img
+  //     src={imgs.webp}
+  //     width="290"
+  //     height="290"
+  //     loading="eager"
+  //     fetchPriority="high"
+  //     alt={show.title}
+  //   />
+  // </picture>
   return <div>
     <div className="logo mb-3">
       <Image
         width={290} height={290}
-        priority="true"
+
+        // priority="true"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+
         background="#EEEEEE"
-        src={podcastKey === "llh" ? img_llh : img_mlg}
+        src={podcastKey === "llh" ? img_llh_avif : img_mlg_avif}
         alt={show.title}
       />
     </div>

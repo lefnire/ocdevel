@@ -6,9 +6,8 @@ import {Card, Container} from "react-bootstrap";
 // import {ReactMarkdown_} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import React from "react";
-import {fmt, PostDate} from '~/components/blog'
-// import {components, renderBlogPost} from '~/components/markdown.tsx'
-import {Comments} from "~/components/comments.tsx";
+import {fmt, PostDate} from '~/routes/blog/utils'
+import {Comments} from "~/components/comments";
 import type {Route} from './+types/blog.tsx'
 
 function lastPart (path: string) {
