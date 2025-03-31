@@ -75,9 +75,12 @@ function Section({title, children}: PropsWithChildren<{title: string}>) {
   </Card.Body>
 }
 
-function ResourcesFlat({nids}: {nids: string[]}) {
+function ResourcesFlat({nids}: {nids: string[] | {id: string}[]}) {
   let seen: Record<string, boolean> = {}
-  function render(id: string) {
+  function render(item: string | {id: string}) {
+    // Handle both string IDs and object IDs
+    const id = typeof item === 'string' ? item : item.id;
+    
     const full = flat[id]
     if (!full) { return null }
     if (!full.pick) {
@@ -89,7 +92,6 @@ function ResourcesFlat({nids}: {nids: string[]}) {
     return full.v.map(render)
   }
   const built = nids.map(render)
-  debugger
   return <div className='resources'>
     {built}
   </div>
