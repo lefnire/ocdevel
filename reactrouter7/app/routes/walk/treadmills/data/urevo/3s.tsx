@@ -50,7 +50,7 @@ const info: Product = {
     sale: 300,
   },
   pickedBy: {
-    me: 9,
+    me: 7,
     affiliate: [{value: 1}]
   },
   incline: {
