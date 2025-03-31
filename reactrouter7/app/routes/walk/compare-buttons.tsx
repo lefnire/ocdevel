@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {Button, Container} from 'react-bootstrap';
-import { seoScored, dataObj } from './treadmills/data/index';
+import { seoScored, dataObj } from '~/content/treadmills/data/index';
 import {type ListenerProps} from "~/routes/walk/url-listener";
 
 type KeyBrand = {key: string, brand: string}

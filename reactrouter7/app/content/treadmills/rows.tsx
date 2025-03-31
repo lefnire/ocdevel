@@ -1,8 +1,8 @@
 import type {Brand, Product as ProductObj} from './data/types'
-import * as s from './scoring/index'
+import * as s from './scoring'
 import {produce} from 'immer'
 import _ from 'lodash'
-import data from './data/index'
+import data from './data'
 import {type LinksFull, hydrateLinks} from "./utils";
 
 type Score = {score: number}

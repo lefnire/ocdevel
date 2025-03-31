@@ -2,17 +2,17 @@ import React from "react";
 import {Button, Container} from "react-bootstrap";
 import './route.css'
 import {contentSections} from './content-section'
-import {dataObj} from './treadmills/data/index'
+import {dataObj} from '~/content/treadmills/data/index'
 import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
-import {getCurrentLink, getPrice} from "./treadmills/utils";
+import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import {type ListenerProps} from "~/routes/walk/url-listener";
-import type {Product} from "~/routes/walk/treadmills/rows";
+import type {Product} from "~/content/treadmills/rows";
 
-// import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=6'
-// import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=6'
-// import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=6'
+// import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
+// import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=max'
+// import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=max'
 // import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=avif&effort=max'
 import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=avif&effort=max'
 import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'

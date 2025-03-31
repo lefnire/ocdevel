@@ -3,7 +3,7 @@ import _ from 'lodash'
 import {getCountryCodes, getPrice} from "../utils";
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
-import type {PickedBy} from "~/routes/walk/treadmills/data/types";
+import type {PickedBy} from "~/content/treadmills/data/types";
 
 const scorePickedBy = (pickedBy: undefined | PickedBy) => {
   pickedBy = pickedBy || {}

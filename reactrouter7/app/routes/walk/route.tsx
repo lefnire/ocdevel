@@ -1,8 +1,8 @@
-import Table from './treadmills/table'
+import Table from './table'
 import TopSection from "./top-section";
 import CompareButtons from './compare-buttons';
 import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
-import {seoLabels} from "~/routes/walk/treadmills/data";
+import {seoLabels} from "~/content/treadmills/data";
 import ContentSection from "~/routes/walk/content-section";
 import CalorieCalc from "~/routes/walk/calorie-calc";
 import React from "react";

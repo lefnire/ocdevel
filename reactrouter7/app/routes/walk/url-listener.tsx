@@ -1,7 +1,7 @@
 import {useNavigate, useSearchParams} from "react-router";
 import {useEffect, useMemo, useRef, useState} from "react";
-import {columnsObj} from "./treadmills/columns";
-import data, {type Product} from './treadmills/rows'
+import {columnsObj} from "~/content/treadmills/columns";
+import data, {type Product} from '~/content/treadmills/rows'
 
 export interface ListenerProps {
   compareKeys: string[]

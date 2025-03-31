@@ -17,12 +17,12 @@ import {
   renderCountryLinks
 } from "./utils";
 import _ from 'lodash';
-import {clickableStyle, useModal} from './modal';
+import {clickableStyle, useModal} from '../../routes/walk/modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
-import {UPDATED} from './data/index'
+import {UPDATED} from './data'
 import {Affiliate} from "~/content/product-links";
 import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
 

@@ -15,13 +15,13 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import type { Product } from './rows';
-import { columnsArray, columnsObj } from './columns';
+import type { Product } from '~/content/treadmills/rows';
+import { columnsArray, columnsObj } from '~/content/treadmills/columns';
 import { Form, Button, Badge, Container } from 'react-bootstrap';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 // import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
-import {type ListenerProps} from "../url-listener";
+import {type ListenerProps} from "./url-listener";
 import {useNavigate, useSearchParams} from "react-router";
 import { ModalProvider, useModal, clickableStyle } from './modal';
 

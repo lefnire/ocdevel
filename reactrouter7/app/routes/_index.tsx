@@ -14,7 +14,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/_index";
 
 import {Image} from '@unpic/react'
-import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp&effort=6'
+import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp&effort=max'
 
 export default function Home() {
   const links = <>
