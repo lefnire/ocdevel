@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {type PropsWithChildren, useMemo} from "react";
 import {Card, Alert} from 'react-bootstrap'
 import {Link, Outlet} from "react-router";
 import {BackButton} from "~/components/utils";
@@ -22,26 +22,25 @@ export default function Full({loaderData}: Route.ComponentProps) {
 
   const player = useMemo(() => <Player {...props} />, [])
 
-  const items = [
-    (!e.empty && {
-      title: "Show Notes",
-      body: <>
-        <Outlet />
-      </>
-    }),
-    (resources && {
-      title: "Resources",
-      body: <>
-        <Alert variant='warning' className='p-2 my-1'>Note! Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
-        <ResourcesFlat nids={resources} />
-      </>
-    }),
-    (transcript && {
-      title: "Transcript",
-      body: <div style={{whiteSpace: 'pre-wrap'}}>{transcript}</div>
-    }),
-  ].filter(Boolean)
-
+  function renderNotes() {
+    if (e.empty) { return null; }
+    return <Section title="Show Notes">
+      <Outlet />
+    </Section>
+  }
+  function renderResources() {
+    if (!resources) { return null; }
+    return <Section title="Resources">
+      <Alert variant='warning' className='p-2 my-1'>Note: Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
+      <ResourcesFlat nids={resources} />
+    </Section>
+  }
+  function renderTranscript() {
+    if (!transcript) {return null;}
+    return <Section title="Transcript">
+      <div style={{whiteSpace: 'pre-wrap'}}>{transcript}</div>
+    </Section>
+  }
   return <div>
     <BackButton to={podcastKey === "llh" ? "/llh" : "/mlg"} label={"All Episodes"} />
     <Card>
@@ -55,12 +54,9 @@ export default function Full({loaderData}: Route.ComponentProps) {
           <Link to="/walk">Try a walking desk</Link> to stay healthy while you study or work!
         </Alert>}
       </Card.Body>
-      {items.map((item, i) => (
-        <Card.Body key={i}>
-          <Card.Title>{item.title}</Card.Title>
-          <Card.Body>{item.body}</Card.Body>
-        </Card.Body>
-      ))}
+      {renderNotes()}
+      {renderResources()}
+      {renderTranscript()}
       {e.guid && <Card.Footer>
         <Comments
           shortname="ocdevel"
@@ -70,6 +66,13 @@ export default function Full({loaderData}: Route.ComponentProps) {
       </Card.Footer>}
     </Card>
   </div>
+}
+
+function Section({title, children}: PropsWithChildren<{title: string}>) {
+  return <Card.Body>
+    <Card.Title>{title}</Card.Title>
+    <Card.Body>{children}</Card.Body>
+  </Card.Body>
 }
 
 function ResourcesFlat({nids}: {nids: string[]}) {
@@ -85,7 +88,9 @@ function ResourcesFlat({nids}: {nids: string[]}) {
     // using full.v instead of node.v, since we don't want filters
     return full.v.map(render)
   }
+  const built = nids.map(render)
+  debugger
   return <div className='resources'>
-    {nids.map(render)}
+    {built}
   </div>
 }
