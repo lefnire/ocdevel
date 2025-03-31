@@ -25,8 +25,7 @@ const info: Product = {
   key: `${brand.key}_e4`,
   links: {
     amazon: {
-      // US: "https://amzn.to/3xxWWV9",
-      US: "https://www.amazon.com/dp/B0CLH1MNR7?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.NRRCZN113BGN&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.NRRCZN113BGN_1742362488415",
+      US: "https://amzn.to/3xxWWV9",
       CA: "https://amzn.to/4kN780p"
     },
     brand: {}

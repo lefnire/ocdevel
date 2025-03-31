@@ -1,14 +1,9 @@
 import type {Product} from "../types";
 import brand from './brand'
-import dayjs from 'dayjs'
 
 const links = {
   amazon: {
-    US: (
-      dayjs().isAfter("2025-04-01")
-        ? "https://amzn.to/3Y5ywwM"
-        : "https://www.amazon.com/dp/B0CBD38VMM?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.M5D1TRKXQ8SF&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.M5D1TRKXQ8SF_1743301085196",
-    ),
+    US: "https://amzn.to/3Y5ywwM",
     CA: "https://amzn.to/4iK1Wc1"
   },
   brand: {
