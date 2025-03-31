@@ -23,7 +23,6 @@ const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data'
-import {NA} from "./data/utils"
 import {Affiliate} from "~/content/product-links";
 import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
 
@@ -48,8 +47,6 @@ interface ColumnDefinition {
     max?: boolean; // Whether to show max filter for numeric columns
   };
 }
-
-const render = (val: any) => val === NA ? "NA" : val
 
 // Define the column info array
 export const columnsArray: ColumnDefinition[] = [

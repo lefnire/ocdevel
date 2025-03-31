@@ -16,7 +16,6 @@ import type {
   ColumnDef
 } from '@tanstack/react-table';
 import type { Product } from '~/content/treadmills/rows';
-import {NA} from "~/content/treadmills/data/utils";
 import { columnsArray, columnsObj } from '~/content/treadmills/columns';
 import { Form, Button, Badge, Container } from 'react-bootstrap';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
