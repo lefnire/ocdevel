@@ -13,9 +13,10 @@ import type {Product} from "~/routes/walk/treadmills/rows";
 // import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=6'
 // import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=6'
 // import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=6'
-import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=avif&effort=max'
+// import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=avif&effort=max'
 import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=avif&effort=max'
 import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'
+import img_lifespan_tx6 from '~/assets/products/lifespan_tx6.jpg?w=100&h=100&format=avif&effort=max'
 import { Image } from "@unpic/react";
 import {Link, useNavigate} from "react-router";
 import {FaArrowLeft} from "react-icons/fa";
@@ -23,35 +24,47 @@ import {FaArrowLeft} from "react-icons/fa";
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
     {
+      key: dataObj.lifespan_tx6.key,
+      image: img_lifespan_tx6,
+      title: 'Premium: LifeSpan TX6',
+      notes: () => <div>
+        <span>Buy it for life. Invincible, quiet, fast.</span>
+        {/*<VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />*/}
+      </div>,
+      link: getCurrentLink(dataObj.lifespan_tx6),
+      linkText: `$${getPrice(dataObj.lifespan_tx6)} on Amazon`,
+      price: getPrice(dataObj.lifespan_tx6),
+    },
+    {
       key: dataObj.urevo_cyberpad.key,
       image: img_urevo_cyberpad,
-      title: 'Premium: CyberPad',
+      title: 'Value: Urevo CyberPad',
       notes: () => <div>
-        <span>Sturdiest, quietest, most features.</span>
+        <span>Sturdy, quiet, feature-rich.</span>
         <VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />
       </div>,
       link: getCurrentLink(dataObj.urevo_cyberpad),
       linkText: `$${getPrice(dataObj.urevo_cyberpad)} on Amazon`,
       price: getPrice(dataObj.urevo_cyberpad),
     },
-    {
-      key: dataObj.urevo_3s.key,
-      image: img_urevo_3s,
-      title: 'Value: 3S',
-      notes: () => <div>
-        <span>One size fits all, bang for buck.</span>
-        <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
-      </div>,
-      link: getCurrentLink(dataObj.urevo_3s),
-      linkText: `$${getPrice(dataObj.urevo_3s)} on Amazon`,
-      price: getPrice(dataObj.urevo_3s),
-    },
+    // {
+    //   key: dataObj.urevo_3s.key,
+    //   image: img_urevo_3s,
+    //   title: 'Value: 3S',
+    //   notes: () => <div>
+    //     <span>One size fits all, bang for buck.</span>
+    //     <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
+    //   </div>,
+    //   link: getCurrentLink(dataObj.urevo_3s),
+    //   linkText: `$${getPrice(dataObj.urevo_3s)} on Amazon`,
+    //   price: getPrice(dataObj.urevo_3s),
+    // },
     {
       key: dataObj.deerrun_q1mini.key,
       image: img_deerrun_q1mini,
-      title: 'Budget: DeerRun',
+      title: 'Budget: DeerRun Q1',
       notes: () => <div>
-        <span>Test the waters. No incline, 1-2yrs life; great price.</span>
+        <span>Test the waters. No incline, 1-2yrs life.</span>
         <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
       </div>,
       link: getCurrentLink(dataObj.deerrun_q1mini),
