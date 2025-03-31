@@ -181,12 +181,12 @@ function ClassCalculator() {
 
   return <Row>
     <Col md={9} style={{height: 500, overflowY:'scroll'}}>
-      {questions.map(q => <div>
+      {questions.map((q) => <div key={q.k}>
         <h5>{q.t}</h5>
         <p className='small text-muted'>{q.d}</p>
         <Form>
-          {q.opts.map(o => <>
-            <div key={q.k} className="mb-3">
+          {q.opts.map((o) => (
+            <div key={o.k} className="mb-3">
               <Form.Check
                 type='checkbox'
                 id={`${q.k}-${o.k}`}
@@ -196,7 +196,7 @@ function ClassCalculator() {
               />
               <Form.Text muted>{o.d}</Form.Text>
             </div>
-          </>)}
+        ))}
         </Form>
       </div>)}
     </Col>

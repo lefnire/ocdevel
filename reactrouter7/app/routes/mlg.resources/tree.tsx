@@ -94,10 +94,12 @@ function Resource({node}) {
       target: "_blank"
     }
     const txt = `${l.t} (${l.p})`
+    // React doesn't allow key in the {...props} spread, have to pass explicitly
+    const {key: jsxKey, ...rest} = opts
     if (startsWith(l.l, '/')) {
-      return <Link to={l.l} {...opts}>{txt}</Link>
+      return <Link to={l.l} key={jsxKey} {...rest}>{txt}</Link>
     }
-    return <a href={l.l} {...opts}>{txt}</a>
+    return <a href={l.l} key={jsxKey} {...rest}>{txt}</a>
   }
 
   function renderLinks() {
