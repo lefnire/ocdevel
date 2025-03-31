@@ -22,7 +22,7 @@ const info: Brand = {
   },
   fakespot: "B",
   pickedBy: {
-    me: 2,
+    me: 1,
     affiliate: [
       {value: 2}
     ],
