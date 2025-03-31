@@ -15,7 +15,8 @@ const info: Product = {
       CA:"https://lifespan-fitness.e9ppfh.net/3JoMjn",
     },
     amazon: {
-      US: "https://amzn.to/4j7uQCJ"
+      // US: "https://amzn.to/4j7uQCJ",
+      US: "https://amzn.to/4iTtUSQ", // only pink avail right now
     }
   },
 
