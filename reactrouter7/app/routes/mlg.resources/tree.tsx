@@ -1,8 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {Link} from "react-router";
-import {
-  FaInfoCircle,
-} from "react-icons/fa";
+import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
 import {Card, Alert, Table} from 'react-bootstrap'
 import {useFilteredTree} from "~/store/resources";
 import startsWith from "lodash/startsWith";

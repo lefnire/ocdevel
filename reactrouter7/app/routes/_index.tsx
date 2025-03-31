@@ -1,15 +1,15 @@
 import {Col, Row, Container, Stack, Button, Card} from 'react-bootstrap'
 import {IconButton} from "~/components/utils";
-import {FaCouch} from 'react-icons/fa';
-import {FaDragon} from 'react-icons/fa';
-import {FaEnvelope} from 'react-icons/fa';
-import {FaGithub} from 'react-icons/fa';
-import {FaLinkedin} from 'react-icons/fa';
-import {FaMicrophone} from 'react-icons/fa';
-import {FaYoutube} from 'react-icons/fa';
-import {FaInstagram} from 'react-icons/fa';
-import {SiTiktok} from 'react-icons/si';
-import {FaFacebook} from 'react-icons/fa';
+import {FaCouch} from '@react-icons/all-files/fa/FaCouch';
+import {FaDragon} from '@react-icons/all-files/fa/FaDragon';
+import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope';
+import {FaGithub} from '@react-icons/all-files/fa/FaGithub';
+import {FaLinkedin} from '@react-icons/all-files/fa/FaLinkedin';
+import {FaMicrophone} from '@react-icons/all-files/fa/FaMicrophone';
+import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube';
+import {FaInstagram} from '@react-icons/all-files/fa/FaInstagram';
+import {SiTiktok} from '@react-icons/all-files/si/SiTiktok';
+import {FaFacebook} from '@react-icons/all-files/fa/FaFacebook';
 import { Link } from "react-router";
 import type { Route } from "./+types/_index";
 

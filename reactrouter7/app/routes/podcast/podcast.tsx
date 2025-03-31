@@ -2,10 +2,10 @@ import React from 'react';
 import {Row, Col, Container, ButtonGroup, Card} from 'react-bootstrap'
 import {Outlet} from 'react-router';
 import Navbar from './navbar'
-import {FaYoutube} from 'react-icons/fa'
-import {FaItunesNote} from 'react-icons/fa'
-import {RiSpotifyLine} from 'react-icons/ri'
-import {SiRss} from 'react-icons/si'
+import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube'
+import {FaItunesNote} from '@react-icons/all-files/fa/FaItunesNote'
+import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
+import {SiRss} from '@react-icons/all-files/si/SiRss'
 import {IconButton} from "~/components/utils";
 import { Image } from '@unpic/react'
 import type {Route} from './+types/route_mlg'

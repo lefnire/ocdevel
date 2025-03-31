@@ -4,7 +4,7 @@ import {Button, type ButtonProps, Container} from "react-bootstrap";
 import essentials, {affiliateLink} from '~/content/product-links'
 import {VideoButtonLg as VideoButton} from "./utils";
 import {ScoreInfo} from "~/routes/walk/treadmills/utils";
-import {FaArrowUp} from "react-icons/fa";
+import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import type {ListenerProps} from "~/routes/walk/url-listener";
 
 export const contentSections = {

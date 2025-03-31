@@ -1,5 +1,5 @@
-import { FaRegPlusSquare as ExpandIcon } from "react-icons/fa";
-import { FaRegMinusSquare as CollapseIcon } from "react-icons/fa";
+import { FaRegPlusSquare as ExpandIcon } from "@react-icons/all-files/fa/FaRegPlusSquare";
+import { FaRegMinusSquare as CollapseIcon } from "@react-icons/all-files/fa/FaRegMinusSquare";
 
 export const id = '20240109-fitness-desk'
 export const date = '2024-01-09'

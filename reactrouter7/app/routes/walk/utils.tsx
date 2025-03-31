@@ -1,6 +1,6 @@
 import {Button} from "react-bootstrap";
 import type {ButtonProps} from "react-bootstrap";
-import {FaYoutube} from "react-icons/fa";
+import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
 import React from "react";
 
 export function VideoButton({

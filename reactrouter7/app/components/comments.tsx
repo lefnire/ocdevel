@@ -1,7 +1,7 @@
 import React from 'react';
 // import {type DisqusThreadProps} from "react-disqus-comments";
 // import ReactDisqusComments from "react-disqus-comments";
-import {FaLock} from "react-icons/fa";
+import {FaLock} from "@react-icons/all-files/fa/FaLock";
 
 // export function Comments(props: DisqusThreadProps) {
 export function Comments(props) {

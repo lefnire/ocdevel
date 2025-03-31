@@ -2,8 +2,10 @@ import {GoogleConsentMode} from "~/components/analytics";
 import {Button, Nav, Navbar, Stack} from "react-bootstrap";
 import {LinkContainer} from "~/components/utils";
 import {Outlet, useSearchParams} from "react-router";
-import {FaFacebook, FaInstagram, FaYoutube} from "react-icons/fa";
-import {SiTiktok} from "react-icons/si";
+import {FaFacebook} from "@react-icons/all-files/fa/FaFacebook";
+import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
+import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
+import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
 import React, {useEffect} from "react";
 
 function ClearUtm() {

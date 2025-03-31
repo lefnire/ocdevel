@@ -18,7 +18,9 @@ import type {
 import type { Product } from './rows';
 import { columnsArray, columnsObj } from './columns';
 import { Form, Button, Badge, Container } from 'react-bootstrap';
-import { FaArrowUp, FaArrowDown, FaArrowLeft } from 'react-icons/fa';
+import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
+import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
+// import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {type ListenerProps} from "../url-listener";
 import {useNavigate, useSearchParams} from "react-router";
 import { ModalProvider, useModal, clickableStyle } from './modal';

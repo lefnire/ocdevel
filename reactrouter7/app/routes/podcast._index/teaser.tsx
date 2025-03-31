@@ -3,7 +3,7 @@ import {Link} from "react-router";
 import React, {useMemo} from "react";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import type {EpisodeComponent} from '~/routes/podcast/types'
-import {FaCirclePlay} from "react-icons/fa6";
+// import {FaCirclePlay} from "@react-icons/all-files/fa6/FaCirclePlay";
 
 export default function Teaser(props: EpisodeComponent) {
   const {podcastKey, episode: e, i} = props

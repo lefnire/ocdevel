@@ -19,7 +19,7 @@ import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100
 import img_lifespan_tx6 from '~/assets/products/lifespan_tx6.jpg?w=100&h=100&format=avif&effort=max'
 import { Image } from "@unpic/react";
 import {Link, useNavigate} from "react-router";
-import {FaArrowLeft} from "react-icons/fa";
+import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [

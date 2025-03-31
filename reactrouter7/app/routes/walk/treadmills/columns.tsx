@@ -1,6 +1,11 @@
 import React from "react";
 import type { Product } from "./rows";
-import {FaExternalLinkAlt, FaUser, FaWrench, FaStar, FaGlobe, FaDollarSign} from "react-icons/fa";
+import {FaExternalLinkAlt} from "@react-icons/all-files/fa/FaExternalLinkAlt";
+import {FaUser} from "@react-icons/all-files/fa/FaUser";
+import {FaWrench} from "@react-icons/all-files/fa/FaWrench";
+// import {FaStar} from "@react-icons/all-files/fa/FaStar";
+import {FaGlobe} from "@react-icons/all-files/fa/FaGlobe";
+import {FaDollarSign} from "@react-icons/all-files/fa/FaDollarSign";
 import {
   getCurrentLink,
   getPrice,

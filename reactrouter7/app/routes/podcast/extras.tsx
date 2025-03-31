@@ -1,6 +1,11 @@
 import {Card, Col, Row} from "react-bootstrap";
 import {IconButton, icons, Popover_} from "~/components/utils";
-import {FaDiscord, FaEnvelope, FaGithub, FaItunesNote, FaLightbulb, FaYoutube} from "react-icons/fa";
+import {FaDiscord} from "@react-icons/all-files/fa/FaDiscord";
+import {FaEnvelope} from "@react-icons/all-files/fa/FaEnvelope";
+import {FaGithub} from "@react-icons/all-files/fa/FaGithub";
+// import {FaItunesNote} from "@react-icons/all-files/fa/FaItunesNote";
+import {FaLightbulb} from "@react-icons/all-files/fa/FaLightbulb";
+// import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
 import React from "react";
 import useStore from "~/store/episodes";
 import {Link} from "react-router";

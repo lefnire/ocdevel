@@ -4,10 +4,12 @@ import {
 } from "react-router";
 import {Button} from 'react-bootstrap'
 import React, {type ReactElement, useCallback} from "react";
-import {FaArrowLeft} from "react-icons/fa"
+import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft"
 import {Popover, OverlayTrigger, Accordion, Alert} from "react-bootstrap";
-import {FiMinusSquare, FiPlusSquare} from "react-icons/fi";
-import {BiChevronDown, BiChevronRight} from "react-icons/bi";
+import {FiMinusSquare} from "@react-icons/all-files/fi/FiMinusSquare";
+import {FiPlusSquare} from "@react-icons/all-files/fi/FiPlusSquare";
+import {BiChevronDown} from "@react-icons/all-files/bi/BiChevronDown";
+import {BiChevronRight} from "@react-icons/all-files/bi/BiChevronRight";
 import compact from 'lodash/compact'
 
 export function IconButton({
