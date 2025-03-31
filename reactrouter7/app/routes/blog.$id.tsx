@@ -34,7 +34,7 @@ export default function Full(props: Route.ComponentProps) {
   const p = props.loaderData.meta;
   const id = p.id;
   return <Container>
-    <BackButton to="/blog" />
+    <BackButton to="/blog" label="All Posts" />
     <Card>
       <Card.Body>
         <Card.Title>{p.title}</Card.Title>
