@@ -1,34 +1,20 @@
 export * from './meta.js'
 
-- Value
-  - Represents brain? Magic black-box
-  - Feature learning (layer removed from programmer)
-  - Subsumes AI
-- Stacked shallow learning
-  - Logistic regression = lego, Neural Network = castle
-- Deep Learning => ANNs => MLPs (& RNNs, CNNs, DQNs, etc)
-  - MLP: Perceptron vs LogReg / sigmoid activation
-- Architecture
-  - (Feed forward) Input => Hidden Layers => Hypothesis fn
-  - "Feed forward" vs recursive (RNNs, later)
-  - (Loss function) Cross entropy
-  - (Learn) Back Propagation
-- Price ~ smoking + obesity + age^2
-  - 1-layer MLP
-- Face? ~ pixels
-  - Extra layer = hierarchical breakdown
-  - Inputs => Employees => Supervisors => Boss
-- Backprop / Gradient descent
-  - Optimizers: adagrad, adam, ... vs gradient descent
-- Silver bullet, but don't abuse
-  - linear (housing market)
-  - features don't combine
-  - expensive: like hiring a company when the boss h(x) does all the work
-- Brian comparison (dentrites, axons); early pioneers as neuroscientists / cogsci
-- Different types
-  - vs brain
-  - RNNs
-  - CNNs
-- Activation fns
-  - Activation units / neurons (hidden layer)
-  - Relu, TanH, Sigmoid
+**Key Concepts:**
+- **Deep Learning vs. Shallow Learning:** Machine learning is broken down hierarchically into AI, ML, and subfields like supervised/unsupervised learning. Deep learning is a specialized area within supervised learning distinct from shallow learning algorithms like linear regression.
+- **Neural Networks:** Central to deep learning, artificial neural networks include models like multilayer perceptrons (MLPs), convolutional neural networks (CNNs), and recurrent neural networks (RNNs). Neural networks are composed of interconnected units or "neurons," which are mathematical representations inspired by biological neurons.
+
+**Unique Features of Neural Networks:**
+- **Feature Learning:** Neural networks learn to combine input features optimally, enabling them to address complex non-linear problems where traditional algorithms fall short.
+- **Hierarchical Representation:** Data can be processed hierarchically through multiple layers, breaking down inputs into simpler components that can be reassembled to solve complex tasks.
+
+**Applications:**
+- **Medical Cost Estimation:** Neural networks can handle non-linear complexities such as feature interactions, e.g., age, smoking, obesity, impacting medical costs.
+- **Image Recognition:** Neural networks leverage hierarchical data processing to discern patterns such as lines and edges, building up to recognizing complex structures like human faces.
+
+**Computational Considerations:**
+- **Cost of Deep Learning:** Deep learning's computational requirements make it expensive and resource-intensive compared to shallow learning algorithms. It's cost-effective to use when necessary for complex tasks but not for simpler linear problems.
+
+**Architectures & Optimization:**
+- **Different Architectures for Different Tasks:** Specialized neural networks like CNNs are suited for image tasks, RNNs for sequence data, and DQNs for planning.
+- **Neuron Types:** Neurons in neural networks are referred to as activation functions (e.g., logistic sigmoid, relu) and differ based on tasks and architecture needs.

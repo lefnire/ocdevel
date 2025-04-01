@@ -1,0 +1,268 @@
+[00:01:03] This is episode nine, deep Learning. Hello and welcome back to the Machine Learning Guide, and this is the episode that you've all been waiting for, even if you didn't know, you've been waiting for it.
+
+[00:01:20] Deep learning and artificial neural networks. This is the very exciting stuff that's happening in the world of machine learning in 2017. When you see on Hacker News or just the actual news, artificial intelligence and machine learning being applied to new and innovative spaces, it's almost always deep learning.
+
+[00:01:40] They're talking about. Neural networks. If you have any sort of background interest in machine learning prior to embarking on this podcast, then you've already had your ears perked to deep learning and maybe wondering what neural networks are all about. If this podcast is maybe your first introduction to machine learning, well then just keep your ears perked because this is the stuff that's the most interesting in the space right now.
+
+[00:02:05] Now I keep saying deep learning and neural networks, they're slightly different. First off, remember, everything in machine learning is hierarchical. We start with AI that's broken down into machine learning and some other subfields. Machine learning is broken down and is supervised, unsupervised, and reinforcement learning.
+
+[00:02:23] Supervised is broken down into various categories, one of which is called deep learning. The other, which is shallow learning. Shallow learning is the stuff that we've been learning so far. Linear regression, logistic regression, and a handful of other algorithms that we will be talking about in subsequent episodes.
+
+[00:02:39] We're gonna skip over them now and jump right into deep learning. The reason I'm doing that is because I wanna wet your appetite, and I also want to appease the. Itch that I know a lot of you have who are very curious about deep learning. If I were to go the standard educational route, it would take me many, many, many episodes until we landed on deep learning.
+
+[00:02:55] So I just want to give you a hint of what it is now so you can at least understand what news articles are talking about. Before we dive back into the details of shallow learning algorithms, so we have deep learning and shallow learning, and then deep learning is broken down into various other spaces.
+
+[00:03:12] One which is called neural networks, artificial neural networks, or a Ns. As far as you're concerned, deep learning. Is neural networks. The other models within deep learning, I haven't really seen them in the wild, whether it's professionally or academically, really essential deep learning can be boiled down as neural networks and then neural networks themselves are broken down into different types of neural network models, which we'll talk about in a bit.
+
+[00:03:40] For example. Multilayer perceptrons, recurrent neural networks, convolutional neural networks, et cetera. So this episode is all about the subspace of supervised learning called Deep Learning, and we're gonna talk about one of its branches called neural networks. The only branch, as far as you're concerned, and some of its subbranches, why are neural networks so interesting and exciting?
+
+[00:04:02] I'm gonna give three reasons. One is that they may or may not, we'll get to this later. Represent the human brain, which of course takes us a lot closer to artificial intelligence if that's our goal. They're a little bit magical. The way they work internally is like a black box. We don't know what's going on in the little brain of these neural networks.
+
+[00:04:24] Unlike the shallow learning algorithms where we know exactly what's happening, deep learning does a lot of its learning inside the box, and we can't peek inside. It's very magical. Another reason is that it is fast subsuming the other spaces of artificial intelligence. Remember how I said in the past we had natural language processing and vision and all these other subspaces, which have been consumed by machine learning?
+
+[00:04:49] Now, vision is almost entirely the domain of convolutional neural networks. Language modeling is almost the entire domain of. Recurrent neural networks. These are all deep learning machine learning algorithms. So it is specifically by way of deep learning within the machine learning world that machine learning has come to subsume the other spaces of artificial intelligence.
+
+[00:05:10] And in that way it's almost like deep learning is the master algorithm of intelligence. So there's a lot of magic behind deep learning and a lot of automation as well. Consuming the other spaces of artificial intelligence. And speaking of black box, the third reason I'll give that makes deep learning special is that it removes machine learning one step away from the programmer.
+
+[00:05:34] Remember that I said that the closer your program is to the programmer, the less it feels like artificial intelligence. Artificial intelligence, remember, is simply defined as automating any mental task. If you could build a perfect rule-based system like the symbolists were trying to do in the early days of artificial intelligence, that would still be artificial intelligence.
+
+[00:05:57] A bunch of if else rules, but it doesn't feel very much like artificial intelligence. And furthermore, it feels like an impossible task. How could you possibly enumerate all the if else rules of the universe? So we came up with statistical approaches to machine learning. Like we've seen with linear and logistic regression.
+
+[00:06:15] We have these theta parameters that we need to learn. We boil down aspects of the universe into these theta parameters, and then we can use them to make estimations. So that's one step removed. The machine learns these parameters on its own, while deep learning does an even extra step, which we're gonna discuss in a bit.
+
+[00:06:35] It's called feature learning. It has to do with the features that we've been looking at in linear regression. For example, you might have X three, x two, x one and X zero square footage of the house, number of bedrooms, number of bathrooms, and distance to downtown. Those are all the features. Well, if the model is impossible to represent linearly, as is the case in many things in the real world, then that X three X two x one x zero breakdown does not work.
+
+[00:07:03] You can't represent your data as a line on a graph. Maybe it's a squiggle on a graph, so you have to learn how to combine features in a specific way. Maybe squaring the square footage or combining the square footage with the distance to downtown in some way that creates a new graph. Knowing how to do that, how to combine specific features is a programmer's task in shallow learning.
+
+[00:07:25] But in deep learning, the neural network learns how to combine parameters in a way that is effective. So it's another layer removed from the programmer, which makes it a little bit more magical, a little bit closer to the end goal of artificial intelligence. Okay, let's take a little step back and differentiate shallow learning from deep learning.
+
+[00:07:45] Shallow learning is everything that we've been learning so far, linear and logistic regression. I don't really have a concrete way to represent shallow learning. I think of it as the pistol of machine learning. Really small algorithms or mathematical equations, you pipe in an input, it does a quickie inside a box, and out comes an output by comparison to deep learning, which I think of like a bazooka.
+
+[00:08:06] You pipe in an input to a factory, a. Castle and outcomes and output. Let's use that castle analogy. What makes deep learning deep is that you're stacking shallow learning algorithms deeply. Okay, so we've already been talking about linear and logistic regression. Logistic regression is a Lego, a single Lego in the Lego castle that is.
+
+[00:08:31] A deep neural network. So a neural network is composed of little Legos, and those Legos can be shallow learning algorithms, specifically in a multi-layer perceptron, the vanilla form of a artificial neural network, which we'll talk about in a bit. You have your logistic regression unit, logistic regression.
+
+[00:08:47] Lego is the primary piece of your neural network. So take logistic regression that we've already learned from a prior episode. Combine a bunch of those together in a web, and now you have a neural network. So shallow learning is your basic algorithms and deep learning is taking those things and combining them deeply into a network, an artificial neural network.
+
+[00:09:09] Why do we call it a neural network? It's because the units of this network that we're constructing out of our little Legos. The units themselves are called neurons. Let's talk a little bit about the history of this unit. We've learned it as logistic regression. It's a classifier, a thing for classifying data.
+
+[00:09:28] Is this house expensive or isn't it? Is this a picture of a dog? Or isn't it? It actually is a little bit deeper than that. There's a history involving characters by the name of Warren McCulloch and Walter Pitts, who proposed the mathematical representation of a human biological neuron. These were both computer people, but McCulloch was a neurophysiologist, and Pitts was a computational neuroscientist.
+
+[00:09:58] So these guys were no newbies to the space of the actual human brain. It was Frank Rosenblatt that originally came up with the idea of a perceptron, and it was these two guys that sort of formalized it as an artificial neuron. A perceptron is a stepwise function. It's similar to logistic regression, but a little bit different.
+
+[00:10:16] We're gonna ignore that fact for now. Think of a perceptron as logistic regression. Wrap your logistic regression into a unit. We will call it a unit. And now you have what we call an artificial neuron according to McCulloch and pits the mathematical representation of the human neuron. It's very interesting.
+
+[00:10:36] So I think a lot of misconception about neural networks is that they were inspired by the brain in a very fuzzy way by computer scientists who don't know one thing or other about the brain. Absolutely not. It was inspired by the brain in a very real way. That each of these units is believed to be the mathematical representation of a biological neuron.
+
+[00:10:55] So let's hit that from the top one more time. We have McCulloch and Pitts, a neurophysiologist and a computational neuroscientist looking into the human brain and formalizing what they believe to be a mathematical representation of the biological neuron. They call this an artificial neuron. We string a bunch of these together and we have what's called a neural network.
+
+[00:11:19] Now as far as we're concerned for this episode, a neuron is logistic regression. You wrap up your logistic regression into a unit. You string all those together and you have a neural network. But a neuron doesn't have to be logistic regression. And in the case with Frank Roseman Blatt, he used something called a perceptron, which is a stepwise function, very similar.
+
+[00:11:40] So we're just gonna continue calling it logistic regression, a logistic or sigmoid function. Unit and the first artificial neural network to come to be is called a multilayer perceptron. So it's a lot of verbiage here. Lots of words. So let's start from the top again. We have deep learning, the field of connecting shallow learning.
+
+[00:12:01] Algorithms together in a deep way, stacking them. We have deep learnings broken down into neural networks, artificial neural networks, and then artificial neural networks are broken down into various types of artificial neural networks. One is called a convolutional neural network. Another is called a recurrent neural network.
+
+[00:12:18] These are used for various different spins off of deep learning applications, such as language modeling, image recognition, et cetera. But the vanilla neural network, sort of the poster child of neural networks is this thing that we call a multilayer perceptron or a feed forward network. A multi-layer perceptron, one of the earliest versions of a neural network created before they started specializing neural networks in various ways for different applications.
+
+[00:12:44] So that's what we're gonna be talking about in this episode, a multi-layer perceptron. What does a neural network look like? Let me try to paint a picture in your head, and then we're gonna talk about an example of why you would use a neural network. The way you might envision a neural network is coming from the left and going to the right on the left, you have your input that comes in.
+
+[00:13:07] So for example, our spreadsheet, every row, one row at a time comes in from the left. We take our row and we flip it on its side. So it's, so it looks like a column, feature, feature, feature, feature, feature. So all the features are stacked. Square footage, number of bedrooms, number of bathrooms, et cetera. So that's the first layer.
+
+[00:13:27] It's called the input layer. Imagine these as little circles. So each of our X's is a circle. All of those then feed to the right into new circles. Each input feature, each input feature feeds into a layer of neurons. Let's say that there's five neurons. Five logistic regression units. Each feature feeds into each neuron in this new layer, so we're going from left to right.
+
+[00:14:00] We're taking our inputs and feeding them into each of the neurons. And then let's go, right, one more layer, and we have our output function, our objective function or hypothesis function. It's our final logistic regression unit that is going to tell us whether or not a house is expensive. For example, in the case of a classification neural network, so the architecture goes from left to right.
+
+[00:14:23] Imagine a column of circles, those are your inputs, one row of your data, where each circle is one feature of that row. They all feed into a new layer of circles. Those are your neurons. Those are called your activation functions or activation units. They're all just logistic regression, and they all pipe into your final single neuron, the third layer, and that's your final classifier, your objective or hypothesis function.
+
+[00:14:54] So we have an input layer on the far left. That's your data. It pipes into a hidden layer. It's called, we'll see why it's called a hidden layer in a bit. Those are your neurons, your activation functions, and those pipe into a third layer called your output layer. So that is the architecture of a neural network.
+
+[00:15:18] That sounds a little bit wild and hard to understand. Let's use an example to help you understand this. When it comes to healthcare, there are many features about an individual which might determine the medical costs of, of that individual. Let's say that an insurance agency is interested in how much to charge a person based on various aspects about their life, things like age, whether they're a smoker, whether they're obese, et cetera.
+
+[00:15:47] Well, your first impression is to use linear regression. Those are all features. You pipe 'em into linear regression and out comes Y, which is the cost per individual of medical bills, but that doesn't work that way. It turns out with health, these features don't apply in a linear fashion. It turns out that age gets more and more and more important the older you get.
+
+[00:16:14] It's not linear. It's a little bit more like x squared, so it's more likely the case that you're 16 years old, you hit the doctor maybe once a year. You're 40 years old, you're hitting the doctor maybe once every six months, but once you start getting in the nineties, you're seeing the doctor maybe weekly.
+
+[00:16:32] So it's a little bit more like a polynomial function, x squared. So we already cannot use linear regression here. But there may be other combinations of features. In our example, for example, we know that smoking and obesity combine to be greater than the sum of its parts. It turns out that an obese person and a and a smoker separately have their own health issues.
+
+[00:16:57] But if both of those are combined, it causes even worse issues than those separately, they combine non-linearly. Now if we knew a little bit about this already, as I'm explaining it to you right now, we do know we could construct a polynomial linear regression algorithm out of combinations of features like age squared, obesity, times, smoking, et cetera, manually.
+
+[00:17:23] But again, when you're doing things manually, that's not very machine learning is it? And most of the time we don't know enough about the puzzle to construct combinations of features like that ourselves. That's what we want the machine learning algorithm to be able to do. Figure out how features combine in a specific way most effectively, to be able to determine the output.
+
+[00:17:44] So let's see how a neural network might handle this situation. Let's use that multilayer perceptron architecture that I just described. We will start from the left. We will input one row at a time from our training dataset. Remember, from the Portland housing market, we import a spreadsheet of training data, data for which we already know the answer.
+
+[00:18:09] What's the cost of the house? So every row in our spreadsheet is a house and every column is that. Features on that house, such as square footage, number of bedrooms, number of bathrooms, and the final column is the label or the known cost for the house, or in the case of logistic regression, where we were just trying to classify whether a house was expensive or not, then it's just gonna be a zero or a one, yes or no.
+
+[00:18:31] In the case of regression, our labels will be numbers, and in the case of classification or labels will be a yes or a no. So for our neural network, we're going to do the same thing. We're gonna upload a spreadsheet, it's gonna have rows of people, and the columns are features of those people such as age BMI, whether or not they smoke.
+
+[00:18:49] And then various other things like location, do they exercise, do they have a healthy diet, et cetera. And the final column. Is in the case of regression, maybe the yearly medical costs of the individual, or if we want to do classification, maybe we'll say, is this an expensive person or not? We're gonna do a regression example in this case, so our neural network will take one row.
+
+[00:19:11] Row by row, pipe it in as the first layer. That is the first layer of our neural network. Each circle of that layer in a column is a feature of the first row, and each of those features pipes two. Each of the neurons of the second layer, we call each of these neurons a unit or an activation function. In our case, with the multi-layer perceptron, we're using logistic regression as the activation function.
+
+[00:19:41] So our activation function is the sigmoid or logistic function. Let's pretend that we have five neurons in that second layer. Then each feature of the first row of data will be fed into each neuron of that layer. Remember, this layer is called the hidden layer, so each input feeds into each of the neurons of the hidden layer, and then each of those neurons feeds into the last neuron, which is the objective or hypothesis function, neurons of the hidden layers.
+
+[00:20:14] The layers in between the input layer and the output layer are called activation functions. And the activation function depends on what function you use in the neuron, which shallow learning algorithm you use. In our case, it's logistic regression, so we're using the sigmoid function or logistic function, so the activation functions of our hidden layer.
+
+[00:20:36] Is the sigmoid or logistic function of logistic regression, and those all feed into the final neuron, which is our hypothesis or objective function. What is going on in that hidden layer? Here's what's going on. Every feature of our row that's feeding into the neural network. Is being combined with every neuron of the hidden layer.
+
+[00:21:04] What the hidden layer is doing is learning how to combine the features optimally, and then it sends all those out to the final neuron, which will tell you the final result. Function in our case may be linear regression if we want to estimate the predicted cost of the individual at the end of the year.
+
+[00:21:24] Or it may be logistic regression if you're trying to classify something. But the point is that the purpose of that hidden layer is to try every which way combination of features from our data in order to learn the best way to combine features. So let's say that it might figure out that age combines best with itself.
+
+[00:21:47] In other words, age squared, like we said before, or it might figure out that smoking and weight combine. So the purpose of that hidden layer is to find optimal combinations of features in order that the neural network can properly predict values. And by the way, I apologize if you hear rain in the background.
+
+[00:22:07] I have to do this episode outside. Unfortunately, it's a long story, so you may hear some background nature noises. So remember, the three steps of machine learning are. Predict. Okay, so we're gonna make a bunch of predictions with all the rows of our spreadsheet. Figure out how bad we did. That's the loss function.
+
+[00:22:26] And then train. Train on that loss function. And it's this training step or the learn step. This final step, we're using an algorithm called back propagation. It's the stacked application of gradient descent. So it's the way we would make gradient descent deep. We'll talk about that in a bit. It's this final training step that has each of the nodes of the hidden layer learn how optimally to combine features.
+
+[00:22:55] Okay, so there you see a single layer neural network learning how to best combine parameters for a situation which is non-linear. And then of course, our final output function or objective function in this case is linear regression, because we want a number, and in the case of classification is logistic regression.
+
+[00:23:16] Okay, now we learned one superpower of neural networks feature learning. Learning how to combine features in a way to construct a non-linear function. But neural networks have another secret power hierarchical representation of data breaking your data down. I. Hierarchically by way of this feature learning paradigm.
+
+[00:23:42] Deeply stacked deeply. Okay, so let's switch to a new example. We're gonna move away from this health situation and to face recognition in images, so. What we're gonna do is we're gonna upload a bunch of images of faces and non-face, so this is gonna be a classification example. Non faces might be a picture of a dog or a picture of a house.
+
+[00:24:06] Now, real quick, I'm not gonna get too deep into this, but we've been uploading spreadsheets of rows and columns. Rows are are individual examples and columns are their features. The way we would turn an image into a spreadsheet like that is we would. Take its pixels. Let's pretend that it's a five by five image.
+
+[00:24:22] Flatten it, so it's now a 25 by one row of columns where each column, where each feature is a pixel, and then we will take those pixels, which are currently RGB values in color and transform it into gray scale so that each pixel could be represented as a single number. And then we take all our images and they're now rows, and we put them into our spreadsheet.
+
+[00:24:51] So there you go. You just took a bunch of pictures and you turn 'em into a spreadsheet. You'll see a little bit more of that when you get into the details, like the Andrew ing Coursera course. And then of course, our final column is whether or not the thing is a picture of a face. So here we go. We pipe our spreadsheet into our neural network.
+
+[00:25:09] Our neural network takes it one row at a time. We're going to train on each row First. We're going to do a feed forward, pass feed forward. That's the prediction step of our 1 2, 3 machine learning stepwise process. Feed forward pass will give us a prediction as to whether or not this is a picture of a face.
+
+[00:25:31] Then we will use our loss function to figure out how bad the neural network did. And then we will send that back through the network in a backwards pass called back propagation. Which we'll use gradient descent at each neuron to update the weights of Thetas in each neuron so that the whole neural network will get more accurate by the end of the spreadsheet after it has seen all the examples.
+
+[00:25:58] But here's the twist to this neural network, we're gonna have two hidden layers. So there's four layers now total. The first layer is called the input layer. It is simply all the features of an individual row, and that will happen once for every row of our spreadsheet. So the neural network's input layer has a size of 25, 25 pixels for a five by five pixel image, and this neural network will be used over and over and over for each row of the spreadsheet.
+
+[00:26:30] The next layer. Is our first hidden layer. So all our pixels of an individual row from the input layer connects to each neuron of the first hidden layer. So what is that hidden layer trying to do? Now? We said that the purpose of a layer in a neural network is to combine. All the features of the input in a way that the whole is different than the sum of its parts.
+
+[00:26:58] So what are the things we're combining here? Well, we're combining all the pixels of the image. We're trying our hand at a bunch of combinations of pixels in order to give us something new. So that first layer might be combining all the pixels. To figure out if there's lines or edges or contours in the image.
+
+[00:27:22] It will combine all those pixels into lines, and those lines are now new features. Those are now the features of the first hidden layer. Those features get sent to the second hidden layer, which tries a bunch of combinations of those features. In order to figure out which combinations are important. So the second layer might be combining lines and edges and contours into eyes and ears and mouth and nose.
+
+[00:27:56] And then it will take all those, combine them into one, which is our final output, the output layer, the objective function, the hypothesis function, a logistic regression unit. That tells us whether or not we're looking at a face. So a neural network does two things. One, it breaks a thing down into chunks, and two, it combines things at that level in order to find important combinations to make a determination.
+
+[00:28:27] So for our image, the first layer is the input layer. The second layer is the first hidden layer of neurons. Each neuron is called an activation function. In our case, the activation function is the sigmoid or logistic function from logistic regression. In other words, each neuron is logistic regression, and all the neurons of the first hidden layer are trying to combine all the pixels of the image.
+
+[00:28:55] In every which way possible in order to find important combinations of pixels. Well, in the learning process of back propagation, the final step, we're going to be training these neurons. We're going to be telling these neurons whether or not some combination of pixels it found was important or was not.
+
+[00:29:18] That's the training step. So this first hidden layer is finding combinations of. Pixels that makes important things. Those things in our case are likely to be lines, edges, and contours. Well, it's not up to us. The neural network itself will figure it out. It'll figure out what combinations of pixels combine in a certain way that it finds important in order to increase its prediction accuracy.
+
+[00:29:41] Now, that first hidden layer is now acting as the input layer into the second hidden layer. All the neurons of the first hidden layer, all the combinations of features from the picture are now new features, and those features go into the second hidden layer. It is the purpose of the second hidden layer to combine those new features into, again, new features.
+
+[00:30:08] So the things that the second hidden layer might learn are eyes and ears and other things, objects of the face. Then it will combine all those together. Into the last neuron, the objective function, the logistic regression hypothesis function, which will tell us yay or nay, is this a face? So I think that's really cool.
+
+[00:30:30] We have logistic regression, which we learned in a prior episode for classification of a very simple pattern. Well, a face in a picture is not a simple pattern. It is not a linear function. You can't possibly make a line on some scatterplot of pictures of faces. There's nothing, it doesn't even make sense.
+
+[00:30:48] You know, you can't like visualize that in your brain. It doesn't make sense. What you can do is look at a face and cut it up into parts, cut out the eyes of the face, cut out the nose, cut out the mouth, and then cut those up into further parts until we have lines work backwards from there really is what we're doing in neural networks in order to combine things into a hierarchy where the final root of the hierarchy is a yay or nay.
+
+[00:31:13] So I like to think of it like an org chart of a company. Let's say that we have a boss, the head honcho of a company, the CEO. He is the objective function. He's our hypothesis function. Our last neuron, our output layer. Under him, he has supervisors. They are the second hidden layer. The supervisors each have subordinates, employees who work under them.
+
+[00:31:40] Now, unlike a typical organization chart, which is purely hierarchical, where a supervisor has their own. Employees, each of our supervisors is sharing the employees of the company. So it's not purely hierarchical. So what happens? Well, this organization all resides inside of a building. That building is called a neural network.
+
+[00:32:01] We don't personally know what's going on inside. The company manages itself, but we knock on the door and the door opens and we hand an employee a picture, and the employee taps on his nose and gives you a look and says, okay, I'll come right back and I'll tell you whether or not this is a face. He goes inside and all the employees huddle together around the picture, and they're all pointing at various pixels and some other employees pointing at this other pixel.
+
+[00:32:25] Well, this one's black. No. Yeah, but this one's white, and they're all trying to combine all the pixels of the picture In their minds, there's 10 employees huddled around the picture and they've got magnifying glasses out. Well, 10 employees means 10 neurons, meaning there's some sort of combinations of pixels that could be boiled down into.
+
+[00:32:42] 10 principle components, maybe a dark, thick line and a short skinny line and stuff like this. Okay? They all nod their head and they think they have their solutions. They walk down the hall to the room with their supervisors, and each one of them reports to each of the supervisors. Each supervisor is looking for a specific object.
+
+[00:33:03] We've got left eye supervisor, right eye supervisor, nose supervisor, mouth supervisor, left ear, and right ear. Eyes, ears, mouth, and nose. So that's six supervisors, six neurons. In the second hidden layer, meaning it is six specific objects that we're trying to detect at this layer of the hierarchy. So left eye supervisors listening to the report from all of his subordinates.
+
+[00:33:30] All 10 employees are all clamoring over themselves, and he says, hush, hush, hush. Okay, everybody, raise your hand if you saw a line or an edge. And they all raise their hand. And so he nods his head and says, yes, okay, we definitely have a left eye. So they all run over to the nose supervisor and he says, okay, everybody who has a thick vertical edge raise your hand and three raise their hand.
+
+[00:33:52] And he says, okay, now I need a circle ish line. Anybody. And one raises their hand and he says, okay, how about, how about a shadow kind of figure? And nobody raises their hand and he's kind of nodding to himself. He's like, Hmm, he's got his clipboard and his pen. He's checked off seven out of the 10 features he's looking for.
+
+[00:34:09] And he's kind of scratching his chin. He's like, you know, I'm gonna call it, it's a nose. We're missing three of the features, but it's a nose. Seven's enough for me. Weighted sum. Remember that logistic regression works on a weighted sum such that if we get a 70% out of 100%, then it's a yes, and if it's anything under 50%, it's a no.
+
+[00:34:27] All the hidden layer to supervisor neurons now have all their answers, whether or not they have the object they're looking for, eyes, ears, mouth, and, and they all rushed down the hall with their clipboards to the boss's room. The CEO is at the top floor with these windows overlooking the city, and he turns around in his chair and he is, he's a big fat man.
+
+[00:34:46] He's got a cigar in his mouth and a fancy suit. He says, well, boys do. We see eyes, ears, mouth, and nose, and both eye supervisors raise their hand. Yes, we both saw eyes. Nose supervisor raises his hand. I saw a nose, but mouth doesn't raise his hand. So the boss is scratching his chin and he's looking at his clipboard, shifting his cigar from left to right of his mouth and he's like, Hmm, maybe there was a beard, or maybe something was obstructing the mouth.
+
+[00:35:09] Who knows? I'm calling it a face. Yes, we got a face, 70% probability that we're looking at a face. So he comes down the stairs and he. Opens the door. We're waiting patiently outside the company's building, and he says, Tyler, I'm gonna say it's a face, 70% probability. And I look at him with a sad look on my face.
+
+[00:35:26] 'cause I knew from the spreadsheet I, I duped him. I gave him a picture where I already knew the answer. It's not a face, it's a dog. The answer is zero. And he gave me 0.7. So I use my loss function. Remember, it's called cross entropy, and in the case of neural networks, that's a little bit different than a typical logistic regression cross entropy loss function, but it's fundamentally the same.
+
+[00:35:50] And you'll learn the details in the Andrew ing course. So I use my little function and I calculate how off he was, and I tell him, I say, you are off by this amount. He slaps his forehead and he is mad. So he runs back to his supervisors and he says, guys, you are, he is yelling at them and they're all shifting uncomfortably and looking down at the ground.
+
+[00:36:09] And in his mind, he's changing some numbers, some theta parameters. Remember, each neuron, including the hypothesis function, has a set of theta parameters, just like in logistic regression. So he's adjusting all the theta parameters in his head as he's barking orders to his supervisors. Now, each of the supervisors adjusts their theta parameters in their own heads as they run down the hall to their employees, and they start yelling at their employees.
+
+[00:36:36] And each of the employees starts adjusting theta parameters in their heads as they're looking miserably at the ground and taking a lashing. And they turn around and they look at the picture and they open their mouth to yell at the picture, but, but the picture doesn't have theta parameters. The picture can't fix itself.
+
+[00:36:51] The pictures, the picture. So of course the input layer doesn't change. And that last learning step of yelling down the tree is called back propagation. It is running gradient descent down the org chart of the neural network. I. So there you have it, a neural network or deep learning. What it does is it's just like any other supervised learning system, except that it learns how to combine features in important ways, and if necessary, hierarchically.
+
+[00:37:24] How to break down your data into a hierarchy of features and a hierarchy of combinations of features. So when we say deep, we mean the number of layers, the number of hierarchical layers in the breakdown. And when we say wide, we mean the number of neurons in each layer. A wide layer has a lot of neurons.
+
+[00:37:48] A deep network has a lot of layers. Neural networks are sort of a silver bullet. They can handle any linear situation, just like a linear algorithm could and handle stuff that's non-linear, which linear algorithms cannot. They can handle housing market estimations, linear, or they can handle face predictions in images non-linear.
+
+[00:38:13] So they're a silver bullet. But I want you to take that statement with a grain of salt because you should not treat them like a silver bullet. Can you use neural networks in everything? Yes. Should you use neural networks in everything? No. Why? Why shouldn't you use neural networks for everything? Well, it turns out that many problems are linear.
+
+[00:38:37] And many problems don't need to combine features. Maybe it's not some line on a graph like linear regression, but you could use an algorithm like Bayesian inference, which doesn't depend on the combination of its features in order to succeed. There are many other shallow algorithms that we're gonna be going over in future podcast episodes.
+
+[00:38:56] Bayesian inference, decision trees, support vector machines. K nearest neighbor. K means algorithms. All these things, they're shallow, they're quick, and they can handle many real world problems. Well, if deep learning can handle most, if not all, real world problems and shallow learning can handle some real world problems, why shouldn't I use deep learning for everything?
+
+[00:39:19] The reason is that deep learning is expensive. Very, very expensive on your computer to run a typical shallow learning algorithm like linear regression or Bayesian inference. You could probably do it on a laptop. For deep learning, you're going to want to rent space on an AWS cluster of Titan XGPU machines.
+
+[00:39:40] I mean, the difference in performance and scalability of deep learning. Versus shallow learning is significant and can cost you an arm and a leg. If you're running an online service. I like to compare it to our org chart analogy. If your situation is linear, then here's what would happen. You would knock on the door of the company and you would hand a row of your data to the employees.
+
+[00:40:01] They would all take that row, they would all look at it, scratch their heads, and they'd determine that there is no sort of combination of features that needs to happen. So they all look at each other and they shake their head and they pass it on. That layer just gets passed on as is to the second hidden layer.
+
+[00:40:16] Your supervisors, they all do the same thing. They scratch their head, they look at the data, and they determine that there's no sort of combinations of features that's necessary nor hierarchical breakdown of that data. They all look at each other, they shake their head and they pass that data on to the boss, and this time the boss isn't some fat.
+
+[00:40:33] Cigar smoker. He does all the work. He's linear regression at the end of your chain and he starts hammering, chiseling at this thing and out comes your solution. So you just paid a whole company of employees to do the work of one person, linear regression. That's why you don't want to use deep learning for everything.
+
+[00:40:54] Because you don't have to, and it costs more money and time to compute a deep learning solution than a shallow learning solution. So it still is in your interest to learn these various shallow learning algorithms and where they apply. And we're gonna be going over various algorithms and future episodes.
+
+[00:41:13] Okay? So that was a neural network, my friends. That's called a multi-layer perceptron, a feedforward, multi-layer perceptron, and a perceptron. Because the type of neuron we're dealing with is in most examples that you'll see, uh, what's called a perception or a stepwise function. But in our case, we use logistic regression.
+
+[00:41:33] It's basically the same, so it's. Still counts multilayer because we have one or two hidden layers and feed forward. You'll see this word feed forward. There's the feed forward pass that you do in the initial prediction step, but when they say feed forward, network like a feed forward, multilayer, perceptron, what they're referring to is by comparison to other types of architecture.
+
+[00:41:55] For example, a thing called a recurrent neural network. It doesn't exactly feed its data forward. It feeds it like. Back into itself, we're gonna go over recurrent neural networks in a future episode. Most neural network architectures are feed forward, but there are some snazzy little twists of an architecture that can do recursion and other types of feeding.
+
+[00:42:17] One final technical aside that is that in the back propagation step of neural networks, you may or may not be using gradient descent, the type of thing that is used. For training is called an optimizer, so gradient descent that we've been talking about in all these episodes for the learning step of machine learning.
+
+[00:42:39] Is an optimizer and there are various other types of optimizers that you can use. One called AdaGrad, one called Adam, but I just wanted you to be aware of that. If you just jump into the deep end and you start working with neural networks and you start seeing these optimizers used, they have weird names like that.
+
+[00:42:56] A grad A, what they're doing there is they're replacing gradient descent with maybe some more specialized or optimized optimizer for that particular architecture. Okay. I want to compare. Deep learning to the brain. We did this a little bit in the beginning of the episode, but now we're gonna come back to it.
+
+[00:43:14] A neuron in a human brain looks a little like this. We've got a cell body, a little blob, and into it come inputs by way of a structure called dendrites. So it has these little lines coming into it, and out comes the output of a neuron. That output line looks like a tail. It's called an axon. So physically, a human neuron looks a little bit like an artificial neuron.
+
+[00:43:38] An artificial neuron takes inputs from all of the data or the layer before it. It does some computation in the middle. That's kinda like the cell body or the soma of the neuron, and out of it comes the output. There's a lot of debate as to whether the artificial neuron created by McCulloch and pits really does represent a biological human neuron.
+
+[00:44:00] I think the argument might be missing the point from a functionalist perspective, they do the same thing. There's a common point of comparison you'll see made between birds and planes. In order to achieve flight in our era, we didn't have to create giant flapping feathered wings. Instead, we use the laws of thermodynamics to create a giant metal bus with stationary wings.
+
+[00:44:23] The point is to achieve the same effect. While our artificial neurons may or may not represent the human neuron in a fundamental way, but functionally they achieve the same effect. And, and in that way, I think it is safe to say that neural networks are our big chance towards solving intelligence. I bring up the brain again for another reason.
+
+[00:44:44] In the human brain, we have different centers dedicated towards solving different tasks, speech, image recognition, planning, et cetera. Each of those centers of the brain is what's called a nucleus. It's not like a cell body in biology. It's the same word in neuroscience. They call a center of the brain that handles a specific task.
+
+[00:45:06] A nucleus and a nucleus is nothing more than, as far as we're concerned, a neural network. So a neural network. In artificial neural network, land of machine learning is like a nucleus of the brain now. As different nuclei of the human brain are tailored towards handling different tasks, they have slightly different physical architectures.
+
+[00:45:28] Let's say that primary visual within the human brain has maybe shorter axons or some different combinations of neurons in a specific way that makes it very good at handling vision. Where bro's area for speech might be physically structured in a different way, the human brain doesn't use the exact same nucleus architecture all throughout the brain.
+
+[00:45:50] Instead, it specializes various nuclei to be better at particular tasks. It still uses the master algorithm of the neuron and combinations of the neuron. But it does so with a twist. Different floor plans, we're still dealing with blueprints within a house, but just different floor plans for different specializations.
+
+[00:46:12] You'll find this to be the case in artificial neural networks as well. Within deep learning, you'll rarely see the multi-layer perceptron used in the wild. The multilayer perceptron is sort of the trainer's neural network. Neural Network 1 0 1. The thing that I taught you in this episode is like neural network 1 0 1, but it's not really what you're gonna be using most of the time.
+
+[00:46:37] Envision, for example, recognizing images. What we did actually in this episode, the most common neural network you'll see here is called a convolutional neural network, and it has additional types of layers. Inserted in the neural network, different types of neurons. So you may not be using logistic regression units, for example, for language modeling or anything in the domain of natural language processing, you're gonna use a thing called a recurrent neural network, an RNN.
+
+[00:47:06] And this has a special tweak of the architecture, like I mentioned earlier, that neurons can feed back into themselves. It's pretty clever. And for planning, we'll use something called a Deep Q network. Or A DQN, so variations of the general neural network architecture with a twist to make architectures specifically suitable for specific applications.
+
+[00:47:29] Now, like I said, each of these different architectures might use a different type of neuron or activation function or hypothesis function. Remember, a neuron inside the hidden layers, the neurons in the black box. Are called activation functions, and the final neuron or final neurons of the output layer is called the hypothesis function or objective function activation functions in the hidden layers hypothesis function In the output layer, you may use logistic regression or soft max or linear regression in the final output.
+
+[00:48:04] Neuron or any number of things in the hidden layers, you're more likely to see a thing called relu, RELU, rectified linear unit. That's one of the more common types of activation functions. One of the more common neurons in neural networks. I. Another type you might see is tan h and they're all quite similar to sigmoid functions.
+
+[00:48:25] They, they pretty much look the same too. A lot of them look like an S just shaped a different way. In the case of relu, it's flat before X equals zero. All that stuff isn't so important. It's, it's easy to understand a neural network as stacked sigmoid functions. Since you've already learned the sigmoid function.
+
+[00:48:39] But you may be dealing with different types of activation functions, different types of neurons, and usually the determiner of why you would use a different neuron under diff different circumstances is based on the way the math works out for the particular architecture, the particular neural network you're using.
+
+[00:48:56] It may learn better using calculus. In the back propagation step, the gradient descent step, the calculus may work better for certain neurons under certain architectures. Me personally, I just take whatever neuron or architecture is popular in the space and I just roll from there. I don't even question it.
+
+[00:49:16] So that's it, my friends. That's deep learning. That's neural networks. Like I said, we're going to come back to shallow learning algorithms like support vector machines, decision trees, K, nearest neighbors. K means. Bayesian inference, et cetera, and then eventually we'll get back into deep learning and talk about recurrent neural networks, convolutional neural networks, deep Q networks, and all those things.
+
+[00:49:39] For the resources of this episode, I'm going to recommend a mini series on YouTube, which will give you a lay of the land of deep learning architectures, really short videos, providing the visuals. Representing various deep learning models like nns, CNNs, et cetera. You can plow through that one pretty fast.
+
+[00:49:59] Then, as usual, I want you to finish the Andrew ing Coursera course. He has a whole week or two dedicated to neural networks where you're gonna be learning the multilayer perceptron, and then I'm going to recommend you a book. The book is by Ian Goodfellow, Joshua Bengio and Aaron Ville, and it is simply called Deep Learning.
+
+[00:50:19] And it's probably the most popular resource for learning deep learning. It's a textbook, and it's been a long time in the works. It's rather newly published, but it's a great resource for learning, deep learning. Now again, you don't want to start this book until after you finish the Andrew in Coursera course, but once you finish that course, it's safe to begin right away reading the Deep Learning book because deep learning is the immediate next step.
+
+[00:50:43] After shallow learning. So finish the Andrew in course and then start on this textbook that I'll put in the show notes again, as usual, the show notes are at oc deve.com/podcasts/machine learning. This is episode nine. Again, O-C-D-E-V-E l.com. There's also a contact button in the top right of that webpage where you can get my contact information, my email address, Twitter, LinkedIn, et cetera.
+
+[00:51:13] If you wanna reach out to me, the next episode is gonna be about languages and frameworks. We're gonna talk about Python versus R versus Java. We're gonna talk TensorFlow versus the versus Torch. All those things. See you then.
+
