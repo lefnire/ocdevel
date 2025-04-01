@@ -5,11 +5,7 @@ const info: Product = {
   brand,
   model: {
     value: "Z1",
-    notes: () => <div>
-      {brand.notes()}
-      <h5>Pros: Folds up for stow-away</h5>
-      <div>This mill folds in half, and you can either store it under your bed or vertically like a box. Only mill which does this. Personally I don't care, because most mills can tilt against a wall and take up less depth-space that way than a folded WalkingPad anyway.</div>
-    </div>
+    notes: brand.notes
   },
   key: `${brand.key}_z1`,
   links: {

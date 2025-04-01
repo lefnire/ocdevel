@@ -5,10 +5,6 @@
 
 declare module "sst" {
   export interface Resource {
-    "ReactRouter7": {
-      "type": "sst.aws.React"
-      "url": string
-    }
   }
 }
 /// <reference path="sst-env.d.ts" />
