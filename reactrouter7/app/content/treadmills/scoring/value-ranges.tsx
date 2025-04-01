@@ -2,9 +2,13 @@ import _ from "lodash";
 import type {Product} from "../data/types";
 import data from "../data";
 import {getPrice} from "../utils";
+import {NA} from '../data/utils'
 
 function getRangeFromVals(vals_: Array<number | undefined>) {
-  const vals = vals_.filter(Boolean) as number[]
+  const vals = (vals_
+    .filter(Boolean)
+    .filter(val => val !== NA)
+  ) as number[]
   const min = Math.min(...vals);
   const max = Math.max(...vals);
   const median = _.sortBy(vals)[Math.floor(vals.length / 2)];

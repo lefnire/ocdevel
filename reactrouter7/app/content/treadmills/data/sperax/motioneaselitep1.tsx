@@ -53,8 +53,9 @@ const info: Product = {
     sale: 160,
   },
   pickedBy: {
-    me: 2,
-    trusted: [{value: 1}],
+    // me: 2,
+    trusted: [{value: 3}],
+    affiliate: [{value: 1}],
     websites: [
       {value: 2},
       {label: "Chicago Tribune", value: 1, url: "https://reviews.chicagotribune.com/sports-and-fitness/exercise-equipment/best-walking-pads"}

@@ -7,7 +7,7 @@ import {Affiliate} from "~/content/product-links";
 
 export const PAUSE_AMAZON = false;
 export function getCurrentLink(product: Product) {
-  return getCountryLink(product, "US")
+  return getCountryLink(product, "US") || getCountryLink(product, "ALL")
 }
 
 // Helper function to get the URL for a country based on priority order
@@ -62,9 +62,9 @@ export function ScoreInfo() {
 
 // FIXME make these dynamic (pulled from available options in dat)
 export const countries = {
-  order: ["US", "CA", "UK", "EU", "AU"],
+  order: ["ALL", "US", "CA", "UK", "EU", "AU"], // Add "ALL" first
   buyOrder: ["amazon", "brand"],
-  emojis: {"US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧", "EU": "🇪🇺", "AU": "🇦🇺"}
+  emojis: {"ALL": "🌍", "US": "🇺🇸", "CA": "🇨🇦", "UK": "🇬🇧", "EU": "🇪🇺", "AU": "🇦🇺"} // Add emoji for "ALL"
 } as const
 
 // Type for the country-specific links

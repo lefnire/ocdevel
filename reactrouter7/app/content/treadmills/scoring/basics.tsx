@@ -4,6 +4,7 @@ import {getCountryCodes, getPrice} from "../utils";
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
 import type {PickedBy} from "~/content/treadmills/data/types";
+import { NA } from '../data/utils'; // <-- Import NA
 
 const scorePickedBy = (pickedBy: undefined | PickedBy) => {
   pickedBy = pickedBy || {}
@@ -14,7 +15,8 @@ const scorePickedBy = (pickedBy: undefined | PickedBy) => {
   return me + trusted + websites + affiliate
 }
 export const brand: ScoreFn = (p) => {
-  return scorePickedBy(p.brand.pickedBy)
+ const score = scorePickedBy(p.brand.pickedBy)
+  return score > 10 ? 10 : score
 }
 
 export const price: ScoreFn = (p) => {
@@ -45,6 +47,7 @@ export const links: ScoreFn = (p) => {
 export const weight: ScoreFn = (p) => {
   if (p.weight?.rating) { return p.weight.rating }
   const val = p.weight.value;
+  if (val === NA) return 10; // N/A weight implies it's not a factor, treat as perfect? Or maybe 0? Let's assume 10 for now.
   if (_.isUndefined(val)) {
     // no easy guess
     return 5;
@@ -61,6 +64,7 @@ export const maxWeight: ScoreFn = (p) => {
   if (p.maxWeight?.rating) { return p.maxWeight.rating }
 
   const val = p.maxWeight.value;
+  if (val === NA) return 10; // N/A maxWeight implies it's not a factor
   if (_.isUndefined(val)) {
     // typically 265
     return 5;
@@ -77,10 +81,11 @@ export const maxSpeed: ScoreFn = (p) => {
   if (p.maxSpeed?.rating) { return p.maxSpeed.rating }
 
   // Commonly 4.0, but often the unlisted / hidden ones turn out to be 3.8
-  const val = p.maxSpeed.value; // ?? 3.8
+  const val = p.maxSpeed.value;
+  if (val === NA) return 10; // Explicitly handle NA as per walkolution2.tsx intent
   if (_.isUndefined(val)) {
     // if not advertised, typically lower than median (eg 3.8)
-    return 4;
+    return 4; // Keep existing fallback for undefined
   }
   // Using linear scale since speed perception is fairly linear
   if (val <= r.maxSpeed.min) return 0;
@@ -93,10 +98,11 @@ export const maxSpeed: ScoreFn = (p) => {
 export const horsePower: ScoreFn = (p) => {
   if (p.horsePower?.rating) { return p.horsePower.rating }
 
-  const val = p.horsePower.value; // 2.25
+  const val = p.horsePower.value;
+  if (val === NA) return 10; // Explicitly handle NA as per walkolution2.tsx intent
   if (_.isUndefined(val)) {
     // if not advertised, usually lower than median (eg 2.25).
-    return 4;
+    return 4; // Keep existing fallback for undefined
   }
   // Using a logarithmic scale since perceived power often follows a logarithmic curve
   // (difference between 1HP and 2HP feels bigger than 4HP and 5HP)
@@ -148,6 +154,7 @@ export const age: ScoreFn = (p) => {
 export const decibels: ScoreFn = (p) => {
   if (p.decibels?.rating) { return p.decibels.rating }
   const val = p.decibels.value;
+  if (val === NA) return 10; // N/A decibels implies silent (manual)
   if (_.isUndefined(val)) {
     // Typically 45-50
     return 5;
@@ -165,6 +172,7 @@ export const decibels: ScoreFn = (p) => {
 export const dimensions: ScoreFn = (p) => {
   if (p.dimensions?.rating) { return p.dimensions.rating }
   const val = p.dimensions.value;
+  // Removed NA check here, as dimensions value should be an array or undefined
   if (val?.length !== 3) { return 5; }
 
   const [depth, width, height] = val;
@@ -192,12 +200,13 @@ export const dimensions: ScoreFn = (p) => {
 }
 
 export const pickedBy: ScoreFn = (p) => {
-  const baseline = 3; // so we'r enot showing a bunch of 0s
+  const baseline = 3; // so we're enot showing a bunch of 0s
   const me = (p.pickedBy?.me ?? p.brand.pickedBy?.me ?? 0)
   const trusted = (p.pickedBy?.trusted ?? p.brand.pickedBy?.trusted ?? [])
   const websites = (p.pickedBy?.websites ?? p.brand.pickedBy?.websites ?? [])
   const affiliate = (p.pickedBy?.affiliate ?? p.brand.pickedBy?.affiliate ?? [])
-  return baseline + scorePickedBy({me, trusted, websites, affiliate})
+  let score = baseline + scorePickedBy({me, trusted, websites, affiliate})
+  return score > 10 ? 10 : score;
   // const pProduct = scorePickedBy(p.pickedBy)
   // const pBrand = scorePickedBy(p.brand.pickedBy)
   // return (pProduct * .5)+ (pBrand * .5)
@@ -205,7 +214,8 @@ export const pickedBy: ScoreFn = (p) => {
 
 export const incline: ScoreFn = (p) => {
   if (p.incline?.rating) { return p.incline.rating }
-  const val = p.incline.value
+  const val = p.incline.value;
+  if (val === NA) return 10; // Explicitly handle NA as per walkolution2.tsx intent (manual implies variable incline)
   if (!val) { return 0; }
   if (val >= 3) return 9; // 3% or more incline is very good (9)
   if (val > 3) return 10; // More than 3% is exceptional (10), but only slightly better
@@ -231,5 +241,7 @@ export const app: ScoreFn = (p) => {
 
 export const easyLube: ScoreFn = (p) => {
   if (p.easyLube?.rating) { return p.easyLube.rating }
-  return p.easyLube?.value ?? 5;
+  const val = p.easyLube?.value;
+  if (val === NA) return 10; // N/A implies no lube needed, which is perfect.
+  return val ?? 5; // Fallback for boolean or undefined
 }

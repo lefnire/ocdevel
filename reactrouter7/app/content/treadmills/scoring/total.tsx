@@ -25,7 +25,7 @@ export const total: ScoreFn = (row) => {
 
   // Process each column that has a rating
   Object.entries(columnWeights).forEach(([key, weight]) => {
-    const score = row[key]?.score
+    let score = row[key]?.score
     if (!score) { return; }
 
     // Add to total score

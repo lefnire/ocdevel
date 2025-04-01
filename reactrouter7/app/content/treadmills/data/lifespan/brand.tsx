@@ -15,17 +15,17 @@ const info: Brand = {
   },
   fakespot: "B",
   pickedBy: {
-    me: 10,
+    // me: 10,
     websites: [{value: 5}],
     trusted: [
-      {value: 10},
+      {value: 20},
       {value: -1, label: "Reddit: discontinued sales rep", url: "https://www.reddit.com/r/WalkingPads/comments/1j8z0ww/are_there_any_brands_that_sell_20_wide_belts"},
       {value: -1, label: "Reddit: order delays", url: "https://www.reddit.com/r/treadmills/comments/1c0vp8q/warning_do_not_purchase_a_lifespan_fitness/"},
     ]
   },
   warranty: {
-    amazon: 2*12,
-    brand: 2*12,
+    amazon: 2,
+    brand: 2,
     notes: () => <div>Frame: 10 Years | Parts: 2 Years | Labor: 1 Year</div>
   },
   notes: () => <div>

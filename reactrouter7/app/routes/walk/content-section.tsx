@@ -53,7 +53,7 @@ export default function ContentSection(props: ListenerProps) {
 
     {header("buying_guide")}
     <h5>Get extended warranty</h5>
-    <p>Some treadmills offer one through their website. Amazon offers Asurion. With the budget treadmills, since YYMV and reviews are inconsistent, you'll want the peace of mind.</p>
+    <p>Some treadmills offer one through their website, Amazon offers Asurion. Motors don't last forever, the motor <em>will die</em>. When, not if - and sooner with the budget treadmills. With the warranty, there's nothing to worry about. I've gone through three for the price of one.</p>
     <p></p>
     <h5>Budget</h5>
     <p>The budget mills can be more loud, and deal less effectively with heat. To deal with this, reduce the amount of at-one-time walking (eg 30-45 min on, 2-5 min break). Generally expect 1-2 years out of these mills; compared to the non-budgets which could last 10 years. Personally I take the trade-off - I don't know where I'll be in 2 years. And with Amazon's extended warranty, I've been refunded for every malfunction.</p>

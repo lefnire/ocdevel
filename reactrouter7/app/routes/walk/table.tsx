@@ -16,6 +16,7 @@ import type {
   ColumnDef
 } from '@tanstack/react-table';
 import type { Product } from '~/content/treadmills/rows';
+import {NA} from "~/content/treadmills/data/utils";
 import { columnsArray, columnsObj } from '~/content/treadmills/columns';
 import { Form, Button, Badge, Container } from 'react-bootstrap';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
@@ -90,12 +91,14 @@ const Cell: React.FC<{
   }
 
   const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
-  
+  const rawValue = columnDef.getValue(product); // Get the raw value
+
+  // --- Modal Logic (Run this *before* NA check) ---
   // Get popover content if available
   const popoverContent = columnDef.renderModal?.(product) ||
                          (typeof product[columnId as keyof Product] === 'object' &&
                           (product[columnId as keyof Product] as any)?.notes?.());
-  
+
   // Create click handler for modal if popover content exists
   const handleClick = popoverContent ? () => {
     const title = (() => {
@@ -109,6 +112,26 @@ const Cell: React.FC<{
     })()
     openModal(`cell-${columnId}-${product.key}`, title, popoverContent);
   } : undefined;
+  // --- End Modal Logic ---
+
+
+  // --- Centralized NA Display Handling (with Modal Click) ---
+  if (rawValue === NA) {
+    if (handleClick) {
+      return (
+        <div style={cellStyle}>
+          <span style={clickableStyle} onClick={handleClick}>
+            N/A
+          </span>
+        </div>
+      );
+    }
+    return <div style={cellStyle}>N/A</div>; // Render N/A without click handler
+  }
+  // --- End Centralized NA Display Handling ---
+
+
+  // --- Original Rendering Logic (for non-NA values) ---
 
   // Case 1: If render function is provided, use it and pass the click handler
   if (columnDef.render) {
@@ -117,7 +140,8 @@ const Cell: React.FC<{
   
   // Case 2: If format function is provided, use it and attach click handler if needed
   if (columnDef.format) {
-    const formattedValue = columnDef.format(product);
+    // Pass the non-NA rawValue to format if needed, or let format recalculate
+    const formattedValue = columnDef.format(product); // Assuming format uses product directly
     
     if (handleClick) {
       return (
@@ -263,7 +287,7 @@ const Filter: React.FC<{
 // Rating indicator component
 const Score: React.FC<{ score: number }> = ({ score }) => {
   if (score <= 0) return null;
-  
+
   // Determine color based on score
   const bgColorClass = score >= 7 ? 'bg-success' : score >= 4 ? 'bg-warning' : 'bg-danger';
   const textColorClass = score >= 4 ? 'text-dark' : 'text-white';
@@ -332,11 +356,14 @@ function ProductTable({
             
             if (value === undefined || value === null) return false;
             
+            // Always include NA values
+            if (value === NA) return true;
+
             // For numeric columns with range filtering
             if (columnDef.dtype === "number" && Array.isArray(filterValue)) {
               const [min, max] = filterValue;
-              const numValue = typeof value === 'number' ? value : parseFloat(String(value));
-              if (isNaN(numValue)) return false;
+              // NA check already happened, so value should be a number here
+              const numValue = value as number;
               
               const filterOptions = columnDef.filterOptions || { min: true, max: true };
               
@@ -366,11 +393,20 @@ function ProductTable({
             const valueA = getValueFn(rowA.original);
             const valueB = getValueFn(rowB.original);
             
-            // Compare based on data type
+            // Handle NA values: always rank highest
+            const isValueANA = valueA === NA;
+            const isValueBNA = valueB === NA;
+
+            if (isValueANA && isValueBNA) return 0; // Both are NA
+            if (isValueANA) return 1;  // A is NA, treat as larger (comes last in asc, first in desc)
+            if (isValueBNA) return -1; // B is NA, treat as larger (comes last in asc, first in desc)
+
+            // Compare based on data type for non-NA values
             if (typeof valueA === 'number' && typeof valueB === 'number') {
-              return valueA > valueB ? 1 : valueA < valueB ? -1 : 0;
+              return valueA - valueB; // Simpler numeric comparison
             }
             
+            // Fallback to string comparison
             return String(valueA).localeCompare(String(valueB));
           }
         }

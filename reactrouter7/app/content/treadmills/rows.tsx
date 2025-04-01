@@ -29,7 +29,7 @@ export type Product = ProductObj & {
 
 function hydrate(d: Product) {
   if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
-    d.brand.warranty.amazon = 2 * 12 // Asurion
+    d.brand.warranty.amazon = 2 // Asurion
   }
   d.brand.pickedBy = d.brand.pickedBy || {}
   d.brand.score = s.brand(d)

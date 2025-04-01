@@ -13,8 +13,8 @@ const info: Brand = {
   links,
   // overriden in each item
   warranty: {
-    amazon: 2*12,
-    brand: 2*12
+    amazon: 2,
+    brand: 2
   },
   fakespot: "C",
   pickedBy: {

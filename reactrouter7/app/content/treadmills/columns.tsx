@@ -23,6 +23,7 @@ const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data'
+import {NA} from "./data/utils"
 import {Affiliate} from "~/content/product-links";
 import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
 
@@ -35,7 +36,7 @@ interface ColumnDefinition {
   description?: string;
   notes?: () => React.ReactElement;
   getValue: (row: Product) => string | number | boolean | undefined;
-  format?: (row: Product) => string; // Function to format the value as a string (for simple cases)
+  format?: (row: Product) => string | React.ReactNode; // Function to format the value as a string (for simple cases)
   render?: (row: Product, clickHandler?: () => void) => React.ReactNode; // Function to render the value with optional click handler
   columnStyle?: React.CSSProperties;
   getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
@@ -71,9 +72,17 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.brand.name,
     renderModalTitle: (row) => row.brand.name,
     renderModal: (row) => {
+      const warranty = row.brand.warranty
+      const hasAmazon = !!Object.keys(row.links?.amazon)?.length
       return <div>
         {renderCountryLinks(row, 'brand')}
         {row.brand.notes?.()}
+        {(hasAmazon || warranty.brand) && <div>
+          <h5>Warranty</h5>
+          {hasAmazon && <div>Amazon: 2 years (Asurion). Get it.</div>}
+          {warranty.brand && <div>Company: {warranty.brand} years</div>}
+          {warranty.notes?.()}
+        </div>}
       </div>
     },
   },
@@ -126,14 +135,12 @@ export const columnsArray: ColumnDefinition[] = [
       // Create a wrapper div that can handle the modal click
       // but let the link handle its own click without propagation
       return (
-        <div onClick={clickHandler} style={clickHandler ? clickableStyle : undefined}>
-          <Affiliate
-            product={affiliate}
-            onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
-          >
-            ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
-          </Affiliate>
-        </div>
+        <Affiliate
+          product={affiliate}
+          onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
+        >
+          ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+        </Affiliate>
       );
     },
   },
@@ -281,14 +288,14 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: true, max: false },
     notes: () => <div>Sports medicine <a href="https://ocdevel.com/blog/20240228-walking-desks-incline">recommends a 3% incline</a>. Ultra-budget models lack incline. For Urevo models, the number on the remote / console means % (it's not obvious); so setting it to 3 means 3%. Some models support more than 3, which burns significantly more calories (CyberPad goes to 14, which is 50% more calories). If you're in a rush to lose weight, go for it; but don't make it a life-style, slow-and-steady at 3% wins the race. I've tested this over the years. Both flat, and greater than 5%, hurt me knees with time - remedied slowly after returning to 3%.</div>,
     getValue: (row) => row.incline?.value,
-    render: (row, clickHandler) => {
+    // Removed format function here as render handles display
+    format: (row) => {
       const incline = row.incline?.value
+      // if (incline === NA) { return "N/A"; } // handled in table.tsx
+      if (!incline) { return ""; }
       const method = row.incline?.method;
-
-      if (!incline) return <></>;
-
       return (
-        <div onClick={clickHandler} style={clickHandler ? clickableStyle : undefined}>
+        <div>
           {`${incline}%`}
           {method && <small className="text-muted ms-1">{method}</small>}
         </div>
@@ -400,7 +407,7 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Amazon",
     dtype: "boolean",
     hideScore: true,
-    notes: () => <div>Buyer peace-of-mind, can't get Asurion extended warranty (which I recommend with treadmills)</div>,
+    notes: () => <div>Buyer peace-of-mind regarding a warranty (Asurion). I recommend you <em>always</em> get a warranty, because your motor <em>will</em> die - when, not if. So if it's not on Amazon, make sure the company offers a long warranty.</div>,
     getValue: (row) => {
       return !!Object.keys(row.links?.amazon)?.length
     },
