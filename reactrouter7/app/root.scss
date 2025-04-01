@@ -1,9 +1,23 @@
-@use "bootstrap/scss/bootstrap" as *;
+/*
 @mixin transform($property) {
   -webkit-transform: $property;
   -ms-transform: $property;
   transform: $property;
 }
+*/
+
+/*
+I previously used `@use "bootstrap/scss/bootstrap"` to get variables by name, like
+$primary. But the scss bundle is too large, so I'm using the hard-coded values now
+and raw css. I'm using the default bootstrap theme, so if this needs to change, revisit.
+The values were:
+
+$primary = #0d6efd
+$secondary = #6c757d
+$btn-padding-x = .75rem
+$btn-padding-x-sm = .5rem
+$btn-padding-x-lg = 1rem
+ */
 
 html {
   position: relative;
@@ -75,16 +89,16 @@ body {
 }
 
 .btn-pad- {
-  padding-right: $btn-padding-x;
-  padding-left: $btn-padding-x;
+  padding-right: .75rem; /*$btn-padding-x*/
+  padding-left: .75rem; /*$btn-padding-x*/
 }
 .btn-pad-sm {
-  padding-right: $btn-padding-x-sm;
-  padding-left: $btn-padding-x-sm;
+  padding-right: .75rem; /*$btn-padding-x-sm*/
+  padding-left: .75rem; /*$btn-padding-x-sm*/
 }
 .btn-pad-lg {
-  padding-right: $btn-padding-x-lg;
-  padding-left: $btn-padding-x-lg;
+  padding-right: 1rem; /*$btn-padding-x-lg*/
+  padding-left: 1rem; /*$btn-padding-x-lg*/
 }
 
 .center-content {
@@ -126,7 +140,7 @@ body {
       //color: #fed900 !important;
       color: black !important;
     }
-    //.importance-essential { color: $primary; }
+    //.importance-essential { color: #0d6efd; /*$primary*/ }
     //.importance-valuable { color: $success; }
 
     .section-title {font-weight: 600;}
@@ -161,7 +175,7 @@ body {
 
   .pick-one-resource {
     border: 1px solid #eee;
-    border-left: .25rem solid $secondary; // #5bc0de
+    border-left: .25rem solid #6c757d; /*$secondary*/ /* #5bc0de */
 
     //padding-left: 2rem;
     //h6 {
@@ -186,8 +200,8 @@ body {
       }
     }
     .filter-selected {
-      //border-bottom: 3px solid $primary;
-      //color: $primary;
+      //border-bottom: 3px solid #0d6efd; /*$primary*/
+      //color: #0d6efd; /*$primary*/
       font-weight: 500;
     }
   }
@@ -200,21 +214,21 @@ body {
 .card-post {
   p {margin-bottom: 0px;}
   &.card-pinned {
-    border: 1px solid $primary;
+    border: 1px solid #0d6efd; /*$primary*/
   }
   &:hover {
-    border: 1px solid $primary;
+    border: 1px solid #0d6efd; /*$primary*/
   }
 }
 
 .notice-card {
   border: none;
   border-radius: 0 .25rem .25rem 0;
-  border-left: 3px solid $primary;
+  border-left: 3px solid #0d6efd; /*$primary*/
 }
 
 .mlg-update {
-  border-left: 3px solid $primary;
+  border-left: 3px solid #0d6efd; /*$primary*/
 }
 
 #root a {
