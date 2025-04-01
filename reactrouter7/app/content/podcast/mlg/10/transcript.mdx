@@ -1,0 +1,232 @@
+[00:01:03] This is Episode 10, languages and Frameworks. In this episode, we're gonna talk about languages and frameworks. Languages like CNC plus plus math languages like R Matlab, octave and Julia. The JVM like Java and Scala, and of course, Python frameworks like Theano Torch and Tensor Flow.
+
+[00:01:29] I'm going to give you a little bit of a podcast spoiler, and that is that at the end of this episode, I'm going to recommend to you Python and TensorFlow, Python and TensorFlow without knowing anything about you. If you're looking into machine learning, then my guess for you is the language, Python and the framework.
+
+[00:01:45] TensorFlow, do you remember in a previous episode on linear regression when I was talking about a bias parameter, theta zero. What that bias parameter does is it says, if I don't know anything about your situation, I can still make a prediction. So if you give me a house in Portland, Oregon, and I don't have any information on its square footage, number of bedrooms, number of bathrooms, et cetera, I can still give you at least the average cost of houses in Portland, Oregon.
+
+[00:02:14] That's what that bias parameter is. It's like an educated guess. If you don't have any information. And that's what I'm doing here. My bias parameter is TensorFlow and Python, not knowing anything else about your situation. Now, of course, the details of your situation are gonna change that, so we're gonna get into the details of why you might use one language or framework over another in this podcast episode.
+
+[00:02:34] Let's start right away with c and c plus plus. C and c plus plus are as close to the metal as you can get in computer programming before you go to assembly language and below that binary language. And there's no way that you're gonna be writing in binary assembly. So to milk the most performance that you possibly can in computer programming, you'll end up using C or c plus plus.
+
+[00:02:57] Well, it just so happens that machine learning really needs performance machine learning. Is heavy, heavy, heavy on the computer. A deep neural network costs a lot of computational resources and time, and so in order to get the best performance out of your neural network, CNC Plus Plus are the best options for you.
+
+[00:03:17] You'll often see this to be the case. In larger corporations that specialize in very computationally expensive things like video games and cryptography, you'll also see it in machine learning companies, very large scale organizations like Google and Facebook. They might use CNC plus plus for their very hardcore, very highly optimized machine learning algorithms.
+
+[00:03:40] There's one more nuance about CNC Plus. Plus is that machine learning algorithms are. Best performed on the GPU, the Graphical processing Unit. The reason for this is that the GPU is specialized in mathematical operations, floating point arithmetic, especially matrix algebra. Remember linear algebra, but really any sort of mathematical operations.
+
+[00:04:03] Whether it's statistics, calculus, or linear algebra are best suited to the GPU and not the CPU. And C and c plus plus give you direct access to running your operations on the GPU. They let you manipulate the math directly on the GPU, which makes CNC plus plus the best bet for highly performant machine learning programming.
+
+[00:04:24] Now I'm gonna throw a curve ball at you and say, I do not recommend CNC Plus. Plus. As you'll see in a bit when we get into the Python frameworks, these things called computational graphs or symbolic graphs, let you write your code in high level Python I TensorFlow, and it will actually be converted into C and run directly on the GPU.
+
+[00:04:44] So you get the best of both worlds. Your code will run in C, but you get to write it. In a high level language like Python, and you'll appreciate that because c and c plus plus are very difficult programming languages. Very difficult to write, very verbose, many, many lines of code to accomplish the same thing that much fewer lines of code and higher level programming language would achieve.
+
+[00:05:07] Let's say a hundred lines of c plus plus code becomes boiled down to 50 lines of Python code. And you have to handle things like memory management and stuff that you wouldn't have to normally handle in a high level language. So I highly do not recommend CNC plus plus for machine learning programming.
+
+[00:05:22] Unless you already know the languages and you feel confident in which case power to you, you've actually got a lot of runway knowing those languages as far as job applications or if you're working a little bit closer to the metal on some really screaming performance characteristics of machine learning models, basically my.
+
+[00:05:38] Recommendation is that you will know when and why you need C or c plus plus. If you don't feel like you need it right now, skip it. Now let's dive into a category of languages. I'm gonna call the math languages. Mathematics languages, R matlab. Octa and Julia. These languages are very different from typical procedural programming languages, object oriented languages or the like, like Python.
+
+[00:06:04] The looks of R is substantially different than the looks of Python. Code R, for example, is highly optimized for mathematics operations. Linear algebra and matrix operations are directly supported in the language itself. It's hard to describe, but you'll see things like. Colons and commas between braces of multidimensional arrays, what's called data frames or matrices in R.
+
+[00:06:30] That looks a little bit weird coming from a traditional procedural programming background. And what these allow you to do is slice and dice matrices directly. Perform matrix algebra directly. And then statistics functions like the standard deviation and correlation of vectors or scalers or matrices are directly built into the standard library of the R programming language.
+
+[00:06:53] So math is a first class citizen that really shines in the. Syntax of the language. R also supports machine learning very robustly. There are third party libraries around neural networks that give you a lot of leverage. Something that would take you many lines of code in a traditional programming language that has to do with math would really be slimmed down in R.
+
+[00:07:15] So R is a fantastic language for the mathematicians and as we know. Machine learning is nothing more than math, which makes R also a fantastic language for machine learning. Then there's two other languages, MATLAB and Octave. These are direct competitors. MATLAB is a commercial licensed programming language.
+
+[00:07:36] It's proprietary, so if you want to use it, you actually have to buy a license. It's also actually the language of choice used in the Andrew ing Coursera courses. Unfortunately, luckily you don't have to pay for a license to take that course. Andrew ING has a code you could use for a temporary license for the duration of the Coursera course while MATLAB is proprietary and commercial.
+
+[00:07:58] Octave is a direct response to matlab. It's everything MATLAB is, but open source and free. So it's kind of a middle finger by the free and open source community to the MATLAB product. It's kind of like what gimp is to Photoshop, if you're familiar. And from what I understand, it's got a little bit of the same thing going on that Gimp has with Photoshop.
+
+[00:08:20] Sure, it's an open source competitor, but it seems like Matlab. Still is a little bit more polished. MATLAB shines a little bit more on the linear algebra side of things than on the statistics things. From what I understand, I don't really think that you would be seeing MATLAB in a professional capacity.
+
+[00:08:38] It's much more commonly used in academia, in university courses, or maybe in research, solving some simple puzzles in research before you migrate your model to a more robust. Solution on Java, Python, et cetera. So I wouldn't recommend picking up Matlab or Octave on your own for your own professional purposes.
+
+[00:08:59] Instead, just take MATLAB as it comes as necessary in your learning curriculum. Like I said, Andrew s Coursera course uses matlab, so you will be too, don't worry. It's a pretty minimal language. It's pretty quick to learn, and he teaches you all the basics in his course. And then there's a programming language called Julia.
+
+[00:09:17] Now, R, like I said, specializes in linear algebra and statistics and calculus. It has. Very strong mathematics foundations. Julia is very similar to R, but newer and slicker and sexier. That has pros and cons. Pros being syntactic, sugar and more powerful machine learning models. Cons being that you really won't see a lot of people using it in industry yet.
+
+[00:09:42] So it's kind of a Johnny come lately, an up and coming language that I would maybe keep an eye on, but hold off for now on trying to pick that language up. So as far as the math languages are concerned, my preferred language of this whole set is RR gives you a lot of power, flexibility. It's open source and it's actually quite common in industry.
+
+[00:10:04] So knowing R would be professionally advantageous. Now I see R used. Pretty commonly on the data analytics side of, of data science. Remember from a previous episode that I said that data science is sort of an umbrella term for various professions or fields of study. One, which is data mining. One which is data analysis or analytics, and another, which is machine learning.
+
+[00:10:29] So while R supports machine learning in a very robust way. It's a lot less common I find when I'm looking at job postings or conversations online than Python, which is a language much more common in the machine learning space where R is more common on the data analysis side of things. I'll get back to that shortly.
+
+[00:10:48] Those are the math languages, r, MATLAB, and Octave and Julia. Next we enter the JVM Java Virtual Machine Languages, Java, of course, being the namesake for the Java Virtual Machine. So Java's the most popular of the JVM languages. Scala being a recent contender on the space, which is picking up steam at a very rapid clip.
+
+[00:11:11] Scala is kind of the dynamic functional version of Java with syntactic sugar, so I like to think of that as the kind of hip new startup contender on the JVM. Java is one of those 50-year-old middle manager fancy suit languages, and Scala is the big bearded coffee drinking startup. Hipster Scala is a very fun programming language to program in, especially its attention to functional programming.
+
+[00:11:41] Functional programming is a very powerful tool in the programmer's toolkit. If you're not familiar with functional programming, you will be eventually, trust me. It's becoming more and more of a necessity in modern programming paradigms, but it is especially essential for distributed computing. So distributed computing is the name of the game for the JVM.
+
+[00:12:02] The JVM languages. Java and Scala are meant for very, very highly scalable data pipelines or data architectures by way of distributed computing. Okay, so there's two frameworks that you'll use. If you're using Java, then the framework of choice is Hadoop, H-A-D-O-O-P. And if you're using Scala, then the framework of choice is spark.
+
+[00:12:28] So what do these frameworks do? You take in a bunch of data from the internet and you pipe it into these distributed computing frameworks, Hadoop or Spark, and now you are inside what's called a data pipeline or a data architecture. Let's say that you're trying to consume every tweet on Twitter so that you could do some sort of sentiment analysis on what is popular, what is making people happy, what is making people enraged on Twitter, while consuming all the tweets from Twitter would be done by way of a data architecture or a data pipeline through distributed computing.
+
+[00:13:03] So these would be your guys, the JVM languages and. Frameworks, Hadoop or Spark, you would pipe all the tweets into Spark or Hadoop, and you would write various nodes in this distribution graph for processing the data. So this is data mining. This is the data mining piece of data science. Let's think of a mining analogy, just so if you're a miner and you're going out and you're chiseling away and you've got a bunch of ore, you bring it into a truck and that truck brings it to a factory, and the factory dumps it at the receiving bay, and it all goes onto a conveyor belt.
+
+[00:13:37] And the or goes through some sort of processing mechanism that gets dumped into some call drawn and mixed with some liquid, and out comes some shiny object on the other side of the conveyor belt. And then that goes through some packaging system where it gets wrapped up into a gift box and then the gift box gets delivered to your machine learning algorithm.
+
+[00:13:56] The data mining side, or the data pipeline, or the data architecture. That is what the JVM is all about, and that is one of the three main components of data science, data mining. You need your data for machine learning, your, your machine learning algorithms need data to function, but you don't want raw data.
+
+[00:14:17] You need pre-processed data. And if you're working with. Lots and lots and lots of data, as in the example I just used. Then you're gonna need to use a scalable distributed computing system like Hadoop or Spark. So this data mining step is all about boiling all your data down into just the basics, cleaning it up, slicing and dicing, packaging it up for either your data analysts, the R people or your machine learning people in Python.
+
+[00:14:49] So that's what these frameworks do. They take in raw data, they slice it into chunks. Send those chunks off down different conveyor belts. Those conveyor belts run the data through multiple processing steps in order to clean up your data and package it all up. And now you have the best of the best clean data for your data analysts or your machine learning experts.
+
+[00:15:10] Three sub fields of data science, data mining, data analytics, and machine learning. Now, just to help you understand that differentiation, let's go through one more example. I'm going to use the Google ecosystem. We have Google Analytics and Google AdSense. Analytics is charts and graphs. It's for helping your growth hackers or your biz devs make business decisions.
+
+[00:15:35] It's called business intelligence. You're looking at charts and graphs to determine what sort of advertising strategies are bringing in new customers. Maybe we need to ab test our website in order to determine whether the button should go in the top right or the top left. I think the search engine optimization is not working for the website under this regime.
+
+[00:15:56] Maybe we need to change the wording under certain pages to drive in more traffic. Just a bunch of charts and graphs in order for your business people to make. Better business decisions. That's the data analysis or data analytics side of the data science package. And it's jobs like those that you're mostly gonna see.
+
+[00:16:14] Languages like RR specializes in data analysis. Now R can be used for machine learning. And R can also be used for data mining. As you'll see in a bit, every language can be used for all three prongs of the data science umbrella, but if you've determined that you want to specialize in one capacity or another, it's in your best interest to choose the popular language of that ecosystem.
+
+[00:16:39] So there's data analytics on the machine learning side. Let's talk about Google AdSense. AdSense determines what types of ads to show which users based on users' browsing history, their prior search queries, things they've clicked on in the past. Maybe they've sat on some Amazon product page for like 10 minutes, really weighing the pros and cons of purchasing the Oculus Rift.
+
+[00:17:04] What Google does is it tracks as much of this as it possibly can. In order to determine what are the best ads to show the user in the future, that's what machine learning does. It learns some patterns by way of data in order to make predictions, predicted courses of actions, predicted ads, classification numbers, et cetera.
+
+[00:17:25] So Google Analytics is like data analytics within data science. Google ad sense. The ad serving piece of Google is like machine learning within data science. And finally, we need all this data both on the analytics and the machine learning side to work with. And that's what data mining does. Data mining pulls data from some source slices and dices cleans it up and then hands it off as a beautiful package to your analytics or your machine learning.
+
+[00:17:51] So in this Google analogy, there's some data pipeline at Google that's collecting every click. Every action a user takes, how long a user is sitting on some webpage, every search query, all that stuff is being collected in terabytes and terabytes through the scalable data pipeline, the data architecture, by way of very likely Hadoop or Spark.
+
+[00:18:13] Now, if your data collection phase is very minimal, if you're not collecting megabytes or terabytes of data, then you don't need a data pipeline. Maybe you're just collecting data on a one-time pass. Or maybe you're collecting clicks and actions, but it doesn't happen really that frequently. So you don't need this major scalable architecture.
+
+[00:18:33] You can just take the data as it comes, slice and dice it, and package it all in the language that you're using, whether it be Python for machine learning or R for data analytics. So you don't need a data architecture, you don't need a data pipeline. You'll know if you need it. Because you're trying to process lots and lots of data, but if you're not trying to process gobs of data, you don't really need this step.
+
+[00:18:54] Data mining is a field of its own. People specialize in data mining. They know all the tricks of the trade. For web scraping, breaking down data, cleaning it up, normalizing numerical input and all that stuff. Okay, so that's data mining. That's, that's what we're talking about on the JVM. So these languages and these frameworks, the language, Java, it's an older language.
+
+[00:19:16] It's more enterprisey, it's more robust and powerful, but it's also very verbose. It's very chatty. It takes a lot to do. Little. So Scala comes in and cleans a lot of that up with syntactic sugar. Scala is a fresher take on Java. Hadoop is the data pipeline framework that that would go on top of Java if you're using Java and Spark is the data pipeline framework you would use on top of Scala.
+
+[00:19:43] Now, I believe that you can use Hadoop with Scala and Spark with Java. So you can mix and match 'em, but I also believe it's probably in your best interest to go with the language that's chosen as a first class citizen. So here would be my recommendation. If this is a Greenfield project where you get to call all the shots.
+
+[00:20:00] In other words, you get to choose the technology, then choose Spark on sala. It's simply a cleaner, slicker, faster, sexier Hadoop on Java. And it's where a lot of the mind share is. And future growth in this space. But you may not have a choice. You may be applying to a company, maybe a larger organization or a little bit of an older company, or even a new company whose developers are very well versed in Hadoop and Java.
+
+[00:20:24] So Hadoop on Java, I. Spark on Scala. Now, one more note, I said that any of these languages and their frameworks can be used for any of the prongs of data science. R specializes on the analytics side of things, but it can certainly be used for machine learning. It's actually very good for machine learning, and sure it can be used for data mining, maybe not large scale distributed data mining.
+
+[00:20:49] So if you're working with terabytes, R might not be the best solution. But R can be used for any of these three pieces of data science. Similarly, Java can be used, of course, for data mining, of course, on the analytics side and in machine learning by way of some modules that you would plug into your pipeline.
+
+[00:21:07] So if you're using Hadoop on Java, the legacy stack, then you would use a module called Mamou, M-A-H-O-U-T, Maho. That is the machine learning framework. Built into Hadoop. So if you are mining data from the web, let's say you're scraping some information off of webpages and you pipe it into your factory and it gets cut up into pieces and it gets massaged and cleaned up, normalized, packaged up, and then sent to the last module or node of your data pipeline, which is the machine learning piece you would use au.
+
+[00:21:43] So you'd use Java, Hadoop, and AUT on the Scala stack. You would use Scala, spark. Spark for the data pipeline framework. Scala is the programming language. And then your final node of the pipeline for machine learning is called Spark ml. ML for machine learning. So spark ml. So if your specialty is data mining.
+
+[00:22:05] With maybe a little bit of machine learning sprinkled in, then you can go this route. But if your specialty is machine learning with maybe some analytics and data mining sprinkled in, then that brings us to Python. Python. Python is the most highly recommended and most popular language of choice for machine learning engineers.
+
+[00:22:26] If you know anything about Python, then you may be thinking, why the hell is Python? The most popular language for machine learning? I said way back in c and c plus plus. We need to the metal screaming performance for our machine learning models, we need it to run on the GPU. We want to scale our data mining pipeline distributed across multiple computers.
+
+[00:22:48] Python doesn't seem like a good fit for. Any of this. Python is a dynamic language that is, if I dare say, rather slow. It's not functional, so it doesn't distribute nearly as well as Scala. Here's what Python has going for it. Python can handle any of these tasks with ease. By way of either a domain specific language or a framework.
+
+[00:23:11] Okay, so let's start with the math languages, r, MATLAB and Octave. And Julia, how does Python stack up to those languages for supporting mathematics as a first class field within the language? Well, the language doesn't support mathematics that well outta the box. Instead, you use these libraries called MPA and Pandas.
+
+[00:23:31] N-U-M-P-Y and pandas, you know, like a plural panda, num pi is sort of python's answer to Matlab. So num pi gives you outta the box, including the syntax, the colons, and the commas that let you slice across matrices, all the operations that MATLAB supports. So, boom, using Python, we just. Crossed out one entire language, pandas gives us all the same functionality that R gives us, not, not all the way, not completely.
+
+[00:24:02] Of course, R is still a little bit more robust, a full community backing behind it, but most of the way there. And as far as we're concerned as machine learning engineers. All that we could possibly need. So boom, we just cross out R. Now, of course, Python might give us lots of other things that we might need in our entire solution of a startup or some sort of web service, such as the server, whether you use flask or jango and connectivity to your database through SQL Alchemy, so it fits into the rest of the architecture of your company without having to know other languages and frameworks.
+
+[00:24:35] It just fits right in. How about data pipelining That seemed like. Something that was very well suited to Java. Well, guess what? Spark supports Python. You don't need Scala for Spark. It has a Python, API. You can use Python for spark. So boom, we just cross out the whole JVM section. We have data pipelining through pi Spark.
+
+[00:24:56] We have mathematical operations through Num, MPA, and Pandas. Okay? And there's one thing left performance. When we're talking about how it compares to CNC plus plus, and you need your operations to run on the GPU and not the CPU, that's where frameworks come in. Theano, torch and TensorFlow. What they introduce to Python is a paradigm called a computational graph.
+
+[00:25:20] Or a symbolic graph. What you do is you write your neural networks in the framework like TensorFlow in Python and TensorFlow packages up what you just wrote. It walks down the stairs to the basement and gives it to see. It says, here, see, I want you to rewrite this in an optimal way for you to execute.
+
+[00:25:43] In a C environment, C looks at what you wrote in TensorFlow in Python, and it kind of turns it around in its hands and it kind of chuckles to itself. And it says newbie and rewrites it 'cause it knows a better way to run things. And then it turns around, it opens the oven, pops it in the oven. That's your GPU.
+
+[00:25:59] So TensorFlow takes your Python code, converts it to C, and runs it directly on the GPU. And then when the oven's finished, it pulls it out, C gives it back to Python, and Python gives it back to you. So there you have it. Boom. We just blew C outta the equation. Python handles. Everything. That's why Python is so popular in the machine learning community is not because the language itself stacks up to any of these other languages.
+
+[00:26:25] In fact, it doesn't. However, libraries and frameworks written in the Python ecosystem can replace all these other paradigms very effectively. So Python gives you your. Full data science stack from data mining to data analytics to machine learning. Now, I will say that if you apply to a job as a data analyst, or if you apply to a job as a data, as a data miner, you will still find the JVM or maybe R used predominantly in those particular verticals.
+
+[00:26:54] But for a company which supports the whole process, A to Z, and which you might be spanning the full stack of data science, Python is certainly the most. Popular and common language and ecosystem that you will see in the space. Most of the jobs that I see when I'm scanning the job market and machine learning are certainly Python jobs.
+
+[00:27:13] And again, it's nothing in the language itself. It's all in the ecosystem. The libraries and modules. That are available in the Python ecosystem that make data science completely span from A to Z by way of a single language. So let's talk about these frameworks. First off, like I said, we have num, pa, and Pandas.
+
+[00:27:31] Num PA gives you a little bit of the quick and dirty matrix operations. It's sort of the answer to MATLAB and pandas gives you all sorts of statistics, operations summaries. Analytics plots and graphs over data, a bunch of operations on a data structure called a data frame. So these are two libraries that are, you'll commonly see in the Python toolkit.
+
+[00:27:52] Another library is called PCI Kit Learn, S-C-I-K-I-T, like a scientific kit. And this is a bunch of shallow learning algorithms available for Python shallow learning algorithms like linear regression, logistic regression support vector machines, and Bayesian inference driving cars. Anything you could possibly name in the machine learning universe, I think you'll find that the majority of your machine learning work professionally and academically will tend towards deep learning, if not in the beginning, at definitely by the end.
+
+[00:28:26] So most of the work that you're gonna be doing in machine learning will be done in deep learning. Neural networks from the prior episode. So once we graduate to deep learning, you can no longer use Psychic Learn. Instead, you move on to one of these frameworks. These frameworks I mentioned previously that are kind of categorized under the umbrella of computational graphs or symbolic graphs.
+
+[00:28:47] And one more time, let me explain what these frameworks do. You write your code in Python within the frameworks architecture, so you use the frameworks API, let's say, to build out a neural network. Let's say that you create a new object that's an instance of a neural network, and you call a few methods off of that object, adding new layers and new neurons, and you add.
+
+[00:29:10] A final operation, which is back propagation, which will perform gradient descent, and then you feed it a bunch of data to train the network on. And then you say object dot go, or session run, or some other incarnation like that. And what happens now is python. By way of TensorFlow or whatever framework you use, we'll hand off what you've written to c.
+
+[00:29:34] C will assess what you've given it and rewrite it if necessary. If it finds that it can optimize it, execute the thing on the GPU and then give you your result. Now, notice that step where I say that C may decide to optimize what you have written. This whole setup may sound familiar to you if you've ever worked with React Native as a mobile app developer.
+
+[00:29:57] React native lets you write your mobile app in JavaScript, okay? The language being JavaScript and the framework being react and the framework on compilation will then pass what you've written down to Android. By way of Java and iPhone by way of objective C or Swift. And those respective languages will make optimizations if necessary and then compile your code down to native mobile code.
+
+[00:30:25] Okay, so that's on the mobile space. If you've ever made a video game with Unity. It's very similar. You write your game in a high level framework and it gets compiled down. Or if you've ever used an object relational mapping system, an ORM for databases, maybe using Ruby on rails or Jango, what you do is you write your SQL query by way of the framework.
+
+[00:30:47] You're not actually writing any SQL. Instead, you're running a bunch of functions passing in parameters. And then you hit Go and the ORM will do some analysis of what you've written. It'll optimize it, it'll gut out some stuff that's unnecessary. It'll add in some new stuff that might make things a little bit faster.
+
+[00:31:04] And then it will turn it into the SQL language. So it'll transform your Python or your JavaScript code into sql, and then SQL will execute the code. So that's exactly what's happening with these computational graphs. In Python, you write your Python. With any of these frameworks, Theano, torch, or TensorFlow, the frameworks, optimize it and compile it down to sea, execute it on the GPU and therefore you get screaming performance with a high level expressive language.
+
+[00:31:32] Very slick indeed. Highly recommended approach to machine learning. It's also by way of these frameworks that most of the mind share and research and progress is happening. Especially TensorFlow. But before we get into TensorFlow, let's kind of take a historical approach to these frameworks. We will start with Theano, T-H-E-A-N-O.
+
+[00:31:53] As far as I know, Theano is the oldest of these computational graph frameworks. It was built out at the University of Montreal where a lot of Mindshare was going on, especially in the early days of deep learning, making a comeback with Jeffrey Hinton, y Benji, all those guys. So that was sort of the hotbed physically in the universe.
+
+[00:32:11] Of machine learning research was in Montreal, so a framework came out of this called theano, and it supported sending mathematical operations down to sea and from sea to the GPU and all the way back up. That's the computational graph. And while it was used almost exclusively for machine learning, it didn't initially support machine learning directly.
+
+[00:32:33] It was more on the math side of things. So the community built third party modules, one's called blocks, and another one's called lasagna. So it's like another layer on top of theano for common machine learning tasks like linear regression and logistic regression. So that stuff was built out on the shallow learning side, but we still needed a high level expressive language for the deep learning side of things.
+
+[00:32:55] And so another layer on top was built called Kes, K-E-R-A-S. So Theano is more of an ecosystem than an individual framework. If you use the Theano ecosystem, you will be using the theano. Framework Indeed, and any number of other modules on top. I find personally, and this might get me into trouble, that the looks to be going out of vogue to its competition, namely Torch and TensorFlow.
+
+[00:33:24] So I think The's got a little bit more history. It's a little bit older. Well, over time it became more common to use very research, heavy experimental, deep learning architectures like a ComNet CONV. ET or CNN or convolutional neural network. You've already seen this in the prior episode about vision.
+
+[00:33:45] CNNs are very good at classifying images. Connet. Well, it turned out that the wasn't great maybe at handling something a little bit more obscure like that. So Facebook created a competitor symbolic graph based framework called Torch and Torch, particularly specialized in image recognition by way of conv nets.
+
+[00:34:05] And of course, it handled any other sort of. Incarnation of neural networks and other machine learning paradigms and the math at the lower level, et cetera. You can see why Facebook would be so interested in connet. Image recognition is their specialty. Please tag your friends in this photo. That's what Facebook's all about.
+
+[00:34:23] So Facebook is the king of the machine learning universe when it comes to image recognition specifically. So that's something that torch from the get go was very, very good at accomplishing. Incidentally, the Framework Torch was written on Lua, LUA. I have never heard of that language up until Torch. I've never seen it anywhere else, and I'm sure that they experienced that kind of reaction in their community as well, because they recently released a Python, API.
+
+[00:34:53] So now you can do Torch in Python. You're starting to see a trend here. If you wanna play with the big dogs in machine learning, you have to support. Python. That's what we saw with Spark. Spark released a Python wrapper because when they were stuck in the JVM, they realized they were really missing out on a major market of developers.
+
+[00:35:13] So Theano and then Torch. And then finally, a new player has entered Tensor Flow, T-E-N-S-O-R-F-L-O-W. TensorFlow by Google. If Facebook has an active interest in image recognition and classification, Google has an active interest in machine learning period. In fact, if you haven't made this realization yet, you will.
+
+[00:35:39] Google is the God of machine learning of the universe, everything that could possibly be a machine learning problem. Google needs to solve it. Language modeling in natural language processing for processing your search queries, knowledge, representation for coming up with a response to your search queries.
+
+[00:35:57] Image recognition by way of Google images, voice recognition with all of their voice services on mobile reinforcement learning in their self-driving cars. Anything you could possibly name in the machine learning universe, and especially the in linear algebra, statistics, and calculus. In a middle layer, you can work in denominator amongst their various teams trying to solve these problems, the framework they use, and built TensorFlow on top of Python.
+
+[00:36:26] I don't know if it was that people realized who Google is in the machine learning equation. Or if it's that TensorFlow itself is a superior framework, but when TensorFlow is released, people flocked in droves. In droves. TensorFlow is bar none. The most popular machine learning framework on the face of the planet.
+
+[00:36:48] The most talked about, the most commonly used in courses in GitHub projects. Boilerplates, new and interesting research and projects. TensorFlow is a little bit. Similar to the the ecosystem in that it supports various layers on the lowest layer. You have basic math operations in linear algebra, statistics, and calculus.
+
+[00:37:08] In a middle layer, you can work with raw machine learning algorithms and constructs, and then on a high level you can write neural networks with various architectures in a very expressive manner. There's another option to go even higher than that. With KR Os, remember the top level of the Theano stack.
+
+[00:37:28] You can put that hat on TensorFlow as well, and you'll get a little bit even more high level expressive neural network capabilities. TensorFlow has a little bit of a history. It actually has some major performance issues in the early days. If you look up TensorFlow performance and you find any articles from two years ago or one year ago even, you'll find performance comparisons between TensorFlow Torch and the, and you'll see that TensorFlow always loses.
+
+[00:37:57] However, because TensorFlow uses that computational graph system, the code that you write is not the code that's executed, and so the TensorFlow team was able to optimize the in-between, the Python goes down to Cstep, and of course. The GPU stuff and they milked out that performance. And now TensorFlow is one of the most, if not the most performant machine learning framework on the market.
+
+[00:38:19] TensorFlow also has built into it the capability for running, distributed computation. In other words, you wouldn't even have to use Spark if you used TensorFlow 'cause it's. Built into TensorFlow by way of something called TensorFlow serving. And finally, TensorFlow goes beyond just compiling down from Python to C into the GPU on your computer.
+
+[00:38:42] You can run TensorFlow on mobile, on an Android or iPhone device. So if you're building a mobile app that does machine learning, and there's some way that we can do some of the medium to minimal level compute resources models on the user's device directly. Let's say for example, image detection, you're taking an image and it will maybe highlight a person's a silhouette, separating them from the background or something like that can be run directly on the mobile device, and then you can kick off your more computationally expensive operations directly to the TensorFlow server.
+
+[00:39:14] So TensorFlow really is powerful. It runs everywhere. It runs any sort of machine learning model under the sun, including recurrent neural networks, which is something a lot of these other frameworks struggled with for a while. And reinforcement learning, which is really getting us into the artificial intelligence territory.
+
+[00:39:30] Reinforcement learning, remember I said, is that gateway that takes you from machine learning and into AI reinforcement learning. And TensorFlow supports reinforcement learning models directly. Okay, so if you decide on TensorFlow and Python, which I suggest you do, you will have the option to compile TensorFlow to run only on your CPU or on your GPU.
+
+[00:39:51] So if you're doing TensorFlow on your laptop for work and you don't have a very powerful GPU, you can just compile it to run on your CPU and it will, it's slower, of course, and for very, very heavy architectures, it's gonna be very slow. But for your server on an AWS cluster of Titan X, GPUs, et cetera, you of course will compile it to run on the GPU.
+
+[00:40:11] TensorFlow supports out of the box Nvidia GPUs. Nvidia is sort of king in the GPU space of handling machine learning and deep learning computations on GPU. They own it. They know that machine learning frameworks use GPU, and so they've actually written drivers for their GPUs so that machine learning models.
+
+[00:40:32] Can run more seamlessly on their devices. They do this by way of something called Cuda, CUDA, and I don't really know what that stands for, but it, but if you look up Cuda, it says parallel distributed computing platform application. Anyway, it's for running heavy math on your GPU and then an additional layer called CU, D-N-N-C-U-D-N-N.
+
+[00:40:52] And that is. Specifically for running neural networks on your GPU. So they have an interface, a driver for machine learning frameworks like TensorFlow, to interface with directly their GPUs. So incidentally, if you actually are looking for hardware, you may want to target Nvidia instead of a MD because they have these interfaces.
+
+[00:41:14] Okay, so that's a lay of the land of the Python machine learning frameworks. We have Theano, torch, and TensorFlow. Now, there are plenty of other machine learning frameworks out there, many, many machine learning frameworks. I'm going to give you a handful of some of the more commonly mentioned ones online.
+
+[00:41:31] One is called cafe. It's written in CNC plus Plus, and. Its interface is C and c plus plus. So you're not gonna be using cafe in the Python ecosystem as far as I know. It's a little bit old and dying, so I don't know that I recommend CAFE for anyone really. I may be wrong there. Take that with a grain of salt, do some research.
+
+[00:41:49] CNTK is a framework put out by Microsoft MXNet, put out by Amazon. Okay. I have, I haven't really seen CNTK or MXNet in the wild on job postings, online tutorials, or any of that. So, and then there's deep learning for J. If you're using Java, if you're using the JVM stack, particularly if you're coming from a Hadoop or Spark Stack, then you may want to use Java for your machine learning framework as well.
+
+[00:42:18] And so there's a framework called Deep Learning for J, and this is actually a very popular framework. It's very powerful. And if it weren't for it being in Java, I would've. Put it into the framework's comparison. So it's, it's, it's on par as far as popularity goes to maybe the likes of Theano or Torch, but it's in the Java ecosystem, so very powerful and popular framework called Deep Learning for J.
+
+[00:42:39] And then there's another framework out there that you'll see a lot called Open cv. CV stands for computer vision, and this is really just for computer vision, so you'll know if you need this framework. Don't seek it out for its own right. Computer vision can be handled with convolutional neural networks, which are an architecture that come along with.
+
+[00:42:59] TensorFlow, the torch, et cetera. So that's languages and frameworks, and my recommendation to you is Python and TensorFlow. Bam. I'm going to post a handful of articles that you can see people comparing languages and frameworks for machine learning purposes where I got a lot of this information. I've also got a lot of my information from job hunting and from talking to colleagues.
+
+[00:43:22] And for the resources section. Okay. You need to know Python to get into machine learning. You're gonna unfortunately learn MATLAB first if you're starting with the Andrew in Coursera course, and it'll kind of be a throwaway programming language, but it's okay because that language isn't very difficult to wrap your head around.
+
+[00:43:38] Python is a little bit more difficult because it's a little bit more robust. There's a lot more to know in the Python ecosystem. So if you don't already know Python, then I would recommend picking up a Python book. I'll do a little bit of research myself. On Amazon, and I'll pop one into the show notes.
+
+[00:43:52] So learn Python first and then learn TensorFlow. Now there's books and there's online courses, and there's video series. On TensorFlow, and I've consumed a handful of various media for TensorFlow myself, but the thing that I actually found to be the best resource for learning TensorFlow was actually just the documentation on the website.
+
+[00:44:13] The tutorials are very thorough. And of course they're always updated, which is something that one of these other media can't achieve. But they have very thorough tutorials to go along with code in an examples folder of the TensorFlow project itself that you can reference. So I highly recommend the TensorFlow tutorials.
+
+[00:44:32] And that is it for this episode, friends. See you next time.
+
