@@ -16,12 +16,12 @@ const info: Product = {
     },
     amazon: {
       // US: "https://amzn.to/4j7uQCJ",
-      US: "https://amzn.to/4iTtUSQ", // only pink avail right now
+      US: "https://amzn.to/3FT2VrZ", // only pink avail right now
     }
   },
 
   dimensions: {
-    value: [60, 28, 5.8], // 63"L x 28.5"W x 7.25"H
+    value: [60, 27.6, 6], // 60"L x 27.6"W x 6"H (from Amazon)
   },
   weight: {
     value: 88,
@@ -34,7 +34,7 @@ const info: Product = {
   },
   horsePower: {
     value: 4.5, // Assuming higher than TR1200 based on tier
-    notes: () => <div>What?? I've never seen a walking pad with HP this high.</div>
+    // notes: () => <div>What?? I've never seen a walking pad with HP this high.</div>
   },
   age: {
     rating: 10,
@@ -49,7 +49,7 @@ const info: Product = {
     value: ["A", brand.fakespot], // Not specified in the data
   },
   price: {
-    value: 1300,
+    value: 1499,
     // notes: () => <div>Premium price point reflecting top-tier commercial-grade quality. $400 more than the TR1200 and $600 more than the TR1000.</div>
   },
   pickedBy: {
