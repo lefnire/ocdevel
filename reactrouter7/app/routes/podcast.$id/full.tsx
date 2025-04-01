@@ -31,7 +31,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
   function renderResources() {
     if (!resources) { return null; }
     return <Section title="Resources">
-      <Alert variant='warning' className='p-2 my-1'>Note: Resources best viewed <Link to='/mlg/resources'>here</Link>, keeping this list for posterity</Alert>
+      <div className='text-muted my-0'>Resources best viewed <Link to='/mlg/resources'>here</Link></div>
       <ResourcesFlat nids={resources} />
     </Section>
   }
@@ -50,12 +50,12 @@ export default function Full({loaderData}: Route.ComponentProps) {
         {player}
 
         <p className='mt-2'>{e.teaser}</p>
-        {podcastKey !== "llh" && <Alert variant="success">
+        {podcastKey !== "llh" && <Alert variant="success my-0">
           <Link to="/walk">Try a walking desk</Link> to stay healthy while you study or work!
         </Alert>}
       </Card.Body>
-      {renderNotes()}
       {renderResources()}
+      {renderNotes()}
       {renderTranscript()}
       {e.guid && <Card.Footer>
         <Comments
