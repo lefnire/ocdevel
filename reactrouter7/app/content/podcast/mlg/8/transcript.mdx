@@ -1,0 +1,148 @@
+[00:01:03] This is episode eight math. This time we're gonna talk about math, mathematics, not the actual equations, but the various branches of mathematics that you need to know to succeed in machine learning.
+
+[00:01:21] Right away. Those branches are linear algebra, statistics, and calculus. Now, before we go into the details, I don't want to scare you into thinking that you have to learn these things first. In fact, what I am going to recommend to you is not to learn the math. First, I know that's gonna ruffle some feathers, especially the mathematicians coming to this podcast in machine learning, especially when you're taking these introductory courses like the Andrew in course, or these 1 0 1 textbooks, they have in the appendix or the first or second chapter, or the first or second lesson of the Andrew in course a primer for all of the math you need to know to succeed for that level of machine learning, this introductory level of machine learning, and I'm a big believer in the top.
+
+[00:02:05] Down educational approach. Learn how to build something first with your own two hands, and then you can learn the theory behind why you did what you did. So for example, in web and mobile app development, you can go to these boot camps where you can learn how to create a website. The high level essentials of React or Angular, JavaScript, HTML and CSS build out your portfolio enough that you can start applying to jobs and doing this day to day.
+
+[00:02:30] They don't start with the fundamentals teaching you predicate calculus. Discreet mathematics and assembly language. Some would say that you don't even need that stuff at that high of a level. Others would say that maybe an argument can be made that in order to truly become a master of your craft, you want to learn those building blocks.
+
+[00:02:48] I might agree with the latter, but I would say go back to it later. You'll be better equipped to appreciate. Why you are learning these fundamentals and the fundamentals will then snap into place in your mind, inside your machine learning algorithms where you are lacking knowledge. So that's my personal recommendation about how you should approach math and machine learning.
+
+[00:03:08] Learn machine learning. First, you're gonna learn the essentials of math through machine learning in the first chapter or the first course. Then either choose to learn the mathematics fundamentals after you've learned the basics of machine learning. Or maybe at the same time, you're learning machine learning, some small percentage of your learning time allocated specifically to learning math, say 20% of your learning time or one day a week where the rest of the days are dedicated to learning machine learning.
+
+[00:03:33] Okay, so let's dive right into the math. What math is used where? Let's start with linear algebra. Linear algebra is the easiest of these branches of mathematics, and it's also sort of the most commonly used branch in machine learning. Every step of your ML process uses linear algebra. Let's try to understand what linear algebra does.
+
+[00:03:55] I'm going to make an analogy to cooking throughout this episode. Cooking, so machine learning is like. Cooking, and I think linear algebra is kind of like chopping your vegetables, so it's an essential step at every point in your machine learning process, but it's sort of an easy step. You'll learn it pretty quickly.
+
+[00:04:13] Andrew ing will give you a primer on the fundamentals of linear algebra, and you'll be off to the races in no time. What does linear algebra do? Remember that when we imported a spreadsheet of rows and columns, okay? We call that a matrix. In mathematics, rows are your houses. Every row is a house. An example in machine learning lingo, and every column is some aspect of that house, like the square footage, the number of bedrooms, the number of bathrooms.
+
+[00:04:37] We call those features in machine learning lingo. The last column is called the label, and it's the, it's the actual price of the house that we know. So we can use that to compare to our own estimations and figure out how bad we're doing. So there you have a matrix, we call those xs. Every row is a lowercase X.
+
+[00:04:57] The whole matrix of rows and columns is a capital X. Every column of an individual row is x sub i I being the column number. So you have X three, X two, X one and X zero. That is square footage, number of bedrooms, number of bathrooms, and then what we want to do is multiply those values, those features, those X features by thetas theta parameters, it's theta that we're learning in the machine learning process.
+
+[00:05:24] We're coming up with these parameters, these coefficients, these weights that we're multiplying through each of our rows, each of the X values in order to get one final number. The hypothesis. H or Y hat, whatever you want to use. That will be our predicted cost of the house. Okay, so we're multiplying theta parameters.
+
+[00:05:45] We have theta three, theta two theta one theta zero x three x two x one x zero. Thetas are the things that we're learning. Xs are the actual features of a specific house, so theta three times x, three theta, two times x, two theta, one times X one, and then theta zero, which remember is our bias parameter times X zero, which we're always just gonna basically make one because theta zero standalone.
+
+[00:06:12] Remember, MX plus BY equals mx plus B. Your bias parameter is the starting point. If you don't have any data about the house, you're trying to make a. Prediction. If you don't have any information about the square footage, number of bedrooms, et cetera, then you're just gonna use the average cost of houses in Portland, Oregon.
+
+[00:06:26] That's our bias parameter. We're multiplying a whole list of Thetas by a whole list of features. We're multiplying our theta vector by our example, A vector times a vector. What's a vector? A vector's a list. Theta three, theta two theta, one theta zero. That's a vector. A list of numbers we're multiplying.
+
+[00:06:47] One vector by another vector. Now our ultimate goal is to multiply our theta vector by the whole spreadsheet. For every row in the spreadsheet, we want to multiply our theta vector into that row. So the spreadsheet is called a matrix. Now, let's think about how we might do this in Python. What we'd have to do is a triple nested for loop for every row in our spreadsheet, for every column in that row.
+
+[00:07:16] Four every theta in our theta vector. Multiply it, and then outside that loop is to add those together. And then outside that loop is to reduce them all together a triple nested for loop. Okay, so that's fine, we could do that. But what if our spreadsheet had a million rows and 50 columns? Well, that's gonna be very slow.
+
+[00:07:38] And as you'll see, once we get into deep learning, you're gonna be multiplying matrices and vectors at every neuron. And you may have a hundred or a thousand neurons. So using four loops is simply not an option. That's where linear algebra comes in. Linear algebra is basically doing that exact same thing, but with a single operation.
+
+[00:08:00] Linear algebra is the study of matrix algebra. It is how can you multiply a matrix, your spreadsheet of rows and columns, your houses? By a vector of thetas all at once, bam. You just multiply it. The process is executing this matrix. Algebra on your CPU or your GPU as you'll find in a later episode is done by way of something called sim D-S-I-M-D.
+
+[00:08:25] Single instruction, multiple data. It allows you to multiply a matrix by a matrix or a matrix by a vector with one fell swoop. So obviously that saves you tons and tons of time and that my friends is linear algebra. It is simply matrix multiplication. Okay. Let me introduce you to one new word. It is tensor tensor, T-E-N-S-O-R.
+
+[00:08:50] That is the general word for any dimension list of things. Okay. So we had a vector. That's our. Theta parameters theta 3, 2, 1, and zero. That's a vector, so it's a one dimensional tensor, A matrix, which is our spreadsheet, rows, and columns X three X two, X one, x zero. Okay, and then the next row is X two, X three, X one, and zero.
+
+[00:09:12] That's a two dimensional tensor. Or a matrix, you might have a cube. In the case of images, you have rows and columns of pixels and any individual pixel has RGB values, red, green, and blue values anywhere between zero and 2 55. So you'll have a new list kind of depth wise, like looking forward of. Three items.
+
+[00:09:34] So that's a three dimensional tensor and we'll just call it a cube. I think they just call it a 3D tensor. So a tensor is the general word for any dimensional list of things. And in fact, tensor with dimension zero is just a number. So the number one or two is a zero dimension tensor. And the reason I bring that up is to keep an eye out for that, because you're gonna see that in the namesake of tensor flow, the most popular machine learning.
+
+[00:09:59] Framework put out by Google that we're gonna discuss in the Languages and Frameworks episode. So linear algebra is simply tensor math, which you could do with or without linear algebra. But linear algebra helps you make it fast and vectorized and easy to reason about. So I like to think of, in my cooking analogy, I like to think of linear algebra as chopping your vegetables.
+
+[00:10:22] It's essential. You gotta do it. It's easy, really. Somebody will sit down with you, show you how to chop vegetables and you get it. But it's kind of a necessary step that you have to take it. Every point in the machine learning process. The next step is statistics. Statistics is the hard part. The very hard part, the hardest math of the machine learning triumvirate and statistics in our cooking analogy is the cookbook.
+
+[00:10:45] It is the recipes. All the algorithms that we use in machine learning come from statistics. It's like statistics is saying, Hey, I came up with this first linear regression. That's a statistics formula, logistic regression. Statistics. Those are in our prediction step, our hypothesis functions. So our hypothesis functions are statistics equations, straight outta the stats textbook.
+
+[00:11:09] Now we go to our error functions. Our loss functions mean squared, error stats, log likelihood function stats. So we grab our recipe book and we slam it down on the table. We open it to page one and it says oui, and it says, chop some vegetables. So the recipe itself is a statistics equation, and sure enough, these equations are nothing to shake a stick at.
+
+[00:11:30] I mean, if you look at that log likelihood error function for logistic regression, it was something like one over two M times the sum of I to. M of Y times the log of our hypothesis, minus one minus y times the log of one, minus our hypothesis, and then you add in regularization, which we haven't talked about yet.
+
+[00:11:48] It's just ugly and hairy. If you're looking at an equation in machine learning that looks wild and crazy, it's statistics. Statistics is the hard part. Statistics is what makes cooking. Cooking. What makes a good chef, a good chef. Is having good recipes, having a good cookbook, knowing how to put the right ingredients with the right other ingredients.
+
+[00:12:10] That's the essential piece of cooking. It's the essential piece of machine learning. So this is why I said basically machine learning could be considered applied statistics. And finally, we have our learning step, train, or fit or learn, whatever you wanna call it. Step three in the machine learning process.
+
+[00:12:29] Is calculus, calculus, calculus takes the derivative of our loss function in order to know how big of a step each theta parameter needs to take to fix itself. And this is all part of the loop called gradient descent. So our loss function, which is a statistics equation, our loss function could be graft in 3D space or 40 D space or whatever.
+
+[00:12:56] In the linear regression episode, we talked about the loss function, looking like a bowl in 3D, but the loss function can be any number of things. Sometimes it looks like a mountain range, and what you're trying to do is traverse the space, walk around. In your graph until you find the smallest valley or sometimes the highest peak, depending on your algorithm.
+
+[00:13:16] So it's like you're a hiker and there's snow, and you've got your boots and your hiking stick. There's snow everywhere, and the visibility's really poor, but you're trying to get to the bottom of the valley. That's where the error is lowest. That's where your hypothesis function is optimal. What calculus does by taking the derivative of your function with respect to your little guy.
+
+[00:13:39] In the function. So taking the derivative of your mountain range, taking a derivative of some graph with respect to your little guy in the mountain range is like, it's like a video game tutorial. He can't see well enough in front of him due to poor visibility and the derivative. Creates this sort of semi-transparent yellow arrow pointing down the mountain slope.
+
+[00:14:03] And if it's really long, it's telling the guy you need to walk all the way to the end of this really long arrow, A big step, a big gradient descent. Remember, this process is called gradient descent. We're descending the mountains. Once you get to the end of this yellow arrow, you can stop and I'll take another derivative with respect to where you are now, and I'll make a new yellow arrow pointing you down.
+
+[00:14:24] But we're gonna, you're gonna go left a little bit this time. So gradient descent is the learning step of our equation using derivatives. That's calculus. And the cool thing about this is that calculus is pretty easy conceptually. I mean, if you understood the way I described it to you there, then you understand the intuition taking the derivative of a function.
+
+[00:14:43] Proves to actually be quite easy in machine learning, at least as far as you're concerned, as far as implementing these algorithms is concerned. A lot of the times when it comes to taking the derivative of a loss function, you can do it pretty easily by way of some trick of calculus. These rules, like the power rule or the chain rule.
+
+[00:15:03] You just memorize these sort of sparks, notes, calculus tricks a flick of the wrist in order to get a derivative of a loss function. So you transform your loss function into a new function. That's the derivative, and that tells you how much of a step to take in which direction. Now, this fits into our cooking analogy very effectively.
+
+[00:15:23] Actually. It's like putting the tray into the oven, setting the heat to 4 65 and pressing start. Okay? It's the final step. It's like cooking your theta parameters, all your theta parameters in your hypothesis function in the initial step. Step one, predict they're all set to zero, or sometimes they're all set to some random small number.
+
+[00:15:44] Remember that I said initially you take a random shot in the dark so that the learning phase can tell you how bad you were, step by step by step through gradient descent, until all your theta parameters are just right. So this step is like cooking your theta parameters. They all start out raw. You can't.
+
+[00:16:01] Eat your hypothesis function, yet it's raw. So you put it in the oven and now they all start to cook and smell delicious and brown. And finally your egg timer dings and it's ready to come outta the oven. And all your theta parameters are just right in machine learning. We have this final step of learn by way of calculus, and that is the namesake of machine learning Learn.
+
+[00:16:24] Machine learn. So in a way, this is the linchpin of our machine learning puzzle. This is what differentiates machine learning from other fields like statistics. In our cooking analogy, we compare this step to cooking. Cooking a dish is the namesake. For the field of cooking, if you're a cook, then there's a lot of stuff that goes into your craft.
+
+[00:16:45] You're chopping vegetables, you're putting together a recipe, and then the final step is putting your tray in the oven, hitting start, and that final step is actually cooking the dish. So that step is the name sake for cooking. The field of cooking, just like the learn step of calculus by way of gradient descent and machine learning is the namesake of machine learning.
+
+[00:17:07] And by the way, we've been talking about calculus as a means for descending the error graph by way of gradient descent. This application of calculus towards minimizing some function is a branch of mathematics. Called optimization, or in our case, convex optimization. Convex means that the graph sort of looks like a cup and we're trying to get to the bottom of that cup.
+
+[00:17:29] Convex is kind of the shape of a graph, and we're trying to traverse the graph by way of calculus to the bottom of the cup. This is a spin off of calculus called. Convex optimization in the same way that physics is a spinoff of calculus optimization is a spinoff of calculus. So you may see when you ask somebody, what math do I need to learn from machine learning?
+
+[00:17:49] They'll say, linear algebra, statistics, calculus, and optimization. Well, kind of optimization sort of goes hand in hand with the calculus stuff and you'll learn them together. The specific application of calculus you're learning in the case of machine learning is called optimization. It's not something you need to go off and learn independently in the beginning.
+
+[00:18:07] This is just something to be aware of. Just keep an eye out for that word. So I want to go over one more time, sort of what each branch of mathematics is for independent of machine learning. So linear algebra is all about matrix math or tensor math. So you use that in machine learning at every step where you're combining Thetas and Xs or any other sort of tensor math you might be doing in machine learning, which is very frequent.
+
+[00:18:32] Statistics is the math. Of data, populations of things. When we're looking at the Portland housing market, we have a whole bunch of data in our hand. We want to come up with some sort of probability distribution of the Portland housing market. Okay? So that's a sub branch of statistics called probability.
+
+[00:18:51] You're gonna be learning two branches of stats, probability, and then inference. Inference is the step of making a prediction about a new house as it fits into the market. So statistics is all about data, and then calculus. The field of calculus is all about motion of objects. In a physical world, sort of physics comes directly from calculus and physics.
+
+[00:19:15] You might put in a video game is all about objects dropping and bouncing, and you running into walls and you're walking up and down mountains and stuff like that. So that's kind of how in machine learning, the learning step is our little dot descending, the error slope to the bottom of the valley. It's the motion of an object in a physical world.
+
+[00:19:35] That physical world is a graph put there by statistics. It's the distribution of our data, or at least the distribution of our errors, given the theta parameters used in our hypothesis function. So linear algebra is tense or math. Stats is data. Probability stats is distributions of data inference. Stats is making predictions on data, and calculus is motion in a physical world, namely motion of our little error.to the bottom of the valley.
+
+[00:20:06] Now, like I said in the beginning of the episode, don't learn math first. Learn math. Through machine learning, learn the essential math that you need for machine learning through machine learning. It's like learning the essentials of cooking in general by cooking some dishes, you don't go off and take a course on cooking and then start making some dishes.
+
+[00:20:29] You do it the other way around. You start cooking dishes and you learn the principles of cooking through the act of cooking. Now, let's say you end up at some steakhouse and everybody thinks you're a great cook and all, and you're making some money, but you wanna scale the ladder. You want to be the best chef there ever was.
+
+[00:20:46] You wanna work at some fancy restaurant or maybe open your own in Paris. Well now you're gonna go back and you're going to find some books. On how to chop vegetables. Perfect. How thin does everything need to be for certain dishes? Why do certain ingredients pair effectively? What's the theory of ingredient matching?
+
+[00:21:04] What about temperature? What's the optimal temperature for specific ingredients, and how do we find that to be the case? And why is that the case? So similarly with machine learning, you can go back now and you can start picking up the details of linear algebra, start learning some, some of these more.
+
+[00:21:19] Esoteric concepts like, like eigen vectors and coefficient matrices, understand why the statisticians chose these hypothesis and loss functions for specific models. How did they come to these equations? So when you learn math, after you learn math through machine learning. You've got an eye for these things.
+
+[00:21:40] If you were to learn math first, your eyes would glaze over because you wouldn't have an appreciation of where these equations are being applied. So you don't know what you're looking at. And what I see so common as a result of that is that people burn out on math before they get back to machine learning, and then they go with their legs tucked.
+
+[00:21:57] Between their tails six months later, back to their prior field, like web development. But if you learn math after, then you start to pay attention to the details of the equations. And it's sort of like Gandalf when he's pouring over all those books, he's looking for something and he catches something that people didn't catch before.
+
+[00:22:15] Okay, so enough of my opinions. I'm now going to give you the resources for learning the math, either after machine learning or some small percentage while you're learning machine learning, or, hey, if you want to just ignore me and just learn it before machine learning reference this resources section.
+
+[00:22:30] I'm gonna break it down into a few categories. One is MOOCs, by way of a company called Khan Academy. You remember MOOCs like Udacity, Coursera, and all those things. Online courses, videos and lessons, quizzes and all that stuff. Khan Academy is sort of high school level or AP level, courses like US History and includes Calculus one, two, and three, statistics and linear algebra so you can learn all of your math.
+
+[00:22:57] Basics from Khan Academy. I will post links to that in the show notes. The next category is textbooks, so if you prefer to learn by textbooks, instead of MOOCs, I'll post what I've seen to be commonly recommended from course curricula or from recommendations on chorus, stack overflow, et cetera. Textbooks for statistics, linear algebra and calculus.
+
+[00:23:19] I'll also post PDFs for primers on the basics of these mathematics branches that you need to succeed in machine learning. So maybe three or four page PDFs that are primers on just the essentials. Maybe in calculus, just taking derivatives of functions. In statistics, it would be some. Basic probability, theory and inference.
+
+[00:23:44] So those are three categories, different approaches that you could take to math. And now I'm gonna give you one final category, and this is a little bit hardcore, but I really personally like this. It's a course series online called The Great Courses, what used to be called the Teaching Company. They put out these 30 video series.
+
+[00:24:04] On every topic under the sun history, cooking, art, and they do indeed have math Calculus one, two, and three and Statistics two series on statistics. I don't think they have anything on linear algebra, but if they do, I'll post it. There's one course I want to draw particular attention to. It's called Mathematical Decision Making, and it's actually very similar to this podcast series.
+
+[00:24:26] Obviously much more professionally done. They have a lot of money. It covers a lot of the machine learning topics with a special focus on the mathematics. It's actually a study of a field called operations research, which is very similar to machine learning or artificial intelligence. It's like math for managers trying to decide scheduling of employees or trained departure times or factory settings.
+
+[00:24:48] It turns out the math is very similar to what you're gonna be learning in machine learning. So the course is mathematical decision making, and I'll post that in the show notes. Now here's the catch with these series. They're video series, but I wouldn't necessarily recommend them as a primary source of education for these topics.
+
+[00:25:04] Go to Khan Academy or go to one of those textbooks instead. But what I use these series for is I convert them to audio and I listen to it on my iPod when I'm exercising or cooking, or cleaning, commuting, et cetera. So obviously you appreciate audio supplementary education because you're listening to this podcast.
+
+[00:25:23] So that's how I use these series as. Audio supplementary education video converted to audio. Now that sounds really hardcore because obviously we're talking math here. These professors are gonna be referencing graphs and charts and equations. They're gonna be pointing to things and asking you to look at things as they explain them.
+
+[00:25:41] But one nice thing about these course series is that the instructors are very good. At narrating their actions, verbally talking you through everything they're doing step by step. Okay, I'm drawing a line horizontally. This is the X axis. I'm drawing a vertical line. This is the Y axis. I'm making a squiggly line.
+
+[00:25:58] Now it goes up, then it goes down. Then it goes up, and there's a dot on the valley. So they're very good about narrating the whole process. It's definitely a bit. Of a brain exercise, you're gonna want to be well caffeinated. If you're gonna do what I do and convert these video series to audio, you can just put them on your iPod as video and simply listen to the audio.
+
+[00:26:17] Or I actually have a script that I run a bash script. That converts videos to MP three files. I'll post that in the show notes, but I can't recommend the great courses enough, not even just for math. So I'm doing the calculus one, two, and three courses. The statistics, I did the statistics, they have a whole thing about philosophy of mind, whether AI can achieve consciousness.
+
+[00:26:38] The thought of our minds as machines. They have a whole series on neuroscience, so lots of supplementary stuff, Frenchly related to machine learning. By the way, the Great courses can be quite expensive, maybe a hundred dollars per course. If something has an audio format option, like the philosophy of Mind one does, you can get it from Audible by way of Amazon for cheaper.
+
+[00:27:01] But the math ones that I'm going to reference in the show notes are video only, so you'll have to buy them as video and then convert them to audio. Okay, so that's it for this episode on math. The next episode will be about deep learning, a very basic overview of neural networks. Please don't forget to give me a rating on iTunes, Stitcher, or Google Play, whatever you use.
+
+[00:27:23] If you have any friends trying to learn machine learning, please point them to this podcast. As always, you can find the resources on oc deve.com/podcast. Slash machine learning. That's O-C-D-E-V-E l.com. Thanks for listening, and I'll see you in the next episode.
+
