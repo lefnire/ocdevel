@@ -1,18 +1,22 @@
 export * from './meta.js'
 
-See [Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY).
 
-Which algo to use?
-- [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/)
-- [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/)
+### Topics
 
-KNN (supervised)
+- **Shallow vs. Deep Learning**: Shallow learning can often solve problems more efficiently in time and resources compared to deep learning.
 
-Unsupervised
-- Clustering -> K-Means
-- Association rule learning / Market basket -> Apriori
-- Dimensionality Reduction -> PCA
+- **Supervised Learning**: Key algorithms include linear regression, logistic regression, neural networks, and K Nearest Neighbors (KNN). KNN is unique as it is instance-based and simple, categorizing new data based on proximity to known data points.
 
-Decision Trees (supervised, classify/regress)
-- Random Forests
-- Gradient Boost
+- **Unsupervised Learning**:
+  - **Clustering (K Means)**: Differentiates data points into clusters with no predefined labels, essential for discovering data structures without explicit supervision.
+  - **Association Rule Learning**: Example includes the a priori algorithm, which deduces the likelihood of item co-occurrence, commonly used in market basket analysis.
+  - **Dimensionality Reduction (PCA)**: Condenses features into simplified forms, maintaining the essence of the data, crucial for managing high-dimensional datasets.
+
+- **Decision Trees**: Utilized for both classification and regression, decision trees offer a visible, understandable model structure. Variants like Random Forests and Gradient Boosting Trees increase performance and reduce overfitting risks.
+
+### Links
+
+- Focus material: [Andrew Ng Week 8](https://www.coursera.org/learn/machine-learning/resources/kGWsY).
+- [A Tour of Machine Learning Algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/) for a comprehensive overview.
+- [Scikit Learn image](http://scikit-learn.org/stable/tutorial/machine_learning_map/): A decision tree infographic for selecting the appropriate algorithm based on your specific needs.
+- [Pros/cons table for various algorithms](https://blog.recast.ai/machine-learning-algorithms/2/)

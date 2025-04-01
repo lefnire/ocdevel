@@ -1,0 +1,296 @@
+[00:01:03] This is episode 12. Shallow Learning Algorithms, part one. In this episode, I'm going to discuss various shallow learning algorithms, shallow learning. So remember in a previous episode when we talked about deep learning, we talked about using neural networks, which is kind of the quintessential deep learning concept.
+
+[00:01:27] As sort of a silver bullet approach, you can use neural networks for classification for regression. You can use them for linear situations where the features don't need to combine, and you can use them for non-linear situations where features may need to combine in some special way. Maybe the system will learn X three squared plus.
+
+[00:01:46] X two times X one. So that's feature learning. And the other piece of deep learning is the hierarchical representation of the data. It's learning, breaking down a face into its subparts eyes becomes lines and angles, and those become pixels. But I also said that while we may treat. Deep learning is sort of a silver bullet.
+
+[00:02:04] It isn't necessarily so, and in fact, if you talk to a machine learning expert in the field, it will very much aggravate them to see the level to which new machine learning engineers are treating deep learning as a silver bullet. There's two problems with thinking of deep learning as a silver bullet.
+
+[00:02:19] One is that it certainly is not a silver bullet. You can't use neural networks for everything. There are still many situations for which. Deep learning cannot be applied. And two, if you have a problem that fits the bill of a shallow learning algorithm, just so then you're going to save immensely on time and resources.
+
+[00:02:38] Deep learning is extraordinarily computationally expensive. So always using neural networks to solve everything means time and money when something could have been used in your problem for much cheaper. So having a basic knowledge of the fundamental shallow learning machine learning algorithms most commonly used in the space is very essential.
+
+[00:02:59] When you embark on your machine learning journey, learning machine learning, you're going to be learning these shallow learning approaches first. To understand a baseline of how machine learning works before you dive into the deep end of deep learning. And like I said in a prior episode, a lot of shallow learning algorithms can be used as a neuron in a deep learning architecture.
+
+[00:03:22] Not all of them. But some of them can be. So we are going to discuss the high level overview of various shallow learning algorithms. Some of the most common ones that I personally see we're gonna do so because having an understanding of all these different approaches is essential. For your development as a machine learning engineer, both in being able to apply the right tool to the right job, especially in situations where deep learning cannot be used, and also so that you'll be equipped with more computationally efficient algorithms for situations where a particular algorithm fits.
+
+[00:03:56] The bill, just so now I want to warn you, there are hundreds of machine learning algorithms out there. Hundreds. Machine learning for the longest time was this space of exploration of mathematical equations, statistical formula, trying to discover which algorithm would fit. What situation? If your problem was probabilistic, you might use something like Bayesian inference.
+
+[00:04:21] If you were Data Mining Association rules out of a market basket approach, you might use something like apriori. We're gonna get into all these in a bit. There were all sorts of different strokes for different folks, different algorithms for different situations, and so much so that almost every particular type of situation warranted a particular type of algorithm.
+
+[00:04:40] This created the quest for the master algorithm. This is like the quest for the Grand Unification theory in physics. I mentioned the master algorithm book in a prior episode of resources. It's all about that quest, the quest to find an algorithm that can handle any situation under the sun or at least most situations under the sun.
+
+[00:05:00] And that's where I think a lot of the hype that's surrounding deep learning is these days because neural networks can handle a surprising amount of situations. But for a while there, a particular algorithm was used for a particular situation. I think over time a lot of these algorithms became a little bit more sane.
+
+[00:05:15] Maybe one algorithm could handle multiple approaches, at least within a domain, and it became increasingly obvious. I. Which situations were most common? So for example, in industry, you're gonna see recommender systems all over the place. Amazon recommending the next book or product for you to buy Netflix recommending the next movie for you to watch Google recommending an ad based on your search queries, clicks and other things.
+
+[00:05:38] Recommender systems, that's a very common situation. Another common situation is something I just mentioned called a market. Basket. It's determining if you buy this and that, what might you also buy. It's to suggest for you another product based on things that are currently in your shopping cart. So that's another common situation.
+
+[00:05:56] So we've learned over the years in industry, I. Which situations are the most common, and which algorithms can be applied to those situations. So of the hundreds and hundreds of machine learning algorithms out there, there are a handful of algorithms that you're gonna see most commonly. And me personally, what I've seen most commonly, I have boiled down into this.
+
+[00:06:16] And the next episode, I'm splitting this episode in half because it would be so long otherwise, into the algorithms that I personally think are the most fundamental for you to learn. So in this episode, we're gonna talk about K nearest neighbors. K means. Apriori principle component analysis and decision trees.
+
+[00:06:34] And in the next episode we're gonna talk about support vector machines, naive bays, and then a handful of other miscellaneous algorithms like anomaly detection. Recommender systems and markoff chains. Now, understanding these basic algorithms, like I said, will be fundamental for your success in machine learning, and you will encounter so many other machine learning algorithms out there in the wild.
+
+[00:06:57] But you'll quickly get a feel for which algorithms are most common, and you'll also need to determine for whatever project you're working on, whether it's professionally or a hobby. Which algorithm is the algorithm to use for your specific project? So that's gonna be a key point, is you are going to get a job in machine learning, or you're gonna be working on personal projects and machine learning.
+
+[00:07:16] There are hundreds of machine learning algorithms out there. We can boil 'em down to the most used algorithms. And so what you're gonna need to do is determine which algorithm best suits your specific project. So at the end of the next episode, and in the show notes, I'm gonna post a link that's basically a decision tree for deciding which algorithm to use for your project based on various attributes about your project, and then you can dive into the details of that specific learning algorithm.
+
+[00:07:41] I. Now, as is the nature of my podcast, I'm not going to go too deep into any of these machine learning algorithms. I'm gonna do a very high level approach to how they work conceptually. So apologies for that. You'll need to dive into the details later on your own by way of the resources that I recommend to you per usual.
+
+[00:08:00] Okay, let's start from the top. Let's remember how machine learning is hierarchically. Broken down. AI becomes machine learning. Machine learning splits into supervised, unsupervised, and reinforcement learning. The three subcategories of machine learning, there is a fourth category called semi-supervised.
+
+[00:08:20] It's kind of a middle, it's. You could think of it as like 3.5 categories of machine learning. I'm not gonna really talk much about semi-supervised learning, but let's understand these three categories. We've talked about supervised learning in the past with linear and logistic regression. Actually everything we've talked about in the past is supervised learning, linear and logistic regression and neural networks.
+
+[00:08:40] Those are all supervised. Neural networks can be used actually for unsupervised and for reinforcements. So that's another reason why neural networks are so popular is they can be applied in any space of machine learning. Supervised gets broken down into classification and regression. Remember, classification is categorizing a thing as this, that, or the other thing, cat dog, orry and regression is coming up with a continuous value output, a number.
+
+[00:09:04] So either a classification. A number, so I think we all understand supervised learning. Just dandy by now. Supervised learning is giving your system a spreadsheet with all of the labels in place, and it learns these theta parameters by looking at each row one at a time, making a guess, and figuring out how bad it did.
+
+[00:09:27] And correcting that error. The algorithm is sort of supervising itself. I mean, you feed in the spreadsheet, the matrix of data with the labels, and the model sort of consumes it, iterates over it and trains itself, but we don't think of it that way. Really. We think of it as we are supervising the training of the model.
+
+[00:09:45] Think of it like this. Think of it like training a dog. To sit or to do some trick and you've got your hands behind your back. In one hand you have a treat, and in the other hand you have a newspaper and you say, sit and the dog makes a guess. So it tries something, it stands up and you spank it on the nose with a newspaper.
+
+[00:10:04] So that was the error function, telling it kind of, it made a mistake. So the dog thinks in its head and it tries something else. And it tries rolling over and you spank it with a newspaper and you say, bad dog. And so the dog stands back up and it thinks, and it thinks, and then it sits, and then you give it a treat and you say, good dog.
+
+[00:10:19] So supervised learning is like supervising the training of your algorithm, just like training a dog with treats or a newspaper. Good dog, bad dog. Reinforcement learning, skipping over unsupervised. For now, reinforcement learning is an interesting twist. We're not gonna see reinforcement learning algorithms until much later in this series.
+
+[00:10:40] And reinforcement learning is sort of the gateway to artificial intelligence. It's the way by which you exit to machine learning as a professional field and enter the world of artificial intelligence proper the way reinforcement learning works. Is you give your model a goal, okay? So you give the dog a goal.
+
+[00:11:00] You want the dog to run through the woods and retrieve the pheasant that you just shot down. But more than that, I like to think of reinforcement learning as even deeper than that. It's like putting a backpack on your dog, giving it a sword and a shield, and saying you're gonna find treasure at the end of your quest.
+
+[00:11:16] If you find yourself in a cave of sorrow, that is bad, leave the cave. If you find yourself amongst the blue people, they are good. Stay with them. They'll give you points. So you give your model a system of positive and negative reinforcement and a purpose, which is maybe to find the treasure at the end of the maze and it learns.
+
+[00:11:37] How to navigate the system. It learns the rules of the game, what actions it can take. It's kind of a coming of age algorithm. You send it on its journey. You say, go now for time is of the essence, and you push the dog away. It's got its backpack and its sword, and it's a neo fight. Right now, it doesn't know left from right, but eventually.
+
+[00:11:56] At the end of its journey, it's strong and it's level 99, and it's figured everything out. It's figured out the rules of the game, how to play the game. Pits are bad, dog food is good, and finally learns how to get to the treasure at the end. That's reinforcement learning. Reinforcement learning is sending a model on its way, giving it some positive and negative reinforcement guidelines, and the algorithm learns the rest of the system on its own.
+
+[00:12:19] Okay, so supervised, unsupervised, and reinforcement. So we skipped unsupervised. Unsupervised, I think of as sort of the redheaded stepchild, the everything in between. Unsupervised. I mean, it has a very simple definition. It's that you are not supervising it's learning process, whether by reinforcement rules, in the case of reinforcement learning.
+
+[00:12:39] Nor by pre-labeled data. In the case of supervised learning, the algorithm is left to its own devices to figure things out. And you're not telling it whether it did good or bad. You're just saying, okay, I'll take what you gave me. So for example, you give it a bunch of unlabeled data. Let's pretend that you have a bunch of humans, cats, and fish.
+
+[00:13:00] And you hand 'em all to your unsupervised algorithm and you say, Hey, can you kind of sort these out for me? You as the human don't know. Let's pretend that you don't know the difference between a human, a fish and a cat. And the machine doesn't know either You didn't give it labels to come with the data.
+
+[00:13:15] You just give it a bunch of stuff and you're like, can you maybe sift these into three piles? I don't know. You'll, you figure it out. I'm sure you'll do just fine. And so the algorithm kind of scratches its chin and, and it looks at this pile of objects, okay? They're not sorted and they're not. In three piles and it needs to sift them out into three piles.
+
+[00:13:32] So it does its best and it sure enough, you know, good algorithms sift these things out such that all the humans are in one pile, all the cats are in one pile, and all the fish are in another pile. That's unsupervised learning because you didn't supervise the algorithms training. It learned on its own.
+
+[00:13:48] What characteristics, separate things, and the output doesn't come with any labels. Okay. So supervised, unsupervised, and reinforcement learning. So, okay, so I think you understand supervised learning, maybe reinforcement learning sounds a little bit mysterious and interesting. We're not gonna get into that.
+
+[00:14:03] Maybe unsupervised, a little bit fuzzy for you. Well, you, I think you'll understand it a little bit more once we get into an example. But first, let's start with a supervised learning algorithm. Okay? So again, we're going to be covering. Many algorithms in this. In the next episode, just a lay of the land of some of the most popular algorithms used in the machine learning world.
+
+[00:14:26] We've already covered linear and logistic regression and neural networks. Three supervised learning algorithms. So we're gonna cover a handful of other algorithms. Linear and logistic regression are examples of shallow learning algorithms. Neural networks, of course, are deep learning algorithms, and we're focusing on shallow learning algorithms in this episode.
+
+[00:14:46] So your next shallow learning algorithm is called K Nearest Neighbors, KNN. K Nearest neighbors is an interesting algorithm in that it doesn't learn. So you may be thinking, okay, why are you putting this in an episode about machine learning? If it's an algorithm that doesn't learn well, it's commonly used by machine learning engineers.
+
+[00:15:10] It is commonly applied to machine learning situations. Imagine it as basically a brainless machine learning algorithm. That's all. It doesn't learn, it doesn't update theta parameters. There are no theta parameters in the system, and the reason that we're starting with this algorithm in this episode is it's the easiest to understand.
+
+[00:15:28] In fact, it is the easiest machine learning algorithm to understand of all the machine learning algorithms, in my opinion, much more so than linear and logistic regression. So this will be a breath of fresh air. K nearest neighbors. How does it work? Imagine our example of humans, cats, and fish. I'm gonna use that example for this episode.
+
+[00:15:48] Imagine taking a giant pile of humans, cats and fish and dropping them into a vat, into an aquarium, okay? And all the humans are kind of. Positioned in one cloud, one cluster over here, and then all the fish are in one cluster over here. Okay, so we have X, Y, and Z axes. These are going to be features, of course, when you're working in space in machine learning.
+
+[00:16:15] 1D or 2D. Or 3D, three dimensional space, four D, five D, et cetera. D or dimension is your features. So the position of a human in this aquarium would be maybe three features here. Let's say that our features here are number of legs, lives in the C and is a mammal. So based on those three features. We are going to position our animals in various locations in our aquarium.
+
+[00:16:46] Now our fish will all cluster around one area. Our humans will all cluster around another area, and our cats will all cluster around another area. Now, this is a very simple example with three features, three dimensions. In more complex examples, we may be dealing with 50 features or even more having any range of numerical values, whose values may be a little bit less obvious.
+
+[00:17:10] The way K Nearest neighbors works is you drop a new object into the aquarium. Plop. You drop in a cat and the cat gravitates automatically to the cluster of cats. Simple as that. K nearest neighbor means when you add a new object into the vat, when you add a new object into your model, it figures out.
+
+[00:17:34] Which group of things it has the most in common with? So of all my neighbors, which ones am I nearest to based on my features, my number of legs? Am I a mammal? And do I live in the c? K in k. Nearest S means the number of classes. You're actually gonna see this a lot in machine learning. K representing the number of classes.
+
+[00:17:56] Think of it like saying class with a k. I don't know why it's actually K. But so what the algorithm does is you specify upfront how many classes are in the system. In our case, three, we have cats, humans, and fish. So three classes you put all your data into place pre-labeled from the spreadsheet. So the last.
+
+[00:18:16] Column of your spreadsheet is the label, whether it's cat, human, or fish, all of them come pre-labeled and so everybody's in place in three dimensional space. And then you add a new input to the system and it figures out what class or cluster that input has the most in common with based on its features, who of all its neighbors.
+
+[00:18:37] Is it nearest two? So I said, this is not a learning algorithm. This is what's called an instance based algorithm. The way it works is you have all of your rows in memory, and when you input a new row into your model, it compares that input to every single row that exists in your training data in memory.
+
+[00:19:01] So we loop over our spreadsheet. Every time we add a new row, it's looping over every row. We call those rows instances, so it's looping over every instance. Okay, so that's it. That's K. Nearest neighbor. Basically, I like to think of it as magnets. Suspended in a vat is you have three clusters or K clusters all centered around a magnet, and you drop a new object into the vat and it gets.
+
+[00:19:26] Automatically pulled to the right magnet based on its features. So that's a supervised learning algorithm. The dead giveaway for whether something is a supervised learning algorithm is, does it come with the labels? Did you give the algorithm a spreadsheet with labels as the last column? And indeed we did with K nearest neighbors.
+
+[00:19:47] So that's KNN. That's a very simple supervised learning algorithm. But it's going to segue us very effectively into your first unsupervised learning algorithm called K means. K means K. Again, being the number of classes. So first off, unsupervised learning, like I said, is that you have your data, but it is not labeled, and your algorithm is gonna try to figure something out about the data.
+
+[00:20:15] It's gonna work with the data a bit, but it's gonna work with it on its own. It's not gonna try to label data. It's not gonna learn to predict a value or a categorization. Instead, it may restructure data or organize them in some way. Okay, so three types of unsupervised learning algorithms are called clustering association and dimensionality reduction.
+
+[00:20:36] Let's start with clustering. So clustering looks very similar to K nearest neighbors. We have a vat, a aquarium. With clusters of objects, okay? We've got our humans, our cats, and our fish, and they're kind of separated from each other in space based on their features. In KNN, we basically had magnets put into place.
+
+[00:20:58] In the middle of those clusters, we had a human magnet kind of put into the cluster of the humans, a fish magnet in between all the fish and a cats. Magnet in between all the cats, and it doesn't really work that way under the hood. If you look at the algorithm, you may not understand what I'm trying to get at there, but kind of conceptually, that's the way it works.
+
+[00:21:15] You're kind of creating a magnet out of your cluster of objects. A cat magnet in K means you're learning the magnets, you are learning. It is machine learning. You're updating some parameters. You're learning where these magnets go. Now here's the thing, like I said, in supervised learning, the dead giveaways.
+
+[00:21:33] Always, whether or not comes with labeled data in clustering, you don't have labeled data. Instead, you just have a pile of stuff. You just dump a box of humans, cats, and fish into the aquarium. We don't know if they're humans, cats, or fish. The machine doesn't know if they're humans, cats, or fish. It's just stuff.
+
+[00:21:53] It's just a bunch of data points. It's dots. Okay. As far as you and I are concerned, and the model in the computer, it's just a bunch of dots in the aquarium, and what the model's trying to do is figure out what are some sensible clusters of all those dots, how can we partition them in a certain way? It seems that there's a.
+
+[00:22:16] Sphere of dots over here and a sphere of dots over here, and another one over there. It seems like there's space between them. They're not touching each other, there's not overlap, or if there is overlap, it still seems like this is a sphere and that's a sphere, kind of like a Venn diagram that's overlapping in the middle.
+
+[00:22:34] It still seems to me that there's. Something, there's like a difference between this cloud and that cloud. I don't know what I'm, I don't know what I'm gonna call them, but I'm gonna learn the line that separates them. That's what clustering does, that subcategory in unsupervised learning. And K means is one of the most popular specific algorithms used.
+
+[00:22:56] In clustering. So K means, K means is interesting. It's very similar to KNNK. Nearest neighbors all mean already. You're probably trying to figure out what could possibly be the difference. The way I'm describing it, the difference is that it learns where these magnets go. These magnets are called OIDs S and once again, you specify upfront how many you need.
+
+[00:23:19] So if I have a bunch of dots and I know that I need three classes out of this. Then you specify three K equals three. You dump all your dots into the vat. And so here's conceptually how I think of the algorithm. Imagine you're playing some sports game with a bunch of kids. You drop all the kids onto the field, and then you drop three team leaders onto the field.
+
+[00:23:40] Randomly, you just drop them from the air and they land onto the field. They frantically look around and they try to figure out who their teams are. You tell them up front, there are three teams, and I'm pretty sure that, I mean, there's an answer to this equation I don't really know as the human, but I'm quite sure that there's three kind of real concrete teams here.
+
+[00:24:01] You've gotta figure them out so your team leaders look around. And they all scatter. They run in in some direction. They run in the direction that it looks like to them is a cluster of people, a separate cluster of players. And so they stop and all the players realize, okay, this is my team captain. So they assign themselves to that team captain.
+
+[00:24:23] The players don't move these dots do not move in the vat. The team captains do, and then the team captains all kind of look around again and they reassess and they're like, is that right? And then, no. No. So they all scatter again. They run a little bit closer and they do this over and over and over, and every time they do it, all of the team members sort of keep in their mind.
+
+[00:24:40] They're like, okay, I, I'm, that's my captain. That's my captain. Until eventually all the team leaders. Have figured out what really is the natural clustering of these teams. I didn't really explain it very well. I don't have a very good way of explaining this, but that's how it works. Basically, you drop all these examples into a vat.
+
+[00:25:00] They each have features, but they don't have a label. So that last column of your spreadsheet is non-existent. The features are the dimensions. Those dimensions determine where in space these objects are, and then you drop three magnets into the vat and those magnets figure out on their own how to position themselves.
+
+[00:25:22] Such that they're in a position that separates the three clouds of dots most effectively. And then of course, the purpose of any machine learning algorithm is for making future predictions. So those magnets are now in place so that when you drop a future example into the vat, it automatically gets assigned to the right cluster.
+
+[00:25:43] K means K being the number of classes. Now you'll note if. If we dumped a whole bunch of data into a vat with three natural classes of humans, fish and cats, and we then said that there are two classes, K equals two, then it might not learn a very effective delineation. Or if we said K equals four, there may be sort of a natural segregation of data in the population that is not apparent to us, nor is it apparent to the machine and giving it the wrong number of classes.
+
+[00:26:20] Means sort of dooming the algorithm. So with K means, and clustering in general, you sort of have to have an intuition about how many classes might kind of exist in the system. There's a good example in a book I'm going to recommend at the end of this episode called Machine Learning with. Are where the author takes a bunch of social network data for a bunch of high school students, okay?
+
+[00:26:46] So things they might say on their Facebook wall or things that they like or dislike, various interests. And it naturally categorizes these students into five categories. Now, as is the case in unsupervised learning, it doesn't give you any labels, but if you look at the way it categorizes these things, you can totally tell what it's doing.
+
+[00:27:06] It has the jocks, the princesses, the nerds, the criminals. And the basket cases. So these are kind of five natural high school stereotypes that we kind of think of as natural in our minds. And it turns out the machine learning algorithm discovers with ease is actually the case as long as you tell it that there are five stereotypes.
+
+[00:27:28] If you made it four. Then it might remove that last stereotype. I mean, that was a little bit of a fuzzy one. Anyway, the basket case, do you, I don't know what that is. If you made it six, then it might come up with a new class of people and maybe it might dilute our stereotypes a little bit. Spread them thin, make them make a little bit less sense.
+
+[00:27:47] So having a natural. Sort of understanding of the problems that you're working with in order to determine the number of classes in the system. The number K in the system is kind of important, but there are actually algorithms that can naturally learn the best K for you. There are some algorithms out there that will help you to determine which K is the best for your situation.
+
+[00:28:09] So I'm gonna leave it to, of course, as usual, the Andrew ing Coursera course to teach you the details of K means and clustering. Okay, so we covered KNNA supervised learning algorithm for sort of finding what object fits where with a label. Pre-labeled data makes it a supervised learning algorithm and, and inputting a new object and getting a label back is also part of the supervised piece of it being a supervised learning algorithm.
+
+[00:28:36] Now we delved into the world of unsupervised learning. The second of the triumvirate of machine learning algorithms, we broke that down into clustering association and dimensionality reduction, and there are other subfields of unsupervised learning, but clustering I think is probably what you'll end up seeing the most common.
+
+[00:28:54] In the world of unsupervised learning, and we discussed a specific algorithm of clustering called K means very similar to KNN. Okay, so let's enter a new subcategory of unsupervised learning called association or association rules. Again, you don't give the machine learning model pre-labeled data. So that last column of the spreadsheet with labels does not exist.
+
+[00:29:20] Association rule learning as an interesting type of machine learning algorithms. Another name is sometimes, uh, market Basket analysis. The idea of association rule learning is you're going to learn if somebody buys this and that, what other things might they buy? So this obviously has massive value in e-commerce.
+
+[00:29:42] In regular commerce. Okay. So an example is if you are designing a store layout, if someone's gonna buy marshmallows and graham crackers, what might you also put near those two things? Obviously chocolate Hershey's. Chocolate bars. So association learning is all about putting more stuff in the customer's basket.
+
+[00:30:02] It's learning. What commonly goes with what other things? If you have a set of some stuff, A, B, and C, what often goes with those? D, E. What if you only have A does B go with a? So that's association rule learning, market basket analysis. Now, here's a little bit of interesting info about association rule learning.
+
+[00:30:27] It's often associated with. Data mining. Remember when we were talking about data science being broken down into various subfields? So one field of data science is data analysis and visualization charts and graphs kind of stuff. Another field is machine learning, of course. Actually, another field, which I didn't mention in a prior episode, is just database science, being really good at writing database queries, being a MySQL or Postgres expert.
+
+[00:30:55] Okay? So that's a subfield of data science. And then of course another subfield of data science is called data mining. It is mining information from the web. Or from some other data source. Okay, so scraping the web, maybe crawling the web, putting it into your database, piping it in through a data pipeline by way of Spark or Hadoop.
+
+[00:31:15] Remember those two technologies, spark and Hadoop, those are your data pipeline frameworks for very large amounts of data. Big data, they call it big data. And then finally. Putting it all into your database and maybe coming up with some source of conclusion. And that conclusion may be by way of association rule learning.
+
+[00:31:37] Now, association rule learning is clearly machine learning. We're learning to predict something based on a pattern that we recognized. But it's kind of also data mining. So this is where you start to see all the subfields of data science really. They really all get muddled together. It's really tough to tell them apart sometimes.
+
+[00:31:58] There's a lot of overlap. Association rule learning is clearly a machine learning. Type of algorithm, but it's a lot of times categorized within the field of data mining. And I think it's because data mining sort of predates machine learning as a very practical field in industry where people were using association rule learning in e-commerce really early on.
+
+[00:32:22] And so they just kind of categorized anything of machine learning that went along with the data that was super practical in the early days as simply part of the data mining process. So market basket analysis or association rule learning is learning what typically goes with what other things. And a very common algorithm used here is just called oi, the OI algorithm.
+
+[00:32:45] If you know what that word means, you're, you're probably like, oi, what? What the hell? So apriori means like it comes before, or you know something already. So in philosophy, if you have some apriori knowledge before embarking on an argument, that piece of information is naturally part of the argument. So operatory knowledge is stuff that you already knew.
+
+[00:33:07] And so the way a priori works in the market basket is like, so if I know that A is common and I know that B is common and I know that C is common, okay, so that's marshmallows. Graham crackers and Hershey's chocolate, but I know that D is super uncommon nail polish, who knows? And I wanna know what goes with A and B.
+
+[00:33:30] Well then a natural conclusion is C, not because I know that C goes with A and B. But because I know that C is simply common and D is not, so it's kind of using these like you, you build up a small database of common things and then you group those together in twos and figure out which of those is common, and then you group them in threes and figure out which of those is common.
+
+[00:33:56] And you sort of chop things off along the way to sort of reduce the problem set. So association rule learning really works with big data most effectively. And so the more that you can reduce your data down in this process, the better. So that's the ary algorithm. And finally, one last subcategory of unsupervised learning I'm going to mention is called dimensionality reduction.
+
+[00:34:20] Dimensionality reduction, dimensionality reduction is very easy to understand Conceptually, the idea is that if you have a lot of features, many, many, many, many, many features for all of your rows and your data, for your machine learning algorithms, it is in your best interest to reduce the amount of features you have.
+
+[00:34:40] And you can do that actually, you can, you can remove features, but what what dimensionality reduction does is it doesn't just delete features. It figures out what sorts of combinations of features can make new features. How can you boil two into one and keep doing that over and over until you've really slimmed down all your features?
+
+[00:35:03] To the minimum amount of features. So the best example I've heard is student's GPA. The GPA is one feature that sort of represents how well the student did academically in college. Now there's lots of features that you could consider. You can consider their test scores, their homework assignments. Their attendance.
+
+[00:35:25] If you were trying to decide if you wanted to hire a student, for example, you could have them send you their transcripts with all the information that you could possibly gather from that university, their test scores, their attendance, all these things. Or you could just ask for their GPA and the GP is basically all those things boiled down into one number.
+
+[00:35:46] So that's what dimensionality reduction does. Dimensionality reduction algorithms figure out. How to assess. All the features that you've given it in order to boil those down into a smaller amount of features. And one of the most common algorithms here is called principle component analysis. And the name of the algorithm is basically, I mean, it makes sense.
+
+[00:36:09] It's, it's everything I just described. We're figuring out of all the components of a hundred components, which few are the principle ones, which of these are the most important, or if all of them are important. How can we boil them all down into, say, five components, FE features, components equals features.
+
+[00:36:30] So principle component analysis, and I'm not gonna get into the nitty gritty of the algorithm. Of course it's an Andrew in Coursera course. It looks a lot like linear regression in my mind. So this is another case where knowing the fundamentals. Of these basics and statistics, linear regression, logistic regression and stuff, they come into play elsewhere into machine learning.
+
+[00:36:51] So that's why I taught you those first. Okay, so that's unsupervised learning. Unsupervised learning. I kind of think of unsupervised learning as your miscellaneous drawer that you might have in the kitchen. Okay. You have your silverware drawer and you have your towels drawer, and then you have a drawer of a bunch of stuff that doesn't really fit anywhere.
+
+[00:37:10] That kind of tends to be. The unsupervised learning category of machine learning. They're all very useful algorithms, don't get me wrong. I'm not calling them junk. They just kind of, I don't see what keeps them all together. It's, it's stuff that's not reinforcement, stuff that's not supervised. It's kind of all the rest they're, it's just a bunch of like utility algorithms.
+
+[00:37:32] Unsupervised learning. So unsupervised learning is clustering association rule learning. Dimensionality reduction and a handful of other stuff that I didn't mention. K means is a clustering algorithm. Op priori is an association rule learning algorithm. And principle component analysis or PCA is a dimensionality reduction algorithm.
+
+[00:37:52] You'll learn a lot of these from the Andrew Eng course. And for the final algorithm of this episode, we're going to talk about decision trees. I. Decision trees are a very, very important algorithm to know. Very important. As I mentioned previously, machine learning engineers who have been in the space for a very long time are extremely skeptical and critical of deep learning.
+
+[00:38:16] They think that people are jumping the shark with deep learning, taking it too far, using it as a silver bullet where it shouldn't be used as a silver bullet. And a lot of times it's decision trees that they'll use as an example of something that performs just as well. They'll say, see decision trees, which has been around the block since the fifties, work just as well as your neural networks.
+
+[00:38:37] And when I say work just as well, I'm talking about accuracy, performance, things that we're gonna talk about in a future episode about performance evaluation and all those things. But what's special about decision trees? Something that decision trees can do that deep learning cannot do is explain to the viewer what was learned.
+
+[00:38:56] What was learned. Okay, so when you use a decision tree model to learn your data, the result. Is something you can read. It's on your computer. Visually, you can read the steps taken to come up with the decision. So that's what makes decision Trees particularly special, but they're also very high performance.
+
+[00:39:16] They, they work very effectively. So what is a decision tree? A decision tree is exactly what it sounds like. It's just like when you come up with a decision tree in real life, you say, okay, if my mom arrives at three, then maybe we'll go out and do this. But if she arrives at five, we'll go eat. Okay? If she's not hungry, then we will go drinks first.
+
+[00:39:36] But if she is hungry, then we've got three restaurants to choose from. If it's raining, we're gonna go to this restaurant, blah, blah, blah, blah. Basically, it's a whole bunch of if else statements in a hierarchical structure. Now they call them decision trees, but they always draw them from the top. So imagine if you will, a circle at the top that branches downward left and right into two circles, and each of those branch downward left and right into two circles.
+
+[00:40:03] Now, what the decision tree learning algorithm will learn is these nodes and their branches. It will learn what things to check first and what things to check second, and what things to check third, et cetera. It will learn what goes at the very top. What is the first thing that I should try when we're talking about our fish, humans and cats scenario, what is the first thing you could check to rule out the majority of data?
+
+[00:40:33] Remember, we have three features. Number of legs is a mammal. And lives in the sea. Well, humans and cats are mammals. So if our root node checked is a mammal, then we would have to break that down even more based on the number of legs, for example. But if we first checked number of legs or lives in the sea, either of those features would tell us right away that it's either a fish or something else.
+
+[00:40:59] And then if it's something else, we could break it down by number of legs. So the top node of our decision tree, of our learned decision tree would be. Lives in the sea, question mark. If yes, it's a fish, if no, then you go down a new branch and then that branch asks the question number of legs. If two, then it's a human.
+
+[00:41:23] If four, then it's a cat. So that's a decision tree. Very simple. Our model will learn the optimal placement of questions and number of branches in this tree. And then, like I said before, the nice part is. When it's done, it will present to you visually a tree, and you can actually look at it and read it as the engineer, which is not something you could do with almost any other algorithm under the sun.
+
+[00:41:52] So if a customer comes into you and you have a linear regression or logistic regression learning algorithm that is. Meant to learn whether or not somebody should be eligible for a bank loan. Okay? You are a banker, a financier, and a customer comes in and asks, can I please have a bank loan? They fill out an application, and all the questions of the application are the features that go into the learning model.
+
+[00:42:16] Things like, have you ever defaulted on a loan? Have you ever been bankrupt? What's your age? What do you do professionally, et cetera. If you pipe that into logistic regression or a neural network, then it'll spit out the answer, no ineligible for a bank loan. And you'll turn around in your swivel chair and you'll say, I'm sorry, sir, you were ineligible for the bank loan.
+
+[00:42:35] And they'll say, what? Why? And you'll turn around, you'll look at your computer, and it'll be a whole bunch of green ones and zeros trickling down a. Black screen, like the Matrix, and you're like, uh, and you turn off your monitor and you turn to your customer and say, I, I don't know, but you are ineligible.
+
+[00:42:52] And they storm outta there. In a gruff, you cannot visually interpret most machine learning algorithms. They just, they're just numbers. But if it was a decision tree, the customer would come in and say, can I have a bank loan? And you pipe in the application, punch it into your decision tree algorithm and it spits out a visual tree for you to, you take your finger, you point at the top, no.
+
+[00:43:14] And you're like, okay, let's see. So it said no, and you, you go down to the right and you go down to the left and you go down to the right and you say, ah, this is where you failed, sir. It's because you've defaulted on a previous loan. I'm so sorry. And so he says, okay, I understand. And he walks out. It just so happens that in the financial industry.
+
+[00:43:30] You are required to tell your customers why they are ineligible for a bank loan. So in this particular case that I used, a decision tree is legally required. So for many applications and machine learning decision trees are very good. They're very readable, they're very obvious, they're very easy to implement by way of any sort of machine learning library out there like psych Kit Learn or any of the R packages.
+
+[00:43:55] You can actually use decision trees, not only for classification like I just used in this example, but also for regression. For actual numerical outputs. It's a little bit tough to explain, but you call a classifying decision tree, a classification tree, and a numerical output tree you call. A regression tree naturally.
+
+[00:44:16] Now, the algorithms, I'm not going to explain how they work. The actual learning algorithms, the process of learning the tree is figuring out what questions to ask first, second, third, and so on. The algorithm for learning those things. Um, there's one by the name of ID three. One is C 4.5, another is c5 0.0, another is cart.
+
+[00:44:39] Okay, so they got these funky names. I don't think you really need to understand how the algorithms work. Even when you're learning machine learning, you kind of can just pipe them in with your machine learning libraries or packages in R or psychic learn whatever you're using. And I'm throwing a bunch of words at you.
+
+[00:44:53] I just, I want to prepare you for what you're gonna see. When you're learning the details so that you're not overwhelmed with a bunch of words that you see in the wild, okay. When you're starting to explore the world of machine learning and you see millions and millions of words, I wanna just tell you what they are, even without getting into the details, just so you know, kind of where everything falls into place.
+
+[00:45:14] Along those lines, there's two kind of popular spins off of decision trees. The vanilla decision tree is just like I described to you, it has a problem with it called overfitting, which is something I'm gonna get into in a future episode overfitting. And the way you alleviate this problem is by way of making many, many, many, many trees, what's called a forest or a random forest, sometimes.
+
+[00:45:41] You figure out the average best amongst these trees. So who did best of all you, of all you trees, who are the best trees amongst you? And figure out what they all have in common in order to construct the ultimate tree. I. Okay, so that's a random forest approach. You make a bunch of trees, boil 'em down into one, and something very similar is called gradient boosting.
+
+[00:46:06] So I don't, I don't really understand how gradient boosting works. I think they cut off the tree at a certain point, at an early stage in the trees development. And then they kind of do the same thing as random forest. Don't quote me on it, but basically I just wanted to heads up you to those two words.
+
+[00:46:22] You're gonna see random forests and gradient boosting very commonly thrown around all over the internet. They're basically optimizations on decision trees. Okay, how about that whirlwind tour? This is only part one of a two part series on a whole tour of all these algorithms. Part two is going to cover support vector machines.
+
+[00:46:45] Naive Bays, anomaly detection, recommender systems, and markoff chains. And again, this may seem very overwhelming. I just want to give you a lay of the land of many of the popular machine learning algorithms out there. There's hundreds and hundreds of machine learning algorithms. Every algorithm can be applied to a different setting.
+
+[00:47:06] We're getting closer to the master algorithm. Potentially by way of deep learning and neural networks, but it is in your best interest to at least have an appreciation and understanding of the most popular shallow learning algorithms so that you can both save time and money when it comes to computational resources and for situations for which.
+
+[00:47:28] Neural networks are not suited at present, and there are many such situations. There are many situations where shallow learning algorithms are your best bet. What I mean by that is we're talking apples to oranges. It's not a performance comparison, it's just something that neural networks may or may not be able to handle.
+
+[00:47:44] So I. It is in your interest to get at least a lay of the land of the shallow learning algorithms, and I would recommend trying to understand the details of them offline by way of the resources. So let's talk about the resources. I'm going to post an article called A Tour of Machine Learning Algorithms.
+
+[00:48:01] It's basically just like this episode. Um, it's by machine learning mastery.com, which is a website that I've recommended before. He puts out very good stuff, very, very similar to this podcast, but in article format. It'll be a visual representation of everything that I'm discussing in this episode, so it'll give you something to visually latch onto.
+
+[00:48:19] Since I know that audio can be a little bit too much, there is an image online put out by Psychic Learn. Remember, psychic Learn is the Python Library of shallow learning algorithms. Basically everything that you're gonna hear about in this and the next episode are gonna be things that you can use by way of psychic learn.
+
+[00:48:37] These are not algorithms that are present in. Tensor flow. Tensor flow is built primarily for deep learning. You can build your own shallow learning algorithms and tensor flow. If you understand how the algorithms work. You just use the low level tensor flow math libraries, but I wouldn't recommend it.
+
+[00:48:55] I'd recommend sticking to psych kit, learn for the shallow learning algorithms, and then moving on to TensorFlow for the deep learning algorithms. So psychic Learn, put out an image that is a decision tree. For which algorithm to use, where? How about that decision tree is very meta. So it's a decision tree for deciding which algorithm of the world of machine learning algorithms.
+
+[00:49:20] You should use given your predicament. Okay. Am I working with text? Okay, go this way. How many training samples do I have? Okay, go that way. Very, very handy. So look at that and look at that before we get into the next episode. 'cause in the next episode we're gonna do a couple more algorithms and then, um, I'm basically just gonna copy and paste the resources section in the next episode.
+
+[00:49:40] These are the same resources that are gonna be useful for the next episode. The next resource I'm going to recommend is called Machine Learning with. Are. This is a Tyler recommendation. Most of my recommendations are sort of averages from around the internet, things that I see people recommending over and over and over, kind of the defacto resources.
+
+[00:50:00] This is a resource, obviously I picked it up somewhere, so somebody recommended somewhere, but I've never seen it recommended otherwise. I loved this book, machine Learning with R. It's a fantastic explanation of the machine learning concepts in a way that I thought was lacking sometimes in other courses or books.
+
+[00:50:17] So he does a very good job at thoroughly explaining the details of machine learning concepts. Additionally, he covers a lot of algorithms that Andrew Eng. Does not cover, but which are essential. So for example, naive Bays Market basket analysis and our priori association rule learning and K nearest neighbors.
+
+[00:50:34] He also covers decision trees, which is not covered by Andrew ing decision. Trees are one of those things that you're gonna see in almost any other machine learning resource you read. So it'll also teach you R along the way, which Python is the main language that you're gonna want to be using in your machine learning journey.
+
+[00:50:51] But like I said, in a prior episode, R and Java are two very strong runner ups that might be handy to have in your tool belt. Okay, now I'm going to mention two textbooks. They're very heavy and they're very commonly recommended. They are there to help you understand how machine learning works at a fundamental level, and they cover a lot of these algorithms.
+
+[00:51:13] That I, that I've mentioned in this in the next episode, remember my analogy of the machine learning process to cooking. I said that linear algebra is kind of like chalk things up, and statistics is your cookbook, your recipe book, and then putting it in the oven is calculus. That's the learning process.
+
+[00:51:29] Well, most of the resources that I've been giving you up until this point are basically cookbooks like a. A list of recipes to use in your machine learning endeavors. These textbooks that I'm going to recommend to you are for learning the theory of food. It's basically learning why the recipes are what they are.
+
+[00:51:49] If you have some understanding of statistics, how can you glue a bunch of concepts together in order to form a machine learning recipe? And these, so these textbooks, uh, one is called Elements of Statistical Learning. And another is called pattern recognition and machine learning. So I recommend these textbooks eventually.
+
+[00:52:10] You should eventually read these textbooks. They're very, very commonly recommended and essential for you to have a thorough understanding of how machine learning works. At a fundamental level, I don't think I would necessarily recommend them yet. Now I try to tie my resource recommendations. To the topic, the episode topic, even if you are not necessarily ready for those resources at that point in time.
+
+[00:52:37] So these are kind of, these are textbooks that I would recommend you come back to when you really want to have a more thorough understanding of how, how machine learning works at a fundamental level. And they will cover a lot of these. Machine learning algorithms that I've mentioned, but they'll go even deeper.
+
+[00:52:52] They'll, they'll help you understand not just what algorithms to use under which circumstances and why, but how did we even come to that conclusion? How did we come up with a new machine learning algorithm for this situation? How do we come up with these recipes? Learn how to invent recipes so that you're not confounded by the recipe book, so it's not just memorization.
+
+[00:53:16] So again, these are books that I would recommend you return to in the future once you have a more solid understanding and foundation in machine learning elements of statistical learning and pattern recognition and machine learning to textbooks. Okay, that's it for this episode, and I'll see you in part two.
+
