@@ -1,0 +1,264 @@
+[00:01:03] This is episode 14, shallow Learning Algorithms Part Three. This is the third and final of the Shallow Learning Algorithms episode, and this episode will actually be quite easy by comparison to the last two.
+
+[00:01:21] The algorithms that we're gonna cover in this episode are recommender systems, anomaly detection systems. And Markoff chains, recommender systems and anomaly detection systems are extremely easy to understand. So we'll start with those. They're also very specifically applied, so you're not gonna use these algorithms maybe all over the place like we did with the last few algorithms.
+
+[00:01:43] Namely support vector machines, naive bays and decision trees have a lot of applications and it's difficult to know when to use which, where these algorithms. Recommender systems and anomaly detection are used specifically in those applications, recommending things and detecting anomalies. Let's actually start with anomaly detection, because that's even the easiest to understand.
+
+[00:02:06] So first off, what would you use an anomaly detection for? For example, fraud detection in credit cards. Banks want to figure out when something. Went awry with your credit card. They want to find some sort of transaction that didn't look typical. It looked amiss. It's not your typical spending habits or it's overseas when you made most of your purchases.
+
+[00:02:27] Today in America, the way credit card fraud programs work are by using anomaly detection systems. They may indeed use the algorithm that I'm going to be explaining. In this episode, or they've probably, in my opinion, moved on to deep learning. I think a lot of big corporations have moved on to deep learning for much of their machine learning process.
+
+[00:02:48] Another application of anomaly detection is figuring out, for example, when a server is acting up, is it spiking in CPU and RAM usage, swap, swap space, networking, et cetera. It could be the case that maybe it got a very big load, it got asked to perform a task that is very heavy indeed. And this is not anomalous.
+
+[00:03:09] And so implementing an anomaly detection system can see through that and figuring out when something is indeed amiss so that a systems administrator could pay attention to this anomalous server activity. So anomaly detections have wide application. And real quick, I can explain to you how they work without getting into the details.
+
+[00:03:28] And that is. Simply to find an outlier on a bell curve. That's it. It's so simple. You have a bell curve of typical behavior, whether it's credit card transactions or server activity in a cluster, and if something acts as an outlier, something way over to the right over here on the bell curve or way over to the left over there, then you have an anomaly.
+
+[00:03:50] That's it. But let's break this down a bit. First off, let's describe what a bell curve is. Even if you haven't begun learning statistics on your quest to learning machine learning, and you will at some point, because statistics is the God math of machine learning. I'm still certain that you have. Seen the bell curve.
+
+[00:04:09] It is the most fundamental component of statistics, probably one of the most fundamental equations of the universe. If I am so bold, I may ruffle a lot of mathematicians feathers here, but in my humble opinion, I think that the bell curve should be the symbol of mathematics. It's very likely already the symbol of statistics, but I think it should be the symbol of mathematics.
+
+[00:04:33] Proper. So for example, if you were to represent various branches of science with different pictures for chemistry, you might use a beaker or a little potion symbol filled with green liquid in bubbles for physics, you'd use the atom with all the electrons swirling around it. You see this image used for like atom, the text editor for example, or react the web development framework.
+
+[00:04:54] You know the symbol I'm talking about it. The atom symbol, and it's used to represent physics in many, in many places. Maybe biology might be a cell, but math, when you think of math, you're like, okay, what kind of picture would I use? You'd probably think of E equals mc squared. My friends, I propose that the symbol of mathematics be the bell curve.
+
+[00:05:14] The bell curve, or. Also known as the Gaussian distribution or a normal distribution. I believe it's called normal because it's the most common distribution of all. And let me explain what a distribution is. A distribution is how your data falls onto a graph. So we've been working with data in this podcast series.
+
+[00:05:35] For example, we've been talking about housing costs. In Portland, Oregon, if you were to throw your spreadsheet of houses, just throw them all onto a graph by cost, you would get a bell curve. You would see that there is sort of an average cost of houses right in the center, and then things start to move away from it, either on the high or on the low.
+
+[00:05:56] So you have fewer very cheap houses and fewer very expensive houses, and most houses are somewhere in the middle. So the way that this falls on a graph is you have your average, the average cost of all your houses is the center of this bell. It's called a bell curve 'cause it's shaped like a bell coming in from the left.
+
+[00:06:15] It slopes up and it peaks at the top, rounds out, comes back down, slopes to the right and goes off to infinity. Looks like a bell standing up. So in the center is your average. This is called the mean, your average of all of the prices of houses in Portland, Oregon. And the reason it's so tall, the reason that's the peak of your graph on the Y axis, that is the number of samples taken from this distribution.
+
+[00:06:40] That's the number of houses that are the average. Price. So naturally it's the highest. As you go off towards the left, you slope down, you start to reach the very cheap outliers, houses that cost a lot less than the average. And if you slope to the right, you start to reach the very expensive outliers.
+
+[00:07:00] Houses that cost a lot more than the mean. So the mean. Determines the central location of this bell curve and what's called the standard deviation determines the width of the bell curve. So if your data is widely dispersed, if there's a huge range in housing costs. You'll have a very wide bell curve, wide and short.
+
+[00:07:22] We will have a very large standard deviation. If you have a small range of costs. So let's say the average is $200,000 and nothing goes above two 50 nor under one 50, then it'll be a skinny bell curve that's tall, and that means you have a small standard deviation. So that's understanding the bell curve.
+
+[00:07:43] It's a very simple distribution. And again, so a distribution means how your data all falls onto the graph. That's what a distribution is. And taking a sample of your distribution is taking one little house out of your data and looking at it and looking at the price. Okay, so I sampled. The data, and this house is $172,000, so that's taking a sample of your data.
+
+[00:08:07] The house that I took, it's called a random variable. You'll learn all these words when you're working with statistics. They use, they have all these terms for stuff when you're working with distributions, so a probability distribution, and there's all sorts of probability distributions out there. Like I said, the most common is the Gaussian distribution.
+
+[00:08:25] Or the normal distribution, a K, A, the bell curve. There's also things like the OUI distribution or the multi newly distribution or the normal distribution, et cetera. Different graphs, they look different depending on how the data is formed. And like I said, I think this is one of the most magical and common functions of the universe that you'll see.
+
+[00:08:49] It's actually a mathematical function. You can actually say like F of X equals, and then this big mathematical equation on the right. I'm not gonna list it out for you. It's actually quite complex. You look at this bell curve and you're like, okay, the most common distribution in the universe, it's gotta have a very simple formula.
+
+[00:09:03] It's actually pretty complex formula. You'll see it in your dealings with statistics, but anything that falls outside of the norm. Okay. That's why we have this word. The norm falls outside of our normal distribution over here on the left or over here on the right. Very, very, very expensive houses. I'm talking a million, $2 million house or over here on the left, a a house that costs $1.
+
+[00:09:24] Okay? Those are outliers. Big outliers. Really, once you get past your standard deviation, your typical widths on the left and right, you're getting into outlier territory. But when it comes to the anomaly detection algorithm, we're more concerned with. Mega outliers, things that fall really far on the right or the left.
+
+[00:09:43] So how does this system work? Well, you just build up a graph, your normal distribution, representing your data. So well, how do servers typically act? Here's CPU, here's common network usage, here's common disc usage, and you build up a normal distribution. Now. A normal distribution that I've been explaining so far is in two dimensional, you got an X and a y axis, but you're typically gonna be working with multidimensional data, and it's hard to envision a multidimensional normal distribution.
+
+[00:10:12] Let's say in 3D, it looks a little bit like a hill, and once you get into four D, it's a little bit, you can't really envision that, but you're gonna be working with multidimensional data and you're just simply gonna find outliers. Now, the learning bit of anomaly detection is this. Little variable you're gonna learn called epsilon.
+
+[00:10:31] And Epsilon basically is the threshold that you're going to learn, like if you have a small threshold or a large threshold. It basically determines how sensitive your system is when working with outliers. And what you'll do is you'll train your algorithm on. Normal stuff, stuff that's not anomaly. And then you'll test it against anomalies.
+
+[00:10:55] So for example, they say that your training data will consist almost entirely of your negative examples, and then your positive examples will be split mostly between your validation in your test set. And the reason for this is we want the system to be able to learn what's typical of your data, and then you're gonna basically be using.
+
+[00:11:14] Your outliers to fine tune the hyper parameter of the anomaly detection algorithm, which is called your Epsilon variable. And that's it. It's so simple. Honestly, I feel like I've talked too long 'cause I don't want you to overthink this. It's so simple. All it is is coming up with a bell curve in one or two or three dimensions, however many, and figuring out.
+
+[00:11:34] What is a mega outlier? That's it. And the learning process is learning. Where's your threshold? How sensitive are you to outliers? So for example, let's think about a classroom setting where you have a bell curve of grades, where the average grade is 80 a, B, and so 80 is your mean. And so that's the number where on your graph, on the X axis, the peak of your bell curve is so the very top of your bell curve.
+
+[00:12:03] You put a vertical line. Line right down the center and that number is 80. You go off to the right and you've got a bunch of B plus A minus a, a plus. So people who are getting a plus are on the far extreme to the right, for example, and then there's a smooth curve connecting to ARM mean and coming down to the left and going towards people who are getting B, C plus.
+
+[00:12:23] C, C minus and D. Now, let's say that that's basically our bell curve and we have one student who got an F. That student falls very far outside the typical population of students. Therefore, that student is more than just an outlier. That student is an anomaly. As far as the teacher is concerned, and so the teacher needs to go talk to that student and see, you know, what's going wrong and how can the teacher help this student, et cetera.
+
+[00:12:49] So something that falls basically doesn't look anything like the rest of our population. It falls outside that bell curve in a significant way. That's the anomaly detection system. It is simple statistics, Gaussian distribution. So let's move on to recommender systems. And recommender systems are one of the most common applications of machine learning in industry, and I think they were one of the earliest applications of machine learning, especially in e-commerce.
+
+[00:13:16] And online companies and recommender systems are exactly what you think they are. So for example, Amazon, Pandora. Spotify, Netflix. They all recommend to you a product or a song or a movie based on things that you've liked in the past. They're basically ads, if you think about it. It's just an ad system, but we call them recommender systems, and there's two very common flavors of recommender systems.
+
+[00:13:42] One is called content filtering. And another is called collaborative filtering, so two common recommender system algorithms, and they're very, very related. They use the same underlying principles, which we'll get into in a bit in order to show you how these things are different and similar. I'm going to use.
+
+[00:14:02] Two popular internet radio products. One is called Pandora and another is called Spotify. Now, by the way, I believe that Spotify has gotten a little bit more complex with the way they work, so I may be misrepresenting the way that Spotify works. This is just how I understand Spotify to work. So pretend that it works this way.
+
+[00:14:25] Bear with me. Let's start with Pandora. Pandora Internet Radio. Pandora is a website where you can listen to some music and you can like or dislike some songs and it will play songs that are similar to things that you've liked and dissimilar to things that you don't like. When you go on to Pandora and when you first start, it says seed a song, or an artist.
+
+[00:14:50] Like gimme something to start with. What do you like? I say, I like Ryan Adams. He's my personal favorite musician. And it says, okay, I'll give you a few Ryan Adams songs. Listen to that. Three minutes, another three minutes. And then the, the, the second or third song that comes on is a new song. It says, you know, based on the fact that you like Ryan Adams, I think you will like over the Ryan or Avett Brothers.
+
+[00:15:10] So it plays a new song for me, and I can choose to either thumbs up it or thumbs down it. And as you thumb your way through these songs. Pandora learns your musical preferences. It's got this thing called the Music Genome Project. The idea being that all these workers at Pandora have determined for every single song in the Pandora database, various attributes about these songs.
+
+[00:15:36] Things like male versus female vocals. Is it instrumental? Is there some bass? Is there guitar? What genre of music is this? What. Sub genre of music is this, and they've tagged all the songs in the database with various tags. When you like or dislike a song, it sort of throws in these tags to the dislike pool and these tags into the like pool, and it comes up with the sort of Venn diagram conceptually of the types of songs that you like to listen to.
+
+[00:16:01] But that's not how it works underneath the hood. The way it functionally works is by way of this thing called content filtering and content filtering. You're gonna love this. Is very easy to understand because you already know the algorithm that you would use for content filtering. It's one of the algorithms we learned in the very early days of this series.
+
+[00:16:19] Let me give you a hint. What we're trying to do here is determine a score for a song in the whole database of songs. Based on your personal user preferences, A score is a number. Usually when you're working with recommender systems, like on Netflix, you might give a movie, uh, anywhere between a one and a five star rating.
+
+[00:16:40] So a score between one and five. So it's a number, it's numerical, it is regression. In the case of Pandora, it's a thumbs up or a thumbs down. So it looks a little bit more like classification, but I imagine under the hood. Pandora probably does some sort of conversion of your thumb to a score, for example.
+
+[00:16:55] So we're working with numbers. We're trying to predict the number that would go along with this song in the database, given your user preferences. That you have built up over time given your theta parameters. This, my friends, is linear regression. It's just like trying to predict the cost of a house.
+
+[00:17:16] We've looked at hundreds of houses and we've come up with a bunch of theta parameters for predicting the numerical output. So that when you throw in a new house to the mix that it's never seen before, but it can look at the number of bedrooms, the number of bathrooms of square footage, distances, downtown, et cetera.
+
+[00:17:31] I'm going to guess $175,000 using my theta parameters of this linear regression model. So content filtering, recommender systems. Work exactly the same as linear regression. We throw in a new song to the mix, and I've already learned all these theta parameters by thumbing my way through these songs. This new song gets thrown into the linear regression algorithm and out comes a score on a scale from one to five or zero to one or whatever, a guess as to whether the user will like this song or not.
+
+[00:18:05] So it is linear regression. There are some very subtle differences that you'll see when you take the Andrew Ian course. Between linear regression and content filtering, but it's so minor, so there you have it. The first algorithm you ever learn from machine learning, linear regression is used for recommender systems, also content filtering.
+
+[00:18:23] Now, there is a problem here. The problem is this thing called the Music Genome Project. The Music Genome Project is this process where workers at Pandora. We're tagging every single song in the database with various tags, hundreds of tags, I think even thousands of tags. Tags that represent various features.
+
+[00:18:43] Remember, features are what you are working with. When we're talking about machine learning on these songs, that is very time consuming and that is often very difficult to do even if you have the time on your hands. You would have to listen to each song one at a time, and you'd have to have a lot of musical knowledge.
+
+[00:19:00] You have to know how to apply these features to the songs, what you're looking out for. Usually we don't have this kind of time nor the expertise for tagging every piece of content in the database, and especially as new content is being added to the database constantly, constantly. In fact, I do not think that this Music Genome project at Pandora is being applied manually anymore at all.
+
+[00:19:25] I believe that Pandora Internet Radio is using a deep learning audio analysis, machine learning algorithm to determine what features are associated with new songs as they come in and auto tag them with these features. I don't think there's any human listeners there anymore. I believe there are robot listeners.
+
+[00:19:44] Using deep learning algorithms, but let's pretend that you can't even do that, or that's too difficult for you given your circumstances. So for example, for example, Amazon, as new products are being constantly added to the database, you don't really tag them with features. What you're interested in. Or what a user might be interested in is what other users have looked at or liked or purchased.
+
+[00:20:09] So this is to my understanding, how Spotify works, the competitor to Pandora Internet Radio. And like I said, don't quote me on it, they may have changed their algorithm since, but the way I understand Spotify to work is what's called collaborative filtering. It is users. Also liked, so not similar songs based on various features about the songs, but users also liked and Amazon and Netflix, and in fact, I would say the majority of recommender systems out there use collaborative filtering rather than content filtering.
+
+[00:20:47] Users also liked rather than similar items. Now the goal of users also liked. Is to determine similarity between products or songs or movies. It is indeed trying to figure out similarity between products to recommend to you, but it is not by way of attributes of the product itself, but rather by finding users who are.
+
+[00:21:11] Similar to your purchasing preferences and figuring out what they also liked. So users also liked is the collaborative filtering algorithm, and I'm gonna kind of hand wave my way through this algorithm. You'll learn the details in the Andrew ing course, but the way it works is really kind of nifty. It is linear regression yet again.
+
+[00:21:33] But you don't have features of the product to work with in building up your theta vector for each user. You don't have the features, you don't have those numbers, and so you are going to build up those features yourself. So now I'm gonna switch examples to movies, Netflix, for example, to make this a little bit clearer to describe.
+
+[00:21:55] Let's say that user A is interested in fantasy movies, maybe some. Sci-fi stuff. He doesn't like romance. He loves action. And user B loves all the romance and the thinkers doesn't like action, hates fantasy and sci-fi. Okay, so we got basically two opposite users and in the database, if we were gonna use the content filtering recommender algorithm, well the database would be pre-populated with.
+
+[00:22:18] How much fantasy and how much romance and how much thriller is associated with each movie. But since we're moving on to collaborative filtering recommender systems, we don't have those features. Every movie is a blank slate. It is an empty vector of features. Now we don't even know what to call these features.
+
+[00:22:37] We, we don't know that we're necessarily gonna be learning the amount of sci-fi or the amount of thriller. We're just gonna allocate, let's say, 10 features for every movie. And when user A rates movie A, and then User A rates movie B and movie C and movie D, we start to figure out the common theme of what this user likes.
+
+[00:22:57] So we can start to build up a numerical representation for each movie vector. It is actually. Linear regression in the reverse. We are using, basically the movies are learning their theta parameters from user scoring system. Then we're going to use those learned features to guess what users will like. So then we switch again the other direction.
+
+[00:23:19] What we have is linear regression. Flipping sides over and over. Users rate movies from that movies, learn their features. From that, it will recommend movies. I. Users rate those recommendations from that the movie learns its features, et cetera. So we have this infinite loop of linear regression between the movies and the users, and it's really pretty magical.
+
+[00:23:48] It's really cool. Now it's an infinite loop. Of linear regression. So you might imagine just constantly, you know, in code you have this running loop of two linear regression models, but that's not, so actually what you can do is you can put both linear regression models into the same equation. There's a little trick where you can put two linear regressions into one into one mathematical formula, and now you have one model and that is your collaborative filtering recommender system, and there you have it.
+
+[00:24:20] That's recommender systems. So two spins. Of recommender systems. One is called content filtering, and that's the preferred one to use when you can and do have features tied to your content in the database. Do you have a bunch of information associated with each book or movie or product? Yes. Use content filtering if you don't have that information and you wanna learn that information by way of your users rating or purchasing, or even just viewing products.
+
+[00:24:50] You can use this twists to the system called collaborative filtering, which is basically like an infinite loop linear regression between the content and the users. And it's best thought of, in my opinion, as users also liked. So content filtering is similar items, collaborative filtering is users also liked.
+
+[00:25:10] Now, all of the above, both of these are intended to be similar items. They just work off of different principles. Now a little bit about the name. The reason they call it content filtering is because you have features on the content itself. The content itself has features, and you're using that to filter down things that users will like, content filtering, whereas collaborative filtering is your content is collaborating with the users, and the users are collaborating with each other to help make recommendations.
+
+[00:25:42] Recommender systems. Very simple. Now, I want to make a distinction clear. We talked about an algorithm in a prior episode called a market basket algorithm or an a priori algorithm for determining what items go typically with what. Other items. So for example, if you're in a store and you buy marshmallows and graham crackers, what should you also buy with that?
+
+[00:26:04] Well, the answer is Hershey's chocolate. This is different from recommender systems. A recommender system finds similar items. In other words, if I like Hershey's chocolate, I might also like a Snickers bar or a Kit Kat bar. It's basically something to replace what you have in your hand. I ate what I had in my hand.
+
+[00:26:24] I liked what I have in my hand. Gimme another one of those. Something similar to that, whereas Market Basket or Opry algorithms are for finding things to go with what you have. I bought diapers. I also want beer. And finally I'm going to explain an algorithm called Markoff Chains, M-A-R-K-O-V. And this may seem a little bit weird and out of place if you are a machine learning engineer and you're familiar with all the educational material and you're just kind of listening to this for fun, including markoff chains here may seem a little bit of a weird one.
+
+[00:27:01] It's not one of those 1 0 1 machine learning algorithms that you typically get exposed to. It's actually one of those algorithms that you get exposed to later down the pike, especially when you're starting to dive into reinforcement learning territory. Now, that's not necessarily so there. You can use markoff chains in various aspects of mathematical decision making.
+
+[00:27:23] Maybe it's a little bit more common in like operations research, for example, or control theory, but it is a machine learning algorithm. You may see it from time to time, but you're not very likely to see it as a newcomer to machine learning. It is not a 1 0 1 algorithm. So why am I explaining it now? The reason I'm explaining it is because it is brought up a lot.
+
+[00:27:45] From time to time, you're going to see markoff chains and Monte Carlo or Monte Carlo, markoff chains, MCMC. You're gonna see them, these words thrown around all over the place. And for me personally, when I first started getting into machine learning, and I never saw these algorithms described in my books or my videos or Andrew ing or anything.
+
+[00:28:04] I felt like I was missing something. I was very curious what markoff chains are, at least in principle. So I'm explaining markoff chains. Really just to kind of ease your mind, explain something that you're gonna see from time to time, but tell you now that you're not going to be using markoff chains anytime soon.
+
+[00:28:21] You are going to probably see this stuff once you get into reinforcement learning. It is the core algorithm of artificial intelligence. It's the base, the foundation of reinforcement learning upon which. You'll use deep learning principles and stuff to go deeper and deeper, but markoff chains are the linear regression of reinforcement learning.
+
+[00:28:43] So let's explain how they work. I'm gonna get a little bit dramatic here. Bear with me. Imagine you're playing a video game. And you are a barbarian and you have just stumbled on the last boss in his layer, the dark Lord, and there's flames and darkness everywhere. And the dark Lord turns to face you with his flaming demonic eyes.
+
+[00:29:03] And he says, come hero. And you grin darkly and you buckle down and you start running. And he throws fireballs and dark spells at you and you dart left and right casting. Ghastly shadows in your wake, and you make one giant lunge and you bound off the ground, leaping into the air. Unsheathing a great sword from your back, twirling it in your hand, locking it into place, coming down for a blow.
+
+[00:29:27] The dark Lord yells and he's springing up his arm for defense and freeze. I'm the narrator of this game. And I step into the scene and I say, barbarian dark Lord come with me. And they both turn to me and they follow me into the game room. The game room where I have them both sit down dark, Lord barbarian please.
+
+[00:29:45] They sit down and I use my laser pointer to point to the scene that they were just in. The barbarian is suspended in the air with his great sword coming down for a blow, and the dark Lord is bringing his arm in from the left to block, deflect the blow. And I say, dark, Lord, what do you think is gonna happen here?
+
+[00:30:03] And he says, oh, I don't know. It's complicated. Yes, yes, yes. But what's the probability of the barbarian landing? A blow. I mean, you have your arm coming in from the left, you're gonna block, he's over here with his trajectory and his velocity in all this. The dark Lord scratches his chin and he looks at the barbarian.
+
+[00:30:19] The barbarian looks at him and shrugs, and he looks back at the scene and he's, he starts to assess the history. Of this scene. Well, he was, well. He jumped through the air after he was dodging left and right from my magic spells, and I cut him off and I say, dark Lord, dark Lord. The magic spells don't matter.
+
+[00:30:36] That's all bygones at this point. He's in the air with his sword coming down at you. Does it matter that he dodged your fireballs and your dark spells? In fact, dark. Lord, does anything in history matter up until this? Point and the dark Lord's scratching his chin and he's looking at the picture and there's this like blue trajectory showing the path that the barbarian had taken up into this point.
+
+[00:31:00] It arks through the air in his jumped trajectory, comes off of the grounds zigzags, where he's dodged those spells and stops where he had entered the room. Surely. That trajectory is important, and the dark Lord says, but if I look at this blue line, I can see that he's coming. No. I say, no, no, no. Dark Lord.
+
+[00:31:19] Nevermind the blue line. History doesn't matter. Up until this point, all that matters is now. All that matters is now. This is called the Markoff principle. Allow me to explain the player's history up until this point that has made the player a barbarian is absolutely essential for this battle The player has.
+
+[00:31:40] Leveled up gained in strength and agility, fought various bad guys, gained experience both as a player and as a role played barbarian. He's learned some spells. He's earned some weapons and armor, so the player's history certainly should make a difference in the outcome of this battle. But we can boil all that history down into a handful of numbers, level strength, agility.
+
+[00:32:07] Experience, et cetera. In other words, we can erase history if we know the present, or rather we can boil all of history down into the present. This is the Markoff principle at play. The Markoff principle says History is irrelevant for determining the future and in certain. Models in certain circumstances, and this may be just one now, that all seems fine and dandy.
+
+[00:32:32] The le the player's history is condensed down into their level strength and agility. But what about this trajectory that is sending the player down onto the dark Lord to deal a strong blow? Doesn't that depend on this sort of blue line tracing them? Through this dark Lord's layer, leaping through the air and onto the dark.
+
+[00:32:53] Lord, don't these steps in history matter? Yes, they do, but they can all be boiled down into a handful of variables of the present as well. So imagine this blue line going, getting sucked into the user, a flash of blue light, and now you have an arrow pointing downward toward. The dark Lord coming out of the sword, representing trajectory and velocity.
+
+[00:33:17] And of course we also have those variables, strength, agility, level, et cetera. So you can boil all of history in this video game, including the last few milliseconds down into the present. Only the present trajectory, velocity, acceleration, strength, agility, et cetera. A handful of variables that represents the present state.
+
+[00:33:41] We call it state and the dark. Lord has some state himself. He has the trajectory of his own arm and how strong is he? Can he make the defense? There's other things going on in the environment maybe. The dark Lord has some minions that are currently shooting arrows at the hero. So the history only matters in so far.
+
+[00:33:59] It can, as it can be boiled down into the present, and that is the Markoff principle at play. The Markoff principle says that the next, the Markoff principle says that the next state. Only depends on the current state. So the next state depends on the current state and the next state in a markoff chain is a series of probabilities, a series of probabilities chaining their way through an action sequence.
+
+[00:34:25] So, for example, in our current state, the state being comprised of the user's level where he is, acceleration, velocity, trajectory, et cetera, combine that with the dark Lord's position, his arms trajectory and velocity, the configuration of minions and all those things. That's the current state. The next state can be determined by the current state and some probabilities.
+
+[00:34:47] Let's say that given all of that information, the probability that he delivers a blow is 80%. The probability that he is blocked by the dark Lord is 10%, and the probability that he misses his 5% and the probability that he gets clipped by a minions arrow is another five. Percent. So we can use these probabilities, these percentages to determine how likely it is for each possible Next state.
+
+[00:35:11] We're in a current state. Imagine drawing a circle around our current state and drawing a four arrows out of that current state. The number next to the arrow is the probability of it happening. And the circle in that next state where the arrow points is the state itself. So we have one next state being delivers a blow, another next state being clipped by an arrow, another being blocked by the dark Lord, and another being miss a markoff chain then is a sequence of actions in time.
+
+[00:35:41] You start in the beginning of the video game. You have some probabilities of maybe going left, going right, going forward, you have a probability if you went forward into going forward again or waiting there. If you go forward again, you have a probability of picking up the sword or you can ignore the sword.
+
+[00:35:55] A sequence of actions all pointing to each other and leading eventually to the end. I. These actions can loop back on each other. What's called a cycle, which makes a markoff chain a graph. A graph. In computer science, you're gonna see these a lot. A graph is a sequence of things that can loop back on themselves if there is no such loop.
+
+[00:36:17] It's called a tree, just like a decision tree. From a prior episode, remember I explained a decision tree? Similarly, you have a circle, and out of that comes some arrows pointing to next circles. This decision tree goes like this. If my mother's in town, we go over here. Okay? If she's hungry, we go to this restaurant.
+
+[00:36:34] If she's not and she wants some drinks, we go to these bars. Okay. Uh, if she's in the mood for this, we go to that bar. If she's in the mood for this, we go to that bar. So, a decision tree looks very similar to a markoff chain. There's some differences. A markoff chain is a graph, so you can have some cycles and, and importantly, a markoff chain is basically a sequence of probabilistic.
+
+[00:36:52] Actions in time. It's a process, a system, a running loop of action sequences, if you will. A decision tree looks like a process or a system, but it's not really, you input some inputs and outcomes and output. It's a regression algorithm or a classification algorithm comes your inputs, snap your fingers through the decision tree, and out comes a number or a classification, whereas a MARKOFF chain or a MARKOFF decision process, as you'll see in reinforcement learning.
+
+[00:37:21] Is a sort of running loop, a sequence of actions. It's something that may determine the actions to take by an artificially intelligent agent, for example, in our video game analogy, or it may describe the action sequence taken by customers or components in a system. So it's more of like a time-based system or process, sequence of actions.
+
+[00:37:45] Whereas a decision tree is a simple algorithm for computing and output. So now I ask the dark Lord again, so what happens next? And he says, oh, now I know.
+
+[00:37:54] Given this current state with the trajectory and velocity of his sword, he's going to deliver the blow. Probability of 80%. That is my final answer. And I say, yes.
+
+[00:38:06] Dark Lord. Good job.
+
+[00:38:07] Now, that's a markoff chain. I'm gonna do one more example. This example comes out of the mathematical decision making great courses series that I recommend over and over, and that goes like this. Let's say that a restaurant is modeled by a markoff chain, a group or an individual or whatever can enter the restaurant, okay?
+
+[00:38:25] So that's the first state. The next state is they are waiting for a table. You have a 50% probability of moving on from there to being seated by the hostess. Or a 50% probability of looping back onto yourself. In other words, you are still waiting. Okay, so we enter this markoff chain and we may be going back and back and back and back into our current state, which is simply waiting, and then eventually we leave that.
+
+[00:38:52] State with probability 50%. So basically it's kind of like the time it takes to leave a state. So like the time it takes to stop waiting and to get seated kind of is based on the probability. If it's, let's say 99% probability of staying in the waiting period, then you're gonna wait for a very long time with a 1% chance of.
+
+[00:39:10] Exiting that and being seated. If it's 50 50, then you won't wait for very long. You get seated. You're at your table, you're in a new state. State three, you can order or you still need time to decide. So you have a loop back to your current state. You loop back, you loop back, you loop back. You're trying to decide, and finally you decide.
+
+[00:39:27] And so you call over the waiter and you order. That brings you into a new state of waiting for your food, et cetera. So you've got this graph of circles representing states that you could possibly be in at a restaurant with probabilities of exiting your state into a new state. That's a markoff chain.
+
+[00:39:44] And a markoff chain is a little bit different than the other machine learning algorithms that we've seen so far in that it represents. A sequence of actions. That's what a markoff chain does. Now we've seen linear regression, logistic regression. These are like snapping your fingers and coming up with an estimate.
+
+[00:40:01] Somebody says, what's this house gonna cost? And you snap your fingers and you say, $175,000. Next. Those are different than a markoff chain, which is you enter a system. A system, or a sequence of actions, and you take various actions depending on the probability of taking that action. In a system and you navigate your way through a system, through a markoff chain.
+
+[00:40:24] Now, a markoff chain can be represented in a matrix form, a markoff matrix, and that's just a mathematical convenience for representing the chain. The chain that I was describing with circles and arrows, that's for visualization purposes. It makes sense to look at on a piece of paper for us. But the way you would actually represent this mathematically or in a computer is with a matrix, just like almost everything with machine learning, the way we represent most things in machine learning mathematically is in matrix form.
+
+[00:40:54] That's why linear algebra is so important. Now, you might use a markoff chain in operations research or mathematical decision making sort of to. Come up with an assessment of how long it takes for a user to maybe leave a restaurant, or where is the bottleneck in your restaurant system? Where do we find users staying the most, when maybe we want them to leave, or where do we find a state where they haven't yet?
+
+[00:41:24] Paid for their meal and the probability of leaving, so the next state being leave is higher than we want. We can use a markoff chain to sort of model a system and kind of assess it and figuring out what's going wrong, figuring out where bottlenecks are now, how do we come up with these probabilities in the first place?
+
+[00:41:43] Well, we do that just through observing data. We have years and years and years of users coming in and doing various. Things. Now, let's pretend over there in the corner is some statistician and he's writing on a clipboard. Every time a user leaves a table or every time a user orders food, and so eventually it can come up with some sort of probability of a thing happening next.
+
+[00:42:04] Given the current state, and again, the thing that makes this Marco Vian, the thing that makes this a markoff system is that no current state depends on the prior states. We have all prior state information. Is encapsulated in the current state. The fact that I'm sitting at a table must necessarily mean that I waited at some point for a table and that I entered the restaurant.
+
+[00:42:29] All prior states. All the history can be boiled down into the present. So that's a markoff chain. Now, let's go back to the game room with the dark Lord. And we ask the dark Lord, is this player going to win? And the dark Lord looks at you and he looks at the barbarian and he looks back at you and he's like, I don't know.
+
+[00:42:47] That's too loaded of a question. There's too many variables at play.
+
+[00:42:50] You cannot analytically use this markoff chain to come up with a simple numerical output, probability of the user winning when there's too many variables at play in a markoff chain instead of using. Some mathematical formula to snap our fingers and come up with a judgment.
+
+[00:43:07] We use what's called a Monte Carlo simulation, a Monte Carlo Markoff Chain. Monte Carlo is basically just running a series of simulations over and over and over until we get sort of a ex what's called an expectation, an expected value. You'll see a lot of this when you get into reinforcement learning.
+
+[00:43:26] Running stimulations over and over and over until you get what you think to be the most probable answer. They call this in mathematics. When you are solving an equation or a system of equations, snapping your fingers, coming up with a judgment, they call this solving an equation analytically.
+
+[00:43:41] Analytically. So when you can basically come up with a mathematical formula that takes an input and out comes output and you can just snap your fingers and boom. You're doing something analytically Well, when something is too complex to do analytically, then we might try different approaches to it. We might try like iterations for loops, for example.
+
+[00:44:01] And in this case, in the case of a Monte Carlo simulation, we're going to basically run. Simulations of this player playing the video game over and over and over and over and over until we basically start to converge. Converge they call it. When you start to see a pattern onto what we think is going to be the expected value, the expected value being the final score, what is the average final score that I'm starting to see over time when I'm simulating running the user through this video game?
+
+[00:44:34] Okay, so a Monte Carlo Markoff chain. Let's take it from the top. Here's how it happens. The user enters the dark Lord's layer and the dark Lord turns around and says, come hero. And the barbarian buckles down with a dark grin. Un sheaths his great sword, twirls it around in his hand, locks it into place, and then.
+
+[00:44:56] 500,000 ghost Images of the barbarian run in different directions. One goes left, one goes right, one goes forward. Another is already dodging, left dodging right, dodging left, gets hit by a fireball and dies. Dissipates into the air. The other one is jumping into the air, yet another one is blocking a fireball with a shield.
+
+[00:45:14] All 500,000 simulations ghostly heroes. Running through the scene, killing the dark Lord. Being killed by the dark Lord. Missing getting clipped by an arrow. Kill, killed, die. Die, kill, kill. And finally, we start to see a score of 7, 9, 3, 2, 6, 8. That seems to be the converged expected value of this Monte Carlo Markoff chain simulation.
+
+[00:45:40] So the chain, the markoff chain is, if I'm in this state, what happens next? Well, a probability of 0.9 this and 0.1 that, and the Monte Carlo part is running through a bunch of simulations. Now it's a little bit complex the way basically, one of these ghost heroes runs to state two, and now he has to decide, is he gonna run to state three, four, or five?
+
+[00:46:02] Well, we pick the thing with the highest. Probability with that probability. And sometimes we pick the things with lower probabilities. This is kind of that Monte Carlo process, and there's this whole system to this. There's this algorithm called the Metropolis Hastings Algorithm, a random walk, et cetera, but basically that's Mc Mc Monte Carlo Markoff chains.
+
+[00:46:22] In a nutshell is that you have a chain or a graph of states and next states. They're all determined. Probabilistically given your current state and running through that whole series with simulations is the Monte Carlo bit. Now, like I said, you're going to be seeing this markoff chain in reinforcement learning and artificial intelligence.
+
+[00:46:44] You're going to see that there a lot there. It is called a markoff decision process. MD. P, and this might be for example, the algorithm that sits in the core of the brain of the dark Lord. The dark Lord is the artificial intelligence that is fighting you. You are the player. The dark Lord is the AI that's fighting you.
+
+[00:47:05] It's not the game that's fighting you, it's the dark Lord. The game is basically the physics system, the rules and the markoff chain. The thing that says given state one, what is the probability of being an. What is the probability of transitioning to two, three, and four? And then the dark Lord needs to act upon this decision given probabilities in order to determine what is the best next action to take.
+
+[00:47:31] So there you have at CMC and in the resources section of this episode, it's just gonna be a link to week nine of Andrew ING's Coursera course on anomaly detection and recommender systems. Very simple. And that ends a series on shallow learning algorithms. The next episode is going to be the most boring episode of all.
+
+[00:47:53] It is going to be basically the parts of machine learning algorithms, things like performance evaluation under fitting and overfitting, regularization and all that. Really boring stuff. It's all unfortunately essential in machine learning. You're gonna learn this stuff actually really early on elsewhere, like in the Andrew Inc series, I've decided to.
+
+[00:48:16] Punt on it for a while because it's just so boring. I want you guys to have dessert first and vegetables later, but we'll get that episode over with and then we'll move on to the fun stuff. I'll see you guys then.
+
