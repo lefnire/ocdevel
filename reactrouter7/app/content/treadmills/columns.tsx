@@ -260,6 +260,7 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Capacity",
     dtype: "number",
     filterOptions: { min: true, max: false },
+    notes: () => <div>Make sure there's plenty of wiggle room with your weight. I've cracked decks where my weight is exactly the weight capacity listed.</div>,
     // description: "Pounds",
     // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
     getValue: (row) => row.maxWeight?.value,
@@ -273,7 +274,7 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Max Speed",
     dtype: "number",
     filterOptions: { min: true, max: false },
-    notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require a fold-up rail (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use the filters.</div>,
+    notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require raised handlebars for support (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use this filter.</div>,
     getValue: (row) => row.maxSpeed?.value,
     format: (row) => {
       const maxSpeed = row.maxSpeed?.value;
@@ -317,7 +318,7 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Horsepower",
     dtype: "number",
     filterOptions: { min: true, max: false },
-    notes: () => <div>While not "proof" of a motor's quality, HP less than 2.5 is typically a brow-raiser on the motor's longevity. HP doesn't just indicate speed, but strength. Target 2.5+.</div>,
+    notes: () => <div>Horsepower is highly correlated with motor longevity. HP less than 2.5 often have reports of early motor failure. HP doesn't just indicate speed, but also strength. Target 2.5+.</div>,
     getValue: (row) => row.horsePower?.value,
     format: (row) => {
       const horsePower = row.horsePower?.value;
@@ -342,7 +343,7 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "boolean",
     notes: () => {
       return <>
-        <div>Most will have 8-point or 6-point silicone absorbers. These are rubbers between two layers of deck, which compress when you land. A few cheap mills won't have shock absorption at all. Mills with incline whose focal point is near the center (eg CyberPad) have natural extra absorption, as the incline mechanism bobs on pistons.</div>
+        <div>Most will have 8-point or 6-point silicon shock absorbers between two layers of deck, which compress when you land. A few cheap mills won't have shock absorption at all. Mills with incline whose focal point is near the center (eg CyberPad) have natural extra absorption, as the incline mechanism bobs on pistons. As with an incline of 3%, the more damage control you can do for your knees the better, as you may be using this most of your working life. </div>
       </>
     },
     getValue: (row) => row.shock?.value,
