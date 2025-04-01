@@ -14,6 +14,7 @@ import blogList from './app/content/blog/metas.js'
 
 type Id = {id: string | number, jsx?: boolean}
 export default [
+  // route("test", "routes/test.tsx"),
   layout("routes/layout.tsx", [
     index("routes/_index.tsx"),
     route("walk", "routes/walk/route.tsx"),
