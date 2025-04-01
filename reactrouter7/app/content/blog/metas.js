@@ -29,6 +29,7 @@ import * as b6 from './20201022-aws-batch-efs-mount/meta.js'
 const metas = [
   // pinned
   b19,
+  b15,
 
   b26,
   b25,
@@ -39,7 +40,6 @@ const metas = [
   b20,
   b17,
   b16,
-  b15,
   b14,
   b13,
   b12,

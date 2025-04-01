@@ -3,3 +3,4 @@ export const id = '20210108-how-to-use-habitica'
 export const date = '2021-01-08'
 export const title = "How Habitica's Creator Uses Habitica"
 export const jsx = true
+export const pinned = true
