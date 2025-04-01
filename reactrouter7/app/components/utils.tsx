@@ -5,12 +5,11 @@ import {
 import {Button} from 'react-bootstrap'
 import React, {type ReactElement, useCallback} from "react";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft"
-import {Popover, OverlayTrigger, Accordion, Alert} from "react-bootstrap";
+import {Popover, OverlayTrigger, Alert} from "react-bootstrap";
 import {FiMinusSquare} from "@react-icons/all-files/fi/FiMinusSquare";
 import {FiPlusSquare} from "@react-icons/all-files/fi/FiPlusSquare";
 import {BiChevronDown} from "@react-icons/all-files/bi/BiChevronDown";
 import {BiChevronRight} from "@react-icons/all-files/bi/BiChevronRight";
-import compact from 'lodash/compact'
 
 export function IconButton({
   Icon,
@@ -90,19 +89,6 @@ export const icons = {
   minus: <FiMinusSquare />,
   down: <BiChevronDown />,
   right: <BiChevronRight />
-}
-
-interface Accordion_ {
-  items: {title: string, body: ReactElement}[]
-}
-export function Accordion_({items}: Accordion_) {
-  if (!items?.length) {return null}
-  return <Accordion defaultActiveKey="0">
-    {compact(items).map((item, i) => <Accordion.Item key={""+i} eventKey={""+i}>
-      <Accordion.Header>{item.title}</Accordion.Header>
-      <Accordion.Body>{item.body}</Accordion.Body>
-    </Accordion.Item>)}
-  </Accordion>
 }
 
 export function LinkContainer({children, ...props}) {

@@ -1,7 +1,7 @@
 import type {Brand, Product as ProductObj} from './data/types'
 import * as s from './scoring'
 import {produce} from 'immer'
-import _ from 'lodash'
+import _size from 'lodash/size'
 import data from './data'
 import {type LinksFull, hydrateLinks} from "./utils";
 
@@ -28,7 +28,7 @@ export type Product = ProductObj & {
 }
 
 function hydrate(d: Product) {
-  if (_.size(d.links.amazon) && !d.brand.warranty.amazon) {
+  if (_size(d.links.amazon) && !d.brand.warranty.amazon) {
     d.brand.warranty.amazon = 2 // Asurion
   }
   d.brand.pickedBy = d.brand.pickedBy || {}

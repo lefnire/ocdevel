@@ -37,7 +37,8 @@ import sunny_sft723007 from './sunny/sft723007'
 import sunny_sft724064 from './sunny/sft724064'
 import mobvoi_treadmillplus from './mobvoi/treadmillplus'
 import walkolution_walkolution2 from './walkolution/walkolution2'
-import _ from 'lodash'
+import _sumBy from "lodash/sumBy"
+import _uniq from "lodash/uniq"
 
 const index = [
   // Original treadmills
@@ -96,7 +97,7 @@ export const dataObj = Object.fromEntries(
 export const seoScored = (index
   .map((row) => ({
     ...row,
-    seo: _.sumBy(
+    seo: _sumBy(
       (row.pickedBy?.websites || row.brand.pickedBy?.websites || []),
       'value'
     )
@@ -105,6 +106,6 @@ export const seoScored = (index
   .sort((a, b) => b.seo - a.seo)
 );
 
-export const seoLabels = _.uniq(seoScored
+export const seoLabels = _uniq(seoScored
   .map(row => row.brand.name.replaceAll(' / ', ', '))
 )

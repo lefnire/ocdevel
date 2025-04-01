@@ -16,7 +16,7 @@ import {
   countries,
   renderCountryLinks
 } from "./utils";
-import _ from 'lodash';
+import _sumBy from 'lodash/sumBy';
 import {clickableStyle, useModal} from '../../routes/walk/modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
@@ -235,9 +235,9 @@ export const columnsArray: ColumnDefinition[] = [
       const bPick = row.brand.pickedBy
       const picks = {
         me: (rPick?.me ?? bPick?.me ?? 0) > 0,
-        trusted: _.sumBy(rPick?.trusted || bPick?.trusted || [], "value") > 0,
-        websites: _.sumBy(rPick?.websites || bPick?.websites || [], "value") > 0,
-        affiliate: _.sumBy(rPick?.affiliate || bPick?.affiliate || [], "value") > 0,
+        trusted: _sumBy(rPick?.trusted || bPick?.trusted || [], "value") > 0,
+        websites: _sumBy(rPick?.websites || bPick?.websites || [], "value") > 0,
+        affiliate: _sumBy(rPick?.affiliate || bPick?.affiliate || [], "value") > 0,
       }
       if (!(picks.me || picks.trusted || picks.websites || picks.affiliate)) return <></>;
 

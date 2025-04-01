@@ -1,5 +1,4 @@
 import type {Product} from "../types"
-import _ from 'lodash'
 import brand from './brand'
 const info: Product = {
   brand,

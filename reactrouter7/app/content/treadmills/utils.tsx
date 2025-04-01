@@ -1,6 +1,11 @@
 import type {PickedBy, Product} from "./data/types";
 import type {Product as Row} from './rows'
-import _ from "lodash"
+import _get from 'lodash/get'
+import _keys from 'lodash/keys'
+import _uniq from 'lodash/uniq'
+import _flatten from 'lodash/flatten'
+import _reduce from 'lodash/reduce'
+import _isEmpty from 'lodash/isEmpty'
 import React from "react";
 import {Badge} from "react-bootstrap";
 import {Affiliate} from "~/content/product-links";
@@ -21,22 +26,22 @@ export const getCountryLink = (row: Product, countryCode: string): string | unde
   ];
 
   // Return the first non-undefined result
-  return pathsToCheck.map(path => _.get(row, path)).find(Boolean);
+  return pathsToCheck.map(path => _get(row, path)).find(Boolean);
 };
 
 export const getCountryCodes = (row: Product, includeBrand=false): string[] => {
   // Define sources to extract country codes from
   const sources = [
-    _.keys(row.links?.amazon || {}),
-    _.keys(row.links?.brand || {}),
+    _keys(row.links?.amazon || {}),
+    _keys(row.links?.brand || {}),
   ];
   if (includeBrand) {
-    sources.push(_.keys(row.brand?.links?.amazon || {}))
-    sources.push(_.keys(row.brand?.links?.brand || {}))
+    sources.push(_keys(row.brand?.links?.amazon || {}))
+    sources.push(_keys(row.brand?.links?.brand || {}))
   }
 
   // Flatten all sources and get unique values
-  return _.uniq(_.flatten(sources));
+  return _uniq(_flatten(sources));
 };
 
 export const getPrice = (product: Product) => product.price.sale || product.price.value;
@@ -89,9 +94,9 @@ export function hydrateLinks(row: Product): LinksFull {
   const brandLinks = row.brand?.links || { amazon: {}, brand: {} };
   
   // Create result object with all countries from the defined order
-  return _.reduce(countries.order, (result, countryCode) => {
+  return _reduce(countries.order, (result, countryCode) => {
     // Get links for this country from all sources
-    const linksForCountry = _.reduce(countries.buyOrder, (acc, site) => {
+    const linksForCountry = _reduce(countries.buyOrder, (acc, site) => {
       // Get links from product and brand
       const productLink = productLinks[site]?.[countryCode];
       const brandLink = brandLinks[site]?.[countryCode];
@@ -110,9 +115,9 @@ export function hydrateLinks(row: Product): LinksFull {
     
     // Convert empty objects to false for cleaner representation
     result[countryCode] = {
-      product: _.isEmpty(linksForCountry.product) ? false : linksForCountry.product,
-      brand: _.isEmpty(linksForCountry.brand) ? false : linksForCountry.brand,
-      either: _.isEmpty(linksForCountry.either) ? false : linksForCountry.either
+      product: _isEmpty(linksForCountry.product) ? false : linksForCountry.product,
+      brand: _isEmpty(linksForCountry.brand) ? false : linksForCountry.brand,
+      either: _isEmpty(linksForCountry.either) ? false : linksForCountry.either
     };
     
     return result;
