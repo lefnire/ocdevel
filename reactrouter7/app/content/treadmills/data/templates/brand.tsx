@@ -1,21 +1,22 @@
 import type {Brand} from '../types'
 const links = {
-  brand: {US: ""},
-  amazon: {US: ""},
+  brand: {
+    // US: ""
+  },
+  amazon: {
+    // US: ""
+  },
 }
 const info: Brand = {
+  // Key for looking up the brand later
   key: 'brand',
+  // Name of the brand
   name: "Brand",
   links,
-  // overriden in each item
+  // Warranty options for this brand
   warranty: {},
   fakespot: "B",
+  // Who favors this brand (me, trusted-community, review-websites, affiliate-rebels)
   pickedBy: {},
-  // notes: () => <div>
-  //   <div><b>Choosing the latest model</b></div>
-  //   <div>
-  //     Often these brands don't show the latest models on their storefront. So go to their website, sort by latest, copy the modle name, paste into Amazon.
-  //   </div>
-  // </div>
 }
 export default info
