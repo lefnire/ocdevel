@@ -3,7 +3,7 @@ import {
   useNavigate
 } from "react-router";
 import {Button} from 'react-bootstrap'
-import React, {type ReactElement, useCallback} from "react";
+import React, {useCallback} from "react";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft"
 import {Popover, OverlayTrigger, Alert} from "react-bootstrap";
 import {FiMinusSquare} from "@react-icons/all-files/fi/FiMinusSquare";

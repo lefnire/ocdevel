@@ -12,7 +12,7 @@ export function loader(props: Route.LoaderArgs) {
 }
 
 export default function Resources({loaderData}: Route.ComponentProps) {
-  return <>
+  return <div className="podcasts">
     <Navbar />
     <Container fluid className="resources">
       <div className='mb-3 mlg-update ps-3 small'>
@@ -29,7 +29,7 @@ export default function Resources({loaderData}: Route.ComponentProps) {
         </Col>
       </Row>
     </Container>
-  </>
+  </div>
 }
 
 export function meta({data}: Route.MetaArgs) {
