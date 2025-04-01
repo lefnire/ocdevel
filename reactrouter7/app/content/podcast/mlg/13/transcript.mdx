@@ -1,0 +1,312 @@
+[00:01:08] This is episode 13, shallow Learning Algorithms, part Two, support Vector Machines and Naive Bays. In this episode, I'm gonna be talking about support vector machines and the naive bays classifier.
+
+[00:01:21] These are two very powerful machine learning techniques, shallow learning algorithms. These are kind of those power machine learning algorithms, power tools. I consider decision trees. Support vector machines and naive bays. I consider them all three to be sort of power tools. A lot of the other shallow learning algorithms that you'll learn are sort of dedicated to particular tasks, or even if they're multipurpose, they shine under specific circumstances.
+
+[00:01:45] But decision trees, support vector machines and naive bays are sort of these power tools that could be applied. Across a very wide spectrum of machine learning applications. They're primarily built for classification. All three of these algorithms are primarily built for classification, but can be used for regression.
+
+[00:02:01] Before we get too far into this episode, I want to talk about the fact that we're talking about so many machine learning algorithms. In the last episode, I dropped a bunch on you. In this episode, we're gonna be talking about two more, and in the next episode, I actually decided to stretch the two-parter into a three parter.
+
+[00:02:16] In the next episode, I'm gonna be talking about even more machine learning algorithms. If there's so many machine learning algorithms, how are you supposed to decide what to use when? Well, there's a multi-part approach to deciding which machine learning algorithm to use given your circumstances. We've talked in the past that sort of deep learning can be seen as the silver bullet that can be used across a wide spectrum of.
+
+[00:02:37] Of machine learning problems, but right now we're taking a diversion. We're talking about shallow learning algorithms, and with so many shallow learning algorithms, you have to know specifically which algorithms are supposed to be used under which circumstances. So there's kind of this multi-tier approach to deciding which algorithm to use under your circumstance.
+
+[00:02:54] At a top level, certain machine learning algorithms only handle specific tasks. So for example, in the next episode I'm gonna talk about in an anomaly detection algorithm, well you only use one or a handful of algorithms for anomaly detection. You don't use things like linear regression or logistic regression or any of the algorithms that we're gonna be talking about in this episode.
+
+[00:03:15] So there is a level of domain knowledge that will. Filter down the types of algorithms that you're gonna be using for your specific purposes. It's apples to oranges. This situation only calls for a handful of machine learning algorithms that can be applied whatsoever, and that just takes familiarity with a lot of the machine learning algorithms and what they're specifically built for.
+
+[00:03:38] I think listening to this podcast series and taking the Andrew Eng course. And some other follow up material. You'll start to get a feel for what algorithms are built for what purposes, but then we go down a level. We've decided that we're gonna be working in supervised learning classification, and so that only includes a handful of specific algorithms we've excluded.
+
+[00:03:58] A whole bunch of algorithms, like all the unsupervised learning algorithms, any regression algorithms, et cetera. We're not gonna use linear regression for this. We're not gonna use K-means we're gonna do classification, but now we have a whole bunch of classification algorithms to work with. So in the last episode, I talked about decision trees.
+
+[00:04:13] In this episode, I'm gonna talk about support vector machines and naive bays. All of these are classifier algorithms. We also have logistic regression. We have neural networks. How the heck am I going to choose from amongst all these classifiers? Well, at this point, what a lot of people in machine learning do is they look at their data and they look at their environment, their system, the computer, how much RAM does it have, and how flexible are we with time as far as running the algorithms, making the inferences and predictions certain algorithms work.
+
+[00:04:40] Better with certain types of data, maybe. Maybe logistic regression works really well with numerical input, but it's also very sensitive to missing features and such. Like this. Naive bays works better with categorical input, but is not sensitive at all to missing data. Naive bays classifiers are. Very fast to run and very memory efficient, but maybe a little bit less precise than something like a neural network.
+
+[00:05:03] A neural network takes a lot longer to run and train, but it's very precise and can represent very complex models. So once we know what category of machine learning algorithms we're gonna be using for a specific purposes, then we consider the situation at hand. Memory restrictions, time restrictions.
+
+[00:05:22] What does our data look like? How many samples do we have? Certain machine learning algorithms work really well with only a handful of samples, while other machine learning algorithms require tons and tons of examples, your training data set neural networks, for example, are vexed by the fact that they need lots and lots and lots of data, whereas a naive Bayes classifier, for example.
+
+[00:05:44] Doesn't need that much data to get up and running. So you look at your data, you plot it, you chart it, you graph it, you decide if you're missing any information. Is it numerical? Is it categorical? How much memory do I have on my machine? How much time do I have to work with? How many examples do I have?
+
+[00:05:58] And then you decide. So that part is a little bit. Tough. It's tough to explain. In podcast format, I'm going to link in the resources section to a table of pros and cons for specific algorithms, given situations like memory constraints, time constraints, et cetera. There's also a decision tree put out by PS kit.
+
+[00:06:17] Learn a Python library for shallow learning machine learning algorithms. They have a decision tree, a picture. Like a flow chart for helping you decide which algorithm to use given the circumstances. So it'll ask you some yes no questions. Things like, do I have greater than 50,000 examples in my training data?
+
+[00:06:34] Yes, go this way. If not, go that way. Okay. Is this text based go this way? Am I missing any data? Go that way. And it'll help narrow down what machine learning algorithm you're supposed to use. And the the, the reason I'm explaining all this is that it can seem so overwhelming at first when I just throw a million machine learning algorithms at you and you're thinking, I have all these algorithms.
+
+[00:06:51] How am I supposed to know what to use when and where? And there's a system. There's a system to deciding what to use. The final approach. Finally, once we've decided a handful of algorithms that we can use, given the circumstances, is to actually just try them all. You'll often see a lot of machine learning engineers.
+
+[00:07:06] What they'll do is they'll import from Psychic Learn, or TensorFlow, just all the algorithms that can possibly be applied to their circumstance. They'll clean up the data, they'll visualize the data, they'll do some stuff with the training data. They'll split it into training, validation, and test set.
+
+[00:07:21] We'll get into that stuff in another episode, and then they'll just throw all their data through 10 machine learning algorithms, run 'em all parallel or serial, whatever, and then at the very end of the file you'll see, they'll evaluate the performance of all the machine learning algorithms. They'll, they'll write some code that determines how well each algorithm did, compare them all to each other and find the champion.
+
+[00:07:42] Or champions, throw away the losers and maybe keep the top three on hand as they continue in their programming, eventually they'll sort of come to a conclusion that one is clearly the winner, this is the right algorithm for the job. We're gonna roll with that. So it's not necessarily very clear what algorithm to use when it's like a three part approach.
+
+[00:08:01] We start at the top where we decide. What algorithms are even grossly applicable? Okay. Is this a supervised or an unsupervised learning situation? Do I have the labels? Okay. If it's supervised, is it regression or classification? Okay, it's classification. Now we have maybe 30 algorithms that we can choose from.
+
+[00:08:21] Let's. Plot our data. Let's look at the situation. Let's look at the environment. What kind of constraints are we up against? And at this point it's a little bit difficult to memorize which algorithms work best given constraints and data. What you usually do then is you look at this reference table or that psychic learn flow chart to help you pick a handful of algorithms to try, and then you just throw them all against the wall.
+
+[00:08:42] You just shock and approach all these algorithms. And the evaluation metric at the end of your script will tell you which one did best. So you're gonna learn a lot of machine learning algorithms. And use this approach to determine which algorithm to use, given your circumstance. With that out of the way, let's jump into the first of these two algorithms called Support vector machines, SVM.
+
+[00:09:04] It's a very weird word. I'll tell you why it's called that in a bit, but let's just try to understand an intuition of what it does. So like I said, these, these power tool machine learning algorithms like. Decision tree support, vector machines and naive bays, they can all be used for both classification and regression.
+
+[00:09:22] So they're supervised learning machine learning algorithms that can be used both for classification and regression. Also, neural networks can be used for classification and regression as well. You'll find that the primary use case of all of these algorithms is classification. I don't know if this is true or not, but it.
+
+[00:09:37] It seems to me from my experience, that classification is kind of the majority use case of machine learning that you'll see in the wild. I don't know if this is true, don't quote me on it, but you'll see that these machine learning algorithms, these power tools are primarily built for classification, but can be used for regression.
+
+[00:09:54] But because they're primary use case is classification, you'll see. The examples or the tutorials, they'll all be showing you how to use them for classification, and that's what I will be doing in this episode. And then you can, you'll have to look up how to use them for regression on your own. So support vector machines can be used for classification and regression when you use a support vector machine for classification.
+
+[00:10:16] It's called a support vector classifier. SVC, and if you use it for regression, it's called a support vector, regressor, SVR. And the broad category of these is called support vector machines. So we're gonna go with the classification examples. Like I mentioned, how it works is it determines a decision boundary.
+
+[00:10:37] A decision boundary between your things over here and your. Things over there. That sounds a lot like logistic regression. It's very similar to logistic regression, but it's got some, it's got some perks over logistic regression that we'll give it to in a minute. But let's remember what a decision boundary is.
+
+[00:10:51] Let's say that you have all the cats on the left and all the dogs on the right. You have a graph. Of cats and dogs. They're just dots on a graph, right? Imagine blue dots and red dots. These are your data points. These are your training examples. You have all the cats on the left and all the dogs on the right, and what you want to do is come up with a line.
+
+[00:11:08] You're gonna draw a line in the sand between the cats and the dogs, so no dogs allowed. Over here on the left, say the cats. So that line that separates your cats from your dogs is called your decision boundary. And now if you add a new animal into the mix based on some features about the animal, whether it has whiskers, does it bark, how many lives does it have, et cetera, these are all the features will be used to determine where locationally the object gets placed in 3D or four D space.
+
+[00:11:37] And if it's on the right side of the line. Then it's a dog, and if it's on the left side of the line, then it's a cat. That's your decision boundary, and that looks a lot like a logistic regression situation. Now, what makes a support vector machine different from logistic regression in categorizing things over here and over there is this decision boundary, specifically a support vector machine.
+
+[00:11:57] It doesn't use a line, it doesn't draw a hair thin line. Between the two sets, like logistic regression does. Instead, it tries to make that line as fat as it possibly can. It makes a wall. It doesn't use a one point line. It uses a 16 point brush stroke. How fat is this wall? Well, the borders of the wall bump up.
+
+[00:12:22] Against the innermost cats and dogs. So the right most edge of this decision boundary is gonna bump up against the left most dogs and the left most edge of the decision boundary will bump up against. The right most cats. Okay, so that makes sense. It's just a, you're just trying to fill a river or make a wall between the two things.
+
+[00:12:46] These over here and those over there as wide as you can before you touch them. So you do that with your training set of examples. Now, why did we do that? Why was logistic regression insufficient? Why wasn't that line sufficient? Why did we need a. Fat line. Well, the reason is because of a, of a problem that we're gonna get into in a future episode called Overfitting.
+
+[00:13:07] Overfitting is basically if I were to draw the line between the cats and the dogs, I could draw it wrong. Actually, let's say that I had a cat closer to the middle. Well, if I wasn't smart. I might draw the line to accommodate that cat, what's called an outlier, something that doesn't really fit the bill of the majority of the data.
+
+[00:13:30] I might skew the line. Maybe I'll tilt the line counterclockwise or clockwise a little bit to accommodate for that one. Outlying cat. In other words, I didn't make the most ideal line possible. You and me we're humans. We look at a cluster of dots over here and a cluster of dots over there, and in our minds, we can draw a vertical line right down the center, even if.
+
+[00:13:54] There is an outlying dot. We still have an intuition of where that line goes. Where's the best line that separates the two classes so that in the future, if I were to add a new object into the mix, it will go on the correct side. But logistic regression is a little bit sensitive to outliers and things like this.
+
+[00:14:11] And this can cause a line that gets improperly drawn. And this is called overfitting. And in an extreme example of overfitting, imagine a line that goes right up. Vertical and then it like squiggles out like half circle to include that outlying cat and then keeps going. Imagine that we created some wild function of polynomials that allowed for that little squiggle out.
+
+[00:14:36] That's in a wild example of overfitting. But in our particular situation where we're using logistic regression, which is a linear function, we only can work with a line, not a polynomial function, uh, just tilting the line. Maybe counterclockwise or clockwise might cause some overfitting. So what support vector machines do different than logistic regression?
+
+[00:14:55] In the case of coming up with a decision boundary between the classes on the left and the classes on the right, is it makes that decision boundary as fat as possible so that we can deal with these outliers. No problem. Now the thickness of our line. It's called the margin. We want as fat a line as possible.
+
+[00:15:16] We call this a large margin classifier, large margin. So that's the word for the thickness of the line is margin, and then the word for the dots that are being bumped up against by this line that we're drawing. They're called support vectors. That's why this thing is called a support vector machine Support vectors.
+
+[00:15:37] It's kind of a weird word. I don't know why we don't call this. I think we should call this algorithm the, the fat line algorithm, and we should call these dots that the fat line bumps up against. We should call them bumping dots, but no, we call the algorithm a support vector machine or a large margin classifier, and that these dots that the fat line bump up against is.
+
+[00:15:58] They're called support vectors, a vector, so a dot on a Euclidean graph, XY plan. This is what we're looking at is a bunch of dots on a graph. You can think of them as a dot or a point, or you can think of them as an arrow pointing from the origin. To that dot, you can, you can graph that arrow with a function mathematically, so you can represent these dots in another way.
+
+[00:16:22] And we call that a vector. A vector is a line that points from the origin to a dot, and that's why they're called support vectors. They're the vectors that support drawing a fat line. Okay, all fine and good support vector machines. Seem pretty simple. It's like logistic regression with a fat line instead of a skinny line.
+
+[00:16:43] That's the only difference, right? Well, it's got one more little twist, and this is where things start to get wild. Really weird if you ask me. Support vector machines only handle linear classification, so does logistic regression. Now you can throw some polynomials into the function and make the situation non-linear, but that's a little bit less than ideal.
+
+[00:17:04] Typically, we typically, if our situation is non-linear, we move away from the linear classifiers into something more complex like a neural network, for example. So both logistic regression and support vector machines are linear classifiers. But there's a trick, a trick that can transform a support vector machine.
+
+[00:17:24] Into a non-linear classifier, and this trick is called the kernel trick kernel, K-E-R-N-E-L. You'll see kernels used quite commonly in machine learning. They're very weird. They're very hard to understand. I still haven't quite wrapped my head around them, but what I think of as a kernel, it teleports you into another dimension or these rose colored goggles that you put on, and they.
+
+[00:17:51] Change the way everything looks. Okay. So that sounds very strange. Let me give you an example. An example used from the, uh, machine learning with our book that I'll post in the resources section is that if you're looking at a graph of dots, some are blue and some are red. Okay? And this is what it looks like.
+
+[00:18:08] You have a blue circle of dots in the center and surrounding that is a red circle of dots. It's like a blue circle with a red border, but they're all dots. Okay? It's not drawn onto the graph. It's just a bunch of dots. Well, that is clearly a non-linear situation. This isn't a bunch of cats on the left and dogs on the right, which is linearly separable by our decision boundary.
+
+[00:18:34] No. This is a circle and a circle. Those are not separable by lines. However, if those dots represented something conceptually, for example, if we were looking at latitude and longitude and those dots represented, say, snow on peaks of mountains versus non snow latitude and longitude, well that wouldn't really make sense as a way of looking at this, would it?
+
+[00:19:02] What we really care about. Is altitude, how high up the mountain peak is and latitude, how far north and south we are. Those are the two characteristics that are more important rather than longitude. Longitude doesn't help us at all. So if we think about the problem different, we could actually transform our situation into a new graph where dots are indeed.
+
+[00:19:27] Linearly separable. All the blue dots suddenly have become sort of a rectangle on the left or the right, or top or bottoms, some sort of situation where we can actually draw a line between the two classes of dots. Okay, so that's a little bit weird. Let me think of another way of representing this. If you have two circles.
+
+[00:19:46] Blue and red dots. Maybe you can think of them instead of in a Euclidean space of x and Y. You can think of them in a Radian way. So this is what a kernel does. A kernel, what it does is it takes your data, the stuff you're looking at right now, which is non-linearly separable and it transforms it. Into a new set of dimensions.
+
+[00:20:10] So you're looking at the latitude and longitude representation of mountains in the world and trying to decide whether or not they have snow on the peaks. And you're scratching your chin and you're like, how am I gonna separate this? But I grab your hand. And I'm like, no, no, no. Come over here. Come over here.
+
+[00:20:25] And I pull you around. So you're looking at it from a different. Angle and you go, aha. Okay. Looking at it from this angle, things seem a little bit different. So a kernel is a something that you multiply your data by in order to transform it into a new dimension. So I think of it as it's, it's looking at the problem from a different angle.
+
+[00:20:47] I think of it as like an. Zelda, a link to the past, I can't remember. You blow, you blow on a flute, or you do some mirror trick and it goes woo, and you're now in the dark world. You do it again. Woo. And you're in the light world. You're in the same place. The whole world is really the same place. Everything is the same, but you're looking at it different and it helps you to solve different puzzles so you can transform.
+
+[00:21:13] A circle world into a line world. There's a whole bunch of kernels out there. There's like radial basis function kernel, polynomial kernel, sigmoid kernel. So there's a whole bunch of kernels. There's a whole bunch of of colored goggles that you can put on. Imagine a drawer. Full of colored goggles that you could put on at any time.
+
+[00:21:34] But you have to know a little bit about your situation. You have to know whether the data that you're dealing with is sort of, could be transformed into a different world so that it's easier to work with so that it is now linearly separable. So support vector machines, very strange machine learning algorithm.
+
+[00:21:52] I, I really, I, it took me a while to kind of wrap my head around it and I still don't know exactly when it's preferred to be used. Under certain circumstances or not. So let's, let's hit it from the top one more time. Let's reference prior algorithms that we've used. Remember, linear regression is a regression algorithm for coming up with a number output.
+
+[00:22:10] Okay? If we want to classify something in the past, we piped linear regression into a new function. Called logistic regression. Logistic regression is like using linear regression to classify things. Is it a cat or a dog? Does it go on the left of the line or the right of the line? Now, conceptually, logistic regression draws a line down the middle.
+
+[00:22:29] We call this the decision boundary, this line that separates the cats from the dogs. Now with logistic regression, unfortunately. This line may be prone to over fitting based on outliers. If there's a lot of data that's bad, bad data, or just noise or anything like this, it could kind of screw up our line.
+
+[00:22:51] It might tilt it, tilt it down. Counterclockwise or clockwise may not be the best fit. The ideal line straight down the center, separating the cats from the dogs. So we have this new algorithm for classifying things. Called a support vector machine, and it uses a decision boundary as well, but it makes that decision boundary as fat as possible.
+
+[00:23:15] A large margin, it bumps up against the innermost dots on the left and the right classes. We call those innermost dots, support vectors, and that large margin helps us. Prevent overfitting future examples. That's step one of a support vector machine. It is simply maybe a little bit more accurate, little bit more efficient version of logistic regression.
+
+[00:23:38] You might consider it. Step two is this strange trick of the trade. Called the kernel trick. And the kernel trick lets you take your data, which may be represented non-linearly. If you look at it like this, transform it by putting on some goggles into a new dimension, and now suddenly it is linear. So you take a non-linear data set, look at it a different way.
+
+[00:24:04] And now it's linearly separable. Cool. So a support vector machine is a classifier or can be used for regression, and it has the ability to represent non-linear circumstances. Now the problem is, like I said, you have this, this drawer of kernels, goggles that help you look at situations from different angles.
+
+[00:24:24] Well, there's only so many of these. There's, you know, like circle world or radial basis world, there's only so many ways to represent a non-linear data set. In a linear fashion, and you have to know which one to use given the circumstance. Unlike a neural network which is able to represent non-linear situations completely on its own, it will learn the way to represent them non-linearly.
+
+[00:24:48] It can represent any number of complex situations. Support vector machines and neural networks are often compared to each other because they're both these black box methods and they can both handle non-linear situations. But the difference is that a neural network in deep learning is more powerful. It can represent more non-linear circumstances, and you as the developer, don't have to know in what way.
+
+[00:25:15] Is this situation non-linear? The neural network will learn that mapping for you. Whereas with a support vector machine, you have to know sort of in what way is this circumstance non-linear. You don't necessarily have to know in advance. You could just try throwing at it. All the kernels in your drawer, but if you don't have that sort of upfront information, it might be better to use a neural network anyway.
+
+[00:25:40] So why wouldn't you use a neural network? Well, if your situation can be handled with a linear support vector machine, okay, vanilla support vector machine. Or you do know about the situation and you can pop in one of those kernels into your support vector machine, then support vector machines are a lot faster than neural networks.
+
+[00:26:01] They're faster and they take up less memory. And in fact, you're gonna see that this is a very common recurring theme in machine learning. Like I said previously, machine learning engineers, they look at people who use deep learning as a silver bullet for every situation, and they say. You could do this faster with a dedicated shallow learning algorithm for specific situations that call for the shallow learning algorithms.
+
+[00:26:25] So if your situation supports using a support vector machine, then you'll get a lot more speed and memory savings using that over a neural network. But you'll have to know a little bit about your data set or your circumstances in advance. To help you determine whether using a support vector machinist for you or not.
+
+[00:26:43] So I kind of like to think of machine learning algorithms. As you have this backpack, like an a role playing game. You have this backpack of tools that you can use. You have a grappling hook for certain circumstances. You have your sword and shield, you have a magic wand. And so if you're presented with a puzzle, okay, so you need to kill a bad guy.
+
+[00:27:02] You all, you use this. Sword and shield. You need to open the entrance to a cave, use a bomb. Well, neural networks and deep learning, they're kind of like a bazooka. You can almost solve any situation with the bazooka, but maybe it's overkill and expensive and can cause collateral damage. So I. Kill a bad guy in bazooka.
+
+[00:27:22] Open a treasure chest bazooka open a cave entrance, bazooka. But why not use the cheap bomb? In the case of the cave entrance? Why not just use your hands and a key when it comes to opening a treasure chest? The way I think of support vector machines is like a gun, and it kind of looks like a space gun, like a plastic ray gun, and it's kind of, for me, it's a little bit tough to know when to use this thing and you're trying to figure out what's the best tool for opening a door.
+
+[00:27:46] That's locked. You can use a key, you can use a bomb, you can use your bazooka, or you can use this weird plastic ray gun. And the proper approach is to try all of them. Try all of them, and evaluate the performance of all of them. At the end of your script, determine which did the best. Which took the least amount of memory, the least amount of time was the most accurate model, et cetera.
+
+[00:28:09] And it just so happens that it turns out a key in this particular case opened the door, the best logistic regression handled situation A the best. But I always think of support vector machines as this weird ray gun and you point it at the door and you shoot and a laser comes out and nothing happens.
+
+[00:28:23] And you're like, huh. You turn around in your hands and somebody behind you says, oh, well you're not using the radial basis kernel. Of course, that's why it didn't open. So he hands you this little module and you look at it, it's the radial basis kernel, and you're like, uh, and you clip it into your ray gun and you point it at the door and you shoot.
+
+[00:28:40] And out come these sonar circles, woo. And the door opens. And he's like, see, it was obvious. And you're like, was it support vector machines? Now let's move on to naive bays classifiers, naive bays. Bayesian inference is a very interesting and important component of machine learning in general. In fact, Bayesian inference really is a rung of the ladder of statistics.
+
+[00:29:05] And like I told you in a previous episode, statistics is the God math of machine learning. Statistics is everything in machine learning and the very basic. Principles of statistics like probability, joint probability, conditional probability, et cetera, are used everywhere in machine learning, even if you don't know it.
+
+[00:29:25] Many of the machine learning algorithms that we've been discussing so far, they're algorithms that come straight out of a statistics textbook, linear and logistic regression. That's statistics. Statistics is really. Essentially boiled down into probability, probability, and an inference. But inference is based off of probability, and probability is sort of raw statistics.
+
+[00:29:49] So the algorithms that we've been learning so far are probability and raw statistics. Deep down inside. Deep down under the hood. They're just statistics. But at the high level, the way that we've been looking at them, they kind of look like machine learning algorithms. They kind of look like computer algorithms or complex mathematical equations.
+
+[00:30:09] Yes, they are. They are indeed, but they're truly fundamentally based on probability. Now, I'm not gonna teach you statistics in this podcast. I'm not gonna teach you probability, but I am going to really quickly run you through the. Basics of probability here in order to help you understand how naive base classifiers work.
+
+[00:30:31] Because to understand how Bayesian inference that is, naive base classifiers how they work, you have to understand the very basics of statistics. So, like I said, all the algorithms that we've been using, thus. Far. They use statistics, but they use them under the hood. They use them conceptually. In principle, well, Bayesian inference, which is a classifier supervised learning algorithm, but also can be used for regression.
+
+[00:30:56] Bayesian inference is like raw statistics. It's like using statistics in the raw to handle machine learning circumstances, statistics in the raw. So Bayesian inference is really just raw, true. Pure statistics in order to make an inference or an estimate about whether something is classified as this, that, or the other thing.
+
+[00:31:18] So let's try to understand probability a little bit. Probability. Probability is very simple. It's the chances of something, the likelihood of something, of an event. We call it an event. What is the probability of getting heads when I flip a coin? Well, 50%. 50%. 50 50, right? It's one half of the time it is heads and one half of the time it is tails.
+
+[00:31:44] So the probability of this event of flipping a coin is 50%. Okay, so that's step one. Basic probability, step two, joint probability. What are the chances of me getting heads first? And then flipping the coin again and getting heads again. What are the chances? What's the probability of A and B? Well, it is simply the probability of A times the probability of B, 50% times 50%.
+
+[00:32:19] That is point 25. So the probability of heads, and then heads again, is the multiplication of the two. Which is 0.25. That is called joint probability. The probability of these things joined step two, joint probability, step three, conditional probability. And now we get into right, proper statistics, the good stuff, the meat, conditional probability.
+
+[00:32:46] What is the probability that my second flip gives me heads? If the first flip was heads, um. That, that's an interesting question. I don't see how the first flip has anything to do with the second flip Exactly. If I flip a coin once, heads, tails, okay. 50% and I flip the coin again and get heads or tails.
+
+[00:33:12] That second flip has nothing to do with the first flip. The result of the first flip does not affect the result of the second flip. Those are what's called conditionally independent events independent because they do not depend on each other. They do not affect each other independent events well, there are some situations out there which are not independent.
+
+[00:33:38] They are dependent. So for example, what is the likelihood of it raining today given it is cloudy outside? Ah, now there's an interesting question. If it is cloudy outside, then it is, let's say 40% likely to rain. The probability of it raining depends on the probability of it being cloudy. We call these conditionally dependent events, and this is all called conditional probability.
+
+[00:34:11] Conditional probability. Conditional probability is an interesting thing. It is very useful and widely applicable in machine learning, and it has a mathematical formula. Okay? Probability, raw probability. Step one was just probability, joint probability. Step two is probability times probability. Just multiply the two conditional probability.
+
+[00:34:33] Step three is this mathematical equation. The probability of B given a. Yeah, that is the probability of rain, given that it is cloudy outside is the probability of A and B, the joint probability, A times B over the probability of A. Okay, so the probability that it is rainy, given that it is cloudy, is equal to the probability that it is rainy and cloudy.
+
+[00:35:05] Over the probability that it is cloudy. Very strange. Very strange. This seems kind of non-intuitive. I mean, first off, it's a mathematical formula and it's a little bit tough to kind of tease what everything is in this puzzle, but let's talk a little bit more about prob probability, just general probability.
+
+[00:35:21] Imagine we have a big giant circle that represents weather, and inside that circle are a bunch of little circles. We have cloudy and we have sunny. We have rainy. These are built based on observations of the past. The number of times that a day is rainy is the number of times that we've seen it rain in the last five years, for example, over the total amount of times we've seen weather at all.
+
+[00:35:48] Okay, so the way that we build up probabilities, the way that we build up, like what are the chances of it being cloudy at all, is just that we look at days, day after day after day and count the number of cloudy days, and then we divide that by the total number of days we've observed. So that, that makes sense.
+
+[00:36:02] Don't, don't overthink it. It's the number of times we've observed something over the total number of observations. So we have cloudy days, we have rainy days, we have sunny days. Now the joint probability of two events is the number of times they overlap. That is in the case of non-independent events, the number of times they overlap.
+
+[00:36:20] So it's like a Venn diagram. We have cloudy days and rainy days and sunny days. Let's say that it's cloudy 40% of the time and it's rainy 30% of the time, and there's a little sliver of overlap between the two. Actually, not a little sliver, a very large chunk of the time. They kind of both fall on the same day.
+
+[00:36:36] We have both a cloudy and a rainy day at the same time. That's. That's joint probability, that's A times B joint probability. The number, the amount of overlap between the two, it's a Venn diagram, and then conditional probability is a very interesting formula. It's very non-intuitive. It doesn't make a whole lot of sense when we're trying to visualize this as a bunch of circles and Venn diagrams.
+
+[00:36:59] The conditional probability that, remember the question that we're asking is what are the chances that it's going to rain today if I know that it is cloudy today? And the formula says that the answer is the joint probability, the amount of overlap between the two, the, the number of times it rains and is cloudy over.
+
+[00:37:20] The probability of being cloudy at all. So the probability of A and B over the probability of A. So again, we have three steps so far. We have basic probability and we build that up just by observing things over time. Okay? Coin flips flip a million times, and you build up a database of 50 50. We have joint probability, which is the probability of two things co-occurring, and then we have conditional probability, and that is the probability of something if we know something else.
+
+[00:37:54] And that my friends sounds a lot like fundamental machine learning, right? What is the probability of it raining, given it is cloudy? Well. It is cloudy is a feature, a feature in our spreadsheet, XX one, and what we're trying to determine is Y, whether or not it will rain today. That looks a lot like logistic regression or linear regression or any other algorithm.
+
+[00:38:17] Any basic fundamental machine learning algorithm that we've seen. This is kind of the skeleton form of machine learning, so conditional probability is really. Core machine learning. So that's kind of the raw statistical formulation of a machine learning algorithm, conditional probability. Now, the next and final step is called Bayes Theorem.
+
+[00:38:40] Bayes, B-A-Y-E-S. That is the name sake for our algorithm here called a naive Bayes classifier. There was a man, a long time ago named Reverend Thomas Bayes, who is a statistician, and he learned a little trick of the trade. When it comes to conditional probability, specifically, if you know the other thing than the thing you want to know, you can do a little reverse on our conditional probability formula.
+
+[00:39:09] That's it. That's all Bay Theorem is. It is using some statistics, algebra, some probability algebra, and flipping stuff to the other side of the equation. So if what we want to know is, is it cloudy? And we do know that it is raining, so the opposite. The opposite of what, what we were asking before. Well, they're not the same thing.
+
+[00:39:30] Very obviously, they're not the same thing. How likely is it to rain? If I know that it is cloudy? Well, it is very likely to rain. Okay. Maybe let's say 40%, maybe not that likely, but 40%. 40, 50% likely to rain if it is cloudy outside. Well, how likely is it to be cloudy if it is raining? Oh. Totally different number.
+
+[00:39:53] Now we're talking like 90, 95%. Have you seen rain on a sunny day? Yes. So have I on a blue moon, it is substantially more likely to be cloudy if it is raining than it is to be raining, if it is cloudy. So conditional probabilities don't reverse. They're not the same thing, but they're reversible. There is a way to reverse them.
+
+[00:40:15] And that's called Bay Theorem. And Bay Theorem looks like this. The probability of A given B. Okay, so I want to know the opposite order equals the probability of B given A times the probability of A, all over the probability of B. What the heck? I'm not gonna explain where this comes from. You're gonna have to learn Bay theorem and you're gonna learn all this in.
+
+[00:40:40] Statistics anyway. Base theorem is a very fundamental component of statistics proper. You'll learn base theorem in one of the early chapters of your statistics textbook or the Khan Academy course, so it's not specific to machine learning. It's a very raw, fundamental, core component of statistics in general, and all it does is it gives you the ability to ask the question the other way around.
+
+[00:41:05] So why is it so fundamental then? It sounds like step three, we, we talked about regular probability is step one. Joint probability is step two. You know, joint depends on re vanilla probability and then conditional probability, which is step three. That depends on two N one. So they, they all, you learn them in sequence 'cause they depend on each other.
+
+[00:41:24] It seems like conditional probability is. The crux of what we need to use statistics in the raw to solve probabilistic machine learning situations. Yes, that's true, but very often the question isn't asked the way you wanted it to be asked. The question is the other way around. So Bay's theorem is using conditional probability and doing a little reverse on the equation so that you can ask the right question.
+
+[00:41:53] Okay, so that was a little bit crazy. Let's talk about an example using email spam. It's. Weather and spam are the two most commonly used examples in understanding Bayesian inference. And in fact, weather and spam classification are two of the most common applications of naive bays in the wild, at least up until now, until recent times when I think deep learning principles are used a little bit more commonly in these spaces.
+
+[00:42:19] Naive bays was the champion of weather prediction. Spam classification for emails. The way it works for emails is you break up your emails into all of the words of an email. Let's say that we build up a dictionary of English words and we throw out all the very dumb words and basic words like the is, and we call these stop words.
+
+[00:42:39] They are, of course, important in grammar and understanding sentences, but they may not be as important in just classifying an email as. Spam. So we throw out these stop words and we keep the essential words. We start to learn that certain words are commonly co-occurring with spam emails versus nons spam emails.
+
+[00:42:59] So for example, the word Viagra is very. Often seen in spam emails, but let's not get ahead of ourselves. First off, what we want to do is just build up a database of how common every word is in an email in general, and how common spam is in general. So we build up a, a probability of the word Viagra. We build up a probability of the word friend.
+
+[00:43:28] Saturday weekend, every word under the sun and a probability of whether or not an email is spam. Let's say it's high. Let's say it's like 60% of email is spam. Well, that's that. Okay, so we have a bunch of probabilities. That's step one, regular old probabilities. Step two, we're gonna skip because we use joint probability in the equation of conditional probability, but we don't really use it directly.
+
+[00:43:51] So step three is conditional probability. If I've got all these probabilities, words, and spam, what is the probability of an email that I'm looking at right now? Being spam, just straight up. Okay, well that's 60%. We've already said that. Well, what is the probability of that email being spam given it has the following words?
+
+[00:44:12] Because it does, in this circumstance, it has the following words, Viagra free Act now, et cetera. Okay. Well, we will use the conditional probability formula. It'll give us a number. It'll give us the probability of the thing being spam, and if we have to ask the question a different way based on the information that we've provided, which is usually the case, then we'll use Bay's Theorem to do a little reverse on the conditional probability formula, and that'll give us our answer.
+
+[00:44:41] Bayes theorem. Now, the specific algorithm for classification is actually called Naive Bayes. Naive Bayes classifier. Why is it called naive? Well, there's a level to which all the probabilities in our formula actually depend on each other. I kind of think of it as like a Mexican standoff. It's like, what is the probability of this given this guy, this guy, and the other guy?
+
+[00:45:02] Well, they all depend on each other. So you think, think of like three guys pointing guns at each other and they're all looking at each other. Well, what's the probability of this given that guy? Well, the probability of this guy depends on the probability of that guy and the other guy. Well, the probability of the other guy depends on this guy and this guy.
+
+[00:45:16] So they're all kind of mutually code. Dependent. The naivety part of naive bays cuts off the dependence of events from each other. It makes things not dependent on each other, and this makes the algorithm tractable able to be computed within a reasonable amount of time without that naivety part. The, they call it the naive.
+
+[00:45:36] Assumption the algorithm would be too computationally difficult for modern machines to perform. And so in order to use bays theorem and conditional probability in the wild for machine learning applications, you have to introduce this naivety assumption, which severs the dependence of events from on each other.
+
+[00:45:56] It assumes that they were all independent events. Now, as we did with support vector machines, let's compare naive bays to deep learning. Naive bays is commonly used in text-based applications. Like I said, spam classification of emails. I. It's gonna be based off of words in the email. We call this a bag of words approach.
+
+[00:46:17] It's called a bag of words. Because you're not assessing grammar or how words relate to each other. You cannot, with naive bays, the way words relate to each other, remember, that would be dependent events that would not be independent. Therefore, we would not be using the naive assumption. If words related to each other in a grammatical structure, they would depend on each other, and our approach could not be naive, so we're going to assume that they don't depend on each other.
+
+[00:46:47] Instead, we're just gonna pull out all the words of the email, and we're just gonna kind of keep our eye on trigger words like Viagra. What is the probability of an email is spam given the existence of the word Viagra? So that's why it's called a bag of words. It's just all the words, just throw 'em all in a bag and hand the bag to naive bays.
+
+[00:47:08] A recurrent neural network, which is an algorithm that we'll get into in a future episode, is a type of neural network. So it's a type of deep learning algorithm that is very good at handling text-based applications as well. So naive bays and recurrent neural networks are commonly pitted up against each other.
+
+[00:47:28] But unlike naive bays, which uses a bag of words and the naive assumption that there are no relations between the words, recurrent neural networks literally read the email from left to right top to bottom, and they keep grammar in mind. Negating words modify the words they negate. I mean, I think of recurrent neural network as taking an email, printing it out.
+
+[00:47:52] It's a, it's a classy English gentleman who sits in his leather sofa and he has a pipe. He's
+
+[00:47:58] like, well, I see the existence of Viagra, but let's not be too hasty because the use of some amount of antonyms in this particular structure over here. And I do find that they use abbreviations more often than real words.
+
+[00:48:08] Why would they use abbreviations? It's either that they're uneducated, less versed in formal grammar, or that they're trying to save precious space so that they can get at a word edgewise. I believe through formal analysis of the documented hand, we are indeed dealing with spam, but it took the guy almost
+
+[00:48:23] a day to come to this conclusion by comparison to naive Bays who's sitting there folded his arms, he's got a cigar in his mouth.
+
+[00:48:29] He's like a bub. It says Viagra. You don't need any other information. Recurrent
+
+[00:48:33] neural network looks up from the paper and he says, oh yes, of course it has Viagra. Maybe increases the probability of the thing being spam, of course, but let's not be hasty. Haste always causes a naive base, snatches the paper out of recurrent neural network's hands and rips
+
+[00:48:45] it up and says, but the goddamn thing spam, it has Viagra.
+
+[00:48:47] I don't need to know anything else. So if time and memory. Are crucial to your application if things need to be fast and not consume a lot of memory. The naive Bays is a preferable machine learning algorithm to a more complex algorithm like a recurrent neural network. But if you need more accuracy and complexity in the analysis of the situation.
+
+[00:49:07] Then a recurrent neural network is more likely to be your guy. If time and memory are less of an issue for your particular situation, and you'd rather have higher accuracy in a more complex modeling of the situation, then deep learning is preferable to naive base. But let's think about email spam classification.
+
+[00:49:24] You don't have all day to determine if an email is spam when somebody sends an email. The recipient expects to receive the email in very short order. Let's say no more than one minute. While very powerful recurrent neural networks on very powerful machines could probably do that in a minute, but I'm not so sure.
+
+[00:49:44] Whereas a naive Bayes classifier could snap its fingers and make a judgment, the blink of an eye. In the case of email spam classification, it is very likely the case indeed that a naive be classifier is preferred to a recurrent neural network. And this is a prime example where we see a shallow learning algorithm may be better for a particular.
+
+[00:50:05] Purpose than deep learning, even though deep learning is more accurate and complex and magical. In fact, in this particular situation of using recurrent neural networks for email classification, they call this field natural language processing, but using recurrent neural networks with what's called word vectors.
+
+[00:50:22] We're gonna get into in another episode. The way that it represents these documents is as a point in vector space that can be compared to other documents. It's actually very magical. So much so that this. Bin of natural language application using this type of technology is called natural language understanding, which indicates if you might stretch your mind so far that the machine may be understanding in a fundamental way, the meaning behind what classifies a document as spam or not spam.
+
+[00:50:50] Very interesting indeed. So there you have it support vector machines and naive bays. And I do want to admit I don't understand these algorithms as much as the algorithms that I have presented to you thus far. So this is probably one of my worst episodes. I would encourage you to go learn these algorithms offline, which brings us to the resources section, of course, the Andrew ing Coursera course.
+
+[00:51:16] He has a week on support vector machines. I will link to that in the show notes. Andrew ing does not cover Naive Bays classifiers. I found that very interesting actually, because Naive Bays classifiers, that's one of the fundamental algorithms of machine learning that you see brought up over and over and over compared to more complex models like, like neural networks and used in the wild today with great success.
+
+[00:51:41] You'll see it in most introductory machine learning textbooks and all these things. So why didn't Andrew ing cover the naive bays? I actually found a video by Andrew ing on YouTube when I was trying to learn naive bays later on, naive bays, and it clearly came from his course. He took it out at some point.
+
+[00:51:58] I think that he didn't want to bog down newcomers to machine learning with statistics because like I said, to understand naive base classifiers, you have to understand base theorem. To understand base theorem, you have to understand conditional probability. To understand conditional probability, you have to understand statistics.
+
+[00:52:17] So the whole world of Bayesian methods, it's the world of statistics, raw statistics and stats is hard stuff, my friends. So it's important, it's essential. But I have a hunch that Andrew ing decided they'll get to that later. I don't want to scare them away from the field yet 'cause you don't need it to succeed right away.
+
+[00:52:38] You can start doing linear and logistic regression and you can deep dive right into deep learning and neural networks and skip past all this statistics stuff. But it, it is essential for you to know. So I would encourage you to learn naive base classifiers. The machine learning with our book that I'll put in the show notes is a, has a great chapter on.
+
+[00:52:59] Naive Bays classifiers. It also has a great chapter on support vector machines as well, and the mathematical decision making great courses series that I've referenced from time to time. Also has a whole episode, audio episode dedicated to naive bays. So I'll post that in the show notes, and I would encourage you to try to learn the basics of these two algorithms offline.
+
+[00:53:24] 'cause like I said, I don't think I did a very good job of presenting them. Unfortunately. I prepared and I prepared, but I was a little bit out of my element for this episode. And finally, like I mentioned before, how do you choose which algorithm to use? When you know your situation, whether it calls for supervised learning or classification regression, et cetera, you'll be able to narrow down.
+
+[00:53:44] Grossly, which algorithms to throw out. And now you have in your hands 20 algorithms that you could possibly use for classification. And in order to decide which of these algorithms you should use, you assess your data. So for example, naive Bays works well with categorical data and missing data, something many other machine learning algorithms.
+
+[00:54:02] Do not work well with is missing data. Naive Bayes works akay with missing data. How many examples do you have in your training data set? Are you working with text or numbers, et cetera? Using these types of questions will help you narrow it down even further. And in order to do that, I'm going to link to a table of.
+
+[00:54:20] Pros and cons of various algorithms under various situations, and a decision tree put out by the Psychic Learn Project for choosing an algorithm, giving various circumstances in your problem. And from there, once you've got five algorithms to use in hand and you still don't know which of these five is best to use, you just try 'em all.
+
+[00:54:40] You try 'em all, and you see which one, which one has the highest performance based on some evaluation metrics. In the next episode, I'm going to be talking about some more miscellaneous. Machine learning algorithms, things that are very dedicated. So the last three algorithms that I talked about, decision trees, support vector machines, and naive based classifiers.
+
+[00:54:59] These are all very general purpose, power tool, machine learning algorithms. All three of these could basically be swapped with each other and. And knowing which one goes where is a little bit difficult. But in the next episode, the machine learning algorithms I'm going to be presenting to you are very specifically tied to very specific use cases.
+
+[00:55:17] So it'll be a little bit easier. It'll be one of those apples to oranges bits that'll make it easy for you to decide that yes, you should use this algorithm because the situation is A or B. I'm going to be doing these episodes now every other weekend. I've become quite busy recently. I apologize. So rather than every weekend, I'll do every other weekend, so, so I will see you two weekends from now.
+

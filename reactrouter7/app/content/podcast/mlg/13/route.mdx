@@ -1,9 +1,25 @@
 export * from './meta.js'
 
-See [Andrew Ng Week 7](https://www.coursera.org/learn/machine-learning/resources/Es9Qo)
-Which algo to use?
-- [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/)
-- [Decision tree of algos](http://scikit-learn.org/stable/tutorial/machine_learning_map/)
+## Support Vector Machines (SVM)
+- **Purpose**: Classification and regression.
+- **Mechanism**: Establishes decision boundaries with maximum margin.
+- **Margin**: The thickness of the decision boundary, large margin minimizes overfitting.
+- **Support Vectors**: Data points that the margin directly affects.
+- **Kernel Trick**: Projects non-linear data into higher dimensions to find a linear decision boundary.
 
-- Support Vector Machines (SVM)
-- Naive Bayes Classifier
+## Naive Bayes Classifiers
+- **Framework**: Based on Bayes' Theorem, applies conditional probability.
+- **Naive Assumption**: Assumes feature independence to simplify computation.
+- **Application**: Effective for text classification using a "bag of words" method (e.g., spam detection).
+- **Comparison with Deep Learning**: Faster and more memory efficient than recurrent neural networks for text data, though less precise in complex document understanding.
+
+## Choosing an Algorithm
+- **Assessment**: Evaluate based on data type, memory constraints, and processing needs.
+- **Implementation Strategy**: Apply multiple algorithms and select the best-performing model using evaluation metrics.
+
+## Links
+- [Andrew Ng Week 7](https://www.coursera.org/learn/machine-learning/resources/Es9Qo)
+- [Pros/cons table for algos](https://blog.recast.ai/machine-learning-algorithms/2/)
+- [Sci-Kit Learn's decision tree for algorithm selection.](http://scikit-learn.org/stable/tutorial/machine_learning_map/)
+- Machine Learning with R book for SVMs and Naive Bayes.
+- "Mathematical Decision-Making" great courses series for Bayesian methods.

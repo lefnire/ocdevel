@@ -4,7 +4,7 @@
   export const created = "2017-04-09"
   export const guid = "af4c231e-c8c1-4d91-ab21-2e256669982e"
   export const libsynEpisode = 5440745
-  export const teaser = "Speed run of Support Vector Machines (SVMs) and Naive Bayes Classifier."
+  export const teaser = "Support Vector Machines (SVMs) and Naive Bayes classifiers are two powerful shallow learning algorithms used mainly for classification, with the capacity for regression as well. SVMs create decision boundaries to distinguish between categories by aiming to maximize this boundary's thickness (or margin) for optimal separation and resistance to overfitting, while Naive Bayes employs probabilistic reasoning and Bayesian inference to classify data based on assumed conditional independence of features."
 
   export const file = {
     url: "http://ocdevel.com/files/podcasts/machine-learning/ml-13.mp3",
