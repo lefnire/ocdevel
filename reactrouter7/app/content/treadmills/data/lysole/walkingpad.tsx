@@ -39,7 +39,7 @@ const info: Product = {
     value: ["B", brand.fakespot],
   },
   price: {
-    value: 300,
+    value: 290,
   },
   pickedBy: {
     affiliate: [{value: 1}]
@@ -59,12 +59,11 @@ const info: Product = {
   app: {
     value: true,
   },
-  bump: {},
   easyLube: {
     value: 10,
   },
   material: {
-
+    value: "Alloy Steel" // From Amazon technical details
   },
 }
 export default info

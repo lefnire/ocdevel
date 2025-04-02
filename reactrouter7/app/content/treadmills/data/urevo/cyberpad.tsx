@@ -32,7 +32,7 @@ const info: Product = {
     notes: () => <div>Extremely tall. The back legs are 8.7", much taller than most mills. So make sure your standing desk is tall enough. Indeed, after switching from Urevo 3S to this, I had to raise my monitor arms.</div>
   },
   weight: {
-    value: 70.6,
+    value: 78,
     notes: () => <div>Very heavy! It does have wheels and tilt stoppers though, so it shouldn't  be a problem.</div>
   },
   maxWeight: {
@@ -58,8 +58,7 @@ const info: Product = {
     notes: () => <div>Too few to go off. Urevo is reputable, so seems like a fluke.</div>
   },
   price: {
-    value: 900,
-    sale: 500,
+    value: 500,
   },
   pickedBy: {
     me: 8,

@@ -41,14 +41,14 @@ const info: Product = {
     // notes: () => <div>Likely heavier than consumer models due to commercial-grade construction.</div>
   },
   maxWeight: {
-    value: 350,
+    value: 330,
     notes: () => <div>High max weight capacity (350lbs) compared to most competitors.</div>
   },
   maxSpeed: {
     value: 4,
   },
   horsePower: {
-    value: 2.25, // Assuming higher than TR1000 based on tier
+    value: 3.0,
     // notes: () => <div>Commercial-grade motor likely has higher horsepower and better durability than consumer models and the TR1000.</div>
   },
   age: {
@@ -57,7 +57,7 @@ const info: Product = {
     notes: () => <div>I'm overriding this attribute because Lifespan is a "buy it for life" brand, age isn't a factor.</div>
   },
   rating: {
-    value: [[3.2, 85], [45, 8, 12, 2, 33]],
+    value: [[3.2, 86], [43, 8, 11, 2, 36]],
   },
   fakespot: {
     value: ["A", brand.fakespot],
@@ -82,6 +82,9 @@ const info: Product = {
   },
   easyLube: {
     value: 4, // Not mentioned in the data
+  },
+  material: {
+    value: "Aluminum, Plastic" // From Amazon page
   },
 
 

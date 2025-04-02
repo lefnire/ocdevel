@@ -26,7 +26,8 @@ const info: Product = {
   },
   links,
   dimensions: {
-    value: [43, 20, 4.3], // 45"D x 20.3"W x 4.3"H
+    value: [43, 20, 4.3],
+    // value: [45, 20.3, 4.3], // From Amazon: 45"D x 20.3"W x 4.3"H
   },
   weight: {
     value: 42,
@@ -58,7 +59,7 @@ const info: Product = {
     sale: 150,
   },
   pickedBy: {
-    me: 4,
+    me: 5,
     trusted: [{value: 1}],
     affiliate: [{value: 1}],
     websites: [{value: 3}],
@@ -68,8 +69,8 @@ const info: Product = {
     notes: () => <div>No incline functionality. Recommendation is to prop the front on a block of wood or foam.</div>
   },
   shock: {
-    value: false, // Not mentioned in the data
-    notes: () => <div>No shock absorption mentioned, which may be a concern for knee health.</div>
+    value: false, // Mentioned in Amazon "Special Features"
+    rating: 3,
   },
   decibels: {
     value: 45, //TODO double-check, and put in table
@@ -80,6 +81,8 @@ const info: Product = {
   easyLube: {
     value: 5,
   },
-
+  material: {
+    value: "Alloy Steel" // From Amazon technical details
+  },
 }
 export default info

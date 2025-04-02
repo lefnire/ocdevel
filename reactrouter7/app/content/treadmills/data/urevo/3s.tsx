@@ -49,7 +49,7 @@ const info: Product = {
   },
   price: {
     value: 465,
-    sale: 300,
+    sale: 395,
   },
   pickedBy: {
     me: 7,

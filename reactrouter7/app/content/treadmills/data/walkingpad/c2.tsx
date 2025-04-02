@@ -65,7 +65,7 @@ const info: Product = {
     // value: 50,
   },
   app: {
-    value: false,
+    value: true,
   },
   easyLube: {
     value: 10,

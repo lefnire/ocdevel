@@ -79,10 +79,13 @@ const info: Product = {
   decibels: {
   },
   app: {
-    value: false, // Not mentioned in the data
+    value: true,
   },
   easyLube: {
     value: 5, // Not mentioned in the data
+  },
+  material: {
+    value: "Acrylonitrile Butadiene Styrene (ABS)"
   },
 
 }

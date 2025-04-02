@@ -34,14 +34,14 @@ const info: Product = {
     value: "2024-06-06",
   },
   rating: {
-    value: [[4.8, 355], [91,5,2,0,1]],
+    value: [[4.8, 377], [91,5,3,0,1]],
   },
   fakespot: {
     value: ["F", brand.fakespot],
   },
   price: {
     value: 450,
-    sale: 330,
+    sale: 300,
   },
   pickedBy: {
     affiliate: [{value: 1}]

@@ -30,10 +30,10 @@ const info: Product = {
   },
 
   dimensions: {
-    value: [48.9, 19, 4.5], // 50"D x 20.9"W x 4.72"H
+    value: [48.9, 19, 4.5],
   },
   weight: {
-    value: 37.5, // TODO: Weight not specified in the data
+    value: 37.5,
   },
   maxWeight: {
     value: 265,
@@ -42,14 +42,14 @@ const info: Product = {
     value: 4,
   },
   horsePower: {
-    value: 2.5,
+    value: 2,
   },
   age: {
     value: "2024-08-27",
     notes: () => <div>Newer model with hardware improvements over previous E* versions.</div>
   },
   rating: {
-    value: [[4.3, 1175], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    value: [[4.3, 1784], [65, 19, 5, 3, 8]],
     notes: () => <div>Good distribution with majority 5-star ratings.</div>
   },
   fakespot: {
@@ -81,8 +81,9 @@ const info: Product = {
   },
   easyLube: {
     value: 5, // Not mentioned in the data
+  }, // Added comma
+  material: {
+    value: "Alloy Steel" // From Amazon specs
   },
-
-  
 }
 export default info

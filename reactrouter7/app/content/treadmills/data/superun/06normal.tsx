@@ -34,14 +34,14 @@ const info: Product = {
     value: "2024-02-01",
   },
   rating: {
-    value: [[4.2, 2688], [66,17,5,3,9]],
+    value: [[4.2, 2721], [65,17,6,3,9]], // Updated count and percentages from Amazon
   },
   fakespot: {
     value: ["A", brand.fakespot],
   },
   price: {
     value: 160,
-    sale: 130,
+    sale: 140,
   },
   pickedBy: {
     websites: [
@@ -54,7 +54,7 @@ const info: Product = {
     // method: "auto"
   },
   shock: {
-    value: false,
+    value: false, // Mentioned in Amazon Special Features
     rating: 4,
     // notes: () => <div>8-point silicone absorbers</div>
   },

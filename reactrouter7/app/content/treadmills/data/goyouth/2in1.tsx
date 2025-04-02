@@ -64,7 +64,8 @@ const info: Product = {
     notes: () => <div>No incline functionality, which is important for knee health.</div>
   },
   shock: {
-    value: false, // Not mentioned in the data
+    value: false, // Mentioned in Amazon description and features
+    rating: 2,
   },
   decibels: {
   },
@@ -73,6 +74,9 @@ const info: Product = {
   },
   easyLube: {
     value: 5, // Not mentioned in the data
+  },
+  material: {
+    value: "Alloy Steel, Acrylonitrile Butadiene Styrene (ABS)"
   },
 }
 export default info

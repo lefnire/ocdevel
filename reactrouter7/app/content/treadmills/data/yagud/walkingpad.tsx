@@ -11,7 +11,6 @@ const links = {
 const info: Product = {
   model: {value: "Walking Pad"},
   key: `${brand.key}_walkingpad`,
-  description: "",
   links,
   brand,
   // description: "",
@@ -31,17 +30,17 @@ const info: Product = {
     value: 2.5,
   },
   age: {
-    value: "2024-10-10",
+    value: "2024-11-10",
   },
   rating: {
-    value: [[4.1, 4360], [64,15,6,4,11]],
+    value: [[4.3, 188], [68,17,5,2,8]],
   },
   fakespot: {
     value: ["C", brand.fakespot],
   },
   price: {
     value: 130,
-    sale: 90,
+    sale: 100,
   },
   pickedBy: {
     websites: [

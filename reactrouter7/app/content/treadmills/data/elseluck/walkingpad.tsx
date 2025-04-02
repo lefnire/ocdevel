@@ -22,7 +22,7 @@ const info: Product = {
     value: 37.9,
   },
   maxWeight: {
-    value: 300,
+    value: 265,
   },
   maxSpeed: {
     value: 3.8,
@@ -34,7 +34,7 @@ const info: Product = {
     value: "2024-12-06",
   },
   rating: {
-    value: [[4.1, 427], [64,13,8,2,13]],
+    value: [[4.1, 506], [65, 13, 7, 1, 14]],
   },
   fakespot: {
     value: ["C", brand.fakespot],

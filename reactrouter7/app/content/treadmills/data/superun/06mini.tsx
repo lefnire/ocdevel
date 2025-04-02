@@ -42,8 +42,9 @@ const info: Product = {
     value: ["A", brand.fakespot],
   },
   price: {
+    // Amazon list $159.99, sale $129.00 (as of 2025-04-01)
     value: 160,
-    sale: 100,
+    sale: 130,
   },
   pickedBy: {
   },
@@ -52,7 +53,7 @@ const info: Product = {
     // method: "auto"
   },
   shock: {
-    value: false,
+    value: false, // Mentioned in Amazon features
     rating: 4,
     // notes: () => <div>8-point silicone absorbers</div>
   },
@@ -60,7 +61,7 @@ const info: Product = {
     value: 40,
   },
   app: {
-    value: false,
+    value: true, // PitPat app required per Amazon description
   },
   easyLube: {
     value: 10,

@@ -43,14 +43,14 @@ const info: Product = {
     value: "2024-08-29",
   },
   rating: {
-    value: [[4.2, 3025], [68, 15, 4, 2, 11]],
+    value: [[4.3, 3361], [68, 16, 4, 2, 10]],
   },
   fakespot: {
     value: ["A", brand.fakespot],
   },
   price: {
-    value: 200,
-    sale: 160,
+    value: 210,
+    sale: 170,
   },
   pickedBy: {
     // me: 2,

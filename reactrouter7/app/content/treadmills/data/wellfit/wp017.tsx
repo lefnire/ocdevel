@@ -12,7 +12,6 @@ const links = {
 const info: Product = {
   model: {value: "WP017"},
   key: `${brand.key}_wp017`,
-  description: "",
   links,
   brand,
   // description: "",
@@ -42,7 +41,7 @@ const info: Product = {
   },
   price: {
     value: 500,
-    sale: 290,
+    sale: 300,
   },
   pickedBy: {
   },

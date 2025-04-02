@@ -49,7 +49,7 @@ const info: Product = {
     value: ["A", brand.fakespot], // Not specified in the data
   },
   price: {
-    value: 1499,
+    value: 1500,
     // notes: () => <div>Premium price point reflecting top-tier commercial-grade quality. $400 more than the TR1200 and $600 more than the TR1000.</div>
   },
   pickedBy: {
@@ -69,6 +69,9 @@ const info: Product = {
   },
   easyLube: {
     value: 4,
+  },
+  material: {
+    value: "Aluminum"
   },
 }
 export default info

@@ -24,6 +24,7 @@ const info: Product = {
   },
   maxWeight: {
     value: 265,
+    // value: 243, // 110 kg
   },
   maxSpeed: {
     value: 3.8,
@@ -31,6 +32,7 @@ const info: Product = {
   horsePower: {
     // it's measured as 550 Watts. How the heck to I convert that?
     value: 2.5,
+    // value: 0.74, // 550 Watts
   },
   age: {
     value: "2023-05-11",

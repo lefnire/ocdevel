@@ -42,8 +42,7 @@ const info: Product = {
     value: ["A", brand.fakespot],
   },
   price: {
-    value: 100,
-    sale: 90,
+    value: 130,
   },
   pickedBy: {
     websites: [{
@@ -68,6 +67,9 @@ const info: Product = {
   },
   easyLube: {
     value: 5,
+  },
+  material: {
+    value: "Wood, Alloy Steel"
   },
 
   // warranty: from brands

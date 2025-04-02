@@ -32,7 +32,7 @@ const info: Product = {
   },
 
   dimensions: {
-    value: [47.5, 18.9, 4.4], // TODO what was: 50"D x 20.9"W x 4.72"H
+    value: [47.6, 18.9, 4.4],
   },
   weight: {
     value: 42.3,
@@ -50,7 +50,7 @@ const info: Product = {
     value: "2023-09-12",
   },
   rating: {
-    value: [[4.3, 1175], [66, 19, 4, 3, 8]], // [average rating, number of reviews], [5-stars, 4-stars, 3-stars, 2-stars, 1-star]
+    value: [[4.3, 1784], [65, 19, 5, 3, 8]],
   },
   fakespot: {
     value: ["B", brand.fakespot], // Fakespot B for the product
@@ -81,7 +81,8 @@ const info: Product = {
   easyLube: {
     value: 5, // Not mentioned in the data
   },
-
-
+  material: {
+    value: "Alloy Steel"
+  },
 }
 export default info
