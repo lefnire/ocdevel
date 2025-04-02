@@ -3,22 +3,16 @@ import {Card, Alert} from 'react-bootstrap'
 import {Link, Outlet} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
-import {ResourceNode} from '~/routes/mlg.resources/tree/common'
-import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
 import type {Route} from './+types/route.tsx'
+import {ResourcesFlat} from "~/routes/mlg.resources/tree/flat";
 
 export default function Full({loaderData}: Route.ComponentProps) {
   const props = loaderData
-  const {episode: e, podcastKey, show, transcript, i=undefined} = loaderData
+  const {episode: e, podcastKey, show, transcript, resources, i=undefined} = loaderData
   const title = buildTitle(props)
-
-  const resources = (
-      podcastKey === "llh" ? null
-      : episodeResources[e.mla ? 'mla' : 'mlg']?.[e.episode]
-  )
 
   const player = useMemo(() => <Player {...props} />, [])
 
@@ -29,10 +23,10 @@ export default function Full({loaderData}: Route.ComponentProps) {
     </Section>
   }
   function renderResources() {
-    if (!resources) { return null; }
+    if (!resources?.nids?.length) { return null; }
     return <Section title="Resources">
       <div className='text-muted my-0'>Resources best viewed <Link to='/mlg/resources'>here</Link></div>
-      <ResourcesFlat nids={resources} />
+      <ResourcesFlat {...resources} />
     </Section>
   }
   function renderTranscript() {
@@ -73,26 +67,4 @@ function Section({title, children}: PropsWithChildren<{title: string}>) {
     <Card.Title>{title}</Card.Title>
     <Card.Body>{children}</Card.Body>
   </Card.Body>
-}
-
-function ResourcesFlat({nids}: {nids: string[] | {id: string}[]}) {
-  let seen: Record<string, boolean> = {}
-  function render(item: string | {id: string}) {
-    // Handle both string IDs and object IDs
-    const id = typeof item === 'string' ? item : item.id;
-    
-    const full = flat[id]
-    if (!full) { return null }
-    if (!full.pick) {
-      if (seen[id]) {return null}
-      seen[id] = true
-      return <ResourceNode node={{id}} key={id} />
-    }
-    // using full.v instead of node.v, since we don't want filters
-    return full.v.map(render)
-  }
-  const built = nids.map(render)
-  return <div className='resources'>
-    {built}
-  </div>
 }

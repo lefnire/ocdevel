@@ -1,49 +1,7 @@
 import {create} from "zustand";
-import compact from "lodash/compact";
 import reduce from "lodash/reduce";
-import {flat, top} from "~/content/podcast/resources";
-import {filterKeys, filters as filters_} from "~/content/podcast/resources/filters";
+import {filters as filters_} from "~/content/podcast/resources/filters";
 import {produce} from 'immer'
-
-function recurseTree(filters, learnStyles, id=null, section=null) {
-  if (!id) {
-    const sections = []
-    if (learnStyles.learn === 'selfTaught') {
-      sections.push('main')
-      sections.push('math')
-    } else {
-      sections.push('degrees')
-    }
-    sections.push('audio')
-    return sections.map(section => recurseTree(filters, learnStyles, top[section].id, section))
-  }
-
-  const full = flat[id]
-
-  // section
-  if (full.v?.length) {
-    let v = full.v.map(({id}) => recurseTree(filters, learnStyles, id, section=section))
-    v = compact(v)
-    if (v.length === 0) {return null}
-    return {id, v}
-  }
-
-  // leaf node
-  if (full.audioOption) {
-    if (learnStyles.audio === 'normal' && section === 'audio') {
-      return null
-    }
-    if (learnStyles.audio === 'hardCore' && section !== 'audio') {
-      return null
-    }
-  }
-
-  const keep = reduce(filterKeys, (m, fk) => {
-    if (!full[fk]) {return m} // N/A attrs, like video2audio
-    return m && filters[fk][full[fk]]
-  }, true)
-  return keep ? {id} : null
-}
 
 export const useStore = create((set, get) => ({
   showFilters: true,
@@ -77,12 +35,3 @@ export const useStore = create((set, get) => ({
     })),
   }), {}),
 }))
-
-export function useFilteredTree() {
-  const filters = useStore(state => state.filters)
-  const learnStyles = useStore(state => state.learnStyles)
-
-  // console.log(filters)
-
-  return recurseTree(filters, learnStyles)
-}

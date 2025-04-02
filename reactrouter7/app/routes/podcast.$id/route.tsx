@@ -4,7 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
-
+import _reduce from 'lodash/reduce'
+import * as r from '~/content/podcast/resources/index'
 
 export function loader(props: Route.LoaderArgs) {
   const {request} = props
@@ -29,8 +30,23 @@ export function loader(props: Route.LoaderArgs) {
   } catch (error) {
     // console.error(`Error loading transcript for episode ${id}:`, error);
   }
+  const resources = (() => {
+    if (podcastKey === 'llh') { return {flat: {}, nids: []}}
+    const nids = r.episodes[series][epId]
+    // const filteredFlat = _reduce(r.flat[series], (m, v, k) => {
+    //   if (!nids.includes(k)) { return m; }
+    //   m[k] = v;
+    //   return m;
+    // }, {})
+    // const flat = (
+    //   series === 'mlg' ? {mlg: filteredFlat, mla: {}}
+    //     : {mla: filteredFlat, mlg: {}})
+    const flat = r.flat
+    return { flat, nids }
+  })()
 
   return {
+    resources,
     podcastKey,
     show: pod.show,
     episode: pod.obj[id],

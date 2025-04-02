@@ -3,7 +3,7 @@ import path from 'path'
 import xmlJs from 'xml-js'
 import reduce from 'lodash/reduce'
 import crypto from 'crypto'
-import type {Filters, Node} from './mlg-resources.types'
+import type {Filters, Resource, ResourcesTree} from './mlg-resources.types'
 import last from 'lodash/last'
 import find from 'lodash/find'
 
@@ -26,11 +26,9 @@ const defaults: Filters = {
   relevance: "fresh",
 }
 
-type Flat = {[id: string]: Node}
-let flat: Flat = {}
+let flat: ResourcesTree['flat'] = {}
 
-type Episodes = {[epId: string]: string[]} // resourceId
-let episodes: {mlg: Episodes, mla: Episodes} = {mlg: {} ,mla: {}}
+let episodes: ResourcesTree['episodes'] = {mlg: {} ,mla: {}}
 function addEpisode(
   podcast: 'mla' | 'mlg',
   number: string | number,

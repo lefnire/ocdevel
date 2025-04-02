@@ -6,9 +6,13 @@ import Tree from './tree/tree'
 import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
+import * as resources from '~/content/podcast/resources/index'
 
 export function loader(props: Route.LoaderArgs) {
-  return { show: mlgShow }
+  return {
+    show: mlgShow,
+    resources,
+  }
 }
 
 export default function Resources({loaderData}: Route.ComponentProps) {
@@ -25,7 +29,7 @@ export default function Resources({loaderData}: Route.ComponentProps) {
           </Row>
         </Col>
         <Col xs={12} md={8}>
-          <Tree />
+          <Tree {...loaderData.resources} />
         </Col>
       </Row>
     </Container>

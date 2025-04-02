@@ -1,4 +1,4 @@
-import React, {type PropsWithChildren, useCallback, useState} from "react";
+import React, {createContext, type PropsWithChildren, useCallback, useContext, useState} from "react";
 import {Link} from "react-router";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
 import {Card, Alert, Table} from 'react-bootstrap'
@@ -7,8 +7,10 @@ import startsWith from "lodash/startsWith";
 import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";
 import {icons, Popover_} from "~/components/utils";
 import {filterKeys, filters} from '~/content/podcast/resources/filters'
-import {flat, picks} from '~/content/podcast/resources'
-import type {Node} from "~/content/workflowy/mlg-resources.types"
+import {picks} from '~/content/podcast/resources/picks'
+import type {Resource, WF} from "~/content/workflowy/mlg-resources.types"
+
+export const ResourceContext = createContext<{[id: string]: Resource}>({})
 
 function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {
     if (!show) {return <div>{children}</div>}
@@ -19,7 +21,8 @@ function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {
     </Card>
   }
 
-function Resource({node}: {node: Node}) {
+function Resource({node}: {node: Resource}) {
+  const flat = useContext(ResourceContext)
   const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
   const full = flat[node.id]
@@ -86,7 +89,7 @@ function Resource({node}: {node: Node}) {
     // <Popover_ /> showing at random pages on page
   }
 
-  function renderLink(l: Node['links'][0]) {
+  function renderLink(l: Resource['links'][0]) {
     const opts = {
       ...helpAttrs(filters.price.opts[l.p].d),
       key: l.l,
@@ -168,13 +171,15 @@ function TreeSectionWrapper({expanded, children}: PropsWithChildren<{expanded: b
   </div>
 }
 
-export function ResourceNode({node, level=0}: {node: Node, level: number}) {
+export function ResourceNode({node, level=0}: {node: Resource, level: number}) {
   // Wrapper component to error-catch missing value
+  const flat = useContext(ResourceContext)
   if (!flat[node?.id]) {return null}
   return <ResourceNode_ node={node} level={level} />
 }
 
-function ResourceNode_({node, level=0}: {node: Node, level: number}) {
+function ResourceNode_({node, level=0}: {node: Resource, level: number}) {
+  const flat = useContext(ResourceContext)
   const full = flat[node.id]
   const [expanded, setExpanded] = useState(!!full.expand)
   const [showPick, setShowPick] = useState(false)
@@ -219,7 +224,7 @@ function ResourceNode_({node, level=0}: {node: Node, level: number}) {
 
   const dontPad = level === 0 || expanded
 
-  function renderLi(v: Node) {
+  function renderLi(v: Resource) {
     const key = `${level}-${v.id}`
     return <li key={key}>
       <ResourceNode node={v} level={level+1} />

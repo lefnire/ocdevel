@@ -12,6 +12,7 @@ import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
 import map from "lodash/map";
 import {IconButton} from "~/components/utils";
+import {useShallow} from "zustand/react/shallow";
 
 const btns = {
   on: {
@@ -125,8 +126,7 @@ function Filter({k, section='filters'}) {
 }
 
 export default function Filters() {
-  const show = useStore(s => s.showFilters)
-  const toggle = useStore(s => s.toggleFilters)
+  const [show, toggle] = useStore(useShallow(s => [s.showFilters, s.toggleFilters]))
 
   return <Col className='sidebar-filters'>
     <Card className='border-0'>
