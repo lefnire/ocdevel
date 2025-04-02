@@ -76,7 +76,16 @@ const info: Product = {
     value: ["A", brand.fakespot],
   },
   price: {
-    value: 6231,
+    value: 2915,
+    notes: () => <div>
+      <p>They have 3 price options for the walking pad, and an optional lean stool attachment (€379 EUR). Also consider shipping costs. Walking pad options:</p>
+      <ol>
+        <li>{slats.standard}: €2.690 EUR</li>
+        <li>{slats.thera}: €5.080 EUR</li>
+        <li>{slats.terrain}: €5.380 EUR</li>
+      </ol>
+      <p>I recommend option 2 personally, but do your research. Lots of discussions on Reddit</p>
+    </div>,
   },
   pickedBy: {
     // me: 10,

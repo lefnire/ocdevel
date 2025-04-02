@@ -26,6 +26,7 @@ import {UPDATED} from './data'
 import {NA} from "./data/utils"
 import {Affiliate} from "~/content/product-links";
 import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
+import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -134,14 +135,17 @@ export const columnsArray: ColumnDefinition[] = [
 
       // Create a wrapper div that can handle the modal click
       // but let the link handle its own click without propagation
-      return (
-        <Affiliate
-          product={affiliate}
-          onClick={(e) => e.stopPropagation()} // Prevent modal from opening when clicking the link
-        >
+      return <>
+        <Affiliate product={affiliate}>
           ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
         </Affiliate>
-      );
+        {row.price?.notes && <div
+          onClick={clickHandler}
+          style={clickableStyle}
+        >
+          <RiInformationLine />
+        </div>}
+      </>
     },
   },
   {
