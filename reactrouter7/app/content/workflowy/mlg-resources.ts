@@ -3,10 +3,11 @@ import path from 'path'
 import xmlJs from 'xml-js'
 import reduce from 'lodash/reduce'
 import crypto from 'crypto'
+import type {Filters, Node} from './mlg-resources.types'
 import last from 'lodash/last'
 import find from 'lodash/find'
 
-export function transform(code, id) {
+export function transform(code: string, id: string) {
   const fileContent = fs.readFileSync(id, 'utf8');
   const res = xmlJs.xml2js(fileContent, {compact: true});
   return parseWorkflowy(res)
@@ -16,7 +17,7 @@ export function transform(code, id) {
 // https://giuliachiola.dev/posts/how-to-remove-all-links-in-javascript/
 const reStripHtml= /<[^>]+>/g
 const reTags = /\#\S+/g
-const defaults = {
+const defaults: Filters = {
   importance: "supplementary",
   format: "other",
   difficulty: "easy",
@@ -25,9 +26,16 @@ const defaults = {
   relevance: "fresh",
 }
 
-let flat = {}
-let episodes = {mlg: {} ,mla: {}}
-function addEpisode(podcast, number, id) {
+type Flat = {[id: string]: Node}
+let flat: Flat = {}
+
+type Episodes = {[epId: string]: string[]} // resourceId
+let episodes: {mlg: Episodes, mla: Episodes} = {mlg: {} ,mla: {}}
+function addEpisode(
+  podcast: 'mla' | 'mlg',
+  number: string | number,
+  id: string
+) {
   const p = episodes[podcast]
   if (!p[number]) {
     p[number] = []
@@ -36,7 +44,14 @@ function addEpisode(podcast, number, id) {
   p[number].push(id)
 }
 
-function parseTree(tree, isLink = false) {
+type WFTree = {
+  _attributes?: {
+    text?: string
+    _note?: string
+  }
+  outline?: WFTree[] | WFTree
+}
+function parseTree(tree: WFTree, isLink = false) {
   if (!tree) {return {}}
 
   let text = tree._attributes?.text?.replace(reStripHtml, '').replace('&amp;', '&')

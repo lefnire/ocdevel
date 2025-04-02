@@ -131,7 +131,7 @@ export const filters = {
     t: "Updated At",
     d: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives.",
   }
-}
+} as const
 
 export const filterKeys = [
   // Specify filter-key order (since is {} above)

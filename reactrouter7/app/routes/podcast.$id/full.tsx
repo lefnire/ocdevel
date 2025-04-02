@@ -3,7 +3,7 @@ import {Card, Alert} from 'react-bootstrap'
 import {Link, Outlet} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
-import {ResourceNode} from '~/routes/mlg.resources/tree/tree'
+import {ResourceNode} from '~/routes/mlg.resources/tree/common'
 import {episodes as episodeResources, flat} from '~/content/podcast/resources'
 import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
