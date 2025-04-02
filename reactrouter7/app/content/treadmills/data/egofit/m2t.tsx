@@ -3,8 +3,8 @@ import brand from './brand'
 const links = {
   amazon: {},
   brand: {
-    US: "https://egofitwalker.com/products/egofit-m2t-foldable-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
-    UK: "https://egofitwalker.com/products/egofit-m2t-foldable-treadmill?sca_ref=5484370.9SQi3qcg7q&sca_source=blog",
+    US: "https://egofitwalker.com/products/egofit-m2t-foldable-treadmill",
+    UK: "https://egofitwalker.com/products/egofit-m2t-foldable-treadmill",
   }
 }
 const info: Product = {

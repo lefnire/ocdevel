@@ -11,7 +11,7 @@ const slats = {
 const links = {
   amazon: {},
   brand: {
-    "ALL": "https://walkolution.com/products/walkolution2"
+    "ALL": "https://walkolution.com/products/walkolution2?sca_ref=8416295.Hx5JVtdlxLpM&sca_source=blog"
   }
 }
 const info: Product = {

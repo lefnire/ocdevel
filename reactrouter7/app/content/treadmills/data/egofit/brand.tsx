@@ -7,8 +7,8 @@ const info: Brand = {
       CA: "https://amzn.to/41M28Ao"
     },
     brand: {
-      US: "https://egofitwalker.com/collections/all-products?sca_ref=5484370.9SQi3qcg7q",
-      UK: "https://egofitwalker.com/collections/all-products?sca_ref=5484370.9SQi3qcg7q"
+      US: "https://egofitwalker.com/collections/all-products",
+      UK: "https://egofitwalker.com/collections/all-products"
     }
   },
   name: "EgoFit",
