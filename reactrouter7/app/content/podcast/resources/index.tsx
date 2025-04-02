@@ -1,4 +1,4 @@
-import wf from '../../workflowy/mlg-resources.opml'
+import wf from '~/content/workflowy/mlg-resources.opml'
 
 // console.log(wf)
 

@@ -7,7 +7,7 @@ import {FaGithub} from "@react-icons/all-files/fa/FaGithub";
 import {FaLightbulb} from "@react-icons/all-files/fa/FaLightbulb";
 // import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
 import React from "react";
-import useStore from "~/store/episodes";
+import useStore from "~/routes/podcast._index/store";
 import {Link} from "react-router";
 import {useShallow} from "zustand/react/shallow";
 import type {Route} from './+types/route.tsx'

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Row, Col, Container} from 'react-bootstrap'
 import {Link} from 'react-router';
-import Filters from "./filters"
-import Tree from './tree'
+import Filters from "./tree/filters"
+import Tree from './tree/tree'
 import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'

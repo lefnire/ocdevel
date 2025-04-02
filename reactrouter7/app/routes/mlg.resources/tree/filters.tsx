@@ -8,7 +8,7 @@ import {icons} from "~/components/utils";
 import React, {useCallback, useState} from "react";
 import {ButtonGroup, Card} from 'react-bootstrap'
 import {Col} from 'react-bootstrap'
-import {useStore} from "~/store/resources";
+import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
 import map from "lodash/map";
 import {IconButton} from "~/components/utils";

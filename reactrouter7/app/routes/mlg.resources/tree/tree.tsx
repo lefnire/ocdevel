@@ -1,8 +1,8 @@
-import React, {useCallback, useState} from "react";
+import React, {type PropsWithChildren, useCallback, useState} from "react";
 import {Link} from "react-router";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
 import {Card, Alert, Table} from 'react-bootstrap'
-import {useFilteredTree} from "~/store/resources";
+import {useFilteredTree} from "~/routes/mlg.resources/tree/store";
 import startsWith from "lodash/startsWith";
 
 import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";
@@ -10,7 +10,7 @@ import {icons, Popover_} from "~/components/utils";
 import {filterKeys, filters} from '~/content/podcast/resources/filters'
 import {flat, picks} from '~/content/podcast/resources'
 
-function ResourceWrapper({children, show}) {
+function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {
     if (!show) {return <div>{children}</div>}
     return <Card className='shadow mb-2 pb-0'>
       <Card.Body className='p-1'>
@@ -32,7 +32,7 @@ function Resource({node}) {
     onMouseLeave: resetHelp
   })
 
-  function renderIcon(filterKey) {
+  function renderIcon(filterKey: string) {
     // if (!resource[filterKey]) {return null} // FIXME due to old resources?
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[full[filterKey]]
