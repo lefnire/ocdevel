@@ -1,5 +1,6 @@
 // const metaObjects = import.meta.glob('/app/routes/blog.blog*/meta.js');
 // export default metaObjects;
+import * as b27 from './20250331-roo-code-power-usage/meta.js';
 import * as b26 from './20250214-which-code-ai/meta.js';
 import * as b25 from './20250207-sleep-hacks/meta.js';
 // import * as b24 from './20240424-code-ai-for-adhd/meta.js';
@@ -31,6 +32,7 @@ const metas = [
   b19,
   b15,
 
+  b27,
   b26,
   b25,
   // b24,

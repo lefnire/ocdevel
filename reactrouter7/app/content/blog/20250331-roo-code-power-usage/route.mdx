@@ -1,0 +1,58 @@
+Speed-run of the high-impact Roo Code power user techniques.
+
+### 1. Rewire your habits around prompts and context
+Liberal use of `@`. Foundational - do this always.
+*   **Bad:** `fix this function`
+*   **Good:** `Refactor the @calculateTotal function in @src/utils/cart.js to improve readability and handle potential null values for item prices. Ensure it still returns the correct total.`
+*   Be specific. Use `@` to include files, folders, URLs, or even `@git-changes`. Use the "Enhance Prompt" ✨ button (but review it!) for inspiration.
+
+### 2. Architect/Edit Workflow
+Structured approach = faster/better results.
+
+1.  Switch to **Architect Mode**.
+2.  Prompt: `Outline the components and data flow for a new user authentication feature using React and Firebase Auth. Consider registration, login, and password reset. Include relevant existing files like @src/config/firebase.js.` (Let it create `authPlan.md`).
+3.  Review/Refine `authPlan.md` with Architect.
+4.  Switch to **Code Mode**.
+5.  Prompt: `Implement the registration component outlined in @authPlan.md using React functional components and hooks. Store user data in Firestore as defined.`
+
+### 3. MCP Servers
+Practical value, extend Roo's reach. MCP servers let Roo Code interact with *anything* outside your VS Code files and terminal, acting like pre-built plugins or integrations. They standardize how the AI uses external tools, so you don't have to write complex API call logic in your prompts.
+
+*   **Database Interaction:** An MCP server connects to your database (e.g., Postgres, Redis). Prompt: `Using the 'db' MCP, query the 'users' table for users created this week and summarize their roles.`
+*   **Cloud Services (AWS/GCP):** An MCP interacts with cloud provider APIs. Prompt: `Using the 'aws' MCP, list all S3 buckets in the 'us-east-1' region.`
+*   **Scraping/Data Fetching:** An MCP scrapes a website or fetches specific data. Prompt: `Using the 'webscrape' MCP, extract all H2 headings from example.com.`
+*   **Specialized Tools (Blender, etc.):** MCPs can connect Roo Code to specialized software like Blender for 3D modeling automation via prompts.
+
+Finding/Configuring:
+1.  **Find Servers:** [Main list of servers here](https://github.com/modelcontextprotocol/servers). There are also websites, though I'm not sure which are "canonical" yet.
+2.  **Configure in Roo Code:** Settings -> MCP Servers -> Edit MCP Settings (`mcp_settings.json`). Follow the MCP's README for what to paste here, pointing to the command that runs it. Roo Code 3.11+ allows *project-level* MCP config too (stored in project settings), keeping things tidy.
+3.  **Prompt:** Use the `use_mcp_tool` command as shown in the examples, specifying the server name and the tool/arguments it provides.
+
+### 4. Create Custom Modes
+Specialized agents.
+
+1.  **Prompt (Code or Architect Mode):** `Create a new custom mode named 'UnitTestWriter'. It should be an expert in Jest and React Testing Library, focused solely on writing comprehensive unit tests for React components. It should only have permission to read files and edit files ending in .test.js or .spec.js.`
+2.  Roo Code will generate a mode definition (likely in a `.roomodes` file). Review/tweak it in Settings -> Prompts if needed.
+3.  **Switch to 'UnitTestWriter' Mode.**
+4.  **Prompt:** `@src/components/UserProfile.jsx Write comprehensive unit tests for this component using Jest and React Testing Library. Cover props rendering and basic interactions.`
+
+### 5. Use RooFlow for Persistent Memory
+Stop repeating yourself, maintain context.
+
+*   **What it is:** RooFlow is an advanced addon by GreatScottyMac, providing long-term project memory. It uses configuration files (`.roomodes`, `.rooignore`, `.roo/system-prompt-*`) and a `memory-bank/` directory with context files (`activeContext.md`, `productContext.md`, etc.) to keep specialized modes (Architect, Code, Debug, Test) consistently informed about project goals, progress, and decisions across sessions. This is a more integrated evolution of earlier "Memory Bank" concepts.
+*   **Why it's powerful:** Automates context management, ensuring AI consistency without manually feeding information repeatedly, while reducing token usage compared to large prompts.
+*   **Action:**
+    1.  **Install:** Find RooFlow setup files (search GitHub/Community for "RooFlow Roo Code"). Copy its configuration files (`.roomodes`, `.rooignore`, files inside `.roo/`) into your project root. Run any provided configuration scripts (e.g., `insert-variables.sh/cmd`) if needed.
+    2.  **Initialize:** Interact with Roo Code (e.g., send "hello" in Architect mode) after installation. Approve the creation of the `memory-bank/` directory and its files when prompted.
+    3.  **Use:** Work within the specialized modes provided by RooFlow. Their built-in instructions automatically read from and write updates to the `memory-bank/*.md` files, keeping context persistent. You can occasionally prompt specific updates like `Update the memory bank with the new API endpoint decisions.`
+
+### 6. Boomerang Tasks
+Automated orchestration. Delegate & conquer.
+
+*   **What it is:** A primary "Orchestrator" mode (defined in the `.roomodes`) breaks down a complex task and uses the `new_task` command to delegate sub-tasks to *other* specialized modes (which could be built-in like 'Code' or custom ones like 'UnitTestWriter' or modes included in the Boomerang/SPARC pack itself). When a sub-task finishes (often by calling `attempt_completion`), it "boomerangs" a summary back to the calling Orchestrator task, which then decides the next step.
+*   **Why it's powerful:** Automates complex workflows (like Specification -> Architecture -> Coding -> Testing -> Refinement). Keeps context focused for each sub-task (improving quality/cost). Enforces best practices defined in the Orchestrator's rules.
+*   **Action:**
+    1.  **Install:** [Setup instructions here](https://docs.roocode.com/features/boomerang-tasks#setting-up-boomerang-mode)
+    2.  **Select the Boomerang Mode:** For any tasks requiring multiple steps.
+    3.  **Prompt:** Give it the high-level goal. Example: `Implement a user login system based on the requirements in @loginSpec.md.`
+    4.  **Oversee & Approve:** The Orchestrator will then use `new_task` to call other modes for each step. You'll likely see new tasks appear in Roo Code. Review the plan/output of each sub-task and approve its completion (`attempt_completion`) for the process to continue. The Orchestrator manages the flow based on the returned summaries. (Note: you can allow auto-approval of sub-tasks, use with caution).
