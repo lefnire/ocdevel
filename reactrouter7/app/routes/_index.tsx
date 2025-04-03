@@ -1,4 +1,9 @@
-import {Col, Row, Container, Stack, Button, Card} from 'react-bootstrap'
+import Col_ from 'react-bootstrap/cjs/Col'
+const Col = Col_.default || Col_
+import Row from 'react-bootstrap/cjs/Row'
+import Container from 'react-bootstrap/cjs/Container'
+import Stack from 'react-bootstrap/cjs/Stack'
+import Button from 'react-bootstrap/cjs/Button'
 import {IconButton} from "~/components/utils";
 import {FaCouch} from '@react-icons/all-files/fa/FaCouch';
 import {FaDragon} from '@react-icons/all-files/fa/FaDragon';

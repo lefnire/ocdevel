@@ -1,20 +1,30 @@
-import React, { useState, useCallback, createContext, useContext, useMemo } from "react";
-import { Modal } from 'react-bootstrap';
+import {
+  useState,
+  useCallback,
+  createContext,
+  useContext,
+  useMemo,
+  memo,
+  type CSSProperties,
+  type ReactNode,
+  type FC
+} from "react";
+import Modal from 'react-bootstrap/cjs/Modal';
 
 // Custom styles
-export const clickableStyle: React.CSSProperties = {
+export const clickableStyle: CSSProperties = {
   borderBottom: '1px dotted #6c757d', // Gray dotted border
   cursor: 'pointer'
 };
 
 // Modal context for managing which modal is currently open
 type ModalContextType = {
-  openModal: (id: string, title: string, content: React.ReactNode) => void;
+  openModal: (id: string, title: string, content: ReactNode) => void;
   closeModal: () => void;
   isOpen: boolean;
   modalId: string;
   modalTitle: string;
-  modalContent: React.ReactNode;
+  modalContent: ReactNode;
 };
 
 const ModalContext = createContext<ModalContextType>({
@@ -27,13 +37,13 @@ const ModalContext = createContext<ModalContextType>({
 });
 
 // Modal provider component
-export const ModalProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+export const ModalProvider: FC<{children: ReactNode}> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalId, setModalId] = useState('');
   const [modalTitle, setModalTitle] = useState('');
-  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
+  const [modalContent, setModalContent] = useState<ReactNode>(null);
 
-  const openModal = useCallback((id: string, title: string, content: React.ReactNode) => {
+  const openModal = useCallback((id: string, title: string, content: ReactNode) => {
     setModalId(id);
     setModalTitle(title);
     setModalContent(content);
@@ -65,7 +75,7 @@ export const ModalProvider: React.FC<{children: React.ReactNode}> = ({ children 
 export const useModal = () => useContext(ModalContext);
 
 // Reusable modal component
-const InfoModal = React.memo(() => {
+const InfoModal = memo(() => {
   const { isOpen, closeModal, modalTitle, modalContent } = useModal();
   
   return (

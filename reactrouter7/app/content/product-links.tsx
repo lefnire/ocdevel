@@ -1,4 +1,4 @@
-import React, {type PropsWithChildren, type ReactElement} from 'react'
+import {type PropsWithChildren, type ReactElement} from 'react'
 import {VideoButton} from "~/routes/walk/utils";
 
 import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp&effort=max'

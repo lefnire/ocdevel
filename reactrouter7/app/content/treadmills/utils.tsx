@@ -6,8 +6,7 @@ import _uniq from 'lodash/uniq'
 import _flatten from 'lodash/flatten'
 import _reduce from 'lodash/reduce'
 import _isEmpty from 'lodash/isEmpty'
-import React from "react";
-import {Badge} from "react-bootstrap";
+import Badge from 'react-bootstrap/cjs/Badge';
 import {Affiliate} from "~/content/product-links";
 
 export const PAUSE_AMAZON = false;

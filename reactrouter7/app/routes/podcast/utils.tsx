@@ -1,7 +1,6 @@
 import type {EpisodeComponent} from "~/routes/podcast/types";
 import {dateFmt} from "~/components/utils";
-import React from "react";
-import {Card} from "react-bootstrap";
+import Card from 'react-bootstrap/cjs/Card';
 import moment from "dayjs";
 import padStart from "lodash/padStart";
 

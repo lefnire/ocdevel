@@ -1,6 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import {Card, Form, Badge} from 'react-bootstrap'
-import {Row, Col} from 'react-bootstrap'
+import {useState, useEffect} from 'react'
+import Card from 'react-bootstrap/cjs/Card'
+import Form from 'react-bootstrap/cjs/Form'
+import Badge from 'react-bootstrap/cjs/Badge'
+import Row from 'react-bootstrap/cjs/Row'
+import Col_ from 'react-bootstrap/cjs/Col'
+const Col = Col_.default || Col_
 // Incorrect Usage:
 // Correct usage:
 import {FaCalendar} from '@react-icons/all-files/fa/FaCalendar'
@@ -12,7 +16,7 @@ import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
 import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
-import {TLDR} from '~/components/utils.tsx'
+import {TLDR} from '~/components/utils'
 import {Link} from "react-router";
 
 export * from './meta.js'

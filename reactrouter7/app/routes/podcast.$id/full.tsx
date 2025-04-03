@@ -1,5 +1,6 @@
-import React, {type PropsWithChildren, useMemo} from "react";
-import {Card, Alert} from 'react-bootstrap'
+import {type PropsWithChildren, useMemo} from "react";
+import Card from 'react-bootstrap/cjs/Card'
+import Alert from 'react-bootstrap/cjs/Alert'
 import {Link, Outlet} from "react-router";
 import {BackButton} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";

@@ -1,6 +1,6 @@
-import {Badge, Card, Col, Row} from "react-bootstrap";
+import Badge from 'react-bootstrap/cjs/Badge';
+import Card from 'react-bootstrap/cjs/Card';
 import {Link} from "react-router";
-import React, {useMemo} from "react";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import type {EpisodeComponent} from '~/routes/podcast/types'
 // import {FaCirclePlay} from "@react-icons/all-files/fa6/FaCirclePlay";

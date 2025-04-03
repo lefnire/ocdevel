@@ -1,6 +1,7 @@
-import React, {useState, useMemo} from "react";
+import {useState, useMemo} from "react";
 import filter from 'lodash/filter'
-import {Button, ButtonGroup} from 'react-bootstrap'
+import Button, { type ButtonProps } from 'react-bootstrap/cjs/Button'
+import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
 import useStore from "./store";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import sortBy from "lodash/sortBy";
@@ -35,7 +36,7 @@ function FilterButtons ({podcastKey}: ComponentProps) {
     s => [s.mla, s.mlg, s.newFirst, s.toggleNewFirst, s.setMla, s.setMlg]
   ))
 
-  function btns_(active=false) {
+  function btns_(active=false): ButtonProps {
     return {
       size: "sm",
       variant: active ? "dark" : "outline-dark",

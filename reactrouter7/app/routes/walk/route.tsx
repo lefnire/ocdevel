@@ -5,7 +5,6 @@ import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
 import {seoLabels} from "~/content/treadmills/data";
 import ContentSection from "~/routes/walk/content-section";
 import CalorieCalc from "~/routes/walk/calorie-calc";
-import React from "react";
 
 export default function Route() {
   const compareProps = useCompare()

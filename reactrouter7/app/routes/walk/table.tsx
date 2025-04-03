@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import {type FC, useEffect, useMemo, useRef, useState} from "react";
 import {
   createColumnHelper,
   flexRender,
@@ -18,7 +18,7 @@ import type {
 import type { Product } from '~/content/treadmills/rows';
 import {NA} from "~/content/treadmills/data/utils";
 import { columnsArray, columnsObj } from '~/content/treadmills/columns';
-import { Form, Button, Badge, Container } from 'react-bootstrap';
+import Form from 'react-bootstrap/cjs/Form';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 // import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
@@ -27,7 +27,7 @@ import {useNavigate, useSearchParams} from "react-router";
 import { ModalProvider, useModal, clickableStyle } from './modal';
 
 // Header cell component with notes
-const HeaderCell: React.FC<{
+const HeaderCell: FC<{
   column: Column<Product, unknown>;
   info: any;
 }> = ({ column, info }) => (
@@ -44,7 +44,7 @@ const HeaderCell: React.FC<{
 );
 
 // Description component with notes modal
-const ColumnDescription: React.FC<{
+const ColumnDescription: FC<{
   column: Column<Product, unknown>;
   info: any;
 }> = ({ column, info }) => {
@@ -75,7 +75,7 @@ const ColumnDescription: React.FC<{
 // CellWithModal component has been integrated into the Cell component
 
 // Cell component with notes and rating indicator
-const Cell: React.FC<{
+const Cell: FC<{
   row: Row<Product>;
   column: Column<Product, unknown>;
   info?: any;
@@ -161,7 +161,7 @@ const Cell: React.FC<{
 };
 
 // Numeric filter component
-const NumericFilter: React.FC<{
+const NumericFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: [number, number] | undefined;
   filterOptions: { min?: boolean; max?: boolean };
@@ -201,7 +201,7 @@ const NumericFilter: React.FC<{
 );
 
 // Boolean filter component
-const BooleanFilter: React.FC<{
+const BooleanFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: boolean | undefined;
 }> = ({ column, columnFilterValue }) => (
@@ -229,7 +229,7 @@ const BooleanFilter: React.FC<{
 );
 
 // Text filter component
-const TextFilter: React.FC<{
+const TextFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: string | undefined;
 }> = ({ column, columnFilterValue }) => (
@@ -244,7 +244,7 @@ const TextFilter: React.FC<{
   </div>
 );
 // Filter component
-const Filter: React.FC<{
+const Filter: FC<{
   column: Column<Product, unknown>;
   table: Table<Product>
 }> = ({ column, table }) => {
@@ -285,7 +285,7 @@ const Filter: React.FC<{
 };
 
 // Rating indicator component
-const Score: React.FC<{ score: number }> = ({ score }) => {
+const Score: FC<{ score: number }> = ({ score }) => {
   if (score <= 0) return null;
 
   // Determine color based on score
@@ -310,10 +310,10 @@ function ProductTable({
   const navigate = useNavigate()
   
   // Initialize sorting state with Rank column in descending order
-  const [sorting, setSorting] = React.useState<SortingState>([
+  const [sorting, setSorting] = useState<SortingState>([
     { id: 'total', desc: true }
   ]);
-  const [columnFilters, setColumnFilters] = React.useState<any[]>([]);
+  const [columnFilters, setColumnFilters] = useState<any[]>([]);
 
 
 
@@ -328,7 +328,7 @@ function ProductTable({
   const columnHelper = createColumnHelper<Product>();
   
   // Create columns
-  const columns = React.useMemo(() => {
+  const columns = useMemo(() => {
     return columnsArray.map(colDef => {
       return columnHelper.accessor(
         // Use the calculate function if available, otherwise use the key directly

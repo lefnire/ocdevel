@@ -1,6 +1,5 @@
 import type {EpisodeComponent} from '~/routes/podcast/types'
 import {type PropsWithChildren, useState} from "react";
-import React from "react";
 
 const CLICK_TO_PLAY = true;
 

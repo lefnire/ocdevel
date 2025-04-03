@@ -2,10 +2,10 @@ import {
   Link, NavLink,
   useNavigate
 } from "react-router";
-import {Button} from 'react-bootstrap'
-import React, {useCallback} from "react";
+import Button from 'react-bootstrap/cjs/Button'
+import {useCallback} from "react";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft"
-import {Alert} from "react-bootstrap";
+import Alert from 'react-bootstrap/cjs/Alert';
 
 export function IconButton({
   Icon,

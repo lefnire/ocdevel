@@ -1,6 +1,8 @@
 import {Link, useNavigate} from "react-router";
-import React, {useState} from "react";
-import {Button, type ButtonProps, Container} from "react-bootstrap";
+import {useState} from "react";
+import Button from 'react-bootstrap/cjs/Button';
+import type { ButtonProps } from 'react-bootstrap/cjs/Button';
+import Container from 'react-bootstrap/cjs/Container';
 import essentials, {affiliateLink} from '~/content/product-links'
 import {VideoButtonLg as VideoButton} from "./utils";
 import {ScoreInfo} from "~/content/treadmills/utils";

@@ -1,5 +1,5 @@
 import {useStore} from "./store";
-import React, {useContext} from "react";
+import {useContext} from "react";
 import {ResourceNode, ResourceContext} from "./common";
 import compact from "lodash/compact";
 import reduce from "lodash/reduce";

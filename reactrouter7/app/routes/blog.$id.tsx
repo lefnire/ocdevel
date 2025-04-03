@@ -2,13 +2,13 @@ import {useParams, Outlet} from "react-router";
 // import find from "lodash/find";
 import {metasObj} from "~/content/blog/metas.js";
 import {BackButton} from "~/components/utils";
-import {Card, Container} from "react-bootstrap";
+import Card from 'react-bootstrap/cjs/Card';
+import Container from 'react-bootstrap/cjs/Container';
 // import {ReactMarkdown_} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
-import React from "react";
 import {fmt, PostDate} from '~/routes/blog/utils'
 import {Comments} from "~/components/comments";
-import type {Route} from './+types/blog.tsx'
+import type {Route} from './+types/blog.$id.tsx'
 
 function lastPart (path: string) {
   const parts = path.split('/').filter(Boolean)

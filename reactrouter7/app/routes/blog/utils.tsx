@@ -1,4 +1,3 @@
-import React from 'react'
 import moment from "dayjs";
 import type {BlogPost} from "./types";
 export const fmt = 'MMM DD, YYYY';

@@ -5,9 +5,11 @@ import {FaRegSquare} from '@react-icons/all-files/fa/FaRegSquare'
 import {FiMinusSquare} from '@react-icons/all-files/fi/FiMinusSquare'
 import {FiPlusSquare} from '@react-icons/all-files/fi/FiPlusSquare'
 import {icons} from "~/components/collapsible-icons";
-import React, {useCallback, useState} from "react";
-import {ButtonGroup, Card} from 'react-bootstrap'
-import {Col} from 'react-bootstrap'
+import {useCallback, useState} from "react";
+import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
+import Card from 'react-bootstrap/cjs/Card'
+import Col_ from 'react-bootstrap/cjs/Col'
+const Col = Col_.default || Col_
 import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
 import map from "lodash/map";

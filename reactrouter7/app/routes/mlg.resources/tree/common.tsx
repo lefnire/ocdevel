@@ -1,15 +1,16 @@
-import React, {
+import {
   createContext,
   type PropsWithChildren,
   type ReactElement,
   useCallback,
   useContext,
-  useMemo,
   useState
 } from "react";
 import {Link} from "react-router";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
-import {Card, Alert, Table} from 'react-bootstrap'
+import Card from 'react-bootstrap/cjs/Card'
+import Alert from 'react-bootstrap/cjs/Alert'
+import Table from 'react-bootstrap/cjs/Table'
 import startsWith from "lodash/startsWith";
 
 import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";

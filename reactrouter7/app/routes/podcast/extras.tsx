@@ -1,4 +1,7 @@
-import {Card, Col, Row} from "react-bootstrap";
+import Card from 'react-bootstrap/cjs/Card';
+import Col_ from 'react-bootstrap/cjs/Col';
+const Col = Col_.default || Col_
+import Row from 'react-bootstrap/cjs/Row';
 import {IconButton} from "~/components/utils";
 import {icons} from '~/components/collapsible-icons'
 import {FaDiscord} from "@react-icons/all-files/fa/FaDiscord";
@@ -7,7 +10,7 @@ import {FaGithub} from "@react-icons/all-files/fa/FaGithub";
 // import {FaItunesNote} from "@react-icons/all-files/fa/FaItunesNote";
 import {FaLightbulb} from "@react-icons/all-files/fa/FaLightbulb";
 // import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
-import React, {useContext} from "react";
+import {type PropsWithChildren} from "react";
 import useStore from "~/routes/podcast._index/store";
 import {Link} from "react-router";
 import {useShallow} from "zustand/react/shallow";
@@ -27,7 +30,7 @@ export default function Extras(props: Props) {
   </PopoverProvider>
 }
 
-type AboutSection = React.PropsWithChildren<{title: string, top?: boolean}>
+type AboutSection = PropsWithChildren<{title: string, top?: boolean}>
 function AboutSection({children, title, top=false}: AboutSection) {
   const [showAbout, toggleAbout] = useStore(useShallow(state => [state.showAbout, state.toggleAbout]))
   return <>

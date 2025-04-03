@@ -1,4 +1,3 @@
-import React from 'react';
 import {mlgShow} from "~/content/podcast/metas.js";
 import Podcast from './podcast'
 import Navbar from './navbar'

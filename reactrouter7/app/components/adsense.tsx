@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import {useEffect, useRef} from "react";
 import {ExternalScript} from "~/components/external-scripts";
 
 declare global {

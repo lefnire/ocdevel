@@ -1,12 +1,15 @@
 import {GoogleConsentMode} from "~/components/analytics";
-import {Button, Nav, Navbar, Stack} from "react-bootstrap";
+import Button from 'react-bootstrap/cjs/Button';
+import Nav from 'react-bootstrap/cjs/Nav';
+import Navbar from 'react-bootstrap/cjs/Navbar';
+import Stack from 'react-bootstrap/cjs/Stack';
 import {LinkContainer} from "~/components/utils";
 import {Outlet, useSearchParams} from "react-router";
 import {FaFacebook} from "@react-icons/all-files/fa/FaFacebook";
 import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
 import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
 import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {PopoverSingleton} from "~/components/overlays";
 
 function ClearUtm() {

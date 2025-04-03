@@ -1,5 +1,4 @@
 import type {Brand} from '../types'
-import {Alert} from "react-bootstrap";
 const info: Brand = {
   key: 'walkingpad',
   name: "WalkingPad / KingSmith / Xiaomi",

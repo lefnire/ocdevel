@@ -1,12 +1,15 @@
-import React from 'react';
-import {Row, Col, Container, ButtonGroup, Card} from 'react-bootstrap'
+import Row from 'react-bootstrap/cjs/Row'
+import Col_ from 'react-bootstrap/cjs/Col'
+const Col = Col_.default || Col_
+import Container from 'react-bootstrap/cjs/Container'
+import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
+import Card from 'react-bootstrap/cjs/Card'
 import {Outlet} from 'react-router';
 import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube'
 import {FaItunesNote} from '@react-icons/all-files/fa/FaItunesNote'
 import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
 import {SiRss} from '@react-icons/all-files/si/SiRss'
 import {IconButton} from "~/components/utils";
-import { Image } from '@unpic/react'
 import type {Route} from './+types/route_mlg'
 
 type Props = Route.ComponentProps['loaderData'] & {img: string}
@@ -46,12 +49,12 @@ function PodcastImage({podcastKey, show, img}: Props) {
   // git-blame: attempted sourcesets with avif/webp fallback
   return <div>
     <div className="mb-3 d-none d-md-flex justify-content-center align-items-center">
-      <Image
+      <img
         width={290} height={290}
 
         // priority={true}
-        // loading="eager"
-        // fetchPriority="high"
+        loading="eager"
+        fetchPriority="high"
         decoding="async"
 
         background="#EEEEEE"

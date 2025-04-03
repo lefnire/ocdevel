@@ -1,11 +1,14 @@
-import React, {
+import {
   useEffect,
+  type FC
 } from "react";
-import {OverlayTrigger, type OverlayTriggerProps, Popover} from "react-bootstrap";
+import OverlayTrigger from 'react-bootstrap/cjs/OverlayTrigger';
+import Popover from 'react-bootstrap/cjs/Popover';
+import type { OverlayTriggerProps } from 'react-bootstrap';
 import {create} from 'zustand'
 import {useShallow} from "zustand/react/shallow";
 
-type PopoverContent = {title?: string, body: React.FC}
+type PopoverContent = {title?: string, body: FC}
 const usePopoverStore = create<{
   popover: OverlayTriggerProps['overlay'],
   content: PopoverContent

@@ -11,7 +11,7 @@ import type { Route } from "./+types/root";
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import "./app.css";
 import "./root.scss";
-import React, {useEffect} from "react";
+import type {ReactNode} from "react";
 
 export const links: Route.LinksFunction = () => [
   // {rel: "preconnect", href: "https://fonts.googleapis.com"},
@@ -44,7 +44,7 @@ export const links: Route.LinksFunction = () => [
 <!--<script data-ad-client="ca-pub-3242350243827794" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
  */
 
-export function Layout({children}: { children: React.ReactNode }) {
+export function Layout({children}: { children: ReactNode }) {
   return (
     <html lang="en">
     <head>

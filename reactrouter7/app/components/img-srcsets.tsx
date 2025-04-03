@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Renders a responsive image using the <picture> element with AVIF and WebP sources.
  * Optimizes for LCP/CLS by allowing specification of loading, fetchpriority, width, and height.

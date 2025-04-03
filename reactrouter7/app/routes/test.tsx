@@ -13,13 +13,14 @@ This works, but again - huge bundle size
 /*
 So the recommended approach is individual imports, as shown in their docs:
  */
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Stack from 'react-bootstrap/Stack'
-import Button from 'react-bootstrap/Button'
-import Alert from "react-bootstrap/Alert";
-// import ThemeProvider from 'react-bootstrap/ThemeProvider';
+import Row from 'react-bootstrap/cjs/Row'
+import Col_ from 'react-bootstrap/cjs/Col'
+const Col = Col_.default || Col_
+import Container from 'react-bootstrap/cjs/Container'
+import Stack from 'react-bootstrap/cjs/Stack'
+import Button from 'react-bootstrap/cjs/Button'
+import Alert from "react-bootstrap/cjs/Alert";
+// import ThemeProvider from 'react-bootstrap/cjs/ThemeProvider';
 
 /*
 This gives the error:
@@ -39,11 +40,11 @@ TypeError: Cannot read properties of null (reading 'useContext')
 /*
 And if I try directly through their /esm folder:
  */
-// import ThemeProvider from 'react-bootstrap/esm/ThemeProvider'
-// import Row from 'react-bootstrap/esm/Row'
+// import ThemeProvider from 'react-bootstrap/cjs/esm/ThemeProvider'
+// import Row from 'react-bootstrap/cjs/esm/Row'
 /*
 Then I get the error:
-Cannot find module '/home/lefnire/Sites/ocdevel/reactrouter7/node_modules/react-bootstrap/esm/ThemeProvider' imported from /home/lefnire/Sites/ocdevel/reactrouter7/node_modules/react-bootstrap/esm/Row.js
+Cannot find module '/home/lefnire/Sites/ocdevel/reactrouter7/node_modules/react-bootstrap/cjs/esm/ThemeProvider' imported from /home/lefnire/Sites/ocdevel/reactrouter7/node_modules/react-bootstrap/cjs/esm/Row.js
 
 Though ThemeProvider.js is definitely in that folder
  */

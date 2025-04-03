@@ -1,5 +1,7 @@
-import React from 'react';
-import {Row, Col, Container} from 'react-bootstrap'
+import Row from 'react-bootstrap/cjs/Row';
+import Col_ from 'react-bootstrap/cjs/Col';
+const Col = Col_.default || Col_
+import Container from 'react-bootstrap/cjs/Container';
 import {Link} from 'react-router';
 import Filters from "./tree/filters"
 import Tree from './tree/tree'

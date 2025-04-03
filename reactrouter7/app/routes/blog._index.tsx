@@ -1,10 +1,10 @@
-import React from "react";
 // import {BlogPost, fmt} from './utils'
 import {PostDate} from '~/routes/blog/utils'
 import type {BlogPost} from './blog/types'
 import metas_ from "~/content/blog/metas.js"
 import * as walkMeta from '~/routes/walk/meta.js'
-import {Card, Container} from "react-bootstrap";
+import Card from 'react-bootstrap/cjs/Card';
+import Container from 'react-bootstrap/cjs/Container';
 import {seoLabels} from "~/content/treadmills/data";
 import type {Route} from './+types/blog._index.tsx'
 import {Link} from "react-router";

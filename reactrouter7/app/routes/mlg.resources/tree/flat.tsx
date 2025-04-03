@@ -1,6 +1,5 @@
 import {ResourceNode, ResourceContext} from "~/routes/mlg.resources/tree/common";
 import type {Resource} from '~/content/workflowy/mlg-resources.types'
-import React from "react";
 
 interface ResourcesFlat {
   flat: {[id: string]: Resource}

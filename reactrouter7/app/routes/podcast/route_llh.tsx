@@ -1,4 +1,3 @@
-import React from 'react';
 import {llhShow} from "~/content/podcast/metas.js";
 import Podcast from './podcast'
 import img from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=max'

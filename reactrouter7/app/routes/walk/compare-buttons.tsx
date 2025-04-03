@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {Button, Container} from 'react-bootstrap';
+import Button from 'react-bootstrap/cjs/Button';
+import Container from 'react-bootstrap/cjs/Container';
 import { seoScored, dataObj } from '~/content/treadmills/data/index';
 import {type ListenerProps} from "~/routes/walk/url-listener";
 

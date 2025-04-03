@@ -1,4 +1,3 @@
-import React from "react";
 import type {Route} from './+types/route.tsx'
 import fs from 'fs';
 import path from 'path';

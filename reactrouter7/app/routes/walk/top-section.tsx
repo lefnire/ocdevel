@@ -1,5 +1,5 @@
-import React from "react";
-import {Button, Container} from "react-bootstrap";
+import Button from 'react-bootstrap/cjs/Button';
+import Container from 'react-bootstrap/cjs/Container';
 import './route.css'
 import {contentSections} from './content-section'
 import {dataObj} from '~/content/treadmills/data/index'

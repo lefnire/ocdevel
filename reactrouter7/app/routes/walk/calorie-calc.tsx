@@ -1,5 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Form, Button, Container, Row, Col} from 'react-bootstrap';
+import {useState, useEffect} from 'react';
+import Form from 'react-bootstrap/cjs/Form';
+import Container from 'react-bootstrap/cjs/Container';
+import Row from 'react-bootstrap/cjs/Row';
+import Col_ from "react-bootstrap/cjs/Col";
+const Col = Col_.default || Col_
 
 // Define types for better type safety
 type UnitSystem = 'metric' | 'imperial';

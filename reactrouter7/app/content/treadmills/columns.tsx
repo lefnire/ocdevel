@@ -1,4 +1,4 @@
-import React from "react";
+import type {CSSProperties, ReactElement, ReactNode} from "react";
 import type { Product } from "./rows";
 import {FaExternalLinkAlt} from "@react-icons/all-files/fa/FaExternalLinkAlt";
 import {FaUser} from "@react-icons/all-files/fa/FaUser";
@@ -25,7 +25,9 @@ const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
 import {UPDATED} from './data'
 import {NA} from "./data/utils"
 import {Affiliate} from "~/content/product-links";
-import {Button, ButtonGroup, Dropdown, DropdownButton} from "react-bootstrap";
+import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup';
+import Dropdown from 'react-bootstrap/cjs/Dropdown';
+import DropdownButton from 'react-bootstrap/cjs/DropdownButton';
 import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
 
 // Column type definition with added properties
@@ -35,15 +37,15 @@ interface ColumnDefinition {
   dtype: "boolean" | "string" | "number";
   hideScore?: boolean;
   description?: string;
-  notes?: () => React.ReactElement;
+  notes?: () => ReactElement;
   getValue: (row: Product) => string | number | boolean | undefined;
-  format?: (row: Product) => string | React.ReactNode; // Function to format the value as a string (for simple cases)
-  render?: (row: Product, clickHandler?: () => void) => React.ReactNode; // Function to render the value with optional click handler
-  columnStyle?: React.CSSProperties;
-  getStyle?: (row: Product) => React.CSSProperties; // Function to get cell style
+  format?: (row: Product) => string | ReactNode; // Function to format the value as a string (for simple cases)
+  render?: (row: Product, clickHandler?: () => void) => ReactNode; // Function to render the value with optional click handler
+  columnStyle?: CSSProperties;
+  getStyle?: (row: Product) => CSSProperties; // Function to get cell style
   getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
   renderModalTitle?: (row: Product) => string;
-  renderModal?: (row: Product) => React.ReactNode; // Function to render the popover body
+  renderModal?: (row: Product) => ReactNode; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -62,7 +64,7 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <ScoreInfo />,
     getValue: (row) => row.total.score,
     format: (row) => row.total.score.toFixed(1),
-    getStyle: (): React.CSSProperties => ({ fontWeight: 'bold' }),
+    getStyle: (): CSSProperties => ({ fontWeight: 'bold' }),
   },
   {
     key: "brand",
@@ -128,7 +130,7 @@ export const columnsArray: ColumnDefinition[] = [
       const price = getPrice(row);
       return price !== undefined ? `$${price}` : '';
     },
-    render: (row, clickHandler): React.ReactElement => {
+    render: (row, clickHandler): ReactElement => {
       const link = getCurrentLink(row);
       const price = getPrice(row);
       const affiliate = {key: row.key, link}

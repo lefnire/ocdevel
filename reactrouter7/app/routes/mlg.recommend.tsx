@@ -1,5 +1,4 @@
-import React from "react";
-import {Card} from "react-bootstrap";
+import Card from 'react-bootstrap/cjs/Card';
 // import ReactDisqusComments from "react-disqus-comments";
 import {BackButton} from "~/components/utils";
 import {mlgShow} from "~/content/podcast/metas.js";
