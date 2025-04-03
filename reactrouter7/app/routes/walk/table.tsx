@@ -1,4 +1,4 @@
-import React, {type FC, useEffect, useMemo, useRef, useState} from "react";
+import {type FC, useEffect, useMemo, useRef, useState} from "react";
 import {
   createColumnHelper,
   flexRender,
@@ -30,7 +30,7 @@ import { ModalProvider, useModal, clickableStyle } from './modal';
 const HeaderCell: FC<{
   column: Column<Product, unknown>;
   info: any;
-}> = React.memo(({ column, info }) => (
+}> = ({ column, info }) => (
   <div className="text-nowrap" style={{ maxWidth: '130px' }}>
     <div className="d-flex align-items-center">
       <span>{info.label}</span>
@@ -41,13 +41,13 @@ const HeaderCell: FC<{
       )}
     </div>
   </div>
-));
+);
 
 // Description component with notes modal
 const ColumnDescription: FC<{
   column: Column<Product, unknown>;
   info: any;
-}> = React.memo(({ column, info }) => {
+}> = ({ column, info }) => {
   const { openModal } = useModal();
   
   if (!info.description && !info.notes) return <div>&nbsp;</div>;
@@ -68,7 +68,7 @@ const ColumnDescription: FC<{
       </span>
     </div>
   );
-});
+};
 
 
 
@@ -79,7 +79,7 @@ const Cell: FC<{
   row: Row<Product>;
   column: Column<Product, unknown>;
   info?: any;
-}> = React.memo(({ row, column, info }) => {
+}> = ({ row, column, info }) => {
   const { openModal } = useModal();
   const columnId = column.id;
   const columnDef = columnsObj[columnId];
@@ -158,14 +158,14 @@ const Cell: FC<{
   
   // Default case: no render or format function
   return <div style={cellStyle}></div>;
-});
+};
 
 // Numeric filter component
 const NumericFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: [number, number] | undefined;
   filterOptions: { min?: boolean; max?: boolean };
-}> = React.memo(({ column, columnFilterValue, filterOptions }) => (
+}> = ({ column, columnFilterValue, filterOptions }) => (
   <div className="w-100 max-w-130px">
     <div className="d-flex gap-1 mb-1">
       {filterOptions.min && (
@@ -198,13 +198,13 @@ const NumericFilter: FC<{
       )}
     </div>
   </div>
-));
+);
 
 // Boolean filter component
 const BooleanFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: boolean | undefined;
-}> = React.memo(({ column, columnFilterValue }) => (
+}> = ({ column, columnFilterValue }) => (
   <div className="w-100 max-w-130px">
     <Form.Select
       size="sm"
@@ -226,13 +226,13 @@ const BooleanFilter: FC<{
       <option value="false">No</option>
     </Form.Select>
   </div>
-));
+);
 
 // Text filter component
 const TextFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: string | undefined;
-}> = React.memo(({ column, columnFilterValue }) => (
+}> = ({ column, columnFilterValue }) => (
   <div className="max-w-100px">
     <Form.Control
       type="text"
@@ -242,12 +242,12 @@ const TextFilter: FC<{
       className="border rounded mb-1 fs-7 p-1 h-24px"
     />
   </div>
-));
+);
 // Filter component
 const Filter: FC<{
   column: Column<Product, unknown>;
   table: Table<Product>
-}> = React.memo(({ column, table }) => {
+}> = ({ column, table }) => {
   const columnId = column.id;
   const columnFilterValue = column.getFilterValue();
   
@@ -282,10 +282,10 @@ const Filter: FC<{
       columnFilterValue={columnFilterValue as string | undefined}
     />
   );
-});
+};
 
 // Rating indicator component
-const Score: FC<{ score: number }> = React.memo(({ score }) => {
+const Score: FC<{ score: number }> = ({ score }) => {
   if (score <= 0) return null;
 
   // Determine color based on score
@@ -301,7 +301,7 @@ const Score: FC<{ score: number }> = React.memo(({ score }) => {
       {score.toFixed(0)}
     </div>
   );
-});
+};
 function ProductTable({
   filteredData,
   columnFilters: urlFilters
