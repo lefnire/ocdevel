@@ -1,17 +1,31 @@
 import {Card, Col, Row} from "react-bootstrap";
-import {IconButton, icons, Popover_} from "~/components/utils";
+import {IconButton} from "~/components/utils";
+import {icons} from '~/components/collapsible-icons'
 import {FaDiscord} from "@react-icons/all-files/fa/FaDiscord";
 import {FaEnvelope} from "@react-icons/all-files/fa/FaEnvelope";
 import {FaGithub} from "@react-icons/all-files/fa/FaGithub";
 // import {FaItunesNote} from "@react-icons/all-files/fa/FaItunesNote";
 import {FaLightbulb} from "@react-icons/all-files/fa/FaLightbulb";
 // import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
-import React from "react";
+import React, {useContext} from "react";
 import useStore from "~/routes/podcast._index/store";
 import {Link} from "react-router";
 import {useShallow} from "zustand/react/shallow";
 import type {Route} from './+types/route.tsx'
+import {PopoverContext, PopoverProvider, PopoverTrigger} from "~/components/overlays";
 type Props = Route.ComponentProps['loaderData']
+
+/**
+ * Not actually used like this; just showing that PopoverProvider is required
+ * if we want to bring any of these back
+ */
+export default function Extras(props: Props) {
+  return <PopoverProvider>
+    <AboutSection title=""></AboutSection>
+    <Links {...props} />
+    <Updates {...props} />
+  </PopoverProvider>
+}
 
 type AboutSection = React.PropsWithChildren<{title: string, top?: boolean}>
 function AboutSection({children, title, top=false}: AboutSection) {
@@ -31,6 +45,7 @@ function AboutSection({children, title, top=false}: AboutSection) {
 }
 
 function Links({podcastKey}: Props) {
+  const pop = useContext(PopoverContext)
   if (podcastKey === "llh") { return null; }
   return null;
   const common = {
@@ -50,43 +65,52 @@ function Links({podcastKey}: Props) {
   }
 
   function MailingList() {
-    return <Popover_
-      content={<div>Get notified of new episodes and announcements</div>}
-      opts={{placement: 'bottom'}}
+    return <PopoverTrigger
+      content={{
+        title: undefined,
+        body: () => <div>Get notified of new episodes and announcements</div>
+      }}
+      placement='bottom'
     >
       <Col {...common.div}>
         <IconButton {...btn} href="http://eepurl.com/cUUWfD" target="_blank" Icon={FaEnvelope}>
           Mailing List
         </IconButton>
       </Col>
-    </Popover_>
+    </PopoverTrigger>
   }
 
   function PodcastProject() {
-    return <Popover_
-      content={<div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>}
-      opts={{placement: 'bottom'}}
+    return <PopoverTrigger
+      content={{
+        title: undefined,
+        body: () => <div>Gnothi, oft-mentioned in MLG, is open source. See how to implement ML in Python.</div>
+      }}
+      placement='bottom'
     >
       <Col {...common.div}>
         <IconButton {...btn} href="https://github.com/lefnire/gnothi" target='_blank' Icon={FaGithub}>
           Podcast Project
         </IconButton>
       </Col>
-    </Popover_>
+    </PopoverTrigger>
   }
 
   function Community() {
     // Discord gone after Dept
-    return <Popover_
-      content={<div>Join fellow learners on Discord to ask questions and network</div>}
-      opts={{placement: 'bottom'}}
+    return <PopoverTrigger
+      content={{
+        title: undefined,
+        body: () => <div>Join fellow learners on Discord to ask questions and network</div>
+      }}
+      placement='bottom'
     >
       <Col {...common.div}>
         <IconButton {...btn} href="https://discord.gg/2j2RUVbu" target='_blank' Icon={FaDiscord}>
           Community
         </IconButton>
       </Col>
-    </Popover_>
+    </PopoverTrigger>
   }
 
   return <>

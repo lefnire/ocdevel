@@ -1,4 +1,5 @@
-import {ResourceNode, ResourceContext, PopoverProvider} from "~/routes/mlg.resources/tree/common";
+import {ResourceNode, ResourceContext} from "~/routes/mlg.resources/tree/common";
+import {PopoverProvider} from "~/components/overlays";
 import type {Resource} from '~/content/workflowy/mlg-resources.types'
 import React from "react";
 

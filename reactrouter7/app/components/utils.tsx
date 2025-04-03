@@ -5,11 +5,7 @@ import {
 import {Button} from 'react-bootstrap'
 import React, {useCallback} from "react";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft"
-import {Popover, OverlayTrigger, Alert} from "react-bootstrap";
-import {FiMinusSquare} from "@react-icons/all-files/fi/FiMinusSquare";
-import {FiPlusSquare} from "@react-icons/all-files/fi/FiPlusSquare";
-import {BiChevronDown} from "@react-icons/all-files/bi/BiChevronDown";
-import {BiChevronRight} from "@react-icons/all-files/bi/BiChevronRight";
+import {Alert} from "react-bootstrap";
 
 export function IconButton({
   Icon,
@@ -68,28 +64,6 @@ export const BackButton = ({to, label="Back"}: BackButton) => {
 };
 
 export const dateFmt = 'MMM DD, YYYY';
-
-export function Popover_({children, content, id=null, title=null, opts={}}) {
-  opts = {placement: "right", ...opts}
-
-  const popover = <Popover id={id || +new Date}>
-    {title && <Popover.Header as={typeof title === "string" ? "h3" : "div"}>
-      {title}
-    </Popover.Header>}
-    <Popover.Body>{content}</Popover.Body>
-  </Popover>
-
-  return <OverlayTrigger trigger={["hover", "focus"]} overlay={popover} {...opts}>
-    {children}
-  </OverlayTrigger>
-}
-
-export const icons = {
-  plus: <FiPlusSquare />,
-  minus: <FiMinusSquare />,
-  down: <BiChevronDown />,
-  right: <BiChevronRight />
-}
 
 export function LinkContainer({children, ...props}) {
   return <NavLink
