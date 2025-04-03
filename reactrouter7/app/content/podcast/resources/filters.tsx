@@ -98,7 +98,7 @@ export const filters = {
     opts: {
       supplementary: {t: "Supplementary", d: "Nice-to-have resource. Supplementary for the deep-divers on this topic, but not your bread-and-butter", i: <FaRegStar/>},
       valuable: {t: "Valuable", d: "Quite a valuable resource. If you have the extra time, do it", i: <FaStarHalfAlt />},
-      essential: {t: "Essential", d: "Required. If interested in this topic, you _need_ this resource", i: <FaStar />},
+      essential: {t: "Essential", d: "Required. If interested in this topic, you *need* this resource", i: <FaStar />},
     }
   },
   topic: {

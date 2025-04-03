@@ -1,4 +1,3 @@
-// import type ReactMarkdown from "react-markdown";
 import type {ReactElement} from "react";
 
 export interface ShowType {

@@ -13,7 +13,8 @@ import Alert from 'react-bootstrap/cjs/Alert'
 import Table from 'react-bootstrap/cjs/Table'
 import startsWith from "lodash/startsWith";
 
-import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";
+// switched from react-markdown for render speed (LCP)
+import Markdown from 'marked-react'
 import {icons} from "~/components/collapsible-icons";
 import {filterKeys, filters} from '~/content/podcast/resources/filters'
 import {picks} from '~/content/podcast/resources/picks'
@@ -67,13 +68,9 @@ function Resource({node}: {node: Resource}) {
         title: undefined,
         body: () => <>
           <h6>{filter.t}</h6>
-          <div className='small'>
-            <ReactMarkdown_ source={filter.d} />
-          </div>
+          <p className='small'>{filter.d}</p>
           <h6>{resourceFilter.i} {resourceFilter.t}</h6>
-          <div className='small'>
-            <ReactMarkdown_ source={resourceFilter.d} />
-          </div>
+          <p className='small'>{resourceFilter.d}</p>
           <div className='text-primary'>Click item for details</div>
         </>
       }}
@@ -168,7 +165,7 @@ function Resource({node}: {node: Resource}) {
         </div>
         {show && <div className='px-2 pb-1'>
           {full.d && <div className={'my-2 small text-muted'}>
-            <ReactMarkdown_ source={full.d} />
+            <Markdown>{full.d}</Markdown>
           </div>}
           {full.itunesu && <div className='small text-muted my-2'>
             This is a recorded university course, what used be part of the iTunesU system. These courses can be listened to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do a great job orating, unlike TheGreatCourses teachers who orate wonderfully. So you'll likely want the visuals.
@@ -227,7 +224,7 @@ function ResourceNode_({node, level=0}: {node: Resource, level: number}) {
     if (!(full.d || full.pick)) {return null}
     return <div className='small ms-2'>
       {full.d && <div className='my-1 text-muted'>
-        <ReactMarkdown_ source={full.d} />
+        <Markdown>{full.d}</Markdown>
       </div>}
       {full.pick && <div>
         <div
