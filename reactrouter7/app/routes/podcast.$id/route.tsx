@@ -5,7 +5,7 @@ import path from 'path';
 import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
 import _reduce from 'lodash/reduce'
-import * as r from '~/content/podcast/resources/index'
+import {transform} from '~/content/workflowy/mlg-resources'
 
 export function loader(props: Route.LoaderArgs) {
   const {request} = props
@@ -30,18 +30,15 @@ export function loader(props: Route.LoaderArgs) {
   } catch (error) {
     // console.error(`Error loading transcript for episode ${id}:`, error);
   }
+  const r = transform('', './app/content/workflowy/mlg-resources.opml')
   const resources = (() => {
     if (podcastKey === 'llh') { return {flat: {}, nids: []}}
     const nids = r.episodes[series][epId]
-    // const filteredFlat = _reduce(r.flat[series], (m, v, k) => {
-    //   if (!nids.includes(k)) { return m; }
-    //   m[k] = v;
-    //   return m;
-    // }, {})
-    // const flat = (
-    //   series === 'mlg' ? {mlg: filteredFlat, mla: {}}
-    //     : {mla: filteredFlat, mlg: {}})
-    const flat = r.flat
+    const flat = _reduce(
+      nids,
+      (m, nid) => ({...m, [nid]: r.flat[nid]}),
+      {}
+    )
     return { flat, nids }
   })()
 
