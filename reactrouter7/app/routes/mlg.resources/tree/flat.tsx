@@ -1,4 +1,4 @@
-import {ResourceNode, ResourceContext} from "~/routes/mlg.resources/tree/common";
+import {ResourceNode, ResourceContext, PopoverProvider} from "~/routes/mlg.resources/tree/common";
 import type {Resource} from '~/content/workflowy/mlg-resources.types'
 import React from "react";
 
@@ -24,8 +24,10 @@ export function ResourcesFlat({flat, nids}: ResourcesFlat) {
   }
   const built = nids.map(render)
   return <div className='resources'>
-    <ResourceContext.Provider value={flat}>
-      {built}
-    </ResourceContext.Provider>
+    <PopoverProvider>
+      <ResourceContext.Provider value={flat}>
+        {built}
+      </ResourceContext.Provider>
+    </PopoverProvider>
   </div>
 }

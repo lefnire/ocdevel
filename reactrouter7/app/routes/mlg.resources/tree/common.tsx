@@ -1,14 +1,53 @@
-import React, {createContext, type PropsWithChildren, useCallback, useContext, useState} from "react";
+import React, {
+  createContext,
+  type PropsWithChildren,
+  type ReactElement,
+  useCallback,
+  useContext,
+  useMemo,
+  useState
+} from "react";
 import {Link} from "react-router";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
-import {Card, Alert, Table} from 'react-bootstrap'
+import {Card, Alert, Table, Popover, OverlayTrigger} from 'react-bootstrap'
 import startsWith from "lodash/startsWith";
 
 import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";
-import {icons, Popover_} from "~/components/utils";
+import {icons} from "~/components/utils";
 import {filterKeys, filters} from '~/content/podcast/resources/filters'
 import {picks} from '~/content/podcast/resources/picks'
-import type {Resource, WF} from "~/content/workflowy/mlg-resources.types"
+import type {Resource, ResourcesTree} from "~/content/workflowy/mlg-resources.types"
+
+
+type PopoverContent = {title?: string, body: ReactElement}
+type PopoverContext = {
+  setContent: (content: PopoverContent) => void
+  popover: ReactElement
+}
+export const PopoverContext = createContext<PopoverContext>({
+  setContent: (content) => {},
+  popover: <div></div>
+})
+export function PopoverProvider({children}: PropsWithChildren) {
+  const [content, setContent] = useState<PopoverContent>({
+    title: undefined,
+    body: <div></div>
+  })
+  const {title, body} = content;
+
+  const popover = useMemo(() => {
+    return <Popover id="popover-singleton">
+      {title && <Popover.Header as={typeof title === "string" ? "h3" : "div"}>
+        {title}
+      </Popover.Header>}
+      <Popover.Body>{body}</Popover.Body>
+    </Popover>
+  }, [title, body]);
+
+  return <PopoverContext.Provider value={{setContent, popover}}>
+    {children}
+  </PopoverContext.Provider>
+}
 
 export const ResourceContext = createContext<{[id: string]: Resource}>({})
 
@@ -22,6 +61,7 @@ function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {
   }
 
 function Resource({node}: {node: Resource}) {
+  const pop = useContext(PopoverContext)
   const flat = useContext(ResourceContext)
   const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
@@ -44,24 +84,33 @@ function Resource({node}: {node: Resource}) {
     className += ` icon-${filterKey}-${full[filterKey]}`
     // if (filterKey !== 'importance') {className += ' text-muted'}
     const id = `${filter.t}-${filterKey}`
-    return <Popover_
-      id={id}
+
+    const onToggle= (nextShow: boolean) => {
+      if (!nextShow) { return; }
+      pop.setContent({
+        title: undefined,
+        body: <>
+          <h6>{filter.t}</h6>
+          <div className='small'>
+            <ReactMarkdown_ source={filter.d} />
+          </div>
+          <h6>{resourceFilter.i} {resourceFilter.t}</h6>
+          <div className='small'>
+            <ReactMarkdown_ source={resourceFilter.d} />
+          </div>
+          <div className='text-primary'>Click item for details</div>
+        </>
+      })
+    }
+    return <OverlayTrigger
       key={id}
-      opts={{placement: "bottom"}}
-      content={<>
-        <h6>{filter.t}</h6>
-        <div className='small'>
-          <ReactMarkdown_ source={filter.d} />
-        </div>
-        <h6>{resourceFilter.i} {resourceFilter.t}</h6>
-        <div className='small'>
-          <ReactMarkdown_ source={resourceFilter.d} />
-        </div>
-        <div className='text-primary'>Click item for details</div>
-      </>}
+      onToggle={onToggle}
+      trigger={["hover", "focus"]}
+      overlay={pop.popover}
+      placement="bottom"
     >
       <span key={filterKey} className={className}>{resourceFilter.i}</span>
-    </Popover_>
+    </OverlayTrigger>
   }
 
   function renderDetails(filterKey) {

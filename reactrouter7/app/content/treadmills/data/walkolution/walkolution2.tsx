@@ -15,6 +15,7 @@ const links = {
   }
 }
 const info: Product = {
+  video: "https://walkolution.com/pages/videos",
   model: {
     value: "Walkolution 2",
     notes: () => <div>
