@@ -6,16 +6,13 @@ import reduce from "lodash/reduce";
 import {filterKeys} from "~/content/podcast/resources/filters";
 import {useShallow} from "zustand/react/shallow";
 import type {Resource, ResourcesTree} from '~/content/workflowy/mlg-resources.types'
-import {PopoverProvider} from "~/components/overlays";
 
 
 export default function ResourcesTree({flat, top}: ResourcesTree) {
   return <div className='resources resources-tree mb-3'>
-    <PopoverProvider>
-      <ResourceContext.Provider value={flat}>
-        <FilteredTree top={top} />
-      </ResourceContext.Provider>
-    </PopoverProvider>
+    <ResourceContext.Provider value={flat}>
+      <FilteredTree top={top} />
+    </ResourceContext.Provider>
   </div>
 }
 

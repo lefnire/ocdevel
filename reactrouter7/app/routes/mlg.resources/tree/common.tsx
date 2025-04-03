@@ -17,7 +17,7 @@ import {icons} from "~/components/collapsible-icons";
 import {filterKeys, filters} from '~/content/podcast/resources/filters'
 import {picks} from '~/content/podcast/resources/picks'
 import type {Resource, ResourcesTree} from "~/content/workflowy/mlg-resources.types"
-import {PopoverContext, PopoverTrigger} from "~/components/overlays";
+import {PopoverTrigger} from "~/components/overlays";
 
 export const ResourceContext = createContext<{[id: string]: Resource}>({})
 function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {

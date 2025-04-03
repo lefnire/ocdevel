@@ -7,6 +7,7 @@ import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
 import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
 import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
 import React, {useEffect} from "react";
+import {PopoverSingleton} from "~/components/overlays";
 
 function ClearUtm() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -30,8 +31,6 @@ function ClearUtm() {
 
 export default function Layout() {
   return <div>
-    <ClearUtm />
-    <GoogleConsentMode />
     <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
       <LinkContainer to="/">
         <Navbar.Brand>OCDevel</Navbar.Brand>
@@ -74,5 +73,8 @@ export default function Layout() {
         </div>
       </div>
     </footer>
+    <ClearUtm />
+    <GoogleConsentMode />
+    <PopoverSingleton />
   </div>
 }

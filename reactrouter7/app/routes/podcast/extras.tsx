@@ -12,7 +12,7 @@ import useStore from "~/routes/podcast._index/store";
 import {Link} from "react-router";
 import {useShallow} from "zustand/react/shallow";
 import type {Route} from './+types/route.tsx'
-import {PopoverContext, PopoverProvider, PopoverTrigger} from "~/components/overlays";
+import {PopoverTrigger} from "~/components/overlays";
 type Props = Route.ComponentProps['loaderData']
 
 /**
@@ -45,7 +45,6 @@ function AboutSection({children, title, top=false}: AboutSection) {
 }
 
 function Links({podcastKey}: Props) {
-  const pop = useContext(PopoverContext)
   if (podcastKey === "llh") { return null; }
   return null;
   const common = {
