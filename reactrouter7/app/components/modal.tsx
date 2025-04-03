@@ -1,6 +1,5 @@
 import {
   memo,
-  type CSSProperties,
   type FC
 } from "react";
 import Modal from 'react-bootstrap/cjs/Modal';

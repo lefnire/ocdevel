@@ -24,7 +24,7 @@ import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 // import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {type ListenerProps} from "./url-listener";
 import {useNavigate, useSearchParams} from "react-router";
-import { ModalProvider, useModal } from './modal';
+import {useModalStore} from "~/components/modal";
 
 // Header cell component with notes
 const HeaderCell: FC<{
@@ -48,13 +48,15 @@ const ColumnDescription: FC<{
   column: Column<Product, unknown>;
   info: any;
 }> = ({ column, info }) => {
-  const { openModal } = useModal();
+  const openModal = useModalStore(s => s.openModal);
   
   if (!info.description && !info.notes) return <div>&nbsp;</div>;
   
   const handleClick = () => {
-    const content = info.notes ? info.notes() : <div>{info.description}</div>;
-    openModal(`desc-${column.id}`, info.label, content);
+    openModal({
+      title: info.label,
+      body: () => info.notes?.() || <div>{info.description}</div>
+    });
   };
 
   return (
@@ -79,7 +81,7 @@ const Cell: FC<{
   column: Column<Product, unknown>;
   info?: any;
 }> = ({ row, column, info }) => {
-  const { openModal } = useModal();
+  const openModal = useModalStore(s => s.openModal);
   const columnId = column.id;
   const columnDef = columnsObj[columnId];
   const product: Product = row.original;
@@ -94,12 +96,13 @@ const Cell: FC<{
 
   // --- Modal Logic (Run this *before* NA check) ---
   // Get popover content if available
-  const popoverContent = columnDef.renderModal?.(product) ||
-                         (typeof product[columnId as keyof Product] === 'object' &&
-                          (product[columnId as keyof Product] as any)?.notes?.());
+  const bodyFn = (
+    columnDef.renderModal ||
+    (product as any)[columnId]?.notes
+  )
 
   // Create click handler for modal if popover content exists
-  const handleClick = popoverContent ? () => {
+  const handleClick = bodyFn ? () => {
     const title = (() => {
       if (info?.renderModalTitle) {
         return info.renderModalTitle(product)
@@ -109,7 +112,10 @@ const Cell: FC<{
         (info?.label) || columnId
       ].join(' - ')
     })()
-    openModal(`cell-${columnId}-${product.key}`, title, popoverContent);
+    openModal({
+      title,
+      body: () => bodyFn(product)
+    });
   } : undefined;
   // --- End Modal Logic ---
 
@@ -301,7 +307,7 @@ const Score: FC<{ score: number }> = ({ score }) => {
     </div>
   );
 };
-function ProductTable({
+export default function ProductTable({
   filteredData,
   columnFilters: urlFilters
 }: ListenerProps) {
@@ -497,14 +503,5 @@ function ProductTable({
         </table>
       </div>
     </div>
-  );
-}
-
-// Export the wrapped component with ModalProvider
-export default function WrappedProductTable(props: ListenerProps) {
-  return (
-    <ModalProvider>
-      <ProductTable {...props} />
-    </ModalProvider>
   );
 }

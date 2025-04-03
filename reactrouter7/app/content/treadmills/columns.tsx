@@ -17,7 +17,6 @@ import {
   renderCountryLinks
 } from "./utils";
 import _sumBy from 'lodash/sumBy';
-import {useModal} from '../../routes/walk/modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
@@ -29,6 +28,7 @@ import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup';
 import Dropdown from 'react-bootstrap/cjs/Dropdown';
 import DropdownButton from 'react-bootstrap/cjs/DropdownButton';
 import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
+import {useModalStore} from "~/components/modal";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -247,11 +247,12 @@ export const columnsArray: ColumnDefinition[] = [
       }
       if (!(picks.me || picks.trusted || picks.websites || picks.affiliate)) return <></>;
 
+      const className = row.pickedBy.notes ? "dotted-underline" : ""
       return (
         <div
           style={{ display: 'flex', gap: '8px' }}
           onClick={clickHandler}
-          className="dotted-underline"
+          className={className}
         >
           {picks.me && <span title="Me (Tyler)">{faMe}</span>}
           {picks.trusted && <span title="Trusted Sources">{faTrusted}</span>}
@@ -430,7 +431,7 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string", // list of country codes
     getValue: (row) => getCountryCodes(row, true).join(''),
     render: (row, clickHandler) => {
-      const {openModal} = useModal()
+      const openModal = useModalStore(s => s.openModal)
       const siteNames = {amazon: "Amazon", brand: row.brand.name}
       return (
         <div
@@ -444,14 +445,14 @@ export const columnsArray: ColumnDefinition[] = [
               return <div
                 key={`just-brand-${code}-${row.key}`}
                 className='btn btn-sm btn-link'
-                onClick={() => openModal(
-                  `countries-${code}-${row.key}`,
-                  `${row.brand.name} ${row.model.value}`,
-                  <div>
+                onClick={() => openModal({
+                  title: `${row.brand.name} ${row.model.value}`,
+                  body: () => <div>
                     {renderCountryLinks(row, 'brand', code)}
-                    <p>I couldn't find this product in {code}, but the brand does sell there. So see if you can find it or similar.</p>
+                    <p>I couldn't find this product in {code}, but the brand does sell there. So see if you can find it
+                      or similar.</p>
                   </div>
-                )}
+                })}
               >
                 {code}
               </div>
