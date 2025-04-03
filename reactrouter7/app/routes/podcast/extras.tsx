@@ -15,7 +15,7 @@ import useStore from "~/routes/podcast._index/store";
 import {Link} from "react-router";
 import {useShallow} from "zustand/react/shallow";
 import type {Route} from './+types/route.tsx'
-import {PopoverTrigger} from "~/components/overlays";
+import {PopoverTrigger} from "~/components/popover";
 type Props = Route.ComponentProps['loaderData']
 
 /**

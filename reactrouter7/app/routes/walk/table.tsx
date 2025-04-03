@@ -24,7 +24,7 @@ import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 // import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {type ListenerProps} from "./url-listener";
 import {useNavigate, useSearchParams} from "react-router";
-import { ModalProvider, useModal, clickableStyle } from './modal';
+import { ModalProvider, useModal } from './modal';
 
 // Header cell component with notes
 const HeaderCell: FC<{
@@ -60,8 +60,7 @@ const ColumnDescription: FC<{
   return (
     <div className="mt-1">
       <span
-        className="small text-secondary"
-        style={clickableStyle}
+        className="small text-secondary dotted-underline"
         onClick={handleClick}
       >
         {info.description || 'Details'}
@@ -120,7 +119,7 @@ const Cell: FC<{
     if (handleClick) {
       return (
         <div style={cellStyle}>
-          <span style={clickableStyle} onClick={handleClick}>
+          <span className="dotted-underline" onClick={handleClick}>
             N/A
           </span>
         </div>
@@ -146,7 +145,7 @@ const Cell: FC<{
     if (handleClick) {
       return (
         <div style={cellStyle}>
-          <span style={clickableStyle} onClick={handleClick}>
+          <span className="dotted-underline" onClick={handleClick}>
             {formattedValue}
           </span>
         </div>

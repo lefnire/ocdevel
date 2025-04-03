@@ -17,7 +17,7 @@ import {
   renderCountryLinks
 } from "./utils";
 import _sumBy from 'lodash/sumBy';
-import {clickableStyle, useModal} from '../../routes/walk/modal';
+import {useModal} from '../../routes/walk/modal';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
@@ -143,7 +143,7 @@ export const columnsArray: ColumnDefinition[] = [
         </Affiliate>
         {row.price?.notes && <div
           onClick={clickHandler}
-          style={clickableStyle}
+          className="dotted-underline"
         >
           <RiInformationLine />
         </div>}
@@ -251,7 +251,7 @@ export const columnsArray: ColumnDefinition[] = [
         <div
           style={{ display: 'flex', gap: '8px' }}
           onClick={clickHandler}
-          {...(clickHandler && { style: { ...clickableStyle, display: 'flex', gap: '8px' } })}
+          className="dotted-underline"
         >
           {picks.me && <span title="Me (Tyler)">{faMe}</span>}
           {picks.trusted && <span title="Trusted Sources">{faTrusted}</span>}

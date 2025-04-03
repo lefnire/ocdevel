@@ -10,7 +10,7 @@ import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
 import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
 import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
 import {useEffect} from "react";
-import {PopoverSingleton} from "~/components/overlays";
+import {PopoverSingleton} from "~/components/popover";
 
 function ClearUtm() {
   const [searchParams, setSearchParams] = useSearchParams()

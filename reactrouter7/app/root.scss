@@ -214,3 +214,8 @@ body {
 #root a {
   text-decoration: none;
 }
+
+.dotted-underline {
+  border-bottom: 1px dotted #6c757d;
+  cursor: pointer;
+}

@@ -11,12 +11,6 @@ import {
 } from "react";
 import Modal from 'react-bootstrap/cjs/Modal';
 
-// Custom styles
-export const clickableStyle: CSSProperties = {
-  borderBottom: '1px dotted #6c757d', // Gray dotted border
-  cursor: 'pointer'
-};
-
 // Modal context for managing which modal is currently open
 type ModalContextType = {
   openModal: (id: string, title: string, content: ReactNode) => void;
