@@ -1,5 +1,5 @@
 import {
-  createContext,
+  createContext, memo,
   type PropsWithChildren,
   type ReactElement,
   useCallback,
@@ -16,7 +16,7 @@ import startsWith from "lodash/startsWith";
 // switched from react-markdown for render speed (LCP)
 import Markdown from 'marked-react'
 import {icons} from "~/components/collapsible-icons";
-import {filterKeys, filters} from '~/content/podcast/resources/filters'
+import {type FilterKey, filterKeys, filters} from '~/content/podcast/resources/filters'
 import {picks} from '~/content/podcast/resources/picks'
 import type {Resource, ResourcesTree} from "~/content/workflowy/mlg-resources.types"
 import {PopoverTrigger} from "~/components/overlays";
@@ -31,37 +31,21 @@ function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {
   </Card>
 }
 
-const iconMemo: {[id: string]: ReactElement} = {}
-
-function Resource({node}: {node: Resource}) {
-  const flat = useContext(ResourceContext)
-  const [show, setShow] = useState(false)
-  const [showHelp, setShowHelp] = useState()
-  const full = flat[node.id]
-
-  function toggle() {setShow(!show)}
-  function resetHelp() {setShowHelp(null)}
-  const helpAttrs = (helpMsg, className=null) => ({
-    className,
-    onMouseEnter: () => setShowHelp(helpMsg),
-    onMouseLeave: resetHelp
-  })
-
-  function renderIcon(filterKey: keyof typeof filters) {
+type FilterOptIcon = {filterKey: FilterKey, opt: string}
+const FilterOptIcon = memo(({filterKey, opt}: FilterOptIcon) => {
     // if (!resource[filterKey]) {return null} // FIXME due to old resources?
     const filter = filters[filterKey]
-    const resourceFilter = filter.opts[full[filterKey]]
-    if (!resourceFilter || !resourceFilter.i) {return null}
-    const lookup = `${filterKey}-${full[filterKey]}`
-    if (iconMemo[lookup]) { return iconMemo[lookup] }
+    const resourceFilter = filter.opts[opt]
+    if (!resourceFilter?.i) {return null}
+    console.log(`${filterKey}-${opt}`)
 
-    const id = `${filter.t}-${filterKey}`
-    let className = "me-2 text-muted"
-    className += ` icon-${lookup}`
+    const className = [
+      "me-2 text-muted",
+      `icon-${filterKey}-${opt}`
+    ].join(" ")
     // if (filterKey !== 'importance') {className += ' text-muted'}
 
-    const el = <PopoverTrigger
-      key={id}
+    return <PopoverTrigger
       trigger={["hover", "focus"]}
       placement="bottom"
       content={{
@@ -77,13 +61,26 @@ function Resource({node}: {node: Resource}) {
     >
       <span key={filterKey} className={className}>{resourceFilter.i}</span>
     </PopoverTrigger>
-    iconMemo[lookup] = el
-    return el
-  }
+})
 
-  function renderDetails(filterKey) {
+function Resource({node}: {node: Resource}) {
+  const flat = useContext(ResourceContext)
+  const [show, setShow] = useState(false)
+  const [showHelp, setShowHelp] = useState()
+  const full = flat[node.id]
+
+  function toggle() {setShow(!show)}
+  function resetHelp() {setShowHelp(null)}
+  const helpAttrs = (helpMsg, className=null) => ({
+    className,
+    onMouseEnter: () => setShowHelp(helpMsg),
+    onMouseLeave: resetHelp
+  })
+
+  function renderDetails(filterKey: FilterKey) {
     // if (!resource[filterKey]) {return } // FIXME due to old resources?
     const filter = filters[filterKey]
+    const opt = full[filterKey]
     const resourceFilter = filter.opts[full[filterKey]]
     if (!resourceFilter) {return null}
     return <tr key={filterKey}>
@@ -91,7 +88,7 @@ function Resource({node}: {node: Resource}) {
         {filter.t}
       </td>
       <td {...helpAttrs(resourceFilter.d, 'pointer')}>
-        {renderIcon(filterKey)}
+        <FilterOptIcon filterKey={filterKey} opt={opt} />
         {resourceFilter.t || resourceFilter}
 
         {/*TODO put this in resources.js somewhere */}
@@ -161,7 +158,14 @@ function Resource({node}: {node: Resource}) {
           <span className='mx-2 resource-title'>
             {full.t}
           </span>
-          {filterKeys.map(renderIcon)}
+          {filterKeys.map(filterKey => {
+            const opt = full[filterKey]
+            return <FilterOptIcon
+              filterKey={filterKey}
+              key={`${filterKey}-${opt}`}
+              opt={opt}
+            />
+          })}
         </div>
         {show && <div className='px-2 pb-1'>
           {full.d && <div className={'my-2 small text-muted'}>

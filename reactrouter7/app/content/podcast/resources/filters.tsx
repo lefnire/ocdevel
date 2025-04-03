@@ -133,6 +133,7 @@ export const filters = {
   }
 } as const
 
+export type FilterKey = keyof typeof filters
 export const filterKeys = [
   // Specify filter-key order (since is {} above)
   'importance',
@@ -145,7 +146,7 @@ export const filterKeys = [
   // Extra keys added per resource
   // 'price',
   // 'updated',
-]
+] as FilterKey[]
 
 export const defaults = {
   importance: "supplementary",
