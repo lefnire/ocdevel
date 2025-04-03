@@ -10,7 +10,7 @@ const usePopoverStore = create<{
   popover: OverlayTriggerProps['overlay'],
   content: PopoverContent
 }>()((set) => ({
-  popover: <div></div>,
+  popover: <Popover id="popover-init"></Popover>,
   content: {title: undefined, body: () => null},
 }))
 

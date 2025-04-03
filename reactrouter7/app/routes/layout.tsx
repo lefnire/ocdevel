@@ -45,6 +45,10 @@ export default function Layout() {
 
     <Outlet />
 
+    <ClearUtm />
+    <GoogleConsentMode />
+    <PopoverSingleton />
+
     <footer className='footer text-center mt-auto shadow'>
       <div className="d-flex justify-content-around align-items-center h-100">
         <div>
@@ -73,8 +77,5 @@ export default function Layout() {
         </div>
       </div>
     </footer>
-    <ClearUtm />
-    <GoogleConsentMode />
-    <PopoverSingleton />
   </div>
 }

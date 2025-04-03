@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import {Link} from "react-router";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
-import {Card, Alert, Table, Popover, OverlayTrigger} from 'react-bootstrap'
+import {Card, Alert, Table} from 'react-bootstrap'
 import startsWith from "lodash/startsWith";
 
 import {ReactMarkdown_} from "~/routes/mlg.resources/markdown";
@@ -21,13 +21,15 @@ import {PopoverTrigger} from "~/components/overlays";
 
 export const ResourceContext = createContext<{[id: string]: Resource}>({})
 function ResourceWrapper({children, show}: PropsWithChildren<{show: boolean}>) {
-    if (!show) {return <div>{children}</div>}
-    return <Card className='shadow mb-2 pb-0'>
-      <Card.Body className='p-1'>
-        {children}
-      </Card.Body>
-    </Card>
-  }
+  if (!show) {return <div>{children}</div>}
+  return <Card className='shadow mb-2 pb-0'>
+    <Card.Body className='p-1'>
+      {children}
+    </Card.Body>
+  </Card>
+}
+
+const iconMemo: {[id: string]: ReactElement} = {}
 
 function Resource({node}: {node: Resource}) {
   const flat = useContext(ResourceContext)
@@ -48,12 +50,15 @@ function Resource({node}: {node: Resource}) {
     const filter = filters[filterKey]
     const resourceFilter = filter.opts[full[filterKey]]
     if (!resourceFilter || !resourceFilter.i) {return null}
-    let className = "me-2 text-muted"
-    className += ` icon-${filterKey}-${full[filterKey]}`
-    // if (filterKey !== 'importance') {className += ' text-muted'}
-    const id = `${filter.t}-${filterKey}`
+    const lookup = `${filterKey}-${full[filterKey]}`
+    if (iconMemo[lookup]) { return iconMemo[lookup] }
 
-    return <PopoverTrigger
+    const id = `${filter.t}-${filterKey}`
+    let className = "me-2 text-muted"
+    className += ` icon-${lookup}`
+    // if (filterKey !== 'importance') {className += ' text-muted'}
+
+    const el = <PopoverTrigger
       key={id}
       trigger={["hover", "focus"]}
       placement="bottom"
@@ -74,6 +79,8 @@ function Resource({node}: {node: Resource}) {
     >
       <span key={filterKey} className={className}>{resourceFilter.i}</span>
     </PopoverTrigger>
+    iconMemo[lookup] = el
+    return el
   }
 
   function renderDetails(filterKey) {
