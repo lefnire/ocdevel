@@ -75,8 +75,9 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.brand.name,
     renderModalTitle: (row) => row.brand.name,
     renderModal: (row) => {
-      const warranty = row.brand.warranty
-      const hasAmazon = !!Object.keys(row.links?.amazon)?.length
+      const warranty = row.brand.warranty;
+      const amazonLinks = row.links?.amazon;
+      const hasAmazon = amazonLinks && Object.keys(amazonLinks).length > 0;
       return <div>
         {renderCountryLinks(row, 'brand')}
         {row.brand.notes?.()}
@@ -95,8 +96,8 @@ export const columnsArray: ColumnDefinition[] = [
     dtype: "string",
     hideScore: true,
     getValue: (row) => row.model.value,
-    format: (row) => row.model.value,
-    renderModalTitle: (row) => row.model.value,
+    format: (row) => row.model.value ?? '', // Provide default
+    renderModalTitle: (row) => row.model.value ?? '', // Provide default
     renderModal: (row) => {
       return <div>
         {renderCountryLinks(row, 'product')}
@@ -127,27 +128,36 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>Last price I saw this at ({UPDATED})</div>,
     getValue: (row) => getPrice(row),
     format: (row) => {
-      const price = getPrice(row);
+      const price = getPrice(row); // getValue already calls this, but format needs it too
       return price !== undefined ? `$${price}` : '';
     },
     render: (row, clickHandler): ReactElement => {
-      const link = getCurrentLink(row);
+      // Reuse calculated values if possible, though these helpers might be needed fresh
       const price = getPrice(row);
-      const affiliate = {key: row.key, link}
+      const link = getCurrentLink(row); // Needed for Affiliate component
+      const affiliate = { key: row.key, link };
 
       // Create a wrapper div that can handle the modal click
       // but let the link handle its own click without propagation
-      return <>
-        <Affiliate product={affiliate}>
-          ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
-        </Affiliate>
-        {row.price?.notes && <div
-          onClick={clickHandler}
-          style={clickableStyle}
-        >
-          <RiInformationLine />
-        </div>}
-      </>
+      return (
+        <>
+          {link ? (
+            <Affiliate product={{ ...affiliate, link }}> {/* Ensure link is string */}
+              ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+            </Affiliate>
+          ) : (
+            `$${price}` // Render only price if no link
+          )}
+          {row.price?.notes && (
+            <div
+              onClick={clickHandler}
+              style={clickableStyle}
+            >
+              <RiInformationLine />
+            </div>
+          )}
+        </>
+      );
     },
   },
   {
@@ -169,9 +179,8 @@ export const columnsArray: ColumnDefinition[] = [
     ),
     getValue: (row) => row.rating.value?.[0]?.[0],
     format: (row) => {
-      const rating = row.rating.value?.[0]?.[0]
-      if (!rating) return '';
-      return rating.toFixed(1);
+      const rating = row.rating.value?.[0]?.[0]; // getValue already accesses this
+      return rating !== undefined ? rating.toFixed(1) : '';
     },
     renderModal: (row) => {
       const notes = row.rating?.notes;
@@ -271,7 +280,7 @@ export const columnsArray: ColumnDefinition[] = [
     // notes: () => <div>Most mills these days start at 265lbs. This wasn't the case a couple years ago, which was a problem for many. Use the filters if you're heavier than 265.</div>,
     getValue: (row) => row.maxWeight?.value,
     format: (row) => {
-      const maxWeight = row.maxWeight?.value;
+      const maxWeight = row.maxWeight?.value; // getValue already accesses this
       return maxWeight !== undefined ? `${maxWeight} lbs` : '';
     },
   },
@@ -283,7 +292,7 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div><em>Very</em> few walking pads go over 4mph. The ones that do are typically more expensive, and require raised handlebars for support (I think for legal / safety reasons). Most of us will use these to walk while working, so this isn't a problem. But if you plan to run sometimes, use this filter.</div>,
     getValue: (row) => row.maxSpeed?.value,
     format: (row) => {
-      const maxSpeed = row.maxSpeed?.value;
+      const maxSpeed = row.maxSpeed?.value; // getValue already accesses this
       return maxSpeed !== undefined ? `${maxSpeed} mph` : '';
     },
   },
@@ -297,13 +306,14 @@ export const columnsArray: ColumnDefinition[] = [
     getValue: (row) => row.incline?.value,
     // Removed format function here as render handles display
     format: (row) => {
-      const incline = row.incline?.value
-      // if (incline === NA) { return "N/A"; } // handled in table.tsx
-      if (!incline) { return ""; }
-      const method = row.incline?.method;
+      const inclineData = row.incline; // Store access
+      const inclineValue = inclineData?.value;
+      // if (inclineValue === NA) { return "N/A"; } // handled in table.tsx
+      if (inclineValue === undefined) { return ""; }
+      const method = inclineData?.method;
       return (
         <div>
-          {`${incline}%`}
+          {`${inclineValue}%`}
           {method && <small className="text-muted ms-1">{method}</small>}
         </div>
       );
@@ -327,7 +337,7 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>Horsepower is highly correlated with motor longevity. HP less than 2.5 often have reports of early motor failure. HP doesn't just indicate speed, but also strength. Target 2.5+.</div>,
     getValue: (row) => row.horsePower?.value,
     format: (row) => {
-      const horsePower = row.horsePower?.value;
+      const horsePower = row.horsePower?.value; // getValue already accesses this
       return horsePower !== undefined ? `${horsePower}` : '';
     },
   },
@@ -354,7 +364,8 @@ export const columnsArray: ColumnDefinition[] = [
     },
     getValue: (row) => row.shock?.value,
     format: (row) => {
-      return (row.shock?.value) ? '✓' : '';
+      const hasShock = row.shock?.value; // getValue already accesses this
+      return hasShock ? '✓' : '';
     },
   },
   {
@@ -365,8 +376,8 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>How conducive to meetings and calls is this treadmill. Whispering is 30dB, conversation is 60dB. So it's only conducive if less than 60. I measure these at 2mph, with the decibel meter near the treadmill and near my microphone. I try to record dB here when I can.</div>,
     getValue: (row) => row.decibels?.value,
     format: (row) => {
-      const decibels = row.decibels?.value;
-      return decibels ? `${decibels} dB` : '';
+      const decibels = row.decibels?.value; // getValue already accesses this
+      return decibels !== undefined ? `${decibels} dB` : '';
     },
   },
   {
@@ -379,7 +390,7 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>Depth x Width x Height, Inches). Most walking pads are roughly the same size. But some stand out as too bulky, which may pose problems for your desk dimensions (measure!); or pleasant-surprisngly compact.</div>,
     getValue: (row) => row.dimensions?.value?.join(''),
     format: (row) => {
-      const dimensions = row.dimensions?.value;
+      const dimensions = row.dimensions?.value; // getValue already accesses this (joined)
       if (!dimensions) return '';
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
@@ -394,8 +405,8 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>As long as it has wheels and tilt-stoppers, weight won't be a problem.</div>,
     getValue: (row) => row.weight?.value,
     format: (row) => {
-      const weight = row.weight?.value;
-      return weight ? `${weight} lbs` : '';
+      const weight = row.weight?.value; // getValue already accesses this
+      return weight !== undefined ? `${weight} lbs` : '';
     },
   },
   {
@@ -419,7 +430,8 @@ export const columnsArray: ColumnDefinition[] = [
       return !!Object.keys(row.links?.amazon)?.length
     },
     format: (row) => {
-      const hasAmazon = !!Object.keys(row.links?.amazon)?.length
+      // getValue already calculates this exact boolean
+      const hasAmazon = !!Object.keys(row.links?.amazon || {}).length;
       return hasAmazon ? '✓' : '';
     },
   },
