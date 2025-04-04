@@ -1,15 +1,21 @@
 export * from './meta.js'
 
-Performance evaluation
+## Concepts
+- **Performance Evaluation Metrics**: Tools to assess how well a machine learning model performs tasks like spam classification, housing price prediction, etc. Common metrics include accuracy, precision, recall, F1/F2 scores, and confusion matrices.
+- **Accuracy**: The simplest measure of performance, indicating how many predictions were correct out of the total.
+- **Precision and Recall**:
+  - **Precision**: The ratio of true positive predictions to the total positive predictions made by the model (how often your positive predictions were correct).
+  - **Recall**: The ratio of true positive predictions to all actual positive examples (how often actual positives were captured).
 
-- Performance measures: accuracy, precision, recall, F1/F2 score
-- Cross validation: split your data into train, validation, test sets
-- Training set is for training your algorithm
-- Validation set is to test your algorithm's performance. It can be used to inform changing your model (ie, hyperparameters)
-- Test set is used for your final score. It can't be used to inform changing your model.
+## Performance Improvement Techniques
+- **Regularization**: A technique used to reduce overfitting by adding a penalty for larger coefficients in linear models. It helps find a balance between bias (underfitting) and variance (overfitting).
+- **Hyperparameters and Cross-Validation**: Fine-tuning hyperparameters is crucial for optimal performance. Dividing data into training, validation, and test sets helps in tweaking model parameters. Cross-validation enhances generalization by checking performance consistency across different subsets of the data.
 
-Performance improvement
+## The Bias-Variance Tradeoff
+- **High Variance (Overfitting)**: Model captures noise instead of the intended outputs. It's highly flexible but lacks generalization.
+- **High Bias (Underfitting)**: Model is too simplistic, not capturing the underlying pattern well enough.
+- Regularization helps in balancing bias and variance to improve model generalization.
 
-- Modify hyperpamaraters
-- Data: collect more, fill in missing cells, normalize fields
-- Regularize: reduce overfitting (high variance) and underfitting (high bias)
+## Practical Steps
+- **Data Preprocessing**: Ensure data completeness and consistency through normalization and handling missing values.
+- **Model Selection**: Use performance evaluation metrics to compare models and select the one that fits the problem best.

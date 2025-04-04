@@ -1,0 +1,230 @@
+[00:01:03] This is episode 15 performance. This episode is going to be the last of the basics of machine learning. My friends, at this point, you have now gone through all the very fundamental introductory components of machine learning.
+
+[00:01:24] Shallow learning the basics of deep learning, a little bit of the math, the technology. And finally, this episode where we're gonna talk about performance evaluation and performance improvement. You may have heard about things like high bias and high variance overfitting, and under fitting. Regularization and then accuracy, confusion, matrices, all these things.
+
+[00:01:44] This is going to be a very boring episode, unfortunately. I apologize. You're gonna want a coffee for this episode. Let's just get it over with, and at the end of this episode, you will be an official machine learning padawan, my friends. You have come far. Applaud yourself. So let's do this episode so you can call yourself a machine learner.
+
+[00:02:05] In this episode, we're gonna be talking about performance, performance evaluation, and performance improvement. Now, performance is basically grading your machine learning algorithms. How well did your machine learning do at the task it was given? So for example, classifying spam, guessing housing costs of Portland houses, calling things cats, dogs and humans, all of the machine learning applications that we've talked about in prior episodes.
+
+[00:02:32] We want a measure to determine how well machine learning algorithms are doing at performing their job. Now you may be thinking, wait a minute, we already have a performance measure, don't we? We had this three part machine learning sequence. We have predict error functions. Okay? And then learning. Now we learn based on these error functions and the error functions, tell us how poorly we are predicting.
+
+[00:02:59] So that we can improve upon those predictions by using the learning step, by using calculus. That's true. This error function or this loss function that exists in every machine learning algorithm can be used to measure the performance of the algorithm so that it can improve itself. However, the loss or error function of a machine learning algorithm differs from machine learning algorithm to algorithm.
+
+[00:03:24] Each error function is different for these different algorithms, and that's because these algorithms function differently. The learning step of each algorithm, the calculus component is different depending on the structure of the algorithm or when we're dealing with neural networks, we have this back propagation process.
+
+[00:03:43] That uses gradient descent at each neuron in a backwards pass through the network, which is totally different than decision trees, which uses the thing called entropy. How chaotic is all the information at any given level of the tree, which is also different from logistic regression, which uses cross entropy.
+
+[00:04:03] So every algorithm has a different error function, and these error functions are like subjective. Personal error functions. It's basically a personal gauge on how well you are doing as a algorithm and by which you can improve yourself. Whereas the performance metrics that we're gonna be talking about in this episode are more of a universal grade, like an A, A B, CD, F grade, that you can compare machine learning algorithms against each other.
+
+[00:04:32] So this metric that we're gonna be talking about is called accuracy. We'll talk about that later. We're gonna get into the analogy first. This metric accuracy is very similar to like a final grade at the end of a semester. By taking a final test and getting back, a percent score from zero to a hundred percent.
+
+[00:04:50] And you can use that grade to compare algorithms against each other for a particular task. Or you can use that grade to basically inform a single machine learning algorithm as to how well it's doing Overall. So let's use this analogy, taking a class. Let's pretend that this class, this course, at a university, is the spam detection course.
+
+[00:05:11] Okay? And remember how we said that various machine learning algorithms can be used for various purposes. Some are very specific, such as anomaly detection algorithms. And recommender systems, but some are a little bit more universal, such as naive bays, decision trees, neural networks, and support vector machines, these power algorithms.
+
+[00:05:32] So we may have a situation such as spam classification, for example, where we can use any number of algorithms. Well, we're gonna put all these algorithms into a classroom, a class that is the detecting. Spam class at a university, and we're going to give them textbooks and assignments and quizzes and tests.
+
+[00:05:51] And at the end of the course, they're gonna all get a final grade, which tells them how well they did. And we're going to use that grade ourselves to determine which of these machine learning algorithms we will. Select for the purpose who got the highest grade in the class. The learning phase in this class is these students, these individual machine learning algorithms, trying to learn what it means to be spam when we're looking at emails.
+
+[00:06:15] What makes an email ham? That is not spam versus spam. So they're going home and they take home these assignments and they're reading the textbook and they're crunching and crunching and crunching. This is the training phase of machine learning and each of these algorithms has its own metric that it uses to figure out how well it thinks it's doing in the class.
+
+[00:06:36] So we've got one learning algorithm, naive Bayes, and he's a father of three kids. And he has a really taxing job. And he comes home every night and he studies and he studies and he gets so little sleep and he listens to the lectures on his iPod on the way to work and he studies in the break room and he's just beating himself up.
+
+[00:06:54] He's like, I don't have enough time to study. I'm not gonna pass this class. He's beating himself up and he takes a test and he gets a beat and he's so surprised. Oh my gosh, I'm doing pretty well, but I could improve. It looks like I maybe need to focus on some of these and not focus on some of these other things.
+
+[00:07:08] So he is got this metric. That he kind of compares himself against. That's his loss function. His error function. That's basically his own subjective personal error function for how well he's doing in the class. And then we have another algorithm over here, algorithm B, logistic regression. And he's a gamer and he's playing games.
+
+[00:07:26] He's like, I'll get this class, I'm fine. And one day he actually. Studies an hour outta the textbook and he's congratulating himself, oh my gosh, I'm doing so much better than I usually do. I am going to nail this class. So he is got his own performance metric that he's kind of comparing himself against.
+
+[00:07:41] Well, the end of the class rolls around, they take the final test, they get back their scores, and guess who did better? The father of three kids. So they each have their own loss or error function, their own personal subjective performance metric that they use to tune their learning process. Then there is a final grade, which is this performance evaluation metric that we're gonna talk about, things like accuracy and an F two score, and all these things that will basically inform objectively or universally how well algorithms are performing against each other, or how well the algorithm did in general at this class, at this particular tasks, which in this case is spam classification.
+
+[00:08:19] This performance measure, the subjective performance measure. That measures algorithms against each other. We call this accuracy, and it is simply how many questions did you get right? Overall. Overall the questions available. Very simple accuracy. In the case of classification, spam classification, how many emails did you correctly classify as spam or correctly classify as ham?
+
+[00:08:42] Over how many total accuracy? Very simple. It's not always that simple. Sometimes the task is a little bit more complicated. For example, let's say the task is classifying cancer, not spam cancer. Well, cancer is, let's say 1% of the population. I. Whereas spam may be, well, it's not actually 50 50, but let's pretend it's 50 50.
+
+[00:09:06] Well, classifying spam versus not spam takes a little bit of know-how, if it's gonna be 50 50 breakdown. But classifying cancer versus non-cancer can be done with a very simple learning technique, learning to always classify not cancer. Why? Because if cancer is only 1% of the population, then you will be 99% accurate if you always.
+
+[00:09:30] Classify a patient as not having cancer. So the accuracy measure of number of corrects over number total will not do in this particular case. So for the spam classification course at university that are machine learning students we're all taking, and then we measure them all against each other. The key to the final test.
+
+[00:09:51] That is used is going to be a different key than in the oncology class where we're learning to classify cancer. There's going to be a different key that the professor uses to grade the final performance evaluation of the machine learning algorithms. So we don't use accuracy in these edge cases. So what we do varies on a case by case basis based on the machine learning task at hand.
+
+[00:10:15] And what we have are these two measures. That we can balance against each other given the circumstance. Okay? And these two measures are called Precision and recall. Precision and recall. Precision is when you're making a guess, do you always make a perfect guess? And then recall is kind of like how wide do you cast your net?
+
+[00:10:38] So I think of the definitions of precision and recall by way of an analogy to a video game I play called Robo Recall, where recall is in the very name of the game, and in fact, you do have these little measures, precision and recall at the end of your gameplay. Precision is like how precise you are.
+
+[00:10:55] That's the definition of precision, how precise you are, how much of a straight shooter you are, do you never miss? A shot you take is every shot. You take a perfect headshot. Do you never miss a shot? Then you have perfect precision. The higher the precision, the better your shots that you take. You never miss a shot you take.
+
+[00:11:18] High precision. You are a precise shooter. You are a straight shooter. Now, the purpose of the game, the story is that there's all these robots and there was a virus, and they're all turned evil, and you have to kill all the robots. It's called robo recall because you work for the company that made these robots.
+
+[00:11:32] And so it's your job to recall the defective products, right? You're trying to recall the products, which means you're going out into the field and you're killing all the robots. So the amount of robots you kill is the amount of robots you recalled, the amount of defective products you recalled back to the factory.
+
+[00:11:51] So your precision is how sharp a shooter you were. You always make the head shots, and the recall is how many robots you kill in one level and they're balanced against each other. I don't care how good a shooter you are, you can't possibly have perfect precision. Never miss a shot. And perfect recall, kill all the robots.
+
+[00:12:12] So there's some sort of balance. You want maybe a, a decent amount of precision where you kind of don't miss too many and a decent amount of recall where balanced against the precision, you're killing a lot of robots. So that's, that's what we're getting at here. Precision and recall is. You're, you're trying to balance some level of how precise you are when you make your shots versus how many things you get, right?
+
+[00:12:34] Overall. Now, let's bring this back to the spam and cancer analogy. In the case of cancer, you want high recall. You want to throw a wide net. Why is that? Because you are, okay. Maybe falsely classifying some people with cancer. Because you never want to miss the people who do have cancer. You would rather make false positives than miss any shots.
+
+[00:13:00] So you want high recall. On the case of cancer, you want to cast a wider net. You're okay accidentally classifying people who don't have cancer as long as you. Always classify the people with cancer. In the case with spam, you want every shot you take to hit a spam email and you'll let some spam come into the inbox at the expense of casting a wide net.
+
+[00:13:22] Why? Because if you cast too wide of a net, you might accidentally send ham legitimate email to the spam box. That would be very unacceptable. You would rather the user get a few spam emails per day, let some through low recall, rather than accidentally send Nons spam to the spam box. So every shot you take, you want to headshot your spam.
+
+[00:13:46] Emails high precision, so different edge case. Machine learning situations call for a different performance measures. The general kind of catchall measure we use is called accuracy, and if your situation is a little bit edge case, then now we have this sliding scale. Let's say we have a slider with a knob and we can go all the way to the left with.
+
+[00:14:08] Precision or all the way to the right with recall. And there's some maybe sweet spot for this particular algorithm where you slide that knob until it's just so, and it's, it's really good for your situation. And let's say that that standard performance measure that we call accuracy is where the slider is right in the middle.
+
+[00:14:26] So accuracy, precision, and recall. And then there's this other metric called an F score. And then there's different types of F scores, F1, F two, et cetera. A common one that's used as F two. So an F. Two score, which sort of measures the balance of precision versus recall. It's kind of a mathematical equation that gives you the location of that knob on this slider that I'm talking about.
+
+[00:14:49] When you slide it left, you go precision. You slide it right, you go recall. The F two score kind of tells you where that knob is on the slider, and so you'll use that for different situations. Other things you'll see in this space of performance evaluation when you're reading around one thing is called a confusion matrix.
+
+[00:15:08] Okay? When you classify spam and ham, you can make true and false negatives and positives. Okay, four options. You can make a true positive, a false positive, a true negative. A false negative when you're, when you're making your guesses, when you're classifying spam. So a true positive is when you correctly classified spam.
+
+[00:15:29] A false positive is when you said it was spam, but it wasn't a true negative is when you said it was ham and it was ham, and a false negative is when you said it was ham, but it was spam. So four options, and you put them together on a grid, a two by two matrix, and we call this little matrix a confusion matrix.
+
+[00:15:50] It doesn't have to be two by two. If there are multiple classes that we're trying to identify, such as cat, dog, and human, then you'd have a three by three, et cetera. And this is kind of like the key that your professor of the spam class will use. At the end of the class to to grade your final test. This confusion matrix is how your professor will sort of visualize the things that you got wrong and the things that you got.
+
+[00:16:15] Right now you don't use this performance evaluation metric, whether it be accuracy or an F two score or whatnot. You don't use it to train your algorithm. You use it to grade your algorithm. You use your algorithm's error function to train the algorithm, so your algorithm is taking the class and he is adjusting himself.
+
+[00:16:39] Based on the class assignment grades and the quiz grades and all these things and his life decisions, and does he need more sleep, et cetera, improves himself, improves himself, and at the end of the class, we get a final grade and that tells us how well our algorithm did done. So the performance metric is not for training, it is for grading.
+
+[00:17:01] Now, how does this work? What we'll do is. We have data. We have our spreadsheet of houses in Portland where we're trying to estimate a cost of a house given its features. We have this spreadsheet, let's say it's a hundred thousand rows. What we'll do is we'll take 80, we'll put it aside, and that will be used for training the algorithm.
+
+[00:17:19] In other words, 80% of this spreadsheet is our algorithms. Study material. It's its textbook, it's its homework assignments. 80% is called the training data. The training set. So we just took our spreadsheet and we cut it. 80% goes to the student and 20% goes to us, the professor. We call this the test set, and it's this test set that we're gonna use to grade the final performance of the algorithm.
+
+[00:17:47] This is the final test. The final that you give at the end of a semester is our test set. So we take our test set of features, and we have the. The Y values, the actual prices of these houses, but we hold them behind our back, sort of this is the test key. So we put all those rows as questions on the final test, and we hand that to the machine learning algorithm and we say, go and it answers all the questions and it gives us the test back.
+
+[00:18:15] And we look at it, we compare it against the key that we have and we grade it. Now there's a little something called hyper parameters when a machine learning algorithm learns. Remember, in linear regression and logistic regression episodes, we talked about these things called parameters, theta parameters, specifically a parameter.
+
+[00:18:37] Is a coefficient that a machine learning algorithm learns. It's the number that goes in front of the X. It's this multiplication piece that the machine learning algorithm learns in order to construct an equation that fits a line to the data parameters. That is the stuff that the machine learning algorithm learns, but there are other components to a machine learning algorithm, stuff that it does not learn that can be tweaked.
+
+[00:19:02] To improve an algorithm's performance. So for example, when we were talking about linear regression, we said that the data may not optimally be fit with a line. It could be just so that maybe a little squiggle or it's a exponential function, a little curve up or something like that. So the amount of polynomials in a linear regression algorithm.
+
+[00:19:26] That's called a hyper parameter. It's not a parameter that machine learning algorithm learns. It's something that we tweak as a human. A hyper parameter is a thing that the human tweaks, so it's kind of like a level up. Above the algorithm, it controls the algorithm, but then the algorithm learns its theta parameters under the restriction of the hyper parameters that we impose upon the algorithm.
+
+[00:19:52] I think the best way to visualize this is with the hyper of parameters of a neural network. The hyper parameters of a neural network are the number of neurons in any layer and the number of layers. In the network. So how wide and how deep is our network? You might think, well, it seems like the optimal neural network would just be the biggest brain ever.
+
+[00:20:16] Let's just have a bazillion layers deep and a bazillion neurons wide at each layer. Wouldn't the biggest brain ever be the best neural network? Not necessarily The size of the network is particular to the circumstance. If the situation is simple, then having too many layers or too many neurons. Actually causes something called overfitting that we're gonna be getting into towards the end of this episode.
+
+[00:20:43] Another problem with too complex of a neural network is that the more complex the network, the more training data the network needs to eat to understand the situation. If you've got a spreadsheet of a hundred thousand rows, but you have a gazillion neurons. That's not enough information, and you could probably never get enough information with that complex of a network, so you slim your network down to accommodate the amount of data you have available.
+
+[00:21:11] Furthermore, the more complex your neural network, the more computational resources required. Too many neurons means your computer just can't handle it. So you actually want to have as slim down a neural network as possible, as small a brain as possible that can optimally handle the situation at hand. So the number of neurons and the number of layers are your hyper parameters, and you as a human.
+
+[00:21:39] Choose the hyper parameters that best fit your circumstances based on your understanding of the situation. So it takes actually understanding on the human part in order to optimize these hyper parameters. Now that takes away a little bit of the magic, doesn't it? We have machine learning algorithms that learn the information that you're giving it, but there's some stuff about the machine learning algorithm that it doesn't learn and you have to tweak.
+
+[00:22:04] Yes. So, so hyper parameters, but there are, um. There are libraries out there that automate this process. So it's not actually machine learning, it's, it's more like iterating through a handful of different combinations of hyper parameters. Given these restrictions, you give it and finding the thing that achieves the best performance.
+
+[00:22:24] Metric, using that evaluation stuff that we talked about in the earlier part of this episode. So it's not machine learning proper, it's just that there are libraries out there that can cycle through hyper parameters, run your machine learning algorithm against it, against the performance evaluation, and tweak the hyper parameters until it gets the best score possible.
+
+[00:22:42] So these hyper parameters. Are things that we tweak, and so what we do is we add a additional step to this train and test process. Okay, so training a machine learning algorithm has the algorithm tweaking its parameters, it's theta parameters in the case of linear and logistic regression. And then the final test just tells us the overall score of the machine learning algorithm, how did it perform?
+
+[00:23:08] We add this third piece called the validation step that allows us to kind of like stop, look at how the algorithm is performing before we get our final grade. And if we sort of have a hunch on how we can make some changes to these hyper parameters, we can tweak them and then we can click go again on the training phase.
+
+[00:23:25] And the algorithm can retrain given the adjusted hyper parameters. So we call this step the validation step. So now we have, and I think of this in our university course analogy as the midterm. The midterm. So it's this second test we insert in the middle. Of the semester that measures the performance of the machine learning algorithm, but allows us to kind of step in and change the hyper parameters and then step back out and then let it go again.
+
+[00:23:53] It's kinda like we have our machine learning algorithms are taking this course and they've got their internal measure of their own performance. They're like, I think I'm doing good. I think I'm doing good. They're making some adjustments to the way they study. Okay? They start to realize that they fully understand concept A, but they maybe need to focus a little bit more on concept B.
+
+[00:24:13] So they have their loss function, cross entropy, for example, and they adjust their theta parameters, adjust their theta parameters. They learn and learn and learn the course material, and then we give them a midterm. And they get this grade back and they're like, whoa, a CI thought I was doing really well.
+
+[00:24:28] And so we pull them aside as a human. Okay, we turn them off. There's a, a off switch on their back. 'cause these are learning machines. After all, they're robots, right? And we open up their skull and they have a little robot brain inside. And we take our wrench and we take our screwdriver and tweak, tweak, tweak, turn, turn, turn.
+
+[00:24:46] We make some adjustments to the hyper parameters, whether it be number of polynomials in a linear regression algorithm or. Number of layers or neurons in a neural network. And then we close the lid on the head and we put it back into its class and it starts to learn and learn and learn. And then we can actually maybe retake the midterm and it gets an A this time.
+
+[00:25:05] Great. It's actually improved. So I think we're ready to take that final test. And the machine learning algorithm takes a test and gets an A. So training is learning. We have a midterm, which lets us peek into how well we're doing and make any necessary changes to our hyper parameters. This is called the validation step, and then we have our final test, which tells us our grade for the semester.
+
+[00:25:28] So we split our spreadsheet into three chunks. Let's say it's 60% training data. That's the stuff that the machine learning algorithm is gonna learn from, and then 20% validation set. That's the stuff that we're going to test the machine learning algorithm on midterm to see if there's any sort of hyper parameter adjustments we should make to improve the algorithm's overall performance.
+
+[00:25:52] And then we have our final test with the test set, and that tells us the overall score. So this is called, this process is called cross validation. We split our spreadsheet, our data into three chunks, training set, validation set. And test set. And we use that data to train, validate, and see if we need to make any hyper parameter adjustments and test final evaluation.
+
+[00:26:16] Okay, so we have a way of measuring algorithm performance both against itself with a loss function and against each other with a performance metric like accuracy. Then we can use this grade to decide which algorithm to use for our particular purposes. But what could go wrong in an algorithm that could muck up its performance?
+
+[00:26:38] What could cause an algorithm to be less performant than another algorithm? It could be that one algorithm is just a better fit given the data, but it could be a handful of other things. Things that can improve. We already talked about hyper parameter adjustments. Those are things that we could adjust to improve our algorithm's performance.
+
+[00:26:58] Some algorithms require more data to learn from than other algorithms. So one thing we can do to improve performance is just collect more data. So, for example, when we split up our data into training, validation, and test sets, we just diluted the amount of data that an algorithm has to work with when it's studying, when it's learning.
+
+[00:27:21] Some algorithms work fantastic with very little data. Naive Bays in particular works very well, even with little data, whereas neural networks need lots and lots of data to train with. So one way to improve performance is to collect more data. Another way to improve performance is sometimes the data actually needs massaging.
+
+[00:27:42] There's some missing. Fields. Sometimes maybe we just need to fill in those missing slots with maybe, maybe an average across the data or something else. Basically filling in missing fields in your data set is, there's this whole science to it. It depends on. How the rest of your data is structured and what that particular field is.
+
+[00:28:06] But choosing how to fill in that missing slot is a very advanced topic. I'm not gonna talk about it. There's this other thing you can do called normalizing data. Sometimes numbers are wildly different. Let's say that one feature, for example, is number of bedrooms. When we're talking about housing costs can be two or three or maybe four, whereas distance to downtown measured in feet is gonna be wildly higher.
+
+[00:28:34] Well, those two numbers being on totally different scales can actually hurt the performance of certain machine learning algorithms. So you want to bring them down to the same kind of scale, and we call that normalizing. So you normalize your features. So these are all things that you can do to improve your performance.
+
+[00:28:52] But there is one thing that drastically improves the performance of machine learning algorithms, and that is called regularization. And you are going to learn about regularization probably in the first couple weeks of Andrew ing or the first couple chapters of any other book. I apologize that it took me so long to get to this in my podcast.
+
+[00:29:16] It's just so boring and it's so technical and detailed. It's like I just wanted to kind of cover the high level stuff. Before I got into the nitty gritty, it's not hard to understand, it's just, it's just technical. So it's super, super important to, to machine learning, understanding you can't go on without it.
+
+[00:29:33] And so I would estimate you probably know a little bit about regularization already, and if not, you'll learn about it when you start diving into the details of machine learning, regularization is a step you take to reduce overfitting and under fitting. Overfitting and under fitting or sometimes called high variance and high bias respectively.
+
+[00:29:53] In machine learning, we have variance and bias. A machine learning algorithm has any level of variance and bias. The level of variance determines the amount of overfitting and the level of bias determines the amount of under fitting, and this is what these things mean. The best way to think of this is judging a book by its cover.
+
+[00:30:18] Now you're a machine learning algorithm. You may be support vector machine or neural network, and you are trying to learn whether or not you'll enjoy a book by its cover. Well, you've read a hundred thousand books and you've seen all their covers, and you know which books you've liked and which ones you haven't liked.
+
+[00:30:34] And I think you have a hunch as to what books would be good just looking at its cover. Now a naive machine learner will come up to you and say, you can't judge a book by its cover. That's sofa, pa. Everybody knows you can't judge a book by its cover, and you tap your nose and you say, can't I? The other algorithm says, no, of course you can't.
+
+[00:30:53] Every single book is unique in its own special way. Every single book cover represents a specifically different book. Okay. Every book has its cover and it's unique. There is nothing that connects these things together. That algorithm suffers from high variance. Overfit. Okay. So that's a problem that you can have in machine learning.
+
+[00:31:19] You, on the other hand, let's say that you have gotten a little bit overconfident and you pick up a book and you look at it and you're like, fantasy I, I'm gonna love this book. And the high variance algorithm looks at it and it has a bare chested man sitting on a horse. And a girl behind him swooning with her hand on her head, and he says, C, come on, that's romance.
+
+[00:31:38] What would you say? That's fantasy? Well, maybe you were tipped off by the horse and the strong man sitting on it. Maybe it looks like he's riding in a battle. I don't know. But the fact of the matter is, you guessed too fast, too few variables tipped you off. You didn't think hard enough. You pick up another book and you're like fantasy.
+
+[00:31:54] You pick up another book, you're like fantasy, fantasy, fantasy. Fan fantasy. You, my friends, suffer from. High bias that is under fitting. Under fitting or high bias is when you don't use enough data to make a decision. Usually, this is a result of not having enough data to begin with in the training phase.
+
+[00:32:14] Overfit or high variance means you're too specific. You're not generalizing enough. You don't believe in generalization. You think it's harmful. So if we're looking at linear regression, for example, linear regression, remember was fitting a line to a cloud of data points, dots in the shape of a football.
+
+[00:32:34] Let's say that the data is not shaped like a football. It's a little bit curvy, and we need, ideally to come up with a polynomial function, maybe x squared or some sort of curve that goes up, down, and up again. That's what we're hoping for. That's an ideal fit. Good generalization. High bias would not have any polynomials at all.
+
+[00:32:56] It would just be a line goes right through the center. It's not using complex enough features. It's not using, or it's not using enough features in general to make its predictions. It's too simple. It's predictions are too simple. High variants, or. Overfitting might fit the line with too many polynomials.
+
+[00:33:14] You might have too many X squares and X cubes and X to the fourth and to the fifth, and what you get is a line that goes through every single point on the graph that's not right either. We want something that generalizes. Something that reduces the overall error, but is as simple as we can make it without being biased.
+
+[00:33:38] I think of this as Occam's Razor. I'm sure most of you know what Occam's Razor is. I'm not gonna define it really. I'm just gonna kind of summarize it as simplest solution wins. Now you don't wanna go too simple, otherwise you have high bias under fitting. But you don't wanna go too complex because then you have overfitting high variance.
+
+[00:33:57] What you want is the simplest equation possible that will give you a generally good algorithm, a generally good graph, something that squiggles up and down and up. Really cleanly and simply doesn't touch on all the dots, just kind of goes through the middle of 'em all. And the reason for that is if you add a new dot, if you add a new data point, it's more likely to get that right or at least close to right than an overfitted graph.
+
+[00:34:24] So the problem with bias and variance, the problem with under fitting and overfitting is that they may allow you to make somewhat accurate predictions in the training phase, but when you come to the validation step or the test step, you're going to be wrong. So these are both evils, variance and bias, and we want to reduce both of these if possible.
+
+[00:34:45] We want to come up with a good generalization strategy that is neither too complex. Nor too simple, and that is this thing called regularization. Regularization is a little chunk that you add to the end of any machine learning algorithm that modifies the equation by reducing under fitting and overfitting.
+
+[00:35:07] It's interesting. What it does, for example, in linear regression is it might reduce the effect of polynomials. It's hard to explain. I'm gonna leave it to the Andrew ing stuff for you to learn the details of regularization, but it's basically a little add-on that you add to any of your machine learning algorithms that will reduce bias and variants.
+
+[00:35:27] So once again, under fitting is. Jumping the gun, basically, you don't have enough data to come up with a good generalization strategy, and so you come up with an insufficient generalization strategy, maybe a line when what should be used as a polynomial. You pick up a book and you make a, a judgment call based on two few features of the book in your hand.
+
+[00:35:49] Now, I do believe that a book can be judged by its cover, at least the genre of a book could be judged by its cover. But Overfitting algorithm over here comes along and says, no book could be judged by its cover. Every single book is independent. This algorithm has does not come up with any sort of generalization strategy.
+
+[00:36:07] They wouldn't be able to tell what genre even a book is when looking at it, because it's too specific. So the optimal strategy is some sort of middle ground where you can judge some characteristics of a book by its cover. Not too specific, not too simplistic. Okay, so that is performance. We talked about performance evaluation and performance improvement.
+
+[00:36:29] Things that can hurt performance. Things that can hurt performance would be high bias and high variance that is under fitting and overfitting respectively. Non normalized features. Missing data, too little data. Poorly tuned hyper parameters, such as number of neurons or number of layers in a neural network.
+
+[00:36:48] And there are a number of ways to improve on any of these issues. You would tune your hyper parameters or you would fill in your missing data. You would normalize your numeric data, and you would regularize your algorithm by adding a little extra algorithm chunk to the end regularization, and that would decrease overfitting and under fitting.
+
+[00:37:08] Now the way we measure our algorithm's performance, well, each algorithm has its error or loss function. Those are used to measure its own performance while it's learning its own subjective personal performance metric. And then at the end of any session, we will finally test our algorithm with the test set, this performance evaluation.
+
+[00:37:27] We might use something called accuracy, which is a very. General simple catchall for measuring performance, but in certain edge case scenarios, we might try to balance precision versus recall. Precision is how much of a straight shooter you are do you nail every estimate you make versus recall, which is how wide do you cast your net?
+
+[00:37:49] Do you not let any estimates escape? You can use an F two score. To measure the balance of your precision and recall. And finally, we don't just break our data set into training and test sets. No, we add a third set. We break it into three training set, validation set, and test set. We use our training set to train to learn the theta parameters.
+
+[00:38:14] We use our validation set to determine how well our algorithm is doing. If it's not doing too well, then we might adjust hyper parameters, human adjustable parameters of the algorithm. And then finally, at the very end, we will measure the algorithm's overall score by way of the performance evaluation.
+
+[00:38:33] Boring, huh? That was not fun. But my friends, as I said in the beginning of the episode, you are now done with the basics of machine learning. Of course, per usual. I encourage you to finish the Andrew ing course and then from there, move on to the deep learning book. Start Coding with Python and TensorFlow.
+
+[00:38:51] There are no resources for this episode. Performance evaluation and improvement is kind of tied to learning machine learning algorithms. You're going to be exposed to the stuff that I mentioned in this episode, not as an independent module in any learning series, but alongside any individual algorithm as you go.
+
+[00:39:13] And starting now, I'm going to be moving on into deep learning. I might break this podcast now up into seasons where the next season is going to be deep learning, which means that I may end up pausing, creating new episodes for this podcast in the short term, just to catch up on the deep learning essentials so I can, so I have it in my mind.
+
+[00:39:37] Good enough to teach to you guys and then create a new season on deep learning, but that's what we're going to be covering in the next sequence of episodes. As far as the eye can see, we're going to be moving completely into deep learning, so it's gonna be fun. We're gonna be talking about recurrent neural networks, convolutional neural networks, and more.
+
+[00:39:59] Eventually, once I've covered all of the deep learning material, I will move to reinforcement learning. I hope to sort of ease into artificial intelligence proper with this podcast series, but it's gonna take some time. I actually don't know reinforcement learning myself yet, so I'm gonna have to learn that stuff in the background before I can teach it.
+
+[00:40:20] In order to pave the way for deep learning and reinspire you to learning this stuff because it, it is beautiful. It is magical, fascinating algorithms. I'm going to do my next episode on consciousness. I'm going to talk about what people are talking about and thinking about. In philosophy, in cognitive science and neuroscience along the lines of consciousness and how it may relate to neural networks, artificial intelligence, and all those things, it's going to be a little bit pseudo sciencey, definitively subjective, and I know it could ruffle some feathers, but I do encourage my rigorously empirical listeners do listen to the episode.
+
+[00:41:05] It'll just be some fun. It'll just be a little bit of inspiration. I'm not going to try to make any definitive claims one way or another. I'm just going to introduce the topic and inspire our listeners because there is certainly some potential correlates between artificial neural networks and biological neural networks, if not entirely in an architectural way, potentially in a functional way.
+
+[00:41:27] I think this will be a very fun episode, and at the end of that episode, I will get back to you guys as to whether I'm going to break this up into seasons one and two. Or if I'm just going to continue from there right into deep learning, I'll let you know. See you guys next time. Welcome back to Machine Learning Guide.
+
+[00:41:44] I'm your host, Tyler Elli. MLG teaches the fundamentals of machine learning and artificial intelligence. It covers intuition models, math languages, frameworks, and more where your other machine learning resources provide the trees I provide. The forest visual is the best primary learning modality. But audio is a great supplement during exercise, commute and chores.
+
+[00:42:07] Consider MLG your syllabus with highly curated resources for each episode's details@ocdeve.com slash mlg. Speaking of curation, I'm a curator of life hacks, my favorite hack being treadmill desks. While you study machine learning or work on your machine learning projects, walk. This helps improve focus by increasing blood flow and endorphins.
+
+[00:42:30] This maintains consistency and energy, alertness, focus and mood. Get your CDC recommended 10,000 steps while studying or working. I get about 20,000 steps per day walking just two miles per hour, which is sustainable without instability at the mouse or keyboard. Save time and money on your fitness goals.
+
+[00:42:47] See a link to my favorite walking desk setup in the show notes.
+
