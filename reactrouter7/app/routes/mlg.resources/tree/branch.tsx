@@ -32,9 +32,7 @@ const Branch_ = ({node, level = 0}: Branch_)=> {
   }, [showPick])
 
   if (!node.pick) {
-    return <div className='py-2'>
-      <Leaf id={id}/>
-    </div>
+    return <Leaf id={id}/>
   }
 
   // pick is present, but no children; this section was filtered out

@@ -1,7 +1,7 @@
-import {Branch} from "~/routes/mlg.resources/tree/branch";
 import {ResourceCacheContext, ResourceCacheProvider} from '../mlg.resources/tree/resource-cache'
 import type {Route} from './+types/route'
-import {useContext} from "react";
+import {memo, useContext} from "react";
+import {Leaf} from "~/routes/mlg.resources/tree/leaf";
 
 // type Props = Route['loaderArgs']['resources']
 type Props = {flat: any}
@@ -13,10 +13,10 @@ export function ResourcesFlat({flat}: Props) {
   </ResourceCacheProvider>
 }
 
-function Resources() {
+const Resources = () => {
   const {flat} = useContext(ResourceCacheContext)
   return Object.entries(flat)
-    .map(([id, resource]) => (
-      <Branch id={id} key={id} />
+    .map(([id, _]) => (
+      <Leaf id={id} key={id} />
     ))
 }

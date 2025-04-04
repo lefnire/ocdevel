@@ -143,7 +143,7 @@ export const Leaf = memo(({id}: { id: string }) => {
 
   const toggle = useCallback(() => setShow(!show), [show])
 
-  return <div className={`resource`}>
+  return <div className="resource py-2">
     <LeafWrapper show={show}>
       <div onClick={toggle} className="pointer">
         {show ? icons.down : icons.right}
