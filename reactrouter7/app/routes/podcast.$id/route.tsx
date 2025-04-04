@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
-import _reduce from 'lodash/reduce'
 import {transform} from '~/content/workflowy/mlg-resources'
 
 export function loader(props: Route.LoaderArgs) {
@@ -32,12 +31,23 @@ export function loader(props: Route.LoaderArgs) {
   const r = transform('', './app/content/workflowy/mlg-resources.opml')
   const resources = (() => {
     if (podcastKey === 'llh') { return {flat: {}, nids: []}}
-    const nids = r.episodes[series][epId]
-    const flat = _reduce(
-      nids,
-      (m, nid) => ({...m, [nid]: r.flat[nid]}),
-      {}
-    )
+    const nids = r.episodes[series][epId] || []
+
+    const flat: {[id: string]: any} = {}
+    function flatten(item: string | {id: string}) {
+      // Handle both string IDs and object IDs
+      const id = typeof item === 'string' ? item : item.id;
+      const full = r.flat[id]
+      if (!full) { return; }
+      if (!full.pick) {
+        if (flat[id]) {return;}
+        // remove children now
+        flat[id] = {...full, v: []}
+      }
+      full.v?.forEach?.(flatten)
+    }
+    nids.forEach(flatten)
+
     return { flat, nids }
   })()
 
@@ -59,11 +69,11 @@ export function meta({data}: Route.MetaArgs) {
   return [
     {title: `${data.episode.title} | ${data.show.title} Podcast`},
     {name: "description", content: data.episode.teaser},
-    // Possibly helps with LCP on the iframe? Need to revisit
-    {
-      tagName: "link",
-      rel: "preconnect",
-      href: "https://play.libsyn.com",
-    },
+    // Possibly helps with LCP on the iframe? Anyway, using click-to-play now
+    // {
+    //   tagName: "link",
+    //   rel: "preconnect",
+    //   href: "https://play.libsyn.com",
+    // },
   ]
 }

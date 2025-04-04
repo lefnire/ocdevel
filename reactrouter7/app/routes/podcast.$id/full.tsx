@@ -8,7 +8,7 @@ import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
 import type {Route} from './+types/route.tsx'
-import {ResourcesFlat} from "~/routes/mlg.resources/tree/flat";
+import {ResourcesFlat} from "~/routes/podcast.$id/resources";
 
 export default function Full({loaderData}: Route.ComponentProps) {
   const props = loaderData

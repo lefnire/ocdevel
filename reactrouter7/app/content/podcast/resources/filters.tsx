@@ -22,8 +22,11 @@ import {MdWeb} from '@react-icons/all-files/md/MdWeb'
 import {TiSortAlphabetically} from '@react-icons/all-files/ti/TiSortAlphabetically'
 import {BiCode} from '@react-icons/all-files/bi/BiCode'
 import {CgMathPercent} from '@react-icons/all-files/cg/CgMathPercent'
+import type {ReactElement} from "react";
+import type {Filters, FilterKey} from '~/content/workflowy/mlg-resources.types'
 
-export const learnStyles = {
+
+export const learnStyles: Filters = {
   learn: {
     t: 'Learn Mode',
     d: "List learning resources for self-teaching, or resources for getting a degree",
@@ -43,7 +46,7 @@ export const learnStyles = {
   },
 }
 
-export const filters = {
+export const filters: Filters = {
   engagement: {
     t: "Engagement",
     d: `Is this resource "sit back and enjoy", or does it require coding challenges, exercises, etc?`,
@@ -131,9 +134,9 @@ export const filters = {
     t: "Updated At",
     d: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives.",
   }
-} as const
+}
 
-export const filterKeys = [
+export const filterKeys: FilterKey[] = [
   // Specify filter-key order (since is {} above)
   'importance',
   'format',

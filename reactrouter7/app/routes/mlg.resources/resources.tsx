@@ -1,6 +1,7 @@
-import {useStore} from "./store";
+import {useStore} from "./tree/store";
 import {useContext} from "react";
-import {ResourceNode, ResourceContext} from "./common";
+import {ResourceNode} from "./tree/common";
+import {ResourceCacheContext, ResourceCacheProvider} from "./tree/resource-cache";
 import compact from "lodash/compact";
 import reduce from "lodash/reduce";
 import {filterKeys} from "~/content/podcast/resources/filters";
@@ -8,16 +9,16 @@ import {useShallow} from "zustand/react/shallow";
 import type {Resource, ResourcesTree} from '~/content/workflowy/mlg-resources.types'
 
 
-export default function ResourcesTree({flat, top}: ResourcesTree) {
+export function Tree({flat, top}: ResourcesTree) {
   return <div className='resources resources-tree mb-3'>
-    <ResourceContext.Provider value={flat}>
+    <ResourceCacheProvider flat={flat}>
       <FilteredTree top={top} />
-    </ResourceContext.Provider>
+    </ResourceCacheProvider>
   </div>
 }
 
 function FilteredTree({top}: {top: ResourcesTree['top']}) {
-  const flat = useContext(ResourceContext)
+  const {flat} = useContext(ResourceCacheContext)
   const [filters, learnStyles] = useStore(useShallow(s => [
     s.filters,
     s.learnStyles
@@ -63,7 +64,7 @@ function FilteredTree({top}: {top: ResourcesTree['top']}) {
     return keep ? {id} : null
   }
 
-  const sections = recurseTree(filters, learnStyles)
-  return sections.map((n: Resource) => n && <ResourceNode node={n} key={n.id} />)
+  const sections = recurseTree(filters, learnStyles).filter(Boolean)
+  return sections.map((n: Resource) => <ResourceNode node={n} key={n.id} />)
 }
 

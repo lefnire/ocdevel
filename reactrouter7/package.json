@@ -5,7 +5,8 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
+    "start:bk": "react-router-serve ./build/server/index.js",
+    "start": "serve -s ./build/client",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
@@ -45,6 +46,7 @@
     "remark-gfm": "^4.0.1",
     "rollup-plugin-visualizer": "^5.14.0",
     "sass-embedded": "^1.86.1",
+    "serve": "^14.2.4",
     "tailwindcss": "^4.0.17",
     "typescript": "^5.8.2",
     "vite": "^6.2.4",
