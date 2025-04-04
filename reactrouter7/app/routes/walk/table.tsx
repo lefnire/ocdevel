@@ -48,12 +48,11 @@ const ColumnDescription: FC<{
   column: Column<Product, unknown>;
   info: any;
 }> = ({ column, info }) => {
-  const openModal = useModalStore(s => s.openModal);
-  
+
   if (!info.description && !info.notes) return <div>&nbsp;</div>;
   
   const handleClick = () => {
-    openModal({
+    useModalStore.getState().openModal({
       title: info.label,
       body: () => info.notes?.() || <div>{info.description}</div>
     });
@@ -81,7 +80,6 @@ const Cell: FC<{
   column: Column<Product, unknown>;
   info?: any;
 }> = ({ row, column, info }) => {
-  const openModal = useModalStore(s => s.openModal);
   const columnId = column.id;
   const columnDef = columnsObj[columnId];
   const product: Product = row.original;
@@ -112,7 +110,7 @@ const Cell: FC<{
         (info?.label) || columnId
       ].join(' - ')
     })()
-    openModal({
+    useModalStore.getState().openModal({
       title,
       body: () => bodyFn(product)
     });
