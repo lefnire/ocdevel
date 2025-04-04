@@ -19,6 +19,7 @@ import {filterKeys, filters} from '~/content/podcast/resources/filters'
 import {picks} from '~/content/podcast/resources/picks'
 import type {Resource, FilterKey} from "~/content/workflowy/mlg-resources.types"
 import {ResourceCacheContext} from "./resource-cache";
+import {Icon} from './icon'
 
 
 function ResourceWrapper({children, show}: PropsWithChildren<{ show: boolean }>) {
@@ -33,15 +34,14 @@ function ResourceWrapper({children, show}: PropsWithChildren<{ show: boolean }>)
 }
 
 const Resource = memo(({id}: { id: string }) => {
-  const {flat, renderIcon: renderIcon_} = useContext(ResourceCacheContext);
+  const {flat} = useContext(ResourceCacheContext);
   const [show, setShow] = useState(false)
   const [showHelp, setShowHelp] = useState()
   const node = flat[id];
 
   const renderIcon = (filterKey: FilterKey) => {
     const id = `${filterKey}-${node[filterKey]}`
-    // return <Icon key={id} id={id} />
-    return renderIcon_(id)
+    return <Icon key={id} id={id} />
   }
 
   function toggle() {
