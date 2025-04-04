@@ -15,7 +15,8 @@ const links = {
 
 const info: Product = {
   model: {
-    value: "MotionEase Lite P1",
+    // value: "MotionEase Lite P1",
+    value: "Vibration Pad",
     notes: () => <div>
       No clue what the vibration this is all about, personally think it's a gimmick. I'll update here if I find there's something to it.
     </div>
