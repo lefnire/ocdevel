@@ -1,0 +1,104 @@
+import {
+  type PropsWithChildren,
+  useCallback,
+  useState,
+  useContext, memo,
+} from "react";
+
+// switched from react-markdown for render speed (LCP)
+import Markdown from 'marked-react'
+import {icons} from "~/components/collapsible-icons";
+import {picks} from '~/content/podcast/resources/picks'
+import type {Resource} from "~/content/workflowy/mlg-resources.types"
+import {ResourceCacheContext} from "./resource-cache";
+import {Leaf} from './leaf'
+
+type Branch = {id: string, level?: number}
+export const Branch = memo(({id, level = 0}: Branch) => {
+  const {flat} = useContext(ResourceCacheContext);
+  const node = flat[id]
+  if (!node) {return null}
+  return <Branch_ node={node} level={level}/>
+})
+
+type Branch_ = { node: Resource, level: number }
+const Branch_ = ({node, level = 0}: Branch_)=> {
+  const [expanded, setExpanded] = useState(!!node.expand)
+  const [showPick, setShowPick] = useState(false)
+  const id = node.id
+
+  const showPick_ = useCallback(() => {
+    setShowPick(!showPick)
+  }, [showPick])
+
+  if (!node.pick) {
+    return <div className='py-2'>
+      <Leaf id={id}/>
+    </div>
+  }
+
+  // pick is present, but no children; this section was filtered out
+  if (!node.v?.length) {
+    return null
+  }
+
+  let header = <>{expanded ? icons.minus : icons.plus} {node.t}</>
+  header = level === 0 ?
+    <h4 className='resource-header mb-0'>{header}</h4> :
+    <div>{header}</div>
+
+  function renderSectionInfo() {
+    if (!expanded) {
+      return null
+    }
+    if (!(node.d || node.pick)) {
+      return null
+    }
+    return <div className='small ms-2'>
+      {node.d && <div className='my-1 text-muted'>
+        <Markdown>{node.d}</Markdown>
+      </div>}
+      {node.pick && <div>
+        <div
+          className='pointer'
+          onClick={showPick_}
+        >
+          {showPick ? icons.down : icons.right}{' '}
+          {picks[node.pick].t}
+        </div>
+        {showPick && <div className='ms-3 text-muted'>{picks[node.pick].d}</div>}
+      </div>}
+    </div>
+  }
+
+  const dontPad = level === 0 || expanded
+
+  function renderLi(v: Resource) {
+    const key = `${level}-${v.id}`
+    return <li key={key}>
+      <Branch id={v.id} level={level + 1}/>
+    </li>
+  }
+
+  return <div className={dontPad ? '' : 'py-2'}>
+    <TreeSectionWrapper expanded={expanded}>
+      <div
+        onClick={() => setExpanded(!expanded)}
+        className={`pointer`}
+      >{header}</div>
+      {renderSectionInfo()}
+    </TreeSectionWrapper>
+    {expanded && <ul className={`list-unstyled border-start ps-4 mb-0`}>
+      {node.v.map(renderLi)}
+    </ul>}
+  </div>
+}
+
+function TreeSectionWrapper({expanded, children}: PropsWithChildren<{ expanded: boolean }>) {
+  return <div className={expanded ? 'section-expanded border-start border-top' : ''}>
+    {expanded ? <div
+        className='ps-0 m-0 border-end-0 border-bottom-0 border-top-0'
+      >{children}</div>
+      : <div className=''>{children}</div>}
+  </div>
+}

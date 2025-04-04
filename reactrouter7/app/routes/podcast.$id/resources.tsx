@@ -1,4 +1,4 @@
-import {ResourceNode} from "~/routes/mlg.resources/tree/common";
+import {Branch} from "~/routes/mlg.resources/tree/branch";
 import {ResourceCacheContext, ResourceCacheProvider} from '../mlg.resources/tree/resource-cache'
 import type {Route} from './+types/route'
 import {useContext} from "react";
@@ -17,6 +17,6 @@ function Resources() {
   const {flat} = useContext(ResourceCacheContext)
   return Object.entries(flat)
     .map(([id, resource]) => (
-      <ResourceNode id={id} key={id} />
+      <Branch id={id} key={id} />
     ))
 }

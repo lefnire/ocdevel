@@ -14,7 +14,7 @@ export const Icon = memo(({id}: {id: string}) => {
     `icon-${id}`
   ].join(' ')
   renders[id] = renders[id] ? renders[id] + 1 : 1;
-  console.log(renders)
+  // console.log(renders)
 
   return <PopoverTrigger
     trigger={["hover", "focus"]}
