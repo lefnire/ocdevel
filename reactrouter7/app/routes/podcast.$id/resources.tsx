@@ -17,6 +17,6 @@ function Resources() {
   const {flat} = useContext(ResourceCacheContext)
   return Object.entries(flat)
     .map(([id, resource]) => (
-      <ResourceNode node={{id}} key={id} />
+      <ResourceNode id={id} key={id} />
     ))
 }

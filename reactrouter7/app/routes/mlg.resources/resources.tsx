@@ -65,6 +65,6 @@ function FilteredTree({top}: {top: ResourcesTree['top']}) {
   }
 
   const sections = recurseTree(filters, learnStyles).filter(Boolean)
-  return sections.map((n: Resource) => <ResourceNode node={n} key={n.id} />)
+  return sections.map((n: Resource) => <ResourceNode id={n.id} key={n.id} />)
 }
 
