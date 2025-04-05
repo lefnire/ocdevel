@@ -2,14 +2,24 @@ import Table from './table'
 import TopSection from "./top-section";
 import CompareButtons from './compare-buttons';
 import {ProductProvider} from "~/routes/walk/context";
-import {seoLabels} from "~/content/treadmills/data";
+import {seoLabels} from "~/content/treadmills/scoring/seo";
 import ContentSection from "~/routes/walk/content-section";
 import CalorieCalc from "~/routes/walk/calorie-calc";
 import {ModalSingleton} from "~/components/modal";
+import {getComputed} from '~/content/treadmills/computed'
+import type {Route} from './+types/route'
 
-export default function Route() {
+export function loader() {
+  // calculate scores and inverted links server-side to save on render time
+  return {
+    computed: getComputed()
+  }
+}
+
+export default function Route({loaderData}: Route.ComponentProps) {
+  const {computed} = loaderData
   return <>
-    <ProductProvider>
+    <ProductProvider computed={computed}>
       <TopSection />
       <Table />
       <CalorieCalc />

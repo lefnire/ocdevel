@@ -5,7 +5,7 @@ import metas_ from "~/content/blog/metas.js"
 import * as walkMeta from '~/routes/walk/meta.js'
 import Card from 'react-bootstrap/cjs/Card';
 import Container from 'react-bootstrap/cjs/Container';
-import {seoLabels} from "~/content/treadmills/data";
+import {seoLabels} from "~/content/treadmills/scoring/seo";
 import type {Route} from './+types/blog._index.tsx'
 import {Link} from "react-router";
 

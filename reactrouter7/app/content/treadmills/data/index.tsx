@@ -37,8 +37,8 @@ import sunny_sft723007 from './sunny/sft723007'
 import sunny_sft724064 from './sunny/sft724064'
 import mobvoi_treadmillplus from './mobvoi/treadmillplus'
 import walkolution_walkolution2 from './walkolution/walkolution2'
-import _sumBy from "lodash/sumBy"
-import _uniq from "lodash/uniq"
+
+import {produce} from 'immer'
 
 const index = [
   // Original treadmills
@@ -83,8 +83,27 @@ const index = [
   sunny_sft724064,
   mobvoi_treadmillplus,
   walkolution_walkolution2,
-]
+].map(produce(d => {
+  // ensure defaults to prevent escape-hatches later
+  d.brand.pickedBy = d.brand.pickedBy || {}
+  d.dimensions = d.dimensions || {}
+  d.links = d.links || {amazon: {}, brand: {}}
+  d.weight = d.weight || {}
+  d.maxWeight = d.maxWeight || {}
+  d.maxSpeed = d.maxSpeed || {}
+  d.horsePower = d.horsePower ||{ }
+  d.age = d.age || {}
+  d.rating = d.rating || {}
+  d.price = d.price || {}
+  d.pickedBy = d.pickedBy || {}
+  d.incline = d.incline || {}
+  d.shock = d.shock || {}
+  d.decibels = d.decibels || {}
+  d.app = d.app || {}
+  d.easyLube = d.easyLube || {}
+}))
 export default index
+
 export const UPDATED = "2025-03-28"
 
 export const dataObj = Object.fromEntries(
@@ -94,18 +113,6 @@ export const dataObj = Object.fromEntries(
   ]))
 )
 
-export const seoScored = (index
-  .map((row) => ({
-    ...row,
-    seo: _sumBy(
-      (row.pickedBy?.websites || row.brand.pickedBy?.websites || []),
-      'value'
-    )
-  }))
-  .filter((row) => Boolean(row.seo))
-  .sort((a, b) => b.seo - a.seo)
-);
-
-export const seoLabels = _uniq(seoScored
-  .map(row => row.brand.name.replaceAll(' / ', ', '))
-)
+// to save on RAM / reduce data duplication (because the data is hydrated,
+// so it's no longer by reference),
+export const dataKeys = index.map(product => product.key)

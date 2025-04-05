@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
-import { seoScored } from '~/content/treadmills/data/index';
+import { seoScored } from '~/content/treadmills/scoring/seo';
 import {ProductContext} from "~/routes/walk/context";
 import {useContext} from "react";
 

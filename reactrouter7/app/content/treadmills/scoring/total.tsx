@@ -1,5 +1,5 @@
-import type {ScoreFn} from "./utils";
-
+import type {Computed} from '../computed'
+import type {Product} from '../data/types'
 export const columnWeights = {
   pickedBy: 15, // only one to break 10
   rating: 10,
@@ -19,13 +19,14 @@ export const columnWeights = {
   app: 0,
 }
 
-export const total: ScoreFn = (row) => {
+export const total = (c: Computed): number => {
   let totalScore = 0;
   let totalWeight = 0;
 
   // Process each column that has a rating
   Object.entries(columnWeights).forEach(([key, weight]) => {
-    let score = row[key]?.score
+    debugger
+    let score = c[key]
     if (!score) { return; }
 
     // Add to total score

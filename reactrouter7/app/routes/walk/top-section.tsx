@@ -8,7 +8,7 @@ import essentials, {type AffiliateLink} from '~/content/product-links'
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import {ProductContext} from "~/routes/walk/context";
-import type {Product} from "~/content/treadmills/rows";
+import type {Computed} from "~/content/treadmills/computed";
 
 // import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
 // import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=max'
@@ -200,7 +200,7 @@ function ReducedTop() {
     if (isFiltered) {
       return <div>Showing filtered data. This page contains affiliate links</div>
     }
-    const label = filteredData.map((row: Product) => {
+    const label = filteredData.map((row: Computed) => {
       return `${row.brand.name} ${row.model.value}`
     }).join(' vs ')
     return <>

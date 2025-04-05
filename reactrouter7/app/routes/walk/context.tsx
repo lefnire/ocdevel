@@ -1,12 +1,13 @@
 import {useNavigate, useSearchParams} from "react-router";
 import {createContext, type PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {columnsObj} from "~/content/treadmills/columns";
-import data, {type Product} from '~/content/treadmills/rows'
+import data_ from '~/content/treadmills/data'
+import type {Computed, Row} from '~/content/treadmills/computed'
 
 export interface ProductContext {
   compareKeys: string[]
   isCompareMode: boolean
-  filteredData: Product[]
+  filteredData: Row[]
   handleCompare: (key1: string, key2: string) => void
   handleShowAll: () => void
   isFiltered: boolean
@@ -22,10 +23,20 @@ export const ProductContext = createContext<ProductContext>({
   urlFilters: []
 })
 
-export function ProductProvider({children}: PropsWithChildren) {
+type ProductProvider = PropsWithChildren<{
+  computed: {[k: string]: Computed}
+}>
+export function ProductProvider({computed, children}: ProductProvider) {
   // URL parameters for comparison
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate()
+
+  const data = useMemo(() => {
+    return data_.map(obj => ({
+      ...obj,
+      c: computed[obj.key as keyof typeof computed]
+    }))
+  }, [computed])
 
   const compareParam = searchParams.get('compare');
   const [

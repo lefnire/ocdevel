@@ -1,5 +1,5 @@
 import type {PickedBy, Product} from "./data/types";
-import type {Product as Row} from './rows'
+import type {Row} from './computed'
 import _get from 'lodash/get'
 import _keys from 'lodash/keys'
 import _uniq from 'lodash/uniq'
@@ -74,7 +74,7 @@ export const countries = {
 // Type for the country-specific links
 type CountryLinks = Record<string, string>;
 
-export type LinksFull = {
+export type LinksInverted = {
   [countryCode: string]: {
     product: CountryLinks | false
     brand: CountryLinks | false
@@ -87,7 +87,7 @@ export type LinksFull = {
  * @param row Product object containing links
  * @returns LinksFull object with links organized by country and source
  */
-export function hydrateLinks(row: Product): LinksFull {
+export function invertLinks(row: Product): LinksInverted {
   // Ensure links objects exist
   const productLinks = row.links || { amazon: {}, brand: {} };
   const brandLinks = row.brand?.links || { amazon: {}, brand: {} };
@@ -120,7 +120,7 @@ export function hydrateLinks(row: Product): LinksFull {
     };
     
     return result;
-  }, {} as LinksFull);
+  }, {} as LinksInverted);
 }
 
 export function renderCountryLinks(row: Row, objType: 'product'|'brand', oneCountry?:string) {

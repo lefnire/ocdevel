@@ -1,5 +1,5 @@
 import type {CSSProperties, ReactElement, ReactNode} from "react";
-import type { Product } from "./rows";
+import type { Row } from "./computed";
 import {FaExternalLinkAlt} from "@react-icons/all-files/fa/FaExternalLinkAlt";
 import {FaUser} from "@react-icons/all-files/fa/FaUser";
 import {FaWrench} from "@react-icons/all-files/fa/FaWrench";
@@ -38,14 +38,14 @@ interface ColumnDefinition {
   hideScore?: boolean;
   description?: string;
   notes?: () => ReactElement;
-  getValue: (row: Product) => string | number | boolean | undefined;
-  format?: (row: Product) => string | ReactNode; // Function to format the value as a string (for simple cases)
-  render?: (row: Product, clickHandler?: () => void) => ReactNode; // Function to render the value with optional click handler
+  getValue: (row: Row) => string | number | boolean | undefined;
+  format?: (row: Row) => string | ReactNode; // Function to format the value as a string (for simple cases)
+  render?: (row: Row, clickHandler?: () => void) => ReactNode; // Function to render the value with optional click handler
   columnStyle?: CSSProperties;
-  getStyle?: (row: Product) => CSSProperties; // Function to get cell style
-  getSortValue?: (row: Product) => string | number | undefined; // Function to get value for sorting
-  renderModalTitle?: (row: Product) => string;
-  renderModal?: (row: Product) => ReactNode; // Function to render the popover body
+  getStyle?: (row: Row) => CSSProperties; // Function to get cell style
+  getSortValue?: (row: Row) => string | number | undefined; // Function to get value for sorting
+  renderModalTitle?: (row: Row) => string;
+  renderModal?: (row: Row) => ReactNode; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -62,8 +62,8 @@ export const columnsArray: ColumnDefinition[] = [
     hideScore: true,
     filterOptions: { min: true, max: false },
     notes: () => <ScoreInfo />,
-    getValue: (row) => row.total.score,
-    format: (row) => row.total.score.toFixed(1),
+    getValue: (row) => row.c.total,
+    format: (row) => row.c.total.toFixed(1),
     getStyle: (): CSSProperties => ({ fontWeight: 'bold' }),
   },
   {
@@ -235,7 +235,7 @@ export const columnsArray: ColumnDefinition[] = [
     getValue: (row) => {
       return Object.keys(row.pickedBy || {})?.join('') || '';
     },
-    getSortValue: (row) => row.pickedBy.score,
+    getSortValue: (row) => row.c.pickedBy,
     render: (row, clickHandler) => {
       const rPick = row.pickedBy
       const bPick = row.brand.pickedBy
@@ -341,8 +341,8 @@ export const columnsArray: ColumnDefinition[] = [
     // appropriately
     dtype: "string",
     notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
-    getValue: (row: Product) => row.age?.value,
-    format: (row: Product): string => row.age?.value ?? "",
+    getValue: (row: Row) => row.age?.value,
+    format: (row: Row): string => row.age?.value ?? "",
   },
   {
     key: "shock",
@@ -385,7 +385,7 @@ export const columnsArray: ColumnDefinition[] = [
       const [d, w, h] = dimensions;
       return `${d} x ${w} x ${h}`;
     },
-    getSortValue: (row) => row.dimensions.score
+    getSortValue: (row) => row.c.dimensions
   },
   {
     key: "weight",
@@ -406,7 +406,7 @@ export const columnsArray: ColumnDefinition[] = [
     notes: () => <div>You'll need to lubricate the belt every 50 hours or 3 months of use. This is a royal pain for treadmills with large side plates; easier with low-profile plates.</div>,
     getValue: (row) => row.easyLube?.value,
     format: (row) => {
-      const easyLube = row.easyLube?.score;
+      const easyLube = row.c.easyLube;
       return easyLube > 7 ? '✓' : '';
     },
   },
@@ -440,8 +440,8 @@ export const columnsArray: ColumnDefinition[] = [
           // style={clickHandler ? clickableStyle : undefined}
         >
           {countries.order.map(code => {
-            if (!row.linksFull[code]?.product) {
-              if (!row.linksFull[code]?.brand) { return null; }
+            if (!row.c.linksInv[code]?.product) {
+              if (!row.c.linksInv[code]?.brand) { return null; }
               return <div
                 key={`just-brand-${code}-${row.key}`}
                 className='btn btn-sm btn-link'
@@ -468,7 +468,7 @@ export const columnsArray: ColumnDefinition[] = [
             >
               {countries.buyOrder.map((site, i) => {
                 // @ts-ignore
-                const productLink = row.linksFull[code]?.product?.[site] as string
+                const productLink = row.c.linksInv[code]?.product?.[site] as string
                 if (!productLink) { return null; }
                 return <Dropdown.Item
                   eventKey={i}
@@ -490,7 +490,7 @@ export const columnsArray: ColumnDefinition[] = [
         </div>
       );
     },
-    getSortValue: (row: Product): number => row.links.score,
+    getSortValue: (row: Row): number => row.c.links,
   },
   {
     key: "app",

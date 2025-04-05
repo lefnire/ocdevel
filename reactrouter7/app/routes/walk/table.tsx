@@ -15,15 +15,13 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import type { Product } from '~/content/treadmills/rows';
+import type { Row as Product } from '~/content/treadmills/computed';
 import {NA} from "~/content/treadmills/data/utils";
 import { columnsArray, columnsObj } from '~/content/treadmills/columns';
 import Form from 'react-bootstrap/cjs/Form';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
-// import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {ProductContext} from "./context";
-import {useNavigate, useSearchParams} from "react-router";
 import {useModalStore} from "~/components/modal";
 
 // Header cell component with notes
@@ -481,7 +479,7 @@ export default function ProductTable() {
                  const columnId = cell.column.id as keyof Product;
                  const columnDef = columnsObj[columnId];
                  // Only show score if hideScore is not true and the attribute has a score
-                 const score = columnDef.hideScore ? 0 : (row.original[columnId]?.score || 0);
+                 const score = columnDef.hideScore ? 0 : (row.original.c[columnId] || 0);
                  
                  return (
                    <td key={cell.id} className="position-relative">
