@@ -80,8 +80,8 @@ const otherProducts: AffiliateLink_[] = [
     linkText: `$${essentials.flexispot_en1.price} on Amazon`,
   },
   {
-    ...essentials.urevo_mat,
-    linkText: `$${essentials.urevo_mat.price} on Amazon`,
+    ...essentials.sunny_mat,
+    linkText: `$${essentials.sunny_mat.price} on Amazon`,
   },
   {
     ...essentials.godora_lube,

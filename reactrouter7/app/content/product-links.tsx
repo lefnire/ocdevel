@@ -1,7 +1,8 @@
 import {type PropsWithChildren, type ReactElement} from 'react'
 import {VideoButton} from "~/routes/walk/utils";
 
-import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp&effort=max'
+// import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp&effort=max'
+import img_sunny_mat from '~/assets/products/sunny_mat_.jpg?w=100&h=100&format=webp&effort=max'
 import img_flexispot_en1 from '~/assets/products/flexispot_en1.jpg?w=100&h=100&format=webp&effort=max'
 import img_godora_lube from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp&effort=max'
 
@@ -47,13 +48,21 @@ export function Affiliate({product, children, ...props}: PropsWithChildren<{
 }
 
 const links: Record<string, AffiliateLink> = {
-    urevo_mat: {
-        key: "urevo_mat",
-        title: "Mat: Urevo",
-        image: img_urevo_mat,
-        link: "https://amzn.to/3WrW0v5",
+    // urevo_mat: {
+    //     key: "urevo_mat",
+    //     title: "Mat: Urevo",
+    //     image: img_urevo_mat,
+    //     link: "https://amzn.to/3WrW0v5",
+    //     notes: 'Prevents floor damage, protects knees',
+    //     price: 40
+    // },
+    sunny_mat: {
+        key: "sunny_mat",
+        title: "Mat: Sunny",
+        image: img_sunny_mat,
+        link: "https://amzn.to/3DUsBnC",
         notes: 'Prevents floor damage, protects knees',
-        price: 40
+        price: 25
     },
     godora_lube: {
         key: "godora_lube",
