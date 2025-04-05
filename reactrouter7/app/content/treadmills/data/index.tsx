@@ -39,8 +39,9 @@ import mobvoi_treadmillplus from './mobvoi/treadmillplus'
 import walkolution_walkolution2 from './walkolution/walkolution2'
 
 import {produce} from 'immer'
+import type {Product} from "~/content/treadmills/data/types";
 
-const index = [
+const data = Object.fromEntries([
   // Original treadmills
   urevo_cyberpad,
   urevo_strol2spro,
@@ -83,36 +84,28 @@ const index = [
   sunny_sft724064,
   mobvoi_treadmillplus,
   walkolution_walkolution2,
-].map(produce(d => {
-  // ensure defaults to prevent escape-hatches later
-  d.brand.pickedBy = d.brand.pickedBy || {}
-  d.dimensions = d.dimensions || {}
-  d.links = d.links || {amazon: {}, brand: {}}
-  d.weight = d.weight || {}
-  d.maxWeight = d.maxWeight || {}
-  d.maxSpeed = d.maxSpeed || {}
-  d.horsePower = d.horsePower ||{ }
-  d.age = d.age || {}
-  d.rating = d.rating || {}
-  d.price = d.price || {}
-  d.pickedBy = d.pickedBy || {}
-  d.incline = d.incline || {}
-  d.shock = d.shock || {}
-  d.decibels = d.decibels || {}
-  d.app = d.app || {}
-  d.easyLube = d.easyLube || {}
-}))
-export default index
+]
+  .map(produce(d => {
+    // ensure defaults to prevent escape-hatches later
+    d.brand.pickedBy = d.brand.pickedBy || {}
+    d.dimensions = d.dimensions || {}
+    d.links = d.links || {amazon: {}, brand: {}}
+    d.weight = d.weight || {}
+    d.maxWeight = d.maxWeight || {}
+    d.maxSpeed = d.maxSpeed || {}
+    d.horsePower = d.horsePower ||{ }
+    d.age = d.age || {}
+    d.rating = d.rating || {}
+    d.price = d.price || {}
+    d.pickedBy = d.pickedBy || {}
+    d.incline = d.incline || {}
+    d.shock = d.shock || {}
+    d.decibels = d.decibels || {}
+    d.app = d.app || {}
+    d.easyLube = d.easyLube || {}
+    }))
+  .map(obj => [obj.key, obj])
+)
+export default data as {[k: string]: Product}
 
 export const UPDATED = "2025-03-28"
-
-export const dataObj = Object.fromEntries(
-  index.map(product => ([
-    product.key,
-    product
-  ]))
-)
-
-// to save on RAM / reduce data duplication (because the data is hydrated,
-// so it's no longer by reference),
-export const dataKeys = index.map(product => product.key)

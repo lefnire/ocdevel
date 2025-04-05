@@ -129,7 +129,7 @@ export function renderCountryLinks(row: Row, objType: 'product'|'brand', oneCoun
   const links = countries_.flatMap(code => (
     countries.buyOrder.map((site, i) => {
       // @ts-ignore
-      const val = row.linksFull[code]?.[objType]?.[site] as any as string
+      const val = row.c.linksInv[code]?.[objType]?.[site] as any as string
       if (!val) { return null; }
       const aff = {key: row.key, link: val}
       return <div key={`link-brand-${row.key}-${code}-${site}`}>

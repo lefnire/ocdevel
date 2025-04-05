@@ -15,7 +15,7 @@ function getRangeFromVals(vals_: Array<number | undefined>) {
   return { min, max, median };
 }
 function getRangeFromFn(getterFn: (product: Product) => number | undefined) {
-  return getRangeFromVals(data.map(getterFn))
+  return getRangeFromVals(Object.values(data).map(getterFn))
 }
 
 export const price = getRangeFromFn(item => getPrice(item))
@@ -31,7 +31,7 @@ export const dimensions = (() => {
     height: [] as number[]
   };
 
-  data.forEach(item => {
+  Object.values(data).forEach(item => {
     const dims = item.dimensions?.value as [number, number, number] | undefined;
     if (dims) {
       dimensions.depth.push(dims[0]);
@@ -53,7 +53,7 @@ export const rating = (() => {
   const ratingCounts: number[] = [];
   const fakespotGrades: string[] = [];
 
-  data.forEach(item => {
+  Object.values(data).forEach(item => {
     const ratingValue = item.rating?.value as [[number, number], [number, number, number, number, number]] | undefined;
     if (ratingValue?.length === 2) {
       const [[starRating, ratingCount]] = ratingValue;

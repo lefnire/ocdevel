@@ -56,7 +56,7 @@ function compute(d: Product): Computed {
 
 export function getComputed(): {[k: string]: Computed} {
   return Object.fromEntries(
-    data.map(p => [
+    Object.values(data).map(p => [
       p.key,
       compute(p)
     ])

@@ -1,21 +1,25 @@
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
-import { seoScored } from '~/content/treadmills/scoring/seo';
+import {seoScores} from '~/content/treadmills/scoring/seo';
 import {ProductContext} from "~/routes/walk/context";
 import {useContext} from "react";
+import data from '~/content/treadmills/data'
 
 type KeyBrand = {key: string, brand: string}
-const availableNames = Object.fromEntries(seoScored.map(row => ([
-  row.key,
-  row.brand.name.includes(' / ') ? row.brand.name.split(' / ') : [row.brand.name]
-])))
+const availableNames = Object.fromEntries(
+  seoScores.map(s => {
+    const brandName = data[s.key].brand.name
+    const aliases = brandName.includes(' / ') ? brandName.split(' / ') : [brandName]
+    return [s.key, aliases]
+  })
+)
 const seenCombos: {[combo: string]: boolean} = {}
 const combinations: [KeyBrand, KeyBrand][] = [];
 let i = 0;
-let j = seoScored.length - 1;
+let j = seoScores.length - 1;
 while (true) {
   if (Object.keys(availableNames).length < 2) { break; }
-  const [a, b] = [seoScored[i], seoScored[j]];
+  const [a, b] = [seoScores[i], seoScores[j]];
   let brandA = availableNames[a.key].shift()
   if (!availableNames[a.key].length) {
     i += 1;

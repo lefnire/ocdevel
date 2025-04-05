@@ -32,7 +32,7 @@ export function ProductProvider({computed, children}: ProductProvider) {
   const navigate = useNavigate()
 
   const data = useMemo(() => {
-    return data_.map(obj => ({
+    return Object.values(data_).map(obj => ({
       ...obj,
       c: computed[obj.key as keyof typeof computed]
     }))
