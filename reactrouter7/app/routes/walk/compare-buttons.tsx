@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
-import { seoScored, dataObj } from '~/content/treadmills/data/index';
-import {type ListenerProps} from "~/routes/walk/url-listener";
+import { seoScored } from '~/content/treadmills/data/index';
+import {ProductContext} from "~/routes/walk/context";
+import {useContext} from "react";
 
 type KeyBrand = {key: string, brand: string}
 const availableNames = Object.fromEntries(seoScored.map(row => ([
@@ -37,9 +38,10 @@ while (true) {
   ])
 }
 
-export default function CompareButtons(props: ListenerProps) {
-  if (props.isCompareMode) { return null; }
-  if (props.isFiltered) { return null; }
+export default function CompareButtons() {
+  const {isCompareMode, isFiltered, handleCompare} = useContext(ProductContext)
+  if (isCompareMode) { return null; }
+  if (isFiltered) { return null; }
   // Get top product combinations based on SEO
 
   function renderButton(combo: typeof combinations[0], i: number) {
@@ -50,7 +52,7 @@ export default function CompareButtons(props: ListenerProps) {
         variant="light"
         size="sm"
         className="me-2 whitespace-nowrap"
-        onClick={() => props.handleCompare(a.key, b.key)}
+        onClick={() => handleCompare(a.key, b.key)}
       >
         {/*{a.brand} {dataObj[a.key].model} vs {b.brand} {dataObj[b.key].model}*/}
         {a.brand} vs {b.brand}

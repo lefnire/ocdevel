@@ -1,8 +1,9 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import Form from 'react-bootstrap/cjs/Form';
 import Container from 'react-bootstrap/cjs/Container';
 import Row from 'react-bootstrap/cjs/Row';
 import Col_ from "react-bootstrap/cjs/Col";
+import {ProductContext} from "~/routes/walk/context";
 const Col = Col_.default || Col_
 
 // Define types for better type safety
@@ -21,6 +22,12 @@ const convertToImperial = {
 };
 
 export default function WalkingCalorieCalculator() {
+  const {isFiltered, isCompareMode} = useContext(ProductContext)
+  if (isFiltered || isCompareMode) { return null; }
+  return <WalkingCalorieCalculator_ />
+}
+
+function WalkingCalorieCalculator_() {
   const [unit, setUnit] = useState<UnitSystem>('imperial');
   // Age is not used in MET-based walking calorie calculations
   // Gender is not used in MET-based walking calorie calculations

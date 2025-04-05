@@ -7,7 +7,7 @@ import essentials, {type AffiliateLink} from '~/content/product-links'
 
 import {VideoButton} from './utils'
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
-import {type ListenerProps} from "~/routes/walk/url-listener";
+import {ProductContext} from "~/routes/walk/context";
 import type {Product} from "~/content/treadmills/rows";
 
 // import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
@@ -20,6 +20,7 @@ import img_lifespan_tx6 from '~/assets/products/lifespan_tx6.jpg?w=100&h=100&for
 import { Image } from "@unpic/react";
 import {Link, useNavigate} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
+import {useContext} from "react";
 
 type AffiliateLink_ = AffiliateLink & {linkText: string}
 const treadmills: AffiliateLink_[] = [
@@ -163,9 +164,10 @@ export function ProductsCard ({ title, links, products }: Products) {
 //   </div>
 // }
 
-export default function TopSection(props: ListenerProps) {
-  if (props.isCompareMode || props.isFiltered) {
-    return <ReducedTop {...props} />
+export default function TopSection() {
+  const {isCompareMode, isFiltered} = useContext(ProductContext)
+  if (isCompareMode || isFiltered) {
+    return <ReducedTop />
   }
 
   // TODO replace ./route.css with image loaders for remix
@@ -191,13 +193,8 @@ export default function TopSection(props: ListenerProps) {
   </Container>
 }
 
-function ReducedTop({isCompareMode, isFiltered, filteredData}: ListenerProps) {
-  const navigate = useNavigate()
-  const handleShowAll = () => {
-    navigate('/walk')
-    // searchParams.delete('compare');
-    // setSearchParams(searchParams);
-  };
+function ReducedTop() {
+  const {isFiltered, filteredData, handleShowAll} = useContext(ProductContext)
 
   function renderContent() {
     if (isFiltered) {

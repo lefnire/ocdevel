@@ -1,55 +1,68 @@
 import {useNavigate, useSearchParams} from "react-router";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {createContext, type PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {columnsObj} from "~/content/treadmills/columns";
 import data, {type Product} from '~/content/treadmills/rows'
 
-export interface ListenerProps {
+export interface ProductContext {
   compareKeys: string[]
   isCompareMode: boolean
   filteredData: Product[]
   handleCompare: (key1: string, key2: string) => void
+  handleShowAll: () => void
   isFiltered: boolean
-  columnFilters: any[]
+  urlFilters: any[]
 }
-export function useCompare(): ListenerProps {
+export const ProductContext = createContext<ProductContext>({
+  compareKeys: [],
+  isCompareMode: false,
+  filteredData: [],
+  handleCompare: () => {},
+  handleShowAll: () => {},
+  isFiltered: false,
+  urlFilters: []
+})
+
+export function ProductProvider({children}: PropsWithChildren) {
   // URL parameters for comparison
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate()
 
-  // Get comparison keys from URL
   const compareParam = searchParams.get('compare');
-  const compareKeys = useMemo(() =>
-    compareParam ? compareParam.split(',') : []
-  , [compareParam]);
-  const isCompareMode = compareKeys.length > 0;
+  const [
+    compareKeys,
+    isCompareMode,
+    filteredData
+  ] = useMemo(() => {
+    if (!compareParam) {
+      return [ [], false, data ]
+    }
+    const compareKeys = compareParam.split(',')
+    const isCompareMode = compareKeys.length > 0;
+    const filteredData = data.filter(product => compareKeys.includes(product.key));
+    return [compareKeys, isCompareMode, filteredData]
+  }, [compareParam])
 
-  // Filter data based on comparison keys
-  const filteredData: Product[] = useMemo(() => {
-    if (!isCompareMode) return data;
-    return data.filter(product => compareKeys.includes(product.key));
-  }, [compareKeys, isCompareMode]);
-
-
-  const handleCompare = (key1: string, key2: string) => {
+  const handleCompare = useCallback((key1: string, key2: string) => {
     setSearchParams(params => {
       params.set('compare', `${key1},${key2}`)
       return params
     });
-  };
+  }, []);
 
-  return {
-    compareKeys,
-    isCompareMode,
-    filteredData,
-    handleCompare,
-  }
-}
+  const handleShowAll = useCallback(() => {
+    navigate('/walk')
+    // searchParams.delete('compare');
+    // setSearchParams(searchParams);
+  }, [])
 
-export function useUrlFilters() {
-  const [searchParams, setSearchParams] = useSearchParams()
+
   const [columnFilters, setColumnFilters] = useState<any[]>([])
   // Apply filters from URL search parameters
-  useEffect(() => {
-    const newFilters: any[] = [];
+  const [
+    urlFilters,
+    isFiltered,
+  ] = useMemo(() => {
+    const filters: any[] = [];
 
     // Look for filter parameters in the URL (format: filter_columnId=value)
     searchParams.forEach((value, key) => {
@@ -68,7 +81,7 @@ export function useUrlFilters() {
             // For numeric columns, check if it's a range (min-max)
             if (value.includes('-')) {
               const [min, max] = value.split('-').map(v => parseFloat(v));
-              newFilters.push({
+              filters.push({
                 id: columnId,
                 value: [min, max]
               });
@@ -77,19 +90,19 @@ export function useUrlFilters() {
               const parsedValue = parseFloat(value);
               if (filterOptions.min && !filterOptions.max) {
                 // If only min is enabled, treat as minimum
-                newFilters.push({
+                filters.push({
                   id: columnId,
                   value: [parsedValue, undefined]
                 });
               } else if (!filterOptions.min && filterOptions.max) {
                 // If only max is enabled, treat as maximum
-                newFilters.push({
+                filters.push({
                   id: columnId,
                   value: [undefined, parsedValue]
                 });
               } else {
                 // If both are enabled or neither is specified, default to minimum
-                newFilters.push({
+                filters.push({
                   id: columnId,
                   value: [parsedValue, undefined]
                 });
@@ -97,13 +110,13 @@ export function useUrlFilters() {
             }
           } else if (columnDef.dtype === "boolean") {
             // For boolean columns
-            newFilters.push({
+            filters.push({
               id: columnId,
               value: value.toLowerCase() === 'true'
             });
           } else {
             // For string columns
-            newFilters.push({
+            filters.push({
               id: columnId,
               value: value
             });
@@ -112,13 +125,24 @@ export function useUrlFilters() {
       }
     });
 
-    // Update column filters
-    // if (newFilters.length > 0) {
-      setColumnFilters(newFilters);
-    // }
+    // Update column filters on if lenght > 0?
+    // if (newFilters.length > 0) { ...}
+    const isFiltered = filters.length > 0
+    return [filters, isFiltered]
+
   }, [searchParams]);
-  return {
-    columnFilters,
-    isFiltered: columnFilters.length > 0,
+
+
+  const contextValue = {
+    compareKeys,
+    isCompareMode,
+    filteredData,
+    handleCompare,
+    handleShowAll,
+    urlFilters,
+    isFiltered,
   }
+  return <ProductContext.Provider value={contextValue}>
+    {children}
+  </ProductContext.Provider>
 }

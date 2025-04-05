@@ -1,27 +1,23 @@
 import Table from './table'
 import TopSection from "./top-section";
 import CompareButtons from './compare-buttons';
-import {useCompare, useUrlFilters} from "~/routes/walk/url-listener";
+import {ProductProvider} from "~/routes/walk/context";
 import {seoLabels} from "~/content/treadmills/data";
 import ContentSection from "~/routes/walk/content-section";
 import CalorieCalc from "~/routes/walk/calorie-calc";
 import {ModalSingleton} from "~/components/modal";
 
 export default function Route() {
-  const compareProps = useCompare()
-  const urlFilters = useUrlFilters()
-  const props = {
-    ...compareProps,
-    ...urlFilters
-  }
-  return <div>
-    <TopSection {...props} />
-    <Table {...props} />
-    <CalorieCalc />
-    <CompareButtons {...props} />
-    <ContentSection {...props} />
+  return <>
+    <ProductProvider>
+      <TopSection />
+      <Table />
+      <CalorieCalc />
+      <CompareButtons />
+      <ContentSection />
+    </ProductProvider>
     <ModalSingleton />
-  </div>
+  </>
 }
 
 export function meta() {

@@ -1,13 +1,12 @@
 import {Link, useNavigate} from "react-router";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
-import type { ButtonProps } from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
 import essentials, {affiliateLink} from '~/content/product-links'
 import {VideoButtonLg as VideoButton} from "./utils";
 import {ScoreInfo} from "~/content/treadmills/utils";
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
-import type {ListenerProps} from "~/routes/walk/url-listener";
+import {ProductContext} from "~/routes/walk/context";
 
 export const contentSections = {
   why_desk: "Why Walking Desk?",
@@ -16,10 +15,11 @@ export const contentSections = {
   essentials: "More Essentials"
 } as const;
 
-export default function ContentSection(props: ListenerProps) {
+export default function ContentSection() {
+  const {isFiltered, isCompareMode} = useContext(ProductContext)
   const [optionals, setOptionals] = useState(false)
   const showOptionals = () => setOptionals(true)
-  if (props.isFiltered || props.isCompareMode) { return null}
+  if (isFiltered || isCompareMode) { return null}
   const scrollToTop = () => {
     window.scroll(0, 0)
   }

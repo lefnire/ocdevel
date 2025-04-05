@@ -1,4 +1,4 @@
-import {type FC, useEffect, useMemo, useRef, useState} from "react";
+import {type FC, useContext, useEffect, useMemo, useRef, useState} from "react";
 import {
   createColumnHelper,
   flexRender,
@@ -22,7 +22,7 @@ import Form from 'react-bootstrap/cjs/Form';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 // import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
-import {type ListenerProps} from "./url-listener";
+import {ProductContext} from "./context";
 import {useNavigate, useSearchParams} from "react-router";
 import {useModalStore} from "~/components/modal";
 
@@ -305,20 +305,15 @@ const Score: FC<{ score: number }> = ({ score }) => {
     </div>
   );
 };
-export default function ProductTable({
-  filteredData,
-  columnFilters: urlFilters
-}: ListenerProps) {
+export default function ProductTable() {
+  const { filteredData, urlFilters } = useContext(ProductContext)
   // Access URL search parameters
-  const navigate = useNavigate()
-  
+
   // Initialize sorting state with Rank column in descending order
   const [sorting, setSorting] = useState<SortingState>([
     { id: 'total', desc: true }
   ]);
   const [columnFilters, setColumnFilters] = useState<any[]>([]);
-
-
 
   // Apply filters from URL search parameters
   useEffect(() => {
