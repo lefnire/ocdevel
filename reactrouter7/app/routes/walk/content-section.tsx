@@ -2,7 +2,8 @@ import {Link, useNavigate} from "react-router";
 import {memo, useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
-import essentials, {affiliateLink} from '~/content/product-links'
+import products, {affiliateLink} from '~/content/product-links'
+import {essentialsObj} from '~/content/product-links/treadmills'
 import {VideoButtonLg as VideoButton} from "./utils";
 import {ScoreInfo} from "~/content/treadmills/utils";
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
@@ -73,7 +74,7 @@ const ContentSection = memo(() => {
 
     {header("care")}
     <h5>Lubrication</h5>
-    <div className="py-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces friction on the pad, which prevents overworking the motor, which extends the treadmill's life. Get one with a firm applicator; wobbly tubes are hard to control. {affiliateLink(essentials.godora_lube, "Godora")} is easier, {affiliateLink(essentials.sekoday_lube, "Sekoday")} is cheaper. <VideoButton
+    <div className="py-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces friction on the pad, which prevents overworking the motor, which extends the treadmill's life. Get one with a firm applicator; wobbly tubes are hard to control. {affiliateLink(essentialsObj.godora_lube, "Godora")} is easier, {affiliateLink(essentialsObj.sekoday_lube, "Sekoday")} is cheaper. <VideoButton
         href="https://www.youtube.com/shorts/QK-BGSrCFXY"/>
     </div>
     <h5>Adjusting the belt</h5>
@@ -102,22 +103,22 @@ const ContentSection = memo(() => {
     {header("essentials")}
     <h5>Treadmill Mat</h5>
 
-    <p>{affiliateLink(essentials.sunny_mat, "Sunny Mat")}. Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
+    <p>{affiliateLink(essentialsObj.mat)}. Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
       the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a protection layer against high-pile carpet, so you're not pulling debris into the hardware.
     </p>
 
     <h5>Standing Desk</h5>
-    <p>{affiliateLink(essentials.flexispot_en1, "Flexispot")}. My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
+    <p>{affiliateLink(essentialsObj.desk)}. My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
       $1,000 Herman Millers championed on <a href="https://www.reddit.com/r/StandingDesks/" target="_blank">/r/StandingDesks</a>. But if you want to splurge, browse that sub. I've seen FlexiSpot gaining traction there recently;
       in particular the E7 series. You'll definitely want an electric desk which can sit or stand, because after walking or standing all day, you'll need a break.
     </p>
 
     <h5>Shoes: Brooks or Hoka</h5>
-    <p>{affiliateLink(essentials.shoes_men, "Men")}, {affiliateLink(essentials.shoes_women, "Women")}. There are shoes more tailored towards prolonged walking or standing rather than running. I research what nurses champion, since it's the closest lifestyle to a walking desk. They're quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi
+    <p>{affiliateLink(products.shoes_men, "Men")}, {affiliateLink(products.shoes_women, "Women")}. There are shoes more tailored towards prolonged walking or standing rather than running. I research what nurses champion, since it's the closest lifestyle to a walking desk. They're quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi
     </p>
 
     <h5>Ergonomic keyboard & mouse</h5>
-    <p><Link to="/blog/20240110-ergo-mouse-keyboard">Article</Link>. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion. That type of wrist motion is bad for you. When you walk, you move your arms more than usual, which amplifies RSI risk significantly. It could take 6 months, it could take a 5 years, but many I've talked to with walking desks have experienced an RSI uptick. Ergo peripherals solve this. Read that article for recommendations (different budgets & styles), but hot-take budget-picks are (Mouse: {affiliateLink(essentials.kensington_slimbladepro, "Slimblade Pro")}, Keyboard: {affiliateLink(essentials.keychron_q11, "Keychron Q11")})
+    <p><Link to="/blog/20240110-ergo-mouse-keyboard">Article</Link>. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion. That type of wrist motion is bad for you. When you walk, you move your arms more than usual, which amplifies RSI risk significantly. It could take 6 months, it could take a 5 years, but many I've talked to with walking desks have experienced an RSI uptick. Ergo peripherals solve this. Read that article for recommendations (different budgets & styles), but hot-take budget-picks are (Mouse: {affiliateLink(products.kensington_slimbladepro, "Slimblade Pro")}, Keyboard: {affiliateLink(products.keychron_q11, "Keychron Q11")})
     </p>
     <p></p>
 
@@ -134,7 +135,7 @@ const ContentSection = memo(() => {
     ) : <>
 
       <h5>ESD Wristband</h5>
-      <p>{affiliateLink(essentials.esdwristband, "Wristband")}. When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
+      <p>{affiliateLink(products.esdwristband, "Wristband")}. When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
         to your computer, you'll cause "electrostatic discharge" or ESD. This can be a monitor, peripherals
         which have any metal components, your laptop itself, etc. This can damage the electronics in the
         components you touched, and your computer (the current sent from the component through the connecting
@@ -145,7 +146,7 @@ const ContentSection = memo(() => {
       </p>
 
       <h5>Standing Board</h5>
-      <p>{affiliateLink(essentials.fluidstance_planecloud, "FluidStance PlaneCloud")}. Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
+      <p>{affiliateLink(products.fluidstance_planecloud, "FluidStance PlaneCloud")}. Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
         Standing on a hard surface for prolonged periods is NOT good for you (even with good shoes); it's better
         to just sit. So my next move was standing-specific mats. When things really changed was in exploring
         wobble boards (Yes4All, Fezibo, Gymba, etc). By wobbling, you're exerting a sort of added "cushion"
@@ -168,7 +169,7 @@ const ContentSection = memo(() => {
       </p>
 
       <h5>Fingerless Gloves</h5>
-      <p>{affiliateLink(essentials.fingerlessgloves, "Gloves")}. Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
+      <p>{affiliateLink(products.fingerlessgloves, "Gloves")}. Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
         doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands
         themselves.
       </p>
@@ -180,7 +181,7 @@ const ContentSection = memo(() => {
                 </p>*/}
 
       <h5>Monitor Arms</h5>
-      <p>{affiliateLink(essentials.vivo, "VIVO")} or {affiliateLink(essentials.mountup, "MountUp")}. I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
+      <p>{affiliateLink(products.vivo, "VIVO")} or {affiliateLink(products.mountup, "MountUp")}. I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
         This allows you to position the monitors in a tighter cluster, since you have flexibility to angle them
         without worry of the base leaning over the edge. It also allows you to pull the monitors closer to your
         face, just above your mouse and keyboard, in a way you couldn't do with a stand.

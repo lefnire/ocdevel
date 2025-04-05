@@ -2,99 +2,15 @@ import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
 import './route.css'
 import {contentSections} from './content-section'
-import data from '~/content/treadmills/data/index'
-import essentials, {type AffiliateLink} from '~/content/product-links'
 
-import {VideoButton} from './utils'
-import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import {ProductContext} from "~/routes/walk/context";
 import type {Product} from "~/content/treadmills/types";
 
-// import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
-// import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=webp&effort=max'
-// import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=webp&effort=max'
-// import img_urevo_3s from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=avif&effort=max'
-import img_urevo_cyberpad from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=avif&effort=max'
-import img_deerrun_q1mini from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'
-import img_lifespan_tx6 from '~/assets/products/lifespan_tx6.jpg?w=100&h=100&format=avif&effort=max'
-import { Image } from "@unpic/react";
-import {Link, useNavigate} from "react-router";
+import {Link} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {useContext} from "react";
+import {treadmills, essentials, type AffiliateLink_} from '~/content/product-links/treadmills'
 
-type AffiliateLink_ = AffiliateLink & {linkText: string}
-const treadmills: AffiliateLink_[] = [
-    {
-      key: data.lifespan_tx6.key,
-      image: img_lifespan_tx6,
-      title: 'Premium: LifeSpan TX6',
-      notes: () => <div>
-        <span>Buy it for life. Invincible, quiet, fast.</span>
-        {/*<VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />*/}
-      </div>,
-      link: getCurrentLink(data.lifespan_tx6),
-      linkText: `$${getPrice(data.lifespan_tx6)} on Amazon`,
-      price: getPrice(data.lifespan_tx6),
-    },
-    {
-      key: data.urevo_cyberpad.key,
-      image: img_urevo_cyberpad,
-      title: 'Value: Urevo CyberPad',
-      notes: () => <div>
-        <span>Sturdy, quiet, feature-rich.</span>
-        <VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />
-      </div>,
-      link: getCurrentLink(data.urevo_cyberpad),
-      linkText: `$${getPrice(data.urevo_cyberpad)} on Amazon`,
-      price: getPrice(data.urevo_cyberpad),
-    },
-    // {
-    //   key: dataObj.urevo_3s.key,
-    //   image: img_urevo_3s,
-    //   title: 'Value: 3S',
-    //   notes: () => <div>
-    //     <span>One size fits all, bang for buck.</span>
-    //     <VideoButton href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
-    //   </div>,
-    //   link: getCurrentLink(dataObj.urevo_3s),
-    //   linkText: `$${getPrice(dataObj.urevo_3s)} on Amazon`,
-    //   price: getPrice(dataObj.urevo_3s),
-    // },
-    {
-      key: data.deerrun_q1mini.key,
-      image: img_deerrun_q1mini,
-      title: 'Budget: DeerRun Q1',
-      notes: () => <div>
-        <span>Test the waters. No incline, 1-2yrs life.</span>
-        <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
-      </div>,
-      link: getCurrentLink(data.deerrun_q1mini),
-      linkText: `$${getPrice(data.deerrun_q1mini)} on Amazon`,
-      price: getPrice(data.deerrun_q1mini),
-    },
-]
-
-const otherProducts: AffiliateLink_[] = [
-  {
-    ...essentials.flexispot_en1,
-    linkText: `$${essentials.flexispot_en1.price} on Amazon`,
-  },
-  {
-    ...essentials.sunny_mat,
-    linkText: `$${essentials.sunny_mat.price} on Amazon`,
-  },
-  {
-    ...essentials.godora_lube,
-    linkText: `$${essentials.godora_lube.price} on Amazon`,
-  },
-  // {
-  //   image: '/walk_thumbs/fluidstance.jpg',
-  //   title: 'Board: FluidStance',
-  //   description: 'Cushioned balance board for non-walking times.',
-  //   link: walkingDeskLinks["key://fluidstance"],
-  //   linkText: 'View on FluidStance'
-  // }
-];
 
 interface Products {
   title: string
@@ -111,7 +27,7 @@ export function ProductsCard ({ title, links, products }: Products) {
     return <div className="mb-4" key={product.key}>
       <div className="d-flex">
         <div className="me-3">
-          <Image
+          <img
             src={product.image}
             width={100}
             height={100}
@@ -128,7 +44,7 @@ export function ProductsCard ({ title, links, products }: Products) {
           />
         </div>
         <div className="d-flex flex-column">
-          <h6 className="mb-1">{product.title}</h6>
+          <h6 className="mb-1">{product.topTitle}</h6>
           <small className="text-body-secondary mb-2">{renderNotes(product.notes)}</small>
           <a
             href={product.link}
@@ -184,7 +100,7 @@ export default function TopSection() {
       <div className="col-12 col-md-6">
         <ProductsCard
           title="Essentials"
-          products={otherProducts}
+          products={essentials}
           links={["care", "essentials"]}
         />
       </div>

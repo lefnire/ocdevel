@@ -11,7 +11,7 @@ import {Affiliate} from "~/content/product-links";
 import {memo} from "react";
 
 export const PAUSE_AMAZON = false;
-export function getCurrentLink(product: Product) {
+export function getCurrentLink(product: Product): string {
   return getCountryLink(product, "US") || getCountryLink(product, "ALL")
 }
 

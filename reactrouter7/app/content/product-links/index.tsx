@@ -1,10 +1,4 @@
 import {type PropsWithChildren, type ReactElement} from 'react'
-import {VideoButton} from "~/routes/walk/utils";
-
-// import img_urevo_mat from '~/assets/products/urevo_mat.jpg?w=100&h=100&format=webp&effort=max'
-import img_sunny_mat from '~/assets/products/sunny_mat_.jpg?w=100&h=100&format=webp&effort=max'
-import img_flexispot_en1 from '~/assets/products/flexispot_en1.jpg?w=100&h=100&format=webp&effort=max'
-import img_godora_lube from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp&effort=max'
 
 // TODO consolidate this with Product
 export interface AffiliateLink {
@@ -16,13 +10,13 @@ export interface AffiliateLink {
     price?: number
 }
 
-export function affiliateLink(product: AffiliateLink, label: string) {
+export function affiliateLink(product: AffiliateLink, label?: string) {
     return <a
         href={product.link}
         target="_blank"
         className={`plausible-event-name=affiliate plausible-event-product=${product.key}`}
         rel="noopener noreferrer"
-    >{label}</a>
+    >{label || product.title}</a>
 }
 // FIXME combine with affiliateLink above (change all the mdx files)
 // FIXME move the image imports somwhere else, so they're not included in keyboards/mice
@@ -48,47 +42,6 @@ export function Affiliate({product, children, ...props}: PropsWithChildren<{
 }
 
 const links: Record<string, AffiliateLink> = {
-    // urevo_mat: {
-    //     key: "urevo_mat",
-    //     title: "Mat: Urevo",
-    //     image: img_urevo_mat,
-    //     link: "https://amzn.to/3WrW0v5",
-    //     notes: 'Prevents floor damage, protects knees',
-    //     price: 40
-    // },
-    sunny_mat: {
-        key: "sunny_mat",
-        title: "Mat: Sunny",
-        image: img_sunny_mat,
-        link: "https://amzn.to/3DUsBnC",
-        notes: 'Prevents floor damage, protects knees',
-        price: 25
-    },
-    godora_lube: {
-        key: "godora_lube",
-        image: img_godora_lube,
-        title: 'Lube: Godora',
-        notes: () => <div>
-          <span>Silicone treadmill lubricant. Apply every 50hrs</span>
-          <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY" />
-        </div>,
-        price: 35,
-        link: "https://amzn.to/3E7YUPw"
-    },
-    sekoday_lube: {
-        key: "sekoday_lube",
-        title: "Sekoday Lube",
-        price: 8,
-        link: "https://amzn.to/4hHO151"
-    },
-    flexispot_en1: {
-        link: "https://amzn.to/40Kddmd",
-        key: 'flexispot_en1',
-        image: img_flexispot_en1,
-        title: 'Desk: FlexiSpot',
-        notes: 'Electric sit/stand',
-        price: 150,
-    },
     shoes_men: {
         link: "https://amzn.to/4au1fk1",
         key: "shoes_men",
