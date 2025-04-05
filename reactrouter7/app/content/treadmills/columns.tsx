@@ -29,6 +29,7 @@ import Dropdown from 'react-bootstrap/cjs/Dropdown';
 import DropdownButton from 'react-bootstrap/cjs/DropdownButton';
 import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
 import {useModalStore} from "~/components/modal";
+import Alert from "react-bootstrap/cjs/Alert";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -124,7 +125,11 @@ export const columnsArray: ColumnDefinition[] = [
     label: "Price",
     dtype: "number",
     filterOptions: { min: false, max: true },
-    notes: () => <div>Last price I saw this at ({UPDATED})</div>,
+    notes: () => <div>
+      <p>Last price I saw this at ({UPDATED})</p>
+      <Alert variant="warning">Always check for a coupon!</Alert>
+      <p>Very often the Amazon listing will hike the price, and add an "Apply $x Coupon" checkbox to reach the normal price. I assume to capture extra revenue for those who didn't notice it.</p>
+    </div>,
     getValue: (row) => getPrice(row),
     format: (row) => {
       const price = getPrice(row);
