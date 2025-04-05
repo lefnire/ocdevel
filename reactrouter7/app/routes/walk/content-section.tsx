@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router";
-import {useContext, useState} from "react";
+import {memo, useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
 import essentials, {affiliateLink} from '~/content/product-links'
@@ -15,7 +15,7 @@ export const contentSections = {
   essentials: "More Essentials"
 } as const;
 
-export default function ContentSection() {
+const ContentSection = memo(() => {
   const {isFiltered, isCompareMode} = useContext(ProductContext)
   const [optionals, setOptionals] = useState(false)
   const showOptionals = () => setOptionals(true)
@@ -188,4 +188,5 @@ export default function ContentSection() {
     </>}
     {toTop}
   </Container>
-}
+})
+export default ContentSection

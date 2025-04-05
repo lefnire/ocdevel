@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext, memo} from 'react';
 import Form from 'react-bootstrap/cjs/Form';
 import Container from 'react-bootstrap/cjs/Container';
 import Row from 'react-bootstrap/cjs/Row';
@@ -27,7 +27,7 @@ export default function WalkingCalorieCalculator() {
   return <WalkingCalorieCalculator_ />
 }
 
-function WalkingCalorieCalculator_() {
+const WalkingCalorieCalculator_ = memo(() => {
   const [unit, setUnit] = useState<UnitSystem>('imperial');
   // Age is not used in MET-based walking calorie calculations
   // Gender is not used in MET-based walking calorie calculations
@@ -202,4 +202,4 @@ function WalkingCalorieCalculator_() {
     </div>
 
   </Container>
-}
+})

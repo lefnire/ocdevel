@@ -8,6 +8,7 @@ import _reduce from 'lodash/reduce'
 import _isEmpty from 'lodash/isEmpty'
 import Badge from 'react-bootstrap/cjs/Badge';
 import {Affiliate} from "~/content/product-links";
+import {memo} from "react";
 
 export const PAUSE_AMAZON = false;
 export function getCurrentLink(product: Product) {
@@ -51,7 +52,7 @@ export function toFixed0(val: number | undefined) {
   return val_.toFixed(0);
 }
 
-export function ScoreInfo() {
+export const ScoreInfo = memo(() => {
   return <>
     <p><strong>Score</strong> is a weighted sum of each rows' attributes. "Weighted" because some attributes are more important than others. Eg, <strong>App</strong> support has <code>weight=1</code>, where <strong>Sturdy</strong> has <code>weight=10</code>. You can see how each cell ranks in the bottom corner of that cell, eg <Badge bg="success">10</Badge></p>
     <div>This is particularly interesting for <strong>Star Rating</strong>. The value shown in the cell is the rating (usually from Amazon). But the bottom-right number is the adjusted rating:
@@ -62,7 +63,7 @@ export function ScoreInfo() {
       </ul> So in reality, that little number is more valuable than the rating itself.
     </div>
   </>
-}
+})
 
 // FIXME make these dynamic (pulled from available options in dat)
 export const countries = {
