@@ -3,7 +3,6 @@ import {memo, useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
 import products, {affiliateLink} from '~/content/product-links'
-import {essentialsObj} from '~/content/product-links/treadmills'
 import {VideoButtonLg as VideoButton} from "./utils";
 import {ScoreInfo} from "~/content/treadmills/utils";
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
@@ -74,7 +73,7 @@ const ContentSection = memo(() => {
 
     {header("care")}
     <h5>Lubrication</h5>
-    <div className="py-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces friction on the pad, which prevents overworking the motor, which extends the treadmill's life. Get one with a firm applicator; wobbly tubes are hard to control. {affiliateLink(essentialsObj.godora_lube, "Godora")} is easier, {affiliateLink(essentialsObj.sekoday_lube, "Sekoday")} is cheaper. <VideoButton
+    <div className="py-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces friction on the pad, which prevents overworking the motor, which extends the treadmill's life. Get one with a firm applicator; wobbly tubes are hard to control. {affiliateLink(products.godora_lube, "Godora")} is easier, {affiliateLink(products.sekoday_lube, "Sekoday")} is cheaper. <VideoButton
         href="https://www.youtube.com/shorts/QK-BGSrCFXY"/>
     </div>
     <h5>Adjusting the belt</h5>
@@ -103,12 +102,12 @@ const ContentSection = memo(() => {
     {header("essentials")}
     <h5>Treadmill Mat</h5>
 
-    <p>{affiliateLink(essentialsObj.mat)}. Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
+    <p>{affiliateLink(products.sunny_mat)}. Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
       the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a protection layer against high-pile carpet, so you're not pulling debris into the hardware.
     </p>
 
     <h5>Standing Desk</h5>
-    <p>{affiliateLink(essentialsObj.desk)}. My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
+    <p>{affiliateLink(products.flexispot_en1)}. My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
       $1,000 Herman Millers championed on <a href="https://www.reddit.com/r/StandingDesks/" target="_blank">/r/StandingDesks</a>. But if you want to splurge, browse that sub. I've seen FlexiSpot gaining traction there recently;
       in particular the E7 series. You'll definitely want an electric desk which can sit or stand, because after walking or standing all day, you'll need a break.
     </p>

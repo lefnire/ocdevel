@@ -1,9 +1,8 @@
-const price = 8
-const sekoday_lube = {
-  key: "sekoday_lube",
-  title: "Sekoday Lube",
-  price,
-  link: "https://amzn.to/4hHO151",
-  linkText: `$${price} on Amazon`
+import links from '~/content/product-links'
+const product_ = links.sekoday_lube
+const product = {
+  ...product_,
+  linkText: `$${product_.price} on Amazon`
 }
-export default sekoday_lube
+export default product
+

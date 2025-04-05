@@ -42,6 +42,31 @@ export function Affiliate({product, children, ...props}: PropsWithChildren<{
 }
 
 const links: Record<string, AffiliateLink> = {
+    sunny_mat: {
+      key: "sunny_mat",
+      title: "Sunny Mat",
+      link: "https://amzn.to/3DUsBnC",
+      notes: 'Prevents floor damage, protects knees',
+      price: 25,
+    },
+    flexispot_en1: {
+      link: "https://amzn.to/40Kddmd",
+      key: 'flexispot_en1',
+      title: 'FlexiSpot EN1',
+      price: 150,
+    },
+    godora_lube: {
+      key: "godora_lube",
+      title: 'Godora Lube',
+      link: "https://amzn.to/3E7YUPw",
+      price: 35,
+    },
+    sekoday_lube: {
+      key: "sekoday_lube",
+      title: "Sekoday Lube",
+      price: 8,
+      link: "https://amzn.to/4hHO151",
+    },
     shoes_men: {
         link: "https://amzn.to/4au1fk1",
         key: "shoes_men",

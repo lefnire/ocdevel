@@ -4,12 +4,12 @@ import './route.css'
 import {contentSections} from './content-section'
 
 import {ProductContext} from "~/routes/walk/context";
-import type {Product} from "~/content/treadmills/types";
+import type {Product} from "~/content/treadmills/data/types";
 
 import {Link} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {useContext} from "react";
-import {treadmills, essentials, type AffiliateLink_} from '~/content/product-links/treadmills'
+import picks, {type AffiliateLink_} from '~/content/product-links/treadmills'
 
 
 interface Products {
@@ -93,14 +93,14 @@ export default function TopSection() {
     <div className="col-12 col-md-6">
         <ProductsCard
           title="Best Walking Pads in 2025"
-          products={treadmills}
+          products={[picks.premium, picks.value, picks.budget]}
           links={["why_desk", "buying_guide"]}
         />
       </div>
       <div className="col-12 col-md-6">
         <ProductsCard
           title="Essentials"
-          products={essentials}
+          products={[picks.mat, picks.lube, picks.desk]}
           links={["care", "essentials"]}
         />
       </div>

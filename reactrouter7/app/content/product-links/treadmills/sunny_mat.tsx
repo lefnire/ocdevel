@@ -1,13 +1,11 @@
 import image from '~/assets/products/sunny_mat_.jpg?w=100&h=100&format=webp&effort=max'
-const price = 25
+import links from '~/content/product-links'
+const product_ = links.sunny_mat
 const sunny_mat = {
-  key: "sunny_mat",
-  title: "Sunny Mat",
+  ...product_,
   topTitle: "Mat: Sunny",
   image: image,
-  link: "https://amzn.to/3DUsBnC",
   notes: 'Prevents floor damage, protects knees',
-  price,
-  linkText: `$${price} on Amazon`
+  linkText: `$${product_.price} on Amazon`
 }
 export default sunny_mat
