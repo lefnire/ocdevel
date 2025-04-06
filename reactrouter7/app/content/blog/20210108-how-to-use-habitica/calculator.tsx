@@ -1,10 +1,11 @@
-import React, { memo } from "react"; // Removed unused imports: useEffect, useState, ChangeEvent
+import React, {memo, useState} from "react"; // Removed unused imports: useEffect, useState, ChangeEvent
 import { create } from 'zustand'; // Added zustand
 import { produce } from 'immer'; // Added immer
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Col_ from "react-bootstrap/Col";
+import Button from "react-bootstrap/cjs/Button";
 // This is required due to an SSG bug in react-bootstrap. Ignore the typescript error.
 const Col = Col_.default || Col_
 
@@ -276,6 +277,33 @@ const ClassCalculator = memo(() => {
         </Card>
       </Col>
     </Row>
+    <p></p>
+    <Cheese />
   </>
 })
 export default ClassCalculator
+
+function Cheese() {
+  const [cheese, setCheese] = useState(false)
+  const [doubleCheese, setDoubleCheese] = useState(false)
+
+  if (!cheese) {
+    return <Button onClick={() => setCheese(true)} variant="link">
+      Want to cheese the system?
+    </Button>
+  }
+  if (!doubleCheese) {
+    return <div>
+      <Button onClick={() => setDoubleCheese(true)} variant="link">
+        Are you absolutely sure?
+      </Button>
+      <p>I'm literally gonna show you how to cheat.</p>
+    </div>
+  }
+  return <div>
+    <h6>INT</h6>
+    <p>Intelligence is the most valuable stat, and it doesn't matter which class you play. Firstly, it impacts your level speed; the faster you level, the faster you gain more in all categories - so it's an "investment". And every time you level up, you heal - so this mitigates HP concerns. Further, spells contribute significantly, and INT drives spell power. Eg, boss damage from dailies and to-dos are a pittance compared to Brutal Smash or Burst of Flames. So go 100% INT, no matter your class or preferences.</p>
+    <h6>Warrior + Brutal Smash</h6>
+    <p>The most powerful spell in the game against bosses is Brutal Smash. Stack that with 100% INT, and you can mow through bosses. And boss rewards are significant; including EXP, meaning you can level up fast and stay alive long (healing from leveling up).</p>
+  </div>
+}

@@ -9,6 +9,7 @@ import {TLDR} from '~/components/tldr'
 import {Link} from "react-router";
 import ClassCalculator from './calculator'
 import React from "react";
+import Alert from "react-bootstrap/cjs/Alert";
 
 export * from './meta.js'
 
@@ -16,14 +17,12 @@ const l = (href, text) => <a href={href} target='_blank'>{text}</a>
 
 export default function Body() {
   return <div>
-    <p>This is {l("/", "lefnire")}'s usage guide to Habitica. I created Habitica but am no longer with the
+    <p>This is <Link to="/">lefnire</Link>'s usage guide to Habitica. I created Habitica but am no longer with the
       company. Nonetheless, I've rarely missed a day since 2012, and have learned a <em>lot</em> about psychology since
       then through various projects and books, and have integrated the lessons and practices into my Habitica system.
       This system is a tad complex, but once you get dialed it can make Habitica truly improve your life. If you're just
       getting started, start here. If you're a seasoned pro, read this as it might change your play style. It's like an
-      "ultimate build guide" or "speed runner guide" for RPGs.</p>
-
-    <p>[Update 2025-03-30]: if you want this in audio-form, I have a {l("/llh/2", "podcast episode for it here.")}</p>
+      "ultimate build guide" or "speed runner guide" for RPGs. If you want this in audio-form, I have a <Link to="/llh/2">podcast episode for it here.</Link></p>
 
     <h6><Link to="#dailies">Dailies</Link></h6>
     <h6><Link to="#habits">Habits</Link></h6>
@@ -31,6 +30,10 @@ export default function Body() {
     <h6><Link to="#rewards">Rewards</Link></h6>
     <h6><Link to="#respect-colors">Respect the Colors</Link></h6>
     <h6><Link to="#classes">Classes</Link></h6>
+
+    <Alert variant="primary">Besides gamifying life, my biggest life-hack is a <Link to="/walk">walking
+      desk</Link>. Try it out!
+    </Alert>
     <hr/>
 
     <h3 id="dailies"><FaCalendar/> Dailies</h3>
@@ -301,11 +304,5 @@ export default function Body() {
     </ul>
     <p className="text-muted small">Parties most benefit with at least a healer and warrior. Rogues and mages are optional, if your party is small.</p>
     <ClassCalculator/>
-
-    <hr/>
-
-    <div className='mt-2'>Besides gamifying life, my biggest life-hack is a <Link to="/walk">walking
-      desk</Link>. Try it out!
-    </div>
   </div>
 }
