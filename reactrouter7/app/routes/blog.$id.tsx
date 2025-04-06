@@ -4,7 +4,6 @@ import {metasObj} from "~/content/blog/metas.js";
 import {BackButton} from "~/components/utils";
 import Card from 'react-bootstrap/cjs/Card';
 import Container from 'react-bootstrap/cjs/Container';
-// import {ReactMarkdown_} from "~/components/utils";
 // import ReactDisqusComments from "react-disqus-comments";
 import {fmt, PostDate} from '~/routes/blog/utils'
 import {Comments} from "~/components/comments";

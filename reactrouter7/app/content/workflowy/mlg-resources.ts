@@ -7,10 +7,23 @@ import type {Filters, Resource, ResourcesTree} from './mlg-resources.types'
 import last from 'lodash/last'
 import find from 'lodash/find'
 
-export function transform(code: string, id: string) {
+// npm install -D marked dompurify jsdom
+import { marked } from 'marked';
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+export async function preRenderMd(content: string) {
+  // Parse and sanitize the markdown
+  const rawHtml = await marked.parse(content); // marked returns a Promise now
+  const cleanHtml = DOMPurify.sanitize(rawHtml); // CRITICAL!
+  return cleanHtml
+}
+
+export async function transform(code: string, id: string) {
   const fileContent = fs.readFileSync(id, 'utf8');
   const res = xmlJs.xml2js(fileContent, {compact: true});
-  return parseWorkflowy(res)
+  return await parseWorkflowy(res)
 }
 
 // aecd0d0c reLink
@@ -49,7 +62,7 @@ type WFTree = {
   }
   outline?: WFTree[] | WFTree
 }
-function parseTree(tree: WFTree, isLink = false) {
+async function parseTree(tree: WFTree, isLink = false) {
   if (!tree) {return {}}
 
   let text = tree._attributes?.text?.replace(reStripHtml, '').replace('&amp;', '&')
@@ -75,13 +88,13 @@ function parseTree(tree: WFTree, isLink = false) {
   }
 
   let isResource = !tags.pick
-  const children = outline.map(o => parseTree(o, isResource))
+  const children = await Promise.all(outline.map(o => parseTree(o, isResource)))
   if (!flat[id]) {
     const node = {
       ...(isResource ? {...defaults} : {}),
       id,
       t: text,
-      d: _note,
+      d: await preRenderMd(_note || ''), // Ensure _note is not undefined
       ...tags,
       [isResource ? 'links' : 'v']: children
     }
@@ -95,9 +108,9 @@ function parseTree(tree: WFTree, isLink = false) {
   }
 }
 
-function parseWorkflowy(res) {
+async function parseWorkflowy(res) {
   const outline = res.opml.body.outline
-  const {v} = parseTree(outline, false)
+  const {v} = await parseTree(outline, false)
   const top = {
     degrees: {id: v[0].id},
     main: {id: v[1].id},

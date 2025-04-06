@@ -10,8 +10,8 @@ import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
 import {transform} from '~/content/workflowy/mlg-resources'
 
-export function loader(props: Route.LoaderArgs) {
-  const resources = transform('', './app/content/workflowy/mlg-resources.opml')
+export async function loader(props: Route.LoaderArgs) {
+  const resources = await transform('', './app/content/workflowy/mlg-resources.opml')
   return {
     show: mlgShow,
     resources,

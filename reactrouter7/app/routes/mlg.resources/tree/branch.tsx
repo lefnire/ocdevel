@@ -5,8 +5,6 @@ import {
   useContext, memo,
 } from "react";
 
-// switched from react-markdown for render speed (LCP)
-import Markdown from 'marked-react'
 import {icons} from "~/components/collapsible-icons";
 import {picks} from '~/content/podcast/resources/picks'
 import type {Resource} from "~/content/workflowy/mlg-resources.types"
@@ -53,9 +51,10 @@ const Branch_ = ({node, level = 0}: Branch_)=> {
       return null
     }
     return <div className='small ms-2'>
-      {node.d && <div className='my-1 text-muted'>
-        <Markdown>{node.d}</Markdown>
-      </div>}
+      {node.d && <div
+        className='my-1 text-muted'
+        dangerouslySetInnerHTML={{ __html: node.d }}
+      ></div>}
       {node.pick && <div>
         <div
           className='pointer'

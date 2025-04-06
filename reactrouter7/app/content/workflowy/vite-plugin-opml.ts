@@ -1,10 +1,10 @@
-import {transform as walkingDesk} from './walking-desk.ts'
-import {transform as mlgResources} from './mlg-resources.ts'
+import {transform as walkingDesk} from './walking-desk'
+import {transform as mlgResources} from './mlg-resources'
 
 export const vitePluginOpml = {
   name: 'vite-plugin-opml',
-  transform(code, id) {
-    let obj: object;
+  async transform(code: string, id: string) {
+    let obj: object | null = null;
     if (id.endsWith('walking-desk.opml')) {
       obj = walkingDesk(code,id);
     }
@@ -13,7 +13,7 @@ export const vitePluginOpml = {
       obj = walkingDesk(code,id);
     }
     if (id.endsWith('mlg-resources.opml')) {
-      obj = mlgResources(code,id);
+      obj = await mlgResources(code,id);
     }
     if (obj) {
       return {

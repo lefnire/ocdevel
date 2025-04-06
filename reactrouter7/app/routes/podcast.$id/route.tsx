@@ -5,7 +5,7 @@ import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
 import {transform} from '~/content/workflowy/mlg-resources'
 
-export function loader(props: Route.LoaderArgs) {
+export async function loader(props: Route.LoaderArgs) {
   const {request} = props
   const podcastKey = request.url.includes('/llh') ? 'llh' : 'mlg'
   const pod = {
@@ -28,7 +28,7 @@ export function loader(props: Route.LoaderArgs) {
   } catch (error) {
     // console.error(`Error loading transcript for episode ${id}:`, error);
   }
-  const r = transform('', './app/content/workflowy/mlg-resources.opml')
+  const r = await transform('', './app/content/workflowy/mlg-resources.opml')
   const resources = (() => {
     if (podcastKey === 'llh') { return {flat: {}, nids: []}}
     const nids = r.episodes[series][epId] || []

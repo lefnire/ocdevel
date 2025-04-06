@@ -10,7 +10,6 @@ import Table from "react-bootstrap/cjs/Table";
 import Alert from "react-bootstrap/cjs/Alert";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
 import {icons} from "~/components/collapsible-icons";
-import Markdown from "marked-react";
 
 const LeafWrapper = ({children, show}: PropsWithChildren<{ show: boolean }>) => {
   if (!show) {
@@ -117,9 +116,10 @@ const LeafExpanded = memo(({id}: {id: string}) => {
 
   return <div>
     <div className='px-2 pb-1'>
-      {node.d && <div className={'my-2 small text-muted'}>
-        <Markdown>{node.d}</Markdown>
-      </div>}
+      {node.d && <div
+        className={'my-2 small text-muted'}
+        dangerouslySetInnerHTML={{ __html: node.d }}
+      ></div>}
       {node.itunesu && <div className='small text-muted my-2'>
         This is a recorded university course, what used be part of the iTunesU system. These courses can be listened
         to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do
