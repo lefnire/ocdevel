@@ -11,7 +11,7 @@ import {mlgShow} from '~/content/podcast/metas.js'
 import {transform} from '~/content/workflowy/mlg-resources'
 
 export async function loader(props: Route.LoaderArgs) {
-  const resources = await transform('', './app/content/workflowy/mlg-resources.opml')
+  const resources = await transform()
   return {
     show: mlgShow,
     resources,

@@ -31,12 +31,14 @@ export type Resource = Filters & {
   pick?: string; // Assuming string type based on usage with picks[full.pick]
 };
 
-export interface ResourcesTree {
+type ResourcesTree_ = {
   flat: {[id: string]: Resource}
   episodes: {
     mlg: {[id: string]: string[]}
     mla: {[id: string]: string[]}
   }
+}
+export type AllResources = ResourcesTree_ & {
   top: {
     degrees: {id: string}
     main: {id: string}
@@ -44,3 +46,7 @@ export interface ResourcesTree {
     audio: {id: string}
   }
 }
+export type EpisodeResources = ResourcesTree_ & {
+  nids: string[]
+}
+export type ResourceTree = EpisodeResources | AllResources

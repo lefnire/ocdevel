@@ -28,28 +28,10 @@ export async function loader(props: Route.LoaderArgs) {
   } catch (error) {
     // console.error(`Error loading transcript for episode ${id}:`, error);
   }
-  const r = await transform('', './app/content/workflowy/mlg-resources.opml')
-  const resources = (() => {
-    if (podcastKey === 'llh') { return {flat: {}, nids: []}}
-    const nids = r.episodes[series][epId] || []
-
-    const flat: {[id: string]: any} = {}
-    function flatten(item: string | {id: string}) {
-      // Handle both string IDs and object IDs
-      const id = typeof item === 'string' ? item : item.id;
-      const full = r.flat[id]
-      if (!full) { return; }
-      if (!full.pick) {
-        if (flat[id]) {return;}
-        // remove children now
-        flat[id] = {...full, v: []}
-      }
-      full.v?.forEach?.(flatten)
-    }
-    nids.forEach(flatten)
-
-    return { flat, nids }
-  })()
+  const resources = (
+    podcastKey === 'llh' ? {flat: {}, top: {}, nids: []}
+    : await transform({id: epId, podcast: (series as 'mlg' | 'mla')})
+  )
 
   return {
     resources,

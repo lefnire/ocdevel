@@ -1,22 +1,18 @@
-import {ResourceCacheContext, ResourceCacheProvider} from '../mlg.resources/tree/resource-cache'
-import type {Route} from './+types/route'
-import {memo, useContext} from "react";
+import {ResourceCacheProvider} from '../mlg.resources/tree/resource-cache'
 import {Leaf} from "~/routes/mlg.resources/tree/leaf";
+import type {EpisodeResources} from "~/content/workflowy/mlg-resources.types";
 
 // type Props = Route['loaderArgs']['resources']
-type Props = {flat: any}
-export function ResourcesFlat({flat}: Props) {
+export function ResourcesFlat({flat, nids}: EpisodeResources) {
   return <ResourceCacheProvider flat={flat}>
     <div className="resources">
-      <Resources />
+      <Resources nids={nids}/>
     </div>
   </ResourceCacheProvider>
 }
 
-const Resources = () => {
-  const {flat} = useContext(ResourceCacheContext)
-  return Object.entries(flat)
-    .map(([id, _]) => (
-      <Leaf id={id} key={id} />
-    ))
+const Resources = (
+  {nids}: Pick<EpisodeResources, 'nids'>
+) => {
+  return nids.map(id => <Leaf id={id} key={id} />)
 }

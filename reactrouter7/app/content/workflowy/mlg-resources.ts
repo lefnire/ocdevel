@@ -20,10 +20,14 @@ export async function preRenderMd(content: string) {
   return cleanHtml
 }
 
-export async function transform(code: string, id: string) {
-  const fileContent = fs.readFileSync(id, 'utf8');
-  const res = xmlJs.xml2js(fileContent, {compact: true});
-  return await parseWorkflowy(res)
+type Opts = {id: string, podcast: 'mlg' | 'mla'}
+export async function transform(opts?: Opts) {
+  const fileContent = fs.readFileSync(
+    './app/content/workflowy/mlg-resources.opml',
+    'utf8'
+  );
+  const xmlContent = xmlJs.xml2js(fileContent, {compact: true});
+  return await parseWorkflowy(xmlContent, opts)
 }
 
 // aecd0d0c reLink
@@ -62,7 +66,8 @@ type WFTree = {
   }
   outline?: WFTree[] | WFTree
 }
-async function parseTree(tree: WFTree, isLink = false) {
+type ParseTree = {tree: WFTree, opts?: Opts, isLink?: boolean}
+async function parseTree({tree, opts, isLink}: ParseTree) {
   if (!tree) {return {}}
 
   let text = tree._attributes?.text?.replace(reStripHtml, '').replace('&amp;', '&')
@@ -87,35 +92,54 @@ async function parseTree(tree: WFTree, isLink = false) {
     return {t: text, l: _note, p: tags.price}
   }
 
-  let isResource = !tags.pick
-  const children = await Promise.all(outline.map(o => parseTree(o, isResource)))
+  let isLeaf = !tags.pick
+  const children = await Promise.all(outline.map(o => (
+    parseTree({tree: o, opts, isLink: isLeaf})
+  )))
   if (!flat[id]) {
     const node = {
-      ...(isResource ? {...defaults} : {}),
+      ...(isLeaf ? {...defaults} : {}),
       id,
       t: text,
       d: await preRenderMd(_note || ''), // Ensure _note is not undefined
       ...tags,
-      [isResource ? 'links' : 'v']: children
+      [isLeaf ? 'links' : 'v']: children
     }
-    flat[id] = node
-    tags.mlg?.forEach(ep => addEpisode('mlg', ep, id))
-    tags.mla?.forEach(ep => addEpisode('mla', ep, id))
+    if (
+      (!opts?.id) || // blanket-parse, for /mlg/resource
+      (tags[opts.podcast]?.includes(opts.id) && isLeaf)
+    ) {
+      flat[id] = node
+      tags.mlg?.forEach(ep => addEpisode('mlg', ep, id))
+      tags.mla?.forEach(ep => addEpisode('mla', ep, id))
+    }
   }
   return {
     id,
-    ...(isResource ? {} : {v: children})
+    ...(isLeaf ? {} : {v: children})
   }
 }
 
-async function parseWorkflowy(res) {
-  const outline = res.opml.body.outline
-  const {v} = await parseTree(outline, false)
+async function parseWorkflowy(xmlContent: any, opts?: Opts) {
+  const outline = xmlContent.opml.body.outline
+  const {v} = await parseTree({tree: outline, opts, isLink: false})
+  if (opts?.id) {
+    return {
+      flat,
+      top: {},
+      nids: episodes[opts.podcast][opts.id]
+    }
+  }
   const top = {
     degrees: {id: v[0].id},
     main: {id: v[1].id},
     math: {id: v[2].id},
     audio: {id: v[3].id}
   }
-  return {flat, top, episodes}
+  return {
+    flat,
+    top,
+    nids: []
+    //, episodes
+  }
 }
