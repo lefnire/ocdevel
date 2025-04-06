@@ -13,7 +13,7 @@ const Col = Col_.default || Col_
 import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
 import map from "lodash/map";
-import {IconButton} from "~/components/icon-btn";
+import {IconButton, sizes} from "~/components/icon-btn";
 import {useShallow} from "zustand/react/shallow";
 
 const btns = {
@@ -26,30 +26,33 @@ const btns = {
   },
 }
 
+// const icon_ = {size: sizes.sm.v}
 const check = {
   single: [<FaRegCircle />, <FaCheckCircle />],
   multi: [<FaRegSquare />, <FaCheckSquare />]
 }
 
 function Option({opt, select, active, setHelp, multi=true}) {
-  const btn = active ? btns.on : btns.off
+  const btnState = active ? btns.on : btns.off
 
   // perf tweaks since this re-rendered often
   const setHelp_ = useCallback(() => setHelp(opt.d), [])
   const clearHelp_ = useCallback(() => setHelp(null), [])
+  const btnProps = {
+    onClick: select,
+    onMouseEnter: setHelp_,
+    onMouseLeave: clearHelp_,
+    ...btnState
+  }
 
   return <IconButton
-    {...btn}
+    btnProps={btnProps}
     size="sm"
     left
-    onClick={select}
-    onMouseEnter={setHelp_}
-    onMouseLeave={clearHelp_}
-    Icon={check[multi ? 'multi' : 'single'][active ? 1 : 0]}
-    Icon2={opt.i}
-  >
-    {opt.t}
-  </IconButton>
+    icon={check[multi ? 'multi' : 'single'][active ? 1 : 0]}
+    icon2={opt.i}
+    label={opt.t}
+  />
 }
 
 function LearnStyle({k}) {

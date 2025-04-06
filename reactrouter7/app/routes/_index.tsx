@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/cjs/Row'
 import Container from 'react-bootstrap/cjs/Container'
 import Stack from 'react-bootstrap/cjs/Stack'
 import Button from 'react-bootstrap/cjs/Button'
-import {IconButton} from "~/components/icon-btn";
+import {IconButton, sizes} from "~/components/icon-btn";
 import {FaCouch} from '@react-icons/all-files/fa/FaCouch';
 import {FaDragon} from '@react-icons/all-files/fa/FaDragon';
 import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope';
@@ -20,32 +20,44 @@ import type { Route } from "./+types/_index";
 
 import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp&effort=max'
 
+const icn = {size: sizes.base.v}
+const icons = {
+  linkedin: <FaLinkedin {...icn} />,
+  github: <FaGithub {...icn} />,
+  email: <FaEnvelope {...icn} />,
+  youtube: <FaYoutube {...icn} />,
+  instagram: <FaInstagram {...icn} />,
+  tiktok: <SiTiktok {...icn} />,
+  facebook: <FaFacebook {...icn} />
+}
+
 export default function Home() {
   const links = <>
     <Stack direction="vertical" gap={2}>
       <IconButton
-        target="_blank"
-        href="https://www.linkedin.com/in/lefnire"
-        Icon={FaLinkedin}
-      >LinkedIn</IconButton>
+        btnProps={{target: "_blank", href: "https://www.linkedin.com/in/lefnire"}}
+        icon={icons.linkedin}
+        label="LinkedIn"
+      />
       <IconButton
-        target="_blank"
-        href="https://github.com/lefnire"
-        Icon={FaGithub}
-      >Github</IconButton>
+        btnProps={{target: "_blank", href: "https://github.com/lefnire"}}
+        icon={icons.github}
+        label="Github"
+      />
       <IconButton
-        href="mailto:tylerrenelle@gmail.com"
-        Icon={FaEnvelope}
-      >Email</IconButton>
+        btnProps={{href: "mailto:tylerrenelle@gmail.com"}}
+        icon={icons.email}
+        label="Email"
+      />
       {/*<a className="btn btn-primary" href="https://calendly.com/lefnire/60min" target="_blank">Schedule a 60-minute consultation</a>*/}
     </Stack>
     <Stack direction="horizontal" gap={2} className="justify-content-center mt-3">
       {[
-        { href: "https://youtube.com/@ocdevel", Icon: FaYoutube },
-        { href: "https://instagram.com/ocdevel", Icon: FaInstagram },
-        { href: "https://tiktok.com/@lefnire", Icon: SiTiktok },
-        { href: "https://facebook.com/ocdevel", Icon: FaFacebook }
-      ].map(({ href, Icon }) => (
+        { href: "https://youtube.com/@ocdevel", icon: icons.youtube },
+        { href: "https://instagram.com/ocdevel", icon: icons.instagram },
+        { href: "https://tiktok.com/@lefnire", icon: icons.tiktok },
+        { href: "https://facebook.com/ocdevel", icon: icons.facebook }
+      ].map(({ href, icon }) => (
         <Button
           key={href}
           href={href}
@@ -53,7 +65,7 @@ export default function Home() {
           variant="link"
           className="p-1 text-dark fs-5"
         >
-          <Icon />
+          {icon}
         </Button>
       ))}
     </Stack>
