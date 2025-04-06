@@ -16,7 +16,7 @@ import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
 import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import transform from 'lodash/transform'
-import {TLDR} from '~/components/utils'
+import {TLDR} from '~/components/tldr'
 import {Link} from "react-router";
 
 export * from './meta.js'

@@ -1,7 +1,7 @@
 import {useParams, Outlet} from "react-router";
 // import find from "lodash/find";
 import {metasObj} from "~/content/blog/metas.js";
-import {BackButton} from "~/components/utils";
+import {BackButton} from "~/components/back-btn";
 import Card from 'react-bootstrap/cjs/Card';
 import Container from 'react-bootstrap/cjs/Container';
 // import ReactDisqusComments from "react-disqus-comments";

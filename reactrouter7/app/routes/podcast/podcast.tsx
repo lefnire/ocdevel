@@ -9,7 +9,7 @@ import {FaYoutube} from '@react-icons/all-files/fa/FaYoutube'
 import {FaItunesNote} from '@react-icons/all-files/fa/FaItunesNote'
 import {RiSpotifyLine} from '@react-icons/all-files/ri/RiSpotifyLine'
 import {SiRss} from '@react-icons/all-files/si/SiRss'
-import {IconButton} from "~/components/utils";
+import {IconButton} from "~/components/icon-btn";
 import type {Route} from './+types/route_mlg'
 
 type Props = Route.ComponentProps['loaderData'] & {img: string}

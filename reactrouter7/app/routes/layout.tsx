@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/cjs/Button';
 import Nav from 'react-bootstrap/cjs/Nav';
 import Navbar from 'react-bootstrap/cjs/Navbar';
 import Stack from 'react-bootstrap/cjs/Stack';
-import {LinkContainer} from "~/components/utils";
+import {LinkContainer} from "~/components/link-container";
 import {Outlet, useSearchParams} from "react-router";
 import {FaFacebook} from "@react-icons/all-files/fa/FaFacebook";
 import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";

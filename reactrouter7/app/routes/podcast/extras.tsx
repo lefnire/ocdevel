@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/cjs/Card';
 import Col_ from 'react-bootstrap/cjs/Col';
 const Col = Col_.default || Col_
 import Row from 'react-bootstrap/cjs/Row';
-import {IconButton} from "~/components/utils";
+import {IconButton} from "~/components/icon-btn";
 import {icons} from '~/components/collapsible-icons'
 import {FaDiscord} from "@react-icons/all-files/fa/FaDiscord";
 import {FaEnvelope} from "@react-icons/all-files/fa/FaEnvelope";

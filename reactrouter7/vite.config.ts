@@ -35,12 +35,12 @@ export default defineConfig({
 
     imagetools(),
 
-    // visualizer({
-    //   open: true, // Automatically open report in browser
-    //   gzipSize: true, // Show gzip size
-    //   brotliSize: true, // Show brotli size
-    //   filename: "dist/stats.html", // Output report file
-    // }),
+    visualizer({
+      open: true, // Automatically open report in browser
+      gzipSize: true, // Show gzip size
+      brotliSize: true, // Show brotli size
+      filename: "dist/stats.html", // Output report file
+    }),
   ],
 
   css: {

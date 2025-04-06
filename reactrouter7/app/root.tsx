@@ -8,7 +8,7 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // import "./app.css";
 import "./root.scss";
 import type {ReactNode} from "react";
@@ -26,23 +26,18 @@ export const links: Route.LinksFunction = () => [
   // },
 
   // Bootstrap CDN
-  // {
-  //   rel: "stylesheet",
-  //   href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
-  //   integrity: "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH",
-  //   crossOrigin: "anonymous",
-  // }
+  {
+    rel: "stylesheet",
+    href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+    integrity: "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "preconnect",
+    href: "https://cdn.jsdelivr.net",
+    crossOrigin: "anonymous"
+  }
 ];
-
-/**
-@FIXME Add these?
-<!-- TODO remove this? -->
-<!--<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=9f178603-558f-4b18-b4b9-b2f2f18a5ff5"></script>-->
-
-<meta name='impact-site-verification' value='c47f4703-3b54-4a24-9d35-67f518f4dbc7' />
-
-<!--<script data-ad-client="ca-pub-3242350243827794" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
- */
 
 export function Layout({children}: { children: ReactNode }) {
   return (

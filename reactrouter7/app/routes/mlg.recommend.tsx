@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/cjs/Card';
 // import ReactDisqusComments from "react-disqus-comments";
-import {BackButton} from "~/components/utils";
+import {BackButton} from "~/components/back-btn";
 import {mlgShow} from "~/content/podcast/metas.js";
 import {Comments} from "~/components/comments";
 

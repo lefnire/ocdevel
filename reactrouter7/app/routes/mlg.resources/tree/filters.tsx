@@ -13,7 +13,7 @@ const Col = Col_.default || Col_
 import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
 import map from "lodash/map";
-import {IconButton} from "~/components/utils";
+import {IconButton} from "~/components/icon-btn";
 import {useShallow} from "zustand/react/shallow";
 
 const btns = {
