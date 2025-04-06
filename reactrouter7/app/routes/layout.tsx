@@ -1,14 +1,8 @@
 import {GoogleConsentMode} from "~/components/analytics";
-import Button from 'react-bootstrap/cjs/Button';
 import Nav from 'react-bootstrap/cjs/Nav';
 import Navbar from 'react-bootstrap/cjs/Navbar';
-import Stack from 'react-bootstrap/cjs/Stack';
 import {LinkContainer} from "~/components/link-container";
-import {Outlet, useSearchParams} from "react-router";
-import {FaFacebook} from "@react-icons/all-files/fa/FaFacebook";
-import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
-import {FaYoutube} from "@react-icons/all-files/fa/FaYoutube";
-import {SiTiktok} from "@react-icons/all-files/si/SiTiktok";
+import {Link, Outlet, useSearchParams} from "react-router";
 import {useEffect} from "react";
 import {PopoverSingleton} from "~/components/popover";
 
@@ -59,24 +53,7 @@ export default function Layout() {
           <span>© 2009-2025 OCDevel LLC</span>
         </div>
         <div>
-          <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-            {[
-              { href: "https://youtube.com/@ocdevel", Icon: FaYoutube },
-              { href: "https://instagram.com/ocdevel", Icon: FaInstagram },
-              { href: "https://tiktok.com/@lefnire", Icon: SiTiktok },
-              { href: "https://facebook.com/ocdevel", Icon: FaFacebook }
-            ].map(({ href, Icon }) => (
-              <Button
-                key={href}
-                href={href}
-                target="_blank"
-                variant="link"
-                className="p-1 text-dark fs-5"
-              >
-                <Icon />
-              </Button>
-            ))}
-          </Stack>
+          <Link to="/">Contact</Link>
         </div>
       </div>
     </footer>
