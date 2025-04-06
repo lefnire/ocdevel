@@ -1,9 +1,11 @@
-import React, {memo, useEffect, useState, type ChangeEvent} from "react"; // Use type-only import for ChangeEvent
+import React, { memo } from "react"; // Removed unused imports: useEffect, useState, ChangeEvent
+import { create } from 'zustand'; // Added zustand
+import { produce } from 'immer'; // Added immer
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Col_ from "react-bootstrap/Col";
-
+// This is required due to an SSG bug in react-bootstrap. Ignore the typescript error.
 const Col = Col_.default || Col_
 
 // Define types
@@ -42,23 +44,23 @@ const questions: Question[] = [{ // Added Question[] type
   opts: [{
     k: 'pr',
     t: 'Positive Reinforcement',
-    d: "Motivation: good things happen. A bonus makes makes you perform, \"good job!\" makes you tick. As a kid, dessert after dinner; video games after homework drove you.",
-    classes: {warrior: 1, rogue: 2, mage: 1, healer: 0}
+    d: "You are motivated by *adding desirable outcomes*. Earning rewards (like gold, items, XP), achieving goals, receiving praise, or seeing tangible progress keeps you engaged.",
+    classes: {rogue: 2, warrior: 1, mage: 1, healer: 0} // Score unchanged
   }, {
     k: 'nr',
     t: 'Negative Reinforcement',
-    d: "Motivation: bad things being removed. As a kid, any way to make time-out end drove you.",
-    classes: {warrior: 1, healer: 2, mage: 1, rogue: 0}
+    d: "You are motivated by *removing or avoiding aversive conditions*. Preventing penalties, stopping something annoying (like task reminders or party damage), or escaping a negative situation drives your actions.",
+    classes: {healer: 2, warrior: 2, mage: 0, rogue: 0}
   }, {
     k: 'pp',
     t: 'Positive Punishment',
-    d: "Motivation: bad things happening. A hand-slap ensures you won't do it again. As a kid, punishment drove you.",
-    classes: {healer: 2, warrior: 1, mage: 1, rogue: 0}
+    d: "You learn effectively from *experiencing direct negative consequences* for undesirable actions. A setback (like taking damage from a missed Daily) strongly discourages repeating the behavior that led to it.",
+    classes: {warrior: 2, healer: 0, mage: 0, rogue: 0}
   }, {
     k: 'np',
     t: 'Negative Punishment',
-    d: "Motivation: not getting a good thing, because you've done a bad thing. Your toy is taken away makes you want to earn it back. As a kid, grounding (removal from friends, hobbies) drove you.",
-    classes: {mage: 2, healer: 0, warrior: 0, rogue: 0} // Mage prevents streak loss (NP)
+    d: "You are motivated by the potential *loss of desirable things* due to inaction or mistakes. Fear of losing progress (like task streaks), missing out on rewards, or having privileges revoked encourages you to stay on track.",
+    classes: {mage: 2, rogue: 1, warrior: 0, healer: 0}
   }]
 }, {
   k: "rewards",
@@ -147,25 +149,7 @@ const questions: Question[] = [{ // Added Question[] type
         });
       }
     }
-  }, { // <<< Added missing closing brace here
-    k: "rp",
-    t: "Role Play",
-    d: "You like the idea of being in-game who you are IRL. A mage is a studier; a healer is a socialite or medical professional; a warrior is active; a rogue is independent.",
-    classesFn: (m: KlassScores, form: FormState) => { // Added types
-      const rpQuestion = questionsObj['rp']; // Safer access
-      if (rpQuestion?.opts) {
-        rpQuestion.opts.forEach(opt => { // opt is implicitly Option here
-          if (form['rp']?.[opt.k]) { // Safer access
-            // Ensure the key exists on m before incrementing
-            const classKey = opt.k as ClassName; // Assume opt.k matches a ClassName here based on context
-            if (classKey in m) {
-              m[classKey] = (m[classKey] || 0) + 1;
-            }
-          }
-        });
-      }
-    }
-  }]
+  }] // Removed duplicate 'rp' option object
 }]
 
 // Pre-compute optsObj for each question
@@ -182,48 +166,43 @@ const questionsObj: QuestionsObj = questions.reduce((obj: QuestionsObj, item) =>
   return obj;
 }, {} as QuestionsObj); // Added type assertion for initial value
 
-const ClassCalculator = memo(() => {
-  // Initialize form state robustly with types
-  const initialFormState = (): FormState => {
-    const state: FormState = {};
-    questions.forEach(q => {
-      state[q.k] = {};
-      q.opts.forEach(o => {
-        state[q.k][o.k] = false;
-      });
+// --- Zustand Store Definition ---
+
+interface CalculatorState {
+  form: FormState;
+  klassScores: KlassScores;
+  toggleOption: (questionKey: string, optionKey: string) => void;
+  _calculateScores: (state: CalculatorState) => Partial<CalculatorState>; // Internal helper
+}
+
+// Helper to calculate initial form state
+const initialFormState = (): FormState => {
+  const state: FormState = {};
+  questions.forEach(q => {
+    state[q.k] = {};
+    q.opts.forEach(o => {
+      state[q.k][o.k] = false;
     });
-    return state;
-  };
-  const [form, setForm] = useState<FormState>(initialFormState);
+  });
+  return state;
+};
 
-  const [updated, setUpdated] = useState<boolean>(true); // Explicit boolean type
-  // Initialize klass state with type
-  const [klass, setKlass] = useState<KlassScores>({mage: 0, warrior: 0, rogue: 0, healer: 0}); // Start all at 0
-
-  // Typed event handler
-  const setForm_ = (k: string, k2: string) => (e: ChangeEvent<HTMLInputElement>) => { // Added types
-    // Ensure k and k2 exist in form before updating
-    const currentSection = form[k] || {};
-    const newValue = !currentSection[k2];
-    setForm({...form, [k]: {...currentSection, [k2]: newValue}});
-    setUpdated(u => !u); // Toggle boolean state to trigger effect
-  }
-
-  // Typed function
-  function calculateScores(currentForm: FormState) { // Added type
-    setKlass(Object.entries(currentForm).reduce((m, [sectionId, section]) => {
-      const questionSection = questionsObj[sectionId]; // sectionId is string
-      const sectionState = section as FormOptionState; // Assert type for section
+const useCalculatorStore = create<CalculatorState>((set, get) => {
+  // Internal score calculation logic, moved into the store setup
+  const _calculateScores = (currentState: CalculatorState): Partial<CalculatorState> => {
+    const newScores = Object.entries(currentState.form).reduce((m, [sectionId, section]) => {
+      const questionSection = questionsObj[sectionId];
+      const sectionState = section as FormOptionState;
       if (questionSection?.opts) {
-        questionSection.opts.forEach(opt => { // opt is Option
-          if (sectionState[opt.k]) { // Access asserted type
+        questionSection.opts.forEach(opt => {
+          if (sectionState[opt.k]) {
             if (opt.classesFn) {
               // Pass copies to avoid direct state mutation if classesFn modifies them
-              opt.classesFn({...m}, {...currentForm});
+              // Note: classesFn might need adjustment if it relies on external state not in the store
+              opt.classesFn({...m}, {...currentState.form});
             } else if (opt.classes) {
-              // Ensure c is a valid ClassName before indexing m
               (Object.entries(opt.classes) as [ClassName, number][]).forEach(([c, pts]) => {
-                if (c in m) { // Type guard
+                if (c in m) {
                   m[c] = (m[c] || 0) + (pts || 0);
                 }
               });
@@ -232,18 +211,34 @@ const ClassCalculator = memo(() => {
         });
       }
       return m;
-    }, {
-      // Initial scores object with type
-      warrior: 0,
-      healer: 0,
-      rogue: 0,
-      mage: 0
-    } as KlassScores)); // Added type assertion
-  }
+    }, { warrior: 0, healer: 0, rogue: 0, mage: 0 } as KlassScores);
+    return { klassScores: newScores };
+  };
 
-  useEffect(() => {
-    calculateScores(form)
-  }, [updated, form])
+  return {
+    form: initialFormState(),
+    klassScores: { warrior: 0, healer: 0, rogue: 0, mage: 0 }, // Initial scores
+    _calculateScores: _calculateScores, // Expose for internal use if needed, though calculation happens in toggleOption
+
+    toggleOption: (questionKey, optionKey) => set(produce((draft: CalculatorState) => {
+      // Ensure the structure exists before toggling
+      if (!draft.form[questionKey]) {
+        draft.form[questionKey] = {};
+      }
+      draft.form[questionKey][optionKey] = !draft.form[questionKey][optionKey];
+      // Recalculate scores immediately after toggling an option
+      const newScoresState = _calculateScores(draft); // Calculate based on the draft state
+      draft.klassScores = newScoresState.klassScores!; // Update scores in the draft
+    })),
+  };
+});
+
+
+// --- React Component ---
+
+const ClassCalculator = memo(() => {
+  // Get state and actions from the Zustand store
+  const { form, klassScores, toggleOption } = useCalculatorStore();
 
   return <>
     <Row>
@@ -260,7 +255,7 @@ const ClassCalculator = memo(() => {
                   label={o.t}
                   value={o.k}
                   checked={form[q.k]?.[o.k] ?? false} // Use nullish coalescing for safer access
-                  onChange={setForm_(q.k, o.k)}
+                  onChange={() => toggleOption(q.k, o.k)} // Use store action
                 />
                 <Form.Text muted>{o.d}</Form.Text>
               </div>
@@ -272,10 +267,11 @@ const ClassCalculator = memo(() => {
         <Card style={{position: 'sticky', top: '1rem'}}> {/* Make results sticky */}
           <Card.Header>Results</Card.Header>
           <Card.Body>
-            <div>Mage: {klass.mage}</div>
-            <div>Warrior: {klass.warrior}</div>
-            <div>Rogue: {klass.rogue}</div>
-            <div>Healer: {klass.healer}</div>
+            {/* Display scores from store state */}
+            <div>Mage: {klassScores.mage}</div>
+            <div>Warrior: {klassScores.warrior}</div>
+            <div>Rogue: {klassScores.rogue}</div>
+            <div>Healer: {klassScores.healer}</div>
           </Card.Body>
         </Card>
       </Col>

@@ -8,6 +8,7 @@ import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
 import {TLDR} from '~/components/tldr'
 import {Link} from "react-router";
 import ClassCalculator from './calculator'
+import React from "react";
 
 export * from './meta.js'
 
@@ -278,13 +279,13 @@ export default function Body() {
     <ul>
       <li><b>Role-play:</b> You're a physical person; gym rat, construction worker, etc.</li>
       <li><b>In-game:</b> Deals boss damage, prevent dailies going too red.</li>
-      <li><b>Motivation:</b> Positive punishment (keeps reds at in check) and positive reinforcement (boss damage).</li>
+      <li><b>Motivation:</b> Primarily *Negative Reinforcement* (preventing Daily damage) and *Positive Punishment* (learning from consequences when damage occurs). Also benefits from Positive Reinforcement (dealing boss damage).</li>
     </ul>
     <h6>Healer</h6>
     <ul>
       <li><b>Role-play:</b> You're social, helper, shoulder to lean on.</li>
       <li><b>In-game:</b> Heals everyone (most essential class for bosses), protects against damage.</li>
-      <li><b>Motivation:</b> Positive punishment (defense & heal).</li>
+      <li><b>Motivation:</b> Primarily *Negative Reinforcement* (healing removes negative effects from the party).</li>
     </ul>
     <h6>Rogue</h6>
     <ul>
@@ -298,7 +299,6 @@ export default function Body() {
       <li><b>In-game:</b> Levels up the fastest. Then some strange other perks (the weirdest class).</li>
       <li><b>Motivation:</b> Negative punishment. They prevent streaks from being stolen; which streaks contribute to downstream bonuses.</li>
     </ul>
-    <hr />
     <p className="text-muted small">Parties most benefit with at least a healer and warrior. Rogues and mages are optional, if your party is small.</p>
     <ClassCalculator/>
 
