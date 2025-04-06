@@ -59,6 +59,6 @@ export function meta(props: Route.MetaArgs) {
   const p = props.data.meta
   return [
     { title: p.title },
-    { name: "description", content: p.teaser }
+    { name: "description", content: p.headTitle || p.teaser }
   ]
 }
