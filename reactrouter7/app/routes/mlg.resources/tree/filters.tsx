@@ -12,7 +12,6 @@ import Col_ from 'react-bootstrap/cjs/Col'
 const Col = Col_.default || Col_
 import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
-import map from "lodash/map";
 import {IconButton, sizes} from "~/components/icon-btn";
 import {useShallow} from "zustand/react/shallow";
 
@@ -77,14 +76,16 @@ function LearnStyle({k}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {map(f.opts, (v, opt_k) => <Option
-          key={opt_k}
-          opt={v}
-          active={active === opt_k}
-          select={select_(opt_k)}
-          setHelp={setHelp}
-          multi={false}
-        />)}
+        {Object.entries(f.opts || {}).map(([opt_k, v]) => (
+          <Option
+            key={opt_k}
+            opt={v}
+            active={active === opt_k}
+            select={select_(opt_k)}
+            setHelp={setHelp}
+            multi={false}
+          />
+        ))}
       </ButtonGroup>}
     </Card.Body>
     {show && <Card.Footer className='small'>{help || f.d}</Card.Footer>}
@@ -123,7 +124,7 @@ function Filter({k, section='filters'}) {
         {f.t}
       </Card.Subtitle>
       {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {map(f.opts, renderOpt)}
+        {Object.entries(f.opts || {}).map(([opt_k, v]) => renderOpt(v, opt_k))}
       </ButtonGroup>}
     </Card.Body>
     {show && <Card.Footer className='small'>{help || f.d}</Card.Footer>}

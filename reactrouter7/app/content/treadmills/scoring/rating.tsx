@@ -1,4 +1,3 @@
-import _sum from 'lodash/sum'
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
 
@@ -96,7 +95,7 @@ export const rating: ScoreFn = (row) => {
   // Apply the distribution factor with focus on 1-star skew
   let distributionFactor = 1.0;
   if (details.distribution.length === 5) {
-    const total = _sum(details.distribution);
+    const total = details.distribution.reduce((acc, val) => acc + val, 0);
     if (total > 0) {
       // Calculate percentages
       const percentages = details.distribution.map(count => (count / total) * 100);

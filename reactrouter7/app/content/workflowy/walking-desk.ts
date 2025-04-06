@@ -1,6 +1,5 @@
 import fs from 'fs'
 import xmlJs from 'xml-js'
-import reduce from 'lodash/reduce'
 import crypto from 'crypto'
 import {decode} from 'html-entities'
 const walkingDeskLinks = {};
@@ -46,12 +45,10 @@ function parseTree(tree) {
   //   v = v?.[0] || true
   //   return {...m, [k]: v}
   // }, {})
-  tags = reduce(tags, (m, tag) => {
-    return {
-      ...m,
-      [tag.substr(1)]: true
-    }
-  }, {})
+  tags = (tags || []).reduce((m, tag) => {
+    m[tag.substr(1)] = true;
+    return m;
+  }, {});
   text = text.replace(reTags, '').trim()
 
   let outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]

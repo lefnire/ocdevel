@@ -1,11 +1,6 @@
 import type {PickedBy, Product} from "./data/types";
 import type {Row} from './computed'
 import _get from 'lodash/get'
-import _keys from 'lodash/keys'
-import _uniq from 'lodash/uniq'
-import _flatten from 'lodash/flatten'
-import _reduce from 'lodash/reduce'
-import _isEmpty from 'lodash/isEmpty'
 import Badge from 'react-bootstrap/cjs/Badge';
 import {Affiliate} from "~/content/product-links";
 import {memo} from "react";
@@ -32,16 +27,16 @@ export const getCountryLink = (row: Product, countryCode: string): string | unde
 export const getCountryCodes = (row: Product, includeBrand=false): string[] => {
   // Define sources to extract country codes from
   const sources = [
-    _keys(row.links?.amazon || {}),
-    _keys(row.links?.brand || {}),
+    Object.keys(row.links?.amazon || {}),
+    Object.keys(row.links?.brand || {}),
   ];
   if (includeBrand) {
-    sources.push(_keys(row.brand?.links?.amazon || {}))
-    sources.push(_keys(row.brand?.links?.brand || {}))
+    sources.push(Object.keys(row.brand?.links?.amazon || {}))
+    sources.push(Object.keys(row.brand?.links?.brand || {}))
   }
 
   // Flatten all sources and get unique values
-  return _uniq(_flatten(sources));
+  return [...new Set(sources.flat())];
 };
 
 export const getPrice = (product: Product) => product.price.sale || product.price.value;
@@ -94,9 +89,9 @@ export function invertLinks(row: Product): LinksInverted {
   const brandLinks = row.brand?.links || { amazon: {}, brand: {} };
   
   // Create result object with all countries from the defined order
-  return _reduce(countries.order, (result, countryCode) => {
+  return countries.order.reduce((result, countryCode) => {
     // Get links for this country from all sources
-    const linksForCountry = _reduce(countries.buyOrder, (acc, site) => {
+    const linksForCountry = countries.buyOrder.reduce((acc, site) => {
       // Get links from product and brand
       const productLink = productLinks[site]?.[countryCode];
       const brandLink = brandLinks[site]?.[countryCode];
@@ -115,9 +110,9 @@ export function invertLinks(row: Product): LinksInverted {
     
     // Convert empty objects to false for cleaner representation
     result[countryCode] = {
-      product: _isEmpty(linksForCountry.product) ? false : linksForCountry.product,
-      brand: _isEmpty(linksForCountry.brand) ? false : linksForCountry.brand,
-      either: _isEmpty(linksForCountry.either) ? false : linksForCountry.either
+      product: Object.keys(linksForCountry.product).length === 0 ? false : linksForCountry.product,
+      brand: Object.keys(linksForCountry.brand).length === 0 ? false : linksForCountry.brand,
+      either: Object.keys(linksForCountry.either).length === 0 ? false : linksForCountry.either
     };
     
     return result;

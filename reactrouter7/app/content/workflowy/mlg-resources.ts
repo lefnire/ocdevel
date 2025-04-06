@@ -1,11 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import xmlJs from 'xml-js'
-import reduce from 'lodash/reduce'
 import crypto from 'crypto'
 import type {Filters, Resource, ResourcesTree} from './mlg-resources.types'
-import last from 'lodash/last'
-import find from 'lodash/find'
 
 // npm install -D marked dompurify jsdom
 import { marked } from 'marked';
@@ -78,14 +75,15 @@ async function parseTree({tree, opts, isLink}: ParseTree) {
   const id = crypto.createHash('md5').update(text).digest("hex")
 
   // pull out tags
-  tags = reduce(tags, (m,tag) => {
+  tags = (tags || []).reduce((m, tag) => {
     let [k, ...v] = tag.split(':')
     k = k.substr(1)
-    if (!~['mlg', 'mla'].indexOf(k)) {
+    if (!['mlg', 'mla'].includes(k)) { // Use includes for better readability
       v = v?.[0] || true
     }
-    return {...m, [k]: v}
-  }, {})
+    m[k] = v; // Directly modify accumulator for potentially better performance
+    return m;
+  }, {});
   text = text.replace(/\#\S+/g, '').trim()
 
   if (isLink) {

@@ -1,10 +1,8 @@
 import {useState, useMemo} from "react";
-import filter from 'lodash/filter'
 import Button, { type ButtonProps } from 'react-bootstrap/cjs/Button'
 import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
 import useStore from "./store";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import sortBy from "lodash/sortBy";
 
 import Teaser from './teaser';
 import {useShallow} from "zustand/react/shallow";
@@ -68,7 +66,13 @@ function FilterButtons ({podcastKey}: ComponentProps) {
 
 function EpisodeList({podcastKey, episodesList, show}: ComponentProps) {
   const sortedEps = useMemo(() => {
-    return sortBy(episodesList, e => e.created)
+    // Create a shallow copy before sorting to avoid mutating the original list
+    return [...episodesList].sort((a, b) => {
+      // Assuming 'created' is a comparable value (like Date or number)
+      const dateA = new Date(a.created);
+      const dateB = new Date(b.created);
+      return dateA.getTime() - dateB.getTime();
+    });
   }, [podcastKey])
 
   const [page, setPage] = useState(0)
@@ -81,10 +85,10 @@ function EpisodeList({podcastKey, episodesList, show}: ComponentProps) {
 
   const pageSize = 10
   let eps = newFirst ? sortedEps : sortedEps.slice().reverse()
-  eps = filter(eps, e => {
-    if (showMla && showMlg) {return true}
-    return showMla ? e.mla : showMlg ? e.mlg : false
-  })
+  eps = eps.filter(e => {
+    if (showMla && showMlg) { return true; }
+    return showMla ? e.mla : showMlg ? e.mlg : false;
+  });
   const fullLen = eps.length
   eps = eps.slice(0, (page+1)*pageSize)
   const hasMore = eps.length < fullLen

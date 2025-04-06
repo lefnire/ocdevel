@@ -13,9 +13,6 @@ import {FaGift} from '@react-icons/all-files/fa/FaGift'
 import {FaHatWizard} from '@react-icons/all-files/fa/FaHatWizard'
 import {FaPlusSquare} from '@react-icons/all-files/fa/FaPlusSquare'
 import {FaSwatchbook} from '@react-icons/all-files/fa/FaSwatchbook'
-import each from 'lodash/each'
-import keyBy from 'lodash/keyBy'
-import transform from 'lodash/transform'
 import {TLDR} from '~/components/tldr'
 import {Link} from "react-router";
 
@@ -127,28 +124,34 @@ const questions = [{
     t: "Role Play",
     d: "You like the idea of being in-game who you are IRL. A mage is a studier; a healer is a socialite or medical professional; a warrior is active; a rogue is independent.",
     classesFn: (m, form) => {
-      each(questionsObj.rp.opts, opt => {
-        if (form.rp[opt.k]) {
-          m[opt.k] += 1
+      (questionsObj.rp.opts || []).forEach(opt => {
+        if (form.rp?.[opt.k]) { // Added optional chaining for safety
+          m[opt.k] = (m[opt.k] || 0) + 1; // Ensure m[opt.k] exists and increment
         }
-      })
+      });
     }
   }]
 }]
 
 questions.forEach(q => {
-  q.optsObj = keyBy(q.opts, 'k')
+  q.optsObj = (q.opts || []).reduce((obj, item) => {
+    obj[item.k] = item;
+    return obj;
+  }, {});
 })
-const questionsObj = keyBy(questions, 'k')
+const questionsObj = questions.reduce((obj, item) => {
+  obj[item.k] = item;
+  return obj;
+}, {});
 
 function ClassCalculator() {
-  const [form, setForm] = useState(transform(questions, (m, section, sectionId) => {
-    m[section.k] = transform(section.opts, (m_, opt) => {
-      m_[opt.k] = false
-      return m_
-    }, {})
-    return m
-  }, {}))
+  const [form, setForm] = useState(() => questions.reduce((m, section) => {
+    m[section.k] = (section.opts || []).reduce((m_, opt) => {
+      m_[opt.k] = false;
+      return m_;
+    }, {});
+    return m;
+  }, {}));
   const [updated, setUpdated] = useState(true)
   const [klass, setKlass] = useState({mage: 1, warrior: 0, rogue: 0, healer: 0})
 
@@ -157,27 +160,29 @@ function ClassCalculator() {
     setUpdated(+new Date)
   }
 
-  function calculateScores(form) {
-    setKlass(transform(form, (m, section, sectionId) => {
-      const qo = questionsObj
-      qo[sectionId].opts.forEach(opt => {
-        if (section[opt.k]) {
-          if (opt.classesFn) {
-            opt.classesFn(m, form)
-          } else {
-            each(opt.classes, (pts, c) => {
-              m[c] += pts
-            })
+  function calculateScores(currentForm) { // Renamed form to currentForm to avoid shadowing
+    setKlass(Object.entries(currentForm).reduce((m, [sectionId, section]) => {
+      const questionSection = questionsObj[sectionId];
+      if (questionSection?.opts) { // Check if questionSection and opts exist
+        questionSection.opts.forEach(opt => {
+          if (section[opt.k]) {
+            if (opt.classesFn) {
+              opt.classesFn(m, currentForm);
+            } else if (opt.classes) { // Check if opt.classes exists
+              Object.entries(opt.classes).forEach(([c, pts]) => {
+                m[c] = (m[c] || 0) + (pts || 0); // Ensure m[c] and pts exist
+              });
+            }
           }
-        }
-      })
-      return m
+        });
+      }
+      return m;
     }, {
       warrior: 0,
       healer: 0,
       rogue: 0,
       mage: 0
-    }))
+    }));
   }
 
   useEffect(() => {
@@ -501,8 +506,8 @@ export default function Body() {
 
     <hr/>
 
-    <div className='mt-2'>Aside: besides gamifying life, my biggest life-hack is <Link to="/walk">walking
-      desks</Link>. Try it out!
+    <div className='mt-2'>Besides gamifying life, my biggest life-hack is a <Link to="/walk">walking
+      desk</Link>. Try it out!
     </div>
   </div>
 }

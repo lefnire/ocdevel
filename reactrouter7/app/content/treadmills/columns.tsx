@@ -16,7 +16,6 @@ import {
   countries,
   renderCountryLinks
 } from "./utils";
-import _sumBy from 'lodash/sumBy';
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
@@ -246,9 +245,9 @@ export const columnsArray: ColumnDefinition[] = [
       const bPick = row.brand.pickedBy
       const picks = {
         me: (rPick?.me ?? bPick?.me ?? 0) > 0,
-        trusted: _sumBy(rPick?.trusted || bPick?.trusted || [], "value") > 0,
-        websites: _sumBy(rPick?.websites || bPick?.websites || [], "value") > 0,
-        affiliate: _sumBy(rPick?.affiliate || bPick?.affiliate || [], "value") > 0,
+        trusted: (rPick?.trusted || bPick?.trusted || []).reduce((sum, item) => sum + (item?.value || 0), 0) > 0,
+        websites: (rPick?.websites || bPick?.websites || []).reduce((sum, item) => sum + (item?.value || 0), 0) > 0,
+        affiliate: (rPick?.affiliate || bPick?.affiliate || []).reduce((sum, item) => sum + (item?.value || 0), 0) > 0,
       }
       if (!(picks.me || picks.trusted || picks.websites || picks.affiliate)) return <></>;
 

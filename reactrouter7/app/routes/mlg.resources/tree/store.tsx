@@ -1,5 +1,4 @@
 import {create} from "zustand";
-import reduce from "lodash/reduce";
 import {filters as filters_} from "~/content/podcast/resources/filters";
 import {produce} from 'immer'
 
@@ -19,19 +18,18 @@ export const useStore = create((set, get) => ({
     })),
   },
 
-  filters: reduce(filters_, (m,v,k) => ({
-    ...m,
-
-    // initial filters - all true
-    [k]: reduce(v.opts, (m_,v_,k_) => ({
-      ...m_,
-      [k_]: true
-    }), {all: true}),
-
+  filters: Object.entries(filters_).reduce((m, [k, v]) => {
+    m[k] = Object.entries(v.opts || {}).reduce((m_, [k_, v_]) => {
+      m_[k_] = true;
+      return m_;
+    }, { all: true });
     // set_* actions for all filters (eg set_importance())
-    [`set_${k}`]: ([opt, v]) => set(produce(state => {
-      state.filters[k][opt] = v
-      state.filters[k].all = reduce(state.filters[k], (m, v) => m && v, true)
-    })),
-  }), {}),
+    // set_* actions for all filters (eg set_importance())
+    m[`set_${k}`] = ([opt, val]) => set(produce(state => { // Renamed v to val
+      state.filters[k][opt] = val;
+      // Check if all options *except* 'all' are true
+      state.filters[k].all = Object.entries(state.filters[k]).every(([key, value]) => key === 'all' || value);
+    }));
+    return m;
+  }, {}),
 }))

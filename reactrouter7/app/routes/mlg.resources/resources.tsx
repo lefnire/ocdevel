@@ -2,8 +2,6 @@ import {useStore} from "./tree/store";
 import {useContext} from "react";
 import {Branch} from "./tree/branch";
 import {ResourceCacheContext, ResourceCacheProvider} from "./tree/resource-cache";
-import compact from "lodash/compact";
-import reduce from "lodash/reduce";
 import {filterKeys} from "~/content/podcast/resources/filters";
 import {useShallow} from "zustand/react/shallow";
 import type {Resource, ResourcesTree} from '~/content/workflowy/mlg-resources.types'
@@ -42,7 +40,7 @@ function FilteredTree({top}: {top: ResourcesTree['top']}) {
     // section
     if (full.v?.length) {
       let v = full.v.map(({id}) => recurseTree(filters, learnStyles, id, section=section))
-      v = compact(v)
+      v = v.filter(Boolean)
       if (v.length === 0) {return null}
       return {id, v}
     }
@@ -57,10 +55,12 @@ function FilteredTree({top}: {top: ResourcesTree['top']}) {
       }
     }
 
-    const keep = reduce(filterKeys, (m, fk) => {
-      if (!full[fk]) {return m} // N/A attrs, like video2audio
-      return m && filters[fk][full[fk]]
-    }, true)
+    const keep = filterKeys.every(fk => {
+      // If the attribute doesn't exist on the node (like 'video2audio'), it doesn't fail the filter
+      if (!full.hasOwnProperty(fk)) { return true; }
+      // Otherwise, check if the node's value for this filter key is enabled in the filters
+      return filters[fk]?.[full[fk]];
+    });
     return keep ? {id} : null
   }
 

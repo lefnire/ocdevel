@@ -1,6 +1,4 @@
 import dayjs from 'dayjs'
-import _sumBy from 'lodash/sumBy'
-import _isUndefined from 'lodash/isUndefined'
 import {getCountryCodes, getPrice} from "../utils";
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
@@ -10,9 +8,9 @@ import { NA } from '../data/utils'; // <-- Import NA
 const scorePickedBy = (pickedBy: undefined | PickedBy) => {
   pickedBy = pickedBy || {}
   const me = (pickedBy?.me ?? 0) * 0.40
-  const trusted = _sumBy(pickedBy?.trusted ?? [], "value") * .40
-  const affiliate = _sumBy(pickedBy?.affiliate ?? [], "value") * .1
-  const websites = _sumBy(pickedBy?.websites ?? [], "value") * .1
+  const trusted = (pickedBy?.trusted ?? []).reduce((sum, item) => sum + (item?.value || 0), 0) * .40
+  const affiliate = (pickedBy?.affiliate ?? []).reduce((sum, item) => sum + (item?.value || 0), 0) * .1
+  const websites = (pickedBy?.websites ?? []).reduce((sum, item) => sum + (item?.value || 0), 0) * .1
   return me + trusted + websites + affiliate
 }
 export const brand: ScoreFn = (p) => {
@@ -23,7 +21,7 @@ export const brand: ScoreFn = (p) => {
 export const price: ScoreFn = (p) => {
   if (p.price?.rating) { return p.price.rating }
   const val = getPrice(p);
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // no easy guess
     return 5;
   }
@@ -49,7 +47,7 @@ export const weight: ScoreFn = (p) => {
   if (p.weight?.rating) { return p.weight.rating }
   const val = p.weight.value;
   if (val === NA) return 10; // N/A weight implies it's not a factor, treat as perfect? Or maybe 0? Let's assume 10 for now.
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // no easy guess
     return 5;
   }
@@ -66,7 +64,7 @@ export const maxWeight: ScoreFn = (p) => {
 
   const val = p.maxWeight.value;
   if (val === NA) return 10; // N/A maxWeight implies it's not a factor
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // typically 265
     return 5;
   }
@@ -84,7 +82,7 @@ export const maxSpeed: ScoreFn = (p) => {
   // Commonly 4.0, but often the unlisted / hidden ones turn out to be 3.8
   const val = p.maxSpeed.value;
   if (val === NA) return 10; // Explicitly handle NA as per walkolution2.tsx intent
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // if not advertised, typically lower than median (eg 3.8)
     return 4; // Keep existing fallback for undefined
   }
@@ -101,7 +99,7 @@ export const horsePower: ScoreFn = (p) => {
 
   const val = p.horsePower.value;
   if (val === NA) return 10; // Explicitly handle NA as per walkolution2.tsx intent
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // if not advertised, usually lower than median (eg 2.25).
     return 4; // Keep existing fallback for undefined
   }
@@ -122,7 +120,7 @@ export const age: ScoreFn = (p) => {
   if (p.age?.rating) { return p.age.rating }
 
   const val = p.age.value;
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // no easy guess
     return 5;
   }
@@ -156,7 +154,7 @@ export const decibels: ScoreFn = (p) => {
   if (p.decibels?.rating) { return p.decibels.rating }
   const val = p.decibels.value;
   if (val === NA) return 10; // N/A decibels implies silent (manual)
-  if (_isUndefined(val)) {
+  if (val === undefined) {
     // Typically 45-50
     return 5;
   }

@@ -1,4 +1,3 @@
-import _sortBy from 'lodash/sortBy';
 import type {Product} from "../data/types";
 import data from "../data";
 import {getPrice} from "../utils";
@@ -11,7 +10,7 @@ function getRangeFromVals(vals_: Array<number | undefined>) {
   ) as number[]
   const min = Math.min(...vals);
   const max = Math.max(...vals);
-  const median = _sortBy(vals)[Math.floor(vals.length / 2)];
+  const median = [...vals].sort((a, b) => a - b)[Math.floor(vals.length / 2)];
   return { min, max, median };
 }
 function getRangeFromFn(getterFn: (product: Product) => number | undefined) {

@@ -5,7 +5,6 @@ import type {FilterKey, Resource} from "~/content/workflowy/mlg-resources.types"
 import {Icon} from "~/routes/mlg.resources/tree/icon";
 import {filterKeys, filters} from "~/content/podcast/resources/filters";
 import {Link} from "react-router";
-import startsWith from "lodash/startsWith";
 import Table from "react-bootstrap/cjs/Table";
 import Alert from "react-bootstrap/cjs/Alert";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
@@ -77,7 +76,7 @@ const LeafExpanded = memo(({id}: {id: string}) => {
     }
     const txt = `${l.t} (${l.p})`
     // React doesn't allow key in the {...props} spread, have to pass explicitly
-    if (startsWith(l.l, '/')) {
+    if (l.l?.startsWith('/')) { // Added optional chaining for safety
       return <Link to={l.l} key={l.l} {...opts}>{txt}</Link>
     }
     return <a href={l.l} key={l.l} {...opts}>{txt}</a>
