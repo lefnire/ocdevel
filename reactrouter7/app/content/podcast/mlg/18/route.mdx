@@ -1,38 +1,73 @@
 export * from './meta.js'
 
-_Errata_: 22:21 "cat & car different by one word" should be "different by one letter"
+**Overview:**
+Natural Language Processing (NLP) is a subfield of machine learning that focuses on enabling computers to understand, interpret, and generate human language. It is a complex field that combines linguistics, computer science, and AI to process and analyze large amounts of natural language data.
 
-Syntax vs Semantics
+## NLP Structure
 
-Parts
-- Corpus
-- Lexicon
-- Morphology
-  - Lemmas & Stems (reduce morphological variation; lemmatization more sophisticated)
-  - Tokens
-  - Stop words
-  - Edit-distance
-  - Word sense disambiguation
+NLP is divided into three main tiers: parts, tasks, and goals.
 
-Syntax / Tasks
-- Info Extraction (POS, NER, Relationship extraction)
-- Parsing
+### 1. Parts
 
-Goals
-- Spell check
-- Classification
-  - Tagging (topic modeling / keyword extraction)
-  - Sentiment analysis
-- Search / relevance, document similarity
-- Natural language understanding
-  - Question answering
-  - Textual entailment
-  - Machine Translation (AI-complete)
-  - NLU vs NLP
-- Natural language generation
-  - Image captioning
-  - Chatbots
-  - Automatic summarization
-- Won't cover
-  - Optical character recognition (OCR)
-  - Speech (TTS, STT, Segmentation, Diarization)
+**Text Pre-processing:**
+
+- **Tokenization**: Splitting text into words or tokens.
+- **Stop Words Removal**: Eliminating common words that may not contribute to the meaning.
+- **Stemming and Lemmatization**: Reducing words to their root form.
+- **Edit Distance**: Measuring how different two words are, used in spelling correction.
+
+### 2. Tasks
+
+**Syntactic Analysis:**
+
+- **Part-of-Speech (POS) Tagging**: Identifying the grammatical roles of words in a sentence.
+- **Named Entity Recognition (NER)**: Identifying entities like names, dates, and locations.
+- **Syntax Tree Parsing**: Analyzing the sentence structure.
+- **Relationship Extraction**: Understanding relationships between entities in text.
+
+### 3. Goals
+
+**High-Level Applications:**
+
+- **Spell Checking**: Correcting spelling mistakes using edit distances and context.
+- **Document Classification**: Categorizing texts into predefined groups (e.g., spam detection).
+- **Sentiment Analysis**: Identifying emotions or sentiments from text.
+- **Search Engine Functionality**: Document relevance and similarity using algorithms like TF-IDF.
+- **Natural Language Understanding (NLU)**: Deciphering the meaning and intent behind sentences.
+- **Natural Language Generation (NLG)**: Creating text, including chatbots and automatic summarization.
+
+---
+
+## NLP Evolution and Algorithms
+
+**Evolution:**
+- **Early Rule-Based Systems**: Initially relied on hard-coded linguistic rules.
+- **Machine Learning Integration**: Transitioned to using algorithms that improved flexibility and accuracy.
+- **Deep Learning**: Utilizes neural networks like Recurrent Neural Networks (RNNs) for complex tasks such as machine translation and sentiment analysis.
+
+**Key Algorithms:**
+- **Naive Bayes**: Used for classification tasks.
+- **Hidden Markov Models (HMMs)**: Applied in POS tagging and speech recognition.
+- **Recurrent Neural Networks (RNNs)**: Effective for sequential data in tasks like language modeling and machine translation.
+
+---
+
+## Career and Market Relevance
+
+NLP offers robust career prospects as companies strive to implement technologies like chatbots, virtual assistants (e.g., Siri, Google Assistant), and personalized search experiences. It's integral to market leaders like Google, which relies on NLP for applications from search result ranking to understanding spoken queries.
+
+---
+
+## Resources for Learning NLP
+
+1. **Books:**
+   - "Speech and Language Processing" by Daniel Jurafsky and James Martin: A comprehensive textbook covering theoretical and practical aspects of NLP.
+
+2. **Online Courses:**
+   - Stanford's NLP YouTube Series by Daniel Jurafsky: Offers practical insights complementing the book.
+
+3. **Tools and Libraries:**
+   - **NLTK (Natural Language Toolkit):** A Python library for text processing, providing functionalities for tokenizing, parsing, and applying algorithms like Naive Bayes.
+   - **Alternatives:** OpenNLP, Stanford NLP, useful for specific shallow learning tasks, leading into deep learning frameworks like TensorFlow and PyTorch.
+
+NLP continues to evolve with applications expanding across AI, requiring collaboration with fields like speech processing and image recognition for tasks like OCR and contextual text understanding.

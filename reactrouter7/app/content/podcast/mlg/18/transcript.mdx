@@ -1,0 +1,278 @@
+[00:01:03] This is episode 18, natural Language Processing part one. In this episode, I'm going to talk about a subfield of machine learning called Natural Language Processing. N-L-P-N-L-P is a subfield of machine learning, and it is quite the rabbit hole.
+
+[00:01:26] I'm going to take you on an adventure away from machine learning proper. A specialization within machine learning. This is going to be a three part series. This first episode, I'm going to be describing the general topics in NLP. In the next episode, I'll talk about the shallow learning and traditional approaches to NLP, and in the third episode I'll talk about recurrent neural networks and word two ve.
+
+[00:01:49] That is the deep learning approach. State of the art in NLP. NLP is a microcosm of machine learning proper. It's its own world of machine learning algorithms. NLP uses maybe half traditional machine learning algorithms and then half of its own algorithms dedicated to its own field. So that's what I mean that I'm going to be taking you on a rabbit hole excursion away from machine learning proper, but now is as good a time as any to start thinking about specializing in machine learning.
+
+[00:02:21] You get to a point. In your machine learning career where you know the fundamentals of ml, the algorithms, the math, the general approaches, but in order to get anywhere in your career, you need to get really good at something specific In machine learning, there's the image guys, the reinforcement learning guys in game AI and self-driving cars, the time forecasting, people who do stock markets or weather forecasting, et cetera.
+
+[00:02:48] And there's the language people. Natural language processing is everything related to language in the domain of AI and machine learning, spoken word, written text, machine translation. If words are involved in any capacity. Natural language processing is what we're dealing with. And like I said, at some point you choose to specialize.
+
+[00:03:09] I kind of think of it like in an RPG, when you reach level 10, you have to choose, are you gonna be a maj healer, warrior, or rogue? Well, at level 10 in machine learning, once you've got your basic sound, you're gonna have to choose which specialty you want to go to in machine learning. So I personally actually attach RPG classes to these various specialties.
+
+[00:03:27] I think of. The time series people who work with time series forecasting, especially in the stock market as the rogues, right? Because it deals with money. I think of the reinforcement learning people who are dealing with action sequences like in game AI and self-driving cars, I think of them as warriors.
+
+[00:03:44] I. Because it goes well with my warrior defeating the dark Lord, analogy from a prior episode. I don't really have a good class for the image people, maybe hunters because they have to have good eyesight. I don't know. That's a poor analogy. But there's the image recognition camp people who are doing image classification and tagging LIDAR processing for self-driving cars.
+
+[00:04:03] And image related machine learning is especially popular today with the rise of virtual reality and augmented reality, being able to handle motion detection and room scale setups, as well as augmenting imagery onto real life objects, et cetera. And then natural language processing, I think of them as the magees.
+
+[00:04:21] The Wizards because MAs have to cast spells with language, right? With incantations, they cast spells, they read a lot of books. So I think of the MAs as the language people, natural language processing. And incidentally, it is NLP that I have personally chosen for my own career. I do want to promote NLP as a very viable career choice specialization in machine learning.
+
+[00:04:43] It just so happens that every machine learning interview I've had thus far has been NLP related. I don't know why they're not targeting me because of NLP in my resume, and I'm not targeting them because of NLP in the job descriptions. I think it just so happens that NLP is a very rich and promising ecosystem in machine learning in the job market today.
+
+[00:05:07] And if you think about it, it makes sense. There's so much value that can be had through natural language processing. Think about the very successful companies in machine learning out there and what they're working on today. Siri and Google Assistant. Those are natural language processing. You talk to it whether speech or text, and it responds to you after performing some action.
+
+[00:05:29] Advertisements are still one of the most profitable industries around Facebook. While that company is particularly good at image related tasks, such as facial recognition in image uploads. Still their bread and butter is advertisements. And how do you determine what advertisements to show your users by natural language processing on the things they write, the things people write to them, et cetera.
+
+[00:05:52] And of course, the granddaddy company of all natural language processing ever is Google everything Google does. Is NLP. When you perform a Google search, you ask it a query. It will find all related pages on the internet ranked by relevance to your query. If your query was constructed in question format, it'll literally answer your question a relatively new feature.
+
+[00:06:18] This card at the top of the search results will literally answer your question. If you Google some entity, an organization or a a person, it'll show you a bunch of information about that entity. On the right sidebar. If you Google Wikipedia, it'll show you a picture of their logo, when they were founded, where they're located, who their founders were, et cetera.
+
+[00:06:37] And the majority of revenue made at Google is by ads, advertisements relevant to the query you searched on, customized to your typical query history. Everything is language. Everything is NLP. So there's money, there's potential, and there's jobs. So I highly recommend considering NLP as your particular specialization within machine learning.
+
+[00:07:01] Okay, so let's talk about NLP as it is a microcosm of machine learning because NLP is a little bubble in machine learning. That looks in general like machine learning, where previously in the world of computing we programmed discreetly specific tasks once things started to get a little bit too complex.
+
+[00:07:22] For that, we had to enable the machine to learn how to generalize, to perform particular tasks, whether it's predictions or making actions. That's the same in the world of NLP. NLP started with linguistics. Linguistics is simply the study of language with grammatical structure, with what parts of speech words represent.
+
+[00:07:42] How semantics are pulled out of sentence structure. How certain things mean certain things. Linguistics, it's a study of language. It's been around forever. Well, natural language processing is computation on linguistics. Another word for natural language processing is computational linguistics. So at one point in time, the field of NLP.
+
+[00:08:02] Was specifically dedicated to encoding in the machine. All the rules of linguistics that we have Enumerated, hard coded. NLP version one was hard coding, grammatical structure, sentiment oriented words, parts of speech rules. Into a database or a spreadsheet or a tree, some sort of hard-coded system that will enable our algorithms to parse text as a result of it being hard coded.
+
+[00:08:30] NLP in its infancy was not considered a branch of machine learning. It was considered a branch of ai. Machine learning is a branch of ai and NLP was a branch of ai, so machine learning and NLP were siblings. Then machine learning started to entangle NLP with its roots. It started to contribute significantly to the performance and flexibility of the algorithms in the space of NLP.
+
+[00:08:57] So much so that one might be forgiven to say that NLP mostly consists of machine learning algorithms. There are of course constructs and data structures and tasks which we're trying to perform within NLP, which give it specificity and autonomy in a uniqueness of its own, where it's still its own field.
+
+[00:09:16] People can study linguistics, people can study NLP with. But anybody who's anybody in the world of NLP today is applying machine learning algorithms. To NLP. Another comparison I'm going to make to the microcosm of machine learning is that like machine learning where the world is now moving towards deep learning models, deep learning models, acting as one model to rule them all that can do sort of spring cleaning on all these dedicated to task machine learning models, improving the complexity and accuracy in certain circumstances.
+
+[00:09:48] NLP is doing the same. The current state of NLP. Is a myriad of shallow learning machine learning models, and the cutting edge of NLP is deep learning. Specifically an algorithm we're gonna cover in the third part of this series called a Recurrent neural Network, augmented by way of something called Word to ve.
+
+[00:10:08] Deep Learning and Deep learning. And what those models give us is one more complex and flexible. Systems for text parsing, but two, one model that can handle so many tasks that previously required dedicated models within the world of natural language processing. So we'll talk about deep learning in the third episode, but in that way, you can see NLP is both a branch of machine learning and in its own way.
+
+[00:10:32] Autonomously as its own agent. It has gone through sort of the same growing pains and experiences that machine learning proper has gone through. And in that way it's also a microcosm of machine learning. So like I said, in this episode, I'm just going to talk about the general. Goals and tasks and parts of NLP.
+
+[00:10:53] I'm not going to be talking about algorithms. That'll be for the next episode, but I want to introduce you to the space and motivate the different types of things you can be applying NLP to now. Like I said, simplistically, you can just think of NLP as anything related to language, text, spoken word, anything.
+
+[00:11:10] If it has to do with language, it's NLP. Now, what makes NLP special compared to other fields in machine learning? Is that we are dealing with text. Machine learning wants to work on math, on numbers. Text is not numbers, and so NLP has constructs for converting text to numbers or handling texts in some bag of words, model, et cetera.
+
+[00:11:32] That's what makes it unique compared to other machine learning systems. Another thing that makes NLP unique is that is sequence based. Sentences are word, word, word, word, word. Where words can modify each other, and grammatical structure influences the meaning of the overall sentence. So the models that we'll be using in NLP are sequence based models or time series based models.
+
+[00:11:55] If you recall from a prior episode, what's a good algorithm for time series based stuff? Markoff chains. We'll get into that in the next episode with hidden markoff models. Now, even though I'm not going to be discussing algorithms in this episode, I'll just name drop algorithms as I go through some of these parts.
+
+[00:12:11] I find that helpful. It's kind of like reading chapter headers of a textbook, knowing what you're getting yourself into. So, NLPI like to break it down into three, three layers, three tiers. This is not something that exists in NLP. I've never seen it presented this way. This is just a Tyler thing. At the top level, we have goals, like large tasks that we're trying to perform, very high level, very lofty, big things that we're trying to do, like machine translation or answering questions.
+
+[00:12:40] The big stuff below that are sort of medium level tasks, so I call it tasks that are essential in order to achieve our goals. Things like teasing apart the sentence structure of the text that's called parsing. Syntax Tree parsing or figuring out what role each word plays in a sentence that's called part of speech tagging or figuring out which components of this sentence are important for our particular task, pulling out.
+
+[00:13:12] Names of people or dates or things. This is called named entity recognition. So these medium level tasks are essential to accomplish our lofty goals. So we have goals and we have tasks underneath that, and then we have parts, and I just consider these. The sort of text, pre-processing the little bits, odds and ends that you just have to do and get over with things like tokenization, where you have a document, a list of words, and you have to chop it up into all the words.
+
+[00:13:42] You have to turn it into a list of words or lower casing, all of those words. If you're gonna do a Google search query, well, you probably don't want the capitalization that the user put into the query to matter or the capitalization as it exists in webpages to matter. You'll probably lowercase their search query, lowercase the documents.
+
+[00:13:59] You can do easier matching. And another thing we'll talk about in a bit called dramatization and stemming where you turn something like the word hunting, hunted, hunter, et cetera, into just the word hunt. So that if a document has a word that is important to you, but not in the morphological construct that is presented, it's still counts.
+
+[00:14:18] So these parts, this lowest level tier of NLP is, is just basically this text pre-processing. So I'm going to talk about these three tiers, Indi, individually, but before we get into that, I want to talk about a very important distinction between two words. One is syntax, and the other is semantics. Syntax and semantics.
+
+[00:14:39] It's an important distinction to have in your mind no matter what walk of life. It doesn't have to be NLP. So maybe this definition will help you. Outside of this podcast. Syntax is sentence structure. Simple as that. Syntax is the structure of the language as it is presented. It's gonna be like parts of speech, so what role each word plays, whether it's a noun, verb, adverb, et cetera.
+
+[00:15:01] Parts of speech syntax, tree parsing, so part of speech constituents, so like a noun phrase or morphological presentation of a word. So does the word start with an uppercase or ization and stemming and all these things. So it's basically just the structure of text. Syntax. Semantics is the meaning of text, the meaning, the fundamental takeaway after you read a sentence.
+
+[00:15:29] So semantics is important, especially for our high level goals of machine translation. For example, machine translation can't just work on syntax. As you'll see when we talk about machine translation, you have to be able to encode what's being said in some fundamental way in on the computer so that it can be decoded into the intent in the other language, or when we get to the NLP Deep Learning episode.
+
+[00:15:57] This thing called word to vek is basically building a dictionary of words as they relate to each other contextually. It's really like building up the meaning of words and a dictionary, not just a list of words, a bag of words they call it, not just a list of words. With nothing attached to them. No. They come with some sort of meaning attached to them in a fundamental way.
+
+[00:16:19] So syntax is grammatical structure, sentence structure, phrase, structure, even word structure. And semantics is meaning the important fundamental takeaway from a word. Or a sentence or a document, syntax versus semantics, and you'll see those are sort of categories of different types of tasks that we'll be performing.
+
+[00:16:42] Okay. Parts are the low level stuff like text, pre-processing tasks, or like that middle level of stuff. Which is basically syntactic parsing of words and sentences and goals are the high level, big things that we're trying to achieve, like machine translation or search engines, et cetera. So let's start with parts.
+
+[00:17:02] We're now beginning our lesson on NLPA document is just a blob of text, whether it's a sentence or a paragraph, or a chapter or a book. However you want to define a document, a blob of text. A corpus is a list of documents, so. When we're working with natural language processing, there are very popular corpora, which is the plural of corpus.
+
+[00:17:30] There are very popular corpora out there. One is called the pen tree bank, where basically anything with pen, the word pen in it, PENN stands for Pennsylvania as in the University of Pennsylvania. UPenn is a significant contributor to the world of NLP. And they've built a lot of URA lists of documents out there for use in training our models in NLP.
+
+[00:17:54] So one corpus might be a list of news articles, and you can use that for detecting something about news. Another corpus might be a list of documents, which is really useful for learning how to parse syntax structure from sentences for one reason or another. Maybe they're examples of very easy. Pars trees mixed with examples of very complex pars trees, et cetera.
+
+[00:18:20] That one in particular is the pen tree bank, so a corpus is a list of documents which may be useful for some learning process in our NLP endeavors. Okay. We have a corpus, a list of documents. We have a document, any text blob you want, whether it's sentence or paragraph, chapter, book, et cetera. And then every document is composed of words.
+
+[00:18:41] We call every word a token. A token. A token is a little bit more complex than just a word. A token can include smiley faces or punctuation or anything like that. If some individual component of your document is important and can play as a contributor to parsing or text, then we will use it as a token.
+
+[00:19:02] So simplistically, you can think of tokens as just words more complex than that. It can actually be any number of things like punctuation and smiley faces in other bits. So URA have documents, documents have tokens, and then we will operate on these tokens in any number of ways. For example, in pre-processing our documents for use in our machine learning models, we may want to remove junk garbage.
+
+[00:19:28] We call these stop words. Words like of, and uh, the, these are words that are so frequent, they're kind of grammatical fillers. They play an important role in grammar. And if you're doing very complex machine learning tasks, which indeed depend on grammatical structure, then you do want these around. But if you're doing very simple tasks, which simply depend on.
+
+[00:19:53] The words in the document, let's say you're doing a search query and you just wanna find documents that have a high score, high rank as it pertains to the words in your query. Then you don't care about these stop words. So one pre-processing step might be to throw away stop words, makes your machine learning algorithm run a little bit faster because you have less data you have to work on.
+
+[00:20:15] Another thing you can do with tokens is reduce them morphologically. Reduce morphological variation. So morphology is the structure of a word, whether it has a uppercase in the front or what affixes it has, whether it's ING or Ed, past, present, future tense, stuff like this. So the structure of a word is its morphology and you can reduce.
+
+[00:20:44] It's morphology by removing some stuff. Let's say you want to remove ING or ED or any of those things to reduce all words that have past, present, future tense, whatever, into just, its one base word. It's stem, it's called. It's, so this process is called stemming. So, like I said previously, if I'm doing a Google search query and I'm looking for hunting equipment or when is hunting season or something like that, well Google probably wants to reduce any variation of hunt, whether it's past, present, future tenses into just the base word hunt.
+
+[00:21:19] So it'll chop off the end of both. The words and documents that it is querying against. And my query, I don't think it actually does this, but this is just an example. So that's the stem. The stem is the core of the word. By removing the thing that can make it vary from tense to tense or whatever, I. A very similar concept to stems and stemming are LEMAs and ization, L-E-M-M-A, lema.
+
+[00:21:47] Now for the purposes of this podcast episode, you can think of them as identical. A stem is the same thing as a lema. Stemming is the same thing as ization. They're different, um, stemming as, as far as I understand it is a little bit more of a willy-nilly but fast action where ization actually works a little bit more on the semantics of a word in order to find the pure root of a word rather than chopping off the end.
+
+[00:22:15] So I, the way I understand it, and I could be wrong, is that ization is a more. Pure, sophisticated, but computationally expensive version of stemming so stems and dilemmas. Then within the world of tokens, we have another thing called edit distance. Now we're getting a little bit into the territory of algorithms.
+
+[00:22:34] Machine learning algorithms edit distance is how different two words are from each other. So let's say cat and car. They're different by one word, so in a simple way you can consider them. An edit distance of one. So you might use edit distance, for example, in spell checking or spelling correction. Or Google might use edit distance in suggesting a word where you misspelled it.
+
+[00:23:02] Okay, so that's just a list of these little small bits, odds, and ends of NLP. We've got corpora, which is lists of documents that are sort of related to each other in some way. Maybe it's about, maybe one corpus is about news. Another corpus is a list of books that are public domain, like Moby Dick, and anything by Shakespeare, et cetera.
+
+[00:23:24] Another corpus may be a whole bunch of chat room archives. So corpora are lists of documents. Documents are just text blobs. Documents contain tokens, which are words and punctuation and other things, and you can operate on tokens in order to change their morphology in whatever way suits your needs for your machine learning tasks, whether it's dramatization or stemming, removing stop words, et cetera.
+
+[00:23:52] Okay, now we move up the ladder. We were at the bottom working with text, pre-processing. Now we're moving up the ladder to this middle tier I call tasks, where we're operating on structure, on sentence structure using machine learning algorithms. At last, we were using machine learning algorithms, and these tasks primarily relate to syntax, simply working with grammatical structure of sentences.
+
+[00:24:20] And like I said, these tasks will feed into the ultimate goals, the high level goals of of NLP. So on this level we have a subcategory called information extraction. Information extraction, extracting information from the sentence structure. One such information that we could extract is called parts of speech.
+
+[00:24:42] POS part of speech. Tagging parts of speech are the roles that individual words play. Within a sentence, so nouns, verbs, adjectives, et cetera. Very simple. I'm sure you understand this right out of the get go. Now, part of speech tagging is simple to understand conceptually, but can get quite complex when a computer has to do the task of part of speech tagging.
+
+[00:25:10] And so we use machine learning algorithms such as hidden markoff models. And maximum entropy models. We'll discuss these in the next episode in order to automate part of speech tagging POS, part of speech tagging. Another type of information extraction is relationship extraction. Let's say we have a sentence like Apple was invented by Steve Jobs.
+
+[00:25:33] We have a relationship there. We have Steve Jobs. Inventing Apple. So we would have a relationship where invents is sort of like a method name, and then it takes, in parentheses two arguments, one being Steve Jobs and the other being Apple. So relationship extraction can extract within a sentence what things relate to other things and how.
+
+[00:25:53] Another very important piece of information extraction is called, named entity recognition. NER named Entity Recognition, and this is actually a very, very important piece of NLPI used NER pretty heavily at my last job In N-L-P-N-E-R is vital for things like chatbots, Siri, Google Assistant, et cetera.
+
+[00:26:18] What NER does is it looks at your sentence. And it picks out salient parts, things that you're interested in. So if you ask Siri, add lunch with John to my calendar on May 15th. It'll read the sentence and it'll figure out who, what, when, where. It'll pick out the important parts. Lunch, John May 15th. Okay, so those are entities in the sentence.
+
+[00:26:44] Lunch, John and May 15th, and then it will name those entities. Lunch is what? Okay, so the, what name goes to lunch? Who is John and when is May 15th, and then NER typically also corresponds with another bit, which is intent extraction. So we pull out of that, the intent being adding something to a calendar.
+
+[00:27:09] So we're talking to Siri. I push a button and I verbally say to Siri, add lunch with John on my calendar for May 15th. It goes, beep. It translates speech to text. That's a whole other piece of NLP speech to text. It parses the sentence. It may use part of speech tagging combined with syntax tree parsing, et cetera.
+
+[00:27:32] In order to perform a slightly higher goal of named entity recognition, NER performs the task of pulling out of that sentence pieces that are important in order to perform an action. It pulls out an intent that is the action, that is add something to a calendar. So add to calendar. Is the intent. It's like a method name, open parentheses, and then it passes.
+
+[00:27:57] In these arguments, these named entities lunch, John May 15th, close parentheses, executes the action. Bam. So named entity recognition is, is a vital piece of an LP parsing, specifically syntax tree parsing, parsing, teases out of a sentence. The structure of the sentence, the overall structure of the sentence, it is very related to part of speech tagging.
+
+[00:28:25] Part of speech tagging is figuring out which role each individual word plays, noun, verb, adjective, well parsing. I. Does the same thing, but with larger chunks. These are called constituents and it builds it into a tree. So at the highest level you have a sentence and you break that down. Maybe over on the left we have a noun phrase, and on the right we have a verb phrase.
+
+[00:28:50] The boy with blonde hair jumped into the water. On the left we have the noun phrase, being the boy with blonde hair. And then on the right we have the verb phrase being jumped into the water, and then you can break those down. On the left we have the boy with blonde hair. Okay, so boy is a noun and with blonde hair is a.
+
+[00:29:11] Prepositional phrase, and you can just keep breaking these sentences down in a hierarchical format in a tree structure until we eventually get to POS part of speech tagging. So parsing is a hierarchical structural. Grammatical approach, a higher level approach. And POS part of speech tagging is a low level approach.
+
+[00:29:36] Word, word, word. Whereas parsing is a tree structure, grammatical parsing of a sentence. Okay. So those are all the things that I consider tasks. And of course, these tasks are based on the parts in order to perform POS part of speech tagging or NER, named entity recognition or relationship extraction. Or parsing.
+
+[00:29:57] We first have to pre-process our text by feeding into it a corpus or a document, tokenizing that document stemming or limitizing those tokens, removing stop words, et cetera. Okay, now we move up the ladder to the top. The high level lofty goals of NLP, the reason for which we have the tasks below. Let's start with a simple example of an ultimate goal of NLP.
+
+[00:30:23] Spell checking and spelling correction. A pretty solved task if you ask me. I mean, we've had spell check since Microsoft Word of the 1990s. Spell check may depend on grammatical structure in order to determine what is the most likely word you're dealing with, but you can easily think of spellcheck as simply working with edit distance.
+
+[00:30:48] That I mentioned before, CAK, cac, well, maybe you meant to say car or cat. Find some word, which is of minimal edit distance than what the user intended to write. And in addition of car or cat, which is the most likely word the user intended, given the sentence they've written thus far. So spell checking is maybe a simple goal.
+
+[00:31:14] How about another one? Classification text classification. We've already talked about text classification with classifying emails as either spam or not spam. That is a binary classification task, and remember. The machine learning algorithm we use, there is Naive bays. Indeed. Naive bays is a very popular algorithm used in the world of NLP as we'll get to in the next episode.
+
+[00:31:44] So we've already talked about classification and you already understand basically what classification is all about. You have a document and you're trying to classify it as this, that, or the other thing related to classification, or I might even put it. Under classification is sentiment analysis.
+
+[00:32:02] Determining whether what's being expressed in a document is positive or negative, or maybe even more complex. You might break it down into all the rainbow of emotions that can be experienced, angry, sad, happy, nervous, scared, et cetera, for the most part. Applications of sentiment analysis in the real world tend to be relegated to positive and negative emotion.
+
+[00:32:27] Common use cases of sentiment analysis are determining whether movie reviews are positive or negative, so you can come up with the overall. Sentiment about a movie. Maybe you'll scrape these all from Twitter and Facebook, et cetera. Maybe you don't have at your disposal necessarily star ratings. Well, sentiment and analysis can be a little bit more complex than you think.
+
+[00:32:50] Sarcasm can exist in a sentence which could turn the apparent sentiment of what's being said upside down, or certain words, which would. Usually be associated with positivity, like fantastic or excellent can be modified to flip the sentiment being expressed. That movie was fantastically horrid. That movie was not excellent.
+
+[00:33:17] Sentiment analysis is used for determining. Overall sentiment towards a product or, or a company or other such things. There are high frequency trading algorithms out there, which parse the fire hose of social media in order to determine the overall sentiment towards a product in order to decide whether to invest in that product.
+
+[00:33:42] It's very interesting. So sentiment analysis has very high value in businesses now. Sentiment analysis. Showcases very effectively the growing history of NLP in general. In the past, like I said, NLP was primarily based on hard-coded rules pulled from the history of linguistics. So we might just simply look for words like excellent or bad or horrible or happy or wonderful, but like I said, sarcasm or modifier words might muck that up.
+
+[00:34:13] So then we move on to machine learning. We move from. We move from hard coded systems to machine learning systems like naive bays and and bag of word approaches. Those get us closer to the goal, but they still have problems. We still have not overcome sarcasm or modifiers. We may encode in the system that words like not preceding an emotive word, would actually then become one word, not underscore good.
+
+[00:34:42] But that still feels a little bit handholding, feature engineering, and we have to sort of know all of the feature engineering that needs to take place in order to work with these documents. So state of the art and sentiment analysis has moved us towards deep learning. Deep learning uses things like recurrent neural networks, which will read the sentence left to right and sort of keep a running tally.
+
+[00:35:08] Accounting for modifier words and sarcasm and all those things while still learning to look for salient words and patterns in sentences. Sentiment analysis, very important. Pretty complex, lots of machine learning algorithms used here. Varying from SVMs support vector machines, hidden markoff models, naive bays, recurrent neural networks.
+
+[00:35:33] We'll talk about all that later. Another category of classification, document classification is tagging documents. Now this is different from classifying documents. Classifying documents is giving it one class in any number of classes. It could either be a binary classification in the case of spam detection, or it can be multinomial classification.
+
+[00:35:54] In the case of sentiment analysis. But tagging, alternatively known as topic modeling or keyword extraction, is actually figuring out what keywords to apply to this document. And it could be any number of keywords. So if we're looking at some programming blog post on the internet, it might be talking about node js.
+
+[00:36:17] And React. And React Native and Postgres and all these things. So it's going to learn to tag this document with all of these tags. That's the way I think of topic modeling is the machine learning approach to automatically tagging blog posts, which you see all over the internet, already have tags. Those are manually tagged.
+
+[00:36:37] Well, in certain instances, we don't have the luxury of manual tagging. Maybe we're scraping documents from some corpus. And we want to automatically tag them so that we can present that as a library of documents that people can sift through by category. The common algorithm used there is latent Dear Le allocation, LDA.
+
+[00:36:58] Okay. Another lofty goal of NLP is search search engines, finding relevant documents, so document relevance as well as document similarity. How similar are. Documents to each other. So search is really obvious. You type in a query and it finds relevant documents. A popular algorithm used here is called T-F-I-D-F, term frequency inverse Document Frequency and document similarity is all about how similar one document is to another.
+
+[00:37:30] So for example. In a recent Kegel competition, remember, Kegel is a competition board of machine learning tasks where a team of machine learning programmers can compete with another team and maybe earn a cash prize or employment opportunity, et cetera. A recent competition posted by Cora, the website Quora, Q-U-O-R-A, which is a question answer website, similar to Stack Overflow and the like, posted a competition like this.
+
+[00:37:59] When a user is asking a question, they're typing in a title, and they're typing in a description with their question on the Quora website. They want to be able to find similar documents automatically and present those in a list format on the right, in a sidebar so that a user can see if their specific question has, has already been asked and answered in the past, so they're not submitting a duplicate question.
+
+[00:38:24] So that's the task of document similarity. And again, a common algorithm here would be TF IDF. All right, let's get a little bit deeper. Let's talk about natural language understanding now, natural language understanding or NLU. By comparison to natural language processing, the general field of NLP that we've been talking about thus far, the subfield within machine learning of everything related to language, that's NLP.
+
+[00:38:55] Natural language understanding is pulling out of what's being said in a sentence. The semantics. Now we have semantics pulling out the meaning. The intent of a sentence, if somebody asks a question, you have to have natural language understanding in order to answer the question. Or like I said, in the case of machine translation, you have to understand the embedding or the encoding, the overall intent of a sentence in English in order to translate it.
+
+[00:39:29] To its equivalence in Spanish. So natural language understanding, or NLU is all the tasks of NLP that require a fundamental understanding of the sentence or the word at play. So common tasks within natural language understanding, like I said, question answering. So Siri and Google's assistant, they answer questions.
+
+[00:39:55] If you ask it a question, it will answer. And like I said before, if you type in a Google search query in the form of a question, it will actually answer your question. That's obviously a, an extremely difficult task in NLP. I actually don't know the algorithms at play here. I'm gonna try to do some research before my next episode to see if I can address what's used state of the art in the field of question answering.
+
+[00:40:22] It's, I mean, it's obviously a very difficult task, but it requires natural language understanding. Another thing is textual entailment. That's an interesting problem is if I say one thing, does it imply another thing? If you read some bit about Donald Trump winning the presidential election of, and then you ask the system a question.
+
+[00:40:42] Is Donald Trump the president? It should know the answer is yes because it can do some sort of processing about the parts of the facts it already knows in order to address the question that's being asked. It's related to question answering. It has a lot to do with logic, textual, entailment. And finally, of course, machine translation.
+
+[00:41:02] Machine translation, they call this AI complete. It's an interesting phrase, AI complete. What it means is this task machine translation. Requires all the pieces of AI to work. In other words, once you've achieved perfect machine translation, one maybe could say you've achieved ai. Well, if you ask me, we've got some darn good machine translation systems out there by Google State-of-the-Art, I believe they use recurrent neural networks.
+
+[00:41:33] So have we achieved ai? Well, it's always a moving target. I'm sure somebody's out there saying, no, no, no. But traditionally, they've always considered machine translation to be an AI complete problem requiring all of the pieces of AI to work completely, at least within the space of. NLP Machine translation requires a lot of pieces, a lot of components.
+
+[00:41:57] We require parsing. We require POS. We require a handful of algorithms like HMS and naive bays, and we've got to encode the meaning and intent of what was said on the left hand side. So that we can translate it into something on the right hand side, translate English to Spanish. Machine translation is also an excellent example of the power of deep learning because like I said, in shallow learning approaches, we use gobs and gobs of algorithms where in deep learning approaches, you can use one algorithm like the mighty recurrent neural network, which gives you increased simplicity, elegance, and yay, even accuracy.
+
+[00:42:40] Next up we have natural language generation, so this is actually generating text. We're not just parsing text, we're not inputting text only. We can also output text. Now, of course, natural language generation machine translation would be one of those examples. Another example would be chatbot. Chatbots holding a conversation with you, Siri, and Google Assistant chatbots.
+
+[00:43:06] Use any number of components within NLP, like NER. For example, a very simplistic chat bot might take what you said, compare it to a database of conversations and find the most probable. Response utterance, entire sentence to throw back at you. Okay. You say a sentence, and within the database of conversations it has, at its disposal, it finds the most probable sentence, full sentence.
+
+[00:43:38] To throw back at you. That's a simple chat bot. A cool and complex chat bot will actually generate a sentence word for word. It won't just throw at you a sentence in the database. It will encode what you said using natural language, understanding, and then decode word by word, a probable response using proper natural language generation.
+
+[00:44:03] So chatbots are very fun to work with. There is a, a huge uptick in chatbots in the world today. I'm sure you've noticed companies are going chatbot wild. There's this push towards a concept called UI free, or no UI or no ux, any number of things that they're, what they're trying to say is companies are trying to build a chat bot.
+
+[00:44:27] And so that you're interacting with the chat bot either verbally or on your keyboard, and the chat bot is so good at performing actions that you don't need menus and buttons and sliders and toggles. You don't need a good ux. You don't need a UX at all. All you need is a chatbot. Siri is a push towards this direction.
+
+[00:44:47] So this is kind of the zeitgeist of NLP in today's generation is chatbots. I think they're kind of funny. You know, I, I think a properly done. User experience is going to allow users to perform actions so much faster than typing a bunch of texts on a keyboard. So I don't know how this chat bot craze is gonna pan out, whether it's gonna be a bubble or whether it's gonna be successful.
+
+[00:45:13] We'll see. Another application of natural language generation is image captioning. Now we're bordering between the image people and the natural language people. We're combining our efforts in order to perform a combined task of image captioning. And so you see this from time to time. I don't remember if Facebook can caption images for accessibility purposes for blind users.
+
+[00:45:39] And I don't remember who's doing this, but there's, there's somebody auto captioning images for accessibility. On the reverse. Google is translating search queries into the images they represent. And if you actually use. Google photos, you can search in your own search box on your phone, some phrase, and it will actually bring up for you images that look like that phrase.
+
+[00:46:01] It's pretty cool. So image captioning and image searching. They're kind of the reverse of each other, but image captionings an example of natural language generation where you feed it an image and it actually describes the image word by word. Automatic summarization. This is a very useful and powerful task.
+
+[00:46:23] Also very difficult. An example of automatic summarization in use today is summarizing legalese, summarizing legal documents. So for example, how cool would it be? If a website with a privacy policy or a terms of use contract, I mean, nobody reads those things. Half of the people don't read them because they just don't care.
+
+[00:46:43] Sure, whatever. Let me sign up for the service. But maybe the other half wants to read these documents, but they're so long and they just don't have the time to read every privacy policy. And terms of service under the sun. Well, a, a good automatic summarizer might be able to boil down a privacy policy into the most important bits, sort of a reader's digest, or an abstract of a privacy policy.
+
+[00:47:09] Automatic summarization is in use today in summarizing actual legal documents for legal purposes. I believe Google when they answer your question. At the top of the search results uses automatic summarizes. It figures out how to summarize an answer to your question without showing you too much text all at once.
+
+[00:47:29] Natural language generation. Okay, some other odds and ends. I'm not gonna really cover the algorithms at play. Optical character recognition or OCR. Is being able to convert a scanned document from a physical book or a physical paper into digital format. Now, of course, the primary algorithm at play of an optical character recognition system is gonna be the convolutional neural network, the CNN or connet, an algorithm we're going to discuss when we talk about image recognition.
+
+[00:48:02] The primary algorithm of image recognition is the connet, so of course that's going to be at play in converting. The image into digital format, but certain letters may be incorrectly translated, and so NLP will come into play in order to figure out maybe in one word or given the sentence thus far, what is the most likely letter for this mistake?
+
+[00:48:28] So OCR is another example of a marriage between the image people and the language people. And then of course we have speech. Speech a whole other ballgame. We have speech to text. Text to speech. When you talk to Siri verbally, it converts what you said verbally to text because Siri reads from text and then Siri responds to your query with text and your phone reads that back to you with speech.
+
+[00:49:00] So converting from speech to text and back is a whole world of its own where you have to analyze wave frequency and structure of audio files and all those things. We're not gonna talk about speech, but just a couple buzzwords for you there. Segmentation. Is figuring out how to chunk a audio file, maybe segmentation into sentences, for example.
+
+[00:49:25] And another thing is called Diarization, D-I-A-R-I-Z-A-T-I-O-N, diarization. And the goal of Diarization is to figure out in an audio file, let's say we have a conversation between. One person and another person A, a customer service representative and a customer, or even a dialogue between multiple parties.
+
+[00:49:49] A recording of a company meeting diarization is all about separating the audio file into the speakers. So speaker A said the following chunk, speaker B said the following chunk, speaker A, again saying the following chunk. So that's called diarization. So speech is a whole world of its own involving audio processing, which I know nothing about, and so I won't be talking about in this podcast.
+
+[00:50:16] Okay. A giant lay of the land of NLP. We went from the bottom where we talked about little odds and ends, like corpora, and documents and tokens, how to operate on tokens like ization and stemming, removing stop words, finding words, similarity with. Edit distance. We talked about syntax and semantics. Syntax being parsing sentence structure such as part of speech tagging, relationship extraction, and syntax tree parsing.
+
+[00:50:47] Those are all in that middle tier. According to the Tyler. Three parter, parts, tasks, and goals. Semantics. Is all about word meaning sentence, meaning document meaning, et cetera, pulling the underlying meaning of a word, whether it's contextual similarity, in the case of word tove that we're gonna talk about in the third part of this series.
+
+[00:51:09] Document similarity using TF IDF, et cetera. So we had that second tier of tasks primarily relating to syntax. Parsing. That includes information extraction such as P-O-S-N-E-R, that's part of speech tagging named entity recognition and relationship extraction, as well as syntax tree parsing. Then we go to our third tier of the lofty goals of NLP, such as spelling checking and correction, document classification, as well as document sentiment analysis and tagging, or topic modeling or keyword extraction.
+
+[00:51:46] Classification. Search document relevance. Document similarity, natural language, understanding tasks like question answering, textual, entailment, machine translation, natural language generation, such as image captioning, chatbots, and automatic summarization and OCR and speech. In the next episode, I'll talk about the algorithms.
+
+[00:52:11] But if you want to get started on that before that episode comes out, I'm going to talk about the resources now. First, the resources for learning natural Language Processing. I've really done my best to boil it down to the most fundamental resources. Natural language processing is my jam. It is my particular specialty within machine learning.
+
+[00:52:33] It's my favorite topic, and so I think that these are the three best resources out there. There's a textbook called Speech and Language Processing by Daniel GSKi. He is sort of the Andrew ing of NLP Daniel GSKi. Also co-authored by James Martin. Then there is a NLP YouTube series by Daniel Gki, again, which is basically the YouTube series equivalent to that textbook.
+
+[00:53:02] What's nice about that is that the. Speech and language processing textbook is gonna be probably a thousand pages. The NLP YouTube series goes pretty quickly. I think it's 24 hours when converted to audio, and that's what I suggest is you convert it to audio like usual. When I talk about my video recommended resources, what I usually do is convert it to MP three, put it on my iPod.
+
+[00:53:27] And do it while I'm running or cleaning, et cetera. I'll post the How to Convert a video to MP three thing on my resources page, but it's called the Stanford NLP Series on YouTube. Finally, there is a library out there. I. Called NLTK Natural Language Toolkit. It is far and away the most popular NLP library used by professionals.
+
+[00:53:55] It is on, it is written on Python, and it comes with capability for handling all of the things that we've discussed in this episode, from the low to the high. So it comes with all those text pre-processing methods such as tokenization, ization, stemming, et cetera. It comes with methods for part of speech tagging, named entity recognition, et cetera.
+
+[00:54:19] And then it comes with algorithms as well for classification, document similarity and the like. Now, typically it is insufficient for going the distance. You can't write a search engine using NLTK. You wouldn't write a chat bot or a machine translation system using NLTK instead. NLTK is a very. Useful toolkit, a utility belt, a library.
+
+[00:54:47] I like to think of it if you know JavaScript, it's the low dash of Natural Language Processing. It's one of those tools that Python developers are hard pressed to not use in their natural language career. No matter what final solution you end up landing on. Now, typically, like I said, these lofty goals, you're gonna go with deep learning and recurrent neural networks and word tove, that's TensorFlow or PyTorch.
+
+[00:55:08] You're gonna use one of these deep learning frameworks, but you'll still find NLTK very handy for text, pre-processing or accessing a corpus that has all of the popular corpora available, just a method away. Now, what's interesting about NLTK, and the reason I bring it up in this resources section is they have written a book.
+
+[00:55:29] N ltk.org/book That isn't only about N LT K, it is primarily about NLP. The NLTK book, which is for free and it's an HTML format, is primarily intended to teach you NLP in general, just using NLTK. As a vehicle, and in fact, many professors in their courses assign the NLTK book as their reading assignment.
+
+[00:56:00] So you can either do the speech and language processing textbook, which is very big and more theoretical, or you can go the way of the NLTK book, which is more hands on and practical and faster if you want to become an NLP expert. I would recommend the speech and language processing and NLTK book, but if you want to just sort of get a quick lay of the land or just hit the ground running, I would recommend the NLTK book Now, NLTK, the library.
+
+[00:56:30] Um, there are alternatives out there as well. Open, NLP and Stanford, NLP. These are all different libraries that you can use for shallow learning, machine learning algorithms, but usually. In the space of machine learning, you're going to be graduating into deep learning for more powerful, flexible, and elegant models.
+
+[00:56:50] So you're probably gonna be moving on to something like Tensor Flow or PyTorch. That's it for this episode, A lay of the land of NLP in the next episode, the second part of the series, I'm going to talk about the shallow learning algorithms, traditional models used in NLP. Now my friends, I have terrible news for you.
+
+[00:57:09] In order to continue working on this podcast, I'm going to have to take on advertisers. I know the bane of every podcast listener's life, but I've reached that point in listenership where I actually have the downloads where I can start reaching out to advertisers to sponsor this show. And so I'm hoping you guys could actually go to my website, oc deve.com/podcast.
+
+[00:57:30] Forward slash machine learning where I'm going to post a user survey that is required in order to sign up for sponsorship with Libson. The podcast hosting service I use fill out that user form for me. I know that's insult to injury, but do me a favor, if you could. I'm so sorry. Please. I'm also going to try to make my website a little bit more useful where maybe I'll post announcements for when I plan to post new episodes.
+
+[00:57:55] For example, this episode was two weeks late. I apologize for that. I had to collect some resources on this topic, so hopefully I can add some incentive for popping over to the website. Okay guys. Thanks for listening. See you next time.
+
