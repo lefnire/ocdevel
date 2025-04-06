@@ -18,7 +18,6 @@ import {FaFacebook} from '@react-icons/all-files/fa/FaFacebook';
 import { Link } from "react-router";
 import type { Route } from "./+types/_index";
 
-import {Image} from '@unpic/react'
 import img_tyler from '~/assets/logos/avatar.jfif?w=200&h=200&format=webp&effort=max'
 
 export default function Home() {
@@ -88,13 +87,14 @@ export default function Home() {
   return <Container className='contact-hire'>
     <Row>
       <Col xs={12} lg={3} className='text-center'>
-        <Image
+        <img
           src={img_tyler}
           loading="eager"
           fetchPriority="high"
           decoding="async"
           width={200}
           height={200}
+          alt="Profile photo"
           className='rounded mb-3'
         />
         {links}
