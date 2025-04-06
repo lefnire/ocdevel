@@ -29,14 +29,14 @@ function ClearUtm() {
 export default function Layout() {
   return <div>
     <Navbar bg='light' variant='light' className="border-bottom justify-content-center">
-      <LinkContainer to="/">
+      <LinkContainer to="/" tabIndex={0}>
         <Navbar.Brand>OCDevel</Navbar.Brand>
       </LinkContainer>
       <Nav>
-        <LinkContainer to="/blog" tabIndex="0">Blog</LinkContainer>
-        <LinkContainer to="/walk" tabIndex="1">Walk</LinkContainer>
-        <LinkContainer to="/mlg" tabIndex="2">MLG</LinkContainer>
-        <LinkContainer to="/llh" tabIndex="3">LLH</LinkContainer>
+        <LinkContainer to="/blog" tabIndex={1}>Blog</LinkContainer>
+        <LinkContainer to="/walk" tabIndex={2}>Walk</LinkContainer>
+        <LinkContainer to="/mlg" tabIndex={3}>MLG</LinkContainer>
+        <LinkContainer to="/llh" tabIndex={4}>LLH</LinkContainer>
       </Nav>
     </Navbar>
 
@@ -53,7 +53,7 @@ export default function Layout() {
           <span>© 2009-2025 OCDevel LLC</span>
         </div>
         <div>
-          <Link to="/">Contact</Link>
+          <Link to="/" className='text-black'>Contact</Link>
         </div>
       </div>
     </footer>

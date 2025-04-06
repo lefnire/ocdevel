@@ -4,7 +4,7 @@ import {
 } from "react";
 import Modal from 'react-bootstrap/cjs/Modal';
 import {create} from "zustand/index";
-import type {OverlayTriggerProps} from "react-bootstrap";
+import type {OverlayTriggerProps} from "react-bootstrap/cjs/OverlayTrigger";
 import {useShallow} from "zustand/react/shallow";
 
 type ModalContent = {title?: string, body: FC}

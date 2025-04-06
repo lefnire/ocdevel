@@ -4,7 +4,7 @@ import {
 } from "react";
 import OverlayTrigger from 'react-bootstrap/cjs/OverlayTrigger';
 import Popover from 'react-bootstrap/cjs/Popover';
-import type { OverlayTriggerProps } from 'react-bootstrap';
+import type { OverlayTriggerProps } from 'react-bootstrap/cjs/OverlayTrigger';
 import {create} from 'zustand'
 import {useShallow} from "zustand/react/shallow";
 
