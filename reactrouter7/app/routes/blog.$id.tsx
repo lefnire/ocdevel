@@ -1,5 +1,4 @@
 import {useParams, Outlet} from "react-router";
-// import find from "lodash/find";
 import {metasObj} from "~/content/blog/metas.js";
 import {BackButton} from "~/components/back-btn";
 import Card from 'react-bootstrap/cjs/Card';
@@ -58,7 +57,7 @@ export default function Full(props: Route.ComponentProps) {
 export function meta(props: Route.MetaArgs) {
   const p = props.data.meta
   return [
-    { title: p.title },
-    { name: "description", content: p.headTitle || p.teaser }
+    { title: p.head?.title || p.title },
+    { name: "description", content: p.head?.description || p.teaser }
   ]
 }

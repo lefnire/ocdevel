@@ -8,6 +8,7 @@ import CalorieCalc from "~/routes/walk/calorie-calc";
 import {ModalSingleton} from "~/components/modal";
 import {getComputed} from '~/content/treadmills/computed'
 import type {Route} from './+types/route'
+import * as meta_ from './meta.js'
 
 export function loader() {
   // calculate scores and inverted links server-side to save on render time
@@ -32,9 +33,10 @@ export default function Route({loaderData}: Route.ComponentProps) {
 
 export function meta() {
   const brands = seoLabels.slice(0, 20).join(', ')
+  const desc = meta_.head.description.replace('[placeholder]', brands)
   return [
-    { title: "Best Walking Pads 2025" },
-    { name: "description", content: `Best under desk walking pads for treadmill desks in 2025. ${brands}, and more.` },
+    { title: meta_.head.title },
+    { name: "description", content: desc },
   ]
 }
 

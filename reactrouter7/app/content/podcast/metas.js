@@ -1,8 +1,6 @@
 // @FIXME consolidate this conceptually with ./index.tsx. That file should have the full stuff,
 // hydrated by a loader; and this file should have all the list-view basics, and for sitemap.xml
 
-import map from 'lodash/map'
-import keyBy from 'lodash/keyBy'
 
 import * as mlg1 from './mlg/1/meta.js'
 import * as mlg2 from './mlg/2/meta.js'
@@ -65,7 +63,7 @@ import * as llh002 from './llh/2/meta.js'
 import * as llh003 from './llh/3/meta.js'
 import * as llh004 from './llh/4/meta.js'
 
-export const mlgList = map([
+export const mlgList = [
   mlg1,
   mlg2,
   mlg3,
@@ -125,12 +123,15 @@ export const mlgList = map([
 
   mlg33,
   mla22,
-], e => ({
+].map(e => ({
   mlg: !e.mla,
   id: e.mla ? `mla-${e.episode}` : e.episode,
   ...e,
-}))
-export const mlgObj = keyBy(mlgList, 'id')
+}));
+export const mlgObj = mlgList.reduce((obj, item) => {
+  obj[item.id] = item;
+  return obj;
+}, {});
 
 export const mlgShow = {
   title: "Machine Learning Guide",
@@ -158,7 +159,10 @@ export const llhList = [
   llh003,
   llh004,
 ]
-export const llhObj = keyBy(llhList, 'id')
+export const llhObj = llhList.reduce((obj, item) => {
+  obj[item.id] = item;
+  return obj;
+}, {});
 export const llhShow = {
   title: "Lefnire's Life Hacks",
   link: "https://ocdevel.com/llh",

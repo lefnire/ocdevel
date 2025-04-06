@@ -16,14 +16,13 @@ export function loader() {
   return {
     legacyFitnessDesk: {
       ...walkMeta,
-      title: "Walking Desks",
       teaser: walkMeta.teaser.replace('[placeholder]', pads)
     }
   }
 }
 
 export default function List({loaderData}: Route.ComponentProps) {
-  console.log(loaderData)
+  // console.log(loaderData)
   const metas = [
     loaderData.legacyFitnessDesk,
     ...metas_
