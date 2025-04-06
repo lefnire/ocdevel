@@ -1,40 +1,41 @@
-import {memo, useEffect, useState} from "react";
-import Row from "react-bootstrap/cjs/Row";
-import Form from "react-bootstrap/cjs/Form";
-import Card from "react-bootstrap/cjs/Card";
-import Col_ from "react-bootstrap/cjs/Col";
+import React, {memo, useEffect, useState, type ChangeEvent} from "react"; // Use type-only import for ChangeEvent
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import Col_ from "react-bootstrap/Col";
+
 const Col = Col_.default || Col_
 
-/*
- Background information:
+// Define types
+type ClassName = 'warrior' | 'healer' | 'rogue' | 'mage';
+type KlassScores = Record<ClassName, number>;
+type FormOptionState = Record<string, boolean>;
+type FormState = Record<string, FormOptionState>;
 
-Picking a class simple guide:
-* Warrior
-  * Role-play: you're a physical person; gym rat, construction worker, etc.
-  * In-game: deals boss damage, prevent dailies going too red.
-  * Motivation: positive punishment (keeps reds at in check) and positive reinforcement (boss damage)
-* Healer
-  * Role-play: you're social, helper, shoulder to lean on
-  * In-game: heals everyone (most essential class for bosses), protects against damage
-  * Motivation: Positive punishment (defense & heal)
-* Rogue
-  * Role-play: you're an independent (soloist, freelancer), finance-forward person
-  * In-game: collects things. The other type of quest (besides Bosses) are Collection Quests. Rogues find all the items during these.
-  * Motivation: Stochastic positive reinforcement. You find way more items (gear, gold, pets); but randomly. Like slot machine.
-* Mage
-  * Role-play: you're brain-forward. A student, knowledge-worker, reader.
-  * In-game: levels up the fastest. Then some strange other perks (the weirdest class)
-  * Motivation: Negative punishment. They prevent streaks from being stolen; which streaks contribute to downstream bonuses
+interface Option {
+  k: string;
+  t: string;
+  d: string | React.ReactElement;
+  classes?: Partial<KlassScores>; // Points for each class
+  classesFn?: (scores: KlassScores, form: FormState) => void; // Custom logic function
+}
 
-Parties most benefit with at least a healer and warrior. Rogues and mages are optional, if your party is small
-*/
+interface Question {
+  k: string;
+  t: string;
+  d: React.ReactElement;
+  opts: Option[];
+  optsObj?: Record<string, Option>; // Added optional optsObj based on later usage
+}
 
-const questions = [{
+type QuestionsObj = Record<string, Question>;
+// Background information moved to UI component below
+
+const questions: Question[] = [{ // Added Question[] type
   k: 'conditioning',
   t: "Conditioning",
   d: <>What style(s) of behavior-conditioning do you think work best for you? Check all that apply, but try to limit it.
-    Ask yourself: "I'm likely to repeat behavior if _". See <a target="_blank"
-                                                               href="https://bcotb.com/the-difference-between-positivenegative-reinforcement-and-positivenegative-punishment/">this</a> for
+    Ask yourself: "I'm likely to repeat behavior if _". See <a target="_blank" href="https://bcotb.com/the-difference-between-positivenegative-reinforcement-and-positivenegative-punishment/">this</a> for
     more. Think hard, all but the first option are worded "negatively", but everyone is different - think about your
     personal experiences and the results. Eg, I'm "negative reinforcement", because I'm more attune to fear than gain;
     and that's ok.</>,
@@ -57,7 +58,7 @@ const questions = [{
     k: 'np',
     t: 'Negative Punishment',
     d: "Motivation: not getting a good thing, because you've done a bad thing. Your toy is taken away makes you want to earn it back. As a kid, grounding (removal from friends, hobbies) drove you.",
-    classes: {healer: 2, warrior: 1, mage: 1, rogue: 0} // TODO ???
+    classes: {mage: 2, healer: 0, warrior: 0, rogue: 0} // Mage prevents streak loss (NP)
   }]
 }, {
   k: "rewards",
@@ -92,7 +93,7 @@ const questions = [{
     k: "solo",
     t: "You don't like groups",
     d: "You're a freelancer professionally, or a solo in games. You want to be responsible only to yourself with your actions.",
-    classes: {mage: 2, rogue: 1, warrior: 1, healer: 1}
+    classes: {mage: 2, rogue: 2, warrior: 0, healer: 0} // Mage (brain-forward) & Rogue (independent) prefer solo
   }]
 }, {
   k: "rp",
@@ -132,54 +133,99 @@ const questions = [{
     k: "rp",
     t: "Role Play",
     d: "You like the idea of being in-game who you are IRL. A mage is a studier; a healer is a socialite or medical professional; a warrior is active; a rogue is independent.",
-    classesFn: (m, form) => {
-      (questionsObj.rp.opts || []).forEach(opt => {
-        if (form.rp?.[opt.k]) { // Added optional chaining for safety
-          m[opt.k] = (m[opt.k] || 0) + 1; // Ensure m[opt.k] exists and increment
-        }
-      });
+    classesFn: (m: KlassScores, form: FormState) => { // Added types
+      const rpQuestion = questionsObj['rp']; // Safer access
+      if (rpQuestion?.opts) {
+        rpQuestion.opts.forEach(opt => { // opt is implicitly Option here
+          if (form['rp']?.[opt.k]) { // Safer access
+            // Ensure the key exists on m before incrementing
+            const classKey = opt.k as ClassName; // Assume opt.k matches a ClassName here based on context
+            if (classKey in m) {
+              m[classKey] = (m[classKey] || 0) + 1;
+            }
+          }
+        });
+      }
+    }
+  }, { // <<< Added missing closing brace here
+    k: "rp",
+    t: "Role Play",
+    d: "You like the idea of being in-game who you are IRL. A mage is a studier; a healer is a socialite or medical professional; a warrior is active; a rogue is independent.",
+    classesFn: (m: KlassScores, form: FormState) => { // Added types
+      const rpQuestion = questionsObj['rp']; // Safer access
+      if (rpQuestion?.opts) {
+        rpQuestion.opts.forEach(opt => { // opt is implicitly Option here
+          if (form['rp']?.[opt.k]) { // Safer access
+            // Ensure the key exists on m before incrementing
+            const classKey = opt.k as ClassName; // Assume opt.k matches a ClassName here based on context
+            if (classKey in m) {
+              m[classKey] = (m[classKey] || 0) + 1;
+            }
+          }
+        });
+      }
     }
   }]
 }]
 
-questions.forEach(q => {
-  q.optsObj = (q.opts || []).reduce((obj, item) => {
+// Pre-compute optsObj for each question
+questions.forEach((q: Question) => { // Added type for q
+  q.optsObj = (q.opts || []).reduce((obj: Record<string, Option>, item) => { // Added type for obj
     obj[item.k] = item;
     return obj;
   }, {});
-})
-const questionsObj = questions.reduce((obj, item) => {
+});
+
+// Pre-compute questionsObj
+const questionsObj: QuestionsObj = questions.reduce((obj: QuestionsObj, item) => { // Added type for obj
   obj[item.k] = item;
   return obj;
-}, {});
+}, {} as QuestionsObj); // Added type assertion for initial value
 
 const ClassCalculator = memo(() => {
-  const [form, setForm] = useState(() => questions.reduce((m, section) => {
-    m[section.k] = (section.opts || []).reduce((m_, opt) => {
-      m_[opt.k] = false;
-      return m_;
-    }, {});
-    return m;
-  }, {}));
-  const [updated, setUpdated] = useState(true)
-  const [klass, setKlass] = useState({mage: 1, warrior: 0, rogue: 0, healer: 0})
+  // Initialize form state robustly with types
+  const initialFormState = (): FormState => {
+    const state: FormState = {};
+    questions.forEach(q => {
+      state[q.k] = {};
+      q.opts.forEach(o => {
+        state[q.k][o.k] = false;
+      });
+    });
+    return state;
+  };
+  const [form, setForm] = useState<FormState>(initialFormState);
 
-  const setForm_ = (k, k2) => e => {
-    setForm({...form, [k]: {...form[k], [k2]: !form[k][k2]}})
-    setUpdated(+new Date)
+  const [updated, setUpdated] = useState<boolean>(true); // Explicit boolean type
+  // Initialize klass state with type
+  const [klass, setKlass] = useState<KlassScores>({mage: 0, warrior: 0, rogue: 0, healer: 0}); // Start all at 0
+
+  // Typed event handler
+  const setForm_ = (k: string, k2: string) => (e: ChangeEvent<HTMLInputElement>) => { // Added types
+    // Ensure k and k2 exist in form before updating
+    const currentSection = form[k] || {};
+    const newValue = !currentSection[k2];
+    setForm({...form, [k]: {...currentSection, [k2]: newValue}});
+    setUpdated(u => !u); // Toggle boolean state to trigger effect
   }
 
-  function calculateScores(currentForm) { // Renamed form to currentForm to avoid shadowing
+  // Typed function
+  function calculateScores(currentForm: FormState) { // Added type
     setKlass(Object.entries(currentForm).reduce((m, [sectionId, section]) => {
-      const questionSection = questionsObj[sectionId];
-      if (questionSection?.opts) { // Check if questionSection and opts exist
-        questionSection.opts.forEach(opt => {
-          if (section[opt.k]) {
+      const questionSection = questionsObj[sectionId]; // sectionId is string
+      const sectionState = section as FormOptionState; // Assert type for section
+      if (questionSection?.opts) {
+        questionSection.opts.forEach(opt => { // opt is Option
+          if (sectionState[opt.k]) { // Access asserted type
             if (opt.classesFn) {
-              opt.classesFn(m, currentForm);
-            } else if (opt.classes) { // Check if opt.classes exists
-              Object.entries(opt.classes).forEach(([c, pts]) => {
-                m[c] = (m[c] || 0) + (pts || 0); // Ensure m[c] and pts exist
+              // Pass copies to avoid direct state mutation if classesFn modifies them
+              opt.classesFn({...m}, {...currentForm});
+            } else if (opt.classes) {
+              // Ensure c is a valid ClassName before indexing m
+              (Object.entries(opt.classes) as [ClassName, number][]).forEach(([c, pts]) => {
+                if (c in m) { // Type guard
+                  m[c] = (m[c] || 0) + (pts || 0);
+                }
               });
             }
           }
@@ -187,49 +233,53 @@ const ClassCalculator = memo(() => {
       }
       return m;
     }, {
+      // Initial scores object with type
       warrior: 0,
       healer: 0,
       rogue: 0,
       mage: 0
-    }));
+    } as KlassScores)); // Added type assertion
   }
 
   useEffect(() => {
     calculateScores(form)
   }, [updated, form])
 
-  return <Row>
-    <Col md={9} style={{height: 500, overflowY: 'scroll'}}>
-      {questions.map((q) => <div key={q.k}>
-        <h5>{q.t}</h5>
-        <p className='small text-muted'>{q.d}</p>
-        <Form>
-          {q.opts.map((o) => (
-            <div key={o.k} className="mb-3">
-              <Form.Check
-                type='checkbox'
-                id={`${q.k}-${o.k}`}
-                label={o.t}
-                value={o.k}
-                onChange={setForm_(q.k, o.k)}
-              />
-              <Form.Text muted>{o.d}</Form.Text>
-            </div>
-          ))}
-        </Form>
-      </div>)}
-    </Col>
-    <Col md={3}>
-      <Card>
-        <Card.Header>Results</Card.Header>
-        <Card.Body>
-          <div>Mage: {klass.mage}</div>
-          <div>Warrior: {klass.warrior}</div>
-          <div>Rogue: {klass.rogue}</div>
-          <div>Healer: {klass.healer}</div>
-        </Card.Body>
-      </Card>
-    </Col>
-  </Row>
+  return <>
+    <Row>
+      <Col md={9} style={{maxHeight: 500, overflowY: 'scroll', paddingRight: '1rem'}}>
+        {questions.map((q) => <div key={q.k} className="mb-4">
+          <h5>{q.t}</h5>
+          <p className='small text-muted'>{q.d}</p>
+          <Form>
+            {q.opts.map((o) => (
+              <div key={o.k} className="mb-3">
+                <Form.Check
+                  type='checkbox'
+                  id={`${q.k}-${o.k}`}
+                  label={o.t}
+                  value={o.k}
+                  checked={form[q.k]?.[o.k] ?? false} // Use nullish coalescing for safer access
+                  onChange={setForm_(q.k, o.k)}
+                />
+                <Form.Text muted>{o.d}</Form.Text>
+              </div>
+            ))}
+          </Form>
+        </div>)}
+      </Col>
+      <Col md={3}>
+        <Card style={{position: 'sticky', top: '1rem'}}> {/* Make results sticky */}
+          <Card.Header>Results</Card.Header>
+          <Card.Body>
+            <div>Mage: {klass.mage}</div>
+            <div>Warrior: {klass.warrior}</div>
+            <div>Rogue: {klass.rogue}</div>
+            <div>Healer: {klass.healer}</div>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </>
 })
 export default ClassCalculator

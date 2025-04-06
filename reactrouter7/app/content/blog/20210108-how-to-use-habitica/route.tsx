@@ -1,12 +1,4 @@
-import {useState, useEffect} from 'react'
-import Card from 'react-bootstrap/cjs/Card'
-import Form from 'react-bootstrap/cjs/Form'
 import Badge from 'react-bootstrap/cjs/Badge'
-import Row from 'react-bootstrap/cjs/Row'
-import Col_ from 'react-bootstrap/cjs/Col'
-const Col = Col_.default || Col_
-// Incorrect Usage:
-// Correct usage:
 import {FaCalendar} from '@react-icons/all-files/fa/FaCalendar'
 import {FaCheckSquare} from '@react-icons/all-files/fa/FaCheckSquare'
 import {FaGift} from '@react-icons/all-files/fa/FaGift'
@@ -281,24 +273,34 @@ export default function Body() {
       party. Try it!</p>
 
     <h3 id="classes"><FaHatWizard/> Classes</h3>
-    <div className='text-danger'>Incomplete</div>
-    <ClassCalculator/>
-    {/*<p>At level 10 you unlock the class system, where you choose Warrior, Mage, Healer, or Rogue. See each class's {l("https://habitica.fandom.com/wiki/Skills", "skills here")}, it plays into discussion below. Here's the skinny.</p>
+    <p>At level 10 you unlock the class system, where you choose Warrior, Mage, Healer, or Rogue. See each class's {l("https://habitica.fandom.com/wiki/Skills", "skills here")}, it plays into discussion below. Here's the skinny.</p>
+    <h6>Warrior</h6>
     <ul>
-      <li><b>Warrior</b> high boss damage, high defense. Warriors max STR & CON, dealing high DPS & taking low DMG. Warrior is the default class before you unlock the class system, but I consider it the default class besides - it's a good class for those who don't know what to pick. Importantly, warriors have the <em>Brutal Smash</em> skill, which is how they deal boss damage. Here's the problem. BS reduces a task's redness, making it too easy on yourself. If you're not punished for bad habits, you won't improve. Reducing the punishment reduces your chances of change. Nonetheless, if you need a bit of forgiveness in your life, BS can be handy in a pinch.</li>
-      <li><b>Healer</b> takes lots of damage, and can heal self and party.</li>
-      <li>Mage levels fast & deals high boss damage. Perfectionists, a bad thing. Keeps colors, consistent GP - proper play-style</li>
-      <li>Rogue finds lots of loot.</li>
+      <li><b>Role-play:</b> You're a physical person; gym rat, construction worker, etc.</li>
+      <li><b>In-game:</b> Deals boss damage, prevent dailies going too red.</li>
+      <li><b>Motivation:</b> Positive punishment (keeps reds at in check) and positive reinforcement (boss damage).</li>
     </ul>
-
-    <h5>Learn your motivator</h5>
-
-    <blockquote>
-      TODO
-      - what classes to play / why
-      - My rec: mage or warrior. Warrior problem: BS changes colors. Mage problem: freezing streaks encourages perfectionism.
-      - important: proper play style (keep colors, consistent GP)
-    </blockquote>*/}
+    <h6>Healer</h6>
+    <ul>
+      <li><b>Role-play:</b> You're social, helper, shoulder to lean on.</li>
+      <li><b>In-game:</b> Heals everyone (most essential class for bosses), protects against damage.</li>
+      <li><b>Motivation:</b> Positive punishment (defense & heal).</li>
+    </ul>
+    <h6>Rogue</h6>
+    <ul>
+      <li><b>Role-play:</b> You're an independent (soloist, freelancer), finance-forward person.</li>
+      <li><b>In-game:</b> Collects things. The other type of quest (besides Bosses) are Collection Quests. Rogues find all the items during these.</li>
+      <li><b>Motivation:</b> Stochastic positive reinforcement. You find way more items (gear, gold, pets); but randomly. Like slot machine.</li>
+    </ul>
+    <h6>Mage</h6>
+    <ul>
+      <li><b>Role-play:</b> You're brain-forward. A student, knowledge-worker, reader.</li>
+      <li><b>In-game:</b> Levels up the fastest. Then some strange other perks (the weirdest class).</li>
+      <li><b>Motivation:</b> Negative punishment. They prevent streaks from being stolen; which streaks contribute to downstream bonuses.</li>
+    </ul>
+    <hr />
+    <p className="text-muted small">Parties most benefit with at least a healer and warrior. Rogues and mages are optional, if your party is small.</p>
+    <ClassCalculator/>
 
     <hr/>
 
