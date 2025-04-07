@@ -1,4 +1,4 @@
-import {type FC, memo} from "react";
+import {type FC, memo, useCallback, useMemo} from "react";
 import type {
   Column,
   Row,
@@ -12,43 +12,44 @@ import {useModalStore} from "~/components/modal";
 export const CellContent: FC<{
   row: Row<Product>;
   column: Column<Product, unknown>;
-  info?: any;
-}> = ({row, column, info}) => {
+}> = memo(({row, column}) => {
   const columnId = column.id;
-  const columnDef = columnsObj[columnId];
+  const colDef = columnsObj[columnId];
   const product: Product = row.original;
 
   // If no column definition, return empty div
-  if (!columnDef) {
+  if (!colDef) {
     return <div></div>;
   }
 
-  const cellStyle = columnDef.getStyle ? columnDef.getStyle(product) : {};
-  const rawValue = columnDef.getValue(product); // Get the raw value
+  const cellStyle = colDef.getStyle ? colDef.getStyle(product) : {};
+  const rawValue = colDef.getValue(product); // Get the raw value
 
   // --- Modal Logic (Run this *before* NA check) ---
   // Get popover content if available
-  const bodyFn = (
-    columnDef.renderModal ||
-    (product as any)[columnId]?.notes
-  )
 
   // Create click handler for modal if popover content exists
-  const handleClick = bodyFn ? () => {
+  const handleClick = useMemo(() => {
+    const modalFn = (
+      colDef.renderModal ||
+      (product as any)[columnId]?.notes
+    )
+    if (!modalFn) { return undefined; }
     const title = (() => {
-      if (info?.renderModalTitle) {
-        return info.renderModalTitle(product)
+      if (colDef.renderModalTitle) {
+        return colDef.renderModalTitle(product)
       }
       return [
         columnsObj.model.getValue(product),
-        (info?.label) || columnId
+        (colDef.label) || columnId
       ].join(' - ')
     })()
-    useModalStore.getState().openModal({
+    return () => useModalStore.getState().openModal({
       title,
-      body: () => bodyFn(product)
+      body: () => modalFn(product)
     });
-  } : undefined;
+
+  }, [])
   // --- End Modal Logic ---
 
 
@@ -71,14 +72,14 @@ export const CellContent: FC<{
   // --- Original Rendering Logic (for non-NA values) ---
 
   // Case 1: If render function is provided, use it and pass the click handler
-  if (columnDef.render) {
-    return <div style={cellStyle}>{columnDef.render(product, handleClick)}</div>;
+  if (colDef.render) {
+    return <div style={cellStyle}>{colDef.render(product, handleClick)}</div>;
   }
 
   // Case 2: If format function is provided, use it and attach click handler if needed
-  if (columnDef.format) {
+  if (colDef.format) {
     // Pass the non-NA rawValue to format if needed, or let format recalculate
-    const formattedValue = columnDef.format(product); // Assuming format uses product directly
+    const formattedValue = colDef.format(product); // Assuming format uses product directly
 
     if (handleClick) {
       return (
@@ -95,7 +96,7 @@ export const CellContent: FC<{
 
   // Default case: no render or format function
   return <div style={cellStyle}></div>;
-};
+});
 
 type CellScore = {score: number}
 export const CellScore = memo(({score}: CellScore) => {

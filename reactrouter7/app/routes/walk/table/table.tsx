@@ -1,4 +1,11 @@
-import {createContext, type FC, memo, useContext, useEffect, useMemo, useRef, useState} from "react";
+import {
+  createContext,
+  memo,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import {
   createColumnHelper,
   flexRender,
@@ -6,21 +13,17 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   useReactTable, type Header,
-  type SortDirection
 } from '@tanstack/react-table';
 import type {
   SortingState,
-  Column,
   Row,
   Cell,
   Table,
-  ColumnDef
 } from '@tanstack/react-table';
 import type {Row as Product} from '~/content/treadmills/computed';
-import {NA} from "~/content/treadmills/data/utils";
 import {columnsArray, columnsObj} from '~/content/treadmills/columns';
 import {ProductContext} from "../context";
-import {Filter} from './filter'
+import {Filter, filterFn, sortingFn} from './filter'
 import {HeaderCell, ColumnDescription} from './header'
 import {CellContent, CellScore} from './cell'
 
@@ -57,76 +60,21 @@ export default function Default() {
         {
           id: colDef.key,
           header: ({column}) => (
-            <HeaderCell label={colDef.label} isSorted={column.getIsSorted()} />
+            <HeaderCell
+              label={colDef.label}
+              isSorted={column.getIsSorted()}
+            />
           ),
           cell: ({row, column}) => (
             <CellContent
               row={row}
               column={column}
-              info={colDef}
             />
           ),
           enableSorting: true,
           enableColumnFilter: true,
-          filterFn: (row, columnId, filterValue) => {
-            const columnDef = columnsObj[columnId];
-            const value = columnDef.getValue(row.original);
-
-            if (value === undefined || value === null) return false;
-
-            // Always include NA values
-            if (value === NA) return true;
-
-            // For numeric columns with range filtering
-            if (columnDef.dtype === "number" && Array.isArray(filterValue)) {
-              const [min, max] = filterValue;
-              // NA check already happened, so value should be a number here
-              const numValue = value as number;
-
-              const filterOptions = columnDef.filterOptions || {min: true, max: true};
-
-              if (filterOptions.min && min !== undefined && numValue < min) return false;
-              if (filterOptions.max && max !== undefined && numValue > max) return false;
-
-              return true;
-            }
-
-            // For boolean columns
-            if (columnDef.dtype === "boolean" && typeof filterValue === 'boolean') {
-              return value === filterValue;
-            }
-
-            // For string columns
-            if (typeof filterValue === 'string') {
-              return String(value).toLowerCase().includes(filterValue.toLowerCase());
-            }
-
-            return true;
-          },
-          sortingFn: (rowA, rowB, columnId) => {
-            const columnDef = columnsObj[columnId];
-
-            // Use getSortValue if available, otherwise use getValue
-            const getValueFn = columnDef.getSortValue || columnDef.getValue;
-            const valueA = getValueFn(rowA.original);
-            const valueB = getValueFn(rowB.original);
-
-            // Handle NA values: always rank highest
-            const isValueANA = valueA === NA;
-            const isValueBNA = valueB === NA;
-
-            if (isValueANA && isValueBNA) return 0; // Both are NA
-            if (isValueANA) return 1;  // A is NA, treat as larger (comes last in asc, first in desc)
-            if (isValueBNA) return -1; // B is NA, treat as larger (comes last in asc, first in desc)
-
-            // Compare based on data type for non-NA values
-            if (typeof valueA === 'number' && typeof valueB === 'number') {
-              return valueA - valueB; // Simpler numeric comparison
-            }
-
-            // Fallback to string comparison
-            return String(valueA).localeCompare(String(valueB));
-          }
+          filterFn,
+          sortingFn
         }
       );
     });
@@ -166,7 +114,7 @@ export default function Default() {
 }
 
 type TableColumns = {}
-const TableColumns = () => {
+const TableColumns = (props: TableColumns) => {
   const {table} = useContext(TableContext)
   if (!table) { return null; }
   const headers = table.getHeaderGroups()[0].headers
@@ -178,7 +126,6 @@ const TableColumns = () => {
 
 type TableColumn = { header: Header<Product, unknown> }
 const TableColumn = (({header}: TableColumn) => {
-  const {table} = useContext(TableContext)
   const customDef = columnsObj[header.column.id]
   return (
     <th
@@ -204,10 +151,7 @@ const TableColumn = (({header}: TableColumn) => {
           <div>
             <Filter column={header.column} />
             {/* Add description with popover below the filter */}
-            <ColumnDescription
-              column={header.column}
-              info={customDef}
-            />
+            <ColumnDescription id={header.column.id} />
           </div>
         ) : null}
       </div>
@@ -216,7 +160,7 @@ const TableColumn = (({header}: TableColumn) => {
 })
 
 type TableRows = {}
-const TableRows = () => {
+const TableRows = (props: TableRows) => {
   const {table} = useContext(TableContext)
   if (!table) { return null; }
   const rows = table.getRowModel().rows;

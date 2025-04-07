@@ -1,14 +1,11 @@
-import {type FC, memo} from "react";
+import {type FC, memo, useCallback} from "react";
 import {
   type SortDirection
 } from '@tanstack/react-table';
-import type {
-  Column,
-} from '@tanstack/react-table';
-import type {Row as Product} from '~/content/treadmills/computed';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 import {useModalStore} from "~/components/modal";
+import {columnsObj} from "~/content/treadmills/columns";
 
 const faArrowUp = <FaArrowUp />
 const faArrowDown = <FaArrowDown />
@@ -32,18 +29,17 @@ export const HeaderCell: FC<{
 
 // Description component with notes modal
 export const ColumnDescription: FC<{
-  column: Column<Product, unknown>;
-  info: any;
-}> = ({column, info}) => {
+  id: string;
+}> = memo(({id}) => {
+  const colDef = columnsObj[id]
+  if (!colDef.description && !colDef.notes) return <div>&nbsp;</div>;
 
-  if (!info.description && !info.notes) return <div>&nbsp;</div>;
-
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     useModalStore.getState().openModal({
-      title: info.label,
-      body: () => info.notes?.() || <div>{info.description}</div>
+      title: colDef.label,
+      body: () => colDef.notes?.() || <div>{colDef.description}</div>
     });
-  };
+  }, []);
 
   return (
     <div className="mt-1">
@@ -51,8 +47,8 @@ export const ColumnDescription: FC<{
         className="small text-secondary dotted-underline"
         onClick={handleClick}
       >
-        {info.description || 'Details'}
+        {colDef.description || 'Details'}
       </span>
     </div>
   );
-};
+});
