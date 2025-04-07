@@ -83,7 +83,7 @@ export default function Home() {
     <h3>Projects</h3>
     <div>
       <h6><FaMicrophone/> <Link to="/mlg">Machine Learning Guide</Link></h6>
-      <p>This podcast teaches the fundamentals of machine learning and artificial intelligence. Both theory and practical application.</p>
+      <p>A machine learning podcast teaching the fundamentals of machine learning and artificial intelligence, both theory and practical application.</p>
       <h6><FaMicrophone/> <Link to="/llh">Lefnire's Life Hacks</Link></h6>
       <p>This podcast teaches useful efficiencies for productivity and health living.</p>
       <h6><FaCouch/> <a href="https://gnothiai.com" target="_blank">Gnothi</a></h6>
@@ -122,6 +122,6 @@ export default function Home() {
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "OCDevel" },
-    { name: "description", content: "Machine Learning Guide podcast, treadmill desks, and life hacks." },
+    { name: "description", content: "Home of Machine Learning Guide (MLG), a machine learning podcast teaching ML & AI fundamentals. Reviews of walking desks and office ergonomics." },
   ];
 }

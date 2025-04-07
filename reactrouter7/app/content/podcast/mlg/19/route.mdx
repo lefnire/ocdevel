@@ -1,19 +1,34 @@
 export * from './meta.js'
 
-- Edit distance: Levenshtein distance
-- Stemming/lemmatization: Porter Stemmer
-- N-grams, Tokens: regex
-- Language models
-  - Machine translation, spelling correction, speech recognition
-- Classification / Sentiment Analysis: SVM, Navie bayes
-- Information Extraction (POS, NER): Models: MaxEnt, Hidden Markov Models (HMM), Conditional Random Fields (CRF)
-- Generative vs Discriminitive models
-  - Generative: HMM, Bayes, LDA
-  - Discriminative: SVMs, MaxEnt / LogReg, ANNs
-  - Pros/Cons
-    - Generative depends on fewer data (NLP tends to be few data)
-    - MaxEnt vs Naive Bayes: Independence assumption of Bayes, etc ("Hong" "Kong")
-- Topic Modeling and keyword extraction: Latent Dirichlet Allocation (LDA)
-  - LDA ~= LSA ~= LSI: Latent diriclet allocation, latent semantic indexing, latent semantic analysis
-- Search / relevance / document-similarity: Bag-of-words, TF-IDF
-- Similarity: Jaccard, Cosine, Euclidean
+Classical NLP Techniques:
+
+- **Origins and Phases in NLP History**: Initially reliant on hardcoded linguistic rules, NLP's evolution significantly pivoted with the introduction of machine learning, particularly shallow learning algorithms, leading eventually to deep learning, which is the current standard.
+
+- **Importance of Classical Methods**: Knowing traditional methods is still valuable, providing a historical context and foundation for understanding NLP tasks. Traditional methods can be advantageous with small datasets or limited compute power.
+
+- **Edit Distance and Stemming**:
+  - *Levenshtein Distance*: Used for spelling corrections by measuring the minimal edits needed to transform one string into another.
+  - *Stemming*: Simplifying a word to its base form. The Porter Stemmer is a common algorithm used.
+
+- **Language Models**:
+  - Understand language legitimacy by calculating the joint probability of word sequences.
+  - Use n-grams for constructing language models to increase accuracy at the expense of computational power.
+
+- **Naive Bayes for Classification**:
+  - Ideal for tasks like spam detection, document classification, and sentiment analysis.
+  - Relies on a 'bag of words' model, simplifying documents down to word frequency counts and disregarding sequence dependence.
+
+- **Part of Speech Tagging and Named Entity Recognition**:
+  - Methods: Maximum entropy models, hidden Markov models.
+  - Challenges: Feature engineering for parts of speech, complexity in named entity recognition.
+
+- **Generative vs. Discriminative Models**:
+  - *Generative Models*: Estimate the joint probability distribution; useful with less data.
+  - *Discriminative Models*: Focus on decision boundaries between classes.
+
+- **Topic Modeling with LDA**:
+  - Latent Dirichlet Allocation (LDA) helps identify topics within large sets of documents by clustering words into topics, allowing for mixed membership of topics across documents.
+
+- **Search and Similarity Measures**:
+  - Utilize TF-IDF for transforming documents into vectors reflecting term importance inversely correlated with document frequency in the corpus.
+  - Employ cosine similarity for measuring semantic similarity between document vectors.

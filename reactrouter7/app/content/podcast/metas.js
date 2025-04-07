@@ -143,7 +143,7 @@ export const mlgShow = {
 
   teaser: "Machine learning audio course. Teaches ML fundamentals, models (shallow and deep), math, and more.",
 
-  body: "A machine learning podcast teaching the fundamentals of machine learning and artificial intelligence. It covers intuition, models, neural networks, math, languages, frameworks, etc. Where visual ML resources provide the trees, I provide the forest. Podcasts are a great supplement during exercise, commute, chores, etc.",
+  body: "MLG is a machine learning podcast teaching the fundamentals of machine learning and artificial intelligence. It covers intuition, models, neural networks, math, languages, frameworks, and more. Podcasts are a great supplement during exercise, commute, chores, etc. The resources section provides a syllabus for machine learning videos, courses, books, and audio.",
 
   useLibsynPlayer: true // false will use html5 player w/ CloudFront file URL
 };

@@ -1,0 +1,214 @@
+[00:01:03] This is episode 20, natural Language Processing part three. This is the final episode on shallow natural language algorithms before we finally go into deep learning, natural language processing. In the next episode, remember that we're doing the shallow classical traditional algorithms to NLP for foundational purposes.
+
+[00:01:28] So remember that we've been working with sort of three layers of NLP technology. The first being real simple sort of cleanup stuff, regular expression, text, pre-processing, and cleanup like ization tokenization. Stemming stop word removal and the like. Then there's the middle layer of sort of power tools that we're gonna be using along the way.
+
+[00:01:51] Syntax tools and NLP, like part of speech tagging and named entity recognition. And then there's the high level of goals that we're trying to accomplish in NLP. Things like question answering. Sentiment analysis, text classification, search engines, and the like. We've already solved three high level goals of NLP, the first being text classification, sentiment analysis, spam detection, et cetera.
+
+[00:02:16] We use naive Bays for a very simple text classification algorithm. We didn't even have to use really any tools in our tool belt. We just processed our document as a bag of words representation and just threw that into the naive Bays model, and it does classification for us. We also did named entity recognition either by way of a discriminative model, like maximum entropy or support vector machines, or a generative model.
+
+[00:02:41] Like a hidden markoff model. Now named entity recognition is sort of a goal in its own right. It's useful for its own sake. Things like chatbots, where Siri is gonna pull out information from things that you're saying, like add some event to my calendar with somebody on such and such date. It's gonna pull out those some things in order to determine what function to call and with what parameters.
+
+[00:03:01] But named entity recognition itself is also a tool in downstream tasks. Things like question answering and machine translation. So NER. It's both a tool and a goal in its own right, and we also solved a high level goal of search engines by way of term frequency inverse document frequency storage of bag of words, T-F-I-D-F.
+
+[00:03:25] Remember that you can store a bag of words either as a sparse vector, they call it, where the column for any document row is one. If that word is present in the document and zero otherwise. You can also bump it up to account vector, where we count the number of times a word is present in a document, and you can bump that up to a TF IDF representation of words in a document, which is basically the inverse score of a word based on its rarity across documents.
+
+[00:03:56] So the less common a word is in documents. The higher the score it gets in this TF IDF ranking system. And then you use cosign similarity between a query and documents or documents and documents in order to determine document similarity or which documents to retrieve in a search engine. So T-F-I-D-F combined with the co-sign similarity, that one, two punch that you're gonna see a lot actually, those two combined.
+
+[00:04:21] We use that as a tool in solving the high level goal of search engines and document similarity. So we've solved three high level goals. And we have a handful of tools in our belt now, one of them is part of speech tagging, determining whether a word is a noun, verb, adverb, or something else. Another is named entity recognition.
+
+[00:04:40] And now we're going to, we're gonna do one more tool, which is called Syntax parsing. One more tool. Before we get into the last of our high level goals, we're gonna use syntax parsing in order to solve these other high level goals. And syntax parsing depends on part of speech tagging. So part of speech tagging is a tool.
+
+[00:04:57] That we're gonna be using to build this tool, which is Syntax Tree parsing. And as far as I know, you don't really use part of speech tagging for anything else. So it's a tool for a tool. And then the Syntax Tree parsing tool is a tool for a goal. You're gonna actually use this then in some proper downstream goals.
+
+[00:05:14] Now, real quick, I'm saying downstream tasks. Let's talk about the data pipeline. I, I talked about the data pipeline in a prior episode on the technologies that you'd use in machine learning, any machine learning task that you're performing. I mean, we can discuss the machine learning models for achieving some sort of task, like sentiment analysis, for example.
+
+[00:05:33] But before you get to your model, before you get to naive Bays, you have to do a whole bunch of steps. First off, you get your documents from somewhere, some corpus of documents on the internet or on your hard drive, or maybe you're streaming a bunch of tweets from Twitter or Facebook posts or something like this.
+
+[00:05:50] You wanna do sentiment analysis on, you have to get your content from somewhere. Now you have your content ingested onto your computer, and now you need to take those documents and you need to clean them up. You tokenize your documents, you lowercase, whatever you need to lowercase. You stem and latize, you remove stop words and you remove any sort of junk that you need to in some other machine learning algorithms.
+
+[00:06:12] For example, working with missing data, let's say that there are some columns in training data that are null or zero or an outlier, some crazy high number. It's basically corrupt data will totally mess up your model, so you have to do some cleanup. Okay, so that's all one. Step is gonna be like data cleanup or preparation.
+
+[00:06:30] And then now in NLP, we go to part of speech tagging. So we take our documents, we slice them into sentences, we pipe those sentences through a part of speech tagger, and now we pipe those parts of speech into this task here, which is syntax parsing, so that next what we call downstream. All those tasks that I discussed just now, they're upstream.
+
+[00:06:51] They came to me, the syntax parser, and I'm gonna be passing whatever I produce downstream to the next task in line, which is gonna be question answering or machine translation or something like that. So this is called a data pipeline. There are various discreet tasks that we need to perform. So for small projects, you can do this all on your own computer, on your laptop, whatever.
+
+[00:07:13] You just have some coordinated sequence of events. First, you ingest the data when as soon as that's done, it gets pre-processed. As soon as that's done, you do part of speech tagging and so on. But oftentimes for larger projects, projects that a company is working on full-time, for example, they're gonna have a data pipeline spanning multiple computers where maybe one computer is dedicated to one specific task in this pipeline, or even multiple computers dedicated to a particular task.
+
+[00:07:39] So, for example, the data ingestion. Piece of the pipeline might be a very heavy duty piece, and so you might have two or three computers on that task. That's where you would use something like Spark or Hadoop, H-A-D-O-O-P and Spark. Those are your two very popular frameworks for handling distributed computing of data pipelines like this.
+
+[00:08:01] So you see that a lot here in NLP data pipelines. Going from left to right, we're gonna pipe in a bunch of data from a corpus or corpora. We're gonna run it through a sequence of tasks that we've been outlining in the last couple episodes, all the way to some goal, all the way on the right, whether it be machine translation or question answering in the case of sentiment analysis.
+
+[00:08:21] We didn't have to do part of speech tagging. We didn't have to do name entity recognition. We're not gonna have to do syntax tree parsing. We just throw the document right into the Naive Bays model. So it looks like there's only one step of the data pipeline, but there still is the other steps of pre-processing your text, getting your text from somewhere, tokenizing it, limitizing stemming, and stuff like that.
+
+[00:08:40] So. Syntax Tree parsing is sort of this final pre-processing step before our final goals of question answering, machine translation, text summarization, and relationship extraction. So what is syntax parsing? Now? We talked about part of speech tagging where you take a word and you're trying to determine if that word is a verb, a noun, or pronoun, et cetera.
+
+[00:09:02] Syntax tree parsing is very similar but bigger. So instead of doing it on a word by word basis. You're constructing a tree of grammar. You're constructing what's called constituents. You're combining multiple words into one blob of grammar. So if you have the boy with blonde hair, okay, we have article, noun, preposition, adjective, noun.
+
+[00:09:26] All separate, distinct part of speech tags, but you can combine all of those together into what's called a noun phrase. In other words, that whole phrase, right there is a phrase talking about a noun. The boy, specifically boys, sort of the head of this phrase. And any sentence can be constructed of a hierarchical representation of various of these constituents.
+
+[00:09:51] So for example, if we start at the top and we have a sentence, you can usually break that sentence down into a noun phrase and a verb phrase, the boy with blonde hair walked up the mountain. So the boy with blonde hair is a noun phrase and walked up the mountain is a verb phrase. Now you can break the verb phrase down into multiple constituents as well.
+
+[00:10:13] So walked up the mountain is walked up, and then the mountain. The mountain is a noun phrase. It's mountain being the head of that noun phrase. And walked up is a verb phrase. And then each of those two now simply break down into their individual part of speech tags. So that noun phrase gets broken down into the mountain, which is called article and noun.
+
+[00:10:40] So you see there's like this hierarchical tree structure collecting parts of speech tags at the very base into aggregate chunks as it goes along. Now, the old way that we used to do this in traditional NLP before machine learning came around was that these were hardcoded rules. Linguists determined that there were rules that you could write down that would cover a majority of sentences accurately, such that, for example, maybe it is the case that most sentences do break down specifically as noun phrase and verb phrase.
+
+[00:11:14] And then a noun phrase can break down as a determiner and a noun or an adjective, and another noun phrase. So we have this, or a rule that we develop, what we call a production can either be one thing or the other. So what they do is they write these down on paper or in a computer. You can imagine maybe five lines.
+
+[00:11:34] So in the first line, we have S for sentence becomes. So we draw an arrow from left to right, np for noun phrase. And VP for verb phrase. So S arrow, NPVP, which says there's a production rule such that a sentence can be broken down into a noun phrase and a verb phrase. And then the next line. So we hit enter and we write VP Arrow v.
+
+[00:12:04] Np. So verb phrase can become verb, noun phrase. And then in the next line we say, NP arrow deter, DET determiner N, or like a bar, a vertical bar, adjective, noun phrase. And you write some amount of these rules, these production rules. And it ends up being maybe like five or six lines. And now what you can do is you can pipe in your sentence and you can sort of build it up from the bottom up in the opposite direction.
+
+[00:12:33] So you have your sentence as a sequence of part of speech tags, which you've gotten from your part of speech tagging part in your data pipeline, which we covered in the last episode. Your sentence comes. Tagged with each words part of speech using either a maximum entropy model or a hidden markoff model.
+
+[00:12:52] You pipe that into this construct, which we call a context free grammar, A CFG. You pipe it into the CFG, and then you can build up your constituents by following these rules and how they collect various parts of speech tags, and then how groupings of those themselves. Selves collect into other constituents and how various other constituents collect all the way up until you have finally the sentence.
+
+[00:13:19] So you build a tree, representation of grammar for your sentence. And this was hardcoded rules that came from linguists. Well, this didn't work out very well because over time we realized these hardcoded rules. It sounds like language follows very specific rules, but there is difficulty in language.
+
+[00:13:36] There's difficulty in NLP. A classic example, I love this one, is there's a news headline that says, Pope's baby steps on gaze. Now the way that's supposed to sound is pop's baby steps on gaze. Noun phrase being pope's, baby steps and prepositional phrase being on gaze. So you can see, so you can see there's, there's difficulty in language where these hard-coded rules really they'll take us only so far.
+
+[00:14:06] And that's of course where machine learning comes in. Machine learning of course, will look at context and it will look at various attributes of whatever construct it's looking at at the moment and come up with some sort, sort of probabilistic approach to take. So the machine learning approach to context free grammars is called Probabilistic context free grammars.
+
+[00:14:27] Instead of having hardcoded production rules where a sentence becomes a noun phrase and a verb phrase, and a verb phrase becomes a this and a that you learn from your training data what proportion of times a verb phrase becomes. This and that, or becomes this and the other thing. So what proportion of noun phrases are determined or noun compared to adjective?
+
+[00:14:51] Noun phrase. So it's a probabilistic approach. And then you might be able to use some language model to kind of hold your hand in determining what's the best production to take at your current step. And the algorithm that is very common in traditional probabilistic context free grammars, pgs. It's called the CKY algorithm.
+
+[00:15:12] I think it's just three people's names. Cock younger and kasami. Anyway, it's the CKY algorithm. I'm not going to get into it, but it's the traditional algorithm used for developing probabilistic context free grammars. Okay? Now where do we get this training data? Where do we get a whole bunch of data with tagged production rules that we could build up these pgs?
+
+[00:15:36] We get them from something called the Penn Tree Bank, PENN. It's a very common lexicon used for grammar tasks, training, grammar models like, like syntax trees, or part of speech tagging. A lexicon is basically like a helper tome, like a book. A dictionary would be a lexicon and a thesaurus would be a lexicon.
+
+[00:15:58] Of course, NLTK, the Python Library of NLP tools has all sorts of lexicons, Lexia in its library, so it has a very popular thesaurus slash dictionary for digital use, what's called WordNet WordNet, and it's just like the name sounds, it's a web of words. It's a web of how words relate to each other, and you can use that to help you in deciding maybe.
+
+[00:16:25] What word comes next in a language model given your context? Because for example, you have synonyms and homonyms, and so WordNet is a common lexicon used for word related tasks. Well, the pen tree bank is a very common lexicon used for grammar related tasks, and what it is is a whole bunch of sentences pret tagged.
+
+[00:16:47] With their grammatical breakdown, with their grammar structure, and of course, grammar structure is hierarchical, so we use something like an XML format. So your machine learning algorithm, your CKY algorithm, would go through millions of these sentences in the pen tree bank to build up a probabilistic context.
+
+[00:17:03] Free grammar of production rules. So that you can parse your hierarchical grammar breakdown of a sentence in your inference step. Now there's a second take on grammar parsing on Syntax Tree parsing. This take here was called grammar parsing Context free grammars, probabilistic context free grammars.
+
+[00:17:23] There's another type called dependency parsing, and it's a little bit different. Dependency parsers parse you the grammar of your sentence in a different way rather than breaking things down. In a production rule, system of left becomes right. This one, what it does is it draws arrows on your words. It reads all your words from left to right, and it builds up sort of this, this sequence of arcs drawn as arrows.
+
+[00:17:49] Where words depend on other words where one word depends on another word in some way. So maybe one noun is the subject of a verb. So for example, Alice saw Bob reading in the hallway. Alice is the noun subject of the verb saw. And so from saw, we will draw an arrow, an arc arcing to the left, and landing on Alice, pointing to Alice.
+
+[00:18:16] And Bob also depends on saw. So we also draw a right arc from saw to Bob, and then in the hallway we draw in is a right arc to to hallway. And hallway is a left arc to the, which is the determiner arc. So we have these arcs. It looks sort of like an airplane traveling across your words, making multiple destinations or a frog jumping from word to word, leaving this arrow arc system in its path.
+
+[00:18:42] And you may choose to label these arcs with what type of dependency is expressed between these words. And then what you have in the end is. One of your words in that sentence is what's called the root word. It's the crux of what's happening in the entire sentence. In this case, the root word is saw.
+
+[00:18:59] That's the main gist of what's being expressed in this sentence, is that somebody saw somebody else, and so saw is your root word. You can sort of. Pinch it and pull it up into the air. Let's say the sentence was lying on a table. You can pull this thing up into the air and it sort of looks like a mobile.
+
+[00:19:14] A mobile what, however you pronounce it like above a baby's cradle. So you can see the grammar here is expressed differently than in the case with a context free grammar. So we have grammar parsing as one approach to syntax parsing, and we have dependency parsing as a different approach to syntax Parsing and dependency parsing is actually the more common of the two, especially today.
+
+[00:19:36] Where they use deep learning for grammar parsing, which is for the next episode, deep learning uses the general architecture of the dependency parsing setup to syntax tree parsing rather than the context free parsing setup. So this style dependency parsing is more popular today. And without getting into details, sort of the way the algorithm works, the way the algorithm learns.
+
+[00:19:58] How these dependency arcs are built up is, first off, you train it on the pen tree bank as you would in the probabilistic context, free grammar. And now when you're trying to determine the pars tree for a new sentence, what you do is you read it word for word left to right, and you have this buffer, which is a q and a stack, and you're sort of alternating words between the buffer and stack.
+
+[00:20:20] In some way. You're collecting words in the buffer, and when it gets to a certain point, you push it onto the stack. And so the stack holds constituents in a way. I'm gonna leave that for you to learn the details of how this all unfolds in the resources section, but that's the gist of how this works, is you use a stack and a buffer in what's called a greedy transition based parsing algorithm.
+
+[00:20:40] Now, as with everything in NLP. The state-of-the-art is deep learning, in particular recurrent neural networks. And the state-of-the-art for syntax tree parsing built by Google is called Syntax net, and it uses dependency parsing by way of this architecture with stacks and cues combined with neural networks for a very highly accurate, powerful model.
+
+[00:21:02] And the English version of this model is called Parsi mc Parse face. I just wanted to tell you that. Parsi mc parse face, and I love it. I don't know if it's because the humor has worn off on people using this in industry already, but anytime I see people discussing this model, no one cracks a smile. It's like, it is what it is.
+
+[00:21:20] Parsi mc, parse face. Okay, so that's syntax parsing. We had probabilistic context free grammars, p cgs, or alternatively. Dependency tree parsing by way of the greedy transition based parsing algorithm. And that's what we tend to use in the wild dependency parsing for building up a hierarchical grammar representation of a sentence.
+
+[00:21:41] Now, what would we use this parse tree for? Well, a very obvious win is one of our goals that we've discussed previously called relationship extraction. So I'm going to discuss the rest of the goals of this episode by way of a visualization that you Google search something. So let's say that you Google search, who is the Prime Minister of England.
+
+[00:22:07] Now Google will do a lot of stuff. A lot of stuff when you make that query, a lot of NLP related tasks. First off, it's gonna find a bunch of relevant documents to your query. It's gonna use T-F-I-D-F. Combined with cosign similarity across various documents, we've already talked about that one. Second off, it's going to find ads for you.
+
+[00:22:26] It's also, as far as I understand, going to be using TF IDF with cosign similarity to products in its ads database and your query. So it's gonna show you ads. It's also going to answer your question. You asked a question, who is the Prime Minister of England? It's going to answer your question in what? In that snippet card at the top of the search results, which I think is a very powerful tool, and it'll also sometimes build up some sort of relationship database.
+
+[00:22:54] On the right. You've seen this. Sometimes if you Google search some company or some person, it'll build this card on the right and it'll have various attributes about that person or organization. Maybe what company they work for, when they were born, when they died, or when was some organization founded?
+
+[00:23:12] Who are its founding members who are the members of some band. Or who starred in some movie, all these things. And that card on the right is a combination of relationship extraction and named entity recognition. So just out of curiosity, right now, I googled Prime Minister of England and it doesn't have any information on the right.
+
+[00:23:33] I'm actually surprised. But if I Google Ryan Adams, it has a card. He's my favorite singer. It has a card on the right and it says available on Spotify, YouTube, iHeartRadio. Has a little blurb about him from Wikipedia. It has his height and then it has his spouse, Mandy Moore, which I don't believe they're married anymore.
+
+[00:23:49] I don't know. Now, the spouse, Mandy Moore, first off a named entity was pulled out of some information database, presumably Wikipedia for that, but a relationship was built between Ryan Adams and Mandy Moore. What type of relationship is it? It's a spouse relationship. It's a marriage relationship. And then the way that that is pulled out, the way that that information is extracted from the document is by way of syntax parsing.
+
+[00:24:14] So Syntax parsing was able to tell us a relationship on the left and the right. So that's an instant win for syntax parsing is relationship extraction. But let's take it up a notch. Let's turn the heater up and talk about something that combines a lot of the tools that we've learned. In these few episodes into one very lofty goal of question answering, answering the question, who is the Prime Minister of England?
+
+[00:24:41] And like I said, they answer the question on Google in a card, a snippet at the top of the search results. So let's go through all the tools that are used for question answering. The first tool that is used is TF IDF. Term frequency inverse document frequency, combined with cosign similarity to simply find a bunch of documents that would have the answer.
+
+[00:25:02] What documents have the words? Prime Minister and England? And remember, you use T-F-I-D-F to highly rank the rarer words, which indeed those three words are rare. By comparison to who and is and the, which are very common words, those are actually stop words. We don't have to remove them because we're U because we're using T-F-I-D-F to low rank them.
+
+[00:25:25] So we find a handful of documents which are relevant now within each of those documents within, within each of those webpage. The answer is in one or two or three of the sentences. It's not in the whole document itself. Somewhere in those documents contained, maybe in just one sentence is the answer to our question.
+
+[00:25:45] So we will use TF IDF once more to remove all of the garbage sentences. And narrow it down to a handful of sentences from every document that we're now going to look through. These are gonna be our candidate sentences. Now here's what we're gonna do. This is really cool. I think we're gonna take our question, who is the Prime Minister of England?
+
+[00:26:05] And we're going to syntax parse it. We're going to create a parse tree of that sentence. Then we're going to figure out what is sort of the question word in that sentence. The question word is who? It's sort of, we call it the WH word, who, what, when, where, why? What is the question word? And we pull it out.
+
+[00:26:24] We pull it out of our syntax tree and we replace it with a blank, an underscore, a nothing. We're going to fill that slot. Now we're going to take all of the sentences from our documents that we have already selected with T-F-I-D-F and cosign similarity. We're going to syntax parse all of those sentences and we're going to find the the tree that best matches our tree.
+
+[00:26:48] We said, who is the Prime Minister of England? And somewhere in all those sentences is. Blank is the Prime Minister of England. But because it could be worded the opposite or in some other way, the Prime Minister of England is blank, we want some level of probability on a syntax tree rather than just grepping these sentences, I.
+
+[00:27:10] That's why we have a syntax tree handy, and that's why we have probability and machine learning at play is that we can determine to what extent certain parse trees are a better match to our queries parse tree than other parse trees in all of these sentences. Now, the word who that we pulled out of our parse tree on the left, we don't throw it away.
+
+[00:27:32] We use it to determine what sort of entity we're looking for, the word who indicates that there's a person we're looking for, maybe the word which or what could indicate that we're looking for an organization or some other thing, when is going to be a date and so on. So we're going to use that WH word, that question word to determine what type of named entity it is we're looking for.
+
+[00:27:55] So of all of the sentences from all those documents, which ones have a decent parse tree match, and which one, fill in that blank In the parse tree with the type of named entity we're looking for, namely a person. And ding, ding, ding. Three or four or five of them seem to all agree that Theresa May is the prime Minister of England.
+
+[00:28:17] So we used part of speech tagging to build our syntax tree parsing model. Okay. So we used one tool to make another tool. We used that tool in this questioning answering system. We used T-F-I-D-F and cosign similarity, and we use named entity recognition. So we used four of our tools in order to answer a question in a pretty slick and elegant way in my opinion.
+
+[00:28:39] Question answering. Very, very cool. Okay, let's move on to text summarization. So one goal of NLP is to take a document and to summarize what's being said in the document. So let's say that maybe we have the meeting notes from some meeting in a business because the CEO is too busy to attend. He just wants the cliff notes.
+
+[00:29:01] He wants the five sentence summary of what was discussed in that entire hour. The important takeaway. Now, this isn't gonna use a whole lot of tools. We're basically gonna be using just TF IDF and cosign similarity. One approach is we can take all of the sentences of the document, which is the meeting notes, and we can just use TF IDF to determine effectively.
+
+[00:29:22] What are the rare sentences? What are the sentences that have some information packed into them? Why? Because they have words in them that are uncommon by way of their TF IDF score. So which of these sentences seem to pack a punch because they have rarer words in them, whereas the other sentences throughout the meeting may have been fluff.
+
+[00:29:40] People are just shooting the shit with each other. Or sort of filler sentences leading up to some big statement, but it's that big statement that we're looking for, and we're gonna use T-F-I-D-F to determine that it's a big statement because it has rarer words in it. Then we'll take maybe five such sentences if we just want a five sentence summary of some document and bing bang, boom.
+
+[00:30:00] You have a text summarization. Now, some of those sentences are very likely to be redundant very often in documents when you're trying to make a point. You make that point multiple times and you say it the same thing in different ways multiple times. So we will also use T-F-I-D-F and cosign similarity.
+
+[00:30:18] From each of these sentences to each other. And if there's a very high relation between two of these sentences, we'll get rid of one of them so that we're not repeating ourselves. That means we need to pull in maybe another sentence that was a candidate that was discarded previously. So TF IDF will allow us to discard, duplicate sentences.
+
+[00:30:38] Now, this isn't the only approach to text summarization. Another approach, which also uses TF IDF is called text rank. And this is an interesting approach. What we do is we take our document and we split it into sentences, and each of those sentences is a node in a graph. So each of those sentences is a circle.
+
+[00:30:58] Drawn on a piece of paper and they all connect to each other in some way. So we have a graph connect connecting all of these sentences to each other. And how do they connect? They connect to each other by co-sign similarity using TF IDF storage representation. In other words, we're looking at the similarity of each sentence to each other and scoring their similarity to each other as a score on this arc.
+
+[00:31:22] So in other words, the. Line that we draw between two circles. We draw a number next to that arc, and that number is the score of similarity between these two sentences. And what we will find when we're done building a graph of all of our sentences and how they relate to each other is that there tends to be a few nodes that it seems all nodes are pointing to.
+
+[00:31:44] There will tend to be a few nodes that a lot of nodes are sort of talking about. It's like they're the most popular sentences. They're the cool kids in our graph. They're the nodes that all the nodes are looking at. So we take the top five most popular sentences and splice them together. And there you have a summarization of the document.
+
+[00:32:05] So the T-F-I-D-F co-sign similarity between all of the nodes in the graph, determine sort of which nodes have the most nodes, looking at them by way of a high similarity score. And then we will pick the most popular of these nodes. That's text summarization. Text summarization. What in its purest form, will give you maybe five sentences just spliced together.
+
+[00:32:29] Of course, Google's text summarization is gonna be substantially more sophisticated. Learns how to remove fluff. From the sentences and sort of splice sentences together, so you'll take five sentences and make them all into one with.dot dots filling in the spaces that they removed, they're able to determine what are the salient pieces.
+
+[00:32:53] Even within the sentences themselves and remove the fluff and the NLP YouTube series in the resources section for these few episodes will guide you through that process as well. Finally, there's text summarization as it relates to a query. So when I Googled, who is the Prime Minister of England. Google just gave me the words, Theresa May, but under that, it gave me a little snippet from Wikipedia.
+
+[00:33:18] It gave me a sentence from Wikipedia, which looks like it's the crux from that document about Theresa May. Now, it could just be the first sentence of the Wikipedia article, but in my experience of Google. Oftentimes they will give you a snippet, the most important piece of information about whatever it is you're looking for.
+
+[00:33:38] Where they answered your question, they already answered your question with one or two words. But also, here's a snippet of information about that answer. So that's called query-based summarization, and it's combination of the prior two goals that I discussed. Question answering, using a combination of TF IDF.
+
+[00:33:56] Syntax parsing a named entity recognition and text summarization using simply T-F-I-D-F to pick out the most salient sentences of a document. And you can imagine how this is performed effectively, what we could just do is grab the sentences that were used in answering the question. So there we solved a handful of goals with the tools that we've learned.
+
+[00:34:18] And I went through that pretty fast. Once you know the tools, which is the hard part, solving the goals is just a matter of intuitively piecing these things together. Now let's talk about machine translation. I am not going to teach you how machine translation works in the classical traditional shallow NLP sense.
+
+[00:34:37] Why? Because it is too hard and it is simply not state of the art. By any means, state-of-the-art is deep learning what's called neural machine translation systems using recurrent neural networks, the mighty RNN recurrent neural network that I keep mentioning over and over and over that we're gonna be talking about in the next episode, where a lot of the tasks in shallow NLP are still useful to know.
+
+[00:35:04] I've said this over and over. Shallow algorithms are faster and less data hungry. So you might use shallow algorithms getting started with your project, or if you just don't have the compute power or access to the type of data you need to put deep learning to task. And also a lot of the architectures that we're describing here.
+
+[00:35:23] Such as the greedy transition based parsing algorithm of dependency parsing for syntax trees. These architectures are still used in the deep learning approach. It's just that where inside of that architecture, we previously might use a discriminative model, like a support vector machine or a maximum entropy model, or a generative model like a markoff chain or hidden markoff model.
+
+[00:35:47] We're going to replace those with our deep learning architectures, like a recurrent neural network. But the sort of overall paradigm surrounding a particular NLP task still remains. So it's useful to know what I've been teaching you in these last few episodes, but that's not the case with machine translation.
+
+[00:36:04] Machine translation, the old way was just a world. Of machinery, just a imagine a factory with conveyor belts and boilers and forklifts and all sorts of just junk going on inside. And you imagine this factory's kind of like bulging and steams coming out, and it's like all these moving parts. There are so many moving parts in traditional machine translation, and you'll be using all of the tools from the last few episodes.
+
+[00:36:33] In traditional machine translation, there's this step called the encoder and decoder step that uses Bayesian inference, Bayesian statistics. There is a step called Alignment, which is an NLP tool that we haven't talked about in these few episodes, mostly because it applies as far as I understand, primarily to traditional machine translation.
+
+[00:36:54] And the process of alignment is basically you have your sentence on the left coming from French and your sentence on the right, translating to English and the words align with each other in some way that's non-intuitive and you'll use. Syntax parsing to hold your hand in that process. And then you will spit out a bunch of candidate sentences and you'll use something called beam search.
+
+[00:37:16] And beam search is actually a very useful algorithm in machine learning in general that we'll talk about. In a future episode, you'll use beam search to weed out candidate translations by way of language models, okay? Whether it's joint, probability of words, markoff chains, or the like one step at a time until you find a handful of the best candidate translations.
+
+[00:37:36] But the problem is what you end up having is in the traditional machine learning machinery, like five or six machine learning models, you've got your naive Bayes model, your syntax, and part of speech model. Your language model built on top of a beam search architecture and various other things all need to be trained separately.
+
+[00:37:57] They don't train together as you train your machine translation model. Whereas what we'll see with recurrent neural networks is what's called an end-to-end model. An end-to-end machine learning model is basically it's, it's one model that handles the entirety of something that you're trying to perform.
+
+[00:38:16] So neural machine translation models on recurrent neural networks, they learn how to translate. From left to right, from French to English. When they learn, they learn everything all at once. You just train one model and it sort of learns some small representation of grammatical structure and modifier words and alignment, and all these things all in one fell swoop.
+
+[00:38:40] It's all, it's just all built into the neural architecture. And the thing is that these neural translation models, I mean, you can just follow a tutorial on TensorFlow's website and get one of these things built and running in less than a day and have a very powerful state-of-the-art, very accurate machine translation system in maybe a hundred lines of code all running on a very, not simple, but not super complex.
+
+[00:39:06] Neural network architecture, whereas traditional machine translation systems took entire companies dedicated to task. I'm talking maybe 40 developers working year round around the clock, maintaining totally separate models, training totally separate models. It was clunky, it was heavy, and the stuff that you learned in traditional machine translation does not translate into deep machine translation.
+
+[00:39:33] That's why I'm not going to teach you the way that thing works is because it's not going to help you going forward. But machine translation is just a classic example of the power of deep learning and how it's revolutionizing. The space of NLP Deep Learning is state-of-the-art for almost all of the tasks that we've discussed in the last three episodes.
+
+[00:39:54] Sentiment analysis, classification, syntax, tree parsing, named entity recognition, machine translation. Certainly. I actually don't know about question answering and text summarization. I haven't seen where or if deep learning models apply there yet. I just have a hunch they do. I just have a hunch the way recurrent neural networks just clobber the space of NLP tells me there's a very fighting chance that text summarization and question answering use RNN as well.
+
+[00:40:24] So that's the cliffhanger for the next episode, which is gonna be all about deep NLP. Word to VE and recurrent neural networks. The resources for this episode are the same for the last two episodes, so no need to repeat them here. You know where to find them. OC deve.com/podcasts/machine learning, and I'll see you next time on Deep nlp.
+

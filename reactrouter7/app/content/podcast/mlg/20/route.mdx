@@ -1,11 +1,25 @@
 export * from './meta.js'
 
-- Parsing
-  - Constituents
-  - Grammar: Context Free Grammars (CFGs), Probabalistic CFGs (PCFGs), Cocke–Younger–Kasami (CYK)
-  - Dependency Tree: Greedy transition-based parsing (stack/buffer)
-  - SyntaxNet (English = Parsey McParseface)
-- Relationship Extraction
-- Question Answering / Textual Entailment (TF-IDF+Cosine Similarity; Parsing; NER)
-- Automatic summarization (TF-IDF; TextRank)
-- Machine Translation ([details here](https://www.youtube.com/watch?v=QuELiw8tbx8&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&index=9))
+NLP progresses through three main layers: text preprocessing, syntax tools, and high-level goals, each building upon the last to achieve complex linguistic tasks.
+
+## Text Preprocessing
+Text preprocessing involves essential steps such as tokenization, stemming, and stop word removal. These foundational tasks clean and prepare text for further analysis, ensuring that subsequent processes can be applied more effectively.
+
+## Syntax Tools
+Syntax tools are crucial for understanding grammatical structures within text. Part of Speech Tagging identifies the role of words within sentences, such as noun, verb, or adjective. Named Entity Recognition (NER) distinguishes entities such as people, organizations, and dates, leveraging models like maximum entropy, support vector machines, or hidden Markov models.
+
+## Achieving High-Level Goals
+High-level NLP goals include text classification, sentiment analysis, and optimizing search engines. Techniques such as the Naive Bayes algorithm enable effective text classification by simplifying documents into word occurrence models. Search engines benefit from the TF-IDF method in tandem with cosine similarity, allowing for efficient document retrieval and relevance ranking.
+
+## In-depth Look at Syntax Parsing
+Syntax parsing delves into sentence structure through two primary approaches: context-free grammars (CFG) and dependency parsing. CFGs use production rules to break down sentences into components like noun phrases and verb phrases. Probabilistic enhancements to CFGs learn from datasets like the Penn Treebank to determine the likelihood of various grammatical structures. Dependency parsing, on the other hand, maps out word relationships through directional arcs, providing a visual dependency tree that highlights connections between components such as subjects and verbs.
+
+## Applications of NLP Tools
+Syntax parsing plays a vital role in tasks like relationship extraction, providing insights into how entities relate within text. Question answering integrates various tools, using TF-IDF and syntax parsing to locate and extract precise answers from relevant documents, evidenced in systems like Google’s snippet answers.
+
+Text summarization seeks to distill large texts into concise summaries. By employing TF-IDF, the process identifies sentences rich in informational content due to their less frequent vocabulary, removing redundancies for a coherent summary. TextRank, a graph-based methodology, evaluates sentence importance based on their connectedness within a document.
+
+## Machine Translation Evolution
+Machine translation demonstrates the transformative impact of deep learning. Traditional methods, characterized by their complexity and multiple models, have been surpassed by neural machine translation systems. These employ recurrent neural networks (RNNs) to achieve end-to-end translation, accommodating tasks traditionally dependent on separate linguistic models into a unified approach, thus simplifying development and improving accuracy.
+
+The episode underscores the transition from shallow NLP approaches to deep learning methods, highlighting how advanced models, particularly those involving RNNs, are redefining speech processing tasks with efficiency and sophistication.

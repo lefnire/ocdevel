@@ -1,0 +1,332 @@
+[00:01:05] This is episode 19, natural Language Processing part two. In this episode, we're gonna jump into the classical natural language processing algorithms that are used for the various tasks discussed in the previous episode. Remember that natural language processing has something of a three phase history.
+
+[00:01:27] The first part being hardcoded rules that come from the world of linguistics. Remember, another word for NLP is computational linguistics. So NLP originated with a bunch of hardcoded rules, dictionaries, mappings. And the like. And eventually machine learning was introduced to the field, which revolutionized so much of the work that was being done.
+
+[00:01:47] These were shallow learning algorithms. These are the classical traditional approaches to natural language processing. But the state of the art in NLP is deep learning just far and away. It is widely agreed that the state of the art in NLP is deep learning. So that's sort of phase three of the NLP history and that's what we're gonna cover later with recurrent neural networks.
+
+[00:02:07] NNS being sort of the God algorithm of deep learning NLP. But it is still very useful, I think, to understand shallow learning, traditional classical approaches to natural language processing, if nothing more than as a historical context or a foundation of the types of tasks and problems you're dealing with.
+
+[00:02:26] This is a concept I keep repeating over and over and over is that it's useful to understand the shallow learning approaches, even though very likely what you're gonna be doing in the field, whatever it is you're gonna be doing in machine learning, is probably gonna be involving deep learning today.
+
+[00:02:41] It's very useful to understand the traditional approaches. I'm gonna start a mantra. I'm gonna say no thy shallows. No thy shallows. And in NLP is tends to be especially important to know thy shallows, as with the rest of machine learning. One reason that you might need shallow algorithms is that you have a smaller training data set, so you have less data to work with.
+
+[00:03:03] Deep learning is data hungry, very, very data hungry, or you have less compute power. So for example, something like naive bays requires substantially less memory and computational resources compared to deep learning. But if there's no other reason to know the classical approach to NLP than this. You will be asked questions involving traditional NLP in interviews.
+
+[00:03:27] Mark my word, even if the position you're applying for involves recurrent neural networks on TensorFlow. The interviewer is likely to be a senior machine learning engineer who's been in the space for quite a long time, and he wants to see your understanding of the field at large. He's gonna ask you things about topic modeling, sentiment analysis, classification, and he is gonna want to hear maybe two sides of the coin, the traditional faster approach.
+
+[00:03:51] And the state-of-the-art more powerful approach. So if you get into the space of NLP, very likely you're going to be using deep learning algorithms as state-of-the-art solutions to NLP problems. But still, it behooves you to know the algorithms I'm gonna be talking about in this episode. So let's dive right in.
+
+[00:04:08] I'm gonna start from the bottom and I'm gonna work my way up. I'm going to try to stagger small bits like tokenization with bigger bits, like sentiment analysis, and you'll see why by the end of this episode because certain problems are actually very easy to solve, such as classification and certain other problems are very difficult to solve and require multiple tools in tandem.
+
+[00:04:31] But let's start at the bottom. Let's start with edit distance. Remember that you could use the edit distance of a word. One word to another word to help you with things like spelling, corrections, spell check. So the words car and cat are one letter, edit distance. The difference between those words is one letter.
+
+[00:04:51] So you can work with letter additions, letter subtractions, letter substitutions, et cetera. And a common algorithm here is called the levinstein distance. Levinstein edit distance. And you, like I said, you would use this for things like spelling correction. Next, we have word morphology. So stemming and ization.
+
+[00:05:10] Remember that when you're maybe comparing one document to another, or if you're doing a search query, you might have a word that's present in both documents, but in different forms. So organize organization, organizer. These all stem from the root word. Organize a dilemma is the pure root word. So organize the word itself.
+
+[00:05:31] Whereas a stem is sort of the least common denominator chunk of letters between all those words. So really when you're doing stemming, all you're doing is chopping off the end. So organizing, organizer, organization, those all boil down to organize without the E at the end, organize Z. The reason being up until that point is the least common denominator of all those words, so you just chop off the end.
+
+[00:05:58] Stemming is quicker and easier than ization, and so stemming it tends to be, is used a little bit more commonly in the workplace. A common stemming algorithm is called Porter Stemer. Now, a lot of these things you're just going to be getting for free with whatever language toolkit you use, such as the Natural Language Toolkit on Python, NLTK.
+
+[00:06:18] So you don't need to know necessarily how these algorithms work under the hood. Okay? Remember we talked about tokens in the last episode. You have a document. A document is like a webpage or an email, any collection of words. Each word is called a token. A token can be some other things as well, like punctuation, smiley faces, and the sort.
+
+[00:06:37] And the act of tokenization is, is the act of. Cutting this document into all the words into a list of strings in Python. You can imagine it probably works with regular expressions, maybe splitting on non-word boundaries. I'm sure it's a little bit more sophisticated than that under the hood, but this is another one of those things where you'll just use what you're given by NLTK.
+
+[00:06:58] There's some sort of tokenize method that you can just call. So once you've split your document into tokens, we're gonna look at these tokens and now we're gonna actually start doing things with them. We're gonna call these tokens something else. We're gonna call them grams. Just traditionally in language models and NLP, we work with things called n grams, nen grams, N being the number of grams.
+
+[00:07:23] So a token is a gram for the most part. If you're splitting your document into one grams, single grams, it's called a unigram. Then you're splitting your document into tokens. There's pretty much no difference. Word. Word. Word. Word. Word. Hello, how are you doing? Five tokens, five unigrams. You can also split your document into by grams.
+
+[00:07:47] That is two grams, n being two in n gram Bigrams. So, hello, how? How R are you? You doing so? Hello? How? How are so? That's four bigrams. Now notice there's overlap. It's like a Venn diagram. Each bigram overlaps with the next bigram. Now, why would you do this? Why would you split into Bigrams or even Trigrams and can be any number?
+
+[00:08:13] Well, as you'll see in this next part on language modeling, the number of grams can increase the accuracy of your language models at the expense of compute power. We'll talk about that in a bit. Let's talk about language models. Now. This is the first fundamental core aspect of NLP from a machine learning perspective.
+
+[00:08:33] Really from a statistical perspective. A language model is a machine learning model for NLP tasks, but it's actually more specific than that. It means something very specific. A language model means working with the probability of documents. We're working with the probability of sentences. You're basically asking how legit is a sentence.
+
+[00:08:54] So a language model will tell you, I took my dog to the park, has a higher probability, is more legitimate a sentence than I took my dog to the egg. Certain sentences are more probable than other sentences. Now, how do we build up these language models? Well, various models in NLP are considered language models.
+
+[00:09:15] So language models is a category of machine learning models. Within NLP, the most raw form of a language model, the most vanilla language model is basically just joint probability, just statistical joint probability. And remember, joint probability is multiplying probabilities together. That's all joint probability is.
+
+[00:09:37] So probability, one times probability, two times probability three, and so on. So how will we use n grams with joint probability to produce a language model? We will take the words left to right one by one and look at the probability. Of one word following the other word. So when I say Hello, how are you doing?
+
+[00:10:00] I'll say hello. How we look at how Followed by Hello. How probable is it that, how follows, hello. Well, we look at every time we see hello in our millions of documents in the database and all of the words that follow Hello, look at what proportion of Hello, how is over, all of those other things. So that's the probability of how following.
+
+[00:10:27] Hello. Let's say it's 5%. So it's 5% probable that Hello, how is Legit is a check mark. Now we move on. How are we do the same thing of all the times we see how in our documents, how often is it followed by R compared to all the other things that follow how. That is some proportion of times seen as such.
+
+[00:10:53] It's a probability. Let's say that's 10% and so on down through the sentence, we have these probabilities and now we just multiply them all together. That's a joint probability and that's a language model that tells you how probable that sentence is. Now, that was using grams one word at a time. We're checking the probability of word A, followed by word.
+
+[00:11:17] B. If we were to use bigrams, things would be a little bit different. We would say, hello, how followed by how are, and the probabilities would seem a little bit more sane. So, for example, if we're looking at RARE, any number of words can follow that. There are so many words in our corpus of documents that follow the word R, so that determining the probability of you comes after R is a little bit of a crapshoot.
+
+[00:11:47] Sure, you appears after r some amount of time, some small probability, but not to some degree. That makes it helpful for us in determining how probable that situation is by comparison to other situations. If we were to use Bigrams instead, we would be looking at how are, what comes next? What is the probability of are you comes after?
+
+[00:12:15] How are, well, how are, I mean when I say that, you can just fill in the blank. I'm gonna say you. How are things, how are your dogs? Who knows some, but the space of things that can be said after how are is substantially narrowed down and indeed are you, is probably the most probable next utterance. So working with diagrams makes things easier to work with, more accurate.
+
+[00:12:38] Your language models become more accurate, but they also become computationally more expensive and you, and you have to store more data is one of the big problems. So for example. If you're working with Unigrams, how many grams do you need to store in some database? Well, it's just gonna be the English dictionary for the most part.
+
+[00:12:56] That's like 171,000 words. Well, if you're working with Bigrams, you're gonna need to store and work with every possible two word combo you've ever seen in your entire corpus, and that could be just enormous. So while working with Bigrams for your language models increases accuracy, it decreases physical performance like machine performance.
+
+[00:13:23] So it's always a trade off in machine learning and that tends to always be the trade off is accuracy versus compute. And the higher the gram count, it tends to be the more accurate your language model. I should say. Also that. The higher the gram count in it. In some n gram model means that you need a lot more training data to train on as well, because you're less likely to see things like common three word pairs.
+
+[00:13:49] So data and compute versus accuracy. Okay. A language model. So joint probability is the vanilla, quintessential basic language model. And a language model is basically telling you how legit a sentence is. And you do that by piping in any number of unigrams or bigrams or trigrams, however you wanna do it.
+
+[00:14:08] What would you use a language model for? Well, right outta the get go, you can imagine that you would use this for something like auto correction on mobile phones. As well as predictive texts. So those have a lot in common auto correction and predictive text. So you're typing away, chatting with a friend, and you're building up a language model, a probability of what you've been saying up to this point.
+
+[00:14:33] Your iPhone could then basically look at any number of words and see what's the best word that might come next that will give you the highest probability over this language model. Sort those by probability take three. So it'll suggest three most probable words that come next. Given the things you've said thus far, they're all multiplied together in a joint probability.
+
+[00:14:57] You can also pair it with edit distance that I just talked about in order to provide spelling corrections. So for example, if you're doing some Google search query and it sees that you've spelled one word wrong in the entire query, what it might do is catch that misspelling just, it doesn't belong in the dictionary of words it's ever seen before.
+
+[00:15:17] Look at a bunch of other words with minimal edit distance. And of those, find the one which gives you the highest sentence probability in a language model. So you can use language models for spelling correction, auto correction on phones, predictive text, et cetera. Well, those are the obvious things that come to mind, but language models really underpin most of the tasks in traditional NLP.
+
+[00:15:45] If it's not obvious when we get into these algorithms, well, it's very likely deep down in there somewhere. So let's talk about a common language model one you've already seen before called Naive Bays. Naive bays. Primary use case in NLP is document classification. So now we're in our first goal of NLP.
+
+[00:16:08] Classification. And classification can come in many forms. It can be binary classification. In the case of spam detection from a prior episode, we use naive base to detect if the current email we're looking at is spam or not. That's binary classification, yes or no. Multi-class classification is this document about politics, about sports, about pets, so any number of classes, and we can still use naive bays for that purpose.
+
+[00:16:37] A type of multi-class classification of documents is called sentiment analysis. Sentiment analysis is determining the emotion that goes along with this document. Maybe it's a review for a product or a movie or discussion of stocks, stuff like that. Sentiment analysis, algorithms can be used to determine, is this customer happy?
+
+[00:17:00] Is this customer sad? Mad, and sentiment analysis has been used in industry for buying decisions whether to buy stock in some product. Now, sentiment analysis is nothing more than multi-class classification, but with a little bit of extra nuances. When it comes to things like user reviews, users tend to use a little bit more nuanced language, especially with things like sarcasm.
+
+[00:17:26] So where Naive Bays is the premier traditional classification model, it works also for sentiment analysis, but you may want to consider using something a little bit more robust for sentiment analysis. But for now, let's talk about naive bays. Remember naive bays is what's called a bag of words model, and I'll talk a little bit more about what a bag of words model is later.
+
+[00:17:51] I'll talk a little bit about it. Now. The idea is that you take your document, you tokenize it into all of its tokens, those are now your grams. You can either decide to go at the naive Bays approach with bigrams or unigrams. Traditionally, we use grams. And you just throw them in the model. It's like you're cutting up a piece of paper into a bunch of words, and then you're just dumping those words into a bag.
+
+[00:18:17] That's why it's called a bag of words. You're not doing anything sophisticated. You're not working your way through a model left to right, maintaining grammar, or even sequential probabilities. It's not a sequence model. No. You just take all the words and you just throw 'em all in a bag and you're basically kinda looking for overlap.
+
+[00:18:36] Does this email have certain trigger words in that bag? Does it have free, does it have phone? Does it have act? Does it have now? Yes. If it has all those things very likely to be spam, it doesn't matter in what order they appeared. It doesn't matter what grammatical path we paved through the sentence, all that matters is that those words were present.
+
+[00:18:56] So that's what a bag of words is. Now, remember, the meaning of the word naive in naive bays is exactly that. We remove the dependence of words on each other. So if we said not pleasant was in the review, the word not followed by pleasant, unfortunately, naive bays would not pick that up. There is a dependence between words there, and the naive part of naive bays introduces what's called an independence assumption.
+
+[00:19:27] The assumption that no features. Depend on each other, which is never true of text. Every word depends on prior words in very strict grammatical ways. So naive bays certainly has many limitations. It's not a very sophisticated model, but it tends to be just fine for so many things. So it turns out for text classification.
+
+[00:19:50] Whether binary or multi-class, it works just fine. And the bays part of it. What makes it Bayesian is remember that Bayesian statistics is sort of, you have the question asked a different way. You have the question asked the opposite way than you want it, and you need to flip it. So you use bay's rule to flip the question the way you want it.
+
+[00:20:13] So. The question we're asking is given a bunch of these words, given this document of tokens, what's the probability that this document is spam? Well, the way that works best in the computer is actually, if we phrase it like this, I. Given the document is spam, what's the probability that we see this word and this word, and this word and this word.
+
+[00:20:38] So the computer wants the question asked in reverse, and then we use Bays rule to flip it back to the way we want it. There are other classification algorithms that you can use, things that we've seen already, such as support vector machines. And logistic regression. Now, not quite logistic regression.
+
+[00:20:57] Logistic regression is actually a binary classification algorithm. Logistic regression will tell you either zero or one yes or no spam, or not spam, for example, but you wouldn't be able to use it for multi-class classification. Is this document about cats? Is it about baseball? Is it about politics? Is the person happy, sad, or angry?
+
+[00:21:18] But there is a form of logistic regression called. Multi-class logistic regression. So there's an augmented version of logistic regression for multi-class, but it turns out in NLP for some reason. I don't know why yet. Practitioners prefer a slight variation of multi-class logistic regression called maximum entropy model.
+
+[00:21:43] Max end, M-A-X-E-N-T. And as far as I know, you really don't need to understand the difference between multi-class logistic regression and maximum entropy models. From everybody I've talked to, they say it's pretty much the same thing. There's a little twist in the algorithm in there, but if you understand multi-class logistic regression, you get the concept.
+
+[00:22:05] So you can use maximum entropy models for document classification as well as naive bays. But naive bays, it seems to me, is the most popular algorithm for document classification. Okay, let's move up Information extraction of documents or sentences. We're trying to figure out the syntactic structure of sentences, parts of speech.
+
+[00:22:28] So for example, word, word, word. Hello, how are you doing? We're trying to figure out each individual words, part of speech tag. That's gonna be noun, adverb, adjective, verb, those kinds of things. Another task is named entity recognition. So this is very useful for digital assistance and chatbots. For example, named entity recognition.
+
+[00:22:49] You would say something like Siri, add lunch with John to my calendar on May 15th, and a named entity recognition algorithm would pull out all of the chunks that are important so that we could call some method on a server. So the name is intent and the entity is add to calendar. The name is when and the entity is May 15th.
+
+[00:23:11] The name is whom and the entity is John. So this named entity recognition extracting bits of information that we need from the, from the sentence or the document. So those are two common tasks, part of speech tagging and named entity recognition. Two totally separate tasks. The reason I clump them here together is that the algorithms that you'll use for these two tasks are the same algorithms.
+
+[00:23:35] So let's talk about part of speech tagging. Something you could use is the maximum entropy model, max ent, a k, a multi-class logistic regression with a haircut. So that's a classification model. What would you do? Well, you would take your word and maybe you would look at some word to the right and some word to the left, and maybe you'd look at the end of your word.
+
+[00:23:56] So for example, words that end in LY tend to be adverbs. And you look at the beginning of your word and you'd look at, does your words start with a capital letter, but it's not at the beginning of a sentence. Well, that's likely to be a pronoun. So you'll, so you'll engineer various features of the word.
+
+[00:24:14] This is called feature engineering. And this is something that deep learning. Famously does away with feature engineering, but in the case of traditional NLP, you need to perform feature engineering on your words. If you're going to use what's called a discriminative model, we'll get to that in a bit. So you pick apart your word in various ways.
+
+[00:24:34] Now, you certainly will not use a naive baze classifier to classify the part of speech tag for your word, okay? If you're trying to determine whether the word mountain is a noun, verb, or adjective, you don't want to cut it up into all the letters and throw them in a bag that is not useful at all, helps with document classification.
+
+[00:24:56] But letter sequences in a word is substantially more important than word sequences in a document. So you cannot use naive bays to classify the part of speech tag for a word, but you can still kind of cut the word into various ways. So, like I said, maybe the first three letters of a word and the last four letters of a word, various snippets of words.
+
+[00:25:18] Tend to indicate various morphology in the English language. And then you can throw all these features into your classic max end model and classify whether the thing is a verb, noun, or adjective. And of course, you would train this model on hundreds of thousands of words you've seen before and maybe even their context in documents.
+
+[00:25:41] One word to the left, one word to the right. Certain parts of speech tend to follow and precede certain other parts of speech. So you can use Max sent to classify the part of speech of a word. Another thing you can use, and this is a little bit new territory, you pretty much know what max end is because you pretty much know what logistic regression is.
+
+[00:26:01] But this is a little bit new. It's called a hidden Markoff model, and I'm gonna spend some time on this. This is an important algorithm. You know what a markoff chain is from a prior episode. Remember, Markoff chain, M-A-R-K-O-V is a sequence of steps. It's a sequence model. It's a sequence of steps with probabilistic transitions between states.
+
+[00:26:24] So the example I used in that episode is that you might build a markoff chain for a restaurant. Customers arrive at a restaurant that's state one. You might draw a little circle on a piece of paper with S one inside of it. From there, customers are waiting for a table, so they're, they transition into the waiting state with a hundred percent probability.
+
+[00:26:46] They go right to the waiting state. In the waiting state S two A circle around S two, they can either continue waiting if there's not any tables available so it can loop back on itself. Let's say that we've observed that over the course of this restaurant, that that that's a probability of 30%, 30% waiting time and 70% being transitioned to a new state S3 with a circle around it.
+
+[00:27:10] So you draw a line with an arrow to a circle around S3 being seated at a table, and so on and so forth. So markoff chains are sequences of steps with probabilistic transitions to various next steps, including looping back on the current step. Now, you can already start to see, this must be very applicable in language modeling.
+
+[00:27:30] It sounds very much like a language model already. You can imagine that words could be represented in a markoff chain. Any word could be followed by any other word in the dictionary with some probability. Based on the number of times we've seen that word followed by word X in our corpus. So you can transition your way through a markoff chain to sort of generate a sentence.
+
+[00:27:53] It's very similar to vanilla language model of joint distributions, but what we want to use it for now is finding parts of speech tags. So we're looking at a sentence. The boy climbed up the mountain, and we want to tag these things as determinant, noun, past tense, verb, and so on. Well, a markoff chain doesn't help us here.
+
+[00:28:17] It tells us the probability of transitioning our way through that sentence. As such, making it a language model, we might be able to generate that sentence with a markoff chain, but it doesn't tell us the tags corresponding to each word. We want something else. We don't want what we're looking at. We want something else.
+
+[00:28:35] We'll enter the hidden markoff model. HMM. It is a markoff model with a twist. It is a markoff model where you work with not what you're looking at, but some byproduct of that, what's called a hidden state. You can imagine you have your circles with S one and an arrow pointing to S two with a solid line circle, and right behind that would be some dotted line for each state, a dotted line circle, and then in gray S one, and then a dotted line circle behind state two.
+
+[00:29:08] In gray S two, some hidden state is a byproduct of the real state, the observed state. So the example they use in academia is if you wanted to determine the weather for the last 365 years, but you don't have access to the weather, you could look at what people are wearing throughout the year. Every day people may be wearing rain coats or shorts.
+
+[00:29:34] Big jackets. Well, that would tell you whether it's raining or it's sunny or it's cold. So you would infer based on what people are wearing, the weather. So you're basically building a hidden markoff chain behind your main markoff chain, a byproduct markoff chain. It's like you're going through the markoff chain and it's making little poops.
+
+[00:29:58] Those hidden states are the markoff chains. Each state makes little poops, and it's those little poops you want. So what you might do is observe the markoff chain of attire on people throughout the last 365 days. And now what you've built for yourself is an actual markoff chain. You've built the probability that if somebody's wearing a raincoat, they will wear a raincoat the next day.
+
+[00:30:21] Okay? So because rainy days tend to happen in sequence, maybe you'll get three in a row. So there will be some non-trivial probability looping back to itself on the wears raincoat state, but it'll also have a probability of transitioning to. The wears short state, and then in that state it has some probability of looping back to itself and so on.
+
+[00:30:44] So over the course of observing what people are wearing throughout the last 360 days, you've built a markoff chain, a chain of probabilistic transitions, and from some inside knowledge tapping your nose, you know that that markoff chain corresponds to a secret markoff chain, a hidden markoff chain of the actual weather patterns.
+
+[00:31:03] And now you can use that to make predictions of weather. If you're in a rainy day state, you can predict the probability that the next state will be sunny or rainy or cold. So that's what we do is we build a markoff chain of words and we train it on words and their corresponding parts of speech for instances that we've seen before.
+
+[00:31:28] And then we run the hidden markoff model on something. We want to classify the parts of speech in the sentence. And it poops out little parts of speech for every word as it goes through the chain. So that's a very useful model. The Hidden Markoff model, you'll see it not only in NLP, you'll see it in various walks of machine learning.
+
+[00:31:45] It's a variation of the Markoff chain. So the markoff chain has little spinoffs. This is the Hidden Markoff model I've talked about the NPC, bad guy, dark Lord, in that little showdown between the barbarian and the dark Lord, where the dark Lord would use. In order to decide what action to take against the good guy would be what's called a markoff decision process.
+
+[00:32:08] So it's sort of deciding what action to take based on what is the most probably good action to take. So he may observe the markoff chain, the vanilla markoff chain, representing the player's actions. If the player is on this platform, he's very likely to jump down and do this thing or the other, and then use that in his markoff decision process of deciding what actions to perform.
+
+[00:32:33] So a markoff decision process is a spin off of a vanilla markoff chain, and then a hidden markoff model is another variation of vanilla markoff chain. So there you have it. You'd use a hidden markoff model to generate parts of speech from the sentence word by word. Another thing you could use Hidden Markoff models for is named Entity Recognition.
+
+[00:32:54] So you work your way through this markoff chain of words in a sentence, and out of it comes little poops of named entities like Intent is add to calendar person is John. When is May 15th? And so on. You can see that it's a very similar task to part of speech tagging. The big difference would be that in NER, you're not generating some output for every word.
+
+[00:33:19] You're only generating output for the important words, so certain words will be skipped. You can use a hidden markoff model for NER, and you can also use a maximum entropy model for NER as well. So for every word, you can collect some number of features about that word. What does the word end in? What does it begin with?
+
+[00:33:38] What word follows it? What word comes before it? Does it start with a capital letter? So that would be a high indicator that this is a person named entity or organization named entity that you're looking for and so on. And then you'd use that, train it on some training data, and then make predictions about which part of speech tags each word is in some new document.
+
+[00:33:59] Now, I just used two algorithms side by side for the same type of task in NLP. Namely Max End maximum entropy model and hidden Markoff model. And they seem very different. They seem like very different algorithms, at least for me personally. When I first started with machine learning, there was a handful of algorithms that I got.
+
+[00:34:19] I got what they did. Linear regression, logistic regression, even support vector machines were very similar to logistic regression in some capacity neural networks. And of course, max Ant is a spinoff of logistic regression in some way. So it's basically one of these things. But then I was introduced to these probabilistic models that I'm describing in this episode, especially things like naive bays, hidden markoff models, and that vanilla language model of joint probability.
+
+[00:34:47] It's like algorithms that have a P in it for probability versus algorithms that take a bunch of features and it's some weird mathematical equation. Indeed, these are two separate classes of algorithms. One is called discriminative models, and the other is generative models. For the longest time, I thought generative models meant models that generate something like a chatbot might generate sequences of words.
+
+[00:35:15] You can use generative models for that purpose, but that's not what generative in generative models means. But I think I've got a handle on the difference between these types of models. So discriminative models are your things that take in some features and spit out an output. They give you a classification or something like this.
+
+[00:35:34] Linear regression, logistic regression, maximum entropy, neural networks, support vector machines. So the way these are visualized is that you have a bunch of X's over here and a bunch of o's over there, and you draw a line in the sand, you scratch a line down the middle. This is your decision boundary. The decision boundary of logistic regression.
+
+[00:35:56] Or in the case of linear regression, you're drawing a line through your data, a line that passes through sort of the center of your data points. In the case of support vector machines, it's pretty much like logistic regression with a fat line. So your decision boundary, separating your classes of Xs on the left and os on the right is as fat as possible.
+
+[00:36:13] A large margin classifier and even neural networks is like drawing lines between things, but in a hierarchical way. So I think of neural networks as like Zoro. He cuts up a painting into various parts and then he dives into one part and he cuts 'em up into another. So he is drawing a bunch of lines, discriminating things on the left from things on the right.
+
+[00:36:33] So discriminative models, and that makes sense. But then this other class of stuff is called generative models, and these are these probabilistic models, naive bays, hidden markoff models, markoff chains. And so on. Now, the way you visualize this on paper is where a discriminative model is drawing a line between this and the other thing.
+
+[00:36:56] Generative models is actually drawing a probability distribution around the Xs and a probability of distribution around the os. So it's actually drawing a circle around the X's and a circle around the o's. So you have two separate probability distributions, and very likely they're Gaussian, right? So it's gonna look like a bell curve in 2D, but not always Gaussian.
+
+[00:37:20] Sometimes you can generate some other sort of probability distribution. And so what a generative model does is you're generating a probability distribution. You're taking your why's, the output, your classifications, and your training data, and you're trying to figure out what the probability distribution looks like for all those why's.
+
+[00:37:42] It's kind of the question asked in reverse, which is why we have naive bays. The Bayesian part of naive Bays being sort of like the reverse. We're answering what is the Xs given our Y's, or at least the distribution of the X's, what sort of probability distribution does this look like? Whereas discriminative models is the opposite.
+
+[00:38:04] What are the Y's? What's the class of this thing? Given its features of X's? So discriminative versus generative models. You'll see this in machine learning outside of NLP, but it is a very important distinction to make in NLP because it tends to be that generative models are very prevalent here in this world, and they have pros and cons and they have use cases over each other.
+
+[00:38:27] So the generative model of a markoff chain or a hidden markoff model in particular, you see lens very well for language constructs. It's just, it's very elegant. It makes sense to sequence your way through words in a probabilistic fashion. And if you so need spit out some little poops, that may be your parts of speech or your named entities as you go along.
+
+[00:38:50] So a hidden markoff model sort of fits the scenario of information extraction from your sentence more so I think than a maximum entropy model. It feels a little hacky using a max sense to kind of take some stuff from the word on the left and take some stuff on the right and figure out if that it starts with a capital letter and all that stuff.
+
+[00:39:09] It just doesn't fit as elegantly, but also besides elegance. Generative and discriminative models have pros and cons for various use cases. In NLP, for example, it tends to be that generative models work okay with very little training data by comparison to discriminative models. So for example, naive bays can start classifying spam versus not spam emails really fast before you even have very much data compared to something like logistic regression support vector machines, maximum entropy and the like.
+
+[00:39:45] That's one pro of generative models over discriminative models in NLP. Well, what about discriminative over generative? Well, in the case of naive base, for example, there's a little problem it has where it double counts words because it throws away. Dependence of features, it introduces this independence assumption.
+
+[00:40:06] The naive part of naive bays. Well, it throws away the dependence of words on each other. So for example, the word Hong Kong is split into two words through tokenization and is double counted. Hong is counted, and Kong is counted, and that skews the results of certain things like document similarity or classification, et cetera.
+
+[00:40:26] Whereas something like maximum entropy models does not double count Hong Kong. It doesn't do away with independence. So pros and cons of generative versus discriminative models in NLP, I mean, you'll probably just end up using whatever model is common to use for that particular use case. I don't know that you need to know the pros and cons of discriminative versus generative models.
+
+[00:40:48] Let's talk about one more generative model called LDA Latent Dear Leigh, allocation. Something you use latent ish lay allocation for is what's called topic modeling. So I actually don't know how LDA works under the hood. Um, I know what it does and so that's what I'm gonna describe to you. Latent dear Lay allocation is used primarily for topic modeling.
+
+[00:41:12] It's basically tagging documents. So let's say you have, um, a million documents and a bunch of documents are about cats and dogs and fish and aquariums and pet food and all this stuff, and some other documents are about. Bat and ball and base and stadium and stands, and some other documents are about JavaScript and Python and React and React, native and Postgres.
+
+[00:41:35] So there tends to be categories of documents. The dog's, cats, wolf bark, fish type documents would be categorized as pets. And the bat ball home run stuff would probably be baseball and the React job script, Python stuff would be programming. What LDA does is it finds these topics, it finds these clusters, so this is very similar to clustering that we've seen before with K means.
+
+[00:42:02] And in fact, LDA is an unsupervised model, so that's very similar indeed. The difference is that K means will find disjoint categories of things, disjoint clusters that don't have overlap. Whereas LDA will find models that maybe you have a document that's like 30% about pets and 20% about baseball and such.
+
+[00:42:24] So LDA will auto tag your documents. That's what LDA is for. So for example, if you, if you've ever written a question on Quora or Stack Overflow, stack overflow in particular, and you hit submit and you forgot to add tags to your question, well, stack overflow will automatically add a bunch of tags to your question.
+
+[00:42:42] Machine learning, Python, TensorFlow, it'll just pick up on words in your document. And so LDA generates sort of topics or clusters of words that seem to co-occur between documents very useful for auto tagging. You can also use it for document similarities. So for example, you can use LDA. To determine if a document you're looking at is similar to some other document in the database, Cora, the question answer website had a competition one time to figure out if, when you're typing in a question, has that question been asked before, so that you're not going to submit a duplicate.
+
+[00:43:18] Well, you could use LDA to figure out which topic the document you're typing up falls under and find any, and grab a whole bunch of those, and then use something from there to sort of find the level of overlap between the documents. Something like T-F-I-D-F that we'll discuss in a bit. So LDA is for topic modeling, finding topics amongst your documents, groups of words that they have in common between each other.
+
+[00:43:44] Similar algorithms, as far as I understand are called latent semantic indexing and latent semantic analysis. So if you see LSI or LSA or LDA. They all have a lot to do with each other, but LDA is the common one that's used in application in NLP for topic modeling, auto tagging your documents. All right, let's move on to search.
+
+[00:44:10] Search engines, searching for documents, document similarity, relevance, all that stuff. The domain of Google, as well as the domain for a very popular open source project called Elastic Search. Elasticsearch is probably the most popular open source search indexing tool that you can use for your project, your web app, whatever.
+
+[00:44:33] If you just wanted to add quick searching capabilities to some content based web app that you have, you could use Google's drop-in site search feature, or if you're using a content management system like WordPress or Drupal, they provide search functionality out of the box. But if you're building something a little bit more robust, a common tool people use is Elastic Search and the underpinnings of elastic search.
+
+[00:44:57] Are gonna be primarily predicated on this algorithm we're gonna be talking about called term frequency inverse document frequency. We will lead up to that in a bit, but let's go back to bag of words. Let's talk again about the bag of words models. Naive base, for example, was a bag of words model. I said it's basically like cutting up your document and throwing it into a bag and seeing if there's some overlap between maybe a search query or a classification.
+
+[00:45:25] You're just basically looking for trigger words. But let me talk a little bit more technically about what a bag of words model is. A bag of words model takes your document, cuts it up into tokens, unigrams or bigrams, however you wanna do it. And it generates a vector, so it takes your document and it turns it into a vector.
+
+[00:45:43] The vector size, its width is going to be the number of terms in the dictionary. Let's say you're using the English dictionary, it'll be 171,000 word, so 170,000 columns by one, one vector for every document, 170,000 columns. And those are the features. Those are, is the word present in the document zero or one?
+
+[00:46:09] Okay. So column, all the way on the left will be the first word in the dictionary. Starting with a column. All the way on the right will be the last word in the dictionary, starting with z. And if the word is present in this document, in this email, in this webpage, then we put a one in that column, and if it is not present, we put a zero.
+
+[00:46:29] This is called a sparse vector. Sparse, because there's a sparsity of ones. There are very few ones. The rest are mostly zeros. This by comparison to something you'll see in a future episode called a dense vector, which is basically like a squished down version of that where you're not necessarily using ones and zeros.
+
+[00:46:48] You're probably boiling that down into real numbers by way of something like principle component analysis. Remember how PCA principle component analysis from a prior episode is all about boiling your large vectors down into smaller vectors. One vector per document, many documents in the database, so 170,000 columns and however many documents you have.
+
+[00:47:11] Number of rows. And so this structure is used in naive bays for NLP. So naive bays can be used outside of NLP, but when it's used in NLP, it uses this bag of words structure. That's why in NLP naive bays is called a bag of words model. Now, if I wanted to build a search engine, I would probably use a bag of words model as well.
+
+[00:47:34] If I'm looking for cat food and I Google Cat food, what it will do is it will look through all these documents for documents where the CAT column is one, and the food column is one. Any documents that don't have both of those columns set to one are discarded and the the rest are returned to me. Very good.
+
+[00:47:54] Well, how do I proceed from here? Maybe I want to sort these documents in order of relevance to the user. How would I do that with my current approach? It doesn't seem like there's any easy way. So let's introduce a new idea. Instead of storing a one or a zero in the column for a word for every document, let's store a tally the number of times that word appears in the document.
+
+[00:48:19] So instead of storing a one for Cat, let's store the number of times CAT shows up in this current webpage. Very cool. So now if I look for cat food, what we could do is sort the documents retrieved by the number of occurrences of that word in the document. More cats and foods in the document means more relevant to my search query.
+
+[00:48:41] This is still a bag of words, by the way. The first approach with a zero or a one is called a binary vector. And then I don't know what you'd call this vector, but it's still a bag of words. Well, let's think if there's any issues with this approach. Well, I can think of one right away. People can abuse this system by way of search engine optimization.
+
+[00:49:01] Okay. If Google had this system implemented as their primary search engine, people could add to the end of any webpage, any keywords they want to show up for as highly relevant for search queries. So they could add cat, cat, cat, cat, cat, cat, cat, cat, food, food, food, food, food, food, food. A million times white font on white background font size zero, so you can game it.
+
+[00:49:21] But let's think of an even bigger issue, and that is that certain words tend to just show up in documents more often than others. This is especially prevalent with things called stop words, the A and is and so on. If somebody were to Google what is the highest quality cat food, if this algorithm was implemented, then Google might return results, documents, which have the the most, ding, ding, ding.
+
+[00:49:50] I found relevant documents. You're gonna love this one. It says the all over the place you were looking for the and quality and ca. Well, this one has the like crazy. You're gonna love this one. So we could do a pre-processing step of removing stop words by way of NLTK, which has some method for that, but that doesn't get us all the way there either.
+
+[00:50:09] There are still certain words that maybe we want in our search query we don't want to throw away. We want them there. They're indicative of something. They're useful for the query, but that are still more common than other words. We want our weird words, our rare words to be sort of the most influential in a search query.
+
+[00:50:30] So, for example, if I were to Google, how do I vectorize a document? Well, how I wanna keep that, I do care about the word how, but because it's such a common word, I don't want it to be scored super high. I want the word vectorized to be really high and the document to be just one under that. So that's when we come up with this concept called term frequency inverse document frequency, T-F-I-D-F.
+
+[00:50:58] It's a mouthful and all it means it's very simple. All it means is that our scoring mechanism for finding vectors is the inverse. It's the opposite. So that rare words go to the top. And common words go to the bottom. So scoring on stop words, you don't have to throw away stop words. They're automatically handled by this TF IDF algorithm for you.
+
+[00:51:23] They're just shoved to the bottom of the scoring mechanism, and very rare words are put at the top of the scoring mechanism. So again, we're still in the bag of words land. We're still talking about models that use the bag of words approach, but we went through the very basic implementation of a binary bag of words, which may be used in naive base, for example, to a tally approach of bag of words, which which could be used in some other models.
+
+[00:51:50] To a much more robust bag of words approach called T-F-I-D-F, term frequency inverse document frequency. When your bag of words is key to the success of your model, you want rare words up top and junk words on the bottom, you'll use T-F-I-D-F. So how would you use T-F-I-D-F for a search algorithm? Well, you'd store your documents as a bag of words in vector format using the TF IDF approach Now.
+
+[00:52:19] When I do a Google query for best quality cat food, here's what's gonna happen. We're gonna use some vector math. Now, like I said, a bag of words, you're not working with real words, you're working with vectors. Machine learning algorithms need numbers. They need vectors, they need matrices. Tensors machine learning algorithms work on tensors, so that's why we turn this thing into a vector.
+
+[00:52:40] Well, if I'm looking for high quality cat food, I can use some sort of logical and algorithm you can imagine, right? Finding all documents where all the keywords of my query are present. Okay? So I can use some sort of logical and mechanism on my search query represented as a vector and the list of documents represented as a vector because the keywords would align in the columns.
+
+[00:53:08] Okay, so now I have all the documents that have the words I'm looking for. Now. From there, I want to find documents that best match my query in some way. Now I'm going to introduce you to the topic of similarity, vector space similarity. And this is another very important concept in machine learning proper, even outside of NLP.
+
+[00:53:32] So you're gonna wanna listen carefully to this. One. Similarity between vectors is just linear algebra. Imagine points in Euclidean space, points in space, stars in a galaxy, dots all over the place, 3D. Those are your vectors, those are your documents. Or as we'll get to with word to vec and deep learning stuff.
+
+[00:53:52] Those may be your words. Whatever it is you're storing in vector format, that's what it looks like. A bunch of dots all over the place in space. So here we have dots in space being your documents. We've thrown away 80% of the dots by using this logical and to figure out at least which documents have the words I'm looking for.
+
+[00:54:13] Now. From there, I want to find the best match of all those dots, of all those vectors, of all those stars in a galaxy that remain after I've thrown away the documents that don't have any sort of match, which ones are the best. There are a handful of similarity metrics that you can use for vectors. The first one that you might consider for the situation is called JA card similarity.
+
+[00:54:37] Ard similarity is an in essence what amount of overlap is there between these vectors? How many words in common do they have? For example, that is a noble similarity metric to try here. It's not the common one that's used in practice. Let's, let's try another one. Euclidean distance. Euclidean distance is how physically close to dots are to each other.
+
+[00:55:05] So if I'm looking for best quality cat food, that's my search query. And some document here has a lot of overlap with that question. Would I be looking at how physically close my query is in space to the relevant document? The answer is no. And you'll see why in a bit. So one more similarity metric is called co-sign similarity.
+
+[00:55:28] Co-sign similarity is like the angle between dots, the angle between vectors. I think of co-sign similarity as do they have the same vibe? Are these things semantically similar? So here's my analogy. Let's say we have Boston, San Francisco, and Santa Cruz, and we're talking about people in those cities. Now, if you don't know anything about those cities, Boston and San Francisco tend to be high tech, sort of young professional cities, in my opinion.
+
+[00:55:58] And Santa Cruz is this very laid back kind of surfer town. Okay. Euclidean distance would be how physically close things are to each other. Boston is very Euclidean, far from San Francisco, but San Francisco is very Euclidean close to Santa Cruz. So Santa Cruz and San Francisco are very physically close in space to each other, compared to either of them to Boston.
+
+[00:56:25] Boston is on the other end of America. Euclidean distance. Ja card similarity is a little bit different. It's what is the overlap essentially between these cities? So maybe you would think of that as what residents have homes in multiple of these cities. To what extent does somebody have a home in San Francisco and a home in Boston versus a home in San Francisco and a home in Santa Cruz?
+
+[00:56:50] Okay, so that would be Kar distance and then co-sign similarity would be how similar they are in character. Okay. So I would say that Boston and San Francisco are very similar in character, in personality. The type of person who would like Boston would like San Francisco and vice versa by comparison to San Francisco and Santa Cruz.
+
+[00:57:14] I, I would say that they're very different in character. That's the co-sign similarities, the angle between dots. So obviously. It's the co-sign similarity we want here. But let me give you one more reason for using the co-sign similarity between our query and the document we're looking for. And that reason is that even if two documents had the same vibe, the same semantic meaning, well, if one talked about what you are asking about in your query a lot versus another document, which talked about it a little while, those distances in physical space would be drastically different even though their semantic difference is not different.
+
+[00:57:56] Okay? So if something, if I'm looking for high quality cat food and something is like rambling on about high quality cat food is the best high quality cat food you could find for cats that's high quality and its quality is really high. Versus another one that said high quality cat food. Well, they're both semantically what you're looking for, but one has like rocketed into space way to the top, right in the same direction as the other one that's closer to you down here.
+
+[00:58:23] I. So they're semantically similar. Their co-sign similarity is the same because the angle between your query and those documents is the same for each case, but their physical distance is very large, and so that hurts your situation. That's why you don't use Ian distance here. So there you have a search engine, you store your documents.
+
+[00:58:46] As bags of words in your database vectors, sparse vectors, you use T-F-I-D-F. That's term frequency inverse document frequency. To find the similarity between your query and relevant documents based on word overlap, scored in the opposite of frequency of terms, it's just going to penalize really common words and give higher scores, very rare words, so that your search queries on rarer words will find more relevant documents.
+
+[00:59:17] And from there you'll use cosign similarity. To find the closest matched of the matched documents. Now, T-F-I-D-F and co-sign similarity is vastly useful all over NLPI talked about in the prior section, using LDA latent DEARSLEY allocation for topic modeling in order to find similar documents, documents similar to the one that you're looking at right now.
+
+[00:59:41] Well, that's not really the best way to find a similar document. The best way to find a similar document is using TF IDF. In combination with co-sign similarity, what level of overlap of rare words does this document have with some other documents? And then from there, what is the angle between my document as a vector and those documents as a vector sort by smallest angle?
+
+[01:00:04] And now you have similar documents. Okay, I am only halfway through this episode, so I'm gonna stop here and just break it into two episodes. I'm sorry guys. This went on a lot longer than I thought it was. It's my bedtime. We talked about very small bits like edit distance using the levinstein algorithms, stemming and ization using the porter stemer.
+
+[01:00:27] Breaking your document into multiple tokens, tokenizing your documents into what's called unigrams, or you could break it into bigrams. You'll use these grams, these ngrams in your language models. A language model is a generative model. Okay, A generative probabilistic approach, machine learning approach to NLP one.
+
+[01:00:49] Common task in NLP is classification and sentiment analysis. You can use any handful of algorithms there, such as support vector machines and max ENT maximum entropy model, which is very similar to multi-class logistic regression, but the most common algorithm used for classification and sentiment analysis In classical NLP, not state-of-the-art.
+
+[01:01:11] NLP is naive bays. Naive bays is a generative language model. There is also something called information extraction, such as part of speech tagging, figuring out which word is a verb, which word is a noun, et cetera, and named entity recognition, figuring out who's who in a sentence. Models that you would use for that are maximum ENT entry P models.
+
+[01:01:33] There's also another one called Conditional Random fields, which I didn't talk about in this episode. Importantly, a model called a hidden Markoff model, which is a variation of a markoff chain. I distinguish between generative and discriminative models. Discriminative models give you the probability of y, give an X technically, visually.
+
+[01:01:53] It's like drawing a line, separating the X's from the O's, the the things on the left, from the things on the right. Generative models give you the probability distribution of X given y, the, the inverse. Technically and visually. It's like drawing circles around your clouds of dots. You're drawing probability distributions around your classes.
+
+[01:02:17] Common discriminative models or support vector machines, maximum entropy models, logistic regression, neural networks, and so on. Common generative models are hidden markoff models, naive bays, and latent. Dear slay, allocation latent Dear slay allocation, LDA is used for topic modeling, keyword extraction, figuring out which tags go with your documents.
+
+[01:02:42] Common similar algorithms to L-D-A-R-L-S-I, latent semantic indexing, and LSA latent semantic analysis. LDA is very similar to K means unsupervised clustering, which we talked about in a prior episode. The big difference being that this one allows for overlap, like 30% about pets, 20% about sports, et cetera, whereas K means clusters, disjoint classes.
+
+[01:03:08] Then we talked about search and document relevance by way of a one two punch called TF IDF term frequency inverse document frequency, bag of words, model and co-sign similarity. So you use the TF IDF approach to find documents that match your query or documents that match other documents based on the frequency of rarer words overlap.
+
+[01:03:37] And then you use co-sign similarity to find how similar documents are to each other, or queries are to documents. You use that for document similarity, relevance, and search engines. In the next episode, I'm going to finish up traditional NLP algorithms. I'll talk about, uh, parsing syntax, tree parsing, things like context free grammars, and then I'll talk about the really big problems to solve an NLP using all the tools then that I gave you through this in the next episode.
+
+[01:04:11] So all the stuff that we talked about with part of speech tagging, named entity recognition, hidden markoff models, these, these are tools that you'll use for the big problems such as question answering, automatic summarization of documents and machine translation. So we'll get into all that in the next episode.
+
+[01:04:31] The resources is the same as the last episode, namely speech and language processing. The textbook. They also put out a YouTube series, a 24 hour video series that will basically be the details version of these three episodes that I've been doing on classical NLP. So if you want to dive into the details, then you can convert those YouTube videos to audio and listen to those.
+
+[01:05:03] And the NLTK book, NLTK being a popular Python library for traditional NLP algorithms, the authors of the library wrote a book that is an excellent introduction to NLP, the space in general, just using NLTK as a vehicle. As always, those are available at OCD Eve e l.com, oc deve.com/podcasts/machine learning.
+
+[01:05:33] I'm also starting a mailing list. You can sign up for there where I will send you an email when a new episode comes out, and I'll send you the resources in the email so you don't have to go to the website. Any other sorts of news or announcements I'll do on the mailing list. See you guys for NLP part three next time.
+
