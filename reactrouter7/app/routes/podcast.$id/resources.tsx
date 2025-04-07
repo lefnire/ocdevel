@@ -3,7 +3,7 @@ import {Leaf} from "~/routes/mlg.resources/tree/leaf";
 import type {EpisodeResources} from "~/content/workflowy/mlg-resources.types";
 
 // type Props = Route['loaderArgs']['resources']
-export function ResourcesFlat({flat, nids}: EpisodeResources) {
+export default function ResourcesFlat({flat, nids}: EpisodeResources) {
   return <ResourceCacheProvider flat={flat}>
     <div className="resources">
       <Resources nids={nids}/>

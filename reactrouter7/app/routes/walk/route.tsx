@@ -1,4 +1,3 @@
-import Table from './table'
 import TopSection from "./top-section";
 import CompareButtons from './compare-buttons';
 import {ProductProvider} from "~/routes/walk/context";
@@ -9,6 +8,9 @@ import {ModalSingleton} from "~/components/modal";
 import {getComputed} from '~/content/treadmills/computed'
 import type {Route} from './+types/route'
 import * as meta_ from './meta.js'
+import {lazy, Suspense} from 'react'
+
+const Table = lazy(() => import('./table'))
 
 export function loader() {
   // calculate scores and inverted links server-side to save on render time
@@ -22,7 +24,9 @@ export default function Route({loaderData}: Route.ComponentProps) {
   return <>
     <ProductProvider computed={computed}>
       <TopSection />
-      <Table />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Table />
+      </Suspense>
       <CalorieCalc />
       <CompareButtons />
       <ContentSection />

@@ -1,4 +1,4 @@
-import {type PropsWithChildren, useMemo} from "react";
+import {type PropsWithChildren, Suspense, useMemo, lazy} from "react";
 import Card from 'react-bootstrap/cjs/Card'
 import Alert from 'react-bootstrap/cjs/Alert'
 import {Link, Outlet} from "react-router";
@@ -8,7 +8,8 @@ import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
 import type {Route} from './+types/route.tsx'
-import {ResourcesFlat} from "~/routes/podcast.$id/resources";
+
+const ResourcesFlat = lazy(() => import('./resources'));
 
 export default function Full({loaderData}: Route.ComponentProps) {
   const props = loaderData
@@ -27,7 +28,9 @@ export default function Full({loaderData}: Route.ComponentProps) {
     if (!resources?.nids?.length) { return null; }
     return <Section title="Resources">
       <div className='text-muted my-0'>Resources best viewed <Link to='/mlg/resources'>here</Link></div>
-      <ResourcesFlat {...resources} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ResourcesFlat {...resources} />
+      </Suspense>
     </Section>
   }
   function renderTranscript() {
