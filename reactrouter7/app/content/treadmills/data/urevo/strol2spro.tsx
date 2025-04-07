@@ -19,7 +19,7 @@ const info: Product = {
   },
   price: {
     value: 800,
-    sale: 530,
+    sale: 450,
   },
   dimensions: {
     value: [54.72, 25.37, 6.67],

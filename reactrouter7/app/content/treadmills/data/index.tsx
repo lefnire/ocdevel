@@ -7,6 +7,7 @@ import urevo_2slite from './urevo/2slite'
 import urevo_e5 from './urevo/e5'
 import urevo_e4 from './urevo/e4'
 import urevo_e3 from './urevo/e3'
+import urevo_lite from './urevo/lite'
 import deerrun_q1mini from './deerrun/q1mini'
 import egofit_m1pro from './egofit/m1pro'
 import goyouth_2in1 from './goyouth/2in1'
@@ -54,6 +55,7 @@ const data = Object.fromEntries([
   urevo_e5,
   urevo_e4,
   urevo_e3,
+  urevo_lite,
   deerrun_q1mini,
   egofit_m1pro,
   goyouth_2in1,
