@@ -26,11 +26,7 @@ import {ProductContext} from "../context";
 import {Filter, filterFn, sortingFn} from './filter'
 import {HeaderCell, ColumnDescription} from './header'
 import {CellContent, CellScore} from './cell'
-
-
-type TableContext = { table: Table<Product> }
-// @ts-ignore
-const TableContext = createContext<TableContext>({table: {}})
+import {TableContext} from './context'
 
 export default function Default() {
   // Initialize sorting state with Rank column in descending order
@@ -47,6 +43,7 @@ export default function Default() {
     setColumnFilters(urlFilters);
     // }
   }, [urlFilters]);
+  const dataObj = {} // Object.fromEntries(filteredData.map(d => [d.key, d]))
 
   // Column helper
   const columnHelper = createColumnHelper<Product>();
@@ -66,10 +63,8 @@ export default function Default() {
             />
           ),
           cell: ({row, column}) => (
-            <CellContent
-              row={row}
-              column={column}
-            />
+            // <CellContent rowId={row.original.key} columnId={column.id} />
+            <CellContent row={row} column={column} />
           ),
           enableSorting: true,
           enableColumnFilter: true,
@@ -94,7 +89,7 @@ export default function Default() {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
-  return <TableContext.Provider value={{table}}>
+  return <TableContext.Provider value={{table, dataObj}}>
     <div className="w-100">
       <div className="table-responsive">
         <table className="table table-striped table-bordered">

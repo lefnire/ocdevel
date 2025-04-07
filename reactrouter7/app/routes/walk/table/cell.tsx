@@ -1,14 +1,18 @@
-import {type FC, memo, useCallback, useMemo} from "react";
-import type {
-  Column,
-  Row,
-} from '@tanstack/react-table';
+import {type FC, memo, useCallback, useContext, useMemo} from "react";
 import type {Row as Product} from '~/content/treadmills/computed';
 import {NA} from "~/content/treadmills/data/utils";
 import {columnsObj} from '~/content/treadmills/columns';
 import {useModalStore} from "~/components/modal";
+// import {TableContext} from './context'
+import type {Column, Row} from "@tanstack/react-table";
 
-// Cell component with notes and rating indicator
+// export const CellContent: FC<{
+//   rowId: string
+//   columnId: string
+// }> = memo(({rowId, columnId}) => {
+//   const {dataObj} = useContext(TableContext)
+//   const product = dataObj[rowId]
+//   const colDef = columnsObj[columnId];
 export const CellContent: FC<{
   row: Row<Product>;
   column: Column<Product, unknown>;
