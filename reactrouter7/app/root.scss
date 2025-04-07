@@ -1,26 +1,26 @@
-// Required Bootstrap imports
+// Bootstrap individual  imports
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-// (Add custom variable overrides if needed)
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "bootstrap/scss/variables";
 // @import "bootstrap/scss/variables-dark"; // Uncomment if dark mode is needed
 
 // 4. Include any default map overrides here
-// (Add custom map overrides if needed)
-@import "bootstrap/scss/maps";
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/utilities"; // Import utilities early, but define them later
 
 // 5. Include remainder of required parts
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
 @import "bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "bootstrap/scss/utilities";
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/type";
-// @import "bootstrap/scss/images"; // Not detected as used
+// @import "bootstrap/scss/images";
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/tables";
@@ -32,27 +32,25 @@
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar";
 @import "bootstrap/scss/card";
-// @import "bootstrap/scss/accordion"; // Not detected as used
-// @import "bootstrap/scss/breadcrumb"; // Not detected as used
-// @import "bootstrap/scss/pagination"; // Not detected as used
+// @import "bootstrap/scss/accordion";
+// @import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/pagination";
 @import "bootstrap/scss/badge";
 @import "bootstrap/scss/alert";
-// @import "bootstrap/scss/progress"; // Not detected as used
-// @import "bootstrap/scss/list-group"; // Not detected as used
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/list-group";
 @import "bootstrap/scss/close"; // Used by Modal, Alert
-// @import "bootstrap/scss/toasts"; // Not detected as used
+// @import "bootstrap/scss/toasts";
 @import "bootstrap/scss/modal";
 // @import "bootstrap/scss/tooltip"; // Base is included by popover if needed
 @import "bootstrap/scss/popover";
-// @import "bootstrap/scss/carousel"; // Not detected as used
-// @import "bootstrap/scss/spinners"; // Not detected as used
-// @import "bootstrap/scss/offcanvas"; // Not detected as used
-// @import "bootstrap/scss/placeholders"; // Not detected as used
-
-// 6. Helpers
+// @import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/spinners";
+// @import "bootstrap/scss/offcanvas";
+// @import "bootstrap/scss/placeholders";
 @import "bootstrap/scss/helpers";
 
-// 7. Utilities API last to generate classes based on the Sass map in `_utilities.scss`
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "bootstrap/scss/utilities/api";
 
 // --- End Bootstrap Imports ---
