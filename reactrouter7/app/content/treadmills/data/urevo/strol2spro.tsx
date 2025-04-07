@@ -2,20 +2,23 @@ import type {Product} from '../types'
 import brand from './brand'
 const info: Product = {
   brand,
+  key: `${brand.key}_strol2spro`,
   model: {
     value: "Strol 2S Pro",
     notes: () => <div>
       If you also want to run (use this away from the walking desk), get this. You flip up the handles and it enables high speed; flip down to put it under your desk (low speed). This will generally be higher quality and last longer than a walking-only pad, due to motor requirements for high speed.
     </div>
   },
-  key: `${brand.key}_strol2spro`,
   links: {
     amazon: {
       US: "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876"
     },
     brand: {}
   },
-
+  price: {
+    value: 800,
+    sale: 530,
+  },
   dimensions: {
     value: [54.72, 25.37, 6.67],
     notes: () => <div>Depth and height are good, but side-rails add some width (a necessary walking pads that allow speeds over 4mph). So measure the space between your desk legs.</div>
@@ -42,10 +45,6 @@ const info: Product = {
   },
   fakespot: {
     value: ["A", brand.fakespot],
-  },
-  price: {
-    value: 800,
-    sale: 400,
   },
   pickedBy: {
     me: 3,
