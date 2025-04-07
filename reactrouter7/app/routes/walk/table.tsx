@@ -1,11 +1,11 @@
-import {type FC, useContext, useEffect, useMemo, useRef, useState} from "react";
+import {createContext, type FC, memo, useContext, useEffect, useMemo, useRef, useState} from "react";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   getFilteredRowModel,
-  useReactTable
+  useReactTable, type Header, type SortDirection
 } from '@tanstack/react-table';
 import type {
   SortingState,
@@ -15,40 +15,43 @@ import type {
   Table,
   ColumnDef
 } from '@tanstack/react-table';
-import type { Row as Product } from '~/content/treadmills/computed';
+import type {Row as Product} from '~/content/treadmills/computed';
 import {NA} from "~/content/treadmills/data/utils";
-import { columnsArray, columnsObj } from '~/content/treadmills/columns';
+import {columnsArray, columnsObj} from '~/content/treadmills/columns';
 import Form from 'react-bootstrap/cjs/Form';
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {FaArrowDown} from "@react-icons/all-files/fa/FaArrowDown";
 import {ProductContext} from "./context";
 import {useModalStore} from "~/components/modal";
 
+const faArrowUp = <FaArrowUp />
+const faArrowDown = <FaArrowDown />
+
 // Header cell component with notes
 const HeaderCell: FC<{
-  column: Column<Product, unknown>;
-  info: any;
-}> = ({ column, info }) => (
-  <div className="text-nowrap" style={{ maxWidth: '130px' }}>
+  label: string
+  isSorted?: false | SortDirection
+}> = memo(({label, isSorted}) => (
+  <div className="text-nowrap" style={{maxWidth: '130px'}}>
     <div className="d-flex align-items-center">
-      <span>{info.label}</span>
-      {column.getIsSorted() && (
+      <span>{label}</span>
+      {isSorted && (
         <span className="ms-1">
-          {column.getIsSorted() === 'asc' ? <FaArrowUp /> : <FaArrowDown />}
+          {isSorted === 'asc' ? faArrowUp : faArrowDown}
         </span>
       )}
     </div>
   </div>
-);
+));
 
 // Description component with notes modal
 const ColumnDescription: FC<{
   column: Column<Product, unknown>;
   info: any;
-}> = ({ column, info }) => {
+}> = ({column, info}) => {
 
   if (!info.description && !info.notes) return <div>&nbsp;</div>;
-  
+
   const handleClick = () => {
     useModalStore.getState().openModal({
       title: info.label,
@@ -69,7 +72,6 @@ const ColumnDescription: FC<{
 };
 
 
-
 // CellWithModal component has been integrated into the Cell component
 
 // Cell component with notes and rating indicator
@@ -77,11 +79,11 @@ const Cell: FC<{
   row: Row<Product>;
   column: Column<Product, unknown>;
   info?: any;
-}> = ({ row, column, info }) => {
+}> = ({row, column, info}) => {
   const columnId = column.id;
   const columnDef = columnsObj[columnId];
   const product: Product = row.original;
-  
+
   // If no column definition, return empty div
   if (!columnDef) {
     return <div></div>;
@@ -138,12 +140,12 @@ const Cell: FC<{
   if (columnDef.render) {
     return <div style={cellStyle}>{columnDef.render(product, handleClick)}</div>;
   }
-  
+
   // Case 2: If format function is provided, use it and attach click handler if needed
   if (columnDef.format) {
     // Pass the non-NA rawValue to format if needed, or let format recalculate
     const formattedValue = columnDef.format(product); // Assuming format uses product directly
-    
+
     if (handleClick) {
       return (
         <div style={cellStyle}>
@@ -153,10 +155,10 @@ const Cell: FC<{
         </div>
       );
     }
-    
+
     return <div style={cellStyle}>{formattedValue}</div>;
   }
-  
+
   // Default case: no render or format function
   return <div style={cellStyle}></div>;
 };
@@ -166,7 +168,7 @@ const NumericFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: [number, number] | undefined;
   filterOptions: { min?: boolean; max?: boolean };
-}> = ({ column, columnFilterValue, filterOptions }) => (
+}> = ({column, columnFilterValue, filterOptions}) => (
   <div className="w-100 max-w-130px">
     <div className="d-flex gap-1 mb-1">
       {filterOptions.min && (
@@ -205,7 +207,7 @@ const NumericFilter: FC<{
 const BooleanFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: boolean | undefined;
-}> = ({ column, columnFilterValue }) => (
+}> = ({column, columnFilterValue}) => (
   <div className="w-100 max-w-130px">
     <Form.Select
       size="sm"
@@ -233,7 +235,7 @@ const BooleanFilter: FC<{
 const TextFilter: FC<{
   column: Column<Product, unknown>;
   columnFilterValue: string | undefined;
-}> = ({ column, columnFilterValue }) => (
+}> = ({column, columnFilterValue}) => (
   <div className="max-w-100px">
     <Form.Control
       type="text"
@@ -248,15 +250,15 @@ const TextFilter: FC<{
 const Filter: FC<{
   column: Column<Product, unknown>;
   table: Table<Product>
-}> = ({ column, table }) => {
+}> = ({column, table}) => {
   const columnId = column.id;
   const columnFilterValue = column.getFilterValue();
-  
+
   // Use numeric filter for numeric columns
   if (columnsObj[columnId].dtype === "number") {
     const columnDef = columnsObj[columnId];
-    const filterOptions = columnDef?.filterOptions || { min: true, max: true };
-    
+    const filterOptions = columnDef?.filterOptions || {min: true, max: true};
+
     return (
       <NumericFilter
         column={column}
@@ -265,7 +267,7 @@ const Filter: FC<{
       />
     );
   }
-  
+
   // Use boolean filter for boolean columns
   if (columnsObj[columnId].dtype === "boolean") {
     return (
@@ -275,7 +277,7 @@ const Filter: FC<{
       />
     );
   }
-  
+
   // Use text filter for other columns
   return (
     <TextFilter
@@ -285,44 +287,29 @@ const Filter: FC<{
   );
 };
 
-// Rating indicator component
-const Score: FC<{ score: number }> = ({ score }) => {
-  if (score <= 0) return null;
+type TableContext = { table: Table<Product> }
+// @ts-ignore
+const TableContext = createContext<TableContext>({table: {}})
 
-  // Determine color based on score
-  const bgColorClass = score >= 7 ? 'bg-success' : score >= 4 ? 'bg-warning' : 'bg-danger';
-  const textColorClass = score >= 4 ? 'text-dark' : 'text-white';
-  
-  return (
-    <div
-      className={`position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded opacity-85 ${bgColorClass} ${textColorClass} fw-bold`}
-      style={{ width: '18px', height: '18px', fontSize: '11px' }}
-      title={`This attribute's score: ${score.toFixed(0)}/10`}
-    >
-      {score.toFixed(0)}
-    </div>
-  );
-};
-export default function ProductTable() {
-  const { filteredData, urlFilters } = useContext(ProductContext)
-  // Access URL search parameters
-
+export default function Default() {
   // Initialize sorting state with Rank column in descending order
   const [sorting, setSorting] = useState<SortingState>([
-    { id: 'total', desc: true }
+    {id: 'total', desc: true}
   ]);
   const [columnFilters, setColumnFilters] = useState<any[]>([]);
 
   // Apply filters from URL search parameters
+  const {filteredData, urlFilters} = useContext(ProductContext)
   useEffect(() => {
     // Update column filters
     // if (urlFilters.length > 0) {
-      setColumnFilters(urlFilters);
+    setColumnFilters(urlFilters);
     // }
   }, [urlFilters]);
+
   // Column helper
   const columnHelper = createColumnHelper<Product>();
-  
+
   // Create columns
   const columns = useMemo(() => {
     return columnsArray.map(colDef => {
@@ -331,13 +318,10 @@ export default function ProductTable() {
         row => colDef.getValue ? colDef.getValue(row) : row[colDef.key as keyof Product],
         {
           id: colDef.key,
-          header: ({ column }) => (
-            <HeaderCell
-              column={column}
-              info={colDef}
-            />
+          header: ({column}) => (
+            <HeaderCell label={colDef.label} isSorted={column.getIsSorted()} />
           ),
-          cell: ({ row, column }) => (
+          cell: ({row, column}) => (
             <Cell
               row={row}
               column={column}
@@ -349,9 +333,9 @@ export default function ProductTable() {
           filterFn: (row, columnId, filterValue) => {
             const columnDef = columnsObj[columnId];
             const value = columnDef.getValue(row.original);
-            
+
             if (value === undefined || value === null) return false;
-            
+
             // Always include NA values
             if (value === NA) return true;
 
@@ -360,35 +344,35 @@ export default function ProductTable() {
               const [min, max] = filterValue;
               // NA check already happened, so value should be a number here
               const numValue = value as number;
-              
-              const filterOptions = columnDef.filterOptions || { min: true, max: true };
-              
+
+              const filterOptions = columnDef.filterOptions || {min: true, max: true};
+
               if (filterOptions.min && min !== undefined && numValue < min) return false;
               if (filterOptions.max && max !== undefined && numValue > max) return false;
-              
+
               return true;
             }
-            
+
             // For boolean columns
             if (columnDef.dtype === "boolean" && typeof filterValue === 'boolean') {
               return value === filterValue;
             }
-            
+
             // For string columns
             if (typeof filterValue === 'string') {
               return String(value).toLowerCase().includes(filterValue.toLowerCase());
             }
-            
+
             return true;
           },
           sortingFn: (rowA, rowB, columnId) => {
             const columnDef = columnsObj[columnId];
-            
+
             // Use getSortValue if available, otherwise use getValue
             const getValueFn = columnDef.getSortValue || columnDef.getValue;
             const valueA = getValueFn(rowA.original);
             const valueB = getValueFn(rowB.original);
-            
+
             // Handle NA values: always rank highest
             const isValueANA = valueA === NA;
             const isValueBNA = valueB === NA;
@@ -401,7 +385,7 @@ export default function ProductTable() {
             if (typeof valueA === 'number' && typeof valueB === 'number') {
               return valueA - valueB; // Simpler numeric comparison
             }
-            
+
             // Fallback to string comparison
             return String(valueA).localeCompare(String(valueB));
           }
@@ -424,75 +408,121 @@ export default function ProductTable() {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
-  return (
+  return <TableContext.Provider value={{table}}>
     <div className="w-100">
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
-         {/* Normal table: columns are attributes, rows are products */}
-         <thead>
-           <tr>
-             {/* Each column header */}
-             {table.getHeaderGroups()[0].headers.map(header => {
-               const customDef = columnsObj[header.column.id]
-               return (
-                 <th
-                   key={header.id}
-                   className="text-nowrap"
-                   style={customDef.columnStyle || {minWidth: 80}}
-                 >
-                   <div>
-                     <div
-                       {...{
-                         className: header.column.getCanSort()
-                           ? 'cursor-pointer select-none'
-                           : '',
-                         onClick: header.column.getToggleSortingHandler(),
-                       }}
-                     >
-                       {flexRender(
-                         header.column.columnDef.header,
-                         header.getContext()
-                       )}
-                     </div>
-                     {header.column.getCanFilter() ? (
-                       <div>
-                         <Filter column={header.column} table={table}/>
-                         {/* Add description with popover below the filter */}
-                         <ColumnDescription
-                           column={header.column}
-                           info={customDef}
-                         />
-                       </div>
-                     ) : null}
-                   </div>
-                 </th>
-               )
-             })}
-           </tr>
-         </thead>
-         <tbody>
-           {/* Each row is a product */}
-           {table.getRowModel().rows.map(row => (
-             <tr key={row.id}>
-               {/* Each cell in this row represents a different attribute for this product */}
-               {row.getVisibleCells().map(cell => {
-                 const columnId = cell.column.id as keyof Product;
-                 const columnDef = columnsObj[columnId];
-                 // Only show score if hideScore is not true and the attribute has a score
-                 const score = columnDef.hideScore ? 0 : (row.original.c[columnId] || 0);
-                 
-                 return (
-                   <td key={cell.id} className="position-relative">
-                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                     <Score score={score} />
-                   </td>
-                 );
-               })}
-             </tr>
-           ))}
-         </tbody>
+          {/* Normal table: columns are attributes, rows are products */}
+          <thead>
+          <tr>
+            <TableColumns />
+          </tr>
+          </thead>
+          <tbody>
+            <TableRows />
+          </tbody>
         </table>
       </div>
     </div>
-  );
+  </TableContext.Provider>
 }
+
+type TableColumns = {}
+const TableColumns = () => {
+  const {table} = useContext(TableContext)
+  if (!table) { return null; }
+  const headers = table.getHeaderGroups()[0].headers
+  return headers.map(header => <TableColumn
+    key={header.id}
+    header={header}
+  />)
+}
+
+type TableColumn = { header: Header<Product, unknown> }
+const TableColumn = (({header}: TableColumn) => {
+  const {table} = useContext(TableContext)
+  const customDef = columnsObj[header.column.id]
+  return (
+    <th
+      key={header.id}
+      className="text-nowrap"
+      style={customDef.columnStyle || {minWidth: 80}}
+    >
+      <div>
+        <div
+          {...{
+            className: header.column.getCanSort()
+              ? 'cursor-pointer select-none'
+              : '',
+            onClick: header.column.getToggleSortingHandler(),
+          }}
+        >
+          {flexRender(
+            header.column.columnDef.header,
+            header.getContext()
+          )}
+        </div>
+        {header.column.getCanFilter() ? (
+          <div>
+            <Filter column={header.column} table={table}/>
+            {/* Add description with popover below the filter */}
+            <ColumnDescription
+              column={header.column}
+              info={customDef}
+            />
+          </div>
+        ) : null}
+      </div>
+    </th>
+  )
+})
+
+type TableRows = {}
+const TableRows = () => {
+  const {table} = useContext(TableContext)
+  if (!table) { return null; }
+  const rows = table.getRowModel().rows;
+  return rows.map(row => <TableRow key={row.id} row={row}/>)
+}
+
+type TableRow = { row: Row<Product> }
+const TableRow = memo(({row}: TableRow) => {
+  const cells = row.getVisibleCells()
+  return <tr>
+    {/* Each cell in this row represents a different attribute for this product */}
+    {cells.map((cell) => <TableCell row={row} cell={cell} key={cell.id}/>)}
+  </tr>
+})
+
+type TableCell = TableRow & { cell: Cell<Product, unknown> }
+const TableCell = memo(({cell, row}: TableCell) => {
+  const columnId = cell.column.id as keyof Product;
+  const columnDef = columnsObj[columnId];
+
+  const score = useMemo(() => {
+    // Only show score if hideScore is not true and the attribute has a score
+    const score = columnDef.hideScore ? 0 : (row.original.c[columnId] || 0);
+    if (score <= 0) return null;
+
+    // Determine color based on score
+    const bgColorClass = score >= 7 ? 'bg-success' : score >= 4 ? 'bg-warning' : 'bg-danger';
+    const textColorClass = score >= 4 ? 'text-dark' : 'text-white';
+
+    return (
+      <div
+        className={`position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded opacity-85 ${bgColorClass} ${textColorClass} fw-bold`}
+        style={{width: '18px', height: '18px', fontSize: '11px'}}
+        title={`This attribute's score: ${score.toFixed(0)}/10`}
+      >
+        {score.toFixed(0)}
+      </div>
+    );
+  }, [])
+
+  return (
+    <td key={cell.id} className="position-relative">
+      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+      {score}
+    </td>
+  );
+})
