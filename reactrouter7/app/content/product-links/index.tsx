@@ -42,6 +42,13 @@ export function Affiliate({product, children, ...props}: PropsWithChildren<{
 }
 
 const links: Record<string, AffiliateLink> = {
+    urevo_mat: {
+      key: "urevo_mat",
+      title: "Urevo Mat",
+      link: "https://amzn.to/3WrW0v5",
+      notes: 'Prevents floor damage, protects knees',
+      price: 40
+    },
     sunny_mat: {
       key: "sunny_mat",
       title: "Sunny Mat",

@@ -3,6 +3,7 @@ import {memo, useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
 import products, {affiliateLink} from '~/content/product-links'
+import picks from '~/content/product-links/treadmills'
 import {VideoButtonLg as VideoButton} from "../../components/video-btn";
 import {ScoreInfo} from "~/content/treadmills/utils";
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
@@ -102,7 +103,7 @@ const ContentSection = memo(() => {
     {header("essentials")}
     <h5>Treadmill Mat</h5>
 
-    <p>{affiliateLink(products.sunny_mat)}. Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
+    <p>{affiliateLink(picks.mat)}. Adds a layer of shock absorption for your knees, and prevents shock damage to hard floor. Over time
       the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a protection layer against high-pile carpet, so you're not pulling debris into the hardware.
     </p>
 
