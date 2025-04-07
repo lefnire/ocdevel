@@ -1,0 +1,218 @@
+[00:01:03] This is episode 23, deep NLP, part two. In this episode, I will finally wrap up on NLP. This is the second episode of Deep NLP RN ns, and we're gonna cover a few fine points about RN ns. We'll talk about bidirectional RNs, the vanishing and exploding gradient problem of back propagation and its solution through ltms or G.
+
+[00:01:33] But let's start with a review of nns. Because I think that last episode went a little bit fast, and so I wanna make sure that you understand Nns completely before we move on. So in deep learning, we use neural networks and there are various flavors of neural networks for different tasks. The Vanilla Neural network.
+
+[00:01:53] Also called a multilayer perceptron, or a feedforward network, or usually just a neural network is used for sort of general tasks, general classification or regression problems. So if you wanted to use a neural network for predicting the cost of a house in some market. You'd probably use a vanilla feedforward neural network or classifying something as this, that, or the other thing.
+
+[00:02:16] You'd use a neural network. Then there's a convolutional neural network, A CNN, or a connet, which are traditionally used for image related tasks. Categorizing images, for example, as cat, dog, or tree. And then we have sequence based tasks, time steps, steps of data over time. That might be things like weather prediction, trying to figure out what the weather's gonna be tomorrow based on what the weather has been in the last 365 days, or stock market prediction, or as we've been talking about.
+
+[00:02:49] Natural language processing where a sentence is a sequence of words through time. The Premier Time series deep learning algorithm is the recurrent neural network, and so we use NNS for deep NLP. Now real quick, I do wanna make a mention of reinforcement learning, which is also something you might use for sequence based machine learning problems.
+
+[00:03:14] Reinforcement learning recall is the third category of machine learning models. We have supervised learning, which is the majority of things that we've talked about throughout this series. You train the model to do something or recognize something. You train the model to pick up some pattern. You give it training data, which comes with labels and it learns the patterns to generate labels on its own.
+
+[00:03:36] Unsupervised learning is learning patterns in the data without a label, so for example, clustering data points in space as simply things are near each other based on their features. That would be unsupervised learning. And then finally, we have reinforcement learning, which is sort of the entry point into ai.
+
+[00:03:56] Proper reinforcement learning is the task of learning what actions to take over time in order to maximize something, some reward function, we call it. So as you can see, reinforcement learning is also applied to time series tasks. We have recurrent neural networks for deep learning oriented time series machine learning, and we also potentially have reinforcement learning.
+
+[00:04:24] And you can use deep learning in reinforcement learning, a thing called Deep Q Networks. So before I go on, I want to discuss the differences between these two camps, RN ns. Or Deep Q networks, supervised learning or reinforcement learning. Which do you pick when? The thing that you would use reinforcement learning for is when you need to learn what actions to take over time in order to maximize a goal.
+
+[00:04:52] So if we think about natural language processing, there doesn't seem to be some sort of analogy for that. In this case. Looking at sequences of words, how might you try to let the algorithm train itself? Maybe what words to generate next or what actions to take that generates a word in order to maximize some point value based goal?
+
+[00:05:13] It doesn't seem to be anything that makes sense in this case, whereas with supervised learning. You are training the RNN explicitly on sequences of words so that if you train it on, hello, however blank it knows to generate you as a next word in the sequence. It knows that because you fed it gobs of text data from various corpora like Wikipedia or online conversations, and it has seen the word you come after the sequence.
+
+[00:05:41] Hello. How are. Over and over and over and over. It's labeled data. Therefore it's supervised and it fits very well in NLP. Reinforcement learning would be a good fit for video game AI bots, for example, they're trying to kill the good guy. That's their goal, and they have some sort of measure of how well they're doing, which is gonna be maybe your hit points bar, and they have some actions that they could take at any point.
+
+[00:06:06] In the game thus far. Now it's a sequence of steps, a sequence of states, namely, up until this point, a whole bunch of stuff has happened. Step, step, step, step, step. The good guy has done various things and various other characters in the game have done various things. So what is the next best action to take given your current circumstances?
+
+[00:06:25] It is the actions themselves. That the reinforcement learning algorithm needs to learn how to perform for the maximization of killing the good guy. So those are two extremes. NLP and video game AI that make RNs versus Deep Q Networks for time series. Tasks kind of an obvious split in the middle, but let's talk about something that I think is maybe a little bit less obvious.
+
+[00:06:51] Stock market predictions. So this I think, is a great case where that line is a little bit fuzzy between whether you'd use supervised learning and an RN N, or reinforcement learning, and a deep Q network. If we were to use an RNN, what we would do is sort of try to learn the shape of a stock graph, and let's say that we're trying to build a trading bot.
+
+[00:07:13] We want to learn whether to buy or sell stocks in order to maximize our profits over time. Okay? You have a graph that goes up and down and up and down. It wiggles up and down at the peak of a hill. Before you start going back down, you'll want to sell stocks generally because they're going to lose value.
+
+[00:07:33] So you wanna cash out, you wanna maximize on what you have right now, and don't lose the value at the bottom of the next trough as the graph begins to creep upward. You want to. Buy stocks now they're cheap and our prediction is gonna be that it's gonna go up and up. So we're going to gain in value of our holdings through return on investment.
+
+[00:07:54] So we might use an RNN to build a model of a stock graph. Specifically what it would be doing is regression, predicting the next steps, value on a graph, the numerical value on a graph. That would be a regression based RNN that we would train on years and years of historical stock data. And having played with this stuff myself, you can actually get some pretty decent representations, some pretty accurate models, but then from there it's up to you to decide what to do.
+
+[00:08:25] You're gonna have to build into your code a trading strategy. You're gonna have to code in the system that when it looks like we're going downwards based on a major downtick in the next regression inference in the RNN, then you might. Sell your stocks and if it looks like the next predicted value is very high and we are at a current low, then you might buy stocks.
+
+[00:08:51] So you're building in the action and you're not building it into the machine learning model. You're, you're writing this in Python code, calling some API, for example. I. The model is simply spitting out a value, a regression. Another thing you could do with an RNN is classification. You could actually tag dots on the graph points where you would classify this point as sell, buy, or hold.
+
+[00:09:16] So you'd have to have some previous know-how about. Day trading and stock graphs and maybe build in a system where you can click on a graph and mark a point as a point where you would sell, buy or hold. Those are gonna be your three classes. And now the machine learning algorithm, the recurrent neural network, will learn to classify points on a graph.
+
+[00:09:37] As one of those three classifications, buy, seller or hold. So in the prior case of a regression based RNN, our last neuron, the output layer would be a linear unit, like linear regression. In the case of classification, our last neuron would be a Soft Max unit, which is a multi-class. Logistic regression unit, so you'd use logistic regression for binary classification, and softmax is multi-class logistic regression, so that's how we might use an RNN to work with stock market time series data.
+
+[00:10:13] In order to predict whether we should buy or whether we should sell or just the numerical next step, and then our code behind the scenes would actually act on that information in order to make the decision to buy or sell. In reinforcement learning, on the other hand, the model will actually learn on its own whether to buy or sell.
+
+[00:10:34] You give it the goal of maximizing profits, so all you do is you give it a goal, you say, make a lot of money, and don't lose a lot of money. So the end goal is a high dollar value. You give it some actions it can take. Those are buy, sell, and hold, and then you just let it loose. And what the algorithm learns specifically is what actions to take when you don't teach it.
+
+[00:10:56] The trading strategy that you buy when you're low and you sell when you're high, or anything along those lines using supervised learning methods. No, you let it loose with a goal. And it learns on its own whether to buy, sell, or hold, given where it is on a graph. So that's the difference between supervised time series stuff and reinforcement learning.
+
+[00:11:18] I. One learns numbers or classes and the other learns actions. And indeed, for NLP supervised time series models is the ticket, not reinforcement learning, at least not that I know of. And specifically, R and NS are the deep learning model for time series. So neural networks for general stuff. CNN's for image stuff, RNs for sequence stuff, and let's go over what an RNN does real quick.
+
+[00:11:48] We have two types of RNs. We have the vanilla RNN, which takes in an input and spits out an output for every time step. Now the trick of this, what differentiates it from a regular neural network, five neural networks left to right, is that the hidden layer loops back on itself. It is recursive. It's a loopy neural network.
+
+[00:12:13] So let's say we have five times steps time. Step one, we feed it an input and it outputs an output time. Step two, we feed it an input and it takes in additionally, the output of the last time step, an output's an output times Step three, we feed in an input it takes in the running tally of the past time steps thus far.
+
+[00:12:38] And outputs and output. So we go left to right conceptually, but that's not actually what happens. What actually happens is it's one neural network that loops back on itself. The hidden layer loops its output back into its input. That's a regular old RNN. Things you'd use this for, for example, are part of speech tagging.
+
+[00:13:00] And named recognition, part of speech tagging, you'd input a word and out comes a tag like verb, adverb, noun, adjective, et cetera. Input a word and out comes a tag, input a word, and out comes a tag. Now, importantly, you could use a regular neural network for this. In comes a word and out comes a tag, but we do want to carry through the system the context of the sentence.
+
+[00:13:24] Thus far, we wanna sort of build a meaning of the sentence we've been reading. From left to right and input that in with the word that we're looking at right now, because the context will affect the tag. We're applying to this word. So that's the magic of an RNN is it takes in the prior steps to aid in the classification of the current step.
+
+[00:13:45] Outputs a part of speech tag, so that is a one-to-one mapping. Every word gets a part of speech tag. Input, output, input, output. You may have a many to few mapping, like named entity recognition, the sentence Steve Jobs invented. Apple would be named entity, person named, entity person, nothing named entity organization.
+
+[00:14:09] So how do we account for that? Nothing. That blank space in a traditional RNN, well, you just output some blank symbol. Some like the letter O is common or a zero or a null or something like that. So you didn't put Steve an outcomes named entity person. You didn't put jobs, and it would combine that with the last output and output named entity person you'd input invented.
+
+[00:14:33] It would, it would combine that with the fact that there were two person named entities prior to this, and it'll output blank. These are sort of simplistic RNs. I call them Vanilla RNs. One twist to this architecture that I didn't discuss in the last episode is that we have been reading the sentences from left to right to inform the decision at any time step.
+
+[00:14:58] That's well and good, but sometimes stuff that comes after is also informative. We can accommodate for that by way of a structure called a bidirectional, RNN, and what it will do is it will read the input sequence from left to right, and that will come in as an input aiding in the decision being made. At that step, along with the actual input at that step.
+
+[00:15:25] Additionally, a third input will be coming in from the right, so the sentence will also be read right to left. So the sentence is being read left to right, and right to left, like arrows coming from the left and the right, and then meeting in the middle. At the current time step and an arrow coming from the bottom, that's our actual input, the word we're looking at, at the current time step.
+
+[00:15:49] Those three inputs all combine together to come up with an output. So an example where this might be useful, let's say I'm saying the phrase, George is my friend. Or so I thought, well, the thing that came after friend, the sequence of words that came after friend completely negated everything I'd said thus far.
+
+[00:16:09] So reading from left to right is well and good up until the point of friend. We're building sort of a meaning vector. But it turns out what comes after completely reverses the meaning of the sentence thus far. And I wouldn't have known that unless I'd seen the part after where I'm at. So that's what a bidirectional RNN does is it considers what came before and what comes after.
+
+[00:16:34] A regular RNN goes left to right in time, and common use cases for that would be part of speech tagging and named entity recognition. A bidirectional RNN takes input also from the right going left. So whatever time step you're at, it'll meet you in the middle from the right and from the left in order to help with your output.
+
+[00:16:55] And you might also use a bidirectional RNN for. Part of speech tagging or named entity recognition, it may increase the sophistication of the model. You would try a vanilla RNN, and then you would also try a bidirectional RNN, and you would look at your evaluation metrics and see which one performs better.
+
+[00:17:13] And if the bidirectional RNN performs a lot better with not a whole lot of extra compute time, then you would use that instead. You can't always use a bi-directional RNN. It's not objectively a better solution. For example, sometimes you don't have the future data, like if you're trying to predict stock market values, you exist in the present.
+
+[00:17:34] You have all of the data of the past, and you have nothing of the future, so you can't use a bidirectional RNN. Similarly with weather. Pattern predictions. You have all of the weather for prior days, but you don't have the future, so you don't use a bidirectional RNN. So there were two flavors of R Ns right there.
+
+[00:17:53] One is vanilla and it sort of maps inputs to outputs directly. And then another is bidirectional and it does the same thing. It maps inputs to outputs directly, however. It also considers future time step information, these two by comparison to the third type of RNN, which is called a sequence to sequence model or an encoder decoder model.
+
+[00:18:15] And what this does is you read you sequence of steps. You do all of your processing with your RNN, but you don't output anything. You don't output anything for each time step. You just listen. Just listen and listen, and listen and listen. And when you're done listening, when the sequence of steps is done, when you've heard the entire sentence uttered, then you stop and you think, and then you respond.
+
+[00:18:39] You have to hear everything first. So the listening phase is called encoding. You're encoding your sentence. The outputs at each step are completely ignored. They're, they're useless as as outputs in and of themselves. But remember, an RNN also feeds the output at every time, step into the next step as an input.
+
+[00:19:00] So it has this running tally. It's building from left to right. This is your context vector or your meaning vector. This is your encoding. And that's what's important. So you're throwing away all the outputs at every time, step in the encoding process until the very end, and you are handed a, an encoding package, a little vector ball that is handed to you, put into your hand, and you look at it, you turn it over in your hands.
+
+[00:19:26] And then from this encoding, you will reconstruct a decoding. You'll come up with a response if you're a chat bot, so you'll answer the question or you will respond to what the person said. If you're a chat bot, if you're a translation system, then you will. Reconstruct a translation of the sentence that was uttered in the language that you're translating to.
+
+[00:19:49] So you heard the sentence in English, ENC coded. Now it's an encoding and vector space. It's a dot somewhere in space, A star in a galaxy. And you can take that and it has meaning to it. It has actual semantic, meaning packaged within it. You can reconstruct the meaning in Spanish. Word for word. That's why it's called a sequence to sequence model.
+
+[00:20:12] You encode your sequence and then you decode that into a new sequence. An encoder decoder, a sequence to sequence. So this is for any task where you need to hear everything first. You, you can't just translate as you go along. And the way I like to think of this is with a standard RNN, you're writing in pen, so you can't go back and edit prior outputs.
+
+[00:20:38] If new information gave new meaning, if something kind of messed you up along the way and you feel like you want to go back and make some changes, well, you can't do that with a vanilla RNN. So an encoder decoder is useful for situations where you need to hear everything first. Before you want to start writing because you're writing with pen machine translation is a good example because there's so much that's packed into a meaning vector into your encoding that if you were translating word for word as you went along, you might lose some subtleties.
+
+[00:21:08] And my analogy that I use for this is, let's say you're a. Crime scene investigator, a gum shoe, and a sequence of steps happened in the unfolding of a crime. That was the encoding process. A guy got shot and a guy lost his shoe, and somebody got punched and everybody ran away. I. Sequence of steps unfolded and a crime scene investigator arrives at the scene of the crime, which is your encoding.
+
+[00:21:31] The scene of the crime is your encoding. You don't have access to the sequence of steps. You don't actually have access to the time-based crime. You only have access to the aftermath. What's left behind? That's the encoding. But the gum shoe is smart enough to know how to reconstruct the crime from scratch.
+
+[00:21:49] Looking just at the crime scene, he looks at the whole crime scene and scratches his chin and walks over and picks up a gun. So he has reconstructed step one of the decoding sequence, which is a man had a gun and shot it. Then he walks over and picks up a shoe and reconstructs step two of the decoding sequence, and also somebody lost his shoe and so on.
+
+[00:22:13] Now, the sequence that you generate in the decoding process doesn't have to be multiple items. It could be a one step sequence. So we might use this for sentiment analysis or classification, for example. You could use an encoder decoder, RNN model for either of those classification or sentiment analysis where you would want to hear everything that's said first before jumping to conclusions.
+
+[00:22:39] And once you've heard everything, once you've gotten the full encoding, now you can decode whether this person is mad, sad, happy, nervous, scared, et cetera. Sentiment analysis, but it's only a one item sequence. So imagine an array brackets with one item in it, and that item is sad. So it's a classification example.
+
+[00:22:59] Again, this is a perfect use case for those three scenarios that I laid out. Machine translation, sentiment analysis. And classification. This would be a poor fit for something like stock market prediction or weather prediction. You don't want to hear everything first. You want to sort of be collecting data and making real time estimates.
+
+[00:23:21] So there you have three types of RN ns, a regular old RNNA, bi-directional, RNN, and an encoder decoder slash. Sequence to sequence model. And remember, the last piece of the prior episode dealt with turning words into numbers because words are text and any machine learning model requires numbers or vectors of numbers to work with.
+
+[00:23:47] To do. Its math 'cause machine learning's, math, it's just linear algebra and statistics and calculus. Can't work with text to do that. So you use a model called Words to vec, which is kind of a regular old neural network, which will convert your words into vectors by relocating words in vector space close to.
+
+[00:24:07] Their counterparts contextually. So words that show up commonly in the same types of contexts are located physically near each other. And so that's all that the word two VEC model does, is it transforms your words into numbers so we can pipe them into the RN n. Okay, so here we are. That's where we left off at.
+
+[00:24:27] I apologize that that was all just a bunch of review, but I kind of want to solidify it because I went really fast in the last episode and it's some important stuff to know. We're gonna talk about a problem of an RNN. It turns out I have been fooling you a little bit into thinking that RN S are used so wildly as is.
+
+[00:24:47] They're not, I think nns are very rarely used in their current form. Instead of an RNN in its current form, what's commonly used is what's called an LSTM or GRU Style RNN. And in order to build that up, let's talk about the problem with an RNN. The problem is in training the model. Remember from prior episodes, every machine learning model has an error function, different error function for different models.
+
+[00:25:16] In fact, a model might have a different error function given the task. So an RNN may have a different error function given the different application you're applying it to, whether it's named entity recognition. Or machine translation, et cetera. So we're not gonna get into error functions, but what an error function does is tell you how bad your model is doing, and then you'll use training to fix that error, one step at a time, train, train, train, train.
+
+[00:25:42] And slowly over time that error function starts to reduce and reduce and reduce. So you're optimizing your error function, you're optimizing your error, reducing your error, and that improves your model's accuracy. Some error function measures how well you're doing, and then you use gradient descent, gradient descent, which tells your model which direction to move.
+
+[00:26:04] Its parameters. 'cause every model has inside of it. These parameters, usually they're called theta parameters. Sometimes they're called weights or W they're numbers, their coefficients that are multiplied by the input row. These stated parameters are moved in. Space over to the left or down a notch through gradient descent, which is just calculus.
+
+[00:26:25] So it's calculus telling your model which direction and how far to move its theta parameters in order to increase its accuracy, namely to reduce its error by way of that error function gradient descent. Now many models use gradient descent, linear regression, logistic regression support vector machines, and yes, neural networks.
+
+[00:26:47] When a neural network uses gradient descent, it's called something different. It's called back propagation. Back propagation is applying gradient descent to all the neurons, and then passing that error signal down through the ranks from right to left from the output, which got some error signals. Using the error function says, guys, I'm way off.
+
+[00:27:07] Remember. Remember our analogy for a neural network being a company org chart. It starts with its employees. That's basically the input layer, moves on to supervisors. That's the hidden layer, and then moves on from there to the boss, the head honcho of the company, and that's the output layer. So we took in some input.
+
+[00:27:26] Got passed through the ranks. The feed forward part of a neural network, lands in front of the boss and the boss man looks at the results as a piece of paper in his left hand, and he's comparing it to a piece of paper in his right hand. And he's shifting his cigar from left to right in his mouth, looking at what was predicted in his left hand, what the actual value is in his right hand, and he shouts back through the ranks, guys.
+
+[00:27:47] We're messed up by 10 and all the supervisors get to scrambling, fixing various values in their books, and they're crossing out some numbers and doing some math, and at the same time, they turn around and they shout back to their employees. Guys, boss Man says We're off by 10, and they keep correcting some numbers in their books, and the employees start correcting some numbers in their books, so it's gradient descent.
+
+[00:28:07] Passed hierarchically back through the ranks of the neural network. That's back propagation. Now, a recurrent neural network, remember, is sequence based. The hidden layer loops back on itself for every time step in our sequence, whether it's a sentence of words or time steps in a stock market, we're making a prediction and then we're feeding the prior prediction back into the next time step where we take in an input.
+
+[00:28:35] And the prior output. So a recurrent neural network is one neural network, but it loops back on itself. How would back propagation work? In this case, what we would do is gradient descent at all. The neurons send that air signal back through the neural network. It's just a regular old neural network, remember?
+
+[00:28:51] So it works the same, but that is really only for the last step of the recurrent neural network sequence that would be. Back propagating only the last step. So what do we do? We back propagate again. We just feed the error signal on through again. So the forward pass of a recurrent neural network doing its prediction and then the backward pass of a recurrent neural network is back propagating the error multiple times, once for every time step.
+
+[00:29:23] It's called back propagation through time. So you go forward to make your prediction and you back propagate your error through the neural network once through time for every time step. Now, what would that look like? We would have an org chart, the boss and his supervisors and their employees. I. And the boss would look at what's on paper and look what's on file and yell back at the supervisors.
+
+[00:29:44] Error. Error as he's ripping up the paper and the supervisor all hear that, and so they all start changing some numbers in their books and they're yelling back at the employees error, error, error. And now it's the next pass back of the RNN. The boss gets the second to last prediction he made, compares it to what's on file.
+
+[00:30:01] Error. Error. The supervisors all hear that and they're still kind of writing in their books and they look up at him and they kind of got a grimace and they're starting to sweat and they start changing some numbers and the books really fast and they yell back at the employees error. Error. And the employees are like pulling their hair out and they start writing and the boss gets the third to last prediction he made in the recurrent neural network and he yells back.
+
+[00:30:19] Error, error, error. And the supervisors are just pulling their hair out. They're practically in tears. They're trying to modify numbers in the books, but things are coming so fast that they just can't keep up with it. They're just scribbling lines everywhere and they yell that back to the employees. Error, error, error.
+
+[00:30:33] And if the employees just quit, they say, we're done. You can back propagate your error too many times, too far back, because remember, like I said, this is all one company, one organization, one neural network. It just so happens to loop back on itself over and over and over. You can back propagate your air too many times.
+
+[00:30:53] What happens is either called the exploding gradient where the error signal becomes too loud basically, and your theta parameters get moved too far towards infinity. Everything just becomes infinity. That's kind of like how I described it here, or the opposite can happen and the error signal because it was too low to begin with gets quieter and quieter and quieter.
+
+[00:31:15] So. So the boss man's like error. Error. And the supervisor's like, what? What? I think he said error guys. So, so we, so they start jotting down some numbers in their books and they whisper back to the employees error. Error. And the employee's like what? They're cupping their hand to their ears. What? I didn't hear you.
+
+[00:31:29] The vanishing gradient problem where the gradient is so low that when it gets back propagated. Over and over and over, it goes towards zero or becomes zero. Now, what's the problem with this? Why don't we have this with a regular neural network or a convolutional neural network or something like that?
+
+[00:31:44] Well, the problem is that we're back propagating our error over and over and over and over. Now, this isn't usually a problem for very short sequences, but once our sequences become longer and longer, say 40 steps or 50 steps, you know, those would be very long sentences. But in the case of weather prediction or stock market analysis, those would be.
+
+[00:32:02] Very tiny sequences indeed vanishing and exploding gradients would be a very, very big problem for stock market and weather analysis. But it turns out also actually that NLP indeed suffers from the vanishing and exploding gradient as well. So you just wanna play it safe and solve this problem. What is the solution to this problem?
+
+[00:32:22] The solution is something called an LSTM or long short-term memory cell. Alternatively, there's a competitor called a GRU Cell or Gated recurrent Unit. They, for the most part, serve the same purpose in very similar ways. Ls, TMS are much more common in industry. I find, from what I understand in LSTM, cell is sort of a general case of a GRU cell.
+
+[00:32:52] So it's a little bit more all encompassing can handle more situations. Don't quote me on that, but an LSTM, like I said, is used much more than A GRU in industry. So for now, let's just focus on LSTM, and you can think about GRU in the future LSTM or long short-term memory cell. What it does is it replaces the neuron in a recurrent neural network's hidden layer.
+
+[00:33:18] So in a neural network, a neuron is just some function, some mathematical function, a statistical function. Like I said in the past, I said deep learning is stacked shallow learning, and the example I used is a multi-layer perceptron of vanilla neural network may have as its hidden neurons, logistic regression.
+
+[00:33:39] Basically every neuron is just logistic regression. And then the output, the last neuron in your neural network. If you're trying to do regression, then it's going to be a linear regression neuron, just linear regression. And if it's classification, if it's binary classification, it's gonna be logistic regression.
+
+[00:33:59] And if it's multi-class classification, it's going to be soft Max. Soft max is multi-class logistic regression. Now it gets a little bit more complex than that. A lot of times these neurons aren't necessarily logistic regression or what's called a sigmoid unit. The other word for logistic regression as a neuron is a sigmoid unit because.
+
+[00:34:22] The sigmoid function is sort of the crux of logistic regression. So they call these sigmoid units, but they're not often sigmoid units sometimes, and probably more often than not. In neural networks, we use a different function. One is called a tan H function, and it's very similar to a sigmoid function.
+
+[00:34:41] Uh, just a little bit different. And another is called a rectified linear unit, or. Which is quite different from a sigmoid function, but these are three common neurons that you might see in the wild sigmoid unit, tan H unit and Relu unit, and they have various pros and cons under different circumstances that make the math work out given the situation.
+
+[00:35:05] You don't need to know that stuff right now. We'll get into that in the future episode. But what we're gonna do in this particular situation is we're going to take out those 10 H units as they may be in an RNN. We're gonna take out those neurons, pluck them out of the neural network, and we're going to pop in this LSTM cell.
+
+[00:35:24] Now an LSTM cell, it's not a simple neuron as such. It's not a function. It's not some mathematical equation. It is actually like a machine. It's a little complex neuron that has within it multiple neurons. So you pop in the circle into your RNN, you replace your hidden layer neurons with this LSTM circle in your graph, and it has on it the label LSTM.
+
+[00:35:51] Long short-term memory, and you zoom in into that circle and inside of it, it's gonna have multiple little neurons. One might be a matrix multiplication unit, another might be a matrix edition unit. One might be a tan H function, another might be a sigmoid function, et cetera. So it's a machine, it's like a mini neural network, and it has a very specific purpose.
+
+[00:36:13] The purpose is in the name long, short-term memory. So before I talk about these units. Let's talk conceptually about what it's going to do, each LSTM in your hidden layer or however many hidden layers you have. Is going to latch onto a specific subsequence in a sequence. It's going to sort of hone in on some concept within a sentence and focus on that.
+
+[00:36:42] So let's say the sentence is, after work, I'm gonna go get my license at the DMV, then I'm gonna go grab some drinks with friends, and then I have to work the rest of the night. There's kind of three separate things happening in this sentence. It's sort of a medium length sentence, so it actually indeed could suffer from the vanishing gradient problem.
+
+[00:37:03] Each LSTM cell in our RNN may sort of learn to latch onto Subsequences, like after work, I'm going to the DMV to pick up my license. It's gonna sort of like latch onto that chunk and it will learn to ignore the rest. Then the second LSTM might latch onto the middle part. Then I'm gonna grab drinks with friends.
+
+[00:37:24] So it learns to ignore everything up until this point and everything after that point. So these LSTM cells learn to slice and dice sentences sort of into subsequences that are more manageable, which also makes for representing sentences hierarchically even more effective as well. You might sort of encode.
+
+[00:37:46] Sub chunks of a sentence and then combine those into an overall encoding rather than encoding the whole sentence as is. So that's pretty cool. It can seem to learn to latch onto Subsequences, and it doesn't have to be, as far as I understand it. It doesn't have to be contiguous sequences. It may. Or may not be able to take chunks from various other parts of a sentence, sort of latch onto concepts more inside of a sentence.
+
+[00:38:14] You never know really what's exactly happening under the hood of a neural network because they're black boxes. But this is how we might conceptually think of what an LSTM does is sort of slicing a sequence into manageable chunks. Manageable chunks for the feed forward. Pass in encoding a sentence, but also importantly manageable for the.
+
+[00:38:32] Back propagation, pass back propagation through time because what it's going to do now is when you train your RNN on its error back propped through time, each LSTM will know to listen for when it's its own turn to train. And so it's sort of handling its own mini chunk of the sentence that's not, that's not too long, so that it'll suffer from exploding or vanishing gradients.
+
+[00:38:58] It's its own island of a chunk of a sentence that it can train on a small sequence without causing issues in the back propagation through time part. So an LSTM solves the vanishing and exploding gradient problem by subs sequencing your sequence into more manageable chunks. Now, how does an RNN work?
+
+[00:39:19] What does it look like inside of that machine, inside of that cell? And we call it a cell because it's not quite a neuron. A neuron implies a a small function. A small unit just does a mathematical function. So we call this a cell 'cause it's a beefy neuron, a really fat neuron that has a bunch of stuff inside of it.
+
+[00:39:37] And one of those things inside of it is a forget unit or sometimes more complexly. A forget layer, a whole neuron. Dedicated to knowing when to stop listening and everything that comes after it. It forgets, or everything that came before where we're supposed to start listening, it forgets. So it's still getting the input at every step, but it knows, it learns when to forget what it's hearing because it doesn't matter.
+
+[00:40:05] It's not its own dedicated chunk of the sequence in tandem with the input gate layer, which decides which values it's going to update inside of the LSTM cell. And then the tan H layer does the actual updating, and then the output layer does the output. So there's machinery inside of this LSTM cell that learns.
+
+[00:40:28] To know when to start listening to its sequence and when to stop listening, and within that subsequence, what values to update and how to update them. And then of course, sending out the output. Cool. So an LSTM makes our feedforward pass of our RNN more sophisticated, more complex, more powerful. But importantly, it also prevents issues in the training phase in the back propagation through time phase by limiting what an LSTM cares about within a sentence so that its sequence isn't too long, that will cause a vanishing or exploding gradient problem.
+
+[00:41:11] And like I said, a competitor cell to the LSTM cell is called a GRU cell gated recurrent unit. But you don't need to worry about that for now. LSTM is so much more common in stock, in weather, in language, and everything that you're going to see in the near term. And LSTM is so popular in fact that oftentimes when you're working with an article or a, or an open source library or a model.
+
+[00:41:38] They won't even call it an RNN, or they won't call it a recurrent neural network. They'll just call it an LSTM model. Or sometimes if it's a bidirectional RNN, you'll just see bi L-S-T-M-B-I-L-S-T-M. It's like the LSTM is almost the most important piece of the equation, and so they just use that to describe the whole architecture.
+
+[00:41:58] But really, an LSTM, all it does is it replaces the neuron. Inside of the hidden layer of an RNN with a little bit more complex machinery than was there to begin with. So NLP Time series, nns Ltms. You're now an expert. You can go forth and make NLP models. There's only one more very popular neural network architecture to discuss, and that is the convolutional neural network that I'm going to talk about next episode.
+
+[00:42:34] The resources for this episode are the same as the last episode, so I'll just drop 'em in the show notes, you know where to find them. OC develop.com/podcasts/machine learning. If you can spare any change to keep this podcast alive, go to that same website and click on the Patreon link. If you can't do that, do me a huge solid and give my podcast a review on iTunes.
+
+[00:42:58] That'll help Keep this podcast going. Thanks for listening. See you next time.
+

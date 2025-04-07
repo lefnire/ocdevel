@@ -2,20 +2,37 @@ export * from './meta.js'
 
 See resources on [Deep Learning episode](/mlg/9).
 
-RNN Review
-  - Vanilla: When words + running context is sufficient.
-    - POS, NER, stocks, weather
-  - Bidirectional RNN (BiLSTM): When stuff from right helps too
-  - Encoder/decoder or Seq2seq: When you should hear everything first / spin a different way
-    - Classification, sentiment, translation
-  - Now w/ word embeddings
+### Neural Network Types in NLP
 
-Train: backprop through time
-  - Vanishing/exploding gradient
+- **Vanilla Neural Networks (Feedforward Networks)**:
+  - Used for general classification or regression tasks.
+  - Examples include predicting housing costs or classifying images as cat, dog, or tree.
 
-[LSTMs](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
-  - ReLU vs Sigmoid vs TanH (Nonlinearities future episode)
-  - Forget gate layer
-  - Input gate layer: decides which values to update
-  - Tanh layer: creates new candidate values
-  - Output layer
+- **Convolutional Neural Networks (CNNs)**:
+  - Primarily used for image-related tasks.
+
+- **Recurrent Neural Networks (RNNs)**:
+  - Used for sequence-based tasks such as weather predictions, stock market predictions, and natural language processing.
+  - Differ from feedforward networks as they loop back onto previous steps to handle sequences over time.
+
+### Key Concepts and Applications
+
+- **Supervised vs Reinforcement Learning**:
+  - Supervised learning involves training models using labeled data to learn patterns and create labels autonomously.
+  - Reinforcement learning focuses on learning actions to maximize a reward function over time, suitable for tasks like gaming AI but less so for tasks like NLP.
+
+- **Encoder-Decoder Models**:
+  - These models process entire input sequences before producing output, crucial for tasks like machine translation, where full context is needed before output generation.
+  - Transforms sequences to a vector space (encoding) and reconstructs it to another sequence (decoding).
+
+- **Gradient Problems & Solutions**:
+  - **Vanishing and Exploding Gradient Problems** occur during training due to backpropagation over time steps, causing information loss or overflow, notably in longer sequences.
+  - **Long Short-Term Memory (LSTM) Cells** solve these by allowing RNNs to retain important information over longer time sequences, effectively mitigating gradient issues.
+
+### LSTM Functionality
+
+- An **LSTM cell** replaces traditional neurons in an RNN with complex machinery that regulates information flow.
+- Components within an LSTM cell:
+  - **Forget Gate**: Decides which information to discard from the cell state.
+  - **Input Gate**: Determines which information to update.
+  - **Output Gate**: Controls the output from the cell.

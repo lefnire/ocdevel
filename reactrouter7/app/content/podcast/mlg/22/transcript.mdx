@@ -1,0 +1,248 @@
+[00:01:03] This is episode 22, deep NLP, part one at last. We're finally here. Deep natural language processing. It has taken us so long. I apologize for that. We're gonna discuss recurrent neural networks, R Ns, word to vec and word embeddings, and various architecture details like the LSTM, long short-term memory, and GRU gated recurrent unit cells.
+
+[00:01:32] After preparing for this episode, I realize indeed this is gonna be a multi parter, so we'll just see how far we get in this first episode. Deep natural language processing. I've mentioned it before. Deep learning has revolutionized NLP to an incredible degree. Recurrent neural networks have come in with sword and torch pillaging The entirety of NLP leaving no stone unturned.
+
+[00:01:56] Nns are incredibly powerful and versatile in NLP. Why is deep learning so applicable to NLP? There's a couple reasons. The first being the complexity and nuance of language. Remember from the neural network episode that neural networks and deep learning shine, particularly in circumstances that are extremely complex by comparison to circumstances which are very simple, predicting the cost of a house in a housing market.
+
+[00:02:24] Is very likely a simple linear model. Linear regression fits just fine, but predicting whether there's a cat, dog or a tree in a picture is too complex for a linear model to handle. And so image processing is really entirely the domain of deep learning and convolutional neural networks specifically, which we'll get to later.
+
+[00:02:43] What is the basis of complexity in machine learning models? It really boils down to the fact that certain features in your data combine in your model in some way that is non-linear. So a very simple example to use is if you're trying to predict the salary of somebody, you might use their degree, their field of study, where they live, race, gender, all these things.
+
+[00:03:05] Well, field of study and degree are two very important features when we're talking about somebody's salary, but they're not additive, they're multiplicative. They combine together to create a new feature. Which is field and degree with underscores. They're multiplicative. If you have a bachelor's in computer science, that combo will make you more money than if you have a bachelor's of English.
+
+[00:03:26] And so we don't consider them separately. It's not bachelor's plus English versus bachelor's plus computer science. Now if you knew this ahead of time, as we do with field of study and degree, you could manually combine those features together and still use your linear model, like linear regression. This is called feature engineering, manually combining your features and inputting them into your model.
+
+[00:03:47] For very simple situations like this, yes, that works fine, but for very complex situations, you need the machine to learn how features combine, and that's what a neural network does. That's explicitly what a neural network is best at doing. Is combining features together. So in this particular case, you could have just thrown the data into a neural network and it would've learned in its hidden layers to combine field of study and degree together.
+
+[00:04:12] Multiplicatively, it's called feature learning, and if there are multiple layers of feature combinations. That's when you actually have to go with deep learning. In the case of image processing, there are indeed multiple layers of feature combinations. The first layer of feature combinations is combining pixels together to form lines, so the input layers all your pixels.
+
+[00:04:34] Those are all your features. The first hidden layers job is to combine black pixels together or dark pixels together to create lines or borders or edges. And then the second hidden layer combines those lines together to form objects like eyes, ears, mouth, and nose. And then the final layer, the output layer of this neural network, this multilayer perceptron, is going to be a binary classification as to whether this is a face or not.
+
+[00:05:01] You need that second hidden layer because you need to combine things hierarchically. It's not sufficient to combine just the pixels into lines. In order to make your prediction, you have to make one more combination at a new layer. And language is just this way. Language is so nuanced and complex. First off, things do indeed combine.
+
+[00:05:22] They have to be combined. When you say this movie was good versus this movie was not good, not and good combined multiplicatively such that it is now a. Different feature than not and good considered separately. So sequences of words should be combined in such and such a way. On top of that, you might have a second hidden layer, which could combine constructs of words as they relate to each other.
+
+[00:05:46] You might even think of this as syntax tree parsing. Now making a recurrent neural network with two hidden layers in the architecture, that doesn't give you syntax tree parsing per se. We don't know what it gives you. Neural networks are black boxes. What's going on inside of those hidden layers is impossible to interpret.
+
+[00:06:07] All we can intuit is generally. That things are being combined in one layer, and then those combinations are being combined in another layer and however many layers deep you want to go. The depth of your hierarchy is sort of the depth of the complexity of the situation at hand, and that seems intuitively to be like syntax tree parsing.
+
+[00:06:27] If we're talking about language. But it may not necessarily be that way under the hood, in the black box of the neural network. But that is just to say that language is complex. Language is nuanced, and words combine in such a way that would be impossible to feature engineers. So you want to feature, learn them by way of deep learning and hierarchically combine syntactically so that depth and deep learning is significant and helpful.
+
+[00:06:52] So that's language complexity. The other big benefit of deep learning in the space of NLP is by way of something called end-to-end models. And we saw this in the last episode on machine translation in shallow traditional machine translation, we would have multiple models all stacked together, all feeding into each other.
+
+[00:07:12] We would have syntax tree parsing. We'd have encoding and decoding by way of. Bayesian statistics. We had alignment models and we had language models, and these all just played in together. They were written separately, maintained by different maybe teams or individuals on a project or in a company. And importantly, training one of these models does not feed into the training of other models.
+
+[00:07:35] You have to train your models independently. An end-to-end model, like a recurrent neural network. The RNN is all you need in machine translation. The RNN learns everything you need, and therefore you only need to train your one RNN. So an end-to-end model is a model that is written, maintained, and trained all in one model.
+
+[00:08:00] So deep learning and neural networks bring a lot to bear in natural language processing. Now, the first step to understanding nns. Is making this distinction between sequence models like hidden markoff, models from the prior episodes and non sequence models. Things where you just snap your finger and out comes an output, like a support vector machine or a logistic regression classifier.
+
+[00:08:23] You input something and comes your classification or your regression. So there's sequence models and there's non sequence models, and we had that in our prior shallow NLP episodes. We had hidden markoff models, markoff chains, and joint probability language models being sequence models. And we had maximum entropy support vector machines.
+
+[00:08:47] And logistic regression being non sequence models. We're gonna carry this information over into the world of deep learning, and we're gonna just have two models, a regular neural network, just a neural network, and a recurrent neural network. So we're gonna use a regular neural network for everything that is not sequence based.
+
+[00:09:06] You just snap your fingers. The neural network happens, and outcomes and output, and we're gonna use a re. Current neural network for everything that is sequence based. Step, step, step, step, step. Word, word, word, word, word. In a sentence or even sentence, sentence, sentence, sentence, sentence in a paragraph. If our task is a sequence of time steps, we're gonna use a recurrent neural network.
+
+[00:09:25] And by the way, sequence models as we've been discussing. Another word for this is called time series forecasting. Time series models. Because they're time steps when you're talking about language, word, word, word, word, word. It doesn't seem like time steps. It seems like word steps, but they really are time steps and sequence models or time series modeling.
+
+[00:09:46] Time series forecasting is useful in natural language processing. It's useful in weather prediction models and it's useful in stock market forecasting. Anything that has a sequence of time steps. So recurrent neural networks for sequence based NLP tasks and regular neural networks, which are also going to call deep neural networks or artificial neural networks, or multilayer perceptrons.
+
+[00:10:10] Okay? So you're gonna see these words all the time, referring to a regular vanilla neural network that's deep neural network, or DNN artificial neural network or a NN. Multi-layer perceptron or MLP, and specifically by comparison to recurrent neural networks. We're going to be calling them in this episode.
+
+[00:10:30] Feed forward Neural networks feed forward, meaning you input your input. It feeds forward through the neurons, through the hidden layers, and out through the output. And the way we understand that by comparison to recurrent neural networks is how nns work. So this is how RNs work. In RNs. We take in our input, a word, we're gonna be taking in one input step at a time.
+
+[00:10:57] Word, word, word words. So we're on word one. We take in word one as our input. It enters the hidden layer. Something happens in that black box, in that neural network, hidden layer, and out comes an output. Okay? Let's say we're translating from English to Spanish. So I say, hello, how are you doing? And it wants to translate to Ola.
+
+[00:11:18] So step one is entering hello and outcomes Ola. Now step two, we move to the second English word. How? Hello? How, how goes into the neural network. It goes into the same neural network. Okay. There are not multiple neural networks for every time step. There's only one neural network that will be reused for every single time step.
+
+[00:11:46] This time through the neural network. It takes in as input the second word how and the output of the prior pass. Ola. So it takes in two inputs, the second word, and the output of the prior pass, the first output. In other words, the hidden layer loops back on itself. There's a circle arrow coming out of the hidden layer and back into the hidden layer, and the second output.
+
+[00:12:17] The second time step is como. Very interesting. So we have one neural network, a regular old neural network it seems like, but with one tiny little twist. And that is that an additional input that comes into the hidden layer. In addition to the regular input, is the output of the prior pass. It's a neural network with a circle loop looping the hidden layer back onto itself.
+
+[00:12:44] And since neurons are functions, they can be sigmoid functions or tan H functions or rectified linear units, et cetera. These are actually computer functions. These are mathematical functions that get executed on the computer since it's calling itself. What do we call that in computer science? That's recursion.
+
+[00:13:04] It's the function calling itself and itself and itself and itself until we get to the very end of a sentence and then we backtrack our way up the stack and get our result. That's recursion, and that's why we call it a recurrent neural network. And that is by contrast to a Feedforward neural network feed forward being the opposite of recurrent.
+
+[00:13:25] Now we get to our third step. Hello, how are you? We're at, hello, how, and now we're at RARE. We feed R into the hidden layer. Our input layer is R, it is fed into our hidden layer, and in comes from the last step, the tallied output. Thus far. Okay, so what I said last time that we're taking the output of the prior step in as an input is a bit of an oversimplification.
+
+[00:13:54] What we're really doing actually is a language model. Task. Remember, language models do this kind of probability thing sequenced from left to right. You're like multiplying joint probabilities or running through a markoff chain or something like that. What we're kind of doing is. Tallying our way through the output sequence, and that's all being fed into this pass as an input.
+
+[00:14:18] And what's it gonna do? It's going to look at R. Okay. And if we were not using the prior inputs. Feeding them back into the hidden layer, it would just output. So SON, the direct translation of R from English to Spanish, but that's not what we want. We want the language to be complex and smart. So it carries with it sort of this meaning vector that it has been building up as it went along through the sentence.
+
+[00:14:45] And it sees Ola Como, and it knows that combined with R. What we have thus far, this tally vector that we've built up of our translated sentence thus far, combined with R in English, should not give us so. What we should maybe do probabilistically, as learned in the hidden layer of this neural network is Wait, wait.
+
+[00:15:11] Because what comes next is what's important. We're going to skip this word, so we move on to the next word. You we pass that in as input to the hidden layer. Remember, this is all the same neural network reused over and over At each step in comes this vector, this tally that has been being passed recursively into this hidden layer.
+
+[00:15:32] In comes that tally vector, combine it with you and out. Comes estas because the words we've translated thus far, plus the current word we're looking at will give us that word. And so we learn the complexities and nuances of things like modifier words and sarcasm and all these things where words combine in a special way that brings new meaning to the output.
+
+[00:15:57] Information is carried through the recurrent neural network through each time step by one, outputting a word. And two, looping that back into the hidden layer for the next time step. The way this recurrent neural network works makes it a language model. Language model from a prior episode. So an RNN is a language model, so we have an input sequence.
+
+[00:16:21] Of words, it eats these words one word at a time and spits out some stuff one word at a time, including if necessary, skipping a word because that's going to combine with the next word in some special way, as we saw with RU becomes. Estas. Now, what does this sound like? This sounds a lot like a hidden markoff model from a prior episode.
+
+[00:16:43] Indeed. Conceptually, I think they're very similar. I think of this formulation of a recurrent neural network as like the deep learning equivalent of a hidden markoff model. Now, of course, a recurrent neural network, because it is a neural network with a hidden layer of neurons or hidden layers, will be substantially more complex and nuanced and powerful than a hidden markoff model.
+
+[00:17:10] It will learn more intricacies than a hidden markoff model could learn. Now, here's what's really cool about a recurrent neural network. This architecture that I just described to you can replace every single task we described in the prior episodes. We input a sequence of Word, word, word, word, word, word.
+
+[00:17:30] And for every word we can output a part of speech tag, verb, noun, pronoun, adverb. Part of speech tagging. That was one task where we could have used hidden markoff models or we could have used maximum entropy models or support vector machines. Well, we can use a recurrent neural network for one. The RNN will learn attributes of the word that make it some part of speech intricately in the depths.
+
+[00:17:57] Of its black box within its hidden layers, but two, it will also be considering sort of its location semantically in the sentence. Thus far by way of that loop structure, it sees where it's at in the sentence as has been tallied. From left to right bringing us to this point, and it considers that as an input, that is a feature, a factor, helping determine what part of speech this word is.
+
+[00:18:26] So it's a more complex, nuanced, intricate version of part of speech tagging. One model, the recurrent neural network to be used instead of any number of models we might have used in prior episodes, such as a hidden MARKOFF model, maximum entropy support vector machine, et cetera. Part of speech tagging.
+
+[00:18:43] Named Entity Recognition. We input our sequence of words and outcomes, any number of named entities. Okay. So many outputs will be skipped, and certain outputs will come directly with its named entity. We say, Steve Jobs invented Apple. It's acting a little bit like a hidden markoff model. We're going Steve Jobs.
+
+[00:19:03] We're collecting those two together, outputting as the second output person, Steve Jobs. Okay. We go to the third input invented and it determines that, that word by way of the word itself in combination with where we are in the sentence thus far by way of that loopy structure is not a named entity, and so we skip it.
+
+[00:19:22] The fourth input Apple. Combined with the Hidden States outputs organization, apple, so we can use a recurrent neural network to spit out named entities as well as parts of speech. In this way, we're using an RNN, like a hidden markoff model where we're eating the words and pooping out little things that we want along the way.
+
+[00:19:40] Eating the inputs one word at a time, and pooping outputs any number of words at a time. We can also use RNs for sentiment analysis, classification, machine translation, and every other task that we've already talked about. Now, in order to use RNs for those more complex tasks, we're gonna need to reimagine the RNNA little bit differently.
+
+[00:20:03] I'm going to present a version of a recurrent neural network called a sequence to sequence model, or alternatively, an encoder decoder model. In this take of an RNN, instead of eating each word and pooping out an output for every time step, what we're going to do is input all of the input first, from left to right, gather our tally recursively through the hidden layer.
+
+[00:20:31] And then we will stop. We've read our entire sentence from left to right. Hello, how are you? Period. Then we stop. We didn't output anything yet. We're building sort of a vector tally, a meaningful vector representation. Up until this point, it's like our RNN is listening to us speak. You're saying, hello, blah, blah, blah, blah, blah, blah, blah, blah, and it's like, mm-hmm.
+
+[00:20:55] Mm-hmm. It's nodding. Its head Uhhuh. Uhhuh. Okay. Uh huh Uhhuh. Go on Uhhuh. And at the very end, when you stop talking, it thinks a little bit and it kind of reformulates everything you said in its head. It builds up this meaning representation of everything you said, and now it can respond. So that first step was called encoding.
+
+[00:21:15] You encoded the sentence, and now the RNN will decode. What it thinks to be a proper response. It listens to, you talked Uhhuh, Uhhuh, Uhhuh, Uhhuh. Okay. Okay. And then when you stop, it's like, you know, okay, blah, blah, blah, blah. So what you were saying back there with, so it decodes a response based on the encoding it has from what you said.
+
+[00:21:35] So it's a. Two-step RNN encoder decoder. Another word for this is sequence to sequence. You gave it a sequence and it outputs a sequence sequence to sequence encoder decoder. And we will use this sequence to sequence model for more complex RNN and LP tasks. So in the case of sentiment analysis or classification, what the RNN will do is read all of the words left to right first, Uhhuh, uhhuh, uhhuh.
+
+[00:22:02] Okay? Okay. Okay. And once you're done, it's gonna be like. You sounded mad, right? That's sentiment analysis. It will give you a predicted sentiment once it has heard the entire sentence or a predicted classification, A class we're talking about sports or technology or news, stuff like that. Classification.
+
+[00:22:21] So you encode your sequence and then your RNN can. Output another sequence. Now you see in this case that sequence is one word. It's a one item sequence, but you can imagine like in programming, you can have a single element array, right? Open bracket, and then one item, and then close bracket. That's basically what we're doing here.
+
+[00:22:41] It's creating an array, a sequence. It just so happens to be a one item sequence. And then finally, in the case of machine translation, I posed the problem as being a vanilla, RNN, translating the sentence word for word as we go along. That's not how we do machine translation. Neural machine translation using RNN architectures are actually sequence to sequence models, and that makes more sense anyway.
+
+[00:23:07] It's a little bit more difficult to try to translate something as you're going along from left to right in real time than it is to listen to what the person said first. Think about it, and then translate it to Spanish. So the more powerful neural machine translation models use this sequence to sequence encoder decoder architecture Now.
+
+[00:23:30] So let me give you an analogy I use for understanding sequence to sequence RNs in the case of single item sequence to sequence nns like we saw with classification and sentiment analysis. You don't need an analogy. We're embedding the sentence as we go from left to right and the result is a single vector, which is basically your class.
+
+[00:23:53] There's not much to that, but if we are encoding our source sentence in English. Okay, and we want to translate it to Spanish, and in the encode process we created a vector, which is sort of this running tally of the sentence, this sort of meaning vector, summing up the entire sentence, how could we possibly go from that to a reconstructed sentence?
+
+[00:24:17] In Spanish. I like to think of it like this. If you've ever seen the movie Boondock Saints, there's this big fight sequence. There's these two Irish guys and their American friend, and they're in their apartment, and I don't remember exactly what happens. Some big thug comes up and he chains one of the brothers to a toilet in the bathroom, and he brings the other brother down to the alley with a gun against his head, and the first brother on the second floor up in the apartment, chained to the toilet, breaks the toilet out of the ground and throws it out the window and it lands on the.
+
+[00:24:46] Thug's head and the first brother jumps outta the window and lands on some other thug, and there's all sorts of shooting and things are knocking over and people are getting shot. There's blood being splattered on walls and everybody runs away. So there we had a sequence of actions. Think of that like our words.
+
+[00:25:01] Word, word, word, word, word. Hello, how are you? This is our sequence of actions. Thug comes in, changed brother. One to toilet, takes brother. Two downstairs points, gun against head brother. One throws toilet out of window, lands on thugs. Step, step, step, step, step. And by the end of this whole scene, everybody runs away.
+
+[00:25:18] Flees the scene. There is sort of an aftermath. Left behind. There's toilet shards and bullet holes in walls. Blood smat is on the floor, maybe a gun left behind, and a shoe over here. So there's a whole crime scene left behind. That is what we have encoded from our sentence. A sequence of steps has occurred and this sort of crime scene has been being built.
+
+[00:25:45] Up. It's like the shadow of what actually happened. And by the time this whole throw down is done, a crime scene is left behind. That is our encoded sentence. Now, in the movie, this crime investigator gumshoe guy shows up at the scene and you know, he observes the whole. Scene all at once. He's looking at the floor and he sees a shoe and a gun and some blood smat.
+
+[00:26:11] He looks over to the right and he sees bullet holes in the wall, and he looks up at the apartment and sees a shattered window. And so he's able to reconstruct the meaning of the sentence based on what was left behind the encoding. So right now he is decoding the encoding and in the movie, and I don't remember exactly how this un.
+
+[00:26:31] Folds, but you can imagine he walks over to some broken pair of handcuffs on the ground and he kneels down and picks it up and turns it over in his hand. And based on his understanding of the whole crime scene combined with this step one he has made. His first word in the encoding process, Ola. Step one was thug chained brother, one to the toilet.
+
+[00:26:56] He looked at the whole crime scene, sees some toilet shards, picks up the handcuffs and constructs Step one. So you can see he doesn't have access to the actual events that unfolded. He only has access to the crime scene. So that's what an encoder decoder, RNN does. It builds up a crime scene. That's the encoding process.
+
+[00:27:16] And then from there, the decoder picks up and says, I got it From here, I'm gonna translate the entire English sentence. Hello. How are you into an entire Spanish sentence, Olo. Excellent. So now you have a basic understanding of RNs. They are loopy. Neural networks. Now, how do we get these words into our RNN?
+
+[00:27:37] Remember that machine learning doesn't work with text, it works with numbers. Machine learning is math. It is linear algebra, statistics, and calculus. So we need to turn our words. Into numbers or vectors. How did we do this? In the prior episodes when representing documents in a database, we represented those documents as a bag of words.
+
+[00:28:00] So each document is a row and it has 170,000 columns. That's the number of English words and the entire English dictionary. And there is a one in the location for the word, if that word is present in this document. So a document is just a vector, mostly zeros, and one, if that word is present. We call this a sparse vector because there is a sparsity of ones and a majority of zeros.
+
+[00:28:29] Now the equivalent representation. For words, not documents, but words, individual words themselves, is that the word would be a vector and it would have a one in the column of that word itself. Okay, so it would be all zeros, 169,999 zeros all zeros except for one, which is in the location of that words column.
+
+[00:28:54] This is a sparse vector as well, because it is mostly zeros and very few ones, but specifically. Only one. One. And so we call this a one hot vector. So a sparse vector is mostly zeros. Some ones a one hot vector is a sparse vector that is only one, one a one hot vector. So if we had the sentence, hello, how are you?
+
+[00:29:17] And let's pretend that those are the only words in our entire dictionary. There would be four columns. Hello, how are you? And if we're looking at the word, hello. Then the first column would be one, and the next three columns would be zero in our word. Hello. That's how we would represent our word as a one hot vector.
+
+[00:29:35] Now, this representation of a word does not carry in it any significance. Any meaning, any semantic importance. It's almost just an arbitrary representation of a word, like you might as well just have A-U-U-I-D some serial number for every word. The way that we represent it as a one hot vector gives it no significance.
+
+[00:29:57] That's by contrast. To bags of words, which have in them a little bit of significance. When we represent a document as a TF IDF bag of words, we can perform a search query by finding the documents, which have the smallest co-sign similarity to our query. Okay? So there's obviously some sort of semantic meaning in the document and our search query if we can connect them by way of a co-sign similarity.
+
+[00:30:28] There's nothing like that that we could do with the way we're thinking about words here. They're just random, so this actually will not help us in our RNN. An analogy here is in our crime scene investigation, if we represented events as one hot vectors, then the gum shoe shows up at the scene of the crime, and on the floor there's a one.
+
+[00:30:50] And he kneels down and picks up the number one, and he looks over to the right and on the dumpster is a 24 F, and he goes over and he picks that up and turns it over in his hand and he looks up at the window and hovering in the broken window is a 69 C and he's looking at all these objects like, what the hell?
+
+[00:31:07] They don't mean anything to him. He needs objects which carry meaning. He needs a gun and a bloody shoe and broken glass. He needs objects in the crime scene that mean something semantically, if he has any hope of reconstructing the crime scene in his mind. So what we need to do is represent words in a dictionary such that they carry semantic meaning within their representation.
+
+[00:31:32] We call this word embeddings. We embed a word. If we can put it in vector space in a significant way. So we're gonna talk about the word to VEC model, which is a neural network for creating word embeddings. It's the main model that we use for doing such a task in NLP, but let's build this up a little bit.
+
+[00:31:54] First, a word embedding is the word represented in vector space. So imagine all your words. As stars in a galaxy. Now with our prior representation of words as one hot vectors, those would just be randomly placed. But if the words were embedded in order that they carried semantic, meaning based on their location and space.
+
+[00:32:17] Then what you would have is that all nearby words to one word would basically be synonyms. So if you found the good quote unquote.in vector space, the word good, then all of the very close by dots Euclidean distance. Remember, Euclidean distance is physical distance. All of the Euclidean close. Dots to the word good would be things like excellent and best and perfect and wonderful.
+
+[00:32:46] And then you might imagine words that are antonyms, such as bad and horrible and worst and terrible would be very far away from this cloud of dots. So they would be Euclidean far. That's what a word embedding is. Placing the word in vector space that carries significance, semantic significance. Now, what we're going to arrive at by using the word two VEC model to achieve this goal is something very special.
+
+[00:33:15] Not only will you find that. Synonyms are physically close to each other, Euclidean close, but you will find that certain projections carry significance. So the arrow, the vector pointing from good to bad in vector space would be the same kind of arrow pointing from best to worst and wonderful to horrible.
+
+[00:33:38] And so on. And the classic example they used for the system is that if you input King plus Queen minus man, it will give you woman. You will have performed vector math using linear algebra. You'll get back an arrow pointing to a dot, and that.is an embedding representing the word woman. So you can actually do word math using word embedding.
+
+[00:34:02] And so remember now, Euclidean similarity is similarity of dots to each other physically. So synonyms will have high Euclidean similarity and co-sign similarity is angle similarity. So the difference between good and bad. You'd use that same sort of co-sign metric. On the other words, in order to perform word math.
+
+[00:34:24] And this whole concept is really cool. If you look this up online, you'll actually see a 2D or 3D representation of words, all these dots around each other and their synonyms of each other. And you can do projections to get the capitals of various states or countries, by way of analogy, using cosign metrics from the capitals of other states and countries.
+
+[00:34:44] And all this stuff. Now, an embedded word has, let's say 512 dimensions, number of columns. So visualizing these words in space is impossible because that's five 12 D. So we can project that down to 2D or 3D by way of something called T tSNE t. SNE, which stands for T distributed stochastic neighbor embedding it is essentially the same thing as principle component analysis.
+
+[00:35:17] It's boiling our large dimensional vectors down to small dimensional vectors. So basically think of tSNE and PCA as essentially the same thing, but usually you're gonna be using tSNE for visualization purposes. So these word vectors have some number of columns. That's the embedding dimension. Some number of columns, usually, let's say 512.
+
+[00:35:42] Basically, the number of dimensions is gonna be the amount of generalization you want to boil this down to, right? Smaller dimensional word vectors. Smaller dimensional embeddings means more general, but less accurate word representations and higher dimensional word embeddings means. Less general, but more accurate.
+
+[00:36:04] That is overfitted word embeddings. Okay, so our goal is to put words as dots in space with significance. We call this embedding a word, and the type of machine learning model we will use to perform that task is called a vector space model. VSMA model that puts something in vector space. And the way we're going to do this with words is by learning their context.
+
+[00:36:34] That's how we're gonna learn. The semantic embedding of a word is its context. So certain words show up in certain contexts over and over and over. So when I say the fizzy soda drink or the fizzy pop drink, or I like to drink soda and I like to drink pop, Coca-Cola is a good soda. Coca-Cola is a good pop.
+
+[00:36:58] You have learned by context, by the context of the sentence that that word is present, that those two words are very similar to each other. They may be complete synonyms or they may just be very similar words to each other. So that's how we will learn to place words in vector spaces by learning which words share the same context and where we'll get these contexts.
+
+[00:37:23] Is from whatever corpora we have available. Really, you can just download all of Wikipedia and just go through every word, word by word by word, by word by word. Look at its context. Look at the next word's context. Look at the next word's context, and learn what context every word. Is in. So we're learning word embeddings based on their context.
+
+[00:37:45] There's two different ways we can do this. One approach is called predictive methods, and that's what we're gonna use with word to vec. And what we're gonna do there is we're going to try to predict the context, given the word, or predict the word given the context. And another one is called count based methods.
+
+[00:38:03] And these don't do any sort of machine learning. These are just math. They don't predict anything. What you do is you lay all the words out in columns and all the words out in rows. So you have the whole English dictionary, 170,000 by 170,000. Okay? And you count all the words co-occurrences with each other and put that in those two words, cross sell, and then you do some linear algebra to pull out some co-occurrence stuff.
+
+[00:38:27] And then you have your embedded. Context matrix. We're not gonna use that approach. I will talk a little bit about that, but first, let's talk about the predictive methods, namely in our case, neural probabilistic language models. And like I said, the goal is to predict the context of the word or to predict the word given the context.
+
+[00:38:49] So we're trying to learn word embeddings. Based on their context, and we're gonna use a model called Word two vec. Word two. Vek is a neural network, which will learn this embedding matrix based on word contexts. So what it's going to do is make a context prediction using a neural network feed forward pass, and learn from its mistakes using something called the noise contrastive estimation loss function.
+
+[00:39:16] Remember, every machine learning model has a loss function. Then use gradient descent by way of back propagation, back through the network to fix its error. So word two. Vek is a neural network that is learning the word embeddings for every word in the English dictionary by predicting its context and optimizing its parameters if it made an error.
+
+[00:39:39] Now there's two types of context prediction methods. You can either take the word you're looking at in a chunk of words, the cat sat on the mat. You can take the word you're looking at and try to predict the surrounding words. So we're looking at cat in the sentence. The cat sat on the mat. In this case, what's called the skip gram model, we're trying to predict the surrounding words.
+
+[00:40:02] Blank, blank, blank, blank, cat blank. We're trying to predict all those words. The opposite of that is trying to predict the word given the context. So if we are at the word cat in our window, we will look at the blank sat on the mat and try to predict that that word is gonna be cat. This is called the continuous bag of words.
+
+[00:40:23] Approach or see Bow. You can use either of these approaches when you're trying to predict your context. Either skip Graham or see Bow again, that is context from Word. Versus word from context. You don't have to get hung up in the details. It's pros and cons versus dataset size. Most people use skip gram.
+
+[00:40:44] So as far as you're concerned, skip gram is the only thing that you care about. So our word two Veeck model is a Feedforward neural network that is trying to predict context words surrounding the current word we're looking at. That is the skip gram approach. We're going to go through Wikipedia, one word at a time.
+
+[00:41:05] We look at one word and we try to predict what's around it. We obviously made some error, and so we use this noise contrastive estimation loss function in order to back propagate our error through the neural network. Fix our parameters. Move on word to Vek neural network to try to predict the skip gram context around the new word we're looking at.
+
+[00:41:27] We make some error back. Propagate that loss through our neural network, adjust our parameters. Next word, we do this over and over and over and over, and over. Until we have built up a table of word embeddings. What we have in the end is called an embedding matrix. Every word is a row. Every column is some nebulous embedding dimension.
+
+[00:41:51] It doesn't really matter. What matters is in the end, all of your words are stars in a galaxy whose position in space holds significance. Okay? So that's the word to VEC model. Now, like I said, that approach is called a predictive vector space model, meaning we're trying to predict the context situation that by contrast to a count based vector space model or distributional semantics model.
+
+[00:42:20] And the way this works is we lay out all the words in the English dictionary, rose by columns. And we count in every cell the number of times, any two words, Rowe by column co-occur with each other in a context window. Then we have a matrix of co-occurrence, a co-occurrence matrix, and we will use a bunch of linear algebra on that matrix.
+
+[00:42:45] Things like principle component analysis, or latent semantic analysis or singular value decomposition. You'll see these used in machine learning a lot. P-C-A-L-S-A-S-V-D in order to pull out the embeddings directly from the math, from that co-occurrence matrix. And we call this model the glove model, GLOV, with a capital V.
+
+[00:43:12] E Global vector representation of words, and this has various pros and cons versus word to vec. Usually pros and cons. With all these situations boiled down to amount of training data. You have amount of ram speed and other things. You may see glove used or discussed in the wild, but as far as you're concerned, when it comes to the task of embedding words in vector space, the only thing you care about is Word two VEC model, which is a neural network using the skip gram approach.
+
+[00:43:50] Oh, that was a lot of information just to embed our words. That was a feedforward neural network. One of those snap your fingers and out comes a thing. We can use a Feedforward network for other word related tasks, like part of speech tagging and named entity recognition. But you'll find, I think that recurrent neural networks are preferred for those tasks because whenever we're looking at a word, we're trying to determine the part of speech or named entity.
+
+[00:44:18] We have the prior context of the sentence thus far, which actually helps determine the part of speech tag or named entity. And so really the main place you see the standard FEEDFORWARD neural network in NLP is in Word two. VEC is in coming up with our embedding matrix of words. Everything else tends to be RNN, the Mighty Recurrent Neural Network.
+
+[00:44:46] So let's step all the way back. Now we have gone through all of Wikipedia and placed all of our words in vector space. These are now embedded words rather than one hot words. So now they carry semantic meaning. Now we can use those to pipe into our RNN encoder so that our decoder has something to work with.
+
+[00:45:08] So the scene of the crime where the gum shoe is standing, a giant bright flash of light happens and he covers his eyes and staggers backwards. And when the light wears off, he looks, and sure enough, there's a gun on the floor and a bloody shoe, and some bullet holes in the wall, and some broken toilet shards on the ground.
+
+[00:45:27] The inputs carried meaning into the encoder, RNN. And so what is handed off? To the decoder step also carries meaning nns and word to ve. Now, that's the end of this episode, but that's not the end of RN ns. We're gonna talk about the traditional neurons that are used in RN ns, namely rectified linear units, loos, as well as what's now.
+
+[00:45:53] State-of-the-art cells, not neurons in an RNN called LSTM cells, or long short-term memory cells by contrast to something called G that's gated recurrent units. And the problem that these things solve, which is the vanishing or exploding gradient problem when you back propagate your training error in recurrent neural networks.
+
+[00:46:20] So we'll talk in the next episode about a little bit more of the nitty gritty architecture technicalities of RN NS as used in NLP. But this episode gave you a very basic lay of the land and the fact that RN NS basically replace everything in NLP to bring state-of-the-art, deep learning to the space.
+
+[00:46:43] Now for learning, deep learning NLP. First, I'm going to recommend a handful of articles for you to read a very popular one, which is called Unreasonable Effectiveness of RN ns. It's a very easy read, very visual, and it's more conceptual, Allah, this episode, and then another couple articles, which are a little bit more technical.
+
+[00:47:05] From there, your next step is just to learn deep learning. Deep NLP. And RN NS are a section of deep learning proper. So whether it's deep learning book.org or fast.ai, the traditional deep learning resources that I've been recommending, RN Ns will be inside of those main resources as one or two or three chapters.
+
+[00:47:29] So just continue along your basic deep learning learning curriculum in order to learn the details for deep NLP. And finally, there's a great. Stanford iTunes U Course CS 2 24 N, which is deep NLP by Christopher Manning. Chris Manning, if you'll recall, is the co-author of the main Shallow Learning NLP book.
+
+[00:47:54] That I've recommended in prior episodes, as well as the YouTube series on shallow learning. Him and Dan GSKi put that YouTube playlist together. This is basically part two of that YouTube playlist. This is the deep learning equivalent of that YouTube series. And it is brand new. It's, I think it's 2017, even if not it's 2016.
+
+[00:48:17] It actually replaces a prior Stanford deep NLP course called CS 2 24 D, which is taught by Richard Socher. So if you've seen that one floating around CS 2 24 D, Stanford Deep NLP, and you've been curious. Skip that one and do this one instead because it is a merged and updated version of that class with Chris Manning's material CS 2 24 N, and in the past I have often recommended converting video series to audio and listening to them while you exercise.
+
+[00:48:52] This series is highly, highly visual. I tried doing it audio, and I got lost in the dust, so I highly recommend you watch this one, put it on your iPad and prop it up on the treadmill while you run and watch the videos. Very good. Course. Highly recommend it. And as per my last episode, this podcast series will be kept alive by donations.
+
+[00:49:15] So if you have any amount you can donate, whether it's $1 or $5, go to the website, oc deve.com/podcasts/machine learning, and click on the Patreon link. If you can't donate to the show, do me a huge favor and rate this podcast on iTunes, which will help this podcast succeed. That's a wrap for this episode.
+
+[00:49:36] See you next time in deep NLP part two.
+

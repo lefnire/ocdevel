@@ -22,7 +22,7 @@ import * as mlg17 from './mlg/17/meta.js'
 import * as mlg18 from './mlg/18/meta.js'
 import * as mlg19 from './mlg/19/meta.js'
 import * as mlg20 from './mlg/20/meta.js'
-import * as mlg21 from './mlg/21/meta.js'
+// import * as mlg21 from './mlg/21/meta.js'
 import * as mlg22 from './mlg/22/meta.js'
 import * as mlg23 from './mlg/23/meta.js'
 import * as mlg24 from './mlg/24/meta.js'
@@ -84,7 +84,7 @@ export const mlgList = [
   mlg18,
   mlg19,
   mlg20,
-  mlg21,
+  // mlg21,
   mlg22,
   mlg23,
   mlg24,

@@ -5,4 +5,4 @@
   export const guid = "d9e15cfe501a8f0c6e3c075c09f7e682"
   export const file = {}
   export const libsynEpisode = 5589161
-  export const teaser = 'Recurrent Neural Networks (RNNs) and Word2Vec.'
+  export const teaser = 'Deep natural language processing (NLP) concepts such as recurrent neural networks (RNNs), word embeddings, and explains their significance in handling the complexity of language. Foundational concepts and architectures including LSTM and GRU cells.'
