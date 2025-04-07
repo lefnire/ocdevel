@@ -13,7 +13,9 @@ const info: Product = {
     amazon: {
       US: "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876"
     },
-    brand: {}
+    brand: {
+      US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dstrol%2D2s%2Dpro%2Dtreadmill&afftrack=",
+    }
   },
   price: {
     value: 800,

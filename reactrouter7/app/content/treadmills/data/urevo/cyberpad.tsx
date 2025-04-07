@@ -18,7 +18,7 @@ const info: Product = {
   image: '/walk_thumbs/cyberpad.jpg',
   links: {
     amazon: {
-      US: "https://amzn.to/42VhjJE"
+      // US: "https://amzn.to/42VhjJE"
     },
     brand: {
       US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dcyberpad%2Dfor%2Dhome%2Dtreadmill&afftrack=blog"

@@ -20,6 +20,7 @@ const info: Product = {
       US: "https://amzn.to/4bE2JXR"
     },
     brand: {
+      US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Fspacewalk%2D3s%2Dtreadmill&afftrack="
     }
   },
 
