@@ -3,6 +3,7 @@ import {
   type PropsWithChildren,
 } from "react";
 import type {Resource} from "~/content/workflowy/mlg-resources.types";
+import {PopoverSingleton} from "~/components/popover";
 
 // --- Resource Cache Context ---
 // Define the shape of the flat resource lookup
@@ -20,9 +21,10 @@ export const ResourceCacheContext = createContext<ResourceCacheContextType>({
 export function ResourceCacheProvider({children, flat}: PropsWithChildren<{ flat: FlatResources }>) {
   // git-blame: cached icon renders
 
-  return (
+  return <>
     <ResourceCacheContext.Provider value={{flat}}>
       {children}
     </ResourceCacheContext.Provider>
-  );
+    <PopoverSingleton />
+  </>
 }

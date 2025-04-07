@@ -4,10 +4,10 @@ import {Branch} from "./tree/branch";
 import {ResourceCacheContext, ResourceCacheProvider} from "./tree/resource-cache";
 import {filterKeys} from "~/content/podcast/resources/filters";
 import {useShallow} from "zustand/react/shallow";
-import type {Resource, ResourcesTree} from '~/content/workflowy/mlg-resources.types'
+import type {Resource, AllResources} from '~/content/workflowy/mlg-resources.types'
 
 
-export function Tree({flat, top}: ResourcesTree) {
+export function Tree({flat, top}: AllResources) {
   return <div className='resources resources-tree mb-3'>
     <ResourceCacheProvider flat={flat}>
       <FilteredTree top={top} />
@@ -15,7 +15,7 @@ export function Tree({flat, top}: ResourcesTree) {
   </div>
 }
 
-function FilteredTree({top}: {top: ResourcesTree['top']}) {
+function FilteredTree({top}: {top: AllResources['top']}) {
   const {flat} = useContext(ResourceCacheContext)
   const [filters, learnStyles] = useStore(useShallow(s => [
     s.filters,

@@ -9,7 +9,6 @@ import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
 import {transform} from '~/content/workflowy/mlg-resources'
-import {PopoverSingleton} from "~/components/popover";
 
 export async function loader(props: Route.LoaderArgs) {
   const resources = await transform()
@@ -37,7 +36,6 @@ export default function Resources({loaderData}: Route.ComponentProps) {
         </Col>
       </Row>
     </Container>
-    <PopoverSingleton />
   </div>
 }
 
