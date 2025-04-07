@@ -31,6 +31,9 @@ const icons = {
   facebook: <FaFacebook {...icn} />
 }
 
+const mlgSnip = "machine learning podcast teaching the fundamentals of ML and artificial intelligence"
+const homeOf = `Home of Machine Learning Guide (MLG), a ${mlgSnip}.`
+
 export default function Home() {
   const links = <>
     <Stack direction="vertical" gap={2}>
@@ -72,18 +75,15 @@ export default function Home() {
   </>
 
   const about = <div>
-    <h3>Tyler Renelle</h3>
-    <div>
-      <p>Full-stack engineer in machine learning, websites, and mobile apps. Big on workspace ergonomics, especially <Link to="/walk">walking desks</Link>.</p>
-      {/*<p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? <a href="mailto:tylerrenelle@gmail.com">Contact me for consultant work!</a></p>*/}
-    </div>
+    <p>{homeOf} I'm <b>Tyler Renelle</b>, a full-stack engineer in machine learning, websites, and mobile apps. I'm big on workspace ergonomics, especially <Link to="/walk">walking desks</Link>. OCDevel - Orange Cat Development (it just sounded fun)</p>
+    {/*<p>Creator of Habitica, Gnothi, and MLG. Interested in working with me? <a href="mailto:tylerrenelle@gmail.com">Contact me for consultant work!</a></p>*/}
   </div>
 
   const projects = <div>
     <h3>Projects</h3>
     <div>
       <h6><FaMicrophone/> <Link to="/mlg">Machine Learning Guide</Link></h6>
-      <p>A machine learning podcast teaching the fundamentals of machine learning and artificial intelligence, both theory and practical application.</p>
+      <p>A {mlgSnip}, both theory and practical application.</p>
       <h6><FaMicrophone/> <Link to="/llh">Lefnire's Life Hacks</Link></h6>
       <p>This podcast teaches useful efficiencies for productivity and health living.</p>
       <h6><FaCouch/> <a href="https://gnothiai.com" target="_blank">Gnothi</a></h6>
@@ -98,7 +98,11 @@ export default function Home() {
 
   return <Container className='contact-hire'>
     <Row>
-      <Col xs={12} lg={3} className='text-center'>
+      <Col xs={{span: 12, order: 1}} lg={{span: 9, order: 2}}>
+        {about}
+        {projects}
+      </Col>
+      <Col xs={{span: 12, order: 2}} lg={{span: 3, order: 1}} className='text-center'>
         <img
           src={img_tyler}
           loading="eager"
@@ -111,10 +115,6 @@ export default function Home() {
         />
         {links}
       </Col>
-      <Col xs={12} lg={9}>
-        {about}
-        {projects}
-      </Col>
     </Row>
   </Container>
 }
@@ -122,6 +122,6 @@ export default function Home() {
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "OCDevel" },
-    { name: "description", content: "Home of Machine Learning Guide (MLG), a machine learning podcast teaching ML & AI fundamentals. Reviews of walking desks and office ergonomics." },
+    { name: "description", content: `${homeOf} Reviews of walking desks and office ergonomics.` },
   ];
 }
