@@ -1,23 +1,61 @@
-/*
-@mixin transform($property) {
-  -webkit-transform: $property;
-  -ms-transform: $property;
-  transform: $property;
-}
-*/
+// Required Bootstrap imports
 
-/*
-I previously used `@use "bootstrap/scss/bootstrap"` to get variables by name, like
-$primary. But the scss bundle is too large, so I'm using the hard-coded values now
-and raw css. I'm using the default bootstrap theme, so if this needs to change, revisit.
-The values were:
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "bootstrap/scss/functions";
 
-$primary = #0d6efd
-$secondary = #6c757d
-$btn-padding-x = .75rem
-$btn-padding-x-sm = .5rem
-$btn-padding-x-lg = 1rem
- */
+// 2. Include any default variable overrides here
+// (Add custom variable overrides if needed)
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "bootstrap/scss/variables";
+// @import "bootstrap/scss/variables-dark"; // Uncomment if dark mode is needed
+
+// 4. Include any default map overrides here
+// (Add custom map overrides if needed)
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities"; // Import utilities early, but define them later
+
+// 5. Include remainder of required parts
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+// @import "bootstrap/scss/images"; // Not detected as used
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+// @import "bootstrap/scss/accordion"; // Not detected as used
+// @import "bootstrap/scss/breadcrumb"; // Not detected as used
+// @import "bootstrap/scss/pagination"; // Not detected as used
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress"; // Not detected as used
+// @import "bootstrap/scss/list-group"; // Not detected as used
+@import "bootstrap/scss/close"; // Used by Modal, Alert
+// @import "bootstrap/scss/toasts"; // Not detected as used
+@import "bootstrap/scss/modal";
+// @import "bootstrap/scss/tooltip"; // Base is included by popover if needed
+@import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel"; // Not detected as used
+// @import "bootstrap/scss/spinners"; // Not detected as used
+// @import "bootstrap/scss/offcanvas"; // Not detected as used
+// @import "bootstrap/scss/placeholders"; // Not detected as used
+
+// 6. Helpers
+@import "bootstrap/scss/helpers";
+
+// 7. Utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "bootstrap/scss/utilities/api";
+
+// --- End Bootstrap Imports ---
 
 html {
   position: relative;

@@ -4,6 +4,7 @@ import path from 'path';
 import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
 import {transform} from '~/content/workflowy/mlg-resources'
+import {PopoverSingleton} from "~/components/popover";
 
 export async function loader(props: Route.LoaderArgs) {
   const {request} = props
@@ -44,7 +45,10 @@ export async function loader(props: Route.LoaderArgs) {
 }
 
 export default function PodcastId(props: Route.ComponentProps) {
-  return <Full {...props} />
+  return <>
+    <Full {...props} />
+    <PopoverSingleton />
+  </>
 }
 
 export function meta({data}: Route.MetaArgs) {

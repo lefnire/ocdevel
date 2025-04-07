@@ -12,7 +12,6 @@ import {SiRss} from '@react-icons/all-files/si/SiRss'
 import {IconButton, sizes} from "~/components/icon-btn";
 import type {Route} from './+types/route_mlg'
 import {memo} from "react";
-import {PopoverSingleton} from "~/components/popover";
 
 type Props = Route.ComponentProps['loaderData'] & {img: string}
 export default function Podcast(props: Props) {
@@ -29,7 +28,6 @@ export default function Podcast(props: Props) {
         </Col>
       </Row>
     </Container>
-    <PopoverSingleton />
   </>
 }
 
