@@ -10,7 +10,7 @@ import type {Route} from './+types/route'
 import * as meta_ from './meta.js'
 import {lazy, Suspense} from 'react'
 
-const Table = lazy(() => import('./table'))
+const Table = lazy(() => import('./table/table'))
 
 export function loader() {
   // calculate scores and inverted links server-side to save on render time
