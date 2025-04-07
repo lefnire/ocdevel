@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/cjs/Navbar';
 import {LinkContainer} from "~/components/link-container";
 import {Link, Outlet, useSearchParams} from "react-router";
 import {useEffect} from "react";
-import {PopoverSingleton} from "~/components/popover";
 
 function ClearUtm() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -44,7 +43,10 @@ export default function Layout() {
 
     <ClearUtm />
     <GoogleConsentMode />
-    <PopoverSingleton />
+    {/*
+      <PopoverSingleton />
+      // moved to only routes that need it; it's expensive
+    */}
 
     <footer className='footer text-center mt-auto shadow'>
       <div className="d-flex justify-content-around align-items-center h-100">
