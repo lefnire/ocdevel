@@ -1,6 +1,6 @@
 import type {Product} from "../types"
 import brand from './brand'
-import {VideoButton, VideoButtonLg} from "~/routes/walk/utils";
+import {VideoButton, VideoButtonLg} from "~/components/video-btn";
 const info: Product = {
   brand,
   model: {

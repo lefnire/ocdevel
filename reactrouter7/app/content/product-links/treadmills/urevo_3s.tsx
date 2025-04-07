@@ -1,7 +1,7 @@
 import image from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
 import data from '~/content/treadmills/data'
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
-import {VideoButton} from "~/routes/walk/utils";
+import {VideoButton} from "~/components/video-btn";
 
 const obj = data.urevo_3s
 const price = getPrice(obj)

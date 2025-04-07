@@ -1,4 +1,4 @@
-import {VideoButton} from "~/routes/walk/utils";
+import {VideoButton} from "~/components/video-btn";
 import image from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp&effort=max'
 import links from '~/content/product-links'
 const product_ = links.godora_lube

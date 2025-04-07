@@ -1,12 +1,12 @@
 import React, {memo, useState} from "react"; // Removed unused imports: useEffect, useState, ChangeEvent
 import { create } from 'zustand'; // Added zustand
 import { produce } from 'immer'; // Added immer
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import Col_ from "react-bootstrap/Col";
+import Row from "react-bootstrap/cjs/Row";
+import Form from "react-bootstrap/cjs/Form";
+import Card from "react-bootstrap/cjs/Card";
 import Button from "react-bootstrap/cjs/Button";
 // This is required due to an SSG bug in react-bootstrap. Ignore the typescript error.
+import Col_ from "react-bootstrap/cjs/Col";
 const Col = Col_.default || Col_
 
 // Define types

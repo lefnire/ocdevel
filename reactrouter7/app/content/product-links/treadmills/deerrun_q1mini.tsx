@@ -1,5 +1,5 @@
 import data from "~/content/treadmills/data";
-import {VideoButton} from "~/routes/walk/utils";
+import {VideoButton} from "~/components/video-btn";
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import image from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'
 
