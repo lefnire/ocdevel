@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  // useSearchParams,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -42,6 +43,13 @@ export const links: Route.LinksFunction = () => [
     href: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😸</text></svg>"
   }
 ];
+
+// function Plausible() {
+//   const [searchParams, setSearchParams] = useSearchParams()
+//   if (!import.meta.env.PROD) { return null; }
+//   if (searchParams.get('notrack')) { return null; }
+//   return <script defer data-domain="ocdevel.com" src="https://plausible.io/js/script.pageview-props.tagged-events.js"></script>
+// }
 
 export function Layout({children}: { children: ReactNode }) {
   return (

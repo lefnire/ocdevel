@@ -15,7 +15,8 @@ function lastPart (path: string) {
 
 // git-blame for different getPostId() options
 export function loader(props: Route.LoaderArgs) {
-  const id = lastPart(props.request.url);
+  const pathname = (new URL(props.request.url)).pathname;
+  const id = lastPart(pathname);
   const meta = metasObj[id];
   return { meta }
 }

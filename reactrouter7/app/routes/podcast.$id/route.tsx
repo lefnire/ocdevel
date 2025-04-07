@@ -8,12 +8,13 @@ import {PopoverSingleton} from "~/components/popover";
 
 export async function loader(props: Route.LoaderArgs) {
   const {request} = props
-  const podcastKey = request.url.includes('/llh') ? 'llh' : 'mlg'
+  const pathname = (new URL(request.url)).pathname;
+  const podcastKey = pathname.includes('/llh') ? 'llh' : 'mlg'
   const pod = {
     mlg: {show: mlgShow, obj: mlgObj},
     llh: {show: llhShow, obj: llhObj}
   }[podcastKey]
-  const parts = request.url.split('/')
+  const parts = pathname.split('/')
   const id = parts[parts.length - 1]
 
   // Load the transcript, if available

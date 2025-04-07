@@ -11,8 +11,13 @@ import {Adsense, AdsenseScript} from "~/components/adsense"
 import {llhShow, mlgShow, llhList, mlgList} from "~/content/podcast/metas.js";
 import type {Route} from './+types/route.tsx'
 
-export function loader({request}: Route.LoaderArgs) {
-  const llh = request.url.includes('/llh')
+type LoaderReturn =
+  | { podcastKey: "llh"; show: typeof llhShow; episodesList: typeof llhList }
+  | { podcastKey: "mlg"; show: typeof mlgShow; episodesList: typeof mlgList };
+
+export function loader({request}: Route.LoaderArgs): LoaderReturn {
+  const pathname = (new URL(request.url)).pathname;
+  const llh = pathname.includes('/llh')
   if (llh) {
     return {podcastKey: "llh", show: llhShow, episodesList: llhList}
   }
@@ -85,9 +90,13 @@ function EpisodeList({podcastKey, episodesList, show}: ComponentProps) {
 
   const pageSize = 10
   let eps = newFirst ? sortedEps : sortedEps.slice().reverse()
-  eps = eps.filter(e => {
-    if (showMla && showMlg) { return true; }
-    return showMla ? e.mla : showMlg ? e.mlg : false;
+  eps = eps.filter((e: any) => { // Use 'any' temporarily for JS object flexibility
+    if (podcastKey === "llh") { return true; } // LLH episodes don't have mla/mlg flags
+    // MLG specific filtering:
+    if (showMla && showMlg) { return true; } // Show both types
+    if (showMla) { return e.mla; } // Show only MLA
+    if (showMlg) { return e.mlg; } // Show only MLG
+    return false; // Hide both if neither button is active (shouldn't happen with ButtonGroup?)
   });
   const fullLen = eps.length
   eps = eps.slice(0, (page+1)*pageSize)
