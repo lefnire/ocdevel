@@ -1,5 +1,5 @@
 import {type PropsWithChildren, type ReactElement} from 'react'
-import dayjs from "dayjs";
+import {expires} from "~/components/date-utils";
 
 // TODO consolidate this with Product
 export interface AffiliateLink {
@@ -215,9 +215,10 @@ const links: Record<string, AffiliateLink> = {
     nulea_m505: {
         title: "Nulea M505",
         key: "nulea_m505",
-        link: (
-          dayjs().isAfter("2025-05-16") ? "https://amzn.to/3XThemB"
-          : "https://www.amazon.com/dp/B0CF49TG15?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1394WK3KWKGKO&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1394WK3KWKGKO_1744149600303"
+        link: expires(
+          "https://www.amazon.com/dp/B0CF49TG15?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1394WK3KWKGKO&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1394WK3KWKGKO_1744149600303",
+          "2025-05-16",
+          "https://amzn.to/3XThemB"
         )
     },
     nulea_m512: {

@@ -1,5 +1,5 @@
 import type {EpisodeComponent} from "~/routes/podcast/types";
-import {dateFmt} from "~/components/utils";
+import {dateFmt} from "~/components/date-utils";
 import Card from 'react-bootstrap/cjs/Card';
 import moment from "dayjs";
 

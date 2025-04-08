@@ -1,10 +1,11 @@
 import type {Product} from "../types";
 import brand from './brand'
-import dayjs from 'dayjs'
+import {expires} from "~/components/date-utils";
 
-const amz = (
-  dayjs().isAfter("2025-06-05") ? "https://amzn.to/3Y5ywwM"
-    : "https://www.amazon.com/dp/B0CBD38VMM?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1LI4V9OIKRFQQ&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1LI4V9OIKRFQQ_1743883708414"
+const amz = expires(
+  "https://www.amazon.com/dp/B0CBD38VMM?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1LI4V9OIKRFQQ&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1LI4V9OIKRFQQ_1743883708414",
+  "2025-06-05",
+  "https://amzn.to/3Y5ywwM"
 )
 
 const links = {
