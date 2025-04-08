@@ -1,6 +1,6 @@
 export const id = '20240110-ergo-mouse-keyboard'
 export const date = '2024-01-10'
-export const updated = '2024-04-01'
+export const updated = '2025-04-08'
 export const title = "Ergonomic Mice and Keyboards"
 export const teaser = "My favorite ergonomic mouse and keyboard for improving carpal tunnel syndrome (CTS), arthritis, and repetitive stress injury (RSI). Covers ergonomic benefits a trackball mouse and split keyboard: thumb clusters, keywells, and tenting for optimal hand and wrist positioning."
 export const affiliate = true

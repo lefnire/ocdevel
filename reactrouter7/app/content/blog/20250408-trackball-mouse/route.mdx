@@ -1,0 +1,59 @@
+import {BattleStation} from '../../../components/battlestation.tsx'
+import {TLDR} from '../../../components/tldr.tsx'
+import prods, {affiliateLink as al} from '../../product-links/index.tsx'
+import {Link} from 'react-router'
+import {VideoButtonLg} from "../../../components/video-btn.js";
+export * from './meta.js'
+
+Since my <Link to="/blog/20240110-ergo-mouse-keyboard">last post</Link>, there have been many new trackball mouse releases, with some absolute winners, so my I'm refreshing my recommendations here. Refer to that post for reasoning on why to choose a finger trackball mouse over a thumb trackball; and why not to bother with vertical mice or just ergonomically-designed standard mice. Soon I'll add a product comparison tool like my <Link to="/walk">walking pads</Link> page; but in the meantime, blog post.
+
+
+<TLDR>
+  <h6>Ultra-premium: {al(prods.svalboard)}</h6>
+  <div>
+    <h6>Premium</h6>
+    <ul>
+      <li>Wedge: {al(prods.ploopy_adept)}</li>
+      <li>MSTE: {al(prods.ploopy_classic2)}</li>
+    </ul>
+  </div>
+  <div>
+    <h6>Budget</h6>
+    <ul>
+      <li>Wedge: {al(prods.nulea_m512)}</li>
+      <li>MSTE: {al(prods.nulea_m505)}</li>
+    </ul>
+  </div>
+</TLDR>
+
+### Standard vs Wedge
+Microsoft Trackball Explorer (MSTE) was one of the very first trackball mice, and was very beloved. Some hang onto their old ones, or buy one off eBay, swearing by its quality. So most finger trackball mice follow its design. These will be either right-handed or left-handed, and is intended for resting your palm on, possibly with a wrist rest. Think of MSTE trackballs as "standard". The few non-MSTE-style, non-Wedge-style, mice are X-Keys L-Trac and GameBall. So rather than calling everything MSTE-style, I just call it "standard".
+
+The alternative are "Wedge" trackballs. Innovated by {al(prods.kensington_expert)}, then refined with {al(prods.kensington_slimbladepro)}, these have an unusual layout - a square, with the ball in the middle, and more favorable for hover-hand than palm-rest. These are especially better with walking or standing desks, though with a wrist-rest you can still rest - it's just slightly more awkward than MSTE-style. Wedges are ambidextrous, so you can switch it to the left or right (usually with a mapped button, or software).
+
+### Standard
+Once there was Ploopy Classic 1, perfect in every way except one fatal flaw: 8mhz scroll-wheel polling, making scrolling near impossible. Well they *just* released {al(prods.ploopy_classic2)}, which (1) fixes the scrolling totally; (2) adds USB-C. Since scrolling was its only issue, besides which it was the best MSTE trackball out there, this finally puts it as *the* best MSTE. It's highly ergonomic, with dynamic steel ball bearings, and very high polling rates.
+
+Then there's GameBall and X-Keys L-Trac. X-Keys has dynamic bearings, which is a rare treat, but it's just so old and clunky - there's no reason not to get Ploopy Classic 2 instead. And GameBall, I found, was not nearly as ergonomic as a proper MSTE-style. further, it has static bearings. They're damn good ceramic bearings, and stiction is low; but you're better off with dynamic bearings. But keep an eye for GameBall Pro / 2.0, launching sometime 2025 - that might give Ploopy a run for their money. In the meantime, {al(prods.ploopy_classic2)} is your guy.
+
+Finally, {al(prods.nulea_m505)} followed suite with a budget offering. There are complaints of stiction, so be mindful; but if you're tight on cash, it's a great option.
+
+### Wedge
+
+Following SlimBlade's success came {al(prods.nulea_m512)} and {al(prods.ploopy_adept)}. M512 adds some bells and whistles, but reports slightly worse stiction than SlimBlade Pro - so grab SlimBlade Pro if you want to stay below {al(prods.ploopy_adept)} price.
+
+As for Adept. It's my daily driver. It's my favorite mouse out there. Dynamic steel roller bearings makes stiction 0. If they rust, you can replace them. Ambidextrous for gaming vs productivity (I game right-hand). And great for hover-hand when I'm <Link to="/walk">walking</Link> Unbeatable. In my estimation, Ploopy steals the stage, all around.
+
+### Svalboard
+
+Ready to drop $1k on a mouse? This is actually a keyboard, with an integrated trackball. The ball is positioned just so to only require a micro reach. I understand it's the most ergonomic mouse, and ergonomic keyboard, and it's unified - that you can possibly buy. Very little movement involved. It does take re-training your brain, and a lot of cash.
+
+### Others
+
+I'm notably missing {al(prods.elecom_huge)}, {al(prods.elecom_deftpro)}, and all the thumb-ball mice. My reason on skipping Elecom is - they're infamous for stiction, requiring mouse surgery to replace poor stock bearings. And see my <Link to="/blog/20240110-ergo-mouse-keyboard">prior post</Link> on why to skip thumb-balls. But if you can't be convinced, then the best thumb-ball options:
+* Budget: {al(prods.nulea_m509)} or {al(prods.protoarc_em05)} (I'd pick Nulea)
+* Premium: {al(prods.ploopy_thumb)} or {al(prods.gameball_thumb)} (I'd pick Ploopy)
+
+---
+
+<BattleStation />

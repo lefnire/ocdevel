@@ -1,4 +1,5 @@
 import {type PropsWithChildren, type ReactElement} from 'react'
+import dayjs from "dayjs";
 
 // TODO consolidate this with Product
 export interface AffiliateLink {
@@ -154,10 +155,12 @@ const links: Record<string, AffiliateLink> = {
         key: "m575",
     },
     elecom_huge: {
+        title: "Elecom Huge",
         link: "https://amzn.to/48LYA2N",
         key: "elecom_huge",
     },
     elecom_deftpro: {
+        title: "Elecom Deft Pro",
         link: "https://amzn.to/3HgaiY4",
         key: "elecom_deftpro",
     },
@@ -170,6 +173,7 @@ const links: Record<string, AffiliateLink> = {
         key: "kensington_orbitfusion",
     },
     kensington_expert: {
+        title: "Kensington Expert",
         link: "https://amzn.to/47uPExU",
         key: "kensington_expert",
     },
@@ -192,6 +196,55 @@ const links: Record<string, AffiliateLink> = {
     keyboard_kickstands: {
         link: "https://amzn.to/48pzVRX",
         key: "keyboard_kickstands",
+    },
+    svalboard: {
+        title: "Svalboard",
+        key: "svalboard",
+        link: "https://svalboard.com/collections/frontpage"
+    },
+    ploopy_adept: {
+        key: "ploopy_adept",
+        title: "Ploopy Adept",
+        link: "https://ploopy.co/shop/adept-trackball-fully-assembled/"
+    },
+    ploopy_classic2: {
+        key: "ploopy_classic2",
+        title: "Ploopy Classic 2",
+        link: "https://ploopy.co/shop/classic-2-trackball-fully-assembled/"
+    },
+    nulea_m505: {
+        title: "Nulea M505",
+        key: "nulea_m505",
+        link: (
+          dayjs().isAfter("2025-05-16") ? "https://amzn.to/3XThemB"
+          : "https://www.amazon.com/dp/B0CF49TG15?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1394WK3KWKGKO&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1394WK3KWKGKO_1744149600303"
+        )
+    },
+    nulea_m512: {
+        title: "Nulea M512",
+        key: "nulea_m512",
+        link: "https://amzn.to/42A0of4",
+    },
+    nulea_m509: {
+        title: "Nulea M509",
+        key: "nulea_m509",
+        link: "https://amzn.to/4cIEcTL"
+    },
+    protoarc_em05: {
+        title: "ProtoArc EM05",
+        key: "protoarc_em05",
+        link: "https://amzn.to/4i6fDkk"
+    },
+    ploopy_thumb: {
+        title: "Ploopy Thumb",
+        key: "ploopy_thumb",
+        link: "https://ploopy.co/shop/thumb-trackball-fully-assembled/"
+    },
+    gameball_thumb: {
+        title: "GameBall Thumb",
+        key: "gameball_thumb",
+        link: "https://www.gamingtrackball.com/products/gameball-thumb-standard-edition"
     }
+
 }
 export default links;
