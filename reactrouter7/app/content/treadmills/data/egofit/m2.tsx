@@ -51,6 +51,7 @@ const info: Product = {
   },
   pickedBy: {
     me: 2,
+    trusted: [{value: -1}],
     websites: [{value: 3}]
   },
   incline: {

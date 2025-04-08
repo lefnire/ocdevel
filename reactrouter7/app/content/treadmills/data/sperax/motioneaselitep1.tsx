@@ -3,7 +3,7 @@ import brand from './brand'
 
 const links = {
   amazon: {
-    US: "https://amzn.to/4hud9w0",
+    US: "https://amzn.to/442V999",
     CA: "https://amzn.to/4ivdDU4",
   },
   brand: {
