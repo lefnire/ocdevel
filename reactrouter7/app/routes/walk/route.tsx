@@ -9,6 +9,7 @@ import {getComputed} from '~/content/treadmills/computed'
 import type {Route} from './+types/route'
 import * as meta_ from './meta.js'
 import {lazy, Suspense} from 'react'
+import Container from "react-bootstrap/cjs/Container";
 
 const Table = lazy(() => import('./table/table'))
 
@@ -19,16 +20,20 @@ export function loader() {
   }
 }
 
+const loading = <Container>
+  <h5 className="text-center">Walking pad reviews loading...</h5>
+</Container>
+
 export default function Route({loaderData}: Route.ComponentProps) {
   const {computed} = loaderData
   return <>
     <ProductProvider computed={computed}>
       <TopSection />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={loading}>
         <Table />
       </Suspense>
-      <CalorieCalc />
       <CompareButtons />
+      <CalorieCalc />
       <ContentSection />
     </ProductProvider>
     <ModalSingleton />
