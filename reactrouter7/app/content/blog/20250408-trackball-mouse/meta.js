@@ -5,5 +5,5 @@ export const teaser = "Lots of new trackball mouse, and other ergonomic mouse, r
 export const affiliate = true
 export const head = {
   title: "Best Ergonomic Mouse in 2025",
-  description: teaser + " Elecom Huge | Deft Pro | bitra; Kensington SlimBlade | Orbit Fusion | Expert; X-keys L-Trac."
+  description: teaser + " Ploopy Adept, Ploopy Classic 2. GameBall, GameBall Pro. Nulea M512, Nulea M505. ProtoArc EM05. Kensington SlimBlade Pro. Svalboard."
 }
