@@ -1,6 +1,14 @@
 import type {CardIn, Product} from '../types'
 import image from '~/assets/products/urevo_strol2spro.png?w=100&h=100&format=avif&effort=max'
 import brand from './brand'
+import {expires} from "~/components/date-utils";
+
+const link = expires(
+  "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876",
+  "2025-05-11",
+  "https://amzn.to/4i9wpiS",
+)
+
 const info: Product = {
   brand,
   key: `${brand.key}_strol2spro`,
@@ -13,7 +21,7 @@ const info: Product = {
   video: "https://youtu.be/sj7hzsez3Z8?si=9OR-SeIKFC2c4Fv2&t=68",
   links: {
     amazon: {
-      US: "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876"
+      US: link
     },
     brand: {
       US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dstrol%2D2s%2Dpro%2Dtreadmill&afftrack=",

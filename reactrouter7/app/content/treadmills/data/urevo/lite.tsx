@@ -1,6 +1,7 @@
 import type {Product} from "../types"
 import {budgetNote} from '../utils'
 import brand from './brand'
+import {expires} from "~/components/date-utils";
 
 const info: Product = {
   brand,
@@ -11,8 +12,11 @@ const info: Product = {
   key: `${brand.key}_lite`,
   links: {
     amazon: {
-      // US: "https://amzn.to/42xYL1s",
-      US: "https://www.amazon.com/dp/B0BVQMSVM1?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.34VHC2IE2U2QY&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.34VHC2IE2U2QY_1744058300862",
+      US: expires(
+        "https://www.amazon.com/dp/B0BVQMSVM1?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.34VHC2IE2U2QY&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.34VHC2IE2U2QY_1744058300862",
+        "2025-05-11",
+        "https://amzn.to/42xYL1s",
+      ),
       CA: "https://amzn.to/43Lgtji"
     },
     brand: {

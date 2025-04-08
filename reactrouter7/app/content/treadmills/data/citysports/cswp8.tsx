@@ -1,11 +1,17 @@
 import type {Product} from "../types";
 import brand from './brand'
+import {expires} from "~/components/date-utils";
 
+const link = expires(
+  "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
+  "2025-05-01",
+  "https://amzn.to/4ln4Dlv"
+)
 const links = {
   amazon: {
-    US: "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
-    CA: "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
-    UK: "https://www.amazon.com/dp/B0C2XHN42Y?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XD58GWGCXXF4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XD58GWGCXXF4_1742863282855",
+    US: link,
+    CA: link,
+    UK: link,
   },
   brand: {
   }
