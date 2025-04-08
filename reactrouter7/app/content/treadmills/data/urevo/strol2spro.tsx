@@ -73,5 +73,5 @@ const info: Product = {
 export default info
 export const card: CardIn = {
   image,
-  notes: "Sturdy, quiet, can run. Use Amazon coupon"
+  notes: "Sturdy, quiet, can run. Use Amazon coupon."
 }

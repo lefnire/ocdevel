@@ -50,7 +50,7 @@ const info: Product = {
     sale: 500,
   },
   pickedBy: {
-    me: 2,
+    me: 1,
     trusted: [{value: -1}],
     websites: [{value: 3}]
   },

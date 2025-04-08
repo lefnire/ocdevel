@@ -47,6 +47,7 @@ const info: Product = {
     sale: 560,
   },
   pickedBy: {
+    me: -1
   },
   incline: {
     value: 3,
