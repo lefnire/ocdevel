@@ -1,24 +1,25 @@
 export * from './meta.js'
 
-UPDATE 2025-03-30: I'm personally rocking Roo + Claude 3.7 these days. Many are having [great success](https://aider.chat/docs/leaderboards/) with Gemini 2.5 Pro exp-03-25 through whatever tool, but especially Cursor and Aider. I can't get good results with Gemini, but I'll keep trying.
+UPDATE 2025-04-08: After much tinkering, I currently favor Roo Code. Plus either gemini-2.5-pro-exp-03-25 for Architect, Boomerang, or Code with large contexts. And Claude 3.7 for code with small contexts, eg Boomerang subtasks. Many others favor Cursor, Aider, or Cline. Copilot and Windsurf are less vogue lately. I found Copilot to struggle more; and their pricing - previously their winning point - is less compelling now.
 
-UPDATE 2025-03-17: See this OpenAI [Deep Research analysis](https://chatgpt.com/share/67a8dcb1-0b40-8013-907c-6ea89f09c002) of the tools, courtesy of [this fine chap](https://www.reddit.com/r/ChatGPTPro/comments/1ikt7ul/comment/mbuxesx/).
+Why I favor Roo. The default settings have it as stable and effective as Cline, Cursor. But you can tinker more with these settings - eg, for Gemini 2.5 I disable partial file reads (since it has a huge context window). Their modes are elegantly just custom system prompts (an oversimplification), making custom workflows very powerful. A potent example is their Boomerang Mode, which is an orchestrator that delegates planning and edit subtasks, to keep context windows tight. Boomerang mode specifically is a plugin-seller, it's incredibly powerful. Aider is still a darn decent exacto-knife, but as Roo has grown, I haven't found much need for Aider.
 
+---
 
 Tools discussed:
 
-1.  Windsurf: [https://codeium.com/windsurf](https://codeium.com/windsurf)
-2.  Copilot: [https://github.com/features/copilot](https://github.com/features/copilot)
-3.  Cursor: [https://www.cursor.com/](https://www.cursor.com/)
-4.  Cline: [https://github.com/cline/cline](https://github.com/cline/cline)
-5.  Roo Code: [https://github.com/RooVetGit/Roo-Code](https://github.com/RooVetGit/Roo-Code)
-6.  Aider: [https://aider.chat/](https://aider.chat/)
+1. [Roo Code](https://github.com/RooVetGit/Roo-Code)
+1. [Aider](https://aider.chat/)
+1. [Cursor](https://www.cursor.com/)
+1. [Cline](https://github.com/cline/cline)
+1. [Copilot](https://github.com/features/copilot)
+1. [Windsurf](https://codeium.com/windsurf)
 
 Other:
 
-1.  Leaderboards: [https://aider.chat/docs/leaderboards/](https://aider.chat/docs/leaderboards/)
-2.  Video of speed-demon: [https://www.youtube.com/watch?v=QlUt06XLbJE&feature=youtu.be](https://www.youtube.com/watch?v=QlUt06XLbJE&feature=youtu.be)
-3.  Reddit: [https://www.reddit.com/r/chatgptcoding/](https://www.reddit.com/r/chatgptcoding/)
+1. [Leaderboards](https://aider.chat/docs/leaderboards/)
+1. [Video of speed-demon](https://www.youtube.com/watch?v=QlUt06XLbJE&feature=youtu.be)
+1. [Reddit](https://www.reddit.com/r/chatgptcoding/)
 
 ---
 
@@ -33,3 +34,5 @@ AI coding tools designed to boost programming productivity by acting as a pair p
 A decision framework is suggested: for those new to AI coding assistants or with limited budgets, starting with Cursor (or cautiously exploring Copilot’s new features) is recommended. For developers who want to customize their workflow and dive deep into the tooling, RooCode or Cline offer greater control—always paired with Aider for precise and token-efficient code edits.
 
 Also reviews model performance using a coding benchmark leaderboard that updates frequently. The current top-performing combination uses DeepSeek R1 as the architect and Claude 3.5 Sonnet as the editor, with alternatives such as OpenAI’s O1 and O3 Mini available. Tools like Open Router are used as a way to consolidate API key management and reduce token costs.
+
+See this OpenAI [Deep Research analysis](https://chatgpt.com/share/67a8dcb1-0b40-8013-907c-6ea89f09c002) of the tools, courtesy of [this fine chap](https://www.reddit.com/r/ChatGPTPro/comments/1ikt7ul/comment/mbuxesx/).
