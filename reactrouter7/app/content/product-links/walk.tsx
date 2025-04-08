@@ -10,7 +10,7 @@ import type {CardIn, CardOut, Product} from "~/content/treadmills/data/types";
 import {VideoButton} from "~/components/video-btn";
 import links from '~/content/product-links/index'
 
-const VIDEOS = false
+const VIDEOS = true
 
 type LinkCardIn = CardIn & {key: string}
 
@@ -35,6 +35,7 @@ const deskCard: LinkCardIn = {
   image: deskImg,
   key: "flexispot_en1",
   cardTitle: "FlexiSpot",
+  video: "https://www.youtube.com/watch?v=al0tiXKCBdQ",
   notes: 'Electric sit/stand',
   linkText: `Amazon`
 }

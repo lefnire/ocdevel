@@ -10,6 +10,7 @@ const info: Product = {
       If you also want to run (use this away from the walking desk), get this. You flip up the handles and it enables high speed; flip down to put it under your desk (low speed). This will generally be higher quality and last longer than a walking-only pad, due to motor requirements for high speed.
     </div>
   },
+  video: "https://youtu.be/sj7hzsez3Z8?si=9OR-SeIKFC2c4Fv2&t=68",
   links: {
     amazon: {
       US: "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876"

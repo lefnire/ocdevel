@@ -87,14 +87,17 @@ const links: Record<string, AffiliateLink> = {
         key: "fluidstance_planecloud"
     },
     kensington_slimbladepro: {
+        title: "SlimBlade Pro",
         link: "https://amzn.to/3tIE30e",
         key: "kensington_slimbladepro",
     },
     keychron_q11: {
+        title: "Keychron Q11",
         link: "https://amzn.to/49INDPN",
         key: "keychron_q11",
     },
     mistel_md770: {
+        title: "Mistel Barocco MD770",
         link: "https://amzn.to/3RqQJ47",
         key: "mistel_md770",
     },

@@ -25,6 +25,7 @@ const info: Product = {
   key: `${brand.key}_motioneaselitep1`,
   links,
   brand,
+  video: "https://www.youtube.com/watch?v=tWuuRPBEegM",
   // description: "",
   dimensions: {
     value: [39, 21, 3.5], // 47.6"D x 23.6"W x 8.7"H
