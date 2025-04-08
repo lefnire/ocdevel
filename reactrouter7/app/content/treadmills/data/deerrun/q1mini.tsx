@@ -94,8 +94,6 @@ export default info
 export const card: CardIn = {
   image,
   cardTitle: "DeerRun Q1",
-  notes: () => <div>
-    <span>Test the waters. No incline, 1-2yrs life.</span>
-    <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
-  </div>,
+  video: "https://www.youtube.com/shorts/PWtwSiv2VzI",
+  notes: "Test the waters. No incline, 1-2yrs life."
 }

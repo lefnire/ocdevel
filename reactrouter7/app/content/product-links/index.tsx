@@ -2,7 +2,7 @@ import {type PropsWithChildren, type ReactElement} from 'react'
 
 // TODO consolidate this with Product
 export interface AffiliateLink {
-    title?: string
+    title: string
     image?: string
     link: string
     key: string

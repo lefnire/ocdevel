@@ -18,9 +18,6 @@ const info: Product = {
       US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dstrol%2D2s%2Dpro%2Dtreadmill&afftrack=",
     }
   },
-  assets: {
-    video: "https://walkolution.com/pages/videos",
-  },
   price: {
     value: 800,
     sale: 450,
@@ -76,5 +73,5 @@ const info: Product = {
 export default info
 export const card: CardIn = {
   image,
-  notes: "Sturdy, quiet, can run."
+  notes: "Sturdy, quiet, can run. Use Amazon coupon"
 }

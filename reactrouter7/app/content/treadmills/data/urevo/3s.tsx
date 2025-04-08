@@ -1,13 +1,11 @@
 import image from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
 import type {CardIn, Product} from "../types"
 import brand from './brand'
-import {VideoButton, VideoButtonLg} from "~/components/video-btn";
 const info: Product = {
   brand,
   model: {
     value: "3S",
     notes: () => <div>
-      <VideoButtonLg href="https://www.youtube.com/shorts/NRxkNG9Y3VU" />
       <p>Best value walking pad. My daily driver after testing many treadmills. Still best mill for this price, but I've since upgraded to CyberPad. If you can afford $150 more, I recommend it. The incline mechanism has a focal-point closer to the center, adding better stability to the structure than 2S Lite or EgoFit (which have triangle structure). The overall build quality (including the remote) is better than 2S Lite and EgoFit.</p>
       <h5>Con: Can't stand on head</h5>
       <div>Lacks rubber stops on the head, so if you tilt it head-side you'll break its power switch. You have to stand it on its "feet", but the wheels are near the head - making tilting against a wall a muscular challenge.</div>

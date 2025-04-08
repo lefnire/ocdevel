@@ -20,7 +20,7 @@ const info: Product = {
   model: {
     value: "Walkolution 2",
     notes: () => <div>
-      <p>This is the true winner of winners, the last boss, buy it for life. The only reason it's not in my "Premium Pick" above is the price - it's untenable for most people, including myself. But assuming you can afford it...</p>
+      <p>This is the true winner of winners, the last boss, buy it for life. The downside of course is cost - untenable for most people, including myself. But assuming you can afford it...</p>
       <h5>Manually powered</h5>
       <p>There's no motor. You walk up a slope and gravity does the job. This saves on electricity, and makes setting your speed second nature rather than set.</p>
       <h5>Last a Lifetime</h5>
@@ -123,8 +123,4 @@ export const card: CardIn = {
   image,
   notes: "Invincible, ergonomic, 0 maintenance, 0 electricity.",
   cardTitle: "Walkolution 2",
-  // notes: () => <div>
-  //   <span>Invincible, ergonomic, 0 maintenance, 0 electricity.</span>
-  //   <VideoButton href="https://walkolution.com/pages/videos" />
-  // </div>,
 }

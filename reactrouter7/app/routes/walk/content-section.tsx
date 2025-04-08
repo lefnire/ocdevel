@@ -3,7 +3,7 @@ import {memo, useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
 import products, {affiliateLink} from '~/content/product-links'
-import picks from '~/content/product-links/treadmills'
+import picks from '~/content/product-links/walk'
 import {VideoButtonLg as VideoButton} from "../../components/video-btn";
 import {ScoreInfo} from "~/content/treadmills/utils";
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";

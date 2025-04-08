@@ -29,6 +29,7 @@ import DropdownButton from 'react-bootstrap/cjs/DropdownButton';
 import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
 import {useModalStore} from "~/components/modal";
 import Alert from "react-bootstrap/cjs/Alert";
+import {VideoButtonLg} from "~/components/video-btn";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -102,6 +103,7 @@ export const columnsArray: ColumnDefinition[] = [
     renderModal: (row) => {
       return <div>
         {renderCountryLinks(row, 'product')}
+        {row.video && <VideoButtonLg href={row.video} />}
         {row.model.notes?.()}
         {renderReferences(row, 'product')}
       </div>

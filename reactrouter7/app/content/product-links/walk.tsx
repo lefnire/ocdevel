@@ -1,15 +1,16 @@
-import {type AffiliateLink} from '../index'
 // import premium, {card as premiumCard} from '~/content/treadmills/data/lifespan/tx6'
 import premium, {card as premiumCard} from '~/content/treadmills/data/walkolution/walkolution2'
 // import value, {card as valueCard} from '~/content/treadmills/data/urevo/cyberpad'
-// import value, {card as valueCard} from '~/content/treadmills/data/urevo/strol2spro'
-import value, {card as valueCard} from '~/content/treadmills/data/urevo/3s'
+import value, {card as valueCard} from '~/content/treadmills/data/urevo/strol2spro'
+// import value, {card as valueCard} from '~/content/treadmills/data/urevo/3s'
 // import budget, {card as budgetCard} from '~/content/treadmills/data/deerrun/q1mini'
 import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/motioneaselitep1'
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import type {CardIn, CardOut, Product} from "~/content/treadmills/data/types";
 import {VideoButton} from "~/components/video-btn";
-import links from '~/content/product-links'
+import links from '~/content/product-links/index'
+
+const VIDEOS = false
 
 type LinkCardIn = CardIn & {key: string}
 
@@ -54,8 +55,6 @@ const lubeCard: LinkCardIn = {
   linkText: "Amazon",
 }
 
-
-const VIDEOS = true
 type Picks = {[k: string]: CardOut}
 const picks: Picks = {
   premium: productToCard("Premium", premium, premiumCard),

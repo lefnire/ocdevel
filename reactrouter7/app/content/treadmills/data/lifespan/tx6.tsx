@@ -80,8 +80,5 @@ export default info
 
 export const card: CardIn = {
   image,
-  notes: () => <div>
-    <span>Buy it for life. Invincible, quiet, fast.</span>
-    {/*<VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />*/}
-  </div>,
+  notes: "Extremely durable, quiet, fast."
 }
