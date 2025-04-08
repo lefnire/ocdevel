@@ -1,4 +1,5 @@
-import type {Product} from '../types'
+import type {CardIn, Product} from '../types'
+import image from '~/assets/products/urevo_strol2spro.png?w=100&h=100&format=avif&effort=max'
 import brand from './brand'
 const info: Product = {
   brand,
@@ -17,24 +18,26 @@ const info: Product = {
       US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fcollections%2Funder%2Ddesk%2Dtreadmill%2Fproducts%2Furevo%2Dstrol%2D2s%2Dpro%2Dtreadmill&afftrack=",
     }
   },
+  assets: {
+    video: "https://walkolution.com/pages/videos",
+  },
   price: {
     value: 800,
     sale: 450,
   },
   dimensions: {
     value: [54.72, 25.37, 6.67],
-    notes: () => <div>Depth and height are good, but side-rails add some width (a necessary walking pads that allow speeds over 4mph). So measure the space between your desk legs.</div>
+    notes: () => <div>Depth and height are good, but side-rails add some width (necessary for walking pads that allow speeds over 4mph). So measure the space between your desk legs.</div>
   },
   weight: {
     value: 86,
-    notes: () => <div>Woa mama is it heavy! Much of it is in the rails.</div>
   },
   maxWeight: {
     value: 265,
   },
   maxSpeed: {
     value: 7.6,
-    notes: () => <div>One of thew quality walking pads which allows running.</div>
+    notes: () => <div>One of the few quality walking pads which allows running.</div>
   },
   horsePower: {
     value: 2.5,
@@ -66,5 +69,12 @@ const info: Product = {
   app: {
     value: true,
   },
+  easyLube: {
+    rating: 3,
+  }
 }
 export default info
+export const card: CardIn = {
+  image,
+  notes: "Sturdy, quiet, can run."
+}

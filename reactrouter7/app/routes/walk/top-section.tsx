@@ -4,31 +4,26 @@ import './route.css'
 import {contentSections} from './content-section'
 
 import {ProductContext} from "~/routes/walk/context";
-import type {Product} from "~/content/treadmills/data/types";
+import type {CardOut, Product} from "~/content/treadmills/data/types";
 
 import {Link} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {useContext} from "react";
-import picks, {type AffiliateLink_} from '~/content/product-links/treadmills'
+import picks from '~/content/product-links/treadmills'
 
 
 interface Products {
   title: string
   links: Array<keyof typeof contentSections>
-  products: AffiliateLink_[]
+  products: CardOut[]
 }
 export function ProductsCard ({ title, links, products }: Products) {
-  function renderNotes(d: any) {
-      if (!d) { return null; }
-      if (typeof d === "string") { return d; }
-      return d();
-    }
-  function renderProduct(product: AffiliateLink_) {
-    return <div className="mb-4" key={product.key}>
+  function renderCard(card: CardOut) {
+    return <div className="mb-4" key={card.key}>
       <div className="d-flex">
         <div className="me-3">
           <img
-            src={product.image}
+            src={card.image}
             width={100}
             height={100}
 
@@ -40,19 +35,19 @@ export function ProductsCard ({ title, links, products }: Products) {
             background="#808080"
             layout="constrained"
             // className="product-thumbnail"
-            alt={product.title}
+            alt={card.cardTitle}
           />
         </div>
         <div className="d-flex flex-column">
-          <h6 className="mb-1">{product.topTitle}</h6>
-          <small className="text-body-secondary mb-2">{renderNotes(product.notes)}</small>
+          <h6 className="mb-1">{card.cardTitle}</h6>
+          <small className="text-body-secondary mb-2">{card.notes}</small>
           <a
-            href={product.link}
+            href={card.link}
             rel="noopener noreferrer"
             target="_blank"
-            className={`btn btn-primary align-self-start plausible-event-name=affiliate plausible-event-product=${product.key}`}
+            className={`btn btn-primary align-self-start plausible-event-name=affiliate plausible-event-product=${card.key}`}
           >
-            <span>{product.linkText || 'View on Amazon'}</span>
+            <span>{card.linkText || 'View on Amazon'}</span>
           </a>
         </div>
       </div>
@@ -62,7 +57,7 @@ export function ProductsCard ({ title, links, products }: Products) {
   return <div className="card h-100">
     <div className="card-body">
       <h6 className="card-subtitle mb-2 text-body-secondary">{title}</h6>
-      {products.map(renderProduct)}
+      {products.map(renderCard)}
     </div>
     <div className="card-body">
       {links.map(l => (

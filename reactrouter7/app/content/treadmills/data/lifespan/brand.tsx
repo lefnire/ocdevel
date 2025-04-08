@@ -18,7 +18,8 @@ const info: Brand = {
     // me: 10,
     websites: [{value: 5}],
     trusted: [
-      {value: 20},
+      {value: 19},
+      {value: 1, label: "Reddit deep-dive", url: "https://www.reddit.com/r/treadmills/comments/1eblx3r/comment/lj7obcq/"},
       {value: -1, label: "Reddit: discontinued sales rep", url: "https://www.reddit.com/r/WalkingPads/comments/1j8z0ww/are_there_any_brands_that_sell_20_wide_belts"},
       {value: -1, label: "Reddit: order delays", url: "https://www.reddit.com/r/treadmills/comments/1c0vp8q/warning_do_not_purchase_a_lifespan_fitness/"},
     ]

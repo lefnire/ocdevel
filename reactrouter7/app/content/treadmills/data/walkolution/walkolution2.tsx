@@ -1,6 +1,7 @@
-import type {Product} from "../types";
+import type {CardIn, Product} from "../types";
 import brand from './brand'
 import {NA} from '../utils'
+import image from '~/assets/products/walkolution_walkolution2.png?w=100&h=100&format=avif&effort=max'
 
 const thera = "TheraFloor ®"
 const slats = {
@@ -118,3 +119,12 @@ const info: Product = {
   material: {},
 }
 export default info
+export const card: CardIn = {
+  image,
+  notes: "Invincible, ergonomic, 0 maintenance, 0 electricity.",
+  cardTitle: "Walkolution 2",
+  // notes: () => <div>
+  //   <span>Invincible, ergonomic, 0 maintenance, 0 electricity.</span>
+  //   <VideoButton href="https://walkolution.com/pages/videos" />
+  // </div>,
+}

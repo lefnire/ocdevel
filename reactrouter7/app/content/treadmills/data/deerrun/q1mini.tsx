@@ -1,5 +1,8 @@
-import type {Product} from "../types"
+import type {CardIn, Product} from "../types"
+import image from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'
+
 import brand from './brand'
+import {VideoButton} from "~/components/video-btn";
 const links = {
   amazon: {
     US: "https://amzn.to/4bM8iFn",
@@ -24,6 +27,7 @@ const info: Product = {
       <div>No incline functionality, which is important for knee health. Recommendation is to prop the front on a block of wood or foam.</div>
     </div>
   },
+  video: "https://www.youtube.com/shorts/PWtwSiv2VzI",
   links,
   dimensions: {
     value: [43, 20, 4.3],
@@ -86,3 +90,12 @@ const info: Product = {
   },
 }
 export default info
+
+export const card: CardIn = {
+  image,
+  cardTitle: "DeerRun Q1",
+  notes: () => <div>
+    <span>Test the waters. No incline, 1-2yrs life.</span>
+    <VideoButton href="https://www.youtube.com/shorts/PWtwSiv2VzI" />
+  </div>,
+}

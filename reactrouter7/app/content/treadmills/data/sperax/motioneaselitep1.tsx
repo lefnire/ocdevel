@@ -1,4 +1,5 @@
-import type {Product} from "../types";
+import image from '~/assets/products/sperax_motioneaselitep1.webp?w=100&h=100&format=avif&effort=max'
+import type {CardIn, Product} from "../types";
 import brand from './brand'
 
 const links = {
@@ -89,3 +90,8 @@ const info: Product = {
   // ],
 }
 export default info
+
+export const card: CardIn = {
+  image,
+  notes: "Test the waters. No incline, 1-2yrs life.",
+}

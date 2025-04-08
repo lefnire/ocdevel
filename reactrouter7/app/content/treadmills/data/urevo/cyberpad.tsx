@@ -1,5 +1,7 @@
-import type {Product} from "../types";
+import image from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=avif&effort=max'
+import type {CardIn, Product} from "../types";
 import brand from './brand'
+import {VideoButton} from "~/components/video-btn";
 
 const info: Product = {
   model: {
@@ -16,6 +18,7 @@ const info: Product = {
   },
   key: `${brand.key}_cyberpad`,
   image: '/walk_thumbs/cyberpad.jpg',
+  video: "https://www.youtube.com/shorts/zIVv-Z3Cc10",
   links: {
     amazon: {
       // US: "https://amzn.to/42VhjJE"
@@ -91,7 +94,10 @@ const info: Product = {
   },
 
   // warranty: from brands
-
-
 }
 export default info
+
+export const card: CardIn = {
+  image,
+  notes: "Sturdy, quiet, feature-rich."
+}

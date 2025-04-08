@@ -39,7 +39,9 @@ export const getCountryCodes = (row: Product, includeBrand=false): string[] => {
   return [...new Set(sources.flat())];
 };
 
-export const getPrice = (product: Product) => product.price.sale || product.price.value;
+export const getPrice = (product: Product): number => {
+  return product.price.sale || product.price.value;
+}
 
 export function toFixed0(val: number | undefined) {
   let val_ = val ?? 0;
@@ -119,7 +121,8 @@ export function invertLinks(row: Product): LinksInverted {
   }, {} as LinksInverted);
 }
 
-export function renderCountryLinks(row: Row, objType: 'product'|'brand', oneCountry?:string) {
+type ObjType = 'product' | 'brand'
+export function renderCountryLinks(row: Row, objType: ObjType, oneCountry?:string) {
   const siteNames = {amazon: "Amazon", brand: "Company Website"}
   const countries_ = oneCountry ? [oneCountry] : countries.order
   const links = countries_.flatMap(code => (
@@ -136,4 +139,22 @@ export function renderCountryLinks(row: Row, objType: 'product'|'brand', oneCoun
     })
   ))
   return links
+}
+
+export function renderReferences(row: Row, objType: ObjType) {
+  const picks = (objType === 'brand' ? row.brand : row).pickedBy
+  const references = ([
+    ...(picks.websites || []),
+    ...(picks.trusted || []),
+  ]).map(w => {
+    if (!(w.label && w.url)) { return null; }
+    return w
+  }).filter(Boolean)
+  if (!references.length) { return null; }
+  return <div>
+    <h5 className='text-muted mt-2'>References</h5>
+    {references.map(r => <li key={r.url}>
+      <a target="_blank" href={r.url}>{r.label}</a>
+    </li>)}
+  </div>
 }

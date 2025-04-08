@@ -1,4 +1,6 @@
-import type {Product} from "../types"
+import type {CardIn, Product} from "../types"
+import image from '~/assets/products/lifespan_tx6.jpg?w=100&h=100&format=avif&effort=max'
+
 import brand from './brand'
 const info: Product = {
   brand,
@@ -43,7 +45,7 @@ const info: Product = {
   },
   rating: {
     value: [[4.67, 5], [4, 1, 0, 0, 0]],
-    notes: () => <div>From their website (which I had to view-source)</div>
+    notes: () => <div>From their website (which I had to view-source, since their website is a mess). Their Amazon listing is a combo with TR1200, TR5000; so it's using those reviews as well.</div>
   },
   fakespot: {
     value: ["A", brand.fakespot], // Not specified in the data
@@ -75,3 +77,11 @@ const info: Product = {
   },
 }
 export default info
+
+export const card: CardIn = {
+  image,
+  notes: () => <div>
+    <span>Buy it for life. Invincible, quiet, fast.</span>
+    {/*<VideoButton href="https://www.youtube.com/shorts/zIVv-Z3Cc10" />*/}
+  </div>,
+}

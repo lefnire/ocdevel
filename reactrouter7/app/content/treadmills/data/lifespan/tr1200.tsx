@@ -34,7 +34,6 @@ const info: Product = {
 
   dimensions: {
     value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H
-    notes: () => <div>Larger dimensions than many consumer models and even the TR1000, which may be an issue for some desk setups.</div>
   },
   weight: {
     value: 117, // TODO: Weight not specified in the data
@@ -42,7 +41,6 @@ const info: Product = {
   },
   maxWeight: {
     value: 330,
-    notes: () => <div>High max weight capacity (350lbs) compared to most competitors.</div>
   },
   maxSpeed: {
     value: 4,

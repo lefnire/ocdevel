@@ -1,4 +1,4 @@
-import type {ReactElement} from "react";
+import type {FC, ReactElement} from "react";
 
 interface Attribute {
   value?: number
@@ -43,13 +43,14 @@ export interface Brand {
   fakespot: string
   location?: string
   notes?: () => ReactElement
-  pickedBy?: PickedBy
+  pickedBy: PickedBy
 }
 export interface Product {
   brand: Brand
-  model: StringVal
+  model: CustomVal & {value: string} // required
   seo?: number
   image?: string
+  video?: string
   key: string
   links: Links
 
@@ -68,7 +69,8 @@ export interface Product {
   fakespot: CustomVal & {
     value?: [string, string]
   }
-  price: Attribute & {
+  price: CustomVal & {
+    value: number
     sale?: number
   }
   incline: NumVal & {
@@ -80,7 +82,26 @@ export interface Product {
   easyLube: NumVal
   // Use later
   material?: StringVal
-  pickedBy?: PickedBy
+  pickedBy: PickedBy
   pros?: StringVal[]
   cons?: StringVal[]
+  card?: CardIn
+}
+
+export interface CardIn {
+  cardTitle?: string
+  image: ReactElement
+  notes: string
+  video?: string
+  linkText?: string
+}
+export type CardOut = Omit<CardIn, 'notes' | 'title'> & {
+  title: string
+  key: string
+  image: ReactElement
+  cardTitle: string
+  price: number
+  link: string
+  linkText: string
+  notes: string | ReactElement
 }

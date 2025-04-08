@@ -34,22 +34,18 @@ const info: Product = {
 
   dimensions: {
     value: [63, 28.5, 7.25], // 63"L x 28.5"W x 7.25"H
-    notes: () => <div>Larger dimensions than many consumer models, which may be an issue for some desk setups. Same size as the TR1200.</div>
   },
   weight: {
     value: 122,
-    notes: () => <div>Likely the heaviest of the LifeSpan models due to premium commercial-grade construction.</div>
   },
   maxWeight: {
     value: 400,
-    notes: () => <div>Exceptional max weight capacity compared to most competitors and even other LifeSpan models.</div>
   },
   maxSpeed: {
     value: 4,
   },
   horsePower: {
     value: 3, // Assuming higher than TR1200 based on tier
-    notes: () => <div>Premium commercial-grade motor likely has the highest horsepower and durability in the LifeSpan lineup.</div>
   },
   age: {
     rating: 10,

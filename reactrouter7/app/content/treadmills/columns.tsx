@@ -1,4 +1,4 @@
-import type {CSSProperties, ReactElement, ReactNode} from "react";
+import {type CSSProperties, memo, type ReactElement, type ReactNode} from "react";
 import type { Row } from "./computed";
 import {FaExternalLinkAlt} from "@react-icons/all-files/fa/FaExternalLinkAlt";
 import {FaUser} from "@react-icons/all-files/fa/FaUser";
@@ -14,7 +14,7 @@ import {
   toFixed0,
   ScoreInfo,
   countries,
-  renderCountryLinks
+  renderCountryLinks, renderReferences
 } from "./utils";
 const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
@@ -75,6 +75,7 @@ export const columnsArray: ColumnDefinition[] = [
     format: (row) => row.brand.name,
     renderModalTitle: (row) => row.brand.name,
     renderModal: (row) => {
+
       const warranty = row.brand.warranty
       const hasAmazon = !!Object.keys(row.links?.amazon)?.length
       return <div>
@@ -86,6 +87,7 @@ export const columnsArray: ColumnDefinition[] = [
           {warranty.brand && <div>Company: {warranty.brand} years</div>}
           {warranty.notes?.()}
         </div>}
+        {renderReferences(row, 'brand')}
       </div>
     },
   },
@@ -101,6 +103,7 @@ export const columnsArray: ColumnDefinition[] = [
       return <div>
         {renderCountryLinks(row, 'product')}
         {row.model.notes?.()}
+        {renderReferences(row, 'product')}
       </div>
     },
     notes: () => <div>

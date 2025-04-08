@@ -1,4 +1,5 @@
-import type {Product} from "../types"
+import image from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
+import type {CardIn, Product} from "../types"
 import brand from './brand'
 import {VideoButton, VideoButtonLg} from "~/components/video-btn";
 const info: Product = {
@@ -15,6 +16,7 @@ const info: Product = {
     </div>
   },
   key: `${brand.key}_3s`,
+  video: "https://www.youtube.com/shorts/NRxkNG9Y3VU",
   links: {
     amazon: {
       US: "https://amzn.to/4bE2JXR"
@@ -77,3 +79,8 @@ const info: Product = {
   },
 }
 export default info
+
+export const card: CardIn = {
+  image,
+  notes: "One size fits all, bang for buck."
+}
