@@ -144,7 +144,7 @@ export function renderCountryLinks(row: Row, objType: ObjType, oneCountry?:strin
 export function renderReferences(row: Row, objType: ObjType) {
   const picks = (objType === 'brand' ? row.brand : row).pickedBy
   const references = ([
-    ...(picks.websites || []),
+    // ...(picks.websites || []),
     ...(picks.trusted || []),
   ]).map(w => {
     if (!(w.label && w.url)) { return null; }

@@ -1,0 +1,302 @@
+[00:01:05] This is episode 24 Tech Stack. Hello again. It's been a long time, my friends. I apologize for the delay. Unfortunately, I'm not finding ways to fund this podcast to make it my primary endeavor. The Patreon isn't going super hot, so I'm gonna have to make this podcast a, as I find time thing, I won't be offended if anybody pulls out of the Patreon, but I can no longer promise a two week scheduled release.
+
+[00:01:37] I'll just have to make these podcast episodes as I find time that being the case. I am looking for work, so if anybody is looking for a machine learning engineer or knows somebody who's looking for one, please contact me. My contact information is on the podcast website, oc deve.com. I am looking for remote machine learning work or Portland, Oregon.
+
+[00:02:01] Unfortunately, I'm grounded here in Portland for at least a year and a half, so I can't relocate. So if anybody has machine learning work, please contact me. I'd be happy to help out. I'm your guy. In this episode, we're gonna talk tech Stack. In episode 10, we talked about languages and frameworks. We talked about Python r Java, Scala, and we landed on Python as the best programming language to use as a machine learning engineer.
+
+[00:02:28] And we talked about all the different machine learning frameworks, specifically deep learning frameworks compared to each other, and landed on TensorFlow as the best deep learning framework to use. So in this episode, we're going to assume that comparison solved that we're just going to assume we're working with Python and TensorFlow as our bread and butter.
+
+[00:02:49] If you didn't listen to that episode and you want to know why we came to that conclusion, go back to episode 10. But for here. Python is the winner of the languages war, and TensorFlow is the winner of the deep learning frameworks. Now, real quick, there has been some changes in the Deep learnings framework space since I last spoke with you.
+
+[00:03:08] Namely, Theano is dead. Theano is officially dead. They've actually announced on a mailing list or a forum or something that they're no longer going to be contributing to the project. I imagine it's kind of a, if you can't beat them, join them where the competition is too stiff against TensorFlow. In a world where open source contributors are paid for their work, not for their open source contributions.
+
+[00:03:32] So it makes sense kind of that they'd get pushed out of the space. It's a sad bit of affairs, but hey, it makes the decision of deep learning frameworks easier for us. Cafe you'll recall is another competitor in the deep learning frameworks. It seems to be a bit dead in the water as well. I haven't really heard a whole lot about Cafe around Hacker News or discussions online these days.
+
+[00:03:56] However, torch a competitor to Tensor Flow has actually been making major splashes recently. It's coming up hot on the heels of Tensor Flow as a second place contender where a lot of people are swearing by Torch over TensorFlow specifically. Recall Torch, which was previously written on Lua, has been ported to Python and so now is called PyTorch.
+
+[00:04:20] From what I hear, some educators and practitioners think it's a little bit easier to work with than TensorFlow for the same net gain on GPU performance and all that stuff, making it a net win. I actually haven't played around with PyTorch myself yet, so that'll have to be something you dig into yourself.
+
+[00:04:39] I will still recommend TensorFlow over Torch, merely because TensorFlow is substantially more popular than Torch, which means that there's a higher availability of resources and books, learning material jobs, employees plugins, tutorials, all those things. Sometimes it's important to sort of just pick the most popular when it comes to frameworks and libraries.
+
+[00:05:02] And in this case, TensorFlow is still definitely much more popular than PyTorch, but PyTorch is coming in strong, so it's just something to keep an eye on. So that brings us to the beginning of this tech stack conversation. We're gonna be assuming Python and Tensor flow. We're also gonna be talking about things like pandas, num, pi, psych, hit Learn, KR os, tensor force, as well as a practical approach to implementing machine learning in an architecture where you have maybe a, a web app framework communicating with your machine learning framework by way of a message queue in the sort.
+
+[00:05:36] Before we get into all that, let's remember what TensorFlow does for you. You can write machine learning however you want. It's just mathematical formula, which can be expressed in code in Python. And a lot of times when you take a course like the Coursera course, for example, they'll actually have you writing these machine learning equations by hand from scratch in the language that they're teaching.
+
+[00:06:01] And that's fine and well. But there's two advantages to using a framework. One is that these frameworks are sort of a library of common machine learning functions. Like convolutional layers of a convolutional neural network, rectified linear units and other activation functions and all these things. But the other more important advantage of using a deep learning framework like TensorFlow is that your code gets executed on the GPU, the graphics processing unit, not the CPU, and executing your code on A GPU can gain you.
+
+[00:06:34] Up to about a thousand X performance, a thousand x. That's a substantial gain in performance. Now, usually it's not that high. Usually it's somewhere in the order of maybe 20 X or a hundred x or something like that. And it depends on the task at hand and the amount of marshaling that goes back and forth between your program and the GPU, et cetera.
+
+[00:06:56] But the amount of performance gain that can be had by executing your machine learning math on A GPU over a CPU is so substantial that it really gives warrant to using one of these frameworks that does that task for you. Like TensorFlow, for those who are familiar with cryptocurrency mining, like mining Bitcoin or Ethereum, it's very similar in that space.
+
+[00:07:21] Having a really powerful GPU makes using A CPU, not even worth it. Oftentimes, if you're mining using something like nice hash. Which allows you to use both your CPU and your GPU. The difference between the two is so substantial that a lot of people will just turn their CPU off for mining because it's not even worth the electricity cost.
+
+[00:07:44] That's the case here in deep learning. So that's the major benefit that these deep learning frameworks bring to bear, is that they do all the math on the GPU and specifically the thing that they tout the most is something called auto differentiation. It's the execution of the calculus step, the back propagation step.
+
+[00:08:04] Remember that the learning step of the machine learning process is called gradient descent. Gradient descent. You're taking a gradient of your error, which is a calculus equation. Taking a gradient is differentiating. Gradient descent applies to support vector machines, logistic regression, linear regression.
+
+[00:08:28] When you apply it to neural networks, it's called back propagation. It's applying gradient descent to all of the neurons. Back propagation is the same as gradient descent for neural networks, and it's got some complications deep down in there. Where implementing back propagation yourself would not be a very fun task.
+
+[00:08:47] Well, these frameworks automatically take care of the differentiation phase. In other words, the back propagation phase by deriving automatically the calculus equations they have to perform and then performing them, which saves a whole lot of effort and a significant amount of time and performance, and for one reason or another, it's this auto differentiation specifically that these frameworks tends to tout the most, that they dwell on that as like one of their big benefits.
+
+[00:09:16] I don't know why specifically auto differentiation. The gradient descent part is so significant by comparison to all the other math. That these frameworks perform on the GPU as well. The other statistics in linear algebra formulae, but that's the big thing. They call it auto Diff. So PyTorch and TensorFlow execute auto diff for you and Auto Diff happens on the GPU and not just any GPU.
+
+[00:09:39] It turns out that Nvidia GPUs specifically are best suited to the task Nvidia, the brand of GPUs, the other main brand being a MD. So those are the two common competing graphics cards in the space for gaming. People will go back and forth on which one's better. A MD tends to be more bang for buck, but maybe has some compatibility issues and also burns Hot.
+
+[00:10:05] Nvidia is a little bit more like an iPhone. You kind of pay more for the name brand, but it also has a lot more compatibility with various software. The conversation is a lot different in the machine learning space than it is in the gaming space. In the machine learning space, you'd really do yourself a favor by going Nvidia.
+
+[00:10:23] It really is a matter of compatibility, and in fact, at present, TensorFlow only supports Nvidia. So if you're gonna be using the most popular framework out there, your only choice is Nvidia. The reason for this is Nvidia provides this sort of proprietary driver set for doing this kind of math on A GPU that makes writing to this kind of math as a framework developer a lot easier than doing it from scratch.
+
+[00:10:48] And this driver set is called Cuda. CUDA Cuda. It stands for Compute Unified Device Architecture, and it's basically just a parallel computing platform driver set provided by Nvidia for framework architects like the developers of TensorFlow. A comparable alternative for a MD would be OpenCL, which is an open source kind of equivalent to Cuda, but which tends to get a lot more.
+
+[00:11:17] Second class support by framework architects, where Cuda gets first class support. And on top of cuda, you can download from Nvidia a zipped up folder of DLLs called CO DNN, which is a little library of neural network helpers to interface with A GPU. And you would have to download both Cuda and CO DNN for your GPU in order to install TensorFlow with GPU support.
+
+[00:11:45] So I just said something significant. I said, TensorFlow only supports Nvidia GPUs because of this Cuda thing. What that means is, unless you have an old MacBook Pro, which has an Nvidia card, a Mac computer is not gonna do it for you in machine learning world, unfortunately, my friends, I know MacBook Pros are very popular development machines, especially amongst the web and mobile app developers.
+
+[00:12:12] You can still use TensorFlow with CPU support on a Mac or a MacBook Pro, but TensorFlow does not support Macs. With GPU support going forward, and I think the main reason for that is that the modern max use a MD. So I have switched personally from a MacBook Pro to a pc. I'm a Big Mac nut, but I have bit the bullet with machine learning development and I've switched to a PC with a Nvidia 10 80 TI graphics card.
+
+[00:12:45] That's the top of the line graphics card you can get on the market these days for consumer purposes, bang for buck wise, and it's very, very, very fast. So I built a, so I built a custom PC with a 10 80 TI graphics card, and I'm running Ubuntu Linux, not Windows, and not any other flavor of Linux. Ubuntu Linux gets the best first class support for TensorFlow and other machine learning frameworks over Windows and other flavors of Linux.
+
+[00:13:15] So I recommend a custom built pc, a tower better than a laptop. Just due to ventilation issues with a 10 80 TI Nvidia graphics card running Ubuntu Linux, that is my recommended hardware stack. Now, like I said, you can keep your MacBook Pro and use TensorFlow in CPU mode if you want, if you just kind of want to dabble with machine learning algorithms and models.
+
+[00:13:40] But if you really want the real deal, you're gonna wanna run it on some heavy duty hardware. Namely a very powerful GPU. You could get away with not having your workstation be the primary hardware you run your machine learning models on. You could develop it on your MacBook Pro or your Windows laptop, and you could deploy your machine learning models to the cloud, like Amazon Web Services, a WS or Google Cloud platform, GCP or Microsoft Azure.
+
+[00:14:10] And run your models on their GPU instances of a very common one is called the P2 X, large instance by AWS, and it gives you a GPU that you can run your machine learning models on. Running your models in the cloud can be quite expensive. It's about 90 cents per hour presently to run a P two X large instance on AWS.
+
+[00:14:33] If you're going to run your models in the cloud, I personally would recommend Google Cloud platform. They have faster GPU instances for less money, so faster for cheaper, and they unveiled last year that they're going to be creating server instances, which use not A GPU, but something called A-T-P-U-A Tensor Processing Unit, which is a chip designed for running machine learning models.
+
+[00:15:00] Specifically a graphics processing unit is very good for running machine learning models incidentally, because it's very good at math, but it wasn't built for that specific purpose. TPUs are built specifically by Google specifically for running machine learning models and specifically for TensorFlow.
+
+[00:15:17] And they think that you're gonna get a major, major performance boost by using TPUs. They're not out yet. Their server instances currently don't support TPUs, but they do have GPUs, which are more powerful than what you'll find on AWS or Azure at present being October, 2017, and for cheaper than those slower alternatives to boot.
+
+[00:15:41] So I recommend GCP over the competition. However, I actually personally use AWS rather than GCP. There's two reasons for this. One is that I actually got free credits for AWS, so I'm running my instances for free, which is better than cheap. And Amazon is famous for doling out these AWS credits. You can get them from various things in the startup marketplace, whether you join an incubator or accelerator program, et cetera.
+
+[00:16:09] So you might be able to land some free AWS credits. Additionally, AWS offers something called spot instances. Spot instances. What they do is they're basically like an auction on a price per hour for an EC2 instance. So where a P two X large instance, a GPU server instance on EC2 costs normally 90 cents per hour.
+
+[00:16:36] A spot instance says How much are you willing to pay per hour? Okay. I'm willing to pay up to 90 cents. For example, it may end up costing 10 cents an hour or 20 cents an hour. It's sort of this price fluctuation that happens throughout the day at Amazon, and if it ever goes over the max amount I'm willing to pay, then it will just.
+
+[00:16:58] Terminate my instance. Just kill it. Just nip it in the bud. So there's sort of a scare there. There's a fear that you may just have your instance pulled out from under you. As long as you set your spot instance price high enough, then that may never happen and you could end up saving substantial amounts of money.
+
+[00:17:17] I think I average end up paying about 10 cents to 20 cents per hour using a spot instance P two two X large rather than the standard 90 cents per hour. So I just set my spot instance max price to 90 cents an hour, which is the standard price, and it never actually gets that high, and I never lose my servers and anyway.
+
+[00:17:38] This wouldn't be a problem for developing in machine learning models, running them in the cloud, because usually you'll be using something like an A MI that has TensorFlow support built into it. So spinning up another one of these instances will be no problem. Unlike a web server, maybe that needs to have very high availability and reliability.
+
+[00:17:59] So these spot instances lend really well to us. Machine learning engineers wanting to run machine learning models on the cheap for multiple days on a very high end graphics card. So you could just use your Windows laptop or your MacBook Pro, develop your model locally, deploy it to a P two X large spot instance on AWS.
+
+[00:18:20] And run it there, and then not have to actually switch over to a custom built PC with a 10 80 TI graphics card running Ubuntu. You could do that, but I would recommend still doing the PC route because in the end, unless you get free AWS or GCP credits, you'll still come out saving money with a custom home-built PC over running in the cloud after maybe six months to a year, it's still cheaper to go with a workstation at home than with the cloud.
+
+[00:18:52] Eventually, you're gonna need the cloud to deploy your model if you actually have a production system at in play. But we're just talking about our workstations here. So that's the hardware tech stack, either a custom built PC with an NVIDIA graphics card, or if you prefer, you can run your models in the cloud.
+
+[00:19:09] Now let's talk about the software tech stack. Naturally, we're using TensorFlow. We're gonna be using a handful of other libraries as well. Pandas, num, pa, psychic Learn, maybe something called celery for message queuing, maybe karos or tensor force. We'll handle these one by one. So first off, machine learning works on data.
+
+[00:19:30] You have to have data to crunch the numbers. To build a machine learning model to come up with an estimate of something. Maybe you're coming up with an estimate of housing costs. That's a linear regression model or of classification. That's a logistic regression model. It works on numbers, and those numbers come from somewhere.
+
+[00:19:47] Some data set. Your data set could either be in a spreadsheet, a CSV or Excel file. It can be a folder of images if you're doing image classification, or it can come from a database like Postgres or my SQL or maybe an API. Like qual, Q-U-A-N-D-L-A, popular financial data set, API. If the data is given to you, you don't really have control over the situation.
+
+[00:20:14] It's usually coming to you by way of a spreadsheet, a CSV file. But if you have control over the situation, I would recommend using a full fledged RD BMSA database like Postgres. In fact, Postgres specifically is my favorite RD BMS, and I think it's very popular amongst developers. It's been the main database used in the last five jobs I've worked for.
+
+[00:20:36] So if you get to choose how you're handling your data, store it in Postgres, but if you don't get to choose, maybe it's coming from an API and going directly into your machine learning model, or it's coming from a spreadsheet, then you're stuck with what you got. Whatever the case may be, you're going to be consuming your data from your dataset.
+
+[00:20:52] You're gonna be pulling it into your program, into your Python program, and the way you would probably do that is by way of pandas. Pandas is a library that's kind of like a spreadsheet in Python. It's a very interesting little tool. First, it provides a step for pulling your data from a data set. That data set may come from a spreadsheet, so Pandas has a read CSV function, or it may come from a SQL database like Postgres.
+
+[00:21:21] It has a read SQL function, which interfaces with SQL Alchemy, a popular Python, ORM, or if it's coming through an API using requests or what have you, you would then just manually write the code that pipes it into pandas. Once your data is out of your dataset and into Pandas, pandas allows you to what they call mung data.
+
+[00:21:44] Mung or clean your data. So for example, your dataset may have a lot of nulls in various cells in various rows and columns. There may be a bunch of nulls, an empty value, not a zero. A null, and a null can substantially screw up your machine learning model. Before you start doing machine learning, you might think, ah, I'm sure my machine learning model will learn to ignore the knolls.
+
+[00:22:07] Right? I mean, a machine learning model, especially something so complex as a deep neural network, learns what type of data to sort of latch onto in order to come to its conclusions. No, no, not so. Machine learning models, and indeed. Neural networks are very sensitive to Knolls. Those can really just make smoke and fire come out of the hood and kill the engine.
+
+[00:22:27] So you have to do something with those knolls. You can either set them to zero, but sometimes that doesn't help you very much. For example, in the case of stock market data or financial data you have, you have prices on a daily basis. If for whatever reason you're missing a price on some day setting the price to zero will make it look like the stock market dropped on that day, which can totally mess up your machine learning model.
+
+[00:22:54] So instead of setting it to zero, you'd prefer to forward fill it with the price data from yesterday. This is called forward filling, and pandas has a function called F fill for forward fill. They also have a function called B fill for backfill. So PANDAS allows you to fill your Knolls sanely, however the case may be for your circumstances.
+
+[00:23:17] It allows you to turn numeric data into categorical data via one hot ENC coating or vice versa, categorical data. Maybe your columns are represented as strings. Turn those into numbers. So pandas is all about manipulating your data to clean it up so that it's ready for your machine learning model.
+
+[00:23:38] Pandas is about data munging cleaning up your data. Now you may be thinking, what if I'm using a SQL database like Postgres? Couldn't I do the forward filling or coalescing Knolls into zero values or transforming string values into numerical values, all that stuff. Couldn't I do sort of the data munging as the data comes in from the database directly?
+
+[00:24:02] So it's all part of the SQL query? And the answer is, yes, of course, but not everyone's dataset is a SQL database. Some people's stuff is coming in from spreadsheets, sometimes from APIs. And as has been the case on a recent project of mine, I've been bouncing around between different data sets trying to find the perfect data set to work with while building my model.
+
+[00:24:27] So I'd rather. The data cleaning step exists in the pandas layer because my data set, my data source may change on a week to week basis. So you have your data set, whether it's a spreadsheet or sql. It comes into your Python code by way of pandas, which then cleans up your data. You use pandas to clean your data, and now that your data is clean and ready for your machine learning model, what you do is you pipe it into something called NumPy, N-U-M-P-Y.
+
+[00:24:59] NumPy NumPy is a library for working on vectors or matrices or tensors of any dimension. Linear algebra, basically num pa is linear algebra. So you would use num pi for transposing a matrix, or inverting a matrix or doing a dot product between matrices, et cetera. You'll recall that statistics and calculus and linear algebra brothers are the three branches of mathematics used in machine learning, and specifically, sort of at the code level.
+
+[00:25:31] Most of what you're gonna be doing is linear algebra, and that's sort of what num pi provides. So your data came in from a dataset, it got cleaned up by pandas, and now you convert your data frame in pandas to a matrix, a matrix of numbers, and you're gonna do machine learning math. On it. So num pa does that kind of math.
+
+[00:25:53] You could write any machine learning algorithm you need to in num, pa. The Andrew in Coursera course was taught in Matlab. Num, pa is very similar to Matlab. The language num pa sort of gives you the things that Python lacks compared to Matlab. So you can slice and dice your matrices and do all that stuff.
+
+[00:26:14] So Andrew Inc could have alternatively taught the course entirely in NumPy on Python rather than matlab, but he chose to do it on matlab. Now you may be thinking. Wait a minute. I thought that we want to do all of this math and linear algebra, calculus statistics. Thought we wanted to do that in TensorFlow on a GP.
+
+[00:26:35] Yes, indeed. Yes, indeed. We want to do that in TensorFlow. There is a heavy overlap of Num pi with TensorFlow. So everything I said about using num pie to slice and dice your matrices and do linear algebra and all that stuff, you don't wanna do it in num pie. You wanna do it in TensorFlow because you want it to execute on the GPU.
+
+[00:26:55] Now, of course, TensorFlow is a newer framework, so this stuff didn't exist 10 years ago where NumPy did. TensorFlow is basically bringing NumPy to the GPU in addition to all the other deep learning framework utilities like, like activation functions and convolutional layers and stuff that TensorFlow provides.
+
+[00:27:15] But there's a huge amount of overlap between num PI and TensorFlow. You imagine them as a Venn diagram with a very large sort of overlapping space, and a lot of the function calls of num pi are the same, like the methods are the same name, take the same amount of parameters, et cetera. In TensorFlow, TensorFlow tried to make the transition from Num PI for people who are used to that.
+
+[00:27:40] Two TensorFlow as seamless as possible. And in fact, if you are using TensorFlow without GPU support, say you're just doing development on your MacBook Pro and you only have CPU support, then TensorFlow will actually use num PI under the hood to execute its math. But even if you are using TensorFlow for everything on A GPU, you still have to have num pie.
+
+[00:28:06] You still have to have it around num. Tends to sort of be the common language spoken by your Python program and TensorFlow, NumPy sort of marshals data between your Python program and TensorFlow back and forth, back and forth. What it does is it wraps your data frames that came out of pandas as matrices.
+
+[00:28:31] They're called ND arrays. NumPy arrays ND arrays, but it's basically a matrix that's either a ve, a vector or a matrix or a 3D tens or whatever have you. So NumPy wraps these as tensors and then hands those off to tensor flow. And then TensorFlow receives a NumPy matrix and it brings it down to C executes its stuff on the GPU, and it comes up with a response down here in C, comes back up to Python and puts its response into a NumPy tensor again and gives that back to you.
+
+[00:29:04] So it's sort of this common language that your Python program and TensorFlow speak. So with all that said, you can write as much of your machine learning. Program in Num Pi instead of TensorFlow as you want, and you can write as much of it in TensorFlow instead of num pi as you want at some point. At some point you have to have a little bit of TensorFlow.
+
+[00:29:30] And at some other point you had to have a little num pa. So imagine it like this sliding scale between one and 10, where you can slide the scale from the left, being num, pa to the right, being TensorFlow. You can have as much of your machine learning logic in TensorFlow versus num PA as you want. Ideally, you want to write as much as possible of the linear algebra stuff in TensorFlow because that's that big net gain you get from executing your math on A GPU.
+
+[00:29:57] You'll find sometimes in some GitHub repositories, some boilerplate code that came from an online tutorial. They're not very rigorous about getting as much as. Possible into the TensorFlow code. So you'll see a whole bunch of sort of custom NumPy logic that could have actually been handled by TensorFlow instead and which results in slower code execution performance.
+
+[00:30:22] But they don't care. I mean, they were just putting together a quick tutorial. But in the end, for your production code, you want to use as much tensor flow as possible. So your data comes out of a dataset, whether it be a Postgres database or a spreadsheet. You pipe it into pandas. You'll use pandas to munge and clean your data, filling knolls with zeros or forward filling them from prior entries, turning categorical stuff into numbers, turning strings into numbers, all that stuff.
+
+[00:30:53] You clean up your data with pandas. You marshal pandas into num pa. Num pa is the way you represent your data sets or your data frames from pandas as matrices or tensors. You do as minimal amount of necessary steps on your num pa arrays as possible before piping it into TensorFlow. TensorFlow receives your NumPy array.
+
+[00:31:18] Goes down to C down the stairs, you're, you're in the Python room. You handed TensorFlow a package. A NumPy ND array. TensorFlow nods his head, thankfully, and he turns around with his package and he walks out the door, goes, goes down the stairs to the basement where the C people are CC plus plus and you are twiddling your thumb, sort of anxiously.
+
+[00:31:38] You don't want to go down there. Things are a little bit too fast down there. People are running around, like their heads are cut off. You hear a bunch of bangs and booms, some steam. And then the door closes from the basement. TensorFlow walks up the stairs, opens your door, and hands you a NumPy ND array package.
+
+[00:31:54] Nos his head and walks away. You the Python program, unwrap your num pi array. And there you have your answer, your prediction for a machine learning prediction step, but maybe a category applied to an image, et cetera. Pandas, num, pa, TensorFlow. Now TensorFlow is an odd duck coming from a traditional programming background.
+
+[00:32:17] If you maybe are experienced with web or mobile app development or any other sort of Python development or anything, there's a way you write code in a procedural manner, but the way you write TensorFlow code is very strange indeed. The reason is that TensorFlow code you write is an abstraction. It's not the real code that's executed.
+
+[00:32:39] The code that you write in TensorFlow is some sort of simplification abstraction layer that the TensorFlow people provided to you in your Python world. And what happens in the end, you write a hundred lines of code and on the hundredth line of code you sort of seal the deal. It kind of in a way encapsulates all the code you'd written thus far.
+
+[00:33:00] And sort of when you press the enter key, when you execute your tensor flow of code, it gets sensed down to see by the tensor flow framework, it actually gets read in a different language. And what gets executed is an entirely different set of instructions. So this is similar to, if you're familiar from a database background to with object relational mappers O rms, a common one in Python being sequel alchemy.
+
+[00:33:29] What you write is Python code using this abstraction layer, this API. But when you finally execute the code, when you run om execute or what have you, what actually gets executed is SQL SQL code. Naturally. An ORM wraps SQL code. That's a very simple thing. I mean, what happens is. Your Python code gets translated to SQL Code in Python.
+
+[00:33:54] It's so simple in fact, that a lot of people tew the use of ORMs. A lot of people don't like using ORs. They say it hides you from sql, and SQL is an easy language anyway. You might as well gain the flexibility and power of knowing and writing SQL directly rather than hiding it away from yourself. With an ORM, that's fine and well with ORMs it's not fine and well with computation graph.
+
+[00:34:20] Frameworks like TensorFlow and PyTorch because they perform that auto differentiation and other sorts of math on the GPU, so you don't have to write it yourself. So you want to use these things, but it's a similar concept. You write your code in Python. What you're doing is you're constructing what's called a computation graph.
+
+[00:34:39] A graph of nodes. So every line of TensorFlow code is like you're assigning a graph node, a circle, some sort of operation. It's called an op op to a variable, and then subsequent lines of code. Collect these variables and combine them in some sort of way, whether they're doing matrix multiplication or piping them through a rectified linear unit, et cetera.
+
+[00:35:05] Combining, combining, combining until the very last line of code sort of is the last combination. It's the thing that kind of connects the whole graph together and you execute it. It passes that off to the TensorFlow framework, which sort of rewrites the whole thing in. See a totally different sequence of.
+
+[00:35:21] Operations and then executes the thing on the GPU. And in order for this all to work, the way the code looks when you write it in TensorFlow is really odd. It's really awkward. You're dealing with things called fetches and feed dicks and variables and placeholders. And initially it seems very awkward and unintuitive, but it actually, it's a, it's a hump.
+
+[00:35:48] You have to get over. There's a definite learning curve to writing tensor flow code, but be at peace that you'll actually get over that learning curve, I think pretty fast. I think it took me about a month of writing TensorFlow code before I got over that hump. The first month was like, what the heck am I looking at?
+
+[00:36:05] And then month two and month three we're like, okay, things are smooth sailing. You really understand how it works. It's similar to, uh, trying to learn functional programming. It's a totally different style of. Code. But once you get used to it, it, it makes a lot of sense. And in the case of functional coding, you'll, it's kind of like you'll never go back.
+
+[00:36:22] Now that's TensorFlow raw, TensorFlow, you know, kind of awkward to write because it has this sort of encapsulation paradigm. What, where what you're actually writing is a computation graph that then gets passed on down through the framework. There is a framework out there that eases the burden of this process that makes writing TensorFlow code a lot easier, a lot less awkward.
+
+[00:36:44] That feels a lot more like writing traditional procedural Python. It's called kras, K-E-R-A-S, and it's becoming a lot more popular these days. KR OS is a wrapper on top of TensorFlow, so it uses TensorFlow under the hood. But it basically reduces a whole bunch of TensorFlow boilerplate into substantially fewer lines of code in kras.
+
+[00:37:09] So something that would take you 50 lines of TensorFlow code to write and a lot of confusion you would write in KRAS in maybe five to 10 lines of code instead, and which would look a lot more elegant. Caros used to be a rapper on top of the. And I'll bet that the writers of KRAS are very happy that they decided to fully support TensorFlow with the recent news of The's death because now they're still writing the tail coats of a popular machine learning framework and KR OS tends to be very popular with books and tutorial code, basically, where an author is trying to convey how you might go about writing some machine learning code conceptually, and they're less interested in the code or text specifics because KRAS hides you from all those ugly details.
+
+[00:38:03] What I see common in practice is people use KR OS as sort of like a bootstrap tool, or actually there is a CSS framework in web development called Bootstrap, and I think this is a very good analogy, a CSS framework called Bootstrap that allows you to make a website that is automatically designed. So like every HTML element you put on your website automatically has this theme to it.
+
+[00:38:29] That's that's very pretty, it's very basic and it's very common. You'll spot a bootstrap website a mile away, but at least it's not sort of black on white. Sort of vanilla, HTML. You get a theme out of the box, a CSS theme, so you can sort of proof of concept your web app. You can try your web app out, see if it sticks, see if you'll get any customers.
+
+[00:38:53] And if you do, if your web app proves itself out, you can then take away the bootstrap theme and now you can start custom designing your own CSS. To give your website a custom design and a custom look and feel. I think Kross is very similar to this. What you can do with KR Os is you can write your machine learning program in Kross first because it'll save you a lot of headache, both with confusion and sheer lines of code.
+
+[00:39:24] And once you've proved out your model and you've decided that this is a useful route to go, you actually want to build this project. Then you may pull out kind of chunks of Ks where you prefer to have more flexibility. By diving down to the raw TensorFlow, the gain that KR OS gives you in ease of use, you lose in flexibility.
+
+[00:39:48] That's a very natural trade off. So what you can do is start with KR Os and sort of start pulling Kross out and going with raw TensorFlow as you need to sort of customize your model with higher flexibility. This is a common use case I see. So it's a net win. I highly recommend investigating KR Os. So there you have TensorFlow, and additionally, an optional wrapper called Kross to ease the burden.
+
+[00:40:14] Another common library you'll see used is called Psychic Learn. Psychic Learn is a library of shallow learning algorithms. Tensor flow is a framework of deep learning algorithms. TensorFlow actually sort of has as high or low level as you want to go in the sort of deep learning stack. It has built into it neural networks, out of the box and recurrent neural networks just outta the box.
+
+[00:40:43] You can kind of like 10 line, a recurrent neural network, or you can build in TensorFlow from scratch using linear algebra and statistics formula. You can handcraft a neural network so you can go as low or high in abstraction in TensorFlow as you want. It doesn't have functions for shallow learning, so it has functions for deep learning, for constructing deep neural networks, whether they're recurrent neural networks or convolutional neural networks, or multilayer perceptions, or auto encoders, et cetera.
+
+[00:41:18] It has all the deep learning tools built in, but it doesn't have shallow learning tools. Now, linear and logistic regression specifically, you can hand code in TensorFlow pretty easily, but there's plenty of other shallow learning algorithms that we've covered that you couldn't easily do in TensorFlow.
+
+[00:41:38] Things like support vector machines, naive bays, decision trees, random forests, et cetera. And so if you're gonna be using shallow learning for your task, then you're probably gonna want to use psych kit. Learn Psych kit. Learn is the tensor flow of shallow learning. TensorFlow for deep learning. Psychic Learn for shallow learning.
+
+[00:42:00] The two libraries have very, very little overlap. So you'll be using one or the other depending on the task at hand. Now, if you are using TensorFlow and deep learning, you still may benefit from psychic learn. Having it on hand, it has a few miscellaneous utilities that actually come in handy no matter what you're doing.
+
+[00:42:21] In machine learning, for example, one thing it has is a library of data sets that you can just pull data out of thin air. So for example, a common dataset is the M Nest handwritten numbers, image dataset. M-M-N-I-S-T, and actually don't quote me on it, but I believe it's in, uh, psychic learn. Um, I know for a fact that, uh, the Iris flower data set, which is a very common example, is in psychic learn.
+
+[00:42:49] And you basically just like import iris from psychic learn dataset, that kind of, it's that easy to just pull a data set out of thin air so you can start developing your machine learning model without having to worry about that step. Another thing that psychic learn provides that is useful no matter what you're doing, is data standardization and normalization.
+
+[00:43:11] So in machine learning models. The learning step of gradient descent or back propagation, the learning step works a lot better when the features are normalized or standardized. There's a subtle difference between normalization and standardization, which I won't go into here, but the idea is if you're trying to figure out the cost of a house based on its number of bedrooms, its number of bathrooms, its square footage, and its distance to downtown, all these things, well, the number of.
+
+[00:43:42] Bathrooms might be two, and the distance to downtown might be like 5,000 whatevers inches. I don't know. And, and the diff the difference between those two numbers is like they're on totally different scales. They're totally different types of numbers, and that that scale difference can thwart gradient descent.
+
+[00:44:03] And so feature standardization is the process of bringing those numbers into the same ballpark and they'll end up being some number that you don't actually recognize. The number of bathrooms might be 0.5, and then distance to downtown might be 0.7. But the point is that it brings them all to the same playing field.
+
+[00:44:23] And there is a function in psychic learn for scaling and normalizing data sets, which is something you'll use in deep learning as well. So you can keep psychic learn around just for the data standardization step that you'll then use your standardized data. To feed into tensor flow. Now that sounds like actually a job for Pandas, right?
+
+[00:44:47] Pandas is all about data munging, data cleaning, data preparation. Well, actually, I don't know if Pandas has a function for standardization or normalization. I think pandas is meant to be more general purpose not used specifically in machine learning. Um, where data standardization like that tends to be a little bit machine learning centric.
+
+[00:45:08] So that might be why it exists. In psychic learn, or at least is more commonly used from psychic learn in the repositories that I've seen. So that's your tech stack. You have a dataset, be it Postgres or a spreadsheet or what have you, coming into pandas being munged marshaled through num pi into TensorFlow.
+
+[00:45:30] TensorFlow executes your code on the GPU, brings it back up, puts it into NumPy, and gives it back to you. In your Python program, you may optionally use psychic, learn to standardize your data or pull data sets out of thin air at et cetera. Now let's talk about something that is not machine learning centric, but I imagine will be useful for a lot of the listeners here.
+
+[00:45:53] And that is the general kind of architecture idea for just a, a company, how you might fit a machine learning server into your system architecture. Now most companies sort of bread and butter is a web app server. Their, their website or their mobile app interfacing with their customers by means of a website or a mobile app.
+
+[00:46:16] And so their main server is their web server, their app server. You call it an app server. And typically this is going to be a very different thing from your machine learning server, which is usually called your job server. So your app server is taking requests from web clients, people browsing the website on Chrome or their iPhone, or using the mobile app on Android.
+
+[00:46:43] These are all your clients and they're all sending requests to your web server, your app server, and your web server might be written in node js or go something that has very strong concurrency support for handling multiple requests. For example, I actually personally dislike Python as a web app server language, even flask and Jango, the traditional frameworks used on Python.
+
+[00:47:09] I think things like node js and go have stronger concurrency support for handling multiple clients. So I personally like node js for writing my web servers. And you'll run this maybe on AWS, either Beans Stock or EC2, something with an autoscaler setup. And again, this is gonna be a totally different server than your machine learning server.
+
+[00:47:29] So now over here you have your machine learning server. It's called your job server, and this is gonna run on a different type of server, one that has a GPU or multiple GPUs, A P two X large instance, if you're using AWS, for example, and one reason you want these to be two separate servers is that a P two X large instance has very few CPUs, very limited ram, but a very powerful GPU and is very expensive.
+
+[00:48:01] Okay. And that lends well to machine learning, whereas a web app server wants more CPUs, wants more ram, and doesn't care at all about GPUs. And because it doesn't care about GPUs, you can cut a lot of costs. So you want them to actually be on physically different architectures for one, one to save costs, and two, because the architectures make different sense in different situations.
+
+[00:48:25] Two is you want them to scale differently. You're gonna want your web app server to scale up and down pretty fast and in pretty sizable chunks, whereas your machine learning server may not scale ever, maybe one or two new instances here and there, and then scale back down to one. Okay, so if these are two separate servers, how do they communicate?
+
+[00:48:48] A very common way to communicate between your web app server, your app server, and your job server is by something called message queuing software. A very popular message queuing software is called Rabbit mq. An another one that's popular is called Zero mq. You'll see MQ for MessageQ in the names of these softwares.
+
+[00:49:09] Now, you may be thinking, well, couldn't I just send like a simple rest request from my app server to my job server to do some machine learning task? Yes, you could, but there are a lot of benefits for using a robust piece of software, like a message queuing service. If your job server is temporarily offline, then it wouldn't have received a request sent by your app server and vice versa.
+
+[00:49:36] And as a result, that message gets lost into no man's land. It gets lost forever. Say for example, you're, let's pretend that we're building Pandora a user thumbs ups songs or thumbs downs them from an app or a website. That's their client. That request gets sent to the app server, the web server. The web server may put that action in a database just to keep that on hand and say, very good.
+
+[00:50:02] And send a response down to the client saying, I have received your request. Here's your new song. Let's switch them to that new song and start playing it. We're gonna use the app server to stream the music to the client, all that stuff. In the meantime, the app server sort of is dealing with this customer, talking to the customer.
+
+[00:50:19] With this communication turns around and sort of like, Hey, job server with, you know, his hand to his mouth, Hey, uh, this person didn't like this song. Can you fit that into your machine learning thingy? And the job server's like, got, it. Starts crunching away on the GPUs using TensorFlow. The app server doesn't know anything about that.
+
+[00:50:36] Okay, good. That, that's the scientist over there. He does all the crazy stuff. If the app server had turned around and tried to say, Hey, job server, and the job server was sleeping AKA offline, the job server would never have gotten that request. So switching to a message queuing system like Rabbit mq, what will happen is the app server will take a request, put it in an envelope, says this user didn't like this song, go to a mailbox and put it in the mailbox, and close the mailbox and come back and communicate with the client and whenever the job server is ready to do machine learning stuff.
+
+[00:51:15] Whenever it's done with some task it's currently on, or it comes back online from being offline, maybe it crashed or something, or it just wakes up and it yawns and it looks at the time and makes its coffee, and then it goes out the door and it goes to the mailbox and picks up a request, closes the mailbox, and goes back and does its machine learning stuff with that request.
+
+[00:51:36] An additional benefit to this is if you have multiple job servers, multiple machine learning servers running TensorFlow on their GPUs, one of them will go and pick up a message outta the mailbox and handle it, and that message no longer exists in the mailbox. So by the time the second job server comes around, it will either get an empty job queue or the next job in line.
+
+[00:52:02] So using a robust piece of software like RabbitMQ makes for more false, tolerant, reliable, sensible handling of message passing between an app and a job server. A common piece of software for message queuing in Python is called celery, celery abstracts, various message queuing software like zero MQ, rabbit mq, and more.
+
+[00:52:28] And that way you can just use celery and not care about what message queuing software your system architects have decided upon under the hood or switch to a different message. Queuing service as the case may be celery. Lastly, I've got a little bonus software package to talk about a framework called Tensor Force.
+
+[00:52:50] Tensor Force is like KR Os for reinforcement learning. So we haven't talked about reinforcement learning much yet, but reinforcement learning is awesome. It's a burgeoning space in machine learning. It's where all of the best and coolest research is happening right now. Reinforcement learning is where machine learning becomes artificial intelligence.
+
+[00:53:13] In fact, reinforcement learning equals artificial intelligence. So for those of you who have come to the space of machine learning, because of an interest in ai. What you should be targeting is RL reinforcement learning. That's what you should have your goals set on a job eventually in rl, and we'll talk about reinforcement learning in subsequent episodes.
+
+[00:53:35] Reinforcement learning is a very different beast than supervised learning and unsupervised learning. For one, deep reinforcement learning is a much newer space and it's it's much less explored. Deep reinforcement learning is the stuff you see coming out from deep mind and open AI, playing video games, playing, go driving cars, all these things.
+
+[00:53:58] And recall reinforcement learning is action-based machine learning. So supervised learning is coming up with a prediction based on past data, so predicting the category of an image or predicting the sentiment of a sentence, et cetera. Reinforcement learning is. Action based. It's deciding what action to take under a situation.
+
+[00:54:20] That's why it lends well to self-driving cars. You're deciding whether to turn left or to turn right, et cetera. And it's very research centric right now, not very developer friendly, unlike supervised learning, which is very developer friendly by way of tensor flow. And Caros Supervised learning is developer friendly because supervised learning has a lot of common developer applications in industry, in standard professional settings, whereas reinforcement learning does not quite have that yet.
+
+[00:54:52] So it's, it's really more lens. Better to research than it does to industry deep reinforcement learning. And as a result, trying to implement your own deep reinforcement learning algorithms means you have to, like, you have to read these papers, you have to really handcraft these hyper parameters to a t.
+
+[00:55:13] There's not a lot of resources out there yet for practical implementations of deep reinforcement learning algorithms except for tensor force. Tensor force is a framework which makes deep reinforcement learning accessible. I've been working a lot with it recently and, um, I, I can't recommend it enough.
+
+[00:55:29] Tensor force. So check that out. All right. Big lay of the land. We talked about your workstation ideally being a custom built tower PC with a high-end 10 80 ti Nvidia graphics card. Alternatively, you can develop your models on any computer you want and run them in the cloud. AWS or GCPI recommend GCP we talked about.
+
+[00:55:54] Auto Diff frameworks, PyTorch TensorFlow, the and Cafe. Keep an eye on PyTorch use TensorFlow. Pandas Num Pi and Psychic Learn are three libraries that you're going to use in addition to TensorFlow in your machine learning tool. Belt Pandas is for retrieving and cleaning data. Num PA is sort of the common language of matrices and tensors spoken by your Python program and your tensor flow code and psych kit.
+
+[00:56:23] Learn is both a library of utilities that you may find useful no matter what you do, and a framework of shallow learning algorithms. If your task is a shallow learning task as far as system architecture goes, you will likely have an app server that does all your web stuff and a job server that does all of your machine learning stuff.
+
+[00:56:45] You want your job server, of course, to have a high-end GPU. You'll communicate between the two by way of a message queue like rabbit nq. And there is a wrapper library in Python called celery, which makes working with message queue software easier. Speaking of wrapper libraries making things easier, KR OS sits on top of flow to make tensor flow code more palatable.
+
+[00:57:11] It boils tensor flow down into fewer lines of code and makes it look more like traditional procedural programming at the cost of less flexibility. Tensor force is a wrapper library on top of tensor flow for deep reinforcement learning, specifically because reinforcement learning is sort of a different beast than unsupervised and supervised machine learning.
+
+[00:57:34] Resources for this episode are the usual deep learning resources, which I'll post in the show notes and a book that I have recommended in the past. It is called Hands-on Machine Learning with Psychic Learn in TensorFlow, and I actually just finished this book, and this is my favorite machine learning book I've ever read.
+
+[00:57:54] In fact, my favorite machine learning resource I've ever consumed, except for the Andrew e Coursera course, that's that's on a golden pedestal that you can't touch. Andrew e Coursera's course always comes first, but this book is phenomenal and it's actually very applicable to this episode. Specifically, it talks about psychic learn and TensorFlow talks about pandas and num pi and data sets like databases and spreadsheets.
+
+[00:58:18] Everything that I've covered in this episode is covered in this book, and the author does an. Excellent job of explaining things. I've found that there is a dearth of well-explained machine learning concepts in industry, which is why I've made this podcast in the first place. I. I think these things don't have to be so complicated.
+
+[00:58:38] They can be boiled down really well. And this author actually does a very good job of boiling these things down. He makes machine learning algorithms very understandable. He talks about shallow learning. He talks about, uh, deep learning. So I'll post that in the show notes, the usual place, oc deval.com/podcasts/machine learning.
+
+[00:58:58] By the way, if you're interested in purchasing a workstation PC to run your machine learning models on, I would recommend going with a custom built tower pc. Build it yourself. Don't get a laptop unless you really need that mobility because you can get a lot more performance with a desktop pc. And don't get one of those prefab desktop PCs.
+
+[00:59:18] Like cyber power PC for example. They're a great company and they have great computers, but when it comes to machine learning, you really want to milk every last tiny little drop out of your purchase. And for the same price you can get on the order of maybe 50% extra performance for running your machine learning models by custom building, which can mean the difference between training for three days versus two days.
+
+[00:59:41] So on my website, I'm going to post a parts list of the build that I used for my computer, and I'm going to try to keep this parts list up to date with state-of-the-art components as new components release so that no matter when you listen to this podcast, you can go to that parts list and build your own pc.
+
+[00:59:59] For example, this is October, 2017. The 10 80 TI graphics card and the I seven series Intel CPUs are top of the line, but very soon we're gonna be getting a new release of Intel CPUs and Volta graphics cards from Nvidia, which should be a lot faster. I'll update the list when these release. I'll also post a link to a video series tutorial on how to build your own pc.
+
+[01:00:24] Also, speaking of performance, and this is a random aside, when you start really getting to the metal with your machine learning development, build TensorFlow from source, you can milk a lot more performance out of TensorFlow, built from source, then through the PIP installation. It's kind of a pain in the butt.
+
+[01:00:41] So start with pip when you first get set up, and don't worry about building from source until you're really cooking with fire, with your machine learning models. Once you really start getting deep in your development, you can get a lot more performance by building TensorFlow from source. Doing it that way also allows you to use the latest Cuda and coup DNN releases, where the stable releases of TensorFlow tend to be on very old versions of Cuda and coup DNN and newer versions of Cuda can milk substantial performance improvements.
+
+[01:01:10] I'll see you in the next episode. I don't know when that will be. Again, I'm not on a schedule anymore. The next episode will either be on convolutional neural networks for image recognition or neural network parts like, uh, various activation functions, batch normalization, various optimizers like Adam and stuff like that.
+
+[01:01:31] So I'm not sure which of those episodes I'm gonna do next, but I'll see you when I see you. Also, I need a job.
+

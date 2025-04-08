@@ -1,19 +1,15 @@
 export * from './meta.js'
 
-See resources on [Deep Learning episode](/mlg/9).
+See resources on [Deep Learning episode](https://ocdevel.com/mlg/9).
 
-- One-time donations w/ BTC / PayPal
-- Image recognition, classification - computer vision
-  - ML takeover
-  - Final main network (MLP, RNN, CNN)
-- Don't use MLP for images, use CNNs
-- Filters -> feature maps -> convolutional layers
-- Window, stride, padding
-- Max-pooling
-- Architectures (ILSVRC ImageNet Challenge)
-  - LeNet-5
-  - AlexNet
-  - GoogLeNet
-  - Inception
-  - Resnet
-  - etc..
+- **Filters and Feature Maps:** Filters are small matrices used to detect visual features from an input image by applying them to local pixel patches, creating a 3D output called a feature map. Each filter is tasked with recognizing a specific pattern (e.g., edges, textures) in the input images.
+
+- **Convolutional Layers:** The filter is applied across the image to produce an output which is the feature map. A convolutional layer is composed of several feature maps, with depth corresponding to the number of filters applied.
+
+- **Image Compression Techniques:**
+  - **Window and Stride:** The window is the size of the pixel patch examined by the filter, and stride determines how much the window moves over the image. Together, they allow compression of images by reducing the number of windows examined, effectively downsampling the image.
+  - **Padding:** Padding allows the filter to account for border pixels that do not fit perfectly within the window size. 'Same' padding adds zero-padding to ensure all pixels are included, while 'valid' padding ignores excess pixels around the borders.
+
+- **Max Pooling:** Max pooling is a downsampling technique used to reduce the spatial dimensions of feature maps by taking the maximum value over a defined window, further compressing and reducing computational load.
+
+- **Predefined Architectures:** There are well-established predefined architectures like LeNet, AlexNet, and ResNet, which have been fine-tuned through competitions such as the ImageNet Challenge, and can be used directly or adapted for specific tasks in computer vision.

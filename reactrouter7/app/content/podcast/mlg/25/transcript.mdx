@@ -1,0 +1,230 @@
+[00:01:03] This is episode 25, convolutional Neural Networks. Today we're gonna be talking about conv nets, convolutional neural networks, or CNNs. Before we do that, a little bit of admin. I've been told by a handful of listeners that they want to donate to the show, except that Patreon charges monthly and they only want to donate once.
+
+[00:01:27] So I've created a one-time PayPal donate button, as well as posting my Bitcoin wallet address for you crypto junkies. If anybody is willing to donate to the show, if you're not willing to donate, please do leave a review on iTunes That brings more listeners to the show, which helps keep this alive and well.
+
+[00:01:46] So convolutional neural networks for one reason or another. Conv nets tend to be the most popular topic discussed by new and aspiring machine learning engineers. I don't know why specifically con nets are so popular. I mean, I understand that vision is essential, a key component to robots and AI and all that stuff, but no less so than natural language processing by way of recurrent neural networks and the like.
+
+[00:02:10] But anyway, con nets are super popular in the deep learning space. Con nets are the thing of vision in machine learning. In the same way that recurrent neural networks are the thing of NLP, natural Language processing, as well as any sort of time series problems such as stock markets and weather prediction.
+
+[00:02:29] Conv nets are for images, image classification, image recognition, computer vision. And Connet, to me are a real clear case of the machine learning, hostile takeover of artificial intelligence. I've said this in prior episodes, that I think that the crux of AI is ml. That ML is fast subsuming AI in a significant way.
+
+[00:02:51] So much so that the terms are almost becoming synonymous. That's definitely the case with NLP. Machine Learning came in and made a heavy dent with recurrent neural networks on all of the various aspects of NLP. That's not to say that NLP was entirely conquered by machine learning, but that machine learning has contributed very heavily to the space In the case of computer vision.
+
+[00:03:13] I think we see that even more. So Connet really truly dominate the space of computer vision. And so we're gonna be talking about that today with respect to image classification, image recognition, and the like. Now, for those of you who have good memory, and you recall from a prior episode when I was talking about facial recognition and I was using a multilayer perceptron, right?
+
+[00:03:34] The Vanilla Neural Network, an MLP as an example of an algorithm for image recognition. I said that the first hidden layer might be for detecting things like lines and edges, the second hidden layer for shapes and objects, and the third hidden layer for things like eyes, ears, mouth, and nose. And then the final layer being a sigmoid function.
+
+[00:03:55] If you're just concerned with detecting whether or not there's a face in the picture or a soft max, if we're trying to classify it as tree, dog, cat, or human. So I was using an MLP. For an example of image classification, I lied to you. My dear listeners, nobody uses MLPs for image classification. They use connet, but an MLP sort of lends well to a pedagogical mental picture of the situation.
+
+[00:04:21] And we encounter MLPs earlier on in our machine learning learning. So I thought it made sense to give you a picture. But you don't use MLPs for images, you use connet, and here's why. An MLP for image recognition is like using a bag of words for spam detection. Now you may be thinking, Hey, I thought that you said bag of words.
+
+[00:04:42] Algorithms like naive bays work well for spam classification. You just take all the words in an email and you just cut 'em all up and you just throw 'em in a bag. You shake up the bag and you spill out on the table. And in the case of spam detection, in natural language processing, maybe you're looking for the word Viagra.
+
+[00:05:00] Okay? You're just kind of pushing all the words around and, oh, there it is, Viagra. Bam. This is spam. Easy peasy. Yes, bag of words, works fantastically for natural language processing in certain problems. But using a bag of words kind of idea in image classification doesn't make sense. What you would be doing is cutting the picture up into all of its pixels, okay?
+
+[00:05:21] If you have a five by five picture, you would have 25 pixels, and then you throw all those pixels into a bag and you shake it up. You dump the pixels on the table and now what? How the heck are you supposed to detect whether or not there's something that you're looking for in that picture? It's just a bag of pixels.
+
+[00:05:38] That's what an MLP would be giving you an MLP. Remember the other word for a regular neural network would. DNN is another word for it. Deep neural network or an A NN artificial neural network. We're just gonna be calling them MLPs from now on. An MLP consists of dense layers. Dense layers, meaning that all of the neurons from the prior layer are connected to the next layer.
+
+[00:06:02] So all of the pixels of the input are connected to the first hidden layer. All of the pixels are connected to every neuron of the first hidden layer. So everything is combined with. Everything else, and then all of those neurons are connected to all of the neurons of the next hidden layer. Everything is combined with everything else.
+
+[00:06:21] It really is like a bag of words. You're just throwing all the pixels in and you're combining them every which possible way, but that's not how pictures work. When you're looking for something specific in a picture, you're generally looking for a type of object. Regionally located in one little window, one square.
+
+[00:06:37] Let's say that we're looking for Waldo, we're gonna be using, where's Waldo as the example of this episode, we're looking for Waldo in a picture. Now there's not gonna be a little piece of Waldo in the left and a tiny piece of Waldo in the bottom right, and maybe he's hat in the center of the picture and his foot over here on the top right.
+
+[00:06:54] That's not how it works. It's all gonna be clumped together in one object. And that object can be anywhere in the picture. So that's why MLPs don't work for image classification. Instead, we want a neural network that works with patches, windows of pixels, all at once, little chunks in the picture, and even within one window.
+
+[00:07:17] In a picture, a window that may be a box around Waldo in the picture. Even within that window, we still don't want to just combine every pixel in that window, every which way with each other. That still won't be very helpful for detecting whether Waldo is in this window. Instead, we really wanna look for a specific shape or a specific sort of color pattern in this window.
+
+[00:07:40] And so what we're going to design is something called a filter. A filter is the crux of connet. It's the core component. What a filter is, is an object detector. Imagine that you have a five by five piece of paper and you take scissors and you cut out the shape of Waldo in that piece of paper so that there's a hole in the center of the piece of paper.
+
+[00:08:04] That's the shape of Waldo. And then you take that piece of paper and you put it on top of your picture, your 50 by 50 image, and now you take that piece of paper, your filter, and you use your finger to slide it to the right. You slide it over the picture, you slide it from the top left all the way to the right, and then you bring it down one row, start back on the left, kind of like a typewriter, right?
+
+[00:08:26] You type all the way to the right and then you hit enter and the piece of paper goes up and you start at the next line at the left, and then you start sliding your filter to the right again. The moment that there's actually a Waldo in the picture, it'll be very apparent to you because he'll sort of fill in that cutout in the center of your piece of paper.
+
+[00:08:45] Up until that point, until your piece of paper was over a Waldo, nothing sort of obviously filled that hole in the piece of paper that was cut out, like the shape of Waldo, nothing very apparently filled it. It was all just a bunch of sort of pixel gibberish. Until you got over a Waldo and he fit just so perfectly right into that cutout and it made him pop, made him really stand out.
+
+[00:09:08] So it's not really an object detector. There is no activation function or output of this neuron that gives you a yes or a no necessarily. Instead, it's a thing that sort of makes the object pop, makes him stand out in the location where he is. So that's what a filter is. It's almost like a separate image.
+
+[00:09:28] A smaller image, maybe a five by five filter that you're going to be using to search for an object in a 50 by 50 image. And the filter is designed in a way that makes what it is you're looking for, pop makes it pop out of the picture. Now having your filter sort of be the shape of Waldo is a bit of an oversimplification.
+
+[00:09:49] A filter usually doesn't work that way. A filter is usually a little bit more simplistic than that. In the case of Waldo detection, for example, one actual filter we might use is going to be horizontal stripes because Waldo's shirt has red horizontal stripes on it. So a simple filter that would make him pop out of the image is a filter that has.
+
+[00:10:11] These stripes on it horizontally, and what I mean by that is it's a five by five filter, a five by five sort of picture square of pixels where every even row is filled with ones and every odd row is filled with zeros. That's kind of like the cutouts. What that does is when it is applied to a patch in the picture, all of the even rows of that.
+
+[00:10:36] Patch are disabled because they're multiplied by zero. All the pixels are multiplied by zero, and all of the odd rows of that patch are enabled because they're multiplied by one. And so when we hover over a Waldo, we'll see a bunch of red stripes pop out at us. But when we're hovering over anything else in the picture, it sort of looks like striped nonsense.
+
+[00:10:59] So a filter can't learn something quite so complex as the cutout of a human shape, but it can learn something simple enough that could still give us a good insight as to what we're looking at. And then we would combine multiple filters together to really increase our confidence. So Waldo has glasses.
+
+[00:11:18] He has a beanie, he has red striped shirt, and he's something of a bean pole. He's a very skinny guy, kind of occupies vertically, a very small section in the center of a window. So you might imagine designing four or five different filters, each of which is looking for different patterns in the patch of pixels and all of them combined sort of making something pop out in the picture that will give us confidence as to whether or not we're looking at an object we're looking for.
+
+[00:11:46] So let's put these all together in real convolutional neural network terms. When I say a patch of pixels, what this is called is a window. A window is a square chunk in the picture. And And a filter is a filter. Again, we have a filter or any number of filters that we're going to be starting in the top left of our picture and sliding to the right, and anytime it sort of hovers over something that we're looking for, that thing kind of pops out through the filters and makes it stand out in the image.
+
+[00:12:16] When I think about filters, I like to imagine them as kind of like an old school lens, sort of a cylinder that you hold in between your fingers and you know, you kind of, you put it on the picture on the top left and you look through it with your eye, close, your other eye, and you're looking through the lens with your eye.
+
+[00:12:33] And you're sliding it to the right, and most of the time all you see is sort of blur. But whenever you are over the thing you're looking for in the picture, then it becomes very clear. The Waldo becomes very clear, whereas the other windows are sort of blurry. Now, inside of that cylinder, inside of that lens, there are multiple filters.
+
+[00:12:53] You imagine you go to an eye doctor and he puts some lenses in front of your eyes and you're looking at some letters, and he says, better or worse, he puts an additional layer of lenses in front of your eyes. And you say better. And then he keeps that there. And then he puts an additional layer of lenses in front of your eyes, a third lens in front of the other two, and he says, better or worse, and you say worse.
+
+[00:13:13] So he's trying to find sort of this right sequence of layers of lenses. That really makes the letter A on the board pop out at you, be very crystal clear, and that's what you're doing in designing these filters. You have a lens, this cylinder object that has multiple layers of filters inside of it, and this is what the machine learning model is going to learn.
+
+[00:13:35] It's going to learn the design of. Each of these filters, each filter layer in your sort of cylindrical lens. Now we have a filter, but that is not actually a layer. We're talking about deep learning here. Neural networks. We didn't design a layer, a hidden layer in our neural network. Instead, we have a little tool in our tool belt, this lens, this filter, in order to construct the first hidden layer of our convolutional neural network, what's called a convolutional layer.
+
+[00:14:07] What we're going to do is, like I said, we start at the top left with this filter and we apply it to the picture all the way to the right. We slide it all the way to the right. And then like a typewriter, ch ching. We start at the next row on the left and we slide it all the way to the right again, ch ching.
+
+[00:14:22] Start at the next row, slide all the way to the right again, until we've covered the entire picture and applied this filter throughout the picture. And what we have now is a new picture, an entirely new image where all the waldos in the image pop. All the waldos are now crystal clear and everything in between is blurry or gibberish pixely.
+
+[00:14:46] This is called a feature map. A feature map. A filter is the tool we use for making an object pop in a picture and a feature map is that picture transformed with. The filter in every window, every square of the picture is transformed with the filter. And now we have a new image, and it's called a feature map.
+
+[00:15:10] Now, like I said, this lens that we're using to slide over the picture has multiple filters inside of it, multiple layers of filters. Each filter trying to detect a different type of pattern. Stripes, glasses, shapes, some tall thing in the center of the filter, et cetera. Multiple layers of filters. And so what is output in our convolutional layer?
+
+[00:15:33] That next layer is actually multiple feature maps, one feature map. With each filter applied to the picture. So what we have in our first hidden layer of our neural network is a 3D box of pixels. A 3D box of pixels width by height. Okay? And it's the same width and height as our original picture, except that instead of being the picture, it's our filter applied to the picture for every window, for every patch of pixels in the image with by height.
+
+[00:16:07] And then depth. Depth is the number of filters. So each convolutional layer is. A width by height feature map. A feature map being applying one filter to your entire image, and depth being the number of filters you have. Okay. Kind of confusing. So let's start from the top. We have a picture that comes in as your input.
+
+[00:16:31] In 2D width by height, we don't flatten it. Now, what our neural network is going to learn is filters. Filters are these masks that make certain patterns in a pixel patch, a window pop, pop out of that window. This is what the convolutional neural network is gonna learn. These filters, and we're gonna have multiple of them.
+
+[00:16:53] We're gonna have one filter for stripes, one filter for glasses shapes, one filter for skinny object in the center of a window. And we're gonna stack these on top of each other, and we're gonna take that stack of filters, and we're going to apply it from left to right, top to bottom in our picture. And that's going to output a new picture with by height pixels.
+
+[00:17:14] But the depth is the amount of filters. So what we have is a box now, that's our first hidden layer, our convolutional layer, a layer of feature maps. If we want additional hidden layers of our neural network, we would do this again. We will learn new filters and we will apply those new filters to that first hidden layer.
+
+[00:17:35] Because that first hidden layer is kind of a picture of its own. It may not be a picture that makes a lot of sense to humans, but it'll make sense to the machine learning algorithm. We will learn these new filters and we will apply them window by window by window to that first hidden layer. And what we will get out of it is a new picture, a new convolutional layer, which is width by height, pixels, and feature maps.
+
+[00:17:58] Depth. The third dimension being feature maps and a feature map is when you apply your filter to every window of a picture, and that will be your second hidden layer, your second convolutional layer, and then finally to sort of cap off your convolutional neural network. What you'll usually do is then pipe the result of all that through.
+
+[00:18:19] Dense layers. You've made certain patterns in your picture pop and stand out, and now you can sort of latch onto those with your dense layers to determine whether something is in your image or not. By piping that through a soft max or a logistic function or the like. Very good. That is a convolutional neural network.
+
+[00:18:38] We're gonna talk about the additional details like stride and padding, window sizes, and max pooling in a bit. But I just want you to know that that's the essence of convolutional neural networks. Each layer is called a convolutional layer. And what a layer is, is a stack of feature maps. And those feature maps come from applying a filter across your picture.
+
+[00:19:00] And it's these filters that we learn. It's the filters that the connet learns in the back propagation step. Now, oftentimes in deep learning, part of the process is sort of boiling things down step by step as we go through the neural network. It's kind of this, it looks like a funnel. Every layer of neurons gets smaller and smaller and smaller until our final output is either one neuron in the case of logistic regression or one of multiple neurons.
+
+[00:19:27] But I mean, let's say 10 or 20. In the case of soft max regression. If we were to have like a layer of 512 neurons, and then the next layer is five 12, and then the next layer is five 12. So we're not actually boiling things down, we're just kind of mix and matching. And then the last layer is that one sigmoid function, right?
+
+[00:19:45] Well, first off, that final layer would have way too much work to do. We would be depending on it too much to sort of boil down this universe of combined features into one point we would be. Overworking this neuron. So it would be better if we could boil him down bit by bit by bit until finally when it's the last neurons turn, he only has maybe 28 employees that have to report to him.
+
+[00:20:09] But in addition to that, part of the magic of neural networks is that they break things down hierarchically so that they get smaller and smaller as go along. So in a picture, for example, if you started with a 50 by 50 picture, well that would be 2,500 pixels, 2,500 units in your input layer. Ideally, you would boil that down into, let's say, 10 or 20 different types of lines and objects, and then you would boil that down into eyes, ears, mouth, and nose, four objects, and then you'd boil that down to one.
+
+[00:20:42] So that's kind of the way that deep learning generally works. Not always, but generally we like to go from very, very big to very small. Gradually hierarchically. Now, the way I've been describing convolutional layers is that each feature map is the same size as the picture they're applied to. We take our filter and we move it window by window over the picture and what comes out as a feature map, exact same size.
+
+[00:21:07] And if we have multiple convolutional layers like this, then it doesn't feel like we're sort of boiling our picture down to its essence over time. So the way we do this, the way we boil images down into their essence, step by step, is by a combination of window size, stride, and padding. Okay? Window stride and padding.
+
+[00:21:28] Now, window, we've already talked about. Window is the size of a patch of pixels that you're looking at, at any one given time in your picture. So a window of five by five means you're looking at 25 pixels at once. Stride is how much you move that window over at a time. If we had a stride of one, we would move that window over one pixel at a time, meaning that.
+
+[00:21:53] When our filter maps that to the feature map in the convolutional layer, there will be a lot of overlap between each window. If we had a stride of five, that would mean the window would skip completely to the next patch. So our filter would look at a five by five window, and then it would slide over five pixels all the way past the last pixel scene in the first observation.
+
+[00:22:17] So the filter is now looking at a new patch. With no overlap with the prior patch. Now, how do we reason about this stride and window size combined? You always think about them in combination. Try to think of them as some sort of ratio, like two over five, five being the window size and two being the stride size or, or something like this.
+
+[00:22:38] Window and stride always get considered together. In the previous example where the picture gets mapped directly to a feature map and they're the same dimensions, that's a stride of one. If we were to use a stride of five, what that would do is take your windows, your five by five windows and boil them down into one pixel each.
+
+[00:23:00] So you would take a five by five window, and that would turn into one pixel in downstream feature map. If you had a stride of one. You would slide right one and that would turn into one pixel as well. In the downstream feature map, essentially we looked at two pixels in our original image and it has become two pixels in our new image, in our feature map.
+
+[00:23:22] So that didn't actually do any sort of compression. It just did transformation. If we wanted to compress the image into a smaller feature map that bigger stride of five, what you would do is you'd take a window of five by five, that would become one pixel in the feature map, and you'd move over five whole pixels.
+
+[00:23:41] And that new five by five window would become a new pixel in the feature map, and everything in between would be left out. So all the pixels will have been considered because we didn't skip any pixels. They'll have been boiled down substantially. 25 pixels will become one. So that's how you do sort of compression in this process.
+
+[00:24:02] You have a higher stride and a higher window size. Now that's not always beneficial. Let's say for example, that Waldo sort of straddled in between those two windows. We have a window of five by five, and then we stride five. So the window now moves to an entirely new set of pixels, but waldo's right in the middle there.
+
+[00:24:24] Half of his body is on the right side of the first window, and the other half of his body is on the left side of the second window. Neither filters would pick up Waldo in the windows. Okay, we've got the stripe detector filter. Maybe that would ding, ding, ding. But what about that sort of skinny object in the center of the window filter?
+
+[00:24:43] That filter's not gonna make anything pop in the window. So even though a higher stride will give us good sort of compression or boiling down of our windows, it may result in poor detection of objects. So a good middle ground is generally preferred, maybe a stride of two or a stride of three. So there's always.
+
+[00:25:02] A decent amount of overlap, so it was C Waldo because at some point he will be in the center of a window, and because the stride is greater than one, these windows of five by five will still be boiled down into smaller patches in the downstream feature map. So some combination of window size and stride is how you achieve boiling things down into smaller layers.
+
+[00:25:29] And like I said, window and stride, they always go hand in hand. It took me a while to understand connet because there's so many terms. We're talking about filters and feature maps, convolutional layers. Window stride padding and max pooling. These are all terms we're gonna talk about in this episode. So many terms.
+
+[00:25:46] It helps when you realize that many of these terms are combined with each other. They're different pieces of the same thing, so window and stride, they always go hand in hand. Feature, map and filter are basically the same thing. A filter is a small section. Your little paper cutout your five by five, the size of a window.
+
+[00:26:06] And when you apply it to the whole image, you get a feature map. So a feature map is applied filter. So feature, map and filter, they go hand in hand. All your feature maps stacked is a convolutional layer. So all those three things go in hand. Feature, map, filter, convolutional, layer. Okay. And then over here we have.
+
+[00:26:22] Window and stride. Those things kind of go hand in hand for image compression. And then the other thing that goes along with image compression is something called padding. And padding is very simple to understand. Padding is we have our five by five window and we're sliding it to the right. Okay. Let's say our picture is not 50 by 50, but 52 by 52.
+
+[00:26:42] Some number that's not divisible by five. Well, our window will slide all the way to the right. Until it gets to those sort of last two pixels, now we can decide one of two things to do. We can either stop there and move to the next row, or we can move our window five pixels to the right. Anyway. There's only two pixels left in the pixel, so what we'll do is we'll create three fake pixels.
+
+[00:27:07] They're basically zeros so that the remaining two pixels are considered. They're sort of in the left part of our window, and then the excess is just these fake pixels, and presumably the connet will learn that this excess on the right side of the picture can be ignored. We call padding is same padding equals same.
+
+[00:27:28] When we include the fake pixels and we call it valid, when we exclude the excess pixels. I don't have a great way for remembering same versus valid. I always have to look it up personally. So they're just two separate ways of handling the excess pixels. Now you might think same that is Inc. Always including the excess pixels, seems like the smarter way to always go.
+
+[00:27:51] Shouldn't we always include every pixel? Well, not necessarily in a lot of pictures, sort of the borders of the image are kind of cruft. I mean, we do cropping as a pre-processing step anyway many times. So in many cases, excluding the small amount of border pixels is not a big loss. In other cases. You do want to include every single pixel, especially in cases where it's not actually image recognition We're working with.
+
+[00:28:20] I will talk in a subsequent episode about how you can use convolutional neural networks for stock markets, stock market prices. You're not looking at an image whatsoever, a totally different space than computer vision connet and recurrent neural networks. You can use these things sort of in very surprising domains.
+
+[00:28:40] You have to think outside of the box. But in those cases where you're working with features that aren't really pixels, you want to include all those features in the process. And so padding equals same is the right way to go. So it just depends on your situation. Okay, so we talked about window and stride and to some extent, padding those three being used as sort of an image compression technique, a way of boiling down your picture at one layer into a smaller convolutional layer.
+
+[00:29:10] And then doing the same thing to that convolution layer, to the next convolutional layer until everything gets smaller and smaller and smaller. And then you hit your dense layers and you're working with a small amount of features. So we talked about that as one way of doing image compression, and that's compression in the machine learning sense.
+
+[00:29:26] It's compressing features into a smaller feature that sort of represents all the other features. It's hierarchically. Boiling information down into smaller and smaller bits. There's another method of image compression in convolutional neural networks called max pooling, and this is sort of the traditional sense of image compression, which is simply making an image smaller, not actually doing any sort of machine learning, just scaling it down.
+
+[00:29:52] Lossy compression in the truest scent. Max pooling, or there are other types of pooling layers. We call them pooling layers. You can use max pooling or you can use mean pooling. So let's talk about max pooling, because that's the most common. What Max pooling does is it takes your picture and it just makes it smaller and.
+
+[00:30:11] That is, it just compresses it down. Now, it's different than using a complex convolutional layer of filters and stride and padding and blah, blah, blah. All it does is, let's say you're gonna boil a two by two window into one pixel. Okay? So you're dividing it by four. You're making every patch of four pixels become one pixel.
+
+[00:30:31] So you're just downscaling it substantially. All you're doing. Is you're taking that patch of four pixels, that window of four pixels, and you're taking the max pixel, that's it, the maximum pixel. By that I mean in a gray scale image, every pixel is represented by a number between zero and one, where one is black and zero is white.
+
+[00:30:51] So we take the maximum of those pixels and we just use that. Throw away the other pixels. This is just true compression. This is compressing images. Like if you were trying to upload a photo to Facebook and it said your picture's too big, you know, you tried to upload a picture. That's 10 24 by 10 24, and pretend that Facebook says we only accept images 1 28 by 1 28, okay?
+
+[00:31:14] They don't do the compression on their side. They expect you to have smaller images to upload to their website. Well, what you might do is open up preview or Photoshop or something and just click edit picture dimensions and just make it smaller. That's all that's going on with Max Pool. It's just making a picture smaller and it's doing so in a very destructive way.
+
+[00:31:33] You know, from experience, when you make pictures smaller or bigger, it's lossy. If you make it smaller, it's called lossy compression. It looks kind of pixelated, so something looks a little bit off about it. If you squint your eyes, you can tell that there was. Some damage done in the process, but you have to squint your eyes, and that's the idea here with Max pooling is you can apply lossy compression to your pictures to make them smaller without doing too much damage in the process.
+
+[00:31:59] Now, why would you want to do this? We had. The option of using a big stride and big window in a convolutional layer for boiling a picture down, sort of boiling the essence down. We're not just throwing stuff away, we're boiling it down to its essence. Why would we want to use max pooling? We use max pooling for a totally different reason.
+
+[00:32:19] That reason is to save compute time. It turns out that convolutional neural networks are the most expensive neural networks in all the land. More than recurrent neural networks. More than MLPs, more than anything y Well, we take an image that has width by height, and you're kind of multiplying those two as far as number of features is concerned, and you're piping that into.
+
+[00:32:46] A convolutional layer that has width by height as well as depth and sometimes very, very deep depth. Maybe 64 feature maps or 96 feature maps, and you might have 10 20 hidden convolutional layers when you start looking at the ImageNet competition, Connet architectures, these things are massive. This is really where you see your GPU Shine.
+
+[00:33:13] If you're working with an MLP or a recurrent neural network, you know, you'll probably see a five to 10 X performance gain by using your GPU instead of your CPU. But when you're using connet, you'll see your GPU utilization spike up to 99%. You will be screaming fast. Running your connet on your GPU by comparison to your CPU Connet architectures is really where your GPU performance shines.
+
+[00:33:43] And not just in computational speed, but the amount of memory that's used by your architecture. Your 10 80 ti, for example, has about 11 gigs of RAM separate from your systems ram. Well, when you're doing a whole bunch of image processing, you're gonna be consuming a lot of that ram. So Conant are heavy.
+
+[00:34:01] Very heavy beasts, and the easiest way to slim them down to make them less heavy is just image compression. Just make your images smaller, and that's what max pooling is for. Using a combination of stride and window size to boil your images down is something of a machine learning technique. That's boiling down the essence contained in the pixels of your image.
+
+[00:34:25] But max pooling is just for making things smaller so that they'll run faster and you can apply max pooling to your image directly right after the first layer. You can also apply it. After every convolutional layer, because each convolutional layer, while they may be coming smaller in width and height, they're probably becoming deeper in depth of feature maps.
+
+[00:34:48] So using max pooling will reduce the dimensionality of your process, making your connet run faster. By the way, there's something I forgot to mention earlier in this episode. We think of a convolutional layer as width by height, by depth, okay. Width and height, pixels and depth being feature maps. Well, the input layer image also has depth.
+
+[00:35:09] It is RGB, red, green, blue value. We call those channels. So your input image is width by height, pixels, and channels. Deep. Every one pixel will have three channels being RGB values. So your input picture is also a box, and then every subsequent convolutional layer is a. Box. So really every layer is kind of a picture in, in its own right.
+
+[00:35:37] Okay. And that's it. That's convolutional. Neural networks, they're not easy, but they're not complex. I'd say architecturally you just have to read a chapter on them and you know, maybe you'll have to read it twice to come to grips with what all the moving parts are here. But unlike something like natural language processing, where maybe understanding how a recurrent neural network works is fine and dandy.
+
+[00:35:58] But to understand the lay of the land of NLP, there's, there's a whole lot of problems you have to solve with connet. The one problem you're solving here is image recognition or object detection in an image. So there's not a whole lot you have to know, this isn't a three part series like with NLP, but just to make sure you understand all the parts.
+
+[00:36:17] I'm sorry, I'm so redundant. We're gonna start from the top and work our way here. You start with an image. It is a width by height, pixels image. Incidentally, it's also three channels deep. That is RGB value. So you got a box that's your image, you pipe that into your connet. Your first hidden layer is called a convolutional layer, and the way this layer functions is this convolutional layer has width by height pixels as well.
+
+[00:36:45] And feature maps depth, any number of feature maps deep. These feature maps are derived by applying a filter, one filter per feature map. You apply this filter to the image, put it in the top left corner of the image, and you slide it to the right and it generates sort of a new image where the objects.
+
+[00:37:09] That that filter is designed to make pop Well, it's a new image where all those objects in the image pop. So in a Waldo detecting filter, your feature map is going to be a new version of your original picture where everything is blurry except all the waldos who are very clear. So your filter is some small window of pixels that has something sort of cut out of it, and when you apply it to your whole image, what you get out is a feature map.
+
+[00:37:41] You do that with every filter in your convolutional layer. You get your feature maps. Of the convolutional layer. Each convolutional layer is width by height, pixels, and feature maps deep. It is the filters that your neural network is trying to learn. You specify upfront, actually the amount of filters you're going to be using or the amount of feature maps in your convolutional layer.
+
+[00:38:06] You specify the width and height of your convolutional layer, as well as the amount of feature maps being used, the depth. It's the job of the neural network to learn the design of the filters, not the amount of them. So that's the essence of it. The details are that the filter has a window size. The size of the filter is called the window width and height.
+
+[00:38:27] Maybe it's a five by five. It's some small square. The stride determines how much that window moves at any given time. If you are using a stride of one, then that window moves over one pixel at a time, and the resulting feature map is the same size as your original image. If your stride is five, then your window moves over.
+
+[00:38:49] An entire window at a time so that there's no pixel overlap, and each window of five pixels becomes one pixel in the feature map. In other words, your image gets compressed to a smaller image. Generally, a good strategy is to use something in between, maybe a window of five by five and a stride of two. So there's some amount of overlap, which improves the likelihood of detecting objects, and yet some amount of skipping which results in image compression.
+
+[00:39:22] Additionally, a technical detail is what you should do when you've slid your window all the way to the right. And there's excess pixels. Do you include them or do you skip them? If you skip them? We call this valid padding, and if you include them, we call this same padding, and the way we make that work is by adding extra dummy pixels, zero pixels, so that our window of five will fit over five pixels, some of which are gonna be dummy pixels.
+
+[00:39:53] A combination of window size padding, and stride will result in image compression in each convolutional layer until your final layer, which is generally a good strategy. But another way to achieve image compression is called max pooling. Max pooling is lossy. Simple image compression used primarily to save system resources.
+
+[00:40:17] If your images are too big or your convolutional layers are too big and it's just hurting your RAM or your GPU performance, you'll use max pooling. Okay? So that's the general architecture of a convolutional neural network. That's the general architecture. Now, you probably won't have a great deal of success trying to freelance your way through.
+
+[00:40:42] Designing a connet, understanding the general principles, how to design a convolutional layer, and then building an image detector with that. That'll probably give you, you know, a decent image detector, maybe 10% error rate, or 20% error rate. It turns out that the amount of convolutional layers. And where you put the max pooling layers and the, and the window size and stride size and all those things, these are the hyper parameters, right?
+
+[00:41:10] Selecting these things are choosing your hyper parameters. Connet, hyper parameter selection is very sensitive. As far as error rate is concerned, if you want a very, very well tuned connet, then you're gonna spend a hell of a lot of time tuning your hyper parameters. And so one thing you can do instead, and especially if the image detector you're building is a classic type of image detector, you're actually trying to detect people and dogs and, and common objects in common photos.
+
+[00:41:42] Is use one of these off the shelf connet architectures. So there's this competition called I-L-S-V-R-C, ImageNet Challenge, and it's a challenge for people to be able to detect specific objects in a database of photos. And they hold this every year. And every year people come to this competition and they beat last year's connet architecture with a new architecture, a new combination of max pooling and stride and window and number of feature maps and all those things.
+
+[00:42:16] And so one of the classic ones is called LE net five, as in Jan Koon, the E for Koon. And then a subsequent year's winner was called Alex Net, so that would've beaten le net, it would've decreased the error rate. And then a subsequent one is Google net and then a, a next one is inception, and then a next one is resnet, and so on and so on.
+
+[00:42:40] You may have heard of these different net architectures. I heard these things floating around for the longest time. Resnet and AlexNet. I didn't realize that they're all conv nets. None of them are RNs. None of them are MLPs. So when you hear something net, you're probably dealing with a connet. And these con nets, these architectures are enormous.
+
+[00:42:59] There are some big, big connet, very complex and very sensitively tuned hyper parameters. So if you just want an image detector for some project, you're doing a robot with vision, you can use one of these off the shelf. Networks. And a good rule of thumb is just use the winner from the most recent year, use 20 seventeen's winner, for example.
+
+[00:43:21] It will have defeated all the prior architectures, but if what you're building is in the domain of computer vision. Is maybe a little bit less common than common object detection in common pictures. Then what you could do is sort of study the architectures and see what makes good hyper parameters and good layer styles, and then use that to drive.
+
+[00:43:46] Designing your own Connet. So what I described to you in this episode is the core components of designing a connet architecture, but very likely if you actually plan on using connet in the wild, especially for image recognition, you'll want to look at one of these prefab architectures that came out of the ImageNet Challenge and probably use the most recent winner.
+
+[00:44:11] Cool. Cool. That's it for this episode. In the resources section, I'm going to post a link to a YouTube recorded series of CS 2 31 NA course by Stanford, specifically on Connet, and of course, the standard deep learning resources I've always been recommending. I'll post those in the show notes and the hands-on machine learning with psych Hit Learning TensorFlow book that I've been recommending has a very good chapter on Connet as well.
+
+[00:44:37] I'll see you in the next episode.
+

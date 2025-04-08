@@ -5,17 +5,31 @@ Desktop if you're stationary, as you'll get the best performance bang-for-buck a
 
 Desktops. Build your own PC, better value than pre-built. See [PC Part Picker](https://pcpartpicker.com/), make sure to use an Nvidia graphics card. Generally shoot for 2nd-best of CPUs/GPUs. Eg, RTX 4070 currently (2024-01); better value-to-price than 4080+.
 
-For laptops, see [this post (updated)](/blog/20240108-ml-gaming-laptop).
+For laptops, see [this post (updated)](https://ocdevel.com/blog/20240108-ml-gaming-laptop).
 
 ### OS / Software
 
-Use Windows (dev channel), WSL2, and Docker + nvidia-docker. See [mla/12](/mlg/mla-12) for details.
+Use Linux (I prefer Ubuntu), or Windows, WSL2, and Docker. See [mla/12](https://ocdevel.com/mlg/mla-12) for details.
 
 ### Programming Tech Stack
-Deep-learning frameworks. You'll use both TF & PT eventually, so don't get hung up. [mlg/9](/mlg/9) for details.
+Deep-learning frameworks. You'll use both TF & PT eventually, so don't get hung up. [mlg/9](https://ocdevel.com/mlg/9) for details.
 1. Tensorflow (and/or Keras)
 1. PyTorch (and/or Lightning)
 
 Shallow-learning / utilities: ScikitLearn, Pandas, Numpy
 
-Cloud-hosting: AWS / GCP / Azure. [mla/13](/mlg/mla-13) for details.
+Cloud-hosting: AWS / GCP / Azure. [mla/13](https://ocdevel.com/mlg/mla-13) for details.
+
+### Episode Summary
+
+The episode discusses setting up a tech stack tailored for machine learning, emphasizing the necessity of choosing a primary programming language and framework, which, in this case, are Python and TensorFlow. The decision is supported by the ongoing popularity and community support for these tools. This preference is further influenced by the necessity for GPU optimization, which TensorFlow provides, allowing for enhanced performance through utilizing Nvidia's CUDA technology.
+
+A notable change in the landscape is the decline of certain deep learning frameworks such as Theano, and the rise of competitors like PyTorch, which is gaining traction due to its ease of use in comparison to TensorFlow. The author emphasizes the importance of selecting frameworks with robust community support and resources, highlighting TensorFlow's lead in the market in this respect.
+
+For hardware, the suggestion is a custom-built PC with a powerful Nvidia GPU, such as the 1080 TI, running Ubuntu Linux for best compatibility. However, for those who favor cloud services, Amazon Web Services (AWS) and Google Cloud Platform (GCP) are viable options, with a preference for GCP due to cost and performance benefits, particularly with the upcoming Tensor Processing Units (TPUs).
+
+On the software side, the use of Pandas for data manipulation, NumPy for mathematical operations, and Scikit-Learn for shallow learning tasks provides a comprehensive toolkit for machine learning development. Additionally, the use of abstraction libraries such as Keras for simplifying TensorFlow syntax and TensorForce for reinforcement learning are recommended.
+
+The episode further explores system architectures, suggesting a separation of concerns between a web app server and a machine learning (job) server. Communication between these components can be efficiently managed using a message queuing system like RabbitMQ, with Celery as a potential abstraction layer.
+
+To support developers in implementing their machine learning pipelines, the recommendation extends to leveraging existing datasets, using Scikit-Learn for convenient access, and standardizing data for effective training results. The author points to several books and resources to assist in understanding and applying these technologies effectively, ending with your own workstation recommendations and building TensorFlow from source for performance gains as a potential advanced optimization step.
