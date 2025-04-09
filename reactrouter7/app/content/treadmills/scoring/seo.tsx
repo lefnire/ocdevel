@@ -47,14 +47,20 @@ export function getScoresAndLabels(): ScoresAndLabels {
 type KeyBrand = {key: string, brand: string}
 export type Combos = [KeyBrand, KeyBrand][]
 export function getCombos(scores: Scores): Combos {
+  // --- Configuration for Manual Pairings ---
+  // Add pairs using the *canonical* (first listed) brand name.
+  const manualPairingsConfig: [string, string][] = [
+    ["Urevo", "DeerRun"],
+    ["LifeSpan", "Walkolution"],
+    // Add more manual pairs here as needed
+  ];
+  // -----------------------------------------
+
   // 1. Prepare Brand Information: Map each item key to its canonical brand and aliases.
   const keyToBrandInfo: { [key: string]: { canonical: string, aliases: string[] } } = {};
   scores.forEach(s => {
-    // Since brand.name is guaranteed, access directly.
     const brandName = data[s.key].brand.name;
-    // Split by ' / ', trim. No need to filter empty strings if format is consistent.
     const aliases = brandName.split(' / ').map(a => a.trim());
-    // Use the first alias as the canonical name for comparison.
     keyToBrandInfo[s.key] = { canonical: aliases[0], aliases };
   });
 
@@ -62,17 +68,49 @@ export function getCombos(scores: Scores): Combos {
   const usedItemKeys = new Set<string>();   // Tracks item *keys* already used
   const combinations: Combos = [];
 
-  // 2. Generate Combinations: Iterate through sorted scores to find pairs.
+  // 2. Process Manual Pairings First
+  manualPairingsConfig.forEach(([canonicalA, canonicalB]) => {
+    // Find the *first available* (most popular) item matching canonicalA
+    const itemA = scores.find(s => keyToBrandInfo[s.key]?.canonical === canonicalA && !usedItemKeys.has(s.key));
+    // Find the *first available* (most popular) item matching canonicalB
+    const itemB = scores.find(s => keyToBrandInfo[s.key]?.canonical === canonicalB && !usedItemKeys.has(s.key));
+
+    if (itemA && itemB) {
+      const keyA = itemA.key;
+      const keyB = itemB.key;
+      const infoA = keyToBrandInfo[keyA];
+      const infoB = keyToBrandInfo[keyB];
+
+      // Find the first available alias for each
+      const brandA = infoA.aliases.find(alias => !usedBrandAliases.has(alias));
+      const brandB = infoB.aliases.find(alias => !usedBrandAliases.has(alias));
+
+      // If usable aliases are found for both, create the manual pair
+      if (brandA && brandB) {
+        combinations.push([
+          { key: keyA, brand: brandA },
+          { key: keyB, brand: brandB },
+        ]);
+        // Mark as used
+        usedItemKeys.add(keyA);
+        usedItemKeys.add(keyB);
+        usedBrandAliases.add(brandA);
+        usedBrandAliases.add(brandB);
+      }
+    }
+  });
+
+  // 3. Generate Remaining Combinations Algorithmically
   for (let i = 0; i < scores.length; i++) {
     const keyA = scores[i].key;
     const infoA = keyToBrandInfo[keyA];
 
-    // Skip if item A is already paired
+    // Skip if item A is already paired (manually or algorithmically)
     if (usedItemKeys.has(keyA)) {
       continue;
     }
 
-    // Find the first available (unused) alias for item A using native find
+    // Find the first available (unused) alias for item A
     const brandA = infoA.aliases.find(alias => !usedBrandAliases.has(alias));
 
     // If no unused alias found for A, it can't be paired; move to the next item
@@ -90,11 +128,12 @@ export function getCombos(scores: Scores): Combos {
         continue;
       }
 
-      // Find the first available (unused) alias for item B using native find
+      // Find the first available (unused) alias for item B
       const brandB = infoB.aliases.find(alias => !usedBrandAliases.has(alias));
 
       // If a suitable alias for B is found, create the pair
       if (brandB) {
+        // Add the algorithmic pair
         combinations.push([
           { key: keyA, brand: brandA },
           { key: keyB, brand: brandB },
