@@ -22,7 +22,7 @@ import lifespan_tx6 from './lifespan/tx6'
 import imovr_unsit from './imovr/unsit'
 import sperax_motioneaselitep1 from './sperax/motioneaselitep1'
 import bifanuo_tm008 from './bifanuo/tm008'
-import yagud_walkingpad from './yagud/walkingpad'
+import yagud_zf0301 from './yagud/zf0301'
 import lichico_dk38ab2 from './lichico/dk38ab2'
 import elseluck_walkingpad from './elseluck/walkingpad'
 import wellfit_wp017 from './wellfit/wp017'
@@ -38,11 +38,13 @@ import sunny_sft723007 from './sunny/sft723007'
 import sunny_sft724064 from './sunny/sft724064'
 import mobvoi_treadmillplus from './mobvoi/treadmillplus'
 import walkolution_walkolution2 from './walkolution/walkolution2'
+import airhot_tm400 from './airhot/tm400'
 
 import {produce} from 'immer'
 import type {Product} from "~/content/treadmills/data/types";
 
 const data = Object.fromEntries([
+  airhot_tm400,
   // Original treadmills
   urevo_cyberpad,
   urevo_strol2spro,
@@ -70,7 +72,7 @@ const data = Object.fromEntries([
   imovr_unsit,
   sperax_motioneaselitep1,
   bifanuo_tm008,
-  yagud_walkingpad,
+  yagud_zf0301,
   lichico_dk38ab2,
   elseluck_walkingpad,
   wellfit_wp017,

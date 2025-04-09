@@ -9,8 +9,8 @@ const links = {
   brand: {},
 }
 const info: Product = {
-  model: {value: "Walking Pad"},
-  key: `${brand.key}_walkingpad`,
+  model: {value: "ZF0301"},
+  key: `${brand.key}_zf0301`,
   links,
   brand,
   // description: "",
