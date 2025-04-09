@@ -41,12 +41,26 @@ export default function getPrerenderRoutes(forSitemap) {
   ]
   const priority = Object.fromEntries(
     routes.map(r => {
-      const prio = ['/mlg', '/walk'].includes(r) ? 1
-        : ['/blog'].includes(r) ? 0.6
-        : 0.3;
-      return [r, prio]
+      const prio = {
+        '/': 0.1,
+        '/mlg': 1,
+        '/walk': 1,
+        '/blog': 0.6,
+        '/mlg/mla-22': 0.8,
+        '/blog/20240110-ergo-mouse-keyboard': 0.8,
+        '/blog/20250408-trackball-mouse': 0.8,
+        '/blog/20210108-how-to-use-habitica': 0.8,
+      }[r]
+      if (prio) { return [r, prio] }
+      if (r === '/mlg/recommend') { return [r, 0] }
+      if (r === '/mlg/resources') { return [r, 0.2] }
+      if (r.startsWith('/mlg')) {
+        return [r, 0.6]
+      }
+      return [r, 0.3]
     })
   )
+  console.log(priority)
   const lastmod = Object.fromEntries(
     routes.map((r, i) => {
       const meta = lookups[i];
