@@ -22,11 +22,8 @@ import {MdWeb} from '@react-icons/all-files/md/MdWeb'
 import {TiSortAlphabetically} from '@react-icons/all-files/ti/TiSortAlphabetically'
 import {BiCode} from '@react-icons/all-files/bi/BiCode'
 import {CgMathPercent} from '@react-icons/all-files/cg/CgMathPercent'
-import type {ReactElement} from "react";
-import type {Filters, FilterKey} from '~/content/workflowy/mlg-resources.types'
 
-
-export const learnStyles: Filters = {
+export const learnStyles = {
   learn: {
     t: 'Learn Mode',
     d: "List learning resources for self-teaching, or resources for getting a degree",
@@ -44,9 +41,11 @@ export const learnStyles: Filters = {
       normal: {t: "Audio-Light", d: "If you prefer your audio time to be less intense, or simply prefer to watch video resources as they're intended to be consumed, choose this. It'll put video resources in their normal place."}
     }
   },
-}
+} as const
+export type LearnStyleKeys = keyof typeof learnStyles
+export type LearnStyles = typeof learnStyles
 
-export const filters: Filters = {
+export const filters = {
   engagement: {
     t: "Engagement",
     d: `Is this resource "sit back and enjoy", or does it require coding challenges, exercises, etc?`,
@@ -134,9 +133,11 @@ export const filters: Filters = {
     t: "Updated At",
     d: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives.",
   }
-}
+} as const
+export type FilterKeys = keyof typeof filters
+export type Filters = typeof filters
 
-export const filterKeys: FilterKey[] = [
+export const filterKeys = [
   // Specify filter-key order (since is {} above)
   'importance',
   'format',
@@ -148,7 +149,7 @@ export const filterKeys: FilterKey[] = [
   // Extra keys added per resource
   // 'price',
   // 'updated',
-]
+] as const
 
 export const defaults = {
   importance: "supplementary",
@@ -157,4 +158,4 @@ export const defaults = {
   engagement: "passive",
   topic: "basics",
   relevance: "fresh",
-}
+} as const

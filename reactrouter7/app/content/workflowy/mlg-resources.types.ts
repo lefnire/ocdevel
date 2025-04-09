@@ -30,6 +30,7 @@ export type Resource = Filters & {
   expand?: boolean;
   pick?: string; // Assuming string type based on usage with picks[full.pick]
 };
+export type ResourcePartial = {id: string, v: ResourcePartial[]}
 
 type ResourcesTree_ = {
   flat: {[id: string]: Resource}
