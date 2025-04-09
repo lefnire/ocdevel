@@ -8,7 +8,7 @@ import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/motio
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import type {CardIn, CardOut, Product} from "~/content/treadmills/data/types";
 import {VideoButton} from "~/components/video-btn";
-import links from '~/content/product-links/index'
+import links from '~/content/product-links'
 
 const VIDEOS = true
 

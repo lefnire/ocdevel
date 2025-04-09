@@ -9,7 +9,7 @@ import type {CardOut, Product} from "~/content/treadmills/data/types";
 import {Link} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {useContext} from "react";
-import picks from '~/content/product-links/walk'
+import picks from '~/content/treadmills/product-cards'
 
 
 interface Products {
