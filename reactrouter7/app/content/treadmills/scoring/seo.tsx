@@ -1,5 +1,4 @@
 import data from "~/content/treadmills/data";
-
 /*
 `data` is of type {
   brand: {pickedBy: {websites: {value: number}[]}, name: string}
@@ -35,110 +34,82 @@ export function getScoresAndLabels(): ScoresAndLabels {
 }
 
 /*
-The goal of this function is to create pairs of all brand-name combinations, *without replacement*.
-That is, if a brand name has been seen before, remove it from the list. But there's a gotcha:
-Some brand names have aliases. Eg, product.brand.name for WalkingPad is "WalkingPad / KingSmith / Xiaomi".
-So I want to convert that to 3 brand names to add to the list of combinations.
-
-To keep the code simple, I start with BrandA on the left; and BrandB on the right, while-loop
-them together until they meet in the middle. However, I want instead the more popular brands
-to appear first; and since they're ordered by popularity, the current code has the BrandB
-sequence ordering from *least* popular. So really, they should both move from the left.
+ * Generates unique pairs of treadmill brands based on popularity scores.
+ *
+ * - Takes a list of scores (`{key: string, score: number}`) sorted by popularity (descending).
+ * - Handles brand aliases (e.g., "BrandA / BrandB" results in two potential names).
+ * - Pairs items starting from the most popular.
+ * - Ensures that each *item* (identified by its key) is used in at most one pair.
+ * - Ensures that each specific *brand alias* is used in at most one pair across all combinations.
+ * - Critically, prevents pairing two items that represent the *same underlying brand* (even if using different aliases).
+ * - Returns an array of pairs, where each pair contains `{key, brand}` for the two items.
  */
 type KeyBrand = {key: string, brand: string}
 export type Combos = [KeyBrand, KeyBrand][]
 export function getCombos(scores: Scores): Combos {
-  // Map each key to its canonical brand and list of aliases
+  // 1. Prepare Brand Information: Map each item key to its canonical brand and aliases.
   const keyToBrandInfo: { [key: string]: { canonical: string, aliases: string[] } } = {};
   scores.forEach(s => {
-    const brandName = data[s.key]?.brand?.name || '';
-    // Trim aliases and filter out empty ones
-    const aliases = brandName.includes(' / ')
-      ? brandName.split(' / ').map(a => a.trim()).filter(Boolean)
-      : [brandName.trim()].filter(Boolean);
-
-    if (aliases.length > 0) {
-      // Use the first alias as the canonical name for comparison purposes
-      keyToBrandInfo[s.key] = { canonical: aliases[0], aliases: aliases };
-    } else {
-      // Handle cases where a product might not have a brand name listed
-      keyToBrandInfo[s.key] = { canonical: `unknown_${s.key}`, aliases: [] };
-    }
+    // Since brand.name is guaranteed, access directly.
+    const brandName = data[s.key].brand.name;
+    // Split by ' / ', trim. No need to filter empty strings if format is consistent.
+    const aliases = brandName.split(' / ').map(a => a.trim());
+    // Use the first alias as the canonical name for comparison.
+    keyToBrandInfo[s.key] = { canonical: aliases[0], aliases };
   });
 
-  const usedBrands = new Set<string>(); // Tracks specific brand *aliases* already used in a pair
-  const usedKeys = new Set<string>();   // Tracks items (keys) already used in a pair
+  const usedBrandAliases = new Set<string>(); // Tracks specific brand *aliases* already used
+  const usedItemKeys = new Set<string>();   // Tracks item *keys* already used
   const combinations: Combos = [];
 
-  // Iterate through scores (sorted by popularity) to pick the first item (A)
+  // 2. Generate Combinations: Iterate through sorted scores to find pairs.
   for (let i = 0; i < scores.length; i++) {
     const keyA = scores[i].key;
     const infoA = keyToBrandInfo[keyA];
 
-    // Skip if item A's key has already been used or has no brand info
-    if (usedKeys.has(keyA) || !infoA) {
+    // Skip if item A is already paired
+    if (usedItemKeys.has(keyA)) {
       continue;
     }
 
-    // Find the first brand alias for item A that hasn't been used yet
-    let brandA: string | undefined = undefined;
-    for (const alias of infoA.aliases) {
-      if (!usedBrands.has(alias)) {
-        brandA = alias;
-        break; // Found the first available alias for A
-      }
-    }
+    // Find the first available (unused) alias for item A using native find
+    const brandA = infoA.aliases.find(alias => !usedBrandAliases.has(alias));
 
-    // If no unused brand alias is found for item A, it cannot form a pair, so skip
+    // If no unused alias found for A, it can't be paired; move to the next item
     if (!brandA) {
       continue;
     }
 
-    // Iterate through the remaining scores (more popular first) to find a partner (item B)
+    // Try to find a partner (item B) for item A
     for (let k = i + 1; k < scores.length; k++) {
       const keyB = scores[k].key;
       const infoB = keyToBrandInfo[keyB];
 
-      // Skip if item B's key has already been used or has no brand info
-      if (usedKeys.has(keyB) || !infoB) {
+      // Skip if item B is already paired or is the same canonical brand as A
+      if (usedItemKeys.has(keyB) || infoA.canonical === infoB.canonical) {
         continue;
       }
 
-      // *** CRITICAL CHECK: Ensure items A and B represent DIFFERENT canonical brands ***
-      if (infoA.canonical === infoB.canonical) {
-        continue; // Don't pair aliases of the same underlying brand
-      }
+      // Find the first available (unused) alias for item B using native find
+      const brandB = infoB.aliases.find(alias => !usedBrandAliases.has(alias));
 
-      // Find the first brand alias for item B that hasn't been used yet
-      let brandB: string | undefined = undefined;
-      for (const alias of infoB.aliases) {
-        // We already know they are different canonical brands, just check if this specific alias is available
-        if (!usedBrands.has(alias)) {
-          brandB = alias;
-          break; // Found the first available alias for B
-        }
-      }
-
-      // If a suitable unused brand alias is found for item B
+      // If a suitable alias for B is found, create the pair
       if (brandB) {
-        // A valid pair is found!
         combinations.push([
           { key: keyA, brand: brandA },
           { key: keyB, brand: brandB },
         ]);
 
-        // Mark both the chosen brand *aliases* and the *keys* of items A and B as used
-        usedBrands.add(brandA);
-        usedBrands.add(brandB);
-        usedKeys.add(keyA);
-        usedKeys.add(keyB);
+        // Mark the used aliases and item keys
+        usedBrandAliases.add(brandA);
+        usedBrandAliases.add(brandB);
+        usedItemKeys.add(keyA);
+        usedItemKeys.add(keyB);
 
-        // Item A has been successfully paired, break the inner loop (k)
-        // to move to the next potential item A (next i)
+        // Item A is now paired, break the inner loop to find the next item A
         break;
       }
     }
-    // Continue outer loop (i) to find a pair for the next available item
   }
 
   return combinations;
