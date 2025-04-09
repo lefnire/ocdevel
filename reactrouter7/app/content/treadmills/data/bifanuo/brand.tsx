@@ -1,4 +1,4 @@
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 const links = {
   brand: {
     US: "https://bifanuo.com/product-category/treadmills/?orderby=date"

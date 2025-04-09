@@ -2,7 +2,7 @@ import {useNavigate, useSearchParams} from "react-router";
 import {createContext, type PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {columnsObj} from "~/content/treadmills/columns";
 import data_ from '~/content/treadmills/data'
-import type {Computed, Row} from '~/content/treadmills/computed'
+import type {Computed, Row} from '~/content/treadmills/types'
 
 export interface ProductContext {
   compareKeys: string[]

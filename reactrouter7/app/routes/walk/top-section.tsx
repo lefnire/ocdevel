@@ -4,7 +4,7 @@ import './route.css'
 import {contentSections} from './content-section'
 
 import {ProductContext} from "~/routes/walk/context";
-import type {CardOut, Product} from "~/content/treadmills/data/types";
+import type {CardOut, Product} from "~/content/treadmills/types";
 
 import {Link} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";

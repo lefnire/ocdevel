@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import {getCountryCodes, getPrice} from "../utils";
 import * as r from './value-ranges'
 import type {ScoreFn} from './utils'
-import type {PickedBy} from "~/content/treadmills/data/types";
+import type {PickedBy} from "~/content/treadmills/types";
 import { NA } from '../data/utils'; // <-- Import NA
 
 const scorePickedBy = (pickedBy: undefined | PickedBy) => {

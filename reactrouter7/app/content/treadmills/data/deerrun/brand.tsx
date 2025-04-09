@@ -1,4 +1,4 @@
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 const links = {
   amazon: {
     US: "https://amzn.to/4hwZXXe",

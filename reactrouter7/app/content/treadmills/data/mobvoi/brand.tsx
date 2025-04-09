@@ -1,4 +1,4 @@
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 const links = {
   brand: {
     EU: "https://www.mobvoi.com/eu/types/homegym",

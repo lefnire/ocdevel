@@ -1,5 +1,5 @@
 import {type FC, memo, useCallback, useContext, useMemo} from "react";
-import type {Row as Product} from '~/content/treadmills/computed';
+import type {Row as Product} from '~/content/treadmills/types';
 import {NA} from "~/content/treadmills/data/utils";
 import {columnsObj} from '~/content/treadmills/columns';
 import {useModalStore} from "~/components/modal";

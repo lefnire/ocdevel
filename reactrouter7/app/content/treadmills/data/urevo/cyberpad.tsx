@@ -1,5 +1,5 @@
 import image from '~/assets/products/urevo_cyberpad.jpg?w=100&h=100&format=avif&effort=max'
-import type {CardIn, Product} from "../types";
+import type {CardIn, Product} from "../../types";
 import brand from './brand'
 import {VideoButton} from "~/components/video-btn";
 

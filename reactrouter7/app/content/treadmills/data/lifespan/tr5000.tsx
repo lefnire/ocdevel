@@ -1,4 +1,4 @@
-import type {Product} from "../types"
+import type {Product} from "../../types"
 import brand from './brand'
 const info: Product = {
   brand,

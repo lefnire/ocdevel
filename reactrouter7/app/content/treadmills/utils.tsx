@@ -1,5 +1,5 @@
-import type {PickedBy, Product} from "./data/types";
-import type {Row} from './computed'
+import type {PickedBy, Product} from "./types";
+import type {Row} from './types'
 import _get from 'lodash/get'
 import Badge from 'react-bootstrap/cjs/Badge';
 import {Affiliate} from "~/content/product-links";

@@ -20,7 +20,7 @@ import type {
   Cell,
   Table,
 } from '@tanstack/react-table';
-import type {Row as Product} from '~/content/treadmills/computed';
+import type {Row as Product} from '~/content/treadmills/types';
 import {columnsArray, columnsObj} from '~/content/treadmills/columns';
 import {ProductContext} from "../context";
 import {Filter, filterFn, sortingFn} from './filter'

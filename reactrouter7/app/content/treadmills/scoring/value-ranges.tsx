@@ -1,4 +1,4 @@
-import type {Product} from "../data/types";
+import type {Product} from "../types";
 import data from "../data";
 import {getPrice} from "../utils";
 import {NA} from '../data/utils'

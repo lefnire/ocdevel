@@ -1,4 +1,4 @@
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 const links = {
   brand: {"ALL": "https://walkolution.com?sca_ref=8416295.Hx5JVtdlxLpM&sca_source=blog"},
   amazon: {},

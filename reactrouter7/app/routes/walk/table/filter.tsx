@@ -2,7 +2,7 @@ import {type ChangeEvent, createContext, type FC, useCallback} from "react";
 import type {
   Column, Row,
 } from '@tanstack/react-table';
-import type {Row as Product} from '~/content/treadmills/computed';
+import type {Row as Product} from '~/content/treadmills/types';
 import {columnsObj} from '~/content/treadmills/columns';
 import Form from 'react-bootstrap/cjs/Form';
 import {NA} from "~/content/treadmills/data/utils";

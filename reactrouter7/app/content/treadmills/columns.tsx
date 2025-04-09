@@ -1,5 +1,5 @@
 import {type CSSProperties, memo, type ReactElement, type ReactNode} from "react";
-import type { Row } from "./computed";
+import type { Row } from "./types";
 import {FaExternalLinkAlt} from "@react-icons/all-files/fa/FaExternalLinkAlt";
 import {FaUser} from "@react-icons/all-files/fa/FaUser";
 import {FaWrench} from "@react-icons/all-files/fa/FaWrench";

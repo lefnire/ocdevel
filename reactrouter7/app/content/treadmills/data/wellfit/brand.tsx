@@ -1,4 +1,4 @@
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 const links = {
   brand: {
     US: "https://wellfittreadmill.com/collections/under-desk-walking-pad?sort_by=created-descending"

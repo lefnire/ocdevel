@@ -1,5 +1,4 @@
-import type {Computed} from '../computed'
-import type {Product} from '../data/types'
+import type {Computed} from '../types'
 export const columnWeights = {
   pickedBy: 15, // only one to break 10
   rating: 10,

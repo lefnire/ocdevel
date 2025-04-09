@@ -1,5 +1,5 @@
 import {nonBudgetNote} from "../utils";
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 
 const info: Brand = {
   key: "lifespan",

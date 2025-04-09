@@ -1,4 +1,4 @@
-import type {Brand} from '../types'
+import type {Brand} from '../../types'
 const info: Brand = {
   key: 'walkingpad',
   name: "WalkingPad / KingSmith / Xiaomi",

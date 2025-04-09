@@ -1,4 +1,4 @@
-import type {CardIn, Product} from "../types"
+import type {CardIn, Product} from "../../types"
 import image from '~/assets/products/deerrun_q1mini.jpg?w=100&h=100&format=avif&effort=max'
 
 import brand from './brand'

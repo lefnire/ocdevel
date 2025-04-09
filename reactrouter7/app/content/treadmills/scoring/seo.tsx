@@ -1,5 +1,5 @@
 import data from "~/content/treadmills/data";
-import type {Product} from "~/content/treadmills/data/types";
+import type {Product} from "~/content/treadmills/types";
 
 const withSeo = (
   Object.values(data)

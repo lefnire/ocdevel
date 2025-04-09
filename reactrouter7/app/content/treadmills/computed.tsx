@@ -1,33 +1,7 @@
-import type {Product} from './data/types'
+import type {Product, Computed, Row} from './types'
 import * as s from './scoring'
 import data from './data'
 import {type LinksInverted, invertLinks} from "./utils";
-
-export type Computed = {
-  linksInv: LinksInverted
-  
-  dimensions: number
-  brand: number
-  links: number
-  weight: number
-  maxWeight: number
-  maxSpeed: number
-  horsePower: number
-  age: number
-  rating: number
-  price: number
-  pickedBy: number
-  incline: number
-  shock: number
-  decibels: number
-  app: number
-  easyLube: number
-  total: number
-}
-
-export type Row = Product & {
-  c: Computed
-}
 
 function compute(d: Product): Computed {
   const c: Computed = {

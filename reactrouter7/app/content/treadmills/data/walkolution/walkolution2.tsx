@@ -1,4 +1,4 @@
-import type {CardIn, Product} from "../types";
+import type {CardIn, Product} from "../../types";
 import brand from './brand'
 import {NA} from '../utils'
 import image from '~/assets/products/walkolution_walkolution2.png?w=100&h=100&format=avif&effort=max'

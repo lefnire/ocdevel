@@ -41,7 +41,7 @@ import walkolution_walkolution2 from './walkolution/walkolution2'
 import airhot_tm400 from './airhot/tm400'
 
 import {produce} from 'immer'
-import type {Product} from "~/content/treadmills/data/types";
+import type {Product} from "~/content/treadmills/types";
 
 const data = Object.fromEntries([
   airhot_tm400,

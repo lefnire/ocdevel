@@ -1,5 +1,5 @@
 import image from '~/assets/products/urevo_3s.jpg?w=100&h=100&format=webp&effort=max'
-import type {CardIn, Product} from "../types"
+import type {CardIn, Product} from "../../types"
 import brand from './brand'
 const info: Product = {
   brand,

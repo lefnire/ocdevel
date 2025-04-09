@@ -1,4 +1,4 @@
-import type {CardIn, Product} from '../types'
+import type {CardIn, Product} from '../../types'
 import image from '~/assets/products/urevo_strol2spro.png?w=100&h=100&format=avif&effort=max'
 import brand from './brand'
 import {expires} from "~/components/date-utils";

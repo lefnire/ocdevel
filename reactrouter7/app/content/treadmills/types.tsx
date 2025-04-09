@@ -1,4 +1,5 @@
 import type {FC, ReactElement} from "react";
+import type {LinksInverted} from "~/content/treadmills/utils";
 
 interface Attribute {
   value?: number
@@ -104,4 +105,30 @@ export type CardOut = Omit<CardIn, 'notes' | 'title'> & {
   link: string
   linkText: string
   notes: string | ReactElement
+}
+
+export type Computed = {
+  linksInv: LinksInverted
+
+  dimensions: number
+  brand: number
+  links: number
+  weight: number
+  maxWeight: number
+  maxSpeed: number
+  horsePower: number
+  age: number
+  rating: number
+  price: number
+  pickedBy: number
+  incline: number
+  shock: number
+  decibels: number
+  app: number
+  easyLube: number
+  total: number
+}
+
+export type Row = Product & {
+  c: Computed
 }
