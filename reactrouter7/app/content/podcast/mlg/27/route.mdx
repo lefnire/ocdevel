@@ -1,7 +1,38 @@
 export * from './meta.js'
 
-- Hypers future & meta-learning
-  - We're always removing hypers. DL removed feature-engineering `
+
+Hyperparameters are crucial elements in the configuration of machine learning models. Unlike parameters, which are learned by the model during training, hyperparameters are set by humans before the learning process begins. They are the knobs and dials that humans can control to influence the training and performance of machine learning models.
+
+## Definition and Importance
+
+Hyperparameters differ from parameters like theta in linear and logistic regression, which are learned weights. They are choices made by humans, such as the type of model, number of neurons in a layer, or the model architecture. These choices can have significant effects on the model's performance, making them vital to conscious and informed tuning.
+
+## Types of Hyperparameters
+
+### Model Selection:
+Choosing what model to use is itself a hyperparameter. For example, deciding between linear regression, logistic regression, naive Bayes, or neural networks.
+
+### Architecture of Neural Networks:
+- **Number of Layers and Neurons**: Deciding the width (number of neurons) and depth (number of layers).
+- **Types of Layers**: Whether to use LSTMs, convolutional layers, or dense layers.
+
+### Activation Functions:
+They transform linear outputs into non-linear outputs. Popular choices include ReLU, tanh, and sigmoid, with ReLU being the default for most neural network layers.
+
+### Regularization and Optimization:
+These influence the learning process. The use of L1/L2 regularization or dropout, as well as the type of optimizer (e.g., Adam, Adagrad), are hyperparameters.
+
+## Optimization Techniques
+
+Techniques like grid search, random search, and Bayesian optimization are used to systematically explore combinations of hyperparameters to find the best configuration for a given task. While these methods can be computationally expensive, they are necessary for achieving optimal model performance.
+
+## Challenges and Future Directions
+
+The field strives towards simplifying the choice of hyperparameters, ideally automating them to become parameters of the model itself. Efforts like Google's AutoML aim to handle hyperparameter tuning automatically.
+
+Understanding and optimizing hyperparameters is a cornerstone in machine learning, directly impacting the effectiveness and efficiency of a model. Progress continues to integrate these choices into model training, reducing the dependency on human intervention and trial-and-error experimentation.
+
+## Decision Tree
 - Model selection
   - Unsupervised? K-means Clustering => DL
   - Linear? Linear regression, logistic regression
@@ -17,10 +48,8 @@ export * from './meta.js'
   - Layer size design (funnel, etc)
     - Face pics
     - From BTC episode
-    - Don't know? Layers=1, Neurons=mean(inputs, output)
-      https://stats.stackexchange.com/a/1097/107199
-- Activations / nonlinearity
-  https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
+    - Don't know? Layers=1, Neurons=mean(inputs, output) [link](https://stats.stackexchange.com/a/1097/107199)
+- [Activations / nonlinearity](https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6)
   - Output
     - Sigmoid = predict probability of output, usually at output
     - Softmax = multi-class

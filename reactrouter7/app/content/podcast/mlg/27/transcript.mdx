@@ -1,0 +1,252 @@
+[00:01:09] This is episode 27, hyper Parameters, part one. Today we're gonna be talking about hyper parameters. This is gonna be a two part episode. Got a little bit longer than I thought it would. But let's dive right in.
+
+[00:01:20] What are hyper parameters? Well, we've talked about hyper parameters before by comparison to parameters. They're anything that the human decides on. Parameters are the numbers that the machine learning model learns in its learning process. So in linear and logistic regression, your theta parameters are these weights in front of the coefficients.
+
+[00:01:38] They're these numbers that the model learns. Parameters are the bit that the machine learning model learns. Hyper parameters are any sort of knobs and dials that you as the human are in control of. So there's some obvious cases of hyper parameter selection, for example, with regularization that we'll talk about in the next episode.
+
+[00:01:58] The selection of L one, L two and dropout, both the numerical values that you can assign to those regularization terms, or even the mere use of those regularization parameters. That's a hyper selection. That's something that you as a human choose. In neural network architecture, the number of neurons in any layer and the number of layers, those are hyper parameters.
+
+[00:02:20] They're something that you choose. Hyper parameters, they really mean anything the human chooses. So let's get a little bit less intuitive, the selection of what type of model to use in a machine learning scenario. Are you gonna use linear regression, logistic regression? Are you gonna use naive bays or a neural network?
+
+[00:02:38] That's a hyper parameter. It doesn't seem like a hyper parameter at first glance, but really any sort of decision that you as the human can make that affects the machine learning model. That's a hyper parameter, and it's really only a useful characteristic when you can compare the selection of hyper parameters.
+
+[00:02:57] So, like I said, you could choose a linear regression model or you can choose a neural network. That selection right there is a hyper parameter, and it's a useful hyper parameter because you can compare the performance using cross validation. I. Of linear regression to a neural network. They're not apples and oranges.
+
+[00:03:15] The result is a numerical score representing the relative performance of one versus the other. Now we're gonna be talking about a lot of various hyper parameters in these two episodes. Things like neural network architecture, uh, activation functions, not only linearities. Regularization parameters, stochastic gradient, descent optimizers like at grad and Adam.
+
+[00:03:35] Things like feature scaling and batch normalization, stuff like this. This episode is gonna be some of the more high level parts, things like neural network architecture, decision of what types of layers to use, like LSTM versus CNN layers. And the next episode will be smaller bits like regularization, L one and L two, and dropout.
+
+[00:03:54] But don't let that big versus small part fool you. Every single hyper parameter can be vital to the success of a model's training. As an anecdote in the Bitcoin trading Bot project that we're working on together, I have personally found that the combination of L one, L two, and dropout, those are your regularization terms.
+
+[00:04:16] You can use one or two or three of them. And whichever ones you use can have some numerical value. I found those regularization terms to be more vital to the success of the deep reinforcement learning agent than the selection of the agent type that we'll talk about in reinforcement learning episodes.
+
+[00:04:34] Things like proximate policy optimization versus Deep Q network. Now those are huge. The the difference between A PPO and A DQN, that's a huge difference, but I found that the combination of regularization terms. Had a stronger effect on the output. So every hyper parameter counts. And when it comes to choosing hyper parameters, every machine learning model has a handful of hyper parameters that goes along with it.
+
+[00:04:59] So a neural network, for example, you can choose its width, its depth, the types of layers, whether they be LSTM layers, comm layers, or dense layers, L one, L two, and dropout regularization. And a handful of other hyper parameters, but most hyper parameters have a sane default that you can start with. So for example, L one and L two, they tend to be in the 0.001 range.
+
+[00:05:23] Somewhere around. There tends to be a sweet spot for many researchers just getting started. So what you do is you start with the same defaults, let's say L, L one and L two set at 0.001. Net depth at one or two net width to, let's say eight neurons, something like this. And then from there, after you've selected your sane defaults of hyper parameters, then you search for better hyper parameter combinations.
+
+[00:05:51] You'll use something called grid search or a random search. Which I'll describe in the next episode, or a more learning oriented approach called Bayesian optimization, which uses Bayesian statistics to actually hone in on better and better hyper parameter combinations over time. So that's the high level stuff.
+
+[00:06:11] Hyper parameters are knobs that you as a human turn. Don't shirk the turning of these knobs because it is vital to the success of your models training process. And the way you go about this is you'll use all the defaults outta the box, and from there you'll use grid search, random search, or Bayesian optimization to get better and better and better combinations over time.
+
+[00:06:31] Now. When I first found out about hyper parameters by comparison to parameters, I thought I was kind of ugly. I was kind of surprised. I thought the goal of machine learning was to learn everything I thought. A machine learning model is supposed to learn the nuts and bolts, especially when we start talking about ai.
+
+[00:06:48] I thought that AI is supposed to be super self-sufficient. Why do we as humans have to turn these dials and knobs? That doesn't seem very magical. It seems like a buzzkill to me. And in fact, it seems like there's more hyper parameters than there are parameters in any one machine learning model. It's like the human does more than the model.
+
+[00:07:05] Pretty UNM magical to me. What's the deal here? Well, you and I are not the only people thinking this. Removing hyper parameters from the equation has been a longstanding goal of the machine learning community. Right now, we sort of have Linux boxes where you have to compile everything from scratch and you have to add your own packages with certain flags based on your CPU architecture and all this stuff.
+
+[00:07:30] It's very complicated and very hands-on. The goal we want to get to eventually is a Mac. You just order a Mac comes in a box, you open it up and it's good to go, but it's just not that easy. You see, this is the goal of researchers, is to subsume the hyper parameters into the machine learning model so that they become parameters so that the machine learning model can learn everything from nuts to bolts.
+
+[00:07:52] It's just difficult and it will take time, but it's something that we have been accomplishing with every machine learning breakthrough. So, for example, consider the neural network. The neural network introduced two very powerful breakthroughs to the machine learning community. One was the ability to represent any complex situation.
+
+[00:08:14] I. They call this a universal function. Approximator, theoretically, a neural network, if done properly, can basically do anything. What that means is theoretically, you could use a neural network for everything. Forget the support vector machine, forget logistic regression. Forget the selection of any model under the sun, and just use a neural network.
+
+[00:08:37] Now, like I said before, selecting a model. Is itself a hyper parameter and therefore the creation of the neural network did away with a very major hyper parameter selecting a model. Now, of course, as we've seen in prior episodes, it's not so simple. A lot of times your circumstances call for a shallow model, whether it be for computational efficiency or you don't have enough data to learn from.
+
+[00:09:03] Your special case may call for a shallow learning model, but increasingly we're getting to this point where it's just like throw a neural network at the situation. It's this idea of sure, you can use a pistol or a rifle, but why not just use a bazooka? We've got the GPUs, we've got Google Cloud platform.
+
+[00:09:21] Just use a neural network. Neural networks also eliminated a very taxing hyper parameter called feature selection or feature engineering in the shallow learning days. You need to be very selective about what features you're going to input into your model in certain circumstances. Features that are very highly correlated can mess up certain models performance, and so you want to hand remove any features that are highly correlated.
+
+[00:09:51] Additionally, you may need to scale features down and in case you have too many features. You can do one of two things. You can either hand remove specific features that you know aren't that important, or you can pipe them through a dimensionality reduction model like principle component analysis PCA before piping it into your linear regression model or decision tree.
+
+[00:10:15] So we have two hyper parameters there. One is the feature engineering slash feature selection bit, and the other is the decision to use PCA. And this part of the equation is a very time intensive process. It's not just some dial you turn like the L one regularization parameter. No, this stuff's gonna take days and days to work with while neural networks theoretically handle feature engineering for you.
+
+[00:10:40] In the early layers of a neural network, dimensionality reduction automatically occurs as long as your layer width is less than the number of inputs and neurons in a neural network learn to latch onto important bits of information and disregard less important bits of information. So neural networks effectively eliminated feature engineering.
+
+[00:11:03] And model selection. Now, obviously that's a major oversimplification. I'm ruffling many feathers here, I'm sure, but you get the point that I'm getting at is over time, these advancements in machine learning technology, they do exactly that. They remove hyper parameters and subsume them into the machine learning model as parameters.
+
+[00:11:24] So in other words, over time, ideally we won't have to be dealing with so many hyper parameters. And in fact, Google is so hot on this topic of automatic hyper parameter selection. They've created a project called Auto ml, and the concept of learning the ideal hyper parameters for your machine learning model is called meta learning, right?
+
+[00:11:47] Because you're learning how better to learn, you're learning the parameters that help you learn your parameters. Meta learning and Google has a project called Auto ML that they're working on very hard to solve this pain point. But in the meantime, you and me, we lowly developers are just gonna have to suffer with hyper parameter selection.
+
+[00:12:08] And tuning. All right, so we're gonna take a top down approach. We're gonna start from the very top of model selection, and then once we get to neural networks, we're gonna start to design the layer architecture. And then within the layers, we're going to start to work on things like activation functions and regularization terms and stuff like this.
+
+[00:12:27] Top down, we'll start with model selection. You'll recall from the shallow learning episodes in the resources section, I had a decision tree diagram that helped you pick your machine learning model based on your situation. Is it classification or is it regression? Is it unsupervised or is it supervised?
+
+[00:12:46] I'm gonna leave it to you to go back to that diagram. That's kind of the very fine tuned model selection process. I'm gonna paint with some very broad strokes here, sort of the the top dogs in the shallow learning machine learning models. So first off, are we dealing with unsupervised learning or supervised learning?
+
+[00:13:02] If you're doing unsupervised, then you're gonna go down a totally different path. That's a less common sort of machine learning scenario, and so I'm just gonna say, Hey, K means clustering. We'll just call it that for now. Moving on, assuming you're using supervised learning and assuming that you actually have data labels to train on, now we're gonna ask ourselves some questions.
+
+[00:13:20] Is the situation linear? That's the first and important question. Is your circumstance linear? Is the thing that you're trying to learn a linear equation? Well, how do you know if it's linear? You can sort of think about it. So for example, selecting hyper parameters. That is a non-linear situation and, and here's why many parameters play with each other in a specific way.
+
+[00:13:42] So for example, learning rate. And epoch or optimization steps, the number of times you train on a specific batch learning rate and epoch, those two play together specifically. Generally, you want higher learning rate with lower epoch and vice versa, and. Okay, so they play together. Importantly, there's sort of a cutoff.
+
+[00:14:05] There's a threshold at which lower learning rate or higher learning rate isn't going to help you no matter what the epochs. So there's kind of a cliff, or maybe it's not a cliff. Maybe it's some something of a parabola curve. Anyway, the point being this is not a linear situation. Linear situations are cases in which you can plot your data.
+
+[00:14:25] On a line, you know all of your data points, throw them all on your graph and they'll all kind of scatter generally around a line or a hyperplane if you're dealing in more than two dimensions. If your situation is linear, you use linear regression or logistic regression. Linear regression. For regression, it's gonna output a number like the cost of a house, logistic regression for classification.
+
+[00:14:45] Deciding if it's a cat, dog, or tree. If you don't know if your situation is linear, the general rule of thumb is give it a shot. Try linear or logistic regression, give it a shot and see how it does. If it is non-linear, but you don't have a lot, a lot of data, okay? Because if you have a lot of data, then you should probably just move on to the neural network.
+
+[00:15:04] But generally speaking, lots of data. You go to deep learning if you don't have a lot of data, okay, we're gonna work with naive bays. Decision trees and all the decision tree offshoots. We've got random forests, gradient boosting, extreme gradient boosting XGD that's super popular these days. Which one do you use?
+
+[00:15:23] Try 'em all. As you'll see with every hyper parameter, the name of the game is Try 'em all. And you compare the relative performance of one model to the next by way of something called cross validation, which we'll get to in the bit about grid search and random search. So tri linear regression. Tri logistic regression, naive bays, decision trees, random forests, gradient boosting, extreme gradient boosting.
+
+[00:15:47] By the way, random forests is like decision trees plus plus. It's like a better decision tree. And gradient boosting is like decision tree plus plus plus. It's like an even better decision tree. An extreme gradient boosting or XGD is even more better than all that. So actually, if you're gonna decide to go the decision tree route, you do yourself a favor by also trying random forests, gradient boosting and extreme gradient boosting.
+
+[00:16:11] 'cause in theory, all those are just better than decision trees. Anyway, my advice, if you're not gonna use neural network use gradient boosting. That's my sane default I use outta the box if I don't know what to do. I generally start with gradient boosting, which again is a spin off of decision tree, but with a lot of optimizations all.
+
+[00:16:33] Now, let's assume you have lots of data and you can enter the deep learning territory. Now we're gonna go into deep learning. We're gonna end this episode on network architecture and design, network architecture and network design. So the first very high level decision you're gonna make in your neural network architecture is.
+
+[00:16:51] What types of layers are you going to use? In other words, what type of neural network is this in the first place, and you really have the main three decisions to choose from LSTM, RNs, connet. And multilayer perceptrons. There's plenty of other network architectures out there. There's a, a webpage called the Neural Network Zoo, where you can look at images and descriptions of different types of neural networks like belief nets and auto encoders.
+
+[00:17:20] Those two, for example, are actually very popular. Other neural network architectures besides the three that I just listed. And then there's a whole bunch more, but those are more advanced topics in deep learning. So the very common architectures are CNNR, NN and MLP, and they have very obvious use cases.
+
+[00:17:38] Are you doing vision stuff? Convolutional, neural network. CNN. Are you doing time stuff? L-S-T-M-R-N-N. Are you doing other MLP? So let's think of a few examples for these situations. You generally use a convolutional neural network. If you're doing vision stuff, if you're looking at a picture, if you're playing a video game, if you're building a self-driving car, if vision is involved, you'll use A CNN.
+
+[00:17:59] If time is involved, if you're doing stock trading, if you're doing weather prediction or natural language processing, you'll use an L-S-T-M-R-N-N. A recurrent neural network anyway. You don't have to necessarily use LSMs. You can use a vanilla recurrent neural network, or you can use a GRU recurrent neural network.
+
+[00:18:17] But the most popular, that SANE default is LSTM cells in an RNN for time series data. And for everything else, you'll use a multilayer perceptron. That's basically like throwing all your inputs in a blender. If it doesn't have time and it doesn't have space, then it doesn't have anything, so you throw it in a blender.
+
+[00:18:37] MLP. Okay. Then how about our Bitcoin trading bot? Well, DI just said stocks is a time series phenomenon. So LS tm, R ns. Actually, we are using a convolutional neural network in our GitHub project, not an L-S-T-M-R-N-N. What I thought you said CNNs are for vision and you said specifically that stock is time series and time series is LSTM.
+
+[00:19:02] I did indeed. But this is one of those cases where you start with a default, and I did indeed start with ltms and then you experiment with alternatives using grid search, random search, Bayesian optimization, and I found through experimentation. That CNN's worked better, and after reading a handful of other papers out there on archive.org and talking to colleagues who are doing algorithmic trading, it would appear that many people out there agree or have had the same experience that Connet outperform LS TMS for algorithmic trading.
+
+[00:19:37] Why might that be? I actually don't know the reason. I'm as surprised as you are. I thought Ltms would shine here. I think the reason, and this is something I've read as well, is vanishing and exploding gradients. Remember from the NLP episodes I said that the impetus for the invention of the LSTM cell was that recurrent neural networks had this thing called vanishing and exploding gradient problem.
+
+[00:20:02] The idea goes that you pipe in time, steps in a time series data set in order to predict something, maybe the next time, step or some value. Well, if you have too many time steps, you basically overwhelm the neurons in your neural network. You're sort of piling on information after information after information.
+
+[00:20:22] You can cause this exploding gradient they call it, where you saturate your neurons. It's kind of like yelling too loudly and then these neurons explode and there's blood everywhere. It's a horrible problem. Or the opposite can be the case where you don't have enough signal going back through your time steps in the training process.
+
+[00:20:39] Because the signal gets dampened and dampened over time. That's called the vanishing gradient problem. And the way we mitigated this was we replaced the relu activation function in a recurrent neural network. We just plucked that RELU activation function out that neuron, and we replaced it with a cell, A-L-S-T-M cell, long short-term memory cell.
+
+[00:20:59] Which has a whole bunch of complex architecture within it. It's not just some activation function. So it's like we plucked out this little marble of a neuron out of the network, threw it away, and we popped in this and we pop in this complex watch looking cogs and gears block and we snap it into place.
+
+[00:21:17] That's the lstm. And that thing has the capacity to learn to forget time sequences over time and latch on to specific time sequences over time, which allows it to mitigate the. Vanishing an exploding gradient problem, but. But you only really see that showcased in medium length time sequences like a sentence.
+
+[00:21:39] I mean, what's the maximum number of words in a sentence? Let's say 50, a hundred word sentence. Okay, that's fine. It can handle it no problem. But can it handle an infinite sequence of steps? Well, Bitcoin price history is an infinite sequence of steps. I mean, we go all the way back to 2009 in second intervals all the way till now.
+
+[00:21:59] I mean millions and millions of steps, and it keeps going. So it goes off into the future to infinity. So can an L-S-T-M-R-N-N really handle that many steps? I don't know actually personally. And I think that's the running theory as to why Ltms don't work on stock prices is that maybe they actually can't handle infinite sequences or very, very, very large sequences.
+
+[00:22:21] There's ways that you can get around that. I've heard about stopping training per time step to a maximum window length in the past, but, but it gets pretty hairy. So what about a conant? How do we make that work For stock prices or, or Bitcoin prices? Well, a human goes to a exchange terminal on their computer like gdax.com, and they got a black screen and they have a price graph that goes up and down and up.
+
+[00:22:46] And it's made out of candlestick that are colored red and green. And under the price graph is a histogram of volume. Well, that's visual. You can imagine actually taking a screenshot of G Ds once every second, saving it to your computer and running that through your connet to train on. Now, that's an intuitive approach, but a cleaner approach is to actually use the same data you were using before for your LSTM, namely candlestick data, O-H-L-C-V.
+
+[00:23:13] And what you'll do is you'll construct a time window where the x axis is your time, just like it would be in your exchange terminal. The x axis is time steps, and the Z axis, actually the channels or depth of your picture. It's basically like the RGB channels, what would be the RGB channels of a normal picture.
+
+[00:23:35] You actually use your features there, so the depth of your picture is your candlestick. And then the height of your picture is, is nothing. It's just, it's just one. So it's like the machine learning model is visually looking at a time window of price data in order to determine whether buy, sell, hold. Okay, so that's deciding on what type of layers to use.
+
+[00:23:58] Now we're gonna talk about the shape of your neural network layer width and number of layers, and where you might place these LSTM or con layers. By the way, most neural networks will have some amount of dense layers, even if they are a connet, where most of their layers are con layers. Maybe at the very end, it'll still have one or two dense layers, and if you're an LSTM, you may still have some amount of dense layers before the LS TM layers and or after them.
+
+[00:24:29] A dense layer, remember, is just a vanilla neural network layer. It's called dense because all neurons from the prior layer connect to all neurons of the current layer. Everything connects every which way, so it's dense. Okay. Neural network shape. There is a sane default that that's recommended. You could find it out there on Stack Overflow.
+
+[00:24:52] I've seen this quote that comes from a textbook. I don't know which textbook, but I've seen it over and over and it says, A sane default for network shape goes like this. You have your input layer. Okay. It's not really a layer, but they call it a layer. So you just, you just have your inputs and you have your output layer, and that's usually just gonna be one neuron in a classification or a regression situation if it's a multi-class classification situation.
+
+[00:25:16] Your last layer is a soft max, neuron soft max, which we'll talk about in the activation functions bit. So you have your inputs and your outputs. Now, what goes in between? What are the hidden layers? That's the thing that you really care about. Well, a sane default. Of number of layers is one. One hidden layer, maybe two.
+
+[00:25:33] If you don't know anything else about your situation and you just had to guess, shot in the dark, one or two layers, start with one and give two a shot in your hyper parameter search. How about width? Well, the number of neurons in your one layer, a sane default would be the mean of the number of inputs.
+
+[00:25:52] And the number of outputs. So if you've got three inputs and one output, your one hidden layer should have two neurons. The mean of your inputs and your outputs, so it just gets smaller. It's basically performing dimensionality reduction on your inputs. That's a sane default. Some networks call for much larger structure.
+
+[00:26:11] I mean five 12 neurons. Four layers deep. It totally depends on the situation, but if you didn't know anything at all, go with the one or two layers and the width of your layers being the mean of your inputs and outputs. But a lot of times you can actually think about it, you can intuit the shape of your neural network.
+
+[00:26:31] So remember in a prior episode I talked about using a neural network to detect a face, and I was actually describing a multi-layer perceptron to, to detect a face, what you'd usually use as a connet. But let's go with the multilayer perceptron example, just because it, it allows us to think a little clearer about this.
+
+[00:26:49] You have a picture of a face, five pixels by five pixels, okay? So 25 pixels total. It's an image on your hard drive. That's your input layer is your pixels. Now, you might reconstruct a face by combining black dots in your pixels into lines, lines and curves, and edges and angles. How many of these types of things could you imagine?
+
+[00:27:11] I don't know. Let's say, let's say six. Six types of curves and angles and lines. So your first layer in the neural network will be six neurons. Next, we will combine those lines and edges and stuff into shapes, eyes, ears, mouth, and nose. Four, eyes, ears, mouth, nose. That's four neurons. It's going to detect four types of objects in the next layer.
+
+[00:27:35] And finally. The last layer is one neuron to combine all the eyes, ears, mouth, and nose into face. That one neuron being face detector. So 25 pixels boil down into six angles and edges and curves and lines. Those boil down into four objects, eyes, ears, mouth, and nose, and those boil down into one object the face.
+
+[00:28:03] So you can actually think your way through the design of a neural network architecture. It's not so black box as people make it out to be necessarily. Sometimes it is. Sometimes you have no clue how things sort of combine hierarchically like that. And so you go with the sane default and use hyper parameter search to try to find better and better network architectures from there.
+
+[00:28:23] And in this case, with the face detector, you would indeed want to still use hyper parameter search to find a better architecture over time. 'cause you're almost always gonna be wrong the first time. It's just something reasonable to start with. How about our Bitcoin trading bot? Well, we have O-H-L-C-V open, high, low, close volume candlestick.
+
+[00:28:43] That's our features per time step. Now, like I said, I'm actually using a connet in the code, but I think it'll be easier and clearer to explain as an L-S-T-M-R-N-N. So I'm gonna do it that way each time Step takes in a candlestick five features. Those are your inputs, and the output we're gonna say is the decision to buy or sell that only exists in a reinforcement learning model.
+
+[00:29:07] In a supervised learning model, it would basically be predicting the next price action, and then from there you'd decide whether to buy or sell. So let's assume we're using the reinforcement learning scenario. We have inside of our reinforcement learning agent and LSTM model where the inputs are five, features a candlestick, and the output is one neuron.
+
+[00:29:27] The decision to buy or sell. Which incidentally is gonna be a tan H activation function. We'll talk about that in the next episode. What goes in the middle? Well, we definitely want an LSTM layer, right? Because this is a time series, we want a layer that's building up information over time about how the graph is acting in order that it can predict the price at the next time step.
+
+[00:29:50] So theoretically, we just need one LSTM layer. And according to the idea of the default width is the mean of the inputs and the output. The width of your LS TM layer is three three LS tm cells in a single layer, bing bang, boom. Now, let's play with this a little bit. We had five features coming from one exchange.
+
+[00:30:09] What if we wanted to do that arbitrage thing, that risk arbitrage thing I mentioned in the last episode. Now you'd have 10 features. A candlestick from gdax and a candlestick from Kraken. Now you have 10 features coming in. Well, that's nice. Usually more data is better, more features is better. Up until a certain point, there tends to be sort of this ceiling where you start to reach what's called the cursive dimensionality.
+
+[00:30:31] You have too much information. Now, I don't think 10 is too much information, but let's pretend that it is. What could you do? Well, you could add a dense layer above your LSTM layer as the first layer. Add a new layer between the inputs and your LSTM layer, and it's a dense layer. And what does it do? It boils down the inputs into their essence.
+
+[00:30:54] Why don't we make the width of this dense layer four? We boil down 10 inputs to four, and then we send those off to the LSTM layer to start doing the history crunching. Maybe we don't want to overwhelm it. We want to send it to the essence. We'll let the dense layer boil the essence. Very nice. Very nice.
+
+[00:31:10] So we have a dense layer at the top, performing dimensionality reduction on the inputs and passing it off to the LSTM layer, which is performing historical analysis. On the time steps. Now remember in the prior episode I mentioned these things called indicators. We have these numbers that can summarize some amount of time steps in the past, let's say 200 times steps in the past till now.
+
+[00:31:34] You might want to take the simple moving average SMA or the exponential moving average, EMA with a relative strength index. RSI. SMA, for example, represents the moving average, the, the direction as a number from 200 times steps in the past till now. You can basically think of it like a, like the angle from then till now.
+
+[00:31:55] It's positive. If we're going up, it's negative. If we're going down now, we can use a third party library called Technical Analysis Library, Talib Talib, and we are in our project actually. We could use that project to generate these numbers given the time window and pipe those in as inputs at the top.
+
+[00:32:15] But there's a problem with that. The problem is we'll have to decide which technical indicators to use. Which indicators do we want to use? There's tons of them. Tons and tons of them. And for each of those indicators, what is the time horizon? 200 steps, a hundred steps, a thousand steps. So those would just add additional hyper parameters onto your plate, and nobody likes hyper parameters.
+
+[00:32:40] Now, normally more data is better, and in fact, we are experimenting with TIB in the project. But the reason I'm poo-pooing it here is because we have an LSTM layer, an LSTM layer already learns. Aggregated information about your historical data. It's already doing this rolling process that's building up its own theory about what's going on through the time steps.
+
+[00:33:04] In other words, it's kind of building its own technical indicators. I. So why don't we just let LSTM automatically learn technical indicators rather than piping them in ourselves? Then it can learn whatever sequence of time steps it likes, whether it be 200 or 400, and it can learn which specific indicators in its own little internals are valuable for its projections.
+
+[00:33:27] In other words, it's going to automatically learn the SMA or the EMA, depending on what proves useful to the LSTM. So what would we do here? Well. We could add another neuron in the LSTM layer. For every technical indicator, we want the layer to learn. So let's just grab bag 10 indicators. I mean, that's a decent number of indicators that you might use in a typical algo trading bot.
+
+[00:33:53] 10 indicators. Let's have our LSTM layer learn 10 indicators all on its own. So we'll just add 10 neurons to the LS TM layer. Very cool. So that allows us to reduce the amount of hyper parameters we have to deal with. All right. We have a decent model here for trading. Now, our trading bot, if we spin it as a reinforcement learning algorithm, which it is in code, is going to give us a decision.
+
+[00:34:16] It's going to give us what's called a signal, the amount it wants us to buy, or the amount it wants us to sell, or zero for hold. There's something missing from this equation though. It's telling us to buy and sell based on price history, but it doesn't know how much money we have to our name to buy and sell with.
+
+[00:34:36] It doesn't know how much US dollars we have in GDX that we can buy with, and it doesn't know how much Bitcoin we have in GDX to sell with. Now, we could just in our code, say, buy only what we can afford based on our bot's suggestion. But ideally, the bot will suggest a price to buy and sell based on what you have.
+
+[00:34:59] That way, if you don't have as much, it will say, well, you can still buy a little now and benefit. So ideally, your balances would also be an input. Now, you don't want to add your balances as an input at the top. Why? Because then your balances get mixed in with the history. It's like you threw your balances, your bitcoin balance and your dollars balance in at the top in this, in this LSTM blender, and now you have your balances splattered all over the graph.
+
+[00:35:30] All over this price graph that it's built up for itself with technical indicators and stuff. You have your balances all over there. The history should be unaffected by your balance. The balance only pertains to now the present moment. So what can we do? We can actually pipe in our balances as inputs to the final neuron, the final layer.
+
+[00:35:49] In a neural network, you can pipe in data at any point in the network. It doesn't actually have to happen at the very beginning. It can happen at any layer. You can pipe in additional features, and you'll see this a lot with, uh, image captioning where one part of the network is handling image recognition and another part of the network is handling natural language processing, and then they connect with each other downstream.
+
+[00:36:13] So in our code, what we do is we add the present data, the stationary here, and now data downstream in the network in a later layer past the time series. Aware layers being ltms or comp layers. Okay, so the point there was you can imagine building a network's shape and selecting the types of layers all by yourself in an intuitive fashion.
+
+[00:36:39] Even though a neural network is a theoretical black box, you can shape it. You can mold it with your hands based on what you know about the situation, and then use hyper parameter search to search for a more optimal number of layers and width of layers. Now it looks like I have a little bit more time, actually, so I'm gonna jump into activation functions non-linearities.
+
+[00:37:01] These I expected to get to in the next episode. Activation functions. Every neuron in the hidden layers of a neural network have applied to them. An activation function, an activation function, or a non-linearity. These are things like sigmoid, tan, h ray, lu, and the like. Now an activation function is the function that you apply after the weighted sum.
+
+[00:37:27] Every neuron inside of it is basically a linear regression unit. It's just a weighted sum of the prior neurons, so it learns these weights, it learns the theta parameters, just like in linear regression to multiply coefficients by for every neuron in the prior layer. It's just, it's just a linear regression unit.
+
+[00:37:46] And then you wrap that linear regression unit in an activation function in a non-linear function. Something like a sigmoid or a tan H or a relu. Now, why do we do that? Why do we have to wrap it in something? Why don't we just have a bunch of linear regression units all connected to each other and call that a neural network?
+
+[00:38:04] Well, the reason is that linear functions when combined, they make another linear function. In other words, if we did that, if every neuron was a linear regression unit. Our result would be a linear machine learning model. So it could only learn linear situations like the price of a house. It couldn't learn something so complex as a face detector.
+
+[00:38:25] Why is that? That that seems strange. I. If you have a bunch of lines and you throw them all in a piece of paper, you don't have one big line, you have something kind of Zorro looking like, like Zorro sliced every which direction on a tapestry. And you'd be able to cut up the data into parts. And of course the learning part of the machine learning process would learn how to slice, how to partition things into their own cubbies.
+
+[00:38:47] Right. Isn't that what you'd get by combining multiple linear functions? No. You would get a big line. You would actually get another line that's sort of the average of all these little lines. It's very interesting. It's not what you would expect. So you have to transform these neurons in into non-linear versions of themselves so that you don't just end up with a big line.
+
+[00:39:13] So how do we do that? We apply a non-linear function to it. We pipe it through something that adds, wiggles. Any wiggle, any wiggle at all. All that matters is that we get wiggles in our graph because when you shake up a bunch of wiggles and throw them onto a piece of paper, you do have wiggles that slice up the paper like Zoro Zoro with curves, curvy zoro.
+
+[00:39:33] You don't get one giant wiggle, you get a bunch of crisscrossing wiggles. So the way we make our neural network non-linear, which is super, super important, that's the whole point of a neural network, is it's a universal non-linear function. Approximator I. Is that we just add wiggles. We just take those lines that are output at every neuron and we bend them into curves.
+
+[00:39:55] Now, the classic curve that we've seen before is the sigmoid function, the S curve. It's an S between zero and one, so it's just an S on a graph. Between zero and one. An alternative version of that is a tan, H-T-A-N-H tan H function, which is an S, just like a sigmoid function, just like a logistic regression unit, but goes between negative one and one.
+
+[00:40:20] So it's a tall S. So we could apply either of these. We could either use a sigmoid activation function, or we could use a tan H activation function. Which ones should we use? Well, we should actually use tan H and I actually don't know why sigmoid isn't used very commonly in neural networks. It must be something with the math, but Tan H is much preferred as an activation function in a neural network.
+
+[00:40:42] It kind of makes sense for our trading bot because every neuron in the network is piping in with its own 2 cents as to whether to buy or sell. Right. A tan H goes from negative one to one. In other words, buy some amount, buy some multiplication between zero and positive one, or sell some amount, sell some multiplication between zero and negative one.
+
+[00:41:08] So each neuron is sending their own buy and sell signals. They all have their own little opinion. And then the final neuron sort of collects all the votes, tallies all the votes, and says, you know what? I think the majority is raising their hand that we should buy. So tan h sometimes makes sense. I don't get exactly why you couldn't transform sigmoid into the equivalent of a buy sell action, but for whatever reason, you just don't see a lot of sigmoids used within neural networks.
+
+[00:41:37] What you see a lot more common than sigmoids. Ortan H is something called Relu rectified linear unit. RELU. Relu is a weird one. Relu is a non-linearity. It's not a line. And that's what's important. But it's almost a line. It's a line that y equals zero for X equals zero to negative infinities, and then it's an angle going to the top.
+
+[00:42:01] Right? So it's kind of like a, a hockey stick or a V that you sort of tip over. Now that doesn't seem very useful intuitively. I mean, I can't think of how you'd. Sort of pull a buy sell signal outta that or come up with any other sort of intuitive application of this activation function. I don't really understand why it works, but for whatever reason, it's computationally more efficient on your computer.
+
+[00:42:27] It's faster to run. Something about the calculus works more efficient on this function, and importantly, it mitigates the vanishing and exploding gradient problem. It turns out the vanishing and exploding gradient problem is not only with RNs, it's with any deep networks. And, uh, conv nets specifically tend to be very, very, very deep.
+
+[00:42:51] These things like resnet and Google net and stuff, they're very deep. Many convolutional layers. And so we use relu activation functions in those layers to mitigate the vanishing and exploding gradient problem. And I don't understand why. I don't know why it mitigates that problem, but it's, it's something about the math, something about the calculus, and therefore you'll see a relu activation function.
+
+[00:43:15] Used much more commonly than anything else. It is the sane default that comes out of the box with a neural network. One of those things where by default, your dense layers and your conv layers use array lu by default, and then you'll use hyper search to try tan H and see if it performs better than relu.
+
+[00:43:36] There's a handful of other types of relu. There's a Relu family. There's something called the Leaky Relu, the elu Exponential Linear Unit, ELU. There's clu, SELU. There's C-R-E-L-U, relu, all these different types of relu. They, they kind of, they, they look slightly different. They kind of had that hockey stick shape.
+
+[00:44:00] Some of them curve the edge off of the hockey stick elbow, and some of them don't stay at y equals zero towards negative infinity, but they actually curve down a little bit to the bottom left towards negative infinity. They all add little different twists. They're kind of more modern versions of relu that researchers are trying to hone in on the the perfect relu.
+
+[00:44:24] This is another thing where you might want to try different versions of relu with hyper parameter search. Try elu and clu and relu and leaky relu and all those things. There's also a thing put out by Google in their grand quests to eliminate hyper parameters called the swish. S-W-I-S-H Swish activation function.
+
+[00:44:46] That's actually a learnable activation function. It learns what's the best activation function for your neural network during the training process, which that would be so sweet. That would be really nice not to have to choose an activation function. I hate hyper parameters, so sigmoid, softmax, relu, and the Relu family.
+
+[00:45:07] And generally relu is used by default. Try them all using hyper search. Find what works best for your neural network. For ours, in my experience, in our Bitcoin trader, it's tan h. And those are the activation functions for the hidden layers. Those are the activation functions for the near the internal neurons, communicating with each other.
+
+[00:45:28] The last neuron or the last layer of your neural network is the output layer. It's the output function. It's the thing that's gonna give you the human something of value. So if it's a classification scenario, you will use a sigmoid function. Actually, this is a time when you can use the sigmoid. It's because it gives a classification to you the human, that where that sigmoid function is valuable.
+
+[00:45:51] You could use a tan H. We are using a tan H in our situation 'cause it gives a buy or a cell signal. You could use nothing. This is one case where you can not have an activation function. And what would that be? That's regression. Without an activation function, wrapping your weighted sum, what you get is the weighted sum.
+
+[00:46:12] That's the output, that's a number, and that might be the cost of a house, for example. So no activation function for regression scenarios. And then for multi-class classification, dog, cat tree, you use a soft max. Soft max. That's a multi-class version of a sigmoid function, and that would only exist as the output layer of your neural network.
+
+[00:46:37] You wouldn't have a soft max inside of your neural network's hidden layers. Awesome guys. That was a long episode. I apologize for the length. All the resources I've listed up until now is where I got all this information from. So there's nothing new to put into the resources section. And next time we'll talk about regularization, optimizers, feature scaling and batch normalization, and finally, hyper search and how to do that with grid search and such.
+
+[00:47:02] Talk to you then.
+

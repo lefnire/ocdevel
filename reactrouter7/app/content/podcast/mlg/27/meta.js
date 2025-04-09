@@ -5,4 +5,4 @@
   export const guid = "f5a903d68c1ed04bd37a31175d456fc0"
   export const file = {}
   export const libsynEpisode = 6195814
-  export const teaser = 'Hyperparameters part 1: network architecture'
+  export const teaser = 'The concept of hyperparameters in machine learning is discussed, distinguishing them from parameters, and exploring their critical role in model performance. Various types of hyperparameters, including neural network architecture decisions and activation functions, and ongoing challenge of optimizing these for successful model training.'
