@@ -1,6 +1,5 @@
 import Row from 'react-bootstrap/cjs/Row'
-import Col_ from 'react-bootstrap/cjs/Col'
-const Col = Col_.default || Col_
+import Col from '~/components/col'
 import Container from 'react-bootstrap/cjs/Container'
 import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
 import Card from 'react-bootstrap/cjs/Card'

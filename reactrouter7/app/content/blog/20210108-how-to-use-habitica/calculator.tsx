@@ -6,8 +6,7 @@ import Form from "react-bootstrap/cjs/Form";
 import Card from "react-bootstrap/cjs/Card";
 import Button from "react-bootstrap/cjs/Button";
 // This is required due to an SSG bug in react-bootstrap. Ignore the typescript error.
-import Col_ from "react-bootstrap/cjs/Col";
-const Col = Col_.default || Col_
+import Col from "~/components/col";
 
 // Define types
 type ClassName = 'warrior' | 'healer' | 'rogue' | 'mage';

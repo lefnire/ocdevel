@@ -1,6 +1,5 @@
 import Card from 'react-bootstrap/cjs/Card';
-import Col_ from 'react-bootstrap/cjs/Col';
-const Col = Col_.default || Col_
+import Col from '~/components/col';
 import Row from 'react-bootstrap/cjs/Row';
 import {IconButton} from "~/components/icon-btn";
 import {icons} from '~/components/collapsible-icons'

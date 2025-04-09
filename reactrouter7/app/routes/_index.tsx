@@ -1,5 +1,4 @@
-import Col_ from 'react-bootstrap/cjs/Col'
-const Col = Col_.default || Col_
+import Col from '~/components/col'
 import Row from 'react-bootstrap/cjs/Row'
 import Container from 'react-bootstrap/cjs/Container'
 import Stack from 'react-bootstrap/cjs/Stack'

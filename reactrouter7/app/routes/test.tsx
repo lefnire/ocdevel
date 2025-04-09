@@ -14,8 +14,7 @@ This works, but again - huge bundle size
 So the recommended approach is individual imports, as shown in their docs:
  */
 import Row from 'react-bootstrap/cjs/Row'
-import Col_ from 'react-bootstrap/cjs/Col'
-const Col = Col_.default || Col_
+import Col from '~/components/col'
 import Container from 'react-bootstrap/cjs/Container'
 import Stack from 'react-bootstrap/cjs/Stack'
 import Button from 'react-bootstrap/cjs/Button'
