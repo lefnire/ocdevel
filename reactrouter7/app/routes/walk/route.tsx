@@ -1,7 +1,7 @@
 import TopSection from "./top-section";
 import CompareButtons from './compare-buttons';
 import {ProductProvider} from "~/routes/walk/context";
-import {seoLabels} from "~/content/treadmills/scoring/seo";
+import {getScoresAndLabels, getCombos} from "~/content/treadmills/scoring/seo";
 import ContentSection from "~/routes/walk/content-section";
 import CalorieCalc from "~/routes/walk/calorie-calc";
 import {ModalSingleton} from "~/components/modal";
@@ -15,7 +15,10 @@ const Table = lazy(() => import('./table/table'))
 
 export function loader() {
   // calculate scores and inverted links server-side to save on render time
+  const {scores, labels} = getScoresAndLabels()
+  const combos = getCombos(scores)
   return {
+    seo: {labels, combos},
     computed: getComputed()
   }
 }
@@ -25,14 +28,14 @@ const loading = <Container>
 </Container>
 
 export default function Route({loaderData}: Route.ComponentProps) {
-  const {computed} = loaderData
+  const {computed, seo} = loaderData
   return <>
     <ProductProvider computed={computed}>
       <TopSection />
       <Suspense fallback={loading}>
         <Table />
       </Suspense>
-      <CompareButtons />
+      <CompareButtons seo={seo}/>
       <CalorieCalc />
       <ContentSection />
     </ProductProvider>
@@ -40,8 +43,8 @@ export default function Route({loaderData}: Route.ComponentProps) {
   </>
 }
 
-export function meta() {
-  const brands = seoLabels.slice(0, 20).join(', ')
+export function meta({data}: Route.MetaArgs) {
+  const brands = data.seo.labels.slice(0, 20).join(', ')
   const desc = meta_.head.description.replace('[placeholder]', brands)
   return [
     { title: meta_.head.title },

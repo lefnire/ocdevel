@@ -1,23 +1,69 @@
 import data from "~/content/treadmills/data";
-import type {Product} from "~/content/treadmills/types";
 
-const withSeo = (
-  Object.values(data)
-  .map(obj => ({
-    ...obj,
-    seo: (obj.pickedBy?.websites || obj.brand.pickedBy?.websites || []).reduce(
-      (sum, item) => sum + (item?.value || 0), 0
-    )
+type Scores = {key: string, score: number}[]
+type Labels = string[]
+type ScoresAndLabels = {scores: Scores, labels: Labels}
+export function getScoresAndLabels(): ScoresAndLabels {
+  const withSeo = (
+    Object.values(data)
+    .map(obj => ({
+      ...obj,
+      seo: (obj.pickedBy?.websites || obj.brand.pickedBy?.websites || []).reduce(
+        (sum, item) => sum + (item?.value || 0), 0
+      )
+    }))
+    .filter((obj) => Boolean(obj.seo))
+    .sort((a, b) => b.seo - a.seo)
+  )
+
+  const labels = [...new Set(
+    withSeo
+    .map(obj => obj.brand.name.replaceAll(' / ', ', '))
+  )]
+  const scores = withSeo.map(s => ({
+    key: s.key,
+    score: s.seo
   }))
-  .filter((obj) => Boolean(obj.seo))
-  .sort((a, b) => b.seo - a.seo)
-)
+  return {labels, scores}
+}
 
-export const seoLabels = [...new Set(
-  withSeo
-  .map(obj => obj.brand.name.replaceAll(' / ', ', '))
-)]
-export const seoScores = withSeo.map(s => ({
-  key: s.key,
-  score: s.seo
-}))
+type KeyBrand = {key: string, brand: string}
+export type Combos = [KeyBrand, KeyBrand][]
+export function getCombos(scores: Scores): Combos {
+  const availableNames = Object.fromEntries(
+    scores.map(s => {
+      const brandName = data[s.key].brand.name
+      const aliases = brandName.includes(' / ') ? brandName.split(' / ') : [brandName]
+      return [s.key, aliases]
+    })
+  )
+  const seenCombos: {[combo: string]: boolean} = {}
+  const combinations: [KeyBrand, KeyBrand][] = [];
+  let i = 0;
+  let j = scores.length - 1;
+  while (true) {
+    if (Object.keys(availableNames).length < 2) { break; }
+    const [a, b] = [scores[i], scores[j]];
+    let brandA = availableNames[a.key].shift()
+    if (!availableNames[a.key].length) {
+      i += 1;
+      delete availableNames[a.key]
+    }
+    let brandB = availableNames[b.key].shift()
+    if (!availableNames[b.key].length) {
+      j -= 1;
+      delete availableNames[b.key]
+    }
+
+    // TODO delete this if we show models too
+    if (seenCombos[`${brandA}${brandB}`]) { continue; }
+    seenCombos[`${brandA}${brandB}`] = true;
+    if (brandA === brandB) { continue; }
+
+    combinations.push([
+      {key: a.key, brand: brandA!},
+      {key: b.key, brand: brandB!},
+    ])
+  }
+  return combinations
+}

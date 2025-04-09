@@ -5,18 +5,19 @@ import metas_ from "~/content/blog/metas.js"
 import * as walkMeta from '~/routes/walk/meta.js'
 import Card from 'react-bootstrap/cjs/Card';
 import Container from 'react-bootstrap/cjs/Container';
-import {seoLabels} from "~/content/treadmills/scoring/seo";
+import {getScoresAndLabels} from "~/content/treadmills/scoring/seo";
 import type {Route} from './+types/blog._index.tsx'
 import {Link} from "react-router";
 
 // Load in a loader so the client isn't hydrated with all the data exports from
 // treadmills (there's lots)
 export function loader() {
-  const pads = seoLabels.slice(0, 10).join(', ')
+  const {labels} = getScoresAndLabels()
+  const walkingpads = labels.slice(0, 10).join(', ')
   return {
     legacyFitnessDesk: {
       ...walkMeta,
-      teaser: walkMeta.teaser.replace('[placeholder]', pads)
+      teaser: walkMeta.teaser.replace('[placeholder]', walkingpads)
     }
   }
 }

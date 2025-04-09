@@ -3,6 +3,7 @@ import {createContext, type PropsWithChildren, useCallback, useEffect, useMemo, 
 import {columnsObj} from "~/content/treadmills/columns";
 import data_ from '~/content/treadmills/data'
 import type {Computed, Row} from '~/content/treadmills/types'
+import type {Route} from './+types/route'
 
 export interface ProductContext {
   compareKeys: string[]
@@ -23,9 +24,9 @@ export const ProductContext = createContext<ProductContext>({
   urlFilters: []
 })
 
-type ProductProvider = PropsWithChildren<{
-  computed: {[k: string]: Computed}
-}>
+type ProductProvider = PropsWithChildren<
+  Omit<Route.ComponentProps['loaderData'], 'seo'>
+>
 export function ProductProvider({computed, children}: ProductProvider) {
   // URL parameters for comparison
   const [searchParams, setSearchParams] = useSearchParams();
