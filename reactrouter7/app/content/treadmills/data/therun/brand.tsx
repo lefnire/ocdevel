@@ -1,17 +1,18 @@
 import type {Brand} from '../../types'
 const links = {
   brand: {
-    // US: ""
+    US: "https://theruntreadmill.com/"
   },
   amazon: {
-    // US: ""
+    US: "https://amzn.to/3YkLlDy",
+    CA: "https://amzn.to/3GdlJCg"
   },
 }
 const info: Brand = {
   // Key for looking up the brand later
-  key: 'brand',
+  key: 'therun',
   // Name of the brand
-  name: "Brand",
+  name: "THERUN",
   links,
   // Warranty options for this brand
   warranty: {},

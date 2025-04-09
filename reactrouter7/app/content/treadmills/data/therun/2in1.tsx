@@ -3,7 +3,8 @@ import brand from './brand'
 
 const links = {
   amazon: {
-    // US: ""
+    US: "https://amzn.to/3G33hMH",
+    CA: "https://amzn.to/3Ygb8wT"
   },
   brand: {
     // US: ""
@@ -12,27 +13,27 @@ const links = {
 const info: Product = {
   model: {
     // Name of the model / product
-    value: "Product",
+    value: "2 in 1",
   },
   // Key for later lookup
-  key: `${brand.key}_model`,
+  key: `${brand.key}_2in1`,
   links,
   brand,
   // Dimensions in inches, D x W x H
   dimensions: {
-    value: [47.6, 23.6, 8.7],
+    value: [39, 22.8, 49],
   },
   // Weight of the treadmill
   weight: {
-    value: 100,
+    value: 43.4,
   },
   // Maximum human weight capacity
   maxWeight: {
-    value: 265,
+    value: 300,
   },
   // Maximum speed it can go to
   maxSpeed: {
-    value: 3.5,
+    value: 6.2,
   },
   // Motor horsepower
   horsePower: {
@@ -40,29 +41,29 @@ const info: Product = {
   },
   // When was it released
   age: {
-    value: "2024-01-01",
+    value: "2024-11-01",
   },
   // Rating of this product. It looks like:
   // [[ star rating, number of ratings ], [ 5-star percentage, 4-star, 3-star, 2-star, 1-star ]]
   rating: {
-    value: [[4.1, 100], [70, 20, 0, 0, 10]],
+    value: [[4.2, 2048], [68,14,5,3,10]],
   },
   // Fakespot score (MCP - ignore this)
   fakespot: {
-    value: ["C", brand.fakespot],
+    value: ["A", brand.fakespot],
   },
   // Price
   price: {
     // Standard price
-    value: 900,
+    value: 180,
     // Sale price, if on sale
-    sale: 500,
+    sale: 160,
   },
   // MCP: ignore this
   pickedBy: {
     // me: 1,
     // trusted: [{value: 1}],
-    // websites: [{value: 1}],
+    websites: [{value: 1, label: "Amazon Top Sellers", url: "https://www.amazon.com/gp/bestsellers/sporting-goods/3407831/"}],
   },
   incline: {
     // Incline percentage
@@ -72,9 +73,9 @@ const info: Product = {
   },
   shock: {
     // Does it have shock absorption advertised?
-    value: false,
+    value: true,
     // If so, how would you guesstimate it's rated (1-10)
-    rating: 5,
+    rating: 3,
   },
   decibels: {
     // value: 50,
@@ -87,11 +88,11 @@ const info: Product = {
     // Is it easy to lubricate? Judge by the photo, the side-rails must be level with the deck.
     // 10 if the deck is level; 1 if they're really large and would require loosening the belt
     // just to access it
-    value: 5,
+    value: 10,
   },
   material: {
     // Material listed
-    // value: "Alloy Steel"
+    value: "Alloy Steel"
   },
 }
 export default info
