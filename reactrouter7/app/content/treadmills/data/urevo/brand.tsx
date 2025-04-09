@@ -32,7 +32,7 @@ const info: Brand = {
     ]
   },
   notes: () => <div>
-    Urevo has the best value (price-to-quality ratio) of my research & testing. Eg, compared to Egofit M2 - they're available on Amazon, with extended warranty, cheaper, less sensitive to pet-hair, for otherwise same quality. They're the default choice by some package deals (like FlexiSpot walking desks). I recommend the Urevo 3S for mid-tier, CyberPad for quality. Their other models have some combination of good price, shock absorption, incline, good motor; but rarely all together. Note: their prices fluctuate, and there's often an Amazon Coupon (right under the price), check before buying.
+    Urevo is my personal favoirte budget brand. Great value (price-to-quality ratio) from my research & testing. They were the default choice by FlexiSpot's walking desk package (until FlexiSpot started making their own mills). Note: their prices fluctuate, and there's often an Amazon Coupon (right under the price), check before buying.
 
     <div><b>Choosing the right model</b></div>
     <div>
@@ -54,6 +54,9 @@ const info: Brand = {
         <div><small>Some of the newest models aren't there yet; but most the others are. Then you can get the Asurion extended warranty and all that. They don't name them on Amazon, so cross-reference the image from what you chose on urevo.com.</small></div>
       </li>
     </ol>
+
+    <h5>Ultra-budget models</h5>
+    <p>The E-series, and the Classic / Lite, are their ultra-budgets. Prioritize newer. Unfortunately E5 lacks incline, but it's worth it for the motor improvements - so prop it on a 2x4 under the head.</p>
   </div>
 }
 export default info
