@@ -1,7 +1,7 @@
 import {mlgShow} from "~/content/podcast/metas.js";
 import Podcast from './podcast'
 import Navbar from './navbar'
-import img from "~/assets/logos/MLG-Option-1.jpg?w=290&h=290&format=webp&effort=max"
+import img from "~/assets/logos/MLG-Option-1.jpg?w=250&h=250&format=webp&effort=max"
 import type {Route} from './+types/route_mlg'
 
 export function loader({request}: Route.LoaderArgs) {

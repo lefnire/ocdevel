@@ -1,6 +1,6 @@
 import {llhShow} from "~/content/podcast/metas.js";
 import Podcast from './podcast'
-import img from '~/assets/logos/llh290.png?w=290&h=290&format=webp&effort=max'
+import img from '~/assets/logos/llh290.png?w=250&h=250&format=webp&effort=max'
 import type {Route} from './+types/route_llh'
 
 export function loader({request}: Route.LoaderArgs) {
