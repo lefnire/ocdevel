@@ -123,7 +123,10 @@ export function invertLinks(row: Product): LinksInverted {
 
 type ObjType = 'product' | 'brand'
 export function renderCountryLinks(row: Row, objType: ObjType, oneCountry?:string) {
-  const siteNames = {amazon: "Amazon", brand: "Company Website"}
+  const siteNames = {
+    amazon: "Amazon",
+    brand: {brand: "Company Website", product: "Product Page"}[objType]
+  }
   const countries_ = oneCountry ? [oneCountry] : countries.order
   const links = countries_.flatMap(code => (
     countries.buyOrder.map((site, i) => {
