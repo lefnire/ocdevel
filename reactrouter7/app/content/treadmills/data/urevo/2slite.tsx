@@ -17,7 +17,9 @@ const info: Product = {
     amazon: {
       US: "https://amzn.to/4bT3huF",
     },
-    brand: {}
+    brand: {
+      US: "https://shareasale.com/r.cfm?b=2635321&u=4069700&m=159466&urllink=www%2Eurevo%2Ecom%2Fproducts%2Furevo%2D2s%2Dlite%2Dtreadmill&afftrack=",
+    }
   },
 
   dimensions: {

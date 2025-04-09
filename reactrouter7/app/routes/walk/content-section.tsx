@@ -113,8 +113,8 @@ const ContentSection = memo(() => {
       in particular the E7 series. You'll definitely want an electric desk which can sit or stand, because after walking or standing all day, you'll need a break.
     </p>
 
-    <h5>Shoes: Brooks or Hoka</h5>
-    <p>{affiliateLink(products.shoes_men, "Men")}, {affiliateLink(products.shoes_women, "Women")}. There are shoes more tailored towards prolonged walking or standing rather than running. I research what nurses champion, since it's the closest lifestyle to a walking desk. They're quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi
+    <h5>Shoes: Hoka or Brooks</h5>
+    <p>{affiliateLink(products.shoes_men, "Men")}, {affiliateLink(products.shoes_women, "Women")}. There are shoes more tailored towards prolonged walking or standing rather than running. I research what nurses champion, since it's the closest lifestyle to a walking desk. They're quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi.
     </p>
 
     <h5>Ergonomic keyboard & mouse</h5>

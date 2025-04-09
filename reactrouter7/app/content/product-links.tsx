@@ -77,11 +77,13 @@ const links: Record<string, AffiliateLink> = {
     link: "https://amzn.to/4hHO151",
   },
   shoes_men: {
-    link: "https://amzn.to/4au1fk1",
+    title: "Hoka Bondi 9",
+    link: "https://amzn.to/42l9TgU",
     key: "shoes_men",
   },
   shoes_women: {
-    link: "https://amzn.to/3WvoJiM",
+    title: "Hoka Bondi 9",
+    link: "https://amzn.to/3RaRuOQ",
     key: "shoes_women",
   },
   fluidstance_planecloud: {
