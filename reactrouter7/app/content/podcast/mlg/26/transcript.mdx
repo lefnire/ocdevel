@@ -1,0 +1,204 @@
+[00:01:08] This is episode 26, project Bitcoin Trader. This episode's gonna be a little different. We're gonna introduce a project that we as a community can develop together so we can sharpen our teeth on machine learning engineering.
+
+[00:01:21] The project is going to be a Bitcoin trading bot. There's a few reasons for the selection of this project. One is that cryptocurrency is a super hot topic right now. Another is that, hey, you and me might be able to get rich from this project. I'm not kidding. I've been working pretty hard on this thing for the last six months, nights and weekends, and I'm crossing my fingers that it'll work out.
+
+[00:01:38] Someday we'll be able to crack the code, but the main reason for using Bitcoin trading for our project is that it's going to lend really well to the coming episodes. The next episode after this one's gonna be on hyper parameter selection and the one after that. We're finally gonna start on reinforcement learning, deep reinforcement learning, and Bitcoin trading handles very specially in hyper parameter selection.
+
+[00:02:00] This next coming episode, it very intuitively highlights a lot of the decisions that we can make about choosing network architecture, which types of layers to use, whether they're LSTM or convolutional layers. Activation functions, width of the layers and things like this. It more intuitively highlights these choices than many other scenarios In machine learning, do Bitcoin trading is very special in that it makes these types of decisions of hyper parameters very intuitive.
+
+[00:02:30] You'll see that in the next episode. It's a little hard to understand right now. Another thing that makes Bitcoin trading special as a machine learning project is its flexibility. Trading can be successfully done in machine learning, either by unsupervised learning, supervised learning, and reinforcement learning.
+
+[00:02:47] All three branches of machine learning you can apply to trading. And you'll see in this episode that trading is a very simple concept, so it's very surprising the amount of flexibility we have in the types of machine learning paradigms we apply to this scenario. So you can start to see that it's quite special.
+
+[00:03:03] Another bit is. You can use convolutional neural networks or LSTM, recurrent neural networks in your network architectures for your trading model, which is very unusual. Bitcoin trading, as we'll see in this episode, is a time series scenario. The intuitive network architecture is an LSTM recurrent neural network, but you're not restricted to using that in.
+
+[00:03:22] In fact, many people have had more success spinning the situation as a convolutional neural network scenario. So trading is a very unique scenario that lends well to a lot of machine learning, concept exploration, and which will dovetail us eventually into deep reinforcement learning. I. So it's a good project in its own right.
+
+[00:03:43] I think it's something that a lot of you guys will get a kick out of and hey, maybe we can make money off of. But importantly for this podcast, it's going to fit very nicely into the progression of episodes from here on out. This episode is going to describe Trading Day, trading swing trading. And it's going to describe cryptocurrency and Bitcoin and all that stuff.
+
+[00:04:03] If you know about cryptocurrency, if you yourself are a day trader, skip this episode. There's no machine learning. In this episode, we're gonna apply this episode's content into a machine learning framework. In the next episode, I. So if you know crypto and you know trading, skip this episode. But if you don't feel like you know both or either of those well enough, listen to this episode because a lot of the details are gonna come in unexplained in future episodes.
+
+[00:04:27] So this will give us the groundwork. Okay? Before we talk about trading, we're gonna talk about cryptocurrency. So there's two aspects to our project, cryptocurrency and crypto trading. Now, cryptocurrency, I'm not so sure I need to really introduce. I imagine most of my listeners are well acquainted with it.
+
+[00:04:46] It's a super hot topic right now. Everyone's talking about Bitcoin. Our parents are asking us how to get involved in Bitcoin, all that stuff. But I'm gonna introduce Bitcoin nonetheless for diligence, and then we'll talk about trading. Bitcoin is a type of cryptocurrency or just crypto. Some people call it a cryptocurrency, is a currency just like the US dollar is a currency.
+
+[00:05:09] The European Euro is a currency. The Japanese yen. Except it's a universal currency, rather than being pegged to any specific country. That's what a cryptocurrency is. It's a digital currency that's completely managed and generated digitally on the internet. Cryptocurrency is not managed by any one person, organization, or group.
+
+[00:05:29] It is managed, distributed to all the miners in the network. You may have heard of this thing Bitcoin mining. Well, basically people have their computer rigs set up, usually a beefy GPU setup, very similar to a machine learning PC actually. And what they're doing is they're running a bunch of equations calculations.
+
+[00:05:46] This is called mining, and it's basically handling the infrastructure of the currencies. Existence, processing transactions with the currency, making sure new bitcoins are released into the world in a proper, timely way. In the same way that the Federal Reserve handles distribution of the US dollar, so it's distributed within a big network of people, and all transactions purchased with cryptocurrencies are recorded onto this distributed ledger, this permanent record.
+
+[00:06:16] So that's a lot of information. If you've never heard of cryptocurrency, that might have been a whirlwind, but the crux of it is that cryptocurrency is a currency just like the US dollar, except that its management is super secure, super permanent, and completely democratized, completely managed and owned by the people.
+
+[00:06:35] It's a very special thing. Indeed. It's getting a lot of publicity these days for a very good reason. It offers a lot of value into the financial marketplace. It offers a lot of competition in its value over banks and over governmental overseeing of country currencies. So, so you may have heard this thing.
+
+[00:06:52] People say, well, cryptocurrency is a big bubble because. There's nothing backing it. Unlike gold, which has a physical object backing it. Well, that's not true. What's backing cryptocurrency is the value that it adds high security and untamperable and permanent history of transactions. That's called the Ledger and Democratic management.
+
+[00:07:11] All things that real currencies lack, so there's something substantial backing cryptocurrencies. Bitcoin is one of many cryptocurrencies. Bitcoin would be like the US dollar, for example. There are many other cryptocurrencies, one's called Ethereum, another's called Litecoin, another's called Ripple, and they all have symbols.
+
+[00:07:28] Bitcoin is BTC, just like the US dollar is USD. Ethereum is ETH. Well, Bitcoin's the most popular because it was the first of the cryptocurrencies. It was the flagship of the concept of cryptocurrency, built on this underlying technology called blockchain. All those benefits that I'd mentioned previously about distributed permanent ledger security, blah, blah, blah, blah, blah.
+
+[00:07:53] That's all built into the technology called. Blockchain. And then on top of blockchain, we have cryptocurrencies. And one of those cryptocurrencies is Bitcoin. And Bitcoin was the first, and therefore it's the most popular. It's not necessarily the best. Different cryptocurrencies have different sort of scalability profiles and additional features.
+
+[00:08:12] So for example, Ethereum has this thing called smart contracts, which actually let you sign a contract digitally with somebody, and then based on some event. Execute that contract. Let's say you're a contractor working for a company. You might use Ethereum to sign and execute a contract, and now you're locked into a contract.
+
+[00:08:31] If you decide to break that contract, whether you leave the company early or do something like that, then a penalty can be forced programmatically via that contract. And so the combination of smart contracts, a distributed permanent ledger, and all these things, they, they, there's a lot of opportunity to use this technology to reduce legal costs and investigation and mitigation, and the government could use this to automate taxes at the end of the year and all this stuff.
+
+[00:08:56] So cryptocurrency is really cool stuff. A lot of really strong potential in the future with this technology. Now we're interested in it for our purposes as a trading vehicle. Day trading, swing trading, this kind of stuff. You might have heard before. We could trade stocks and bonds and foreign currencies and any of these other things that people have traditionally been trading on Wall Street for the last many, many decades.
+
+[00:09:21] We could do that. They're a little bit complicated to get into. Getting into trading stocks can be quite a technical hurdle. Getting started. You also have to sort of keep your eye on which stocks you want to trade, so stocks and bonds and stuff that may be a little too complicated for a project for us.
+
+[00:09:40] One thing we could trade is foreign exchange. Forex, F-O-R-E-X Foreign exchange is very similar to cryptocurrency, country currencies, cryptocurrencies, they're very similar. You can trade. Country currencies on a foreign exchange. In the same way that you can trade cryptocurrencies on an exchange like GDX, which we'll get to in a bit.
+
+[00:10:02] Foreign currencies go up and go down. They ebb and flow just like stocks, just like bonds. Certain countries economies might be booming like China, for example. If that's the case, maybe you should buy some Chinese currency in exchange for your US dollar if the Chinese economy is burgeoning more than the US economy.
+
+[00:10:22] Then presumably you would be making money on that purchase. The value of the Chinese currency that you just purchased increases. And at some point you can decide to sell that, get your US dollars back in exchange for the currency you own, and you will have made a profit because you sold after the value had increased.
+
+[00:10:39] So we could trade in foreign currency. But we're gonna do it in cryptocurrency, this digital currency, because of the tooling that's available. The exchanges out there like g Dax, and Kraken have fantastic APIs. The very nature of cryptocurrency being this new generation digital phenomenon means that it has all of the great digital tooling around it that makes working with it as an engineer.
+
+[00:11:03] Very easy. So the main reason we're gonna be trading in cryptocurrency compared to the traditional instruments is just convenience. By the way, that word instrument. Instrument refers to anything that you can trade. So a stock is an instrument, a specific stock. So the apple stock is an instrument.
+
+[00:11:24] Facebook stock is an instrument, a foreign currency is an instrument. A specific bond is an instrument. Bitcoin is an instrument. Okay, so we described cryptocurrency. Bitcoin is the main cryptocurrency out there. Just by popularity. We're therefore going to be using Bitcoin instead of Ethereum, ripple, Litecoin, et cetera, just because there's more historical data available for Bitcoin.
+
+[00:11:46] All exchanges support Bitcoin, et cetera. Now let's talk a little bit more about trading. There's two words to be aware of. Investing and trading. When you invest, you buy an instrument or some amount of some instrument like stock in Apple, for example, because you believe in that instrument. You believe that the value of Apple is going to increase in the future.
+
+[00:12:09] Investing is putting money where your belief is. And then you just leave it. You just leave your money there. The stock market goes up and it comes down and it goes up and comes down. It's like the sawtooth graph, and you ignore the graph. You don't care about the prices in the short term because all you care about is in the long term.
+
+[00:12:29] Generally speaking, if your theory is correct, your investments value will increase. Trading is different. Traders believe that the activity on that graph does indeed matter. The idea goes like this, and you may have heard of this phrase, buy low, sell high. Let's say you buy $10 of stock in Apple, then over some amount of time in.
+
+[00:12:51] It doubles in value. Now your stock in Apple is worth $20. You bought 10, it became 20. Now, let's say that Apple's value is starting to creep down. Well, if you jump out just in time, you sell your stock that you own at $20, and let's say Apple's stock crashes back down to $10. Well, what just happened? You doubled your value.
+
+[00:13:15] You put in 10, you came out with 20, you bought low, you sold high. So the idea of trading is to look for these patterns in a graph, in a, in what's called price actions of an instrument. You look for these patterns and you buy and you sell based on the patterns so that you can come away with more money than you put in.
+
+[00:13:34] The catchphrase is buy low and sell high, but it's usually not that simple. And the big problem with that phrase really is how do you know what's low and what's high? How do you know when you're at a low or if it's gonna keep going lower? And how do you know when you're at a high or if it's gonna keep going higher?
+
+[00:13:51] I. So investors and traders are fundamentally different people. Investors believe in the value of something. They put their money in that stock or in that Bitcoin, and they just leave it. They close their eyes. They don't wanna be stressed out by that wild graph. They know that in 10 years time, they'll walk away with more money than they put in traders.
+
+[00:14:11] On the other hand, buy and sell based on patterns on the graph, on a daily basis, on a weekly basis, on a monthly basis, however much amount of trading you want to do. If you do all of your trading in the course of a day, if you're just glued to the screen and you're buying and selling and buying and selling, we call that a day trader.
+
+[00:14:32] And the important bit about a day trader is at the end of the day, the trader closes his or her positions. In other words, he takes all the money out and puts it in his pocket. He doesn't want his value to fluctuate overnight when he can't be watching it, so he manages it all manually, all in the course of one day.
+
+[00:14:50] Goes to sleep, wakes up and starts over again. Generally a day trader, that's like a full-time job. There's lots of day traders out there that that's all they do. Many of them make a lot of money a day Trader is probably what you have in mind when you think about stock markets, about trading on Wall Street, Wolf of Wall Street kind of stuff.
+
+[00:15:08] These guys in business suits glued to a screen black screen with green and red price charts and numbers and histograms on their monitor. And you know, they're holding up tickets in the air and they've got the visor or something like that. That's the old style stock exchange trading. Now everything's digitized, of course.
+
+[00:15:27] Now swing trading is anything outside of day trading. Okay? If you don't close your positions at the end of the day and then go to sleep with peace of mind, if you continue to trade over the course of days or weeks or so, then that's called swing trading. They're very similar. It's just that day trading tends to be more of that full-time person.
+
+[00:15:47] What we're gonna build together as a community project is a swing trader, effectively, because it can do trading overnight if you're so inclined. But anyway, it's gonna be a machine learning automated trader. It's gonna buy and sell based on patterns that it recognizes in these graphs. Day traders work on patterns in the graphs.
+
+[00:16:05] If a pattern is there, machine learning can pick it up. Therefore, we should have machine learning be our automated day trader for ourselves, and then we can go to our full-time job and make extra money over there. Now, how do you buy a Bitcoin in the first place? Well, you go to these exchanges, they're called exchanges.
+
+[00:16:24] If you were to buy stocks, you'd go to a stock exchange. If you were to buy bonds, you'd go to a bond exchange. I guess if you were to buy foreign currency, you'd go to a foreign exchange, a four x, and if you want to buy Bitcoin, you go to a crypto exchange. Two very popular exchanges is, one is called G-D-A-X-G-D-A-X, a subsidiary of a company called Coinbase, and another is called Kraken.
+
+[00:16:48] There is no company in charge of Bitcoin or any other cryptocurrency for that matter. Exchanges are basically just like bank accounts. Wells Fargo and Bank of America don't own the US dollar, but they're places where you can go and store your US dollar. Crypto exchanges are places where you can go.
+
+[00:17:07] Exchange your US dollars for some amount of Bitcoin. Now you hold some Bitcoin on that exchange and you can trade back and forth between your dollar and your Bitcoin. G DAX is probably the most popular out there, so that's what I recommend you using if you're in the us. Kraken is a little less popular, but it's also available to European citizens and others.
+
+[00:17:28] Now what you'll do is you'll go on G dax.com and you'll sign up and you'll put in a bunch of security information and you put in your bank wiring information, and then you transfer money from your bank into GD, and now you'll have a certain amount of money in US dollars in GD. Now you can trade those US dollars for Bitcoin.
+
+[00:17:48] What you'll see in front of you is a black screen and some charts and some histograms and some numbers, and a whole bunch of little stuff. It is in these charts that you will visually spot the patterns that as a day trader you act on. You'll be looking at this screen, this is your terminal, and based on activity in these charts, you're going to decide whether to buy Bitcoin or to sell Bitcoin or to hold, don't do anything.
+
+[00:18:13] Buy, sell or hold. So you're looking for patterns in the charts. Where do these patterns come from? They come from what's called price actions. Now you can imagine that the value of bitcoin goes up and down and up and down, and it draws this line chart. Well, let's say we wanted to make a machine learning model around that.
+
+[00:18:30] What would you do? Well, you'd have time, steps, every time step. You'd have a price. The price of Bitcoin at that time. The price of Bitcoin changes depending on how many people are buying or selling the Bitcoin. The value of Bitcoin is in how many people have purchased Bitcoin. The more people buy Bitcoin, the more valuable it is.
+
+[00:18:48] So you can imagine a line chart and every time step is a price. And so if you wanted to build a machine learning model here, what you might do is use an LSTM recurrent neural network. An RNN Remember is the Neural Network best designed for time series data and Bitcoin. Price History is indeed time series data with one input at every time step.
+
+[00:19:13] Being the price. Let's say it's $10,000 at times, step one, and then it's $10,002 at times, step two, then $10,003 at times, step three and so on. You might build A-L-S-T-M-R-N-N where you pipe in the history of some time slice, let's say 150 steps. And the label, the thing you're trying to predict in a supervised learning scenario is the next price.
+
+[00:19:40] That's your label. So you input all the time, steps one to one 50, and you're training your model to be able to predict the very next time, step, time, step 151. In this case, that's your supervised learning situation. Bing, bang, boom. We have a day trader. Easy peasy. That would be the, the most basic way that you could envision this project.
+
+[00:20:03] An L-S-T-M-R-N-N where you feed in, where you feed in all the time, steps one input per time step. That's the price, and you're training it to predict the last time step. You're training it to predict one time step into the future. So if you were training it to be a day trader, it would predict one second into the future.
+
+[00:20:23] In our example where every time step is a second. But then you as a developer would have to hard code the rules of what to do next. Well, if it predicts that the price is gonna go up in the next time step, well, maybe we should make it buy. If it predicts that the price is going to go down in the next time step, we should make it sell, buy low, sell high, right?
+
+[00:20:50] And if the next price prediction is the same as the current price, then it should hold. It should do nothing. Very good. We have a supervised learning, L-S-T-M-R-N-N. Model that will take in all of the prices as time, steps and output. The next time step prediction, and then we have some custom code to decide what to do next.
+
+[00:21:11] There's a couple problems here. The first one is, it's not that simple with buy low, sell high. It may seem so at first, but it really isn't. There's a lot of clever strategies for working the system like you're playing chess. Day trading is not a simple job. In fact, many people study day after day after day, train in sandbox environments and lose a lot of money in their early years as a trader until they really start to get the system right.
+
+[00:21:42] So it's really not so simple as buy low sell highs. There's tricks and strategies. And so that leads us to one of the reasons why we're discussing Bitcoin trading as a pedagogical machine learning scenario in the first place, which is that the problem can be posed either as a unsupervised learning situation.
+
+[00:22:01] I actually don't know how you'd do that, but I've heard it done before a supervised learning situation, which I just described, in which case you would have to program by hand the next step actions or. A reinforcement learning situation. Reinforcement learning takes supervised learning to the next step.
+
+[00:22:23] Reinforcement learning has inside of its package, like in its stomach. Imagine this robot with an L-S-T-M-R-N-N in its stomach. It has inside of its package supervised learning inside of its package. It has the capacity to estimate the next time step based on prior historical data. And then in the outer shell of reinforcement learning, the model learns to act.
+
+[00:22:49] It learns to take the correct action and it can learn very sophisticated actions and sequences of actions and strategies and so forth. So this is a situation in which we could use supervised learning for our trading bot, or we could use reinforcement learning for our trading bot in our project. The actual code is written.
+
+[00:23:09] To use deep reinforcement learning by way of a framework called tensor force. I think reinforcement learning is a much better fit for automated trading than supervised learning, but both can be used. So that was the first problem with how we envision modeling our situation, was that it may be able to predict the next time step to some degree of accuracy using an lstm RNN.
+
+[00:23:31] But that doesn't tell you what to do next, and it's not as simple as buy low, sell high after all. So switching to a reinforcement learning model could mitigate that issue. The second problem is. That a single price at a time step is usually not enough information to really build a pattern matching model.
+
+[00:23:51] It is very unlikely that you could build an L-S-T-M-R-N-N that could really accurately predict next step prices just based on price alone. One input is really insufficient for any machine learning model, so how can we get more inputs out of our situation, more inputs for every time step? Well, here's how, at any given time, any number of trades could be occurring on an exchange.
+
+[00:24:18] Any number of other people could be buying and selling Bitcoin too. In other words, time is infinitely divisible. As far as trading is concerned, that sounds confusing. What I'm trying to say is you're gonna have to decide how to partition your time steps. Are they gonna be once every second, once every two seconds?
+
+[00:24:40] Once every minute, every hour, every day? Well, if you decide on partitioning your time steps into one second. Buckets. Well within that one second slice of time, an infinite amount of trades may have occurred. Now, a high frequency trading algorithm, they're called HFT, high Frequency Trading. These things will split time into milliseconds, nanoseconds.
+
+[00:25:09] In that case, these algorithms could capture every single individual trade. They call these orders. They could capture every single order on the order book. That's a high frequency trading algorithm. There's no chance in hell our project is going to be able to catch every nanosecond slice of time. So we're gonna take it up a scale.
+
+[00:25:30] We're gonna say maybe, uh, 22nd buckets of time. Every 20 seconds we're gonna go out to G d's API and ask it for information on the trades that occurred during that time. Now what happens with every trade, every time somebody buys Bitcoin, the value goes up. Every time somebody sells Bitcoin, the value goes down.
+
+[00:25:51] In other words, during a 22nd slice of time, the value of Bitcoin has gone up and down and up and down. We've got a, a mini saw tooth graph within our little slice of time. What could we do? Maybe we could average all the prices that Bitcoin has been at during that chunk of time. We could take the mean of prices.
+
+[00:26:13] That's something we could do. It's generally not recommended. One downside to that is that outlier prices can vary, strongly affect the mean, and this may occur in a situation called pump and dump. Somebody on the exchange who maybe has. A billion dollars to their name. For example, they can put a million dollars into Bitcoin.
+
+[00:26:35] They can buy a million dollars worth of Bitcoin on GD DX. Now the price has skyrocketed. The value of Bitcoin is now very high. Well, a bunch of traders may see the spike in price. And they may think that we're entering a bubble and they'll very hurly say, bye bye bye. We're on the up and up. And so everybody will put all their money into Bitcoin as well, and now the price is even more up.
+
+[00:26:59] And that initial person who put the million dollars in will now pull the million dollars out because the value has increased and he's selling at a high. It's a very dick move indeed, but it is very common and a very strongly a. Effects at price averaging because it introduces an outlier and it can really mess up your algorithm.
+
+[00:27:21] It can mess up humans too. So we wanna avoid taking the mean of prices in a time slice. Instead, what we're gonna do is we're gonna collect a bunch of information about that time slice. We're gonna ask GDX. When I entered this time slice, when I entered this 22nd interval, what was the price then? That was the open price.
+
+[00:27:41] Open price. And then when I exited this time slice, what was the price then? That's called the close, open, and close. In all of this 22nd time slice, what was the highest price Bitcoin ever reached? That's called the high. For example, in our million dollars scenario, a million dollars would be the high. And what was the low?
+
+[00:28:00] What was the lowest Bitcoin saw in this time? Slice. That's the low open. High, low close. OHLC. This method of segmenting the prices was invented by the Japanese. They call it a candlestick. I've been calling it a bucket or a time slice. They call it a candlestick. And the reason they call it a candlestick is that you can imagine it's like a box plot from statistics.
+
+[00:28:23] We have a vertical bar. The body and it has whiskers on top and on bottom. The top whisker is the high, the bottom whisker is the low. Those are kind of like outliers in a box plot, well, the Japanese envision those as wicks on a candle and the body of the candlestick, the top will either be the open or the close, and the bottom will be the opposite, depending on whether our candlestick is going up or going down by comparison to the prior candlestick.
+
+[00:28:54] If our current candlestick is going up, if the price has increased in this time slice by comparison to the prior time slice. Then the bottom is the open and the top is the close of the body of the candlestick, and the color of the candlestick is green, you know, 'cause it's a good color. It means we're going up and if we're going down, then the top is the open and the bottom is the close and the color is red 'cause we're going down.
+
+[00:29:23] So that's a candlestick, OHLC, open, high, low, close. And there's one more important number in that chunk of time. It's called volume. How much was traded during this time? So for example, the fact that that jerk spent a million dollars pumping the price, but only one person did. That means that there will be low volume and when the price is high, but the volume is low.
+
+[00:29:52] That's a good indicator that we got a pump and dumper, but. The price is high and the volume is high. That means many people are buying into Bitcoin during this time, slice, during this candlestick, and that's a good indicator that it actually is going up. So open, high, low, close, and volume, O-H-L-C-V. Those are the five numbers you'll see very, very commonly.
+
+[00:30:17] If you look on an exchange terminal, the price actions, the actual line graph of price, you'll realize it's not actually a line graph. It's a bunch of candlesticks. Those candlesticks will be colored red and green, depending on if we're going up or going down. And they'll have whiskers on top and on bottom.
+
+[00:30:35] And those are your open, high, low, close numbers. Then below the, the price graph, you'll have a histogram of bars, uh, corresponding to every time step. And those are your volume numbers. So we started off with a price graph, a line graph, and we had the problem that that only gave us one input for every time slice.
+
+[00:30:58] But then we realized, wait up. Wait up. There's no such thing as a time slice. It's infinitely divisible. And so we have to actually decide how much of a graph we wanna split at. So we can say, split it every one second or every. Two seconds or every three seconds. The high frequency trading algorithms will split it every nanosecond or so, but we're not that computationally intensive, so we're gonna split it every one or two seconds.
+
+[00:31:24] Well, in so doing, we just introduced to ourselves five new numbers that we'll use as inputs instead of the one, and that allowed us to get more inputs out of that price graph. O-H-L-C-V or candlesticks. So now our trading model is starting to look a little bit more sophisticated. We, we can envision it as an L-S-T-M-R-N-N, that takes in five inputs at every time step, and either outputs a next price prediction or we can use reinforcement learning and hide that away from us, and it will just decide whether to buy, sell, or hold.
+
+[00:31:59] There's a few more inputs we could juice out of those candlesticks, by the way. And we call these indicators, and there's tons and tons of indicators out there. A very common one is called the simple moving average. And the idea is that it looks back in time at some amount of time, steps, whatever you want, say 200 time steps or 50 time steps.
+
+[00:32:20] You specify the window. And it comes up with a moving average, hence the name, which is a number indicating generally sort of the direction of the graph, the price graph. If it's positive, then we're going up. If it's negative, then we're going down. If it's very positive, then we're going very far up. If it's very negative, then we're going very far down.
+
+[00:32:40] You get the idea. Simple Moving average or SMA. Another one is called exponential moving average. Another one is called RSI or Relative Strength Index. And another one that's very valuable is called vwp, volume weighted average price. And then there's a whole bunch of others. Those are probably the most popular, especially for starters that I just listed.
+
+[00:33:01] But there's many, many indicators, and basically you could pipe these into your model. As additional inputs if you want. Now, because these indicators are summarizing price history, uh, a case could be made that since we're using an LSTM recurrent neural network, which already sort of aggregates history over time, they may be unnecessary.
+
+[00:33:25] It's something that you'll want to experiment on your own with. All right. We have price actions, the candlestick data, O-H-L-C-V, open, high, low, close volume. That's five features right there that you can pipe in at every time. Step. We optionally have indicators which aggregate times, steps, prices that come up with additional numbers that may be valuable for your model.
+
+[00:33:46] And one final input we could juice out of our price graphs is this, it's called risk arbitrage, and it's very valuable risk arbitrage. A-R-B-I-T-R-A-G-E. It's a very strange word, arbitrage. And the idea goes like this. G d.com is probably the most popular crypto exchange in America, I'd say spanning the English speaking countries in general.
+
+[00:34:14] But we'll focus on G DDAs and Kraken. Kraken is a little bit less popular than G dda. It spans more than just the United States, so European and UK countries can use that exchange, but it's less popular, less popular than G DDAs. Now, here's why that's important. There's a phenomenon in finance called the Efficient Market Hypothesis, and the idea goes that the price of any instrument, a stock, or a bond.
+
+[00:34:40] Exactly what it should be. The price of an instrument is what it should be. It's fair, they call it, in other words, the price of Bitcoin at like $11,000 is what it is. Today is exactly what it should be. It should be $11,000. Now, the idea of what it should be, quote unquote, is that. Kind of in large numbers of people who are involved on the exchange.
+
+[00:35:03] On G Dex, a large amount of people are involved. They're doing what's called fundamental analysis. They're researching the value of Bitcoin and watching the news, keeping an eye on all the other currencies, et cetera. Fundamental analysis, it's the idea of doing your research on a company, on a stock, on a cryptocurrency, any instrument doing your research.
+
+[00:35:23] It's called fundamental analysis and deciding to buy and sell based on that. It's kind of the investor strategy. Well, with so many people performing fundamental analysis and so many high frequency trading algorithms, performing technical analysis, which is what we've been describing in this episode, it's the idea of following charts, following numbers and patterns between those two, the fundamental analysts and the technical analysts.
+
+[00:35:48] The price of Bitcoin is going to sort of. Start to waver into the middle of what it should be, the actual value of a Bitcoin, the actual value of a Bitcoin to humanity. You know, $11,000 today, according to the efficient market hypothesis is the real value that a Bitcoin holds to humankind. Now, there's a lot of beef with the efficient market and hypothesis day traders obviously contend with it, and there's a whole thing where it's kind of chicken and egg.
+
+[00:36:17] Sure it's efficient after the analysts have done their job, but the analysts can still be at the front of the line doing their job and making some money in the process, blah, blah, blah. But the point is, in order for the efficient market hypothesis to sort of work out is you have to have a lot of analysts at play.
+
+[00:36:33] You have to have a lot of people leveling out the price. Well, there's more people on GDX and less people on Kraken now. Let's say that GD a's price for a Bitcoin is $11,000 and Krakens is $10,000. Different prices, and this actually occurs a lot more people on GDAX, less people on Kraken efficient market hypothesis is driven by numbers.
+
+[00:37:01] That means GDAX is more correct than Krakens. That means buy in Kraken because it's going to correct itself. They're gonna try to get the price up to the real price being $11,000. That's an oversimplification and there's no conscious effort in this process on the Kraken Exchange or the people trading over there.
+
+[00:37:24] It's sort of like this just natural equilibrium that occurs on financial exchanges. So that's another input we can pipe in at any time. Step is all of the O-H-L-C-V plus indicators coming from GDAX pipe that in. But also the same data from Kraken Pipe, both exchanges, price, actions and indicators in at the same time.
+
+[00:37:52] And then it could help your model decide whether to buy on Kraken, 'cause it might catch up to G Dax. It's pretty slick. Huh? Cool. So that's it for trading and cryptocurrency. Now I've already started the code for this project. It's six months old by now, and it's actually pretty close to working. It's using deep reinforcement learning by way of tensor force with actually convolutional neural networks, not LSTM RNs, and we'll discuss the reasoning for that in the next episode.
+
+[00:38:20] And I'll post a link to this open source project on my website, oc develop.com/podcasts/machine learning. So next time we'll discuss hyper parameter selection for our models, and then we'll finally get into deep reinforcement learning the cool stuff, artificial intelligence. All right, see you next time.
+
