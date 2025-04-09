@@ -28,13 +28,14 @@ function FilteredTree({top}: {top: Top}) {
   function recurseTree(
     id: string,
     section: Section
-  ): ResourcePartial[] | ResourcePartial | null {
+  ): ResourcePartial | null {
     const full = flat[id]
 
     // section
     if (full.v?.length) {
-      let v = full.v.map(({id}) => recurseTree(id, section))
-      v = v.filter(Boolean)
+      const v = full.v
+        .map(({id}) => recurseTree(id, section))
+        .filter(n => n !== null)
       if (v.length === 0) {return null}
       return {id, v}
     }
@@ -51,9 +52,10 @@ function FilteredTree({top}: {top: Top}) {
 
     const keep = _reduce(filterKeys, (m, fk) => {
       if (!full[fk]) {return m} // N/A attrs, like video2audio
-      return m && filters[fk][full[fk]]
+      const isActive = filters[fk][full[fk]]
+      return m && isActive
     }, true)
-    return keep ? {id} : null
+    return keep ? {id, v: []} : null
   }
 
   const sections: Section[] = []
@@ -64,9 +66,11 @@ function FilteredTree({top}: {top: Top}) {
     sections.push('degrees')
   }
   sections.push('audio')
-  const branches = sections
+  return sections
     .map(section => recurseTree(top[section].id, section))
-    .filter(Boolean)
-  return branches.map((n: Resource) => <Branch id={n.id} key={n.id} />)
+    .filter(n => n !== null)
+    .map(n => (
+      <Branch id={n.id} v={n.v} key={n.id} />
+    ))
 }
 

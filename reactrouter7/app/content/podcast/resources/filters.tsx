@@ -132,6 +132,7 @@ export const filters = {
   updated: {
     t: "Updated At",
     d: "When did I, Tyler, update this resource link? If a long time ago, consider investigating newer alternatives.",
+    opts: {},
   }
 } as const
 export type FilterKeys = keyof typeof filters

@@ -7,20 +7,21 @@ import {
 
 import {icons} from "~/components/collapsible-icons";
 import {picks} from '~/content/podcast/resources/picks'
-import type {Resource} from "~/content/workflowy/mlg-resources.types"
+import type {Resource, ResourcePartial} from "~/content/workflowy/mlg-resources.types"
 import {ResourceCacheContext} from "./resource-cache";
 import {Leaf} from './leaf'
 
-type Branch = {id: string, level?: number}
-export const Branch = memo(({id, level = 0}: Branch) => {
+// override v, so resourceFilter can pare it down. Pass in manually from caller
+type Branch = ResourcePartial & {level?: number}
+export const Branch = memo(({id, v, level = 0}: Branch) => {
   const {flat} = useContext(ResourceCacheContext);
   const node = flat[id]
   if (!node) {return null}
-  return <Branch_ node={node} level={level}/>
+  return <Branch_ node={node} v={v} level={level}/>
 })
 
-type Branch_ = { node: Resource, level: number }
-const Branch_ = ({node, level = 0}: Branch_)=> {
+type Branch_ = { node: Resource, v: ResourcePartial[], level: number }
+const Branch_ = ({node, v, level = 0}: Branch_)=> {
   const [expanded, setExpanded] = useState(!!node.expand)
   const [showPick, setShowPick] = useState(false)
   const id = node.id
@@ -34,7 +35,7 @@ const Branch_ = ({node, level = 0}: Branch_)=> {
   }
 
   // pick is present, but no children; this section was filtered out
-  if (!node.v?.length) {
+  if (!v?.length) {
     return null
   }
 
@@ -70,13 +71,6 @@ const Branch_ = ({node, level = 0}: Branch_)=> {
 
   const dontPad = level === 0 || expanded
 
-  function renderLi(v: Resource) {
-    const key = `${level}-${v.id}`
-    return <li key={key}>
-      <Branch id={v.id} level={level + 1}/>
-    </li>
-  }
-
   return <div className={dontPad ? '' : 'py-2'}>
     <TreeSectionWrapper expanded={expanded}>
       <div
@@ -86,7 +80,11 @@ const Branch_ = ({node, level = 0}: Branch_)=> {
       {renderSectionInfo()}
     </TreeSectionWrapper>
     {expanded && <ul className={`list-unstyled border-start ps-4 mb-0`}>
-      {node.v.map(renderLi)}
+      {v.map(v => (
+        <li key={`${level}-${v.id}`}>
+          <Branch id={v.id} v={v.v} level={level + 1}/>
+        </li>
+      ))}
     </ul>}
   </div>
 }
