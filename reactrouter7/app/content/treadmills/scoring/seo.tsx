@@ -1,5 +1,12 @@
 import data from "~/content/treadmills/data";
 
+/*
+`data` is of type {
+  brand: {pickedBy: {websites: {value: number}[]}, name: string}
+  pickedBy: {websites: {value: number}[]}
+}
+ */
+
 type Scores = {key: string, score: number}[]
 type Labels = string[]
 type ScoresAndLabels = {scores: Scores, labels: Labels}
@@ -27,6 +34,17 @@ export function getScoresAndLabels(): ScoresAndLabels {
   return {labels, scores}
 }
 
+/*
+The goal of this function is to create pairs of all brand-name combinations, *without replacement*.
+That is, if a brand name has been seen before, remove it from the list. But there's a gotcha:
+Some brand names have aliases. Eg, product.brand.name for WalkingPad is "WalkingPad / KingSmith / Xiaomi".
+So I want to convert that to 3 brand names to add to the list of combinations.
+
+To keep the code simple, I start with BrandA on the left; and BrandB on the right, while-loop
+them together until they meet in the middle. However, I want instead the more popular brands
+to appear first; and since they're ordered by popularity, the current code has the BrandB
+sequence ordering from *least* popular. So really, they should both move from the left.
+ */
 type KeyBrand = {key: string, brand: string}
 export type Combos = [KeyBrand, KeyBrand][]
 export function getCombos(scores: Scores): Combos {
