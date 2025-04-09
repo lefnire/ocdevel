@@ -39,10 +39,10 @@ const deskCard: LinkCardIn = {
   notes: 'Electric sit/stand',
   linkText: `Amazon`
 }
-// import lubeImg from '~/assets/products/sekoday_lube.jpg?w=100&h=100&format=webp&effort=max'
-// const lubeKey = "sekoday_lube"
-import lubeImg from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp&effort=max'
-const lubeKey = "godora_lube"
+import lubeImg from '~/assets/products/sekoday_lube.jpg?w=100&h=100&format=webp&effort=max'
+const lubeKey = "sekoday_lube"
+// import lubeImg from '~/assets/products/godora_lube.jpg?w=100&h=100&format=webp&effort=max'
+// const lubeKey = "godora_lube"
 const lube = {
   godora_lube: {cardTitle: "Godora"},
   sekoday_lube: {cardTitle: "Sekoday"}
