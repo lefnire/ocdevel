@@ -105,6 +105,15 @@ const links: Record<string, AffiliateLink> = {
     link: "https://amzn.to/3RqQJ47",
     key: "mistel_md770",
   },
+  epomaker_split65: {
+    title: "Epomaker Split65",
+    key: "epomaker_split65",
+    link: expires(
+      "https://www.amazon.com/dp/B0DP48WWGB?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.SFBNR2KJWCWV&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.SFBNR2KJWCWV_1744380170535",
+      "2026-01-01",
+      "https://amzn.to/3XUul6Y"
+    )
+  },
   esdwristband: {
     link: "https://amzn.to/3Uz0XSA",
     key: "esdwristband"
