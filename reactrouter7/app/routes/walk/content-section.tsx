@@ -100,6 +100,10 @@ const ContentSection = memo(() => {
 
     <Sub>De-dust frequently</Sub>
     <p>Dust & pet-hair are an enemy to motors, rollers, and bearings. You want to blow air into the motor area - just through any vents or openings available, to blow out dust and hair. Do this frequently - at least once a week (I do it every day or two). Use a high RPM electric duster, like {al(products.euki_air)}.</p>
+
+    <Sub>Wow, that's a lot</Sub>
+    <p>Treadmills are needy. Budget mills more than premium. But don't let the internet fool you - LifeSpans die too without proper maintenance, I've seen it plenty. If you want a low-maintenance walking pad, {al(products.walkolution_walkolution2)} is your guy. C'est la vie, the maintenance becomes a muscle-memory ritual, and it accounts for most the 5-star and 1-star discrepancy.</p>
+
     <ToTop />
 
 

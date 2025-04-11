@@ -279,6 +279,11 @@ const links: Record<string, AffiliateLink> = {
     ),
     title: "Euki Air Duster",
     key: "euki_air"
+  },
+  walkolution_walkolution2: {
+    link: "https://walkolution.com/products/walkolution2?sca_ref=8416295.Hx5JVtdlxLpM&sca_source=blog",
+    title: "Walkolution 2",
+    key: "walkolution_walkolution2"
   }
 }
 export default links;
