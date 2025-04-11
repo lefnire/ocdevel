@@ -99,7 +99,7 @@ const ContentSection = memo(() => {
     </p>
 
     <Sub>De-dust frequently</Sub>
-    <p>Dust & pet-hair are an enemy to motors, rollers, and bearings. You want to blow air into the motor area - just through any vents or openings available, to blow out dust and hair. Do this frequently - at least once a week (I do it every day or two). Use a high RPM electric duster, like {al(products.wolfbox_air)}.</p>
+    <p>Dust & pet-hair are an enemy to motors, rollers, and bearings. You want to blow air into the motor area - just through any vents or openings available, to blow out dust and hair. Do this frequently - at least once a week (I do it every day or two). Use a high RPM electric duster, like {al(products.euki_air)}.</p>
     <ToTop />
 
 

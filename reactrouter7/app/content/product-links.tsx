@@ -270,7 +270,15 @@ const links: Record<string, AffiliateLink> = {
     ),
     title: "WolfBox MF50",
     key: "wolfbox_air",
+  },
+  euki_air: {
+    link: expires(
+      "https://www.amazon.com/dp/B0D5L9JL3P?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.3DZT5K7E2DBB4&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.3DZT5K7E2DBB4_1744385786428",
+      "2025-06-01",
+      "https://amzn.to/42tPqGX"
+    ),
+    title: "Euki Air Duster",
+    key: "euki_air"
   }
-
 }
 export default links;
