@@ -41,7 +41,7 @@ const info: Brand = {
     <p>Each iteration is just an upgrade of the one before it. So just pick whichever price point you're most comfortable with. They're also increasingly heavy / large, and accommodate increasing weight. So factor that into your decision. Note: I'm not sure what the difference between the models GlowUp, Classic, Power, and Omni. I think the GlowUp means "just the treadmill" where the other ones are different spins on the "and also the desk" - but you'll want to research some.</p>
     <p>TX6 is the outlier. It's a newer model, though is often compared to TR1200. The jury's still on which one's a better buy in terms of quality. But it does rock some mean specs, compared to TR1200 (horsepower, speed, etc).</p>
     <h5>Shop locally</h5>
-    <p>LifeSpan's are popular purchases; and many people end up not sticking with the walking-desk life. So you may find one on Craigslist, Facebook Marketplace, etc. Since they last so long, it's worth the discount for used.</p>
+    <p>LifeSpans are popular purchases; and many end up not sticking with the walking-desk life. So you may find one on Craigslist, Facebook Marketplace, etc. Since they last so long, it's worth the discount for used.</p>
   </div>
 }
 export default info

@@ -21,6 +21,7 @@ import lifespan_tr5000 from './lifespan/tr5000'
 import lifespan_tx6 from './lifespan/tx6'
 import imovr_unsit from './imovr/unsit'
 import sperax_motioneaselitep1 from './sperax/motioneaselitep1'
+import sperax_incline from './sperax/incline'
 import bifanuo_tm008 from './bifanuo/tm008'
 import yagud_zf0301 from './yagud/zf0301'
 import lichico_dk38ab2 from './lichico/dk38ab2'
@@ -73,6 +74,7 @@ const data = Object.fromEntries([
   lifespan_tx6,
   imovr_unsit,
   sperax_motioneaselitep1,
+  sperax_incline,
   bifanuo_tm008,
   yagud_zf0301,
   lichico_dk38ab2,
