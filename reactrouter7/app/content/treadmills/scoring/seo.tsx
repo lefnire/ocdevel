@@ -1,4 +1,5 @@
 import data from "~/content/treadmills/data";
+import type {Product} from "~/content/treadmills/types";
 /*
 `data` is of type {
   brand: {pickedBy: {websites: {value: number}[]}, name: string}
@@ -10,13 +11,20 @@ type Scores = {key: string, score: number}[]
 type Labels = string[]
 type ScoresAndLabels = {scores: Scores, labels: Labels}
 export function getScoresAndLabels(): ScoresAndLabels {
+  function seoScore(obj: Product) {
+    const picks = [
+      ...(obj.pickedBy?.websites || obj.brand.pickedBy?.websites || []),
+      ...(obj.pickedBy?.affiliate || obj.brand.pickedBy?.affiliate || []),
+    ]
+    return picks.reduce((sum, pick) => (
+      sum + (pick?.value || 0)
+    ), 0)
+  }
   const withSeo = (
     Object.values(data)
     .map(obj => ({
       ...obj,
-      seo: (obj.pickedBy?.websites || obj.brand.pickedBy?.websites || []).reduce(
-        (sum, item) => sum + (item?.value || 0), 0
-      )
+      seo: seoScore(obj)
     }))
     .filter((obj) => Boolean(obj.seo))
     .sort((a, b) => b.seo - a.seo)
