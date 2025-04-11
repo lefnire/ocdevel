@@ -1,12 +1,16 @@
 import {Link, useNavigate} from "react-router";
-import {memo, useContext, useState} from "react";
+import {memo, type PropsWithChildren, useContext, useState} from "react";
 import Button from 'react-bootstrap/cjs/Button';
 import Container from 'react-bootstrap/cjs/Container';
-import products, {affiliateLink} from '~/content/product-links'
+import products, {affiliateLink as al} from '~/content/product-links'
 import {VideoButtonLg as VideoButton} from "../../components/video-btn";
 import {ScoreInfo} from "~/content/treadmills/utils";
 import {FaArrowUp} from "@react-icons/all-files/fa/FaArrowUp";
 import {ProductContext} from "~/routes/walk/context";
+
+function H({children}: PropsWithChildren) {
+  return <h5 className="pt-2">{children}</h5>
+}
 
 export const contentSections = {
   why_desk: "Why Walking Desk?",
@@ -29,7 +33,7 @@ const ContentSection = memo(() => {
   const toTop = <div>
     <Button
       size='sm'
-      className='my-2'
+      className='ms-0 ps-0 my-1 mb-2'
       variant='link'
       onClick={scrollToTop}
     >
@@ -38,33 +42,26 @@ const ContentSection = memo(() => {
   </div>
   return <Container>
     {header("why_desk")}
-    <h5>Focus</h5>
-    <p>Unlike bikes & steppers (manual devices), treadmills (electric devices) move <em>you</em> (just keep up). This
-      satisfy the mind jitters. Its <em>extremely</em> valuable for ADHD.</p>
+    <H>Focus</H>
+    <p>Unlike bikes & steppers (manual devices), treadmills (electric devices) move <em>you</em> (just keep up). This satisfy the mind jitters. Its <em>extremely</em> valuable for ADHD.</p>
     {/*<p>one of the few aids that works for me (along with the <Link to={"/blog/20240117-pomodoro-thinkers"}>Modified Pomodoro</Link>).</p>*/}
-    <h5>Energy</h5>
-    <p>Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not
-      just with energy, but focus. You'll need less caffeine.</p>
-    <h5>Health</h5>
-    <p>Calories and heart-rate. At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of
-      gym time. This eliminates the gym, saving time and money. At my worst, I clock the minimum-recommend 10k steps.
-      Further, your posture is ideal while walking, better than sitting <em>and</em> standing.</p>
+    <H>Energy</H>
+    <p>Moving keeps blood and endorphins pumping. It keeps you alert and on task all day. Oxygen and endorphins help not just with energy, but focus. You'll need less caffeine.</p>
+    <H>Health</H>
+    <p className='mb-1'>Calories and heart-rate. At my best, I've clocked 320 active zone minutes (Fitbit) in a day. That's 5.3 hrs of gym time. This eliminates the gym, saving time and money. At my worst, I clock the minimum-recommend 10k steps. Further, your posture is ideal while walking, better than sitting <em>and</em> standing.</p>
     <VideoButton href="https://www.youtube.com/watch?v=_6EiAK-jmYQ"/>
     {toTop}
 
-
     {header("buying_guide")}
-    <h5>Get extended warranty</h5>
+    <H>Get extended warranty</H>
     <p>Some treadmills offer one through their website, Amazon offers Asurion. Motors don't last forever, the motor <em>will die</em>. When, not if - and sooner with the budget treadmills. With the warranty, there's nothing to worry about. I've gone through three for the price of one.</p>
-    <p></p>
-    <h5>Budget</h5>
+    <H>Budget</H>
     <p>The budget mills can be more loud, and deal less effectively with heat. To deal with this, reduce the amount of at-one-time walking (eg 30-45 min on, 2-5 min break). Generally expect 1-2 years out of these mills; compared to the non-budgets which could last 10 years. Personally I take the trade-off - I don't know where I'll be in 2 years. And with Amazon's extended warranty, I've been refunded for every malfunction.</p>
-    <h5>Non-budget</h5>
+    <H>Non-budget</H>
     <p>LifeSpan, Unsit, Walkolution, etc. These can bear more weight than the budget picks, and can run continuously for much longer (6-9hrs for LifeSpan, no limit for Walkolution). They're quieter, and much more durable. When you do have problems, they come with long warranties and you'll typically have a service rep come fix it. They're much larger and heavier than budget mills, so they'll be more a permanent fixture than a wheel-away.</p>
-    <h5>Using the table above</h5>
+    <H>Using the table above</H>
     <p>TL;DR: sort by <strong>Score</strong>, enter a <strong>Price</strong> max.</p>
     <ScoreInfo/>
-    <p></p>
     <p>Anywhere there's a <span style={{borderBottom: "1px dotted #000"}}>dotted underline</span>, click it for details.
       I try to make these count.</p>
     {/*<p>I switch up the default links sometimes when one has a better deal (either price, warranty, or added goodies).</p>*/}
@@ -72,54 +69,51 @@ const ContentSection = memo(() => {
 
 
     {header("care")}
-    <h5>Lubrication</h5>
-    <div className="py-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces friction on the pad, which prevents overworking the motor, which extends the treadmill's life. Get one with a firm applicator; wobbly tubes are hard to control. {affiliateLink(products.godora_lube, "Godora")} is easier, {affiliateLink(products.sekoday_lube, "Sekoday")} is cheaper. <VideoButton
-        href="https://www.youtube.com/shorts/QK-BGSrCFXY"/>
-    </div>
-    <h5>Adjusting the belt</h5>
-    <div className="py-1">If the belt starts to drift one way or another, you take an Alan wrench and tighten <em>the
-      side which is too tight / close (not not the side with slack)</em>. This pulls the belt away from that too-tight
-      side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns
-      clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if
-      not (repeat until it&#39;s fixed). Then you just leave it - it&#39;s something I don&#39;t understand,
-      not &quot;undoing&quot; the tightening after the fix, but whatever - you just leave it. This situation happens say
-      once every week or two, is something you do with all the treadmills; necessary evil.&nbsp;
-      <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY"/>
-    </div>
-    <h5>Walk 30-45 min, break 1-5 min</h5>
-    <div className="py-1">Budget mills deal less effectively with heat. To deal with this, reduce the amount of
+    <H>Lubrication</H>
+    <p className="mb-1">Every 50 hours or 3 months of use, apply lube in a zig-zag motion under the belt (between belt and pad). Then run the treadmill at 1mph for 2 minutes without walking on it. This reduces friction on the pad, which prevents overworking the motor, which extends the treadmill's life. Get one with a firm applicator; wobbly tubes are hard to control. {al(products.godora_lube, "Godora")} is easier, {al(products.sekoday_lube, "Sekoday")} is cheaper.
+    </p>
+    <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY"/>
+
+    <H>Adjusting the belt</H>
+    <p>If the belt starts to drift one way or another, you take an Alan wrench and tighten <em>the side which is too tight / close (not not the side with slack)</em>. This pulls the belt away from that too-tight side towards the slack side. Think of it as if you created a slope that the belt rolls down. Do quarter turns clock-wise while the belt is running, wait 15 seconds to see if it fixes itself, and do another quarter turn if not (repeat until it's fixed). Then you just leave it - it's something I don't understand,  not "undoing" the tightening after the fix, but whatever - you just leave it. This situation happens say once every week or two, is something you do with all the treadmills; necessary evil.</p>
+    <p className="mb-1">Also! A sloppy belt-adjustment leads to early motor, bearings, or drive-belt failure. It puts too much strain on one side, angles the rolling pin, and causes downstream degradation. Signs of this are jerky motions, squeaking or grinding, and smells. And make sure the belt is not-too-tight, not-too-loose (I'll make a video soon, Google it for now).</p>
+    <VideoButton href="https://www.youtube.com/shorts/QK-BGSrCFXY"/>
+
+    <H>Walk 30-45 min, break 1-5 min</H>
+    <p>Budget mills deal less effectively with heat. To deal with this, reduce the amount of
       at-one-time
       walking. I recommend 30-45 minutes of walking, and a 1-5 minute break (turn off via remote). The
-      occasional hour or two won&#39;t kill these machines; but running the belt for 8hrs a day might. I&#39;m
-      a fan of the Pomodoro Technique for focus management. You work for 25 minutes (don&#39;t check emails /
+      occasional hour or two won't kill these machines; but running the belt for 8hrs a day might. I'm
+      a fan of the Pomodoro Technique for focus management. You work for 25 minutes (don't check emails /
       texts / Slack, nothing - pure hardcore work) and then take a break for 5 minutes to catch up on
       everything, or just de-steam. This fits perfectly with the treadmill. Work for 25-30, turn it off and go
       check your texts in the bathroom or whatever for 5 min, repeat.
-    </div>
+    </p>
+
+    <H>De-dust frequently</H>
+    <p className='mb-1'>Dust & pet-hair are an enemy to motors, rollers, and bearings. You want to blow air into the motor area - just through any vents or openings available, to blow out dust and hair. Do this frequently - at least once a week (I do it every day or two). Use a high RPM electric duster, like {al(products.wolfbox_air)}.</p>
     {toTop}
 
 
     {header("essentials")}
-    <h5>Treadmill Mat</h5>
+    <H>Treadmill Mat</H>
 
-    <p>{affiliateLink(products.urevo_mat)} adds more absorption; {affiliateLink(products.sunny_mat)} is cheaper. Adds a layer of shock absorption for your knees. Absorbs sound. Prevents shock damage to hard floor. Over time the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a protection layer against high-pile carpet, so you're not pulling debris into the hardware.
+    <p>{al(products.urevo_mat)} adds more absorption; {al(products.sunny_mat)} is cheaper. Adds a layer of shock absorption for your knees. Absorbs sound. Prevents shock damage to hard floor. Over time the rubber stoppers will at worst damage the floor, at best smear rubber that's hard to remove. Adds a protection layer against high-pile carpet, so you're not pulling debris into the hardware.
     </p>
 
-    <h5>Standing Desk</h5>
-    <p>{affiliateLink(products.flexispot_en1)}. My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
+    <H>Standing Desk</H>
+    <p>{al(products.flexispot_en1)}. My budget pick. I've abused this cheapie for 3 years without a hitch, so I don't see the point in the
       $1,000 Herman Millers championed on <a href="https://www.reddit.com/r/StandingDesks/" target="_blank">/r/StandingDesks</a>. But if you want to splurge, browse that sub. I've seen FlexiSpot gaining traction there recently;
       in particular the E7 series. You'll definitely want an electric desk which can sit or stand, because after walking or standing all day, you'll need a break.
     </p>
 
-    <h5>Shoes: Hoka or Brooks</h5>
-    <p>{affiliateLink(products.shoes_men, "Men")}, {affiliateLink(products.shoes_women, "Women")}. There are shoes more tailored towards prolonged walking or standing rather than running. I research what nurses champion, since it's the closest lifestyle to a walking desk. They're quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi.
+    <H>Shoes: Hoka or Brooks</H>
+    <p>{al(products.shoes_men, "Men")}, {al(products.shoes_women, "Women")}. There are shoes more tailored towards prolonged walking or standing rather than running. I research what nurses champion, since it's the closest lifestyle to a walking desk. They're quite bullish on two: Brooks Ghost Max 2, and Hoka Clifton / Bondi.
     </p>
 
-    <h5>Ergonomic keyboard & mouse</h5>
-    <p><Link to="/blog/20240110-ergo-mouse-keyboard">Article</Link>. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion. That type of wrist motion is bad for you. When you walk, you move your arms more than usual, which amplifies RSI risk significantly. It could take 6 months, it could take a 5 years, but many I've talked to with walking desks have experienced an RSI uptick. Ergo peripherals solve this - specifically a "wedge-style" trackball mouse and a split + tented keyboard. Read that article for recommendations (different budgets & styles), but hot-take budget-picks are (Mouse: {affiliateLink(products.ploopy_adept)}, Keyboard: {affiliateLink(products.epomaker_split65)})
+    <H>Ergonomic keyboard & mouse</H>
+    <p><Link to="/blog/20240110-ergo-mouse-keyboard">Article</Link>. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion. That type of wrist motion is bad for you. When you walk, you move your arms more than usual, which amplifies RSI risk significantly. It could take 6 months, it could take a 5 years, but many I've talked to with walking desks have experienced an RSI uptick. Ergo peripherals solve this - specifically a "wedge-style" trackball mouse and a split + tented keyboard. Read that article for recommendations (different budgets & styles), but hot-take budget-picks are (Mouse: {al(products.ploopy_adept)}, Keyboard: {al(products.epomaker_split65)})
     </p>
-    <p></p>
-
 
     {/*<div>
                 <VideoButton href="https://www.youtube.com/shorts/fHjxqYBIPKA" label="Video 1" />
@@ -129,11 +123,11 @@ const ContentSection = memo(() => {
               </div>*/}
 
     {!optionals ? (
-      <Button variant="link" onClick={showOptionals}>Show More Essentials...</Button>
+      <Button className='mb-2' variant="outline-dark" onClick={showOptionals}>Show More Essentials</Button>
     ) : <>
 
-      <h5>ESD Wristband</h5>
-      <p>{affiliateLink(products.esdwristband, "Wristband")}. When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
+      <H>ESD Wristband</H>
+      <p>{al(products.esdwristband, "Wristband")}. When walking on a treadmill, you'll build static electricity. If you touch anything metal connected
         to your computer, you'll cause "electrostatic discharge" or ESD. This can be a monitor, peripherals
         which have any metal components, your laptop itself, etc. This can damage the electronics in the
         components you touched, and your computer (the current sent from the component through the connecting
@@ -143,8 +137,8 @@ const ContentSection = memo(() => {
         about what you touch.
       </p>
 
-      <h5>Standing Board</h5>
-      <p>{affiliateLink(products.fluidstance_planecloud, "FluidStance PlaneCloud")}. Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
+      <H>Standing Board</H>
+      <p>{al(products.fluidstance_planecloud, "FluidStance PlaneCloud")}. Sometimes you don't feel like walking. I spent a long time researching the perfect standing setup.
         Standing on a hard surface for prolonged periods is NOT good for you (even with good shoes); it's better
         to just sit. So my next move was standing-specific mats. When things really changed was in exploring
         wobble boards (Yes4All, Fezibo, Gymba, etc). By wobbling, you're exerting a sort of added "cushion"
@@ -166,8 +160,8 @@ const ContentSection = memo(() => {
         and to preserve your health you should <em>choose one or the other</em>; and then sit to recover.
       </p>
 
-      <h5>Fingerless Gloves</h5>
-      <p>{affiliateLink(products.fingerlessgloves, "Gloves")}. Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
+      <H>Fingerless Gloves</H>
+      <p>{al(products.fingerlessgloves, "Gloves")}. Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
         doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands
         themselves.
       </p>
@@ -178,8 +172,8 @@ const ContentSection = memo(() => {
                   are typically lighter) and wear them all day.
                 </p>*/}
 
-      <h5>Monitor Arms</h5>
-      <p>{affiliateLink(products.vivo, "VIVO")} or {affiliateLink(products.mountup, "MountUp")}. I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
+      <H>Monitor Arms</H>
+      <p className='mb-1'>{al(products.vivo, "VIVO")} or {al(products.mountup, "MountUp")}. I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
         This allows you to position the monitors in a tighter cluster, since you have flexibility to angle them
         without worry of the base leaning over the edge. It also allows you to pull the monitors closer to your
         face, just above your mouse and keyboard, in a way you couldn't do with a stand.

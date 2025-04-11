@@ -28,14 +28,16 @@ export function VideoButton({
 export function VideoButtonLg({
   label="Video",
   href,
+  className=""
 }: {
   label?: string,
   href: string,
+  className?: string
 }) {
   // px-1
   return <div>
     <Button
-      className='my-2'
+      className={`my-2 ${className}`}
       variant='outline-primary'
       href={href}
       target="_blank"

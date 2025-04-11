@@ -4,7 +4,7 @@ import brand from './brand'
 import {expires} from "~/components/date-utils";
 
 const link = expires(
-  "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1741381357876",
+  "https://www.amazon.com/dp/B0DCG2GBVG?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.30AMLNVI2M157&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.30AMLNVI2M157_1744381961509",
   "2025-05-11",
   "https://amzn.to/4i9wpiS",
 )

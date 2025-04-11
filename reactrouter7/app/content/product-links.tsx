@@ -261,6 +261,15 @@ const links: Record<string, AffiliateLink> = {
     title: "GameBall Thumb",
     key: "gameball_thumb",
     link: "https://www.gamingtrackball.com/products/gameball-thumb-standard-edition"
+  },
+  wolfbox_air: {
+    link: expires(
+      "https://www.amazon.com/dp/B0DSW7R4VN?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.39GG535CJ7AYF&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.39GG535CJ7AYF_1744382419732",
+      "2025-05-01",
+      "https://amzn.to/3G3sxCy"
+    ),
+    title: "WolfBox MF50",
+    key: "wolfbox_air",
   }
 
 }
