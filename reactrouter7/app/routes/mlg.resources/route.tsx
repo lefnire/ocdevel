@@ -8,12 +8,15 @@ import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
 import {transform} from '~/content/workflowy/mlg-resources'
+import Alert from "react-bootstrap/cjs/Alert";
 
 export async function loader(props: Route.LoaderArgs) {
   const resources = await transform()
+  // const resources2 = await transform({file: './app/content/workflowy/mlg-resources2.opml'})
   return {
     show: mlgShow,
     resources,
+    // resources2
   }
 }
 
@@ -29,12 +32,12 @@ export default function Resources({loaderData}: Route.ComponentProps) {
       </p>
       <Row>
         <Col xs={12} md={4} className='sidebar'>
-          <Row>
-            <Filters />
-          </Row>
+          <Filters />
+          <Alert className='mt-2'><Link to="/walk">Try a walking desk</Link> to stay healthy while you study!</Alert>
         </Col>
         <Col xs={12} md={8}>
           <Tree {...loaderData.resources} />
+          {/*<Tree {...loaderData.resources2} />*/}
         </Col>
       </Row>
     </Container>

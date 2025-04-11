@@ -131,8 +131,8 @@ export const columnsArray: ColumnDefinition[] = [
     filterOptions: { min: false, max: true },
     notes: () => <div>
       <p>Last price I saw this at ({UPDATED})</p>
-      <Alert variant="warning">Always check for a coupon!</Alert>
-      <p>Very often the Amazon listing will hike the price, and add an "Apply $x Coupon" checkbox to reach the normal price. I assume to capture extra revenue for those who didn't notice it.</p>
+      <p><strong>On Amazon, always check for a coupon!</strong> Very often the Amazon listing will hike the price, and add an "Apply $x Coupon" checkbox to reach the normal price. I assume to capture extra revenue for those who didn't notice it.</p>
+      <p>Also, check both Amazon and the company website's product link, which you can find by clicking on the product name in the table. Prices frequently vary between the two. Just make sure that, if you buy from the company, they offer an 2yr+ warranty.</p>
     </div>,
     getValue: (row) => getPrice(row),
     format: (row) => {

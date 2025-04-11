@@ -133,7 +133,7 @@ function Filter({k, section='filters'}) {
 export default function Filters() {
   const [show, toggle] = useStore(useShallow(s => [s.showFilters, s.toggleFilters]))
 
-  return <Col className='sidebar-filters'>
+  return <div className='sidebar-filters'>
     <Card className='border-0'>
       <Card.Header className='border-bottom-0 pointer'>
         <Card.Title
@@ -153,5 +153,5 @@ export default function Filters() {
       {filterKeys.map(k => <Filter key={k} k={k} />)}
     </>}
     </Card>
-  </Col>
+  </div>
 }

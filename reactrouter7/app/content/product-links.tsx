@@ -49,7 +49,7 @@ const links: Record<string, AffiliateLink> = {
     title: "Urevo Mat",
     link: "https://amzn.to/3WrW0v5",
     notes: 'Prevents floor damage, protects knees',
-    price: 40
+    price: 36
   },
   sunny_mat: {
     key: "sunny_mat",

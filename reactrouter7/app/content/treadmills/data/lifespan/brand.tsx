@@ -37,10 +37,11 @@ const info: Brand = {
         <li>The cost was so outrageous, I'd rather buy a new budget mill every 2 years for 12 years for the same price.</li>
       </ol>
         <p>But recently, they released the TX6, a newer model with <em>very</em> impressive specifications (4.5 HP motor, 6mph max speed, 400lb capacity, etc); lowered weight and dimensions. And they brought all their prices down significantly. Now I think they're compelling. So much so that I'm re-thinking my whole budget angle, since the price gap is no longer so severe.</p>
-    <h5>TX6</h5>
-    <p>This is your guy, ignore the below.</p>
-    <h5>TR1000, TR1200, TR5000</h5>
+    <h5>TR5000 &gt; (TR1200 | TX6) &gt; TR1000</h5>
     <p>Each iteration is just an upgrade of the one before it. So just pick whichever price point you're most comfortable with. They're also increasingly heavy / large, and accommodate increasing weight. So factor that into your decision. Note: I'm not sure what the difference between the models GlowUp, Classic, Power, and Omni. I think the GlowUp means "just the treadmill" where the other ones are different spins on the "and also the desk" - but you'll want to research some.</p>
+    <p>TX6 is the outlier. It's a newer model, though is often compared to TR1200. The jury's still on which one's a better buy in terms of quality. But it does rock some mean specs, compared to TR1200 (horsepower, speed, etc).</p>
+    <h5>Shop locally</h5>
+    <p>LifeSpan's are popular purchases; and many people end up not sticking with the walking-desk life. So you may find one on Craigslist, Facebook Marketplace, etc. Since they last so long, it's worth the discount for used.</p>
   </div>
 }
 export default info
