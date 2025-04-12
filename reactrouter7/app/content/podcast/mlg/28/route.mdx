@@ -1,14 +1,27 @@
 export * from './meta.js'
 
-- Hyper optimization
-  - GridSearch, RandomSearch
-  - [Bayesian Optimization](https://thuijskens.github.io/2016/12/29/bayesian-optimisation/)
-- Regularization: Dropout, L2, L1
-  - DNNs = Dropout
-  - L2 = most common
-  - L1 = sparsity (zeros) & feature-selection (rarer circumstances)
+More hyperparameters for optimizing neural networks. A focus on regularization, optimizers, feature scaling, and hyperparameter search methods.
+
+### Hyperparameter Search Techniques
+- **Grid Search** involves testing all possible permutations of hyperparameters, but is computationally exhaustive and suited for simpler, less time-consuming models.
+- **Random Search** selects random combinations of hyperparameters, potentially saving time while potentially missing the optimal solution.
+- **Bayesian Optimization** employs machine learning to continuously update and hone in on efficient hyperparameter combinations, avoiding the exhaustive or random nature of grid and random searches.
+
+### Regularization in Neural Networks
+- **L1 and L2 Regularization** penalize certain parameter configurations to prevent model overfitting; often smoothing overfitted parameters.
+- **Dropout** randomly deactivates neurons during training to ensure the model doesn’t over-rely on specific neurons, fostering better generalization.
+
+### Optimizers
+- **Optimizers** like Adam, which combines elements of momentum and adaptive learning rates, are explained as vital tools for refining the learning process of neural networks.
+- **Adam**, being the most sophisticated and commonly used optimizer, improves upon simpler techniques like momentum by incorporating more advanced adaptative features.
+
+### Initializers
+- The importance of weight initialization is underscored with methods like **uniform random initialization** and the more advanced **Xavier initialization** to prevent neural networks from starting in 'stuck' states.
+
+### Feature Scaling
+- Different scaling methods such as **standardization** and **normalization** are used to scale feature inputs to small, standardized ranges.
+- **Batch Normalization** is highlighted, integrating scaling directly into the network to prevent issues like exploding and vanishing gradients through the normalization of layer outputs.
+
+### Links
+- [Bayesian Optimization](https://thuijskens.github.io/2016/12/29/bayesian-optimisation/)
 - [Optimizers (SGD): Momentum -> Adagrad -> RMSProp -> Adam -> Nadam](http://sebastianruder.com/optimizing-gradient-descent/index.html#visualizationofalgorithms)
-- Initializers: Zeros, Random Uniform, Xavier
-- Scaling
-  - Feature-scaling: MinMaxScaler, StandardScaler, RobustScaler
-  - Features + inter-layer: Batch Normalization

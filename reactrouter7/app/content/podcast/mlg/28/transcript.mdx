@@ -1,0 +1,274 @@
+[00:01:03] This is episode 28, hyper Parameters part two.
+
+[00:01:15] Let's dive right in. Back from the last episode, we were already talking about hyper parameters, particularly hyper parameters for tuning your neural networks, things like network width and network depth. This episode, we're gonna talk about a few more hyper parameters. We're gonna talk about regularization such as dropout, L one and L two.
+
+[00:01:33] We'll talk about optimizers like agra and atom. We'll talk about feature scaling and batch normalization. But before we get into those, let's talk about hyper parameter optimization techniques I kept mentioning in the last episode. Grid search, random search, and bayesian optimization. Those are the techniques you'll use for selecting the best hyper parameter combination.
+
+[00:01:55] These things are called hyper parameter search or just hyper search. So they're grid search, random search, and Bayesian optimization, starting with grid search, which is the simplest. The idea is you try every hyper parameter combined with every other hyper parameter. So you will try every possible hyper parameter combination that exists for your situation.
+
+[00:02:21] So in reference to the prior episode, we're trying to design the optimal neural network. We're trying to decide whether we should use LSTM cells or convolutional layers. How many layers, how many neurons wide are those layers? What activation functions we would use, whether it be a relu or a tan h. Okay, so there we have four hyper parameters we could work with type of layer, number of layers, layer width, and activation function.
+
+[00:02:50] Four different hyper parameters. Now in grid search, we combine every hyper parameter with every other hyper parameter. So you might be thinking, we're going to be trying 16 hyper parameter combinations, right? Four by four. That's 16. That is actually not correct. Because we're not gonna be trying just the existence of a hyper parameter.
+
+[00:03:13] That would be true if these hyper parameters were booleans. No. Instead we're going to be trying various values for each hyper parameter. So for example, network width, you might try the values 4, 8, 16, 32 64 and so on. For network depth, you might try the values one, two, and three. And for activation functions, you might try Tan h Relu, and any of the other Relu families that you wanna try.
+
+[00:03:38] So for every possible value of every hyper parameter, that's the grid you're actually building off of. So it's every possible value times, every possible other value. So you end up getting usually a very large grid of possible hyper parameter combos. And you try them all. Every single combo, you try them left to right, top to bottom, and a lot of times you'll see online people actually use this strategy.
+
+[00:04:04] It's dead simple. And for machine learning scenarios that are actually very simple or computationally inexpensive, say for example we're using linear regression or we're using a decision tree from site kit, learn on a simple data set. And training the model for any given hyper parameter combo takes less than a minute.
+
+[00:04:24] While then running all hyper combos using grid search may take maybe 10 minutes, or at worst, a half hour. In fact, a lot of times in the past I've used grid search to train very simple models. It takes less than a minute, so it actually can be very fast. But as a rule, it is actually very slow. So for simple problems, this is akay, but for more complex problems, we'll switch to random search.
+
+[00:04:49] Now, random search randomly throws a dart at a hyper parameter combo. You might imagine still having your grid from the grid search every possible combination of hyper parameters. So it's a very large grid with a bunch of cells. Now to oversimplify, imagine that grid being colored like a dart board, like one of those dart boards at the bar that are made out of plastic, and the dart can land in a plastic square.
+
+[00:05:15] Well, each one of those squares is some hyper parameter combo, so it's a hyper parameters by hyper parameters grid. And if you're doing random search, you're throwing darts over and over and over at the dart board, and they land all over the place. Now the idea is if your machine learning problem is not computationally fast and or that grid is too big to run grid search on, it will just take too long to search for the optimal hyper parameter combo.
+
+[00:05:42] Then what you could do is you can throw darts over and over and over and over and over and at, and at some point just decide, I'm gonna stop throwing darts now, maybe 10 minutes or one hour in, and then walk over to the dart board and see which one is the closest to the red.in the middle of the dart board.
+
+[00:05:58] Now, obviously, the optimal hyper parameter combos unlikely to be in the center of the grid. It's gonna be somewhere else, but using the dartboard analogy, some dart is going to be close-ish to the optimal combo to the bullseye. If not on the bullseye, at least very close, and you'll just go with that hyper combo and maybe you'll decide I'm gonna keep running this random search algorithm in the background while I use my model with this winning hyper combo over here on my production app.
+
+[00:06:28] So you might use random search to find some good combo. Use it in the wild while in the background, hyper search is still going at it, trying to find the best combo. The way grid search would work on the other hand is it goes top to bottom, left to right, so it actually starts in the top left cell, tries that combo, then it moves over.
+
+[00:06:48] One to the right tries that combo and it moves over. One to the right tries. That combo does the same thing all the way to the right and then. Like a typewriter starts over at the next rose leftmost cell. So the two problems you can imagine with that are one, it will take way too long to find the best hyper combo because it has to go all the way to the middle and the middle in our analogy.
+
+[00:07:11] And theoretically throwing random darts would reach closer to that quicker. But two, if you decided to cut out early, 'cause you want to take your model and put it in the production environment while leaving the grid search algorithm running in the background, well, you won't have a good sense of a good hyper parameter combo until we've gotten near the middle.
+
+[00:07:32] All the first samples, let's say the first 200 samples are all kind of the same. They're pretty much the same combo with one hyper changed each time. So if you need to cut out early, you're not gonna get a good sense of a good hyper combo with grid search. On the other hand, the downside of using random search is that you're very unlikely to find the best combo 'cause it's very unlikely that you're randomly gonna hit the bullseye.
+
+[00:08:00] Right in the center cell, the, the perfect cell, that is the perfect hyper parameter combo. Additionally, you may end up having repeats or close to repeats, so it could be kind of wasted time. So you'll use grid search or random search. One is not better than the other. They're better than each other under different circumstances.
+
+[00:08:19] The time you'll use grid search is when you can, when it is computationally feasible, you don't have a whole lot of hyper parameters to combine with each other and or your machine learning problem is a computationally simple problem. You can use grid search no problem, and you would use random search if the opposite holds true.
+
+[00:08:39] You need to save time. Your machine learning model is not computationally inexpensive. It is expensive, and or you have way too many hyper parameters that you want to test because they're gonna be combined with each other every which way to make the grid dartboard. So random search is for big problems.
+
+[00:08:57] Grid search is for small problems. Now, how do we determine a winning hyper parameter combo? We use something called cross validation. Cross validation cv, and we've talked a little bit about this before and it's very essential to machine learning in general. So I'm sure you've seen this already, but let's brush up on it.
+
+[00:09:16] Cross validation is you set aside 80% or some number of data to train on. And you set aside 20% of the data, the rest of it, to test on. So you'll train your model for some specific hyper parameter combination on the 80% training dataset. Okay? A chunk of all the data you have, you use most of it to train on.
+
+[00:09:38] And then you will test your hyper parameter combo model on the test set, the 20% remaining data. Because the model has not yet seen this data, so it's a gauge of how well the model is generalizing to things it's never seen before. Because going forward, all data is gonna be data it's never seen before. So you wanna see how well it does on something it's never seen before.
+
+[00:10:01] And that's the test set, and that's the score you'll use to determine how well that hyper parameter combo performed. The score that it achieved on the test set after having been trained on the training set is the score you use to determine the effectiveness of that hyper parameter combination. The higher the score, the better the combo, and that score is your evaluation metric that we've mentioned in a prior episode.
+
+[00:10:27] Root means squared error, for example, in a regression scenario or accuracy or the like in a classification scenario. Now there's a slight modification of cross validation called K fold cross validation in which you don't just go 80 20. You cut up your data into different parts each time you run through it.
+
+[00:10:49] So for the first pass, you'll use one chunk of training data and one chunk of test data. And then for the second pass, you'll use a different chunk of training data and a different chunk of test data. These are called folds. And the K in K fold is how many times you're gonna do that. How many times you're gonna cut these in different ways, and that way you're going to evaluate your model separately.
+
+[00:11:14] Five to 10 different times, whatever K you set, and you can average across the test data scores that you got to determine a more accurate measure of how well it's gonna generalize in the real world. If you just use regular old cross validation, that's pretty good. You're seeing how well it performs on that 20% test set.
+
+[00:11:36] But if. For whatever reason, it performed better on the test set than it really would in the real world. You'd catch that better if you sliced the training and test set different ways, multiple times, and ran your model multiple times and averaged those scores. It's kind of like training your dog to sit using a treat, and he sits every time you give him the treat.
+
+[00:11:58] Then you take away the treat and you say, sit, and he sits. That'll be your test set. You're scoring him through cross validation on the test set, no treat, and he sits and you think Very good, very good. But it could be the case that maybe there's some environmental variables at play. Maybe it's fresh in his mind that you were training him to sit.
+
+[00:12:16] So let's wait a day and tell him to sit. Let's take him outside and tell him to sit. K fold cross validation. It's mixing up the data a little bit so you can get a better gauge on the test score. And then you use that score to determine the best hyper parameter combination, grid search, and random search.
+
+[00:12:34] Now you may be thinking as I did when I learned about grid search and random search. Wait a minute, why don't we learn the hyper parameters? Why don't we make the hyper parameters inputs to some machine learning model and learn the best hyper parameter combo? Why are we doing this brute force approach?
+
+[00:12:50] It seems ridiculous. When we're in the world of machine learning. We should be machine learning, the best hyper parameter combination. And indeed, there is an approach to machine learning, the best hyper parameter combination. It is called Bayesian optimization. Bayesian optimization or bo. Now, it's very strange.
+
+[00:13:07] I didn't hear about Bayesian optimization for a long time. In fact, I actually had to discover it on my own when I was manually trying to come up with a machine learning approach to learning hyper parameters for our Bitcoin trading bot, because in our case, every run of the model. Training on 80% data, testing on 20% data, every one of those runs takes about five hours, or some of them take E even longer up to a day, extremely long amount of time to train and test the Bitcoin trading bot, so there's no way in hell I can use grid search.
+
+[00:13:42] Furthermore, as you'll see in that code, we are trying to learn many, many hyper parameters. We have the network shape, we have all the regularization parameters, we have all of the specific hyper parameters that go into the different reinforcement learning models, like the proximate policy optimization model.
+
+[00:14:00] Things like entropy, regularization, and likelihood ratio, clipping and the sort. So we have a ton of hypers and each run takes an enormous amount of time. So grid search is just a definite no, hell no. Random search even takes too long. It's too brute force and it's too random. I really needed something that would hone in on the best hyper parameter combination over time.
+
+[00:14:21] It would learn the optimal hyper parameters, how they combine in some specific way. And there was another problem with both grid and random search that you may have caught onto by now. In grid and random search, you have to manually specify. All the values that you want to try for every hyper parameter, every value for every hyper you have to manually code in, in an array.
+
+[00:14:49] For example, you might try the width of your network layers being the values 4, 8, 16, 32, and so on. Or if you are using L two regularization, which we'll talk about in a bit. You might try 0.01, 0.001, 0.0001 and so on. What if you just can't think of all the best possible values for that hyper? Or what if the optimal value lies between two of the values that you specified?
+
+[00:15:18] What if the best L two term is not 0.001 or 0.0001, but somewhere in between? So I needed a way to specify a lower and upper bound for every hyper parameter rather than every value that I want to test for that hyper parameter. In other words, I wanted to be able to specify that a hyper can basically be anything, find the best thing, and I don't wanna specify the options for you.
+
+[00:15:45] You figure it out on your own. We call that a continuous variable, continuous value. So you can see this is a very complex hyper learning scenario. We have a scenario in which we need to learn the optimal hyper combos, but one, it's too computationally expensive to use grid search. Two, it's too ad hoc and random to use random search.
+
+[00:16:04] And three, we want to be able to use continuous values rather than specifying all the options for hyper upfront. And thus we land on the machine learning approach to hyper parameter search called Bayesian optimization. Now, I imagine you could use various other machine learning models for learning the best hyper parameter combos.
+
+[00:16:23] Things like decision tree, random forest, gradient boosting, and the like. Hyper parameters combine in a non-linear fashion for an optimal cross validation score. So it is non-linear. Hypers combine in a way where the sum is greater than the parts. Therefore, we can't use linear or logistic regression or any other linear model.
+
+[00:16:43] But for whatever reason it appears the research points to the Bayesian methods for learning hypers with machine learning rather than decision trees, gradient boosting and the like. The Bayesian methods. We've talked about the Bayesian methods before. We've talked about naive bays for things like spam detection, bag of words, and all that stuff.
+
+[00:17:01] The Bayesian methods are a whole world of approaches to machine learning that's sort of competitive to the stuff that we've mostly been talking about in this podcast, like neural networks and linear regression. Those are called frequentist approaches. Frequentist approaches, which are more common in machine learning in general.
+
+[00:17:19] The Bayesian approaches is sort of a competitive strategy to machine learning that is. Different from the frequentist approaches, and I won't get into that. Now. I hope to do a dedicated episode to the Bayesian methods, but naive Bayes would be a Bayesian method. And this here, Bayesian optimization is another Bayesian machine learning model.
+
+[00:17:39] Bayesian optimization, and I won't describe it in technical detail, but just think of it as basically being. Naive Bays for learning the optimal hyper parameter combo over time. So it starts off randomly generating hyper parameter combos similar to random search, just so it can kind of get a lay of the land.
+
+[00:17:58] And then it starts to see which hypers combine with each other in effective ways, and it starts to kind of go down that path. It starts to explore things that look promising until eventually it's, it finds the best hyper parameter combo, or at least near to it in a very deliberate machine learning fashion.
+
+[00:18:16] Now, Bayesian optimization is complex, theoretically, to describe this whole thing with Gaussian processes. And utility functions and the sort. I'll link some resources in the show notes so you can explore the technical details of Bayesian optimization. It's a little complex in theory, but it's not so complex to use.
+
+[00:18:34] In fact, there's a suite of functions that you could just call straight from psychic learn and use Bayesian optimization with its inbuilt default hypers outta the box. And in fact, that's what we're doing in the Bitcoin trading bot. You'll see in the code, I'm using some example Bayesian optimization code that I got online that I'll link you to in the show notes.
+
+[00:18:52] And it's pretty minimal, and it's just calling straight to psychic learns. Gaussian process functions. Now here's a little food for thought Bayesian optimization. It's a machine learning model. It has its own hyper parameters. In other words, you're using a machine learning model to tune the hypers of your machine learning model, and that itself has its own hypers.
+
+[00:19:13] So it's turtles all the way down. Well, if we remove ourselves from our own machine learning problem, which can be very complex, for example, with a Bitcoin trading bot, it is a very complex problem with very complex combos of hyper parameters. We remove ourselves up one step into the Bayesian optimization territory.
+
+[00:19:32] While deciding which Hypers combine is actually a simple problem. It's just a long problem well suited to machine learning, but one for which it is unlikely. We need to do a lot of hyper tuning at the Bayesian optimization level. In other words, we could probably just use the defaults that come outta the box with Bayesian optimization from side kit Learn.
+
+[00:19:54] Not because Bayesian optimization is unlikely to need hyper tuning, but because the problem of finding the best hyper combo for that lower level problem is simple, long, but simple. I. Excellent. So hyper parameter optimization or tuning or search, you'll hear any of those words, is finding the best hyper combo.
+
+[00:20:14] We have grid search, which is the exhaustive but long strategy useful for small problems. We have random search, which is random and ad hoc, but surprisingly effective for medium scale problems. And then we have Bayesian optimization, which is really the big guns for very complex problems. Now let's get back into specific hyper parameters discussing specific hypers generally around neural networks.
+
+[00:20:43] So now we're gonna talk about regularization. Regularization is very essential for optimizing your neural networks or any other machine learning model. Different machine learning models have different regularization tactics, different regularization terms or parameters in the frequentist machine learning models.
+
+[00:21:02] The common models like linear regression, logistic regression, and neural networks. We have L two and L one regularization. Very, very common approaches, L two and L one. And the idea of regularization is to prevent overfitting. The idea is to smooth the curve. So here's my analogy. We have a cloud of dots on a graph, on an XY graph.
+
+[00:21:24] We had a cloud. We have a cloud of dots and it's shaped like a horseshoe. Okay? It, it makes a U shape. It's, it's not a football cloud that you could draw a line right through. That would be a linear regression model. Instead, it's a U shape parabola, and therefore we can't really use a linear model here. So what do we do?
+
+[00:21:41] We want to fit a u that goes right through it. We want to, we want to find some line that kind of fits the cloud of dots and makes a U. Now if we didn't train on enough data or if our model that we use is too simple or we don't use enough features or whatever, if, if we don't have enough being the key word, we not enough.
+
+[00:22:01] Then we will have what's called under fitting. Under fitting is you're not getting it. You're not getting the gist. You don't get what makes this thing tick. An under FITT line fit to this graph might just be a straight line that goes right through the center. Doesn't look like a you at all. Looks like linear aggression, just a straight line.
+
+[00:22:18] That's an under FITT line. Overfitting, on the other hand, is you're thinking too hard, the exact opposite of under fitting. You're concentrating too hard on all the fine specific details. You think that every tiny little detail contributes to the grand picture, and therefore the problem with overfitting is that you can't generalize.
+
+[00:22:38] Well, once you're taken off of this U graph and put onto some other graph, you're completely at a loss. Because you've memorized all the specific details of the prior graph. An overfitting scenario would be like drawing squiggles that sort of circle and capture every single.in our U-shaped graph. It's like a line that goes all over the place and it makes little boundaries around all the dots.
+
+[00:23:04] It wants to capture every single dot a perfect fit. A nice fit to this graph would be a u. A line that makes a U right through those dots. So how do we prevent under fitting? Well, we train on more data or we add more features, or we make our model more complex. We add more layers. In the case of a neural network, we add more neurons, et cetera.
+
+[00:23:24] Under fitting is alleviated by adding more because under fitting is caused by not enough, whatever. How do we alleviate overfitting? Well, we downscale usually in, in the case of a neural network, you might remove layers or remove neurons. But that can be a little heavy handed. It could be the case that you actually have a good number of neurons and layers, and what you need to do is regularize, regularization, regularization sort of shaves off the specificity of that line.
+
+[00:23:53] That squiggles going everywhere. It kind of like reins it in. It pushes those nubbins into the centers. Come on, let's, let's generalize a little bit more. You're thinking too hard, so it trains your model not to think so hard. And it does so by penalizing focusing on specific features too much. That is kind of the crux of regularization.
+
+[00:24:14] It penalizes focusing too much on one specific thing I. So, for example, if we have our weights in our linear regression weighted sum equation that's used as our neuron, remember from the last episode, linear regression is kind of a neuron. You wrap that with an activation function and now you have a neuron.
+
+[00:24:33] We have our weights. Well, you can give too much weight to a specific feature. So we've had, we have W zero and X zero, W one and X one, W2, and X two. So if, if W one is the weight that we multiply by the incoming feature, if maybe that's the number of bedrooms in a house. If we make that W one two high or too low, it might give specific emphasis on that particular feature, more emphasis on that feature than other features, for example.
+
+[00:25:06] And so we want to penalize giving that feature too much focus. We want to be a little bit more broad in the way we look at this picture. We wanna look at all the features all combined. So that's the crux of regularization and the different regularization tactics handle being too specifically focused in different ways.
+
+[00:25:23] L two Regularization simply penalizes having a too big of a number there. It penalizes having too big of a weight for a particular feature, and so your machine learning model learns to, to reign that in. Bring that number down. L one regularization. It's a little bit more complicated where L two regularization kind of brings the numbers down.
+
+[00:25:46] L one regularization tries to delete the numbers. It tries to make them zero, and the thing they say this does, it creates a sparser model. It actually sort of removes features from the equations that are unnecessary, so it actually performs feature selection on its own, and that can actually result in a computationally more efficient model.
+
+[00:26:06] Now, I'm not sure when or why you'd use L one versus L two. It's a common question I see asks on Quora and Stack Overflow. I haven't really gotten a intuition grip on the differences between the two and why you'd use one over another in different circumstances. But I will say this. L two is the sane default when I was talking about sane defaults.
+
+[00:26:28] For every hyper parameter, you'll always start with a sane default for your hyper parameters, and then you use hyper search from there to try different combos. People use L two a lot more commonly than they use L one. So try L two first, and if for whatever reason you have reason to use L one or you just want to give it a shot, then you could do that in your hyper search L two and L one regularization.
+
+[00:26:50] We will use these in linear regression, logistic regression, and neural networks. Now neural networks have their own special regularization tactic called dropout, an alternative to L two and L one dropout, and it only works in neural networks. You can't use it in linear and logistic regression, and it is actually the same default of neural networks.
+
+[00:27:10] So if you're starting from scratch with a neural network, you'll use dropout and not L two or L one, unless the circumstances are slightly different or you have reason to use one of those other two. The idea of dropout is we have a neural network. Let's say we have two hidden layers and 16 neurons each.
+
+[00:27:30] What dropout does is during training of your model. It deletes neurons. It deletes neurons, it cuts them out of your neural network. Some number of neurons specified by the dropout probability, which is usually 0.5. Point five, meaning half of the neurons. In other words, if your dropout probability is 0.5, then that means you're gonna cut out half the neurons of your neural network during training.
+
+[00:27:56] Now every training iteration, you cut out different neurons. Still 50% of the neurons, but different neurons this time. So during training at each layer, only eight neurons are active at a time. And each training iteration, it's a different eight neurons. And then during test time, remember cross validation, we train on the 80% dataset and then we test on the 20%.
+
+[00:28:18] During test time, all neurons are always active. So I said that regularization is the act of training your model not to depend too much on one feature, right? Well, this is training your model. Not to depend too much on one neuron, and a neuron is a feature detector anyway, so when we had the face detector, one of the layers was detecting eyes, ears, mouth, and nose.
+
+[00:28:41] Four different neurons for four different features. Well, we don't want any one of these feature detectors to be two dependent on in our face detector. Let's say somebody was wearing sunglasses, you'd want it. Still to detect the face based on the nose, the mouth, and the ears. Or let's say somebody was covering their mouth, you still want it to detect the face based on the eyes, the nose, and the ears.
+
+[00:29:04] So you cut out feature detectors in your neural networks so that it doesn't become too dependent on anyone given feature. And in neural networks, this tends to be more effective than using L two or L one dropout. If you were to use L two or L one, you would be regularizing the feature detector within a neuron.
+
+[00:29:23] So all the inputs coming into that one neuron, you would be telling it not to depend too much on any one of its weights within the neuron, multiplied by those incoming features. You could do both dropout in L two, you could do all three dropout. L two L one. You could do none. No regularization, you could do one.
+
+[00:29:40] Any combination of these regularization techniques, like I said, tends to be the same default as just dropout neural network. You just have dropout and you use 0.5 for the probability. Sometimes people use L two instead of dropout. Rarely, in our case, in deep reinforcement learning. It turns out that the literature doesn't really speak of dropout very much for whatever reason.
+
+[00:30:05] That's something I'm still looking into. Dropout is not used a whole lot in deep reinforcement learning, and so instead, L two is used in these deep networks. So that is one case where you're kind of stuck with what the framework gives you outta the box. In our case being L two. So we're using L two Now, dropout is fun to try to come up with an intuitive analogy for why it works or what it's doing.
+
+[00:30:30] This is one that researchers have a little bit of fun with. The common analogy I see out there is you have a bunch of employees at an organization and they're all doing their jobs. Some, some people are on a computer. We got a Janet over here. We have the CEO, we have person managing the coffee machine.
+
+[00:30:46] All these things well drop out in an organization chart would basically be removing half of the workers every day and a different half of the workers every day. Such that all the employees would need to be able to do some amount of each other's jobs so that any one employee doesn't become too dependent upon while the other employees become lazy.
+
+[00:31:10] So the idea is each employee can specialize in whatever it is they're really good at. But still kind of pick up the slack of each other and it prevents specific employees from becoming too lazy or specific employees from doing too much work. You want it to be generally spread throughout the organization.
+
+[00:31:28] The analogy I like to use is a kung fu artist. A kung fu martial artist is training in the forest. And every day he removes one sense. So one day he goes blindfolded into the forest and he's swinging his bow staff and doing back flips on the trees and all that stuff. And the next day he plugs his ears with earplugs so that he can't hear the person he's training with, running around on the leaves.
+
+[00:31:53] And then the next day he comes with his arms tied behind his back and all he can use is his feet. And he's jumping around and doing back flip kicks and stuff like that. And then finally, when it comes time to test in cross validation, he gets all of his senses back. He has his vision, his hearing, and his hands, and he's that much better than he was before.
+
+[00:32:13] Another thing I've heard dropout compared to is being drunk. So some people have used this analogy that in their day-to-day lives, they tend to be a little too uptight, stuck in their ways. They're thinking too hard about life, they're taking things too seriously, and sometimes it stresses them out and they just need to have a drink or two or three or four.
+
+[00:32:37] Well, the result of that is physical neuron death in their brain. Potentially permanently, depending on how much they drink, but if not permanently, at least temporarily. Their mental capacity is reduced in complexity and they end up thinking a little less too hard about things. Their inhibitions are lowered, and sometimes that's all it takes to be able to make some big decision that they've been deliberating too hard over for too long.
+
+[00:33:06] So for example, my wife and I love to travel. We tend to think too hard about when to go, whether the timing is right, whether we're too busy right now, that the ticket prices, where specifically we're gonna go, et cetera. So much so that usually we get locked into just not going. This is called analysis paralysis.
+
+[00:33:25] Well, from time to time we'll have one too many drinks together and we'll buy a plane ticket to a destination. Airbnb, nuts to bolts. We'll wake up in the morning, look at what we'd done, and we're happy we finally made the decision. So I've heard researchers call dropout getting drunk, or they'll say to their friends, Hey, you guys want to go do dropout?
+
+[00:33:43] Or something like that. Okay, that's regularization. Now we're gonna talk about optimizers. Now, you'll recall from a very long episode ago when I described gradient descent. I. Might have been in the linear regression episode, or the math episode. I talked about gradient descent, specifically stochastic gradient descent, or SGD.
+
+[00:34:03] This is the learning part of machine learning. This is the calculus. It's the calculus that does the learning for the machine learning model. I. And the analogy that is used commonly to describe this learning process is that you're a guy on a mountain trying to get to the bottom of the mountain, and that bottom of the mountain or the valley is called the global minimum.
+
+[00:34:23] It's the point at which all of the parameters in your neural network or your linear regression model are just so, they're the perfect place. It's a minimum, it's a low because that's the place where your error is lowest. That's the the minimum of your error specifically. And we usually start very high up on the mountain where our error is very high.
+
+[00:34:44] So we're using calculus to determine how to get the guy to the bottom of the valley. Because we're sort of modeling sort of a, a, a physical structure, a physical mountain range, and we're using calculus, almost like physics to sort of push the guy down the mountain. Now, vanilla stochastic, gradient descent or just SGD is the idea that this guy walks down the mountain.
+
+[00:35:10] One step at a time. At any given step, you imagine there's like a heavy fog and he can see to his left and to his right and to behind him and in front of him and he can see which of those directions goes down and goes down the steepest. So he's most likely to walk, take one step in that direction, and the size of his step is called.
+
+[00:35:31] The learning rate, the higher the learning rate, the bigger step he takes, the lower the lower rate, the smaller steps he takes. And the idea is that he takes these steps, whether they be big or small, all the way down the mountain until he gets to the bottom of the valley. Now, that step size is kind of important because once he does get to the bottom of the valley, it could be that his leg span, like the size of his.
+
+[00:35:55] Steps, maybe. He's a very tall guy, are longer than the bowl that sort of created at the bottom of this valley, and he can't actually get inside of that bowl. He can't reach the global minimum because his steps are too large. You see in SGD, these steps, this learning rate is set in stone. You can imagine him goosestepping all the way down the mountain, even at the bottom.
+
+[00:36:19] He's goosestepping back and forth across the bowl at the bottom of the valley. He can't get inside. So it is very seldom that vanilla stochastic gradient descent is used in the wild in machine learning. Instead, researchers have come up with more sophisticated models that allow him to adjust his steps over time or speed up and run down the hill until the end and slow down and things like this.
+
+[00:36:43] So I'm gonna describe a handful of these techniques. These are the different optimizers. The first breakthrough in optimizer land was the creation of something called Momentum. Momentum, and the idea is let's not have a guy walking down the hill with steps. Let's have a marble rolling down the hill, and it uses the calculus in an even more sophisticated method.
+
+[00:37:05] That's really more like physics now, where it actually starts to pick up speed as it's going down very steep slopes, and it slows down when it's on flatter surfaces. That's momentum. It's, it's factoring in acceleration into the optimizer equation. So you can really see this. Optimizer modeling is really physical.
+
+[00:37:26] It's very physics based in the calculus. So momentum is adding acceleration or velocity to this process. Now, one benefit of that is when we have the goose stepping guy going down the mountain. Well, if he reaches a plateau, a flat surface on the mountain, what's called a local minimum, he hasn't reached the bottom yet, but it seems to him that he has, because on all sides, front, back, left and right, it's flat.
+
+[00:37:55] There's nothing going down. So he may walk around a little bit in circles and then just decide I reached it and sit down and we're good, but we're not good. He didn't reach the bottom. He reached a local minimum, a plateau. Well, one way that momentum overcomes this is if we got our marble rolling down the mountain and it picks up speed and picks up speed.
+
+[00:38:14] Now it's going really fast and now it hits that plateau. Well, with a natural momentum, sort of physical modeling. It will slow down. The marble will slow down on that flat plateau and lose acceleration, but as long as the plateau is not too long, the marble can still have enough acceleration to be sent over the edge so it rolls past the local minimum.
+
+[00:38:40] So that's momentum. Then there's another optimization to this learning process. It's called Nesteroff, N-E-S-T-E-R-O-V. I'm assuming based on the person who invented it, I don't know whether you call it the Nesteroff principle or, or just adding Nesteroff to the equation or what, but Nesteroff is the idea that you look ahead one step or some amount of steps.
+
+[00:39:02] Now we go, we had a, a guy walking down the mountain to a marble rolling down the mountain. We go to a car driving down the mountain, and the idea is that when we reach the bottom of the valley, well our guy might be taking big steps over and over across the global minimum. And never reach it. He's, he's kind of lost and confused.
+
+[00:39:25] Our marble might roll all the way down to the bottom, roll through the bowl, through the valley at the very bottom of the mountain, and have so much speed from when it was coming down the mountain that it shoots up the other side. It overshoots the global minimum. It lands somewhere on some other slope on the other side, and then it slows down, slows down, starts coming back down the other side really fast, and then it shoots up back to the side we came from.
+
+[00:39:54] And similar to the man walking down the mountain, it also can't reach the global minimum. So the idea of this Nesteroff principle is we have a car driving down the mountain and the driver can see some steps ahead whether she's going to reach a global minimum, and so she can start slowing the car down and stop preemptively rather than determining when she is at the bottom or not.
+
+[00:40:22] So it's a look ahead. It's like a one step or some step look ahead addition to the optimizer model. And finally a, another addition we can add to the mix is a decaying learning rate. So in the case of this guy walking down the mountain, we can have it such that his steps get smaller and smaller and smaller over time.
+
+[00:40:42] Now, when you combine all these things together, we have momentum, we have nesteroff, and we have decaying learning rate. When you combine all those things together. You get a sophisticated SGD optimizer and there's a sort of a history to this. Researchers came up with one optimizer and then we add one or two of these features and we create a new optimizer and then we add another feature, we create another optimizer, and then we tweak the math in some of these features and we make it a little bit more sophisticated.
+
+[00:41:13] We, we have another optimizer, so it tends to be a historical stepwise invention of optimizers. Okay, starting with momentum and then they created one called at grad and then one called RMS Prop, and then one called Adam. And atom is sort of the, the, the most state-of-the-art sophisticated of these optimizers.
+
+[00:41:37] Now, that's not entirely true. There's a newer one called Nam or Nero Atom that incorporates even more of these features with even more tweaks and optimizations. But the rule of thumb here is generally use the newer optimizer because they're just, they're going through optimizations of their own.
+
+[00:41:58] They're going through modifications from researchers based on adding these new physical dimensions of momentum and Nero and all these things use the newer optimizers because they incorporate more sophisticated methods to this learning strategy. So momentum becomes at grad. Eventually we get RMS prop.
+
+[00:42:17] Eventually we get. Adam and Adam is the same default optimizer used in machine learning. So most of the time you'll see Adam used. And if you really wanna go cutting edge, then try this Nam optimizer and I'll, I'll put a link in the show notes for, for an article which describes these various optimizers.
+
+[00:42:38] Okay. We talked about regularization. We talked about optimizers. Now let's talk about initializers. How to initialize your neural network. So when you first create your neural network, all your weights in your neurons, all the Ws and your neurons, they need to be something, anything. The first thought is to make them zeros, all zeros.
+
+[00:42:59] We call this a zero initializer. So this is the, the strategy of setting the the weights to something is called initialization. And we can use a zero initializer. Now, a zero initializer is a very bad idea and I'll explain why in a bit. The second option we could use is called uniform random initializer.
+
+[00:43:18] We just randomly initialize all the weights in all the neurons. Now this is a much better idea. Here's the analogy. Randomly initializing all the weights is like making a totally random guess for the machine learning model to start with, and then the model will figure out the rest from here. To me, that's like ordering a robot from Amazon.
+
+[00:43:38] Comes in a box, you unbox the robot and you pull it out and you don't have the instructions for assembling it. So you just put the head where the butt should be and you've got a leg where the arm should be, and the other arm is turned around backwards and it kind of looks like a Frankenstein. Well, you turn the robot on and you know, it learns from trial and error to take the head off the button, put it on its shoulders and screw it into place, and turn its own arm around and replace its arm with its leg.
+
+[00:44:08] It kind of reassembles itself very effectively, but at least you gave it a head start. You gave it something to work with. Well, zero initialization is like. Leaving it in the box and turning it on. It really, it's stuck. It's it, you start, it stuck. That's why you don't wanna do zero initialization is you, you start your neural network in a stuck state, and it's very difficult for it to get out of that state.
+
+[00:44:30] It's very difficult for the robot to get outta the box in order that it can start assembling itself in the first place. Now, a more sophisticated initialization technique is called Xavier Initialization. And it's not something I understand very well. All I know is it gives you a robot whose parts are assembled closer to correct than random before you flip the switch.
+
+[00:44:53] So it's a, it's a very sophisticated, intelligent way to initialize the weights in your neural network, saying default, hyper parameter people use uniform random outta the box. A lot of people move on to Xavier or at least experiment with it as a hyper parameter. And finally we'll talk about scaling.
+
+[00:45:13] Scaling your features or scaling the outputs between your neural network layers, scaling, so you have your data, your houses, you have number of bedrooms, square footage, distance to downtown and so on. These numbers are wildly different numbers from each other. They're different scales. So for example, the number of bedrooms might be two, where the square footage might be 900.
+
+[00:45:39] That's two orders of magnitude different. Distance to downtown may be some other large number, et cetera. Generally speaking, the numbers that represent the features in your data are gonna be on different scales from each other. Now, in some models, this doesn't matter. So for decision trees and the decision tree family, for example, this doesn't matter.
+
+[00:46:00] But for most models and definitely for neural networks, this matters a great deal. A great deal. It just messes up your machine learning model. It just short circuits it. It's like pouring water on the robot. You just can't do it. You have to feature scale. Now, there's a few different ways to feature scale.
+
+[00:46:16] We have, uh, standardization. Normalization, normalization scales. Your numbers between zero and one. So everything is always gonna be between zero and one. Whereas standardization scales your data to a mean of zero and a unit standard deviation on either side. So you create a Gaussian out of it, create a a bell curve out of your data and shrink it down and bring it to zero.
+
+[00:46:42] And there are pros and cons between the two in how they handle outliers and where the numbers are scaled between. But you're gonna use one of those techniques and standardization is more commonly used in deep learning. I. So there's classes in Psychic Learn you can use to do this automatically for you.
+
+[00:47:01] Something called standard scaler, for example, or MinMax scaler. There's a sophisticated scaling class from Psychic Learn called Robust Scaler. That's one I like to use. It has a very intelligent approach to handling outliers, and in our case with the Bitcoin trading bot, outliers are very important. They can mess everything up, and so you want to handle them very intelligently.
+
+[00:47:22] Robust scaler can do that for you. There is an alternative approach called batch normalization. Batch normalization, and I believe this is a more popular approach in machine learning. And what it is, is instead of using a class or a function from psychic Learn independent of your TensorFlow model, you actually bake batch normalization into your neural network.
+
+[00:47:47] It becomes part of your neural network. And it could be a little bit complex to build into your neural network, but there's example code you can find online. And what it does is it creates a sort of rolling scaling process for your data over time, which is really nice because then you don't have to think very hard about how you're going to scale your data and in what chunks and such.
+
+[00:48:06] So the first component of batch to normalization is that it scales your inputs, your features that come into the neural network in a rolling fashion, which is really nice, takes care of the feature scaling part that we've talked about. But secondly, you can put batch normalization layers. Between all your network layers and you can batch normalize the outputs of your neurons.
+
+[00:48:29] Now that's important because we like our inputs to be small numbers between some small min and some small max, and all on the same scale. We like our features as inputs to our first hidden layer to be like that. Well, we also like that to be the case between the layers and sometimes the layers can sort of degrade.
+
+[00:48:49] They can start outputting too small of numbers or too large of numbers and can get out of whack. Do you remember what this is called? We've mentioned this many times before. This is the vanishing and exploding gradient problem, and so batch normalization allows you to put. A scaling layer between all your hidden layers that will keep the numbers on track.
+
+[00:49:12] It'll keep them within a sane range, so that's something you can add to your neural network to keep it primed and well lubricated. Okay, so from the top we have regularization. We got dropout. L two or L one tends to be, dropout is more commonly used in neural networks, but you might also experiment with L two.
+
+[00:49:30] We talked about optimizers momentum at grad RMS. Prop A and a atom is the sane default commonly used in neural networks. You might also experiment with NAM because it is more cutting edge. We have initializers. You could use zero initialization. That is very not recommended. You could use uniform random initialization that is the same default, or you can use Xavier initialization.
+
+[00:49:56] That is the cutting edge. We have scaling, both feature scaling in a manual way that you do by yourself using a MinMax scaler, a standard scaler or a robust scaler coming from psych. Hit learn. Or you can bake the scaling process into your neural network using something called batch normalization, and that will auto scale at the input layer and between all of the hidden layers.
+
+[00:50:24] A more automated solution, more commonly used in deep learning. So the same default for scaling is to use batch normalization. But of course you'll use grid search, random search or Bayesian optimization to try 'em all in combination with all the other hyper parameters. We were mentioned in the prior episode.
+
+[00:50:43] You'll see in our project the Bitcoin trading bot, there's a link on the website to that. An implementation of Bayesian optimization for searching over a lot of hyper parameters for our deep reinforcement learning model, including almost every hyper parameter we've mentioned in this and the last episode.
+
+[00:51:01] That's it for hypers. See you next time with deep reinforcement learning.
+
