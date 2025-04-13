@@ -1,27 +1,28 @@
+# Phase 1: Setup and Initialization
 import os
 import json
 from datetime import datetime
-from pydub import AudioSegment
 import sys
+from pydub import AudioSegment
+from pydub.exceptions import CouldntDecodeError
 
-# --- Configuration ---
-SPLICE_CONFIG_FILE = 'audio_splice/splice.json'
-MIDROLL_FILE = 'audio_splice/walk.mp3'
-OUTRO_FILE = 'audio_splice/outro.mp3'
-EPISODE_DIR = 'audio_splice'
-OUTPUT_DIR = 'audio_splice/output'
-# Use '128k' to match original file parameters, or None for pydub default.
-OUTPUT_BITRATE = '128k'
-# --- End Configuration ---
+# Step 1.2: Constants
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # Get directory of the script
+CONFIG_FILE = os.path.join(BASE_DIR, 'splice.json')
+INPUT_DIR = os.path.join(BASE_DIR, 'input')
+MIDROLL_DIR = BASE_DIR # Mid-rolls are in the same directory as the script/config
+OUTRO_FILE_PATH = os.path.join(BASE_DIR, 'outro.mp3')
+OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
+OUTPUT_FORMAT = "mp3"
+OUTPUT_BITRATE = "128k" # Match original file parameters
 
+# Step 1.3: Helper Functions
 def parse_timestamp(ts_str):
-    """Converts mm:ss.X or mm:ss string to milliseconds.
-       Assumes X is tenths of a second if single digit,
-       hundredths if two digits, else milliseconds.
-    """
+    """Converts mm:ss.X, mm:ss.XX, or mm:ss.XXX string to milliseconds."""
+    ts_str = ts_str.strip()
     time_parts = ts_str.split(':')
     if len(time_parts) != 2:
-        raise ValueError(f"Invalid timestamp format: {ts_str}. Expected mm:ss.X or mm:ss")
+        raise ValueError(f"Invalid timestamp format: {ts_str}. Expected mm:ss.XXX")
 
     minutes = int(time_parts[0])
     sec_ms_parts = time_parts[1].split('.')
@@ -30,14 +31,12 @@ def parse_timestamp(ts_str):
     milliseconds = 0
     if len(sec_ms_parts) > 1:
         ms_part = sec_ms_parts[1]
-        # Determine milliseconds based on length of the fractional part
-        if len(ms_part) == 1:  # Assume tenths of a second
+        if len(ms_part) == 1:
             milliseconds = int(ms_part) * 100
-        elif len(ms_part) == 2: # Assume hundredths of a second
+        elif len(ms_part) == 2:
             milliseconds = int(ms_part) * 10
-        else: # Assume milliseconds (3+ digits)
-            # Ensure we don't take more than 3 digits for ms
-            milliseconds = int(ms_part[:3])
+        else:
+            milliseconds = int(ms_part[:3]) # Take only first 3 digits
 
     total_milliseconds = (minutes * 60 + seconds) * 1000 + milliseconds
     return total_milliseconds
@@ -46,120 +45,222 @@ def ensure_dir(directory):
     """Creates a directory if it doesn't exist."""
     if not os.path.exists(directory):
         os.makedirs(directory)
-        print(f"Created output directory: {directory}")
+        print(f"Created directory: {directory}")
 
-def process_audio():
+# Step 5.2: Encapsulate Logic
+def process_episodes():
     """Processes audio files based on the splice configuration."""
-    ensure_dir(OUTPUT_DIR)
+    print(f"Script base directory: {BASE_DIR}")
+    print(f"Using config file: {CONFIG_FILE}")
+    print(f"Input directory: {INPUT_DIR}")
+    print(f"Mid-roll directory: {MIDROLL_DIR}")
+    print(f"Outro file: {OUTRO_FILE_PATH}")
+    print(f"Output directory: {OUTPUT_DIR}")
 
-    # --- Load Config ---
+    # Step 1.4: Load Configuration
     try:
-        with open(SPLICE_CONFIG_FILE, 'r') as f:
+        with open(CONFIG_FILE, 'r') as f:
             splice_config = json.load(f)
-        print(f"Loaded splice config from {SPLICE_CONFIG_FILE}")
+        print(f"Loaded splice config from {CONFIG_FILE}")
     except FileNotFoundError:
-        print(f"Error: Splice config file not found at {SPLICE_CONFIG_FILE}")
+        print(f"Error: Splice config file not found at {CONFIG_FILE}")
         sys.exit(1)
-    except json.JSONDecodeError:
-        print(f"Error: Could not decode JSON from {SPLICE_CONFIG_FILE}")
-        sys.exit(1)
-
-    # --- Load Inserts ---
-    try:
-        mid_roll = AudioSegment.from_mp3(MIDROLL_FILE)
-        print(f"Loaded mid-roll: {MIDROLL_FILE}")
-    except FileNotFoundError:
-        print(f"Error: Mid-roll file not found at {MIDROLL_FILE}")
+    except json.JSONDecodeError as e:
+        print(f"Error: Could not decode JSON from {CONFIG_FILE}: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"Error loading mid-roll {MIDROLL_FILE}: {e}")
-        print("Ensure ffmpeg is installed and accessible in your PATH.")
-        print("You might need to install it (e.g., 'sudo apt install ffmpeg' or 'brew install ffmpeg').")
+        print(f"An unexpected error occurred loading config: {e}")
         sys.exit(1)
 
+
+    # Step 1.5: Load Outro
     try:
-        outro = AudioSegment.from_mp3(OUTRO_FILE)
-        print(f"Loaded outro: {OUTRO_FILE}")
+        outro_audio = AudioSegment.from_mp3(OUTRO_FILE_PATH)
+        print(f"Loaded outro: {OUTRO_FILE_PATH}")
     except FileNotFoundError:
-        print(f"Error: Outro file not found at {OUTRO_FILE}")
+        print(f"Error: Outro file not found at {OUTRO_FILE_PATH}")
         sys.exit(1)
+    except CouldntDecodeError:
+         print(f"Error decoding outro file: {OUTRO_FILE_PATH}. Is ffmpeg installed and in PATH?")
+         sys.exit(1)
     except Exception as e:
-        print(f"Error loading outro {OUTRO_FILE}: {e}")
+        print(f"Error loading outro {OUTRO_FILE_PATH}: {e}")
         sys.exit(1)
 
-
-    # --- Process Episodes ---
     processed_count = 0
     skipped_count = 0
-    for filename_base, config in splice_config.items():
-        episode_filename = f"{filename_base}.mp3"
-        episode_path = os.path.join(EPISODE_DIR, episode_filename)
-        today_date = datetime.now().strftime('%Y%m%d')
-        output_filename = f"{filename_base}.{today_date}.mp3"
-        output_path = os.path.join(OUTPUT_DIR, output_filename)
+    error_count = 0
 
-        if not os.path.exists(episode_path):
-            print(f"Skipping: Episode file not found at {episode_path}")
+    # Phase 2: Main Processing Loop (Per Input File)
+    # Step 2.1: Iterate Inputs
+    for input_base, midroll_definitions in splice_config.items():
+        print(f"\n--- Processing input base: {input_base} ---")
+
+        # Step 2.2: Construct Paths & Check Input
+        input_filename = f"{input_base}.mp3"
+        input_path = os.path.join(INPUT_DIR, input_filename)
+
+        if not os.path.exists(input_path):
+            print(f"Warning: Input file not found, skipping: {input_path}")
             skipped_count += 1
             continue
 
-        print(f"\nProcessing: {episode_filename}")
-
+        # Step 2.3: Load Original Audio
         try:
-            # Load episode
-            episode = AudioSegment.from_mp3(episode_path)
-            print(f"  Loaded episode: {episode_path} (Duration: {len(episode)/1000:.2f}s)")
-
-            # Get timestamps
-            at_ms = parse_timestamp(config['at'])
-            repeat_from_ms = parse_timestamp(config['repeatFrom']) if 'repeatFrom' in config else None
-
-            if at_ms > len(episode):
-                 print(f"  Warning: 'at' timestamp ({config['at']}) is beyond episode duration ({len(episode)/1000:.2f}s). Skipping mid-roll insertion for this file.")
-                 final_audio = episode + outro # Still add outro
-            else:
-                # Split episode
-                part1 = episode[:at_ms]
-                part2 = episode[at_ms:]
-                print(f"  Splitting at {config['at']} ({at_ms}ms)")
-
-                # Prepare segments
-                segments = [part1, mid_roll]
-
-                # Handle repeat chunk
-                if repeat_from_ms is not None:
-                    if repeat_from_ms >= at_ms:
-                         print(f"  Warning: 'repeatFrom' timestamp ({config['repeatFrom']}) is not before 'at' timestamp ({config['at']}). Skipping repeat.")
-                    elif repeat_from_ms < 0:
-                         print(f"  Warning: 'repeatFrom' timestamp ({config['repeatFrom']}) is negative. Skipping repeat.")
-                    else:
-                        repeat_chunk = episode[repeat_from_ms:at_ms]
-                        segments.append(repeat_chunk)
-                        print(f"  Adding repeat chunk from {config['repeatFrom']} ({repeat_from_ms}ms) to {config['at']} ({at_ms}ms)")
-
-                segments.append(part2)
-                segments.append(outro)
-
-                # Concatenate
-                print("  Concatenating segments...")
-                final_audio = sum(segments) # pydub uses '+' or sum() for concatenation
-
-            # Export
-            print(f"  Exporting to: {output_path}")
-            final_audio.export(output_path, format="mp3", bitrate=OUTPUT_BITRATE)
-            processed_count += 1
-
-        except FileNotFoundError:
-             print(f"  Error: Could not find episode file during processing (unexpected): {episode_path}")
+            original_audio = AudioSegment.from_mp3(input_path)
+            print(f"  Loaded input: {input_path} (Duration: {len(original_audio)/1000:.2f}s)")
+        except CouldntDecodeError:
+             print(f"  Error decoding input file: {input_path}. Is ffmpeg installed and in PATH?")
+             error_count += 1
+             continue
         except Exception as e:
-            print(f"  Error processing {episode_filename}: {e}")
-            print("  Ensure ffmpeg is installed and accessible in your PATH.")
+            print(f"  Error loading input file {input_path}: {e}")
+            error_count += 1
+            continue
+
+        # Step 2.4: Prepare Mid-roll Data
+        midroll_list = []
+        try:
+            for mr_base, (start_ts_str, end_ts_str) in midroll_definitions.items():
+                start_ts_ms = parse_timestamp(start_ts_str)
+                end_ts_ms = parse_timestamp(end_ts_str)
+                if start_ts_ms >= end_ts_ms:
+                    print(f"  Warning: Mid-roll '{mr_base}' has start timestamp ({start_ts_str}) >= end timestamp ({end_ts_str}). Skipping this mid-roll.")
+                    continue
+                if end_ts_ms > len(original_audio):
+                    print(f"  Warning: Mid-roll '{mr_base}' end timestamp ({end_ts_str} / {end_ts_ms}ms) is beyond input duration ({len(original_audio)/1000:.2f}s). Skipping this mid-roll.")
+                    continue
+                if start_ts_ms < 0:
+                     print(f"  Warning: Mid-roll '{mr_base}' start timestamp ({start_ts_str}) is negative. Skipping this mid-roll.")
+                     continue
+
+                midroll_list.append((mr_base, start_ts_ms, end_ts_ms))
+        except ValueError as e:
+            print(f"  Error parsing timestamp for {input_base}: {e}. Skipping this input file.")
+            error_count += 1
+            continue
+        except Exception as e:
+             print(f"  Unexpected error preparing mid-roll data for {input_base}: {e}. Skipping this input file.")
+             error_count += 1
+             continue
 
 
-    print(f"\nProcessing complete. Processed: {processed_count}, Skipped: {skipped_count}")
+        # Sort by end timestamp (ascending)
+        midroll_list.sort(key=lambda item: item[2])
+        print(f"  Prepared and sorted {len(midroll_list)} mid-roll definitions.")
 
+        # Step 2.5: Initialize for Segment Building
+        final_segments = []
+        last_processed_ts = 0
+
+        # Phase 3: Mid-roll Processing Loop
+        # Step 3.1: Iterate Sorted Mid-rolls
+        for midroll_base, start_ts_ms, end_ts_ms in midroll_list:
+            print(f"  Processing mid-roll: {midroll_base} (Repeat: {start_ts_ms}ms - {end_ts_ms}ms)")
+
+            # Step 3.2: Load Mid-roll Audio
+            midroll_path = os.path.join(MIDROLL_DIR, f"{midroll_base}.mp3")
+            try:
+                midroll_audio = AudioSegment.from_mp3(midroll_path)
+                print(f"    Loaded mid-roll audio: {midroll_path}")
+            except FileNotFoundError:
+                print(f"    Warning: Mid-roll file not found, skipping insertion: {midroll_path}")
+                continue # Skip this specific mid-roll insertion
+            except CouldntDecodeError:
+                 print(f"    Warning: Error decoding mid-roll file: {midroll_path}. Skipping insertion.")
+                 continue
+            except Exception as e:
+                print(f"    Warning: Error loading mid-roll {midroll_path}: {e}. Skipping insertion.")
+                continue
+
+            # Step 3.3: Extract Segment Before Mid-roll
+            # Ensure we don't go backward if timestamps overlap incorrectly after sorting/filtering
+            if end_ts_ms < last_processed_ts:
+                 print(f"    Warning: Current end timestamp {end_ts_ms}ms is before last processed timestamp {last_processed_ts}ms. This might indicate overlapping definitions in splice.json. Adjusting slice.")
+                 # This case shouldn't happen with proper sorting and filtering, but handle defensively.
+                 # We effectively skip adding the 'segment_before' for this iteration as it's already covered.
+            else:
+                segment_before = original_audio[last_processed_ts:end_ts_ms]
+                final_segments.append(segment_before)
+                print(f"    Added original segment: {last_processed_ts}ms to {end_ts_ms}ms")
+
+            # Step 3.4: Append Mid-roll Audio
+            final_segments.append(midroll_audio)
+            print(f"    Added mid-roll: {midroll_base}")
+
+            # Step 3.5: Extract and Append Repeat Segment
+            # Ensure start_ts_ms is valid relative to end_ts_ms (already checked)
+            # and within the bounds of the original audio
+            if start_ts_ms < 0 or end_ts_ms > len(original_audio):
+                 print(f"    Warning: Invalid repeat segment timestamps ({start_ts_ms}ms - {end_ts_ms}ms) relative to original audio length. Skipping repeat segment.")
+            else:
+                repeat_segment = original_audio[start_ts_ms:end_ts_ms]
+                final_segments.append(repeat_segment)
+                print(f"    Added repeat segment: {start_ts_ms}ms to {end_ts_ms}ms")
+
+            # Step 3.6: Update Progress Marker
+            last_processed_ts = end_ts_ms # The end of the *original* audio segment just added
+
+        # Phase 4: Finalization and Export
+        # Step 4.1: Append Remaining Original Audio
+        if last_processed_ts < len(original_audio):
+            final_original_segment = original_audio[last_processed_ts:]
+            final_segments.append(final_original_segment)
+            print(f"  Added remaining original segment: {last_processed_ts}ms to end")
+        elif last_processed_ts > len(original_audio):
+             print(f"  Warning: Last processed timestamp ({last_processed_ts}ms) exceeds original audio duration ({len(original_audio)}ms). No final segment to add.")
+
+
+        # Step 4.2: Append Outro
+        final_segments.append(outro_audio)
+        print("  Added outro")
+
+        # Step 4.3: Concatenate Segments
+        print("  Concatenating final segments...")
+        if not final_segments:
+            print("  Warning: No segments to concatenate. Skipping export for this input.")
+            error_count += 1
+            continue
+
+        # Start with an empty segment to avoid issues if final_segments is empty (though checked above)
+        final_audio = AudioSegment.empty()
+        try:
+            for segment in final_segments:
+                final_audio += segment
+        except Exception as e:
+            print(f"  Error during segment concatenation for {input_base}: {e}")
+            error_count += 1
+            continue
+
+        print(f"  Final audio duration: {len(final_audio)/1000:.2f}s")
+
+        # Step 4.4: Construct Output Path
+        today_date = datetime.now().strftime('%Y%m%d')
+        output_filename = f"{input_base}.{today_date}.mp3"
+        output_path = os.path.join(OUTPUT_DIR, output_filename)
+
+        # Step 4.5: Export Final Audio
+        try:
+            ensure_dir(OUTPUT_DIR) # Ensure output dir exists
+            print(f"  Exporting to: {output_path} (Bitrate: {OUTPUT_BITRATE})")
+            final_audio.export(output_path, format=OUTPUT_FORMAT, bitrate=OUTPUT_BITRATE)
+            print(f"  Successfully exported: {output_path}")
+            processed_count += 1
+        except Exception as e:
+            print(f"  Error exporting final audio for {input_base} to {output_path}: {e}")
+            error_count += 1
+            continue # Continue to the next input file
+
+    print(f"\n--- Processing Summary ---")
+    print(f"Successfully processed: {processed_count}")
+    print(f"Skipped (input file missing): {skipped_count}")
+    print(f"Errors encountered: {error_count}")
+    print(f"--------------------------")
+
+
+# Phase 5: Script Execution Boilerplate
 if __name__ == "__main__":
-    # --- Installation Check ---
+    # Step 5.4: (Optional) Dependency Checks
     try:
         from pydub import AudioSegment
     except ImportError:
@@ -167,12 +268,21 @@ if __name__ == "__main__":
         print("Please install it using: pip install pydub")
         sys.exit(1)
 
-    # Basic check if ffmpeg *might* be missing, pydub will raise specific errors later if needed
-    if not any(os.access(os.path.join(path, 'ffmpeg'), os.X_OK) for path in os.environ["PATH"].split(os.pathsep)):
-         if not any(os.access(os.path.join(path, 'ffmpeg.exe'), os.X_OK) for path in os.environ["PATH"].split(os.pathsep)):
-            print("Warning: 'ffmpeg' command not found in PATH. pydub requires ffmpeg for MP3 processing.")
-            print("Please install ffmpeg and ensure it's in your system's PATH.")
-            print("(e.g., 'sudo apt update && sudo apt install ffmpeg' or 'brew install ffmpeg')")
-            # Allow script to continue, pydub will fail definitively if it can't use ffmpeg
+    # Basic check for ffmpeg in PATH (pydub relies on it)
+    ffmpeg_found = False
+    for path_dir in os.environ.get("PATH", "").split(os.pathsep):
+        if os.path.exists(os.path.join(path_dir, 'ffmpeg')) or os.path.exists(os.path.join(path_dir, 'ffmpeg.exe')):
+            ffmpeg_found = True
+            break
 
-    process_audio()
+    if not ffmpeg_found:
+        print("\nWarning: 'ffmpeg' command not found in your system's PATH.")
+        print("pydub requires ffmpeg (or libav) to process audio files like MP3.")
+        print("Please install ffmpeg and ensure it's accessible.")
+        print("  - On Debian/Ubuntu: sudo apt update && sudo apt install ffmpeg")
+        print("  - On macOS (using Homebrew): brew install ffmpeg")
+        print("  - On Windows: Download from ffmpeg.org and add to PATH.")
+        print("The script will attempt to run, but may fail during audio loading/exporting.\n")
+
+    # Step 5.3: Call Main Function
+    process_episodes()
