@@ -23,20 +23,27 @@ export default $config({
           viewerRequest: {
             injection: $interpolate`
 const uri = event.request.uri.toLowerCase();
-function doRedirect(location) {
+const codes = {
+  301: "Moved Permanently",
+  302: "Temporary Redirect",
+};
+function doRedirect(location, statusCode) {
   return {
-    statusCode: 301,
-    statusDescription: 'Moved Permanently',
+    statusCode: statusCode,
+    statusDescription: codes[statusCode],
     headers: {
       'location': { value: location }
     }
   }
 }
 if (uri.endsWith("-fitness-desk")) {
-  return doRedirect("/walk"); 
+  return doRedirect("/walk", 301); 
 }
 if (uri.startsWith("/podcast")) {
-  return doRedirect("/mlg"); 
+  return doRedirect("/mlg", 301); 
+}
+if (uri === "/creator") {
+  return doRedirect("https://get.descript.com/x3fdos9pxq4r", 302);
 }
 `,
           }

@@ -63,6 +63,7 @@ export default function getPrerenderRoutes(forSitemap) {
   console.log(priority)
   const lastmod = Object.fromEntries(
     routes.map((r, i) => {
+      if (r === "/walk") { return new Date() }
       const meta = lookups[i];
       if (typeof meta === 'string' || !(meta.updated || meta.created)) {
         return [r, new Date()]
