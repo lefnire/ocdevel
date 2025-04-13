@@ -1,4 +1,4 @@
-export const title = 'Code AI Models & Modes, Roo Code Power Use'
+export const title = 'Code AI Models & Modes, Power Use'
 export const episode = 23
 export const mergeEpisode = 56
 export const mla = true
