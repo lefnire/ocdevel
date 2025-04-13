@@ -1,0 +1,36 @@
+export * from './meta.js'
+
+### Tool Use and Model Context Protocol (MCP)
+
+#### Tool Use in Vibe Coding Agents
+- **File Operations**: Agents can read, edit, and search files using sophisticated regular expressions.
+- **Executable Commands**: They can recommend and perform installations like `pip` or `npm` installs, with user approval.
+- **Browser Integration**: Allows agents to perform actions and verify outcomes through browser interactions.
+
+#### Model Context Protocol (MCP)
+- **Standardization**: MCP was created by Anthropic to standardize how AI tools and agents communicate with each other and with external tools.
+- **Implementation**:
+  - **MCP Client**: Converts AI agent requests into structured commands.
+  - **MCP Server**: Executes commands and sends structured responses back to the client.
+- **Local and Cloud Frameworks**:
+  - **Local (S-T-D-I-O MCP)**: Examples include utilizing Playwright for local browser automation and connecting to local databases like Postgres.
+  - **Cloud (SSE MCP)**: SaaS providers offer cloud-hosted MCPs to enhance external integrations.
+
+### Expanding AI Capabilities with MCP Servers
+- **Directories**: Various directories exist listing MCP servers for diverse functions beyond programming. [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+- **Use Cases**:
+  - **Automation Beyond Coding**: Implementing MCPs that extend automation into non-programming tasks like sales, marketing, or personal project management.
+  - **Creative Solutions**: Encourages innovation in automating routine tasks by integrating diverse MCP functionalities.
+
+### AI Tools in Machine Learning
+- **Automating ML Process**:
+  - **Auto ML and Feature Engineering**: AI tools assist in transforming raw data, optimizing hyperparameters, and inventing new ML solutions.
+  - **Pipeline Construction and Deployment**: Facilitates the use of infrastructure as code for deploying ML models efficiently.
+- **Active Experimentation**:
+  - **Jupyter Integration Challenges**: While integrations are possible, they often lag and may not support the latest models.
+  - **Practical Strategies**: Suggests alternating between Jupyter and traditional Python files to maximize tool efficiency.
+
+### Conclusion
+- **Action Plan for ML Engineers**:
+  - Setup structured folders and documentation to leverage AI tools effectively.
+  - Encourage systematic exploration of MCPs to enhance both direct programming tasks and associated workflows.

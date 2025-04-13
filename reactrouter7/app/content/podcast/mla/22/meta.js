@@ -1,4 +1,4 @@
-export const title = 'Code AI: Cursor, Cline, Roo, Aider, Copilot, Windsurf'
+export const title = 'Code AI Cursor, Cline, Roo, Aider, Copilot, Windsurf'
 export const episode = 22
 export const mergeEpisode = 55
 export const mla = true

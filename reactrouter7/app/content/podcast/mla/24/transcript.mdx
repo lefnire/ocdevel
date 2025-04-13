@@ -1,0 +1,228 @@
+[00:00:00] Machine learning applied episode 24, code AI part three. In this episode, I will talk about tool use within vibe coding agents such as browse files and execute command, and I'll contrast those with MCP servers or model context Protocol and CPS are a very powerful tool. that allow a lot of expansiveness within vibe coding.
+
+[00:00:27] And then at the end of the episode, I'll finally bring it back to. Machine learning engineering. so, if you're an MLG veteran, your moment has finally come in this three part series. If you're not interested in machine learning as a topic, once I get into the segment about using this tooling for machine learning specifically, you can just skip to the next episode.
+
+[00:00:49] Now let's talk about, tool use and model context protocol. So tool use is the essence of the agentic tooling of these code AI tools. Like I said, there's two ways to interface with a vibe coding tool.
+
+[00:01:05] The first way is that it can auto complete lines of code or blocks of code in your inline editor of an open file. That's the traditional way to work with these tools. and it's still a very powerful, very sophisticated way. the tooling is improving all the time. It used to be that it would just, suggest the completion of a single line, that you're currently typing.
+
+[00:01:27] Then they started adding that it would complete a block of code so it can write entire functions at a time. And now it's so cool. it can actually. Suggest cross file edits. It can suggest not just the insertion of a block of code, but the modification and deletion of snippets of existing code.
+
+[00:01:49] So when you hit tab, it will really just modify your whole file, making refactors and such. And the other way to work with these tools is via the agent. The sidebar that you open up has a prompt input field where you type your prompt and hit enter.
+
+[00:02:06] And,the typical tool here in terms of tool use is read, file and edit file. And that's read file and edit underscore file. those are tools that calls that, that,give it capabilities to interact with your code base. Beyond the default tools, it can, list files.
+
+[00:02:28] if it thinks that what it needs in order to complete the task that you asked of, it is outside of the file that you provided it, it can either search the dependencies based on the imports, or it can just go up a level or to the root of the project and run a search command
+
+[00:02:47] find or GRP or said like native Unix command, across your files. And I found this to be actually, it's very intelligent at the types of search commands. It runs, it uses regular expressions in its searches.
+
+[00:03:00] in a very clever way where the search it performs is typically, not the search you would've expected it to perform based on maybe its knowledge of certain packages that are installed in your project. And then it can find the file, a ri, it will then execute like a open file or a read file command.
+
+[00:03:17] Another tool built in is switch mode. So if you're in architect mode, it can switch it over to code mode. And these commands, they require developer permissions. So when you first use the tool, it will ask you to confirm every time it's gonna do one of these things.
+
+[00:03:34] Eventually you start getting annoyed and so you go into the settings and you auto approve, some amount of these tools. if you are, confident in the tool, you could pretty much auto approve everything it does and just letter rip. but, typically what people do is they auto approve the read file list file, write file, and then they'll require approval for execute command or MCP servers, for example. So one really cool feature is if, let's say in the simplest case, it determines that you're lacking some package that you need, to implement a feature.
+
+[00:04:08] So it can suggest a PIP install or an NPM install, and you can click confirm. And then once it's done with that, it can continue on implementing the rest of the feature. Using that new package that it installed,
+
+[00:04:21] one very cool tool that it can use is browser action or browser use. So it can open up the browser and take a look at the results so far. and it can either take a screenshot and send that up to Claude 3.7,
+
+[00:04:35] which has some, multimodal understandings of images in a semantic sense. and it can see if it accomplished its task correctly. and there's a handful of other tools. Now, this is called tool use, and these are tools that are baked into the agents.
+
+[00:04:49]
+
+[00:04:49] Now recently along came anthropic the company behind Claude and released a standardized protocol called Model Context Protocol, or MCP. what they found was too many tools on the internet We're reinventing the wheel with how agents can communicate with each other, with how your code AI tool should communicate with tools that it can execute, like file search and browser use,
+
+[00:05:18] Or if you've ever used open AI's tool use capabilities, you saw that there was a certain protocol there. some SaaS companies like Salesforce and MailChimp had APIs where you could interact with them using AI tooling.
+
+[00:05:32] But all of the ways in which tools were called by their own internal AI agents, were being reinvented, not following a standardized protocol. So Anthropic created a standardized protocol called Model Context Protocol, or MCP. And it is meant to be a universal standard that everybody can use, whether they're building local tools like browser use, or they're building hosted tools like Salesforce, API and to thereby enable the internet of agents.
+
+[00:06:06] come up with a standard whereby agents can communicate with each other, or clients or tools can communicate with agents. And, it's a protocol. So it's similar to rest. If you've done web development, rest has get post, put delete, you send a get request or a post request and it has a header and there are certain standardized.
+
+[00:06:28] Header, keys and values for those keys. And you send a body and it has to be JSON, string applied. and it will send a response with header and body and a certain status code. And so that's what MCP is like.
+
+[00:06:41] It is a protocol that servers use to implement the execution of an AI initiated tool, and it will provide a response. So an MCP server may as a starting ground, think of this as like a pre-flight request. Provide the types of tools that can be executed.
+
+[00:07:05] so the tool names like browser underscore use or. Customers list. And then another way to interface with MCP server is to submit to it the prompt or the context and the tool that you want to execute. And then it will respond back with, the tool that was executed and the response, the results, an array of rows or a text blob or something.
+
+[00:07:32] and there's three, parts to the MCP equation. There's the tool itself, in our case, a vibe coding tool built into VS code, the MCP client, which does the translation of the prompt that you submitted and the context like the code files. And, the tool lookup that is available by way of the MCP server and then converting that combination to which tool is to be executed and with what data.
+
+[00:08:03] from the original context, and then submits that to the MCP server. The MCP server comes down with the response. The MCP client translates that into, something that your code AI agent wants to work with. For example, A of code edits to make to what?
+
+[00:08:21] Code files, and then your code AI agent implements those changes based on the response. So three parts set up your AI agent takes the context, your prompt, and the files and the system instruction about what role it is. It then sends that to the MCP client, which will convert it to a structured body of what tool to use based on the tools it knows are available, and, what to submit because a text blob might not cut it, it might want some structured content based on the results of the AI agent.
+
+[00:08:56] Send that to the MCP server, MCP server. Comes back down to the MCP client with the results. In a structured format, MCP client converts that into the format, your vibe, coding agent desires, namely a diff of file changes, and to what files sends that to your vibe coding agent, which implements the changes in code.
+
+[00:09:19] And what's very powerful about MCP servers is they go beyond the tools provided by your AI agent. cursor and Roo Code and Cline, they all implemented their own tools. They custom implemented their own version of tool use for that particular tool. Roo Code has, read files and search files and browser use and so forth, and they wrote all that in code.
+
+[00:09:47] baked into the AI agent. the introduction of these MCP servers means that there's a standard protocol for working with tool use, and also that there is a directory of MCP servers that you can call upon, in your coding project, whatever you're building, but also available to these vibe coding agents, the developers of Roo Code or Cline can start making use of these MCP servers.
+
+[00:10:16] And I have a theory that, this might not come to pass, but I have a theory that they will start migrating from their own implementation of these tools like browser use and file search, towards more standardized MCP servers, for accomplishing these tasks.
+
+[00:10:34] maybe they prefer the stronger control they have over the implementation of browser use rather than punting to some black box implementation. nonetheless, more tools are now available to these AI agents and to you as a developer. Most of these. Vibe coding tools have MCP server integration capability in their settings page.
+
+[00:10:57] I know that Roo Code and Kline and Cursor do. you can browse a directory on the internet. I will post a, GitHub page, which is the official directory of, some popular MCP servers.
+
+[00:11:09] There's like the official MCP servers that were put out by the creators of the MCP protocol, and then there's a third party MCP servers that are popular that are unofficial. and then beyond the GitHub page, that'll link in the notes.
+
+[00:11:25] There are, popular directories of MCP servers. just some websites, some company put together a directory and you can up vote them and down vote them. And there's featured and sponsored and popular, and you can do searches and so forth. And these MCP servers, they're not just for programmers.
+
+[00:11:43] they're not built for vibe coding agents. They're built for everyone. They, it's a standardized protocol for building agents that provide tool calling capabilities. And this protocol allows agents to communicate with each other. And, I would say they're actually used more in, pipeline automation, especially in sales and marketing on the internet, than they are in programming tools like what we're discussing in this episode. when you look up MCP servers, a lot of the YouTube videos and tutorials you'll see are people using Salesforce and something called N eight N and Zapier and chaining together this sequence of sales automation and so forth.
+
+[00:12:29] So they are universal. they're intended to enable the internet of agents to allow companies and pipelines and tools to, interact with each other in an automated fashion, which is going to create an explosion of God knows what. as soon as these things, become more. Popular and known for what they are capable of.
+
+[00:12:52] The internet is gonna become a very interesting place here in a bit. This only started, I think it was November, 2024, was when the MCP was released, and the MCP server directories are enormous, hundreds or thousands of tools out there. what that means for you as a developer using Vibe Coding Agents isn't just that you can tap into tooling for programming automation, but that you can also tap into tooling for any automation.
+
+[00:13:20] Try to think outside the box now that you know about cps as you go forward using your vibe coding tool. think about outside of the box and think what else would help me as a programmer right now that I do manually in my day to day that instead I could, plug into Roo Code, give it the capability to interact with so that I don't have to do that manually.
+
+[00:13:48] one thing I do is I review treadmill, desks, walking pads. periodically I'll look at what's available out there and compare their capabilities to each other and the fake spot score of their reviews. the one star skew of the ratings I manage the webpage that hosts comparing these products, in a code project in GitHub, I could find some set of MCP servers that will help me automate, scraping the reviews and the fake spot score and the specifications of these treadmills so that I don't have to look them up and update them myself periodically.
+
+[00:14:23] Okay, so there's two types of MCP servers. One is meant to be hosted in the cloud, by these SaaS providers as APIs or as code tooling hosted on an API. And, the other type of MCP is meant to be on your local host, So for example, browsing files and searching files, and running a browser and browser use. the server based MCP servers are called SSE Server Side Event. CPS model, context, protocol, and the client based CPS are called, S-T-D-I-O, standard IO based MCP servers. So if you're using this only with local tools, you're still gonna be running an MCP server. It'll just be some containerized MCP server that is invisible to you, running on your behalf.
+
+[00:15:22] And. when you've set up an MCP server in Roo Code or cursor, you will go to the gear icon, the settings page, and it will open up A-J-S-O-N file where you specify the URL of the MCP server.
+
+[00:15:35] And if it's a locally installed MCP, you'll specify the run command, the thing that kicks off like the local docker container or the Python script or whatever. as an easy example of a local MCP is, browser automation.
+
+[00:15:48] Roo Code has built into it. browser use, browser action. The various browser actions are open up webpage, scroll down, click element, fill in form, and so forth. there is a, more standardized local browser tool built by Microsoft called Playwright.
+
+[00:16:06] if you've ever done any sort of end-to-end testing, automation. You may have used playwright before. It can take images of, webpages or convert them to markdown and so forth. rather than using root code's browser tool, you could use the locally ran playwright MCP server.
+
+[00:16:25] And, there's other browser cps. there's cloud hosted browser, cps, like Fire Crawl you could use, so you don't have to set things up locally. I don't know why you would do that. You'd have to pay for an API key. and playwright is really easy to set up locally, but I see some developers using Fire Crawl.
+
+[00:16:41] There's the brave search engine.
+
+[00:16:43] Another really powerful local S-T-D-I-O-M-C-P server is working with, local Postgres database installation. So if your project works with Postgres, you can, install a Postgres MCP and provide it with the credentials for the database that is tied to this project.
+
+[00:17:03] it can then infer the schema of your database using DDL SQL Scripts. in order to better inform how it should be working with the ORM, like drizzle, ORM or what types of inserts and updates are available to it, what types of relations are available? it can look at the rows in the tables in order to decide what HTML elements are best used for displaying each cell of each row. the Postgres MCP is super valuable. There's a, an A-W-S-M-C-P, so you can tie it to your AWS account associated with this project, and it can look at the types of resources that you're using for this project or.
+
+[00:17:44] help create resources to host various parts of your project using
+
+[00:17:49] infrastructure as code like if you wanted to host your machine learning model and a web front end and a web server, using let's say SageMaker plus. S3 and CloudFront plus Lambda Python. It could, tie into your AWS account to help you set all that stuff up, either directly or through infrastructure as code.
+
+[00:18:12] So you can see, you really gotta get creative and think outside of the box, in What are the ways in which you as a programmer are doing things manually right now that could be automated in your vibe coding tool chain? And the answer there is check to see in the MCP directories if there's an automated solution available to you.
+
+[00:18:34] And this is how you're going to move really fast and keep up with the times. One final MCPI want to discuss and I haven't played with this yet 'cause I haven't found the right one, is Rag RAG Retrieval Augmented Generation. Now, once upon a time, all these vibe coding tools used to use, rag to find files in your code base.
+
+[00:19:00] When you say fix a bug. It would use Rag to embed your Prompt, and then use Co-sign Similarity to find the closest matching file in your code base based on the embedding of that file, and then pull, one or multiple of those files from your code Bases embedding index. Into the context window of the conversation in order to decide where, a fix needs to be applied or where a feature needs to be added.
+
+[00:19:35] So let me take it from the start. you used to install one of these tools, like Cody, in your IDE. Cody was a populaR1. and it would index your code base. And what indexing means is it would use a technology that converts the text of your code files into what's called an embedding a vector of numbers.
+
+[00:19:58] And it would save all of these embeddings into a local database of embeddings called a vector index or a vector database. And it would have that on hand, and then when you would prompt your code agent, to implement a feature or fix a bug, it would embed your prompt and then find the closest matching n number of embeddings from your code base using co-sign similarity for the matchmaking algorithm.
+
+[00:20:27] Pull some number of those. From your code base now in text form, add those to the context of your prompt and send that to the model. And it was a very sophisticated, magical, beautiful mechanism for finding relevant code in your code base.
+
+[00:20:47] but for whatever reason, it was moved away from, I think that they found that even though it was magical and elegant, it wasn't as practical as they thought it would be. what a lot of these tools found is These agents work better operating like a human would operate.
+
+[00:21:05] Now, if rag, you could think of as a human's memory of their code base, I remember where this was in the files. the other approach would be, I don't remember where these are in the files, but I know how to find it. I'm gonna right click on the top directory and do find, and I'm gonna use a regular expression, to search through certain file patterns for a certain phrase. and that's how it pulls the documents outta the code base. And it seems that they found that was more practical in the real world of AI agents than the embedding paradigm was. because all of the modern agents use the, list files and search files Tools, rather than embeddings, but you don't have to throw the baby out with the bath water on Rag, it's still a valuable tool. And so you can install a local MCP server that indexes your code base. And a number of these that I see on the official list are chroma,
+
+[00:22:04] and vectorize and vis. what I'd like to do is install a local one. I think a lot of these are hosted What I want is a local MCP intended for a local vector index, where I will have an index per project, something like llama index or fi.
+
+[00:22:23] And this would come in handy when there are parts of your project related to the context under consideration, but which couldn't be found by literal search strings. maybe the verbiage used in those code files isn't exactly the verbiage used in the files under consideration.
+
+[00:22:41] that has been true in many cases. In my experience. I have found a lot of times where. The right file. I know which one it is, and it can't easily be found through a search, given the context of our conversation. And so there are times when I would like rag back in my life I think a bigger reason to use Rag though is as a knowledge base for documentation for third party tools you use in your project. LLMs, they all know Python and PyTorch and React and Tailwind. They know all of the most popular tools that have been around for a while.
+
+[00:23:23] What they don't know is. Newer projects, either totally new libraries and frameworks or new versions of those libraries and frameworks where the new version might have breaking changes. and this is a real practical issue. I face this dilemma very frequently. one thing you can do,
+
+[00:23:43] Is use the browser action for the web and give it the documentation page for the particular tool you want to use. So let me give you an example. SST is my infrastructure. As code tool of choice. So I use SST to deploy all my stacks to the web. I use it to deploy my machine learning models, either as a containerized ECS service, or I use it to deploy my web app servers on Lambda.
+
+[00:24:13] And my web front ends on S3 and CloudFront. version two of SST The version that most models know about was written for A-W-S-C-D-K AWS's infrastructure is code languageversion three. The new version is written for Lummi and Terraform, but primarily Lummi.
+
+[00:24:33] So anytime I ask these models to add some new resource in my stack or fix an existing resource, which is having problems, it will break my code. 'cause it will write SSTV three code. Namely it will write c, d, K code. and I've tried adding custom instructions to.
+
+[00:24:54] my Roo Code modes saying whatever you know about SST, it is not true. Please do not try to implement SST the way you know it. Reference the surrounding code where you're adding your code. We're using Lummi if you're gonna try to write custom infrastructure as code.
+
+[00:25:11] And it never works. It always, whatever knowledge it has about SST V two is deep enough that it overpowers my custom instruction. one thing I've tried is using the webpage for the documentation of the new SST V three resource. So I'll say at, SST v three.com/s3.
+
+[00:25:32] And it will use the browser tool to scan that webpage and, try to grok the new way to interact with a tool. but that's clunky and inefficient and it doesn't know about all of SST. It only knows then about that one resource. So one way. Rag could be used here is to have a local index, a local vector database of all of the tools that you use that LLM may not know about.
+
+[00:26:04] So you could get clone all of the newer tools or the newer versions of your Third party plugins into one folder, and you could maybe delete everything except for their docs folder, and then you could have your local vector database index That parent folder and then you could plug your rag MCP into that index and now your code agent would know about or at least be able to call upon the knowledge base documentation of.
+
+[00:26:37] The tools that you use, I think of all of the, MCP servers that I've discussed, example use cases in this episode. I think that's the one I'm the most interested in using myself here soon.
+
+[00:26:49] Fine tuning a local LLM could be an alternative to. Implementing a rag MCP. in the previous episode where I talked about fine tuning a local LLM and hosting it via llama on your code base, you could also include in the fine tuning data, set the documentation for the third party tools you're using, and then it would have knowledge of those tools baked into the model itself.
+
+[00:27:14] So that's MCP servers, before you start using code ai. Agents, I highly recommend you scan one of these MCP server directories and see what's available. Think creatively, think about everything you use in your day-to-day job that's not direct code. See if there's something available for automating that.
+
+[00:27:36] And, start playing with CPS day one of your vibe coding journey, So that way you start expanding your horizons and thinking bigger from day one. now let's bring this back to machine learning proper, because we're talking about app development websites and mobile apps a lot lately. You can use everything I'm talking about in the last episode in machine learning. you can use it to help guide your feature engineering and your data cleansing, and your pipeline construction and your machine learning model design and your hyper parameter optimization.
+
+[00:28:14] And I have done this with great success. I've discovered new concepts in machine learning that I didn't know about. well, one thing I discovered, in data cleansing is for highly skewed features. If you have a data set where the most common value is zero, and the next most common value is one, but.
+
+[00:28:34] Exponentially less so than zero. And then the next one is two, but exponentially less so than one, et cetera. This is called a negative exponential distribution, or, depending on the shape of the graph, it might be a negative binomial distribution. And, a common way to reshape that distribution in your dataset.
+
+[00:28:55] In your data cleansing process is to do NP log to try to make that distribution more normal or more standard, and it doesn't work all the time. And I was having trouble getting it to work in my particular project, based on the distribution
+
+[00:29:10] And my code tool suggested to use, a power transformer by the name of Yeo Johnson,YEO Johnson. And it implemented it for me. and then it suggested I run the command and I ran it. And sure enough, it did a much better job of reshaping that column.
+
+[00:29:29] you can use. Code AI to help you learn new machine learning techniques as well as to help you code your way through the implementation of your project. a very popular concept in machine learning is this thing called auto ml, auto Machine learning. It used to be that, there were a handful of hosted auto ML tools on the web. A very populaR1 was, AWS SageMaker Autopilot, and what you'd do is you'd Upload your data set and it would try to automatically predict the data types of the columns. And if you wanted to override those data types, let's say it received the date columns as a string, and you'd rather those be converted, to a Unix timestamp as an integer and so forth.
+
+[00:30:18] you could click on some dropdowns and configure things, And then you designate which column is the label, that you're trying to predict. and it would create a machine learning model for you.
+
+[00:30:28] It would, run through a handful of common machine learning models based on the task and come up with the one which performs the best, it will run through XG Boost and a neural network and linear regression and so forth. it will attempt hyper parameter optimization on some common hyper parameters, and I believe it will try to do a little bit of data cleansing.
+
+[00:30:53] But it wasn't very good in my experience, and there were a lot of tools out there. Google had one, there were some third party ones. I didn't have good success with any of these tools, and so I just kept reverting back to either using an off the shelf model or writing my own models using PyTorch. typically XG Boost was the winner for tabular data, and,
+
+[00:31:14] I would Google on Stack Overflow or some blog posts, the best hyper parameters what are some decent ranges to experiment with? And run Hyperop, over the course of a couple days to dial that in.
+
+[00:31:28] And it felt a little bit sloppy. it didn't feel like when I was. Building models and cleaning the data that I was doing so in the way most optimal to the problem at hand. I was instead maybe using some examples from the web that were similar to the problem at hand.
+
+[00:31:47] And so by switching to code AI tools, where the model is able to observe your dataset, distribution, and what is the label that you're trying to predict, it can help you in coming up with the best Hyper parameter search space for your hyperop runs and the best data, cleaning transformations your particular columns based on their distribution How you might wanna reshape the labels for the type of loss function you're using. Any tweaks to the loss function, including rebalancing. And then when you've trained your model, it can help you, build a pipeline, tie it to AWS in code using CDK or whatever. Infrastructure is code tool you're using.
+
+[00:32:40] truly, this really helps with the day-to-day operations of a machine learning engineer. And I know it's gonna take a lot of. Convincing you if you're a machine learning engineer, to try this because ML engineers, they want to have total control over the process.
+
+[00:32:56] It's very difficult to get them to take their hands off the keyboard and let the model drive a little bit. But I want you to try it. If you haven't yet, give it a whirl and just see what you think.
+
+[00:33:05] It's, again, this is meant to be a tool. It's not meant to take your job. It's meant to be a tool to aid you in your day-to-day, to save you time and prevent a lot of the grunt work, especially the redundant stuff from project to project. so here's an action plan.
+
+[00:33:21] step one is create a folder and, dump into it a handful of samples from your dataset. A CSV, maybe just dump five rows or however many rows is needed to really grok the distribution of each of the columns so that you can show it to your model. And the model can help design a data transformation workflow, and understand the distribution of each column.
+
+[00:33:52] then for each column take a screenshot of the distribution using a histogram, map plot lib either in your Jupyter notebook or in Python directly. You can, save the map plot lib, outputs to p and gs or JPEGs. So get an image of the distribution of each of the columns, including your y column, your label.
+
+[00:34:17] Put those into the folder
+
+[00:34:19] and then, start a file, a new Python file add a comment to the top of that file saying what you're trying to accomplish. This is a model, which has highly skewed data, and we're trying to predict a multi-class output, 10 classes, and each of the distributions of those classes looks like the images found in this folder.
+
+[00:34:41] And you can see a CSV dump of a sample of that dataset in that folder as well. So tell Boomerang mode. try your hand at implementing at Model Pi, you use the at symbol to reference a file. an alternative strategy here is if you have a long running project, you're not starting from scratch.
+
+[00:35:02] You can do everything I said up until the creation of the Python file, and instead provide a detailed report of. The project at large and the type of model you're working with or hope to be working with. And, some information about the data in a custom instruction in the settings pane of Roo Code, click the settings gear icon, paste into the custom instruction as much details about your project as you can provide.
+
+[00:35:29] And then now you have your Python file already existing with the model implementation that you have so far. And, you give it a prompt referencing, that model file and,you click submit. So there's multiple ways to skin a cat.
+
+[00:35:43] You can use custom instructions, you can use comments in a file, or you can just stuff everything you want to do inside of the prompt itself. the way I separate this is, if the model needs to know about certain things about my project all the time, no matter what it's doing, I'll put that as a system instruction and that comes in handy very frequently, very commonly.
+
+[00:36:04] you want every session in your coding to know a little bit of background information about what you're doing. and sometimes, you want that, but temporary. just some of the time. And so in that case, I put that instruction into a file, and then I reference that file only when it's needed.
+
+[00:36:21] And then other times, there's a lot of background information. True, but it's only relevant for this particular session, and that means you just put it in the prompt itself. I've had the tools, suggest various cleanup strategies on the columns, and I've had it guide me in, maybe this label, which is currently a multi-class, regression problem that is each of the classes is a number Maybe there's a way to spin this.
+
+[00:36:49] Maybe there's a different angle here. And I'll work with the model and it'll say, yeah, we can actually maybe combine all of those into one unified, single output regression problem. and in fact we can transform this label into a binary classification problem to simplify this model, and I will have the tool help me create 2, 3, 4 Totally different models and run hyper parameter optimization on all of those different models and report back the results,
+
+[00:37:20] and then I will have the tool help me write a custom metric function. because all four of these models will have different loss functions and they'll have their own different metrics. log loss versus a negative binomial loss function
+
+[00:37:35] And so I'll have the tool help me design a metric function that is applicable across all the models, a universal metric system based on what I'm trying to predict in this scenario, so that I can compare the models and it's apples to apples. It will take you a while to learn the ropes.
+
+[00:37:53] You're gonna experiment and try different things, but what I can tell you is these code AI tools will very much help you as a machine learning engineer. And at the very least, when you're done with your model and you're ready to operationalize this using machine learning operations to deploy this to the cloud, you can have it help you, utilize.
+
+[00:38:15] Infrastructure code tooling such as CDK,
+
+[00:38:18] to get this wired up
+
+[00:38:20] and it will save you a lot of time. Now, if you are a machine learning engineer, you may. Have been concerned that I'm talking about PY files here, Python files,a code base of direct Python files. It is very common practice when designing machine learning models to use Jupyter Labs. Jupyter Notebooks.
+
+[00:38:42] What are your options in using. Code AI in Jupyter Labs. Unfortunately, at present in my research, and I've done a lot of research because I want to use these things in Jupyter Labs. the options are pretty slim. There is a Jupyter Labs AI plugin, and you can plug in, your API keys or your open router key and interface with the cells.
+
+[00:39:09] using these models. Similar to how you would be using, Roo Code, so it's not a plugin for vs code. Instead it's a plugin for Jupyter Labs. but they tend to be behind the times. They don't work very well. The last time I tried using this tool, it didn't have the latest models integrated. It had Claude 3.5, not even Claude 3.7.
+
+[00:39:32] Claude 3.7 is relatively old in model speak. And it definitely didn't have Gemini 2.5 Pro. This was about a week ago. So they may have updated it. but I also found that it just didn't, I don't know, I didn't like it very much. it, it didn't work with the cells the way that I would've expected it to.
+
+[00:39:50] It's more like you, you have this thing called, I don't remember a magic something, A magic cell or something with a, you use the percent sign and you say, add the following to, to the cell, and it would create a cell for you. but it was less capable at working with existing cells or understanding the entire Jupyter notebook.
+
+[00:40:09] Then I thought it would be, so they may catch up. I would do a little bit of research first, see what the state is in the landscape. One other way I've seen developers work with notebooks is directly through the code AI tools like Roo Code or Cursor, because a Jupyter Notebook is saved as a dot I-P-Y-N-B file, which is a text file.
+
+[00:40:34] each cell is saved as A-J-S-O-N object,There's a lot of fluff in the file beyond the code. And so providing one of these IPY NB files to the model, is a lot of excess tokens and can make it a little bit hard on the model.
+
+[00:40:55] Too many tokens can derail these models. it's not ideal, but. Models do know the language of JSON and they do know the language of IPB files. some people have had non-trivial success working directly in Roo Code or cursor. with these Jupiter notebook files, more success than working with the Jupiter AI plugin.
+
+[00:41:21] but it's not ideal. It's less ideal than working directly with a Python file. So the strategy tends to be, you're going back and forth between Jupyter and your Python file. So you either copy and paste a sell into a Python file and work with it from there. or you just switch over to Python to the largest extent that you can, for.
+
+[00:41:44] Some large programming session a day or two and then switch it back to a notebook when you really need to work with it as a notebook.
+
+[00:41:54] Okay? So that is how you might play with these tools as a machine learning engineer.
+
