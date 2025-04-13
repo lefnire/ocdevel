@@ -1,0 +1,22 @@
+export * from './meta.js'
+
+#### Model Current Leaders
+According to the [Aider Leaderboard](https://aider.chat/docs/leaderboards/) (as of April 12, 2025), leading models include for vibe-coding:
+  - **Gemini 2.5 Pro Preview 03-25**: most accurate and cost-effective option currently.
+  - **Claude 3.7 Sonnet**: Performs well in both architect and code modes with enabled reasoning flags.
+  - **DeepSeek R1 with Claude 3.5 Sonnet**: A popular combination for its balance of cost and performance between reasoning and non-reasoning tasks.
+
+#### Local Models
+- **Tools for Local Models**: [Ollama](https://ollama.com/) is the standard tool to manage local models, enabling usage without internet connectivity.
+- **Privacy and Security**: Utilizing local models enhances data security, suitable for sensitive projects or corporate environments that require data to remain onsite.
+- **Performance Trade-offs**: Local models, due to distillation and size constraints, often perform slightly worse than cloud-hosted models but offer privacy benefits.
+
+#### Fine-Tuning Models
+- **Customization**: Developers can fine-tune pre-trained models to specialize them for their specific codebase, enhancing relevance and accuracy.
+- **Advanced Usage**: Suitable for long-term projects, fine-tuning helps models understand unique aspects of a project, resulting in consistent code quality improvements.
+
+### Tips and Best Practices
+- **Judicious Use of the `@` Key**: Improves model efficiency by specifying the context of commands, reducing the necessity for AI-initiated searches.
+  - Examples include specifying file paths, URLs, or git commits to inform AI actions more precisely.
+- **Concurrent Feature Implementation**: Leverage tools like [Boomerang mode](https://docs.roocode.com/features/boomerang-tasks) to manage multiple features simultaneously, acting more as a manager overseeing several tasks at once, enhancing productivity.
+- **Continued Learning**: Staying updated with documentation, particularly [Roo Code](https://docs.roocode.com/)'s, due to its comprehensive feature set and versatility among AI coding tools.

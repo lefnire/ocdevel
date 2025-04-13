@@ -57,6 +57,7 @@ import * as mla20 from './mla/20/meta.js'
 import * as mla21 from './mla/21/meta.js'
 import * as mlg33 from './mlg/33/meta.js'
 import * as mla22 from './mla/22/meta.js'
+import * as mla23 from './mla/23/meta.js'
 
 import * as llh001 from './llh/1/meta.js'
 import * as llh002 from './llh/2/meta.js'
@@ -123,6 +124,7 @@ export const mlgList = [
 
   mlg33,
   mla22,
+  mla23,
 ].map(e => ({
   mlg: !e.mla,
   id: e.mla ? `mla-${e.episode}` : e.episode,

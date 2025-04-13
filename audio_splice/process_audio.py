@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from pydub import AudioSegment
 import sys
 
@@ -14,11 +15,30 @@ OUTPUT_BITRATE = '128k'
 # --- End Configuration ---
 
 def parse_timestamp(ts_str):
-    """Converts mm.ss.ms or mm.ss string to milliseconds."""
-    parts = ts_str.split('.')
-    minutes = int(parts[0])
-    seconds = int(parts[1])
-    milliseconds = int(parts[2]) if len(parts) > 2 else 0
+    """Converts mm:ss.X or mm:ss string to milliseconds.
+       Assumes X is tenths of a second if single digit,
+       hundredths if two digits, else milliseconds.
+    """
+    time_parts = ts_str.split(':')
+    if len(time_parts) != 2:
+        raise ValueError(f"Invalid timestamp format: {ts_str}. Expected mm:ss.X or mm:ss")
+
+    minutes = int(time_parts[0])
+    sec_ms_parts = time_parts[1].split('.')
+    seconds = int(sec_ms_parts[0])
+
+    milliseconds = 0
+    if len(sec_ms_parts) > 1:
+        ms_part = sec_ms_parts[1]
+        # Determine milliseconds based on length of the fractional part
+        if len(ms_part) == 1:  # Assume tenths of a second
+            milliseconds = int(ms_part) * 100
+        elif len(ms_part) == 2: # Assume hundredths of a second
+            milliseconds = int(ms_part) * 10
+        else: # Assume milliseconds (3+ digits)
+            # Ensure we don't take more than 3 digits for ms
+            milliseconds = int(ms_part[:3])
+
     total_milliseconds = (minutes * 60 + seconds) * 1000 + milliseconds
     return total_milliseconds
 
@@ -74,7 +94,8 @@ def process_audio():
     for filename_base, config in splice_config.items():
         episode_filename = f"{filename_base}.mp3"
         episode_path = os.path.join(EPISODE_DIR, episode_filename)
-        output_filename = f"{filename_base}_processed.mp3"
+        today_date = datetime.now().strftime('%Y%m%d')
+        output_filename = f"{filename_base}.{today_date}.mp3"
         output_path = os.path.join(OUTPUT_DIR, output_filename)
 
         if not os.path.exists(episode_path):

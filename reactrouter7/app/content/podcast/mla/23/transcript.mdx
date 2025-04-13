@@ -1,0 +1,237 @@
+[00:00:00] . Machine Learning applied episode 23. This is Code AI part two. I'm gonna cover some more territory within Vibe Coding. In particular. In this episode, we're gonna be talking about models and modes.
+
+[00:00:12] Models like. The GPT series oh 1 0 3, deep seek, R one, Claude 3.7, Gemini 2.5 Pro. And you can't talk about models without talking about modes because the different models work best under different modes. And the two common modes being architect and code mode.
+
+[00:00:31] and these days most vibe coding tools support at least both architect and code mode. and some of them support additional custom modes.
+
+[00:00:39] Then I'll talk about local models, how you can download an open source model on your local computer and use that instead of a cloud hosted model, as well as fine tuning models. On your code base.
+
+[00:00:49] The next episode I will cover tool use within the agents, contrast that to MCP or model context protocol servers, And then finally, if you are a veteran of MLG and you're wondering why all the app development talk, can we get back to machine learning? At the end of the next episode, I'll finally bring it all back to application of this tooling as a machine learning engineer.
+
+[00:01:14] let's start with models. So the last episode, I talked about tools. I'm gonna start this episode with models.
+
+[00:01:21] Similar to the last episode, this episode will be outdated as soon as it's released because the model landscape is constantly evolving. they are leapfrogging each other Every month, if not every week, a new model is the new winner. so today is April 12th, 2025 if you listen to this episode a month after that date, you're going to want to check the Aider leaderboard, A-I-D-E-R leaderboard. You can Google it
+
+[00:01:52] or there's a link in my notes, so the current winners on the Aider leaderboard, I'm just gonna list the top three are Gemini 2.5 Pro preview 0 3 25 is number 1. Number two is Claude 3.7 sonnet. And number three is a combination of deep seek R1 with Claude 3.5 sonnet. So what is this about? A combination of two models?
+
+[00:02:17] most of these tools allow for multiple modes. the two most common modes are architect and code. and what happens is you type a prompt into your vibe coding tool interacting with some file in your code base.
+
+[00:02:32] And before you hit submit, you select the mode. The default mode is always code mode. And code mode just reads your prompt and edits the code. But if the task is a little bit more sophisticated than simply adding a function or fixing a bug, if instead you want to add a feature, and maybe there's a step-by-step sequence, a plan of attack, then you want to switch it to architect mode.
+
+[00:02:55] An architect operates by thinking through the problem a little bit more deeply. Coming up with a sophisticated game plan, a series of steps, and at least with R code.
+
+[00:03:07] Which is the more sophisticated of this tooling, it'll actually generate a pictorial diagram, one of these diagrams that you might see in your computer science courses.
+
+[00:03:17] And architect mode is not intended for implementing the code. Instead, what it will do is it will switch itself over to code mode. Once it's come up with a game plan, hand off the game plan and any diagrams that it's generated to code mode, and then code mode will implement it.
+
+[00:03:34] I don't know who pioneered this. I think it was ER actually.
+
+[00:03:38] what Eder found is that this separation of concerns between the architecture step and the code step significantly improved the results, the accuracy of the implementation
+
+[00:03:51] Then simply taking a prompt and implementing it. So the old way was just code mode. They didn't have a word for it. It was simply taking a prompt and editing the code. And ER found that by separating architect from code, you got significantly better results.
+
+[00:04:06] And so they created this leaderboard. And the old leaderboard was just for code mode, and it was just called the Aider leaderboard. And as they started moving towards this dual mode system, They started creating multiple leaderboards, the main leaderboard being called the polyglot leaderboard, which takes into consideration using those two modes.
+
+[00:04:29] as a two step process and for the longest time, the architect mode did best when it was using thinking models or reasoning models. Models that have a chain of thought. and not all models supported this for a while.
+
+[00:04:44] At first it was only the O series of GPT and then Deep Seek R1 came out and that was competitive with the GPTO series, but at a fraction of the cost.
+
+[00:04:55] So for a while there, DeepSeek R1 was used for architect mode by most people in these tools because it was so inexpensive and almost as good as the O series. and during that timeframe of the non reasoning models, Claude 3.5 performed the best. so that was a very popular combination. Deep seek R1 for architect and Claude 3.5 for code, but in recent models, most of them support a reasoning mode flag.
+
+[00:05:26] So it can either operate as a traditional LLM without reasoning, or it can operate as a reasoning version of that LLM. and you see that with Claude 3.7 and Gemini 2.5 Pro.
+
+[00:05:40] So number three in the leaderboard is deep seek R1 plus Claude 3.5. Sonnet number two in the leaderboard is Claude 3.7 sonnet. In either mode, architect with the reasoning flag enabled and code mode without the reasoning flag enabled. And then numbeR1 in the leaderboard, currently April 12th, 2025 is Gemini 2.5 Pro preview 0 3 25 in both modes.
+
+[00:06:10] the cool thing about the leaderboard is you can see the cost in one of the columns, and that will help you decide if you definitely just want to use the winner or if maybe that's too expensive, which is usually the case.
+
+[00:06:24] Right now, Gemini 2.5 is both the winner in accuracy and cost. but if at any given time the winner of the leaderboard is too expensive, you can bring it down a rung, based on cost. And oftentimes that compromise in accuracy for cost management is quite significant.
+
+[00:06:45] So I'm looking at number four in the leaderboard. Here is OpenAI oh one. and that's $186.50 per i, I don't know what the metric here is, some number of tokens. And then the next rung below that is Claude 3.7.
+
+[00:07:00] some prior snapshot is $17, so it's an order of magnitude difference in cost. But right now, Gemini 2.5 Pro preview 0 3 25 is the most cost effective and the most accurate. so there's no comparison right now that you need to do.
+
+[00:07:18] We don't really know what's gonna be the situation here because Gemini 3.5. Pro is a little bit, of a mystery, I think, in terms of what its cost future looks like. It has a 1 million token context window so you can work with huge amounts of code at a time, which is very beneficial, especially in programming.
+
+[00:07:39] But the, experimental 0 3 25 is free, totally free of cost. and the preview 0 3 25 is very inexpensive by comparison to the other models. So once they come out of preview. I don't know what the cost will be, but I have a feeling it's gonna remain probably one of the least expensive options.
+
+[00:08:02] Google has TPUs, tensor processing units that is hardware proprietary built within Google for machine learning models. They built these a long time ago, And it was supposed to be a competitor to Nvidia graphics cards for machine learning.
+
+[00:08:17] you didn't hear a lot about it for the longest time, but recently, finally, they are reaping the benefits of all that work. they are much more cost effective than Nvidia GPUs. So on the one hand, they may be able to keep costs down in reality because of the hardware that they've built in-house.
+
+[00:08:35] And on the other hand I think they're playing a catch-up game against the LLM space at large. And so they may be doing a bit of a loss leader thing here charging a little bit less than even at cost, what it costs to them to run these models, because some of the other benefits, may play out in advertising and upgraded Google One plans and whatnot.
+
+[00:08:58] whatever the case may be. They're currently the cheapest in the market, but it remains to be seen if it will stay that way.
+
+[00:09:03] architect and code mode, most. Code AI tools have that delineation. I encourage everybody to use both. anytime your task has any sophistication, start with architect mode and it will either auto switch to code mode when it's ready or it will ask you permission to do that because that's an agent action.
+
+[00:09:24] we'll talk about tool use in agents and the permissions that they require and whatnot. Roo Code in particular, offers multiple modes beyond architecting code. two modes that it ships with by default are ask mode and debug mode. And so if you're fixing a bug, it's beneficial to switch it to debug mode.
+
+[00:09:47] it comes with a system prompt that gears the model towards being more accurate when fixing bugs than if you asked the same prompt in code mode. So it's beneficial to use the mode that's relevant to the task at hand. It actually improves the output And ask Mode has edit capabilities disabled, so you can ask questions of your code base.
+
+[00:10:12] And then, you can write any custom mode that you want for Roo Code, and they have documentation on how to write a custom mode. I think getting started, if you're new to Vibe coding, just work with what's provided for a while and then eventually you'll start to write your own custom modes. I see a lot of power users have a litany of custom modes and they swear by it.
+
+[00:10:35] And when you write a custom mode, you write a system prompt and you tell it which tools it has at its disposal, and then a handful of other tweaks in the settings. there's also something called custom instructions, and you can apply custom instructions to multiple modes or you can apply it to one mode,
+
+[00:10:53] And it's less impactful than writing a whole mode system prompt. A custom instruction is more like style guides or telling the model to always write a unit test for every feature it writes, use two spaces instead of four, and so on. So it's more of providing best practices, and you might want to have this custom instruction applied to all your modes.
+
+[00:11:16] and Roo Code showcased the power of custom modes by releasing a custom mode of their own called boomerang mode. it doesn't come with Roo Code by default. and you can download this custom mode on their website.
+
+[00:11:32] And this really showcases the power of custom modes because when you use boomerang mode, it operates totally different than the other modes. it adds new capabilities that didn't exist in the other modes. The way boomerang mode works is it's an orchestrator.
+
+[00:11:49] That's the word that they use for this type of mode, orchestrator, and it delegates subtasks to other modes. So you tell Boomerang mode to implement some set of features, either a single feature or a set of related features, and it will typically kick off architect mode first. That's subtask one. Architect mode will then read the files under consideration and then come up with a game plan, a step-by-step sequence for implementing this feature, and then it will report back to boomerang mode, the game plan.
+
+[00:12:22] And then boomerang mode will then kick off subtask number two, which is code mode for implementing phase one of the game plan. and phase one will only have a prompt provided to it.
+
+[00:12:36] Segmented by architect mode and isolated such that it doesn't need to know about all the other phases of the game plan. So it can really keep its focus dialed in. so this code mode subtask will implement in the code files phase one of the game plan, and then it will report back to boomerang mode.
+
+[00:12:59] Its results. It will say, I have implemented phase one. here are the key points you need to know about how the implementation was enacted. And boomerang mode will then say, I have the game plan, I have the results of the first phase.
+
+[00:13:13] I will now create subtask three A code mode for implementing phase two of the game plan with the information about phase two and anything the subtask needs to know about what happened in phase one.
+
+[00:13:27] so it's a step-by-step implementation of very complex, large tasks. which all on its own is an incredible feature. but there's another piece to this puzzle that gives this thing power, and that is that each subtask only has a certain amount of context, both as the input provided to it from the boomerang orchestrator and as it's running context through the implementation.
+
+[00:13:58] So by keeping the context window slim, isolated and delegated to this particular IM implementation phase, it keeps the model much more focused. It's less likely to, lose the plot by getting diluted with too much irrelevant information. And when it reports back to boomerang mode, the results of the implementation.
+
+[00:14:23] Boomerang mode also has a paired down context window. It only has what you told it to do as the original prompt. what architect mode provided to it As the master plan and what each Subtask provides to it as the final report of the implementation and boomerang mode.
+
+[00:14:46] Oh my God. It is my favorite feature released since the release of Vibe Coding Tools. I love this feature. I use it for everything that goes beyond, a bug fix or adding a function. Anytime I want to add a feature or a page or multiple pages,
+
+[00:15:04] I use this tool. It's only available in Roo Code. And I should say, by the way, in the previous episode, I said, you may want to combine a subscription tool like Cursor with a bring your own model tool like Roo Code and then add Aider in the CLI.
+
+[00:15:22] I should be really forthcoming here and say that I only use Roo Code these days. I don't use Cursor and I don't use ada. I keep ADA on hand for when I'm in a pinch. and there may come a time again, depending on how the costs of these models evolve with time. There may come a time again that I switch to the
+
+[00:15:44] Subscription model plus the bring your own model combo. But right now, for the last couple months, I've only been using re code. so if you feel like the three tool installation recommendation of the last episode is too much, then. By all means, just pick one tool.
+
+[00:16:01] And I do recommend Ru
+
+[00:16:03] I got to, wow, my brother-in-law had a app idea. if you're a programmer, all your family and friends say, I have a great idea that's gonna make a million dollars. Can you build it for me? And this is the first time I got to do this. I said, no, I don't have the time, but you can build it and let me show you how.
+
+[00:16:17] And so I sat with him and we set up Roo Code with. Gemini, 2.5 Pro Experimental on his local host. and we downloaded Boomerang mode into VS code. And we set up a custom instruction.
+
+[00:16:29] We just copied and pasted that big idea. He texted me as a custom instruction, and then I said, now switch it to boomerang mode and just say, go literally type, go and hit enter.
+
+[00:16:39] And Boomerang kicked off Architect. Architect came up with a game plan, for implementing the multiple features of his project.
+
+[00:16:47] Came back to Boomerang and kicked off a code mode subtask for each of the tabs and he was floored. ran an expo and react native, and he got to see the results in 10 minutes. It was so cool
+
+
+
+[00:17:01] okay. The next topic is local models and fine tune models. you don't have to use internet models, you don't have to use Gemini 2.5 Pro hosted by Google via AI Studio through an API key that you pay for. You can instead download an open source model onto your computer and use that with your code AI agent.
+
+[00:17:28] almost all of these tools allow you in the settings pane to, plug into local models. And the way you do that is you download a tool called Ollama, O-L-L-A-M-A, or LM Studio.
+
+[00:17:41] But Ollama is more, standard. I would use Ollama and Ollama. By the way, this naming convention Llama, I, I've used it a lot. It's because llama by Meta is an open source model. meta champions, open source, large language models. LLM, if you add vowels, it might look like llama.
+
+[00:18:01] , and they've been very successful models. They've been very well received, very good benchmarks, open source models. And then they have a very large version of llama that they host themselves in their data center.
+
+[00:18:13] And, they open source and release, slimmed down or distilled versions of their llama models. And so a lot of the, tooling that has been around for a very long time because Llama was really the only open source player in the space, or at least the only one worth it, salt for a while. a lot of the old projects like Ollama and Llama Index,named their.
+
+[00:18:33] Projects after the Llama model, and they probably regret it now that the open source world of models has expanded significantly. SOllama is this tool you download for running local models. And then once you get llama running locally, you select which model you want to download and use. And some people use this as a.
+
+[00:18:53] as a standard chat interface instead of chat. GPT. One reason you might use a local models for privacy and security, everything you send to chat gt.com, is stored on their servers. they train on those conversations and they store those conversations for later lookup, either for the very.
+
+[00:19:13] Handy memory feature that it provides for your own benefit or for their benefit if they're going to investigate, violations of terms of use and so forth. And so people who use, chat bots for therapy, for very sensitive personal information, they're confiding into it. Something they would never confide into an online tool might use llama.
+
+[00:19:36] For a locally hosted AI therapist, for example. and then another very popular reason people use local models is for code. And so you tie your code AI agent into your local model, and then nothing is stored on some cloud somewhere. And sometimes this is required.
+
+[00:19:56] If, you work for a corporation that wants to keep their intellectual property very secure, they don't want it to leave the premises. So if you're going to use a vibe Coding tool, you have to use local models. they prevent you from using, APIs and some people, just prefer the.
+
+[00:20:15] Peace of mind of privacy and security, even if it's not a requirement for them. And other people are just tinkerers. They just like running local models because they think it's fun. so those are the benefits of local models is, privacy and security. That's the primary benefit. secondary would be entertainment if you get a kick outta that.
+
+[00:20:34] the downside of these models is accuracy, benchmark, how good these models are. it is well known that the open source, locally hosted models are worse. They do a worse job as a programmer than the hosted solutions. And
+
+[00:20:52] That is a truism I'll die on that hill. and it's a simple reason for that. It is because the. Open source models have to be distilled to run on consumer hardware. The types of models that are ran in the cloud, like Gemini and clawed 3.7 are enormous, very large models in terms of number of parameters in their neural network.
+
+[00:21:18] And,they have these massive data centers that process, millions of requests at a time. the cost efficiency to them is at scale, whereas if you were to download one of their, Lossless models, all of the parameters intact on your laptop or your desktop or even your little rack in your closet you wouldn't be able to run it.
+
+[00:21:42] There's too many parameters. It won't fit into VAM and it won't fit into Ram. unfortunately. And so they pair these models down. they make them smaller. It's a process called distillation. And so these open source models use these distillation techniques.
+
+[00:21:57] There are various techniques I've covered in previous episodes. Things like, quantization And reducing the precision within these neurons from floating point 32 decimal operations to in eight and so forth.
+
+[00:22:10] I think the primary strategy for distillation these days is the teacher student model,
+
+[00:22:15] and these open source models will distill their original version down to a fraction of the size. DeepSeek right now is probably the most popular of the open source models to use in Ollama. so deep Seek has, R1, which is their reasoning model, which is primarily used for architect. And they have V three, which is their non reasoning model, which is primarily used for code. And the architect mode is more computationally expensive, a larger number of parameters, and it takes longer to.
+
+[00:22:46] To run and,the code mode is faster. So it's very common to run R1 just for architects to come up with a game plan and to run V three as code so it can move a lot faster across multiple files. And their R1 hosted model is 671 billion parameters. it's, 37 billion activated parameters they say, but there's certain complications.
+
+[00:23:11] There's this mixture of experts and so forth, that bring its total tally to 671, and you would not be able to run that on a computer. neither a DIY makerspace, local rack of 50 90 GPUs, nor obviously a desktop with a 50 90. And so they distill these models down.
+
+[00:23:32] and one of the largeR1s is Deep Seek R1, distill Llama 70 B. So they pair these with various other architectures.
+
+[00:23:40] this one in particular is paired with the llama architecture. A smalleR1 is the DeepSeek, R1, Qwen 1.5 B-Q-W-E-N. That's Qwen is another popular flavor of the distilled models. and in my experience on my laptop, my 30 70 ti,
+
+[00:24:00] The seven B parameters, what fits on my rig and runs at a comfortable speed. And for some people with larger setups, multiple GPUs or no GPU, but they have a lot of ram and a great CPU might use the 70 B model.
+
+[00:24:14] Now you'll notice we went down from 671 billion parameters to seven. A lot is lost in that process. A lot of fidelity and resolution in terms of what these things can accomplish when the hosted models, in the hundreds of billions of parameters
+
+[00:24:36] gPT and Claude and Gemini are competing with each other across these coding benchmarks. They are moving the needle, ones of percentages at a time in terms of improvements. So one might be 3% better than its competitors' last release. And that 3% makes such a significant difference in the experience from a developer standpoint of how good it is.
+
+[00:25:06] As a programmer, it'll, blow up the internet. one will leapfrog the other by 3% and they'll say, previously I was using it just to fix bugs. Now I'm using it to architect solutions So every little tiny inch counts and when you're dropping from 671 billion parameters to seven.
+
+[00:25:27] Boy, are you gonna lose some percentage marks in terms be, of coding, benchmark, of the model? So this matters, running a local model is. Highly consequential to how good of a job it's going to do on your project. It's gonna be a worse model, unfortunately. So you have to know the trade off.
+
+[00:25:46] You have to be willing to, make some concessions in terms of, practical effectiveness of using this model in your code base. Compared to the considerations of privacy, security, and tinkering. Another way though, that you can milk some, performance improvements for these models though is fine tuned local models so you're not confined to simply using off the shelf models. Instead, you can take an off the shelf model, like deep seek or llama for, and it's pre-trained already on the internet and the world and the history of the universe, and you can fine tune it on your specific code base so that it is deeply acquainted with your code base.
+
+[00:26:32] LLMs, their next token predictors. So when I say fine tune, what I mean is it's learning how you write code in your code base. it's learning. what words come after what words in your code base. But as a consequence, in the final analysis, it knows your code base very intimately.
+
+[00:26:49] It has it in memory, in a sense, As a knowledge base retrieval system and how these various features string together and what makes this project tick. I won't go into fine tuning your own local model. it's a very advanced feature power tool, for if you are working on a project for a very long time.
+
+[00:27:10] for years to come. I do think it would be worth it to fine tune a local model, as well as making that model available to multiple developers within your company. You could host the fine tuned model, via o Lama, on a IP address and port that they could all plug into through their own code AI tools maybe run Aron job every night that retrains fine tunes again, the local distilled model on the code base updates since the last time the main branch merged. all of the, poll requests and so forth. Sophisticated advanced tool, but it does provide a bit more accuracy on top of the local models.
+
+
+[00:27:53] So that's, local models. you can host off the shelves with Ollama. populaR1s currently are deep seek, R1 and V three and otheR1s like Qwen and Llama. Lama four is gonna drop here soon, so keep an eye on that. That should probably take the stage another solution is to fine tune these models on your specific code base. . And then finally I'm just gonna discuss a few odds and ends, tips and tricks. the first. Tip that you'll always see in these AI agent documentation websites is judicious use of the at key.
+
+[00:28:28] so by default when you use these AI agents and you start typing a prompt, it's operating off of as context, the current open file. So if you say fix this bug, it's assuming you mean the file you're currently looking at the open tab in the editor. if that's not the case, it will try, its best to go outside of that context and run a.
+
+[00:28:54] Search files or list files, command, but you'll find significantly better results if you handhold it as much as you can, in advance. So rather than forcing it to do all that work, you should, if you know where those files are, that you are also referencing in addition to the currently open file. You should provide those in advance at some other file.
+
+[00:29:19] if you don't know which files should be used in this current context, but maybe, you know, what folder it's in, at least provide the folder you can say at folder, without a.
+
+[00:29:29] File extension and it will include the whole folder. It won't include all of the context of the folder. It will include the file names listed within the folder, which then gives it a headstart so it can run a search command in just that folder, and then open up the file based on the search results.
+
+[00:29:44] You can also do at some website. So if you wanna look up documentation or if you want it to look at the current implementation of your webpage at a certain slug or something. . There's at GI Shaw, SHA. So you can actually. Reference a get commit or a set of commits. So it can see what changes were made during this segment to determine if a bug was introduced specifically during a change set or reference that change set to know where you're going next when you provided a prompt to add a new feature.
+
+[00:30:16] so you'll wanna read the documentation on what things can be referenced with the at key. it's very sophisticated, and you want to use this very heavily.
+
+[00:30:27] You don't have to go searching through the files yourself to find what you're looking for. I'm saying if you know in advance and it's readily available to your brain, which files or folders or get commits and so forth, Have what context would be helpful to this particular session?
+
+[00:30:45] Provide those in advance. one of the reasons is the tool may not go searching for you. It may try to work with, A limited set of things that it thinks is enough to work with. And so you want to provide it as much as it should know in advance. And the other reason is the more tool calling it has to execute on your behalf.
+
+[00:31:06] the longer the context window becomes filled up before it even starts trying to perform the task. So you're gonna dilute the context window and it may lose the plot. Okay. use the at key judiciously.
+
+[00:31:19] it's a middle ground between you doing a lot of legwork yourself hunting through files. We don't want that versus. Having the model do everything and figure out everything, on its own. We don't want that. You want to provide it with a rough estimate of things, you know, in advance.
+
+
+[00:31:36] And then the last trick is a cool tip. I've seen people do this on YouTube.
+
+[00:31:41] this is for the , speed demon super advanced, like stock trader programmers who have triple monitors. you can, take your project folder, which has A get folder inside of it because it's a gi checkout and copy and paste it. Let's say one time, two times, rename the folders, feature a feature, B, feature C, and then open up vs code and open up those three folders separately, in separate panes of your monitor. then check out three different branches. create a new branch called Feature A. Check it out. Create a new branch called Feature B. Check it out, feature C and then in the feature A vs.
+
+[00:32:23] Code window. switch it to boomerang mode. and then do at the URL of a GitHub ticket it can read the web, so it can scan all the contents of some feature request on GitHub. Or if you're not using GitHub for issues, you can just paste whatever it is you want for feature a boomerang mode, submit.
+
+[00:32:44] Off to the races, it kicks off, architect comes up with a game plan, it kicks off a sequence, of code mode agents. Now this can take five minutes, 10 minutes, depending on the sophistication of the feature, and some developers are impatient. They twiddling their thumbs, they don't know what to do in the meantime.
+
+[00:33:01] . You can now move on to feature B in window two of VS code. open up real code, select boomerang mode at GitHub. Ticket number two, submit.
+
+[00:33:13] Don't even look at it. Move on to window number three at GitHub. Ticket number three, submit. Okay. By the time you've submitted that one window one is done. Go back over there. Open up the URL. Did it work? No. Fix this. Bug Submit. Go back to window two. How are you doing? Okay. You finished your task successfully.
+
+[00:33:34] You did a good job. I'm gonna get commit and push that as a pull request to GitHub. check on the status of window number three and so forth. You go back and forth through all these windows, so you're not wasting any time. While the boomerang mode of all of these various feature implementations let's say, five, 10 minutes in all of these different feature implementations, when you're done in each window, you get commit and submit as a pull request,
+
+[00:34:00] On GitHub, you can merge these three pull requests into Maine.
+
+[00:34:05] In this way, you're operating more like a manager rather than an individual contributor, working on a single feature at a time. and depending on how good you find your experience with code AI agents to be, based on the model performance and the agent's effectiveness you may find.
+
+[00:34:21] Good enough results as you go along, even if it just requires, follow up prompts to fix any bugs it introduced or didn't quite nail it.
+
+
+[00:34:30] So that's a wrap for this episode. do join me in the next episode where I'll talk about model context protocol, ' cause that's an important piece of the puzzle for advanced code AI tool usage.
+
+[00:34:41] Do go to the Roo Code documentation website. I'll post a link in the notes and I would suggest reading it from beginning to end. This tool is so sophisticated that, think of it like learning a new programming language or just a new concept as a coder.
+
+[00:34:59] Like the concept of SQL databases. this is an entirely new paradigm in your programming career. So it pays not to just trial and error. It pays to read top to bottom the entire documentation of their website to see what this thing is capable of and how to use the tool because you're gonna be living with this type of a tool going forward in your career.
+
+[00:35:21] And, I do recommend reading the Roo Code documentation because Roo Code is the most sophisticated of the bunch. So even if you end up using Cursor, you may only end up using a subset of the tools that you learned in the Roo Code documentation, but at least you learned what all of the available tools are
+
+[00:35:42] Roo Code tends to have all of the tools all in one, whereas most of these other projects have some subset of the tools,
+
+[00:35:48] so Roo Code documentation for more advanced tooling than what I've covered in this episode.
+
