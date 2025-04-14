@@ -17,7 +17,7 @@ export default function Podcast({loaderData, matches, img}: Props) {
     <Container>
       <Row>
         <Col xs={12} md={5}>
-          <div className={hideSidebarOnMobile}>
+          <div className={`${hideSidebarOnMobile} sticky-top`}>
             <About />
           </div>
         </Col>
