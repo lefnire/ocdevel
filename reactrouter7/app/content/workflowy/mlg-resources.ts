@@ -10,7 +10,7 @@ limitations, so I came up with a quirky way to design the structure for later co
   attributes here. Eg, obj.pick="any", obj.format="audiobook".
 - One tag is #mlg:1,3,2 or #mla:2. There are two subsections of the podcast: MLG and MLA.
   This tag specifies which episodes of which subsection this resource is relevant for. If
-  it's a comma-separated list (#mlg:1,3,2) it's relevant to MLG episodes 1, 3, and 2. If
+  it's a colon-separated list (#mlg:1:3:2) it's relevant to MLG episodes 1, 3, and 2. If
   it's a single number (#mla:2), it's only relevant to MLA episode 2.
 - The tree structure is determined by whether #pick present or not. If present, it's a
   branch (expand to drill in); if not present, it's a leaf (click this resource for details)
@@ -22,12 +22,13 @@ limitations, so I came up with a quirky way to design the structure for later co
   collect only the resources relevant to that episode (a flat-list of leafs).
  */
 
-import fs from 'fs'
-import path from 'path'
-import xmlJs from 'xml-js'
-import crypto from 'crypto'
+import fs from 'fs';
+import crypto from 'crypto';
+import xmlJs from 'xml-js';
+import { marked } from 'marked';
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
 import type {
-  Filters, // Keep for defaults object structure, though not strictly correct type
   Resource,
   ResourceTree,
   Link,
@@ -36,283 +37,261 @@ import type {
   PriceValue,
   AllResources,
   EpisodeResources,
-  DefaultFilterValues, // Use this for the defaults object
+  DefaultFilterValues,
   ResourceBase,
   ResourceBranch,
-  ResourceLeaf
-} from './mlg-resources.types'
+  ResourceLeaf,
+} from './mlg-resources.types';
 
-// npm install -D marked dompurify jsdom
-import { marked } from 'marked';
-import createDOMPurify from 'dompurify';
-import { JSDOM } from 'jsdom';
+// Pre-rendering Markdown (Keep as is)
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
-export async function preRenderMd(content: string) {
-  // Parse and sanitize the markdown
-  const rawHtml = await marked.parse(content); // marked returns a Promise now
-  const cleanHtml = DOMPurify.sanitize(rawHtml); // CRITICAL!
-  return cleanHtml
+export async function preRenderMd(content: string): Promise<string> {
+  const rawHtml = await marked.parse(content);
+  const cleanHtml = DOMPurify.sanitize(rawHtml);
+  return cleanHtml;
 }
 
+// Types and Options (Keep as is)
 type PodcastKey = 'mlg' | 'mla';
-type Opts = {id: string, podcast: PodcastKey}
+type Opts = { id: string; podcast: PodcastKey };
+
+// Main transform function (Keep structure)
 export async function transform(opts?: Opts): Promise<ResourceTree> {
   const fileContent = fs.readFileSync(
     './app/content/workflowy/mlg-resources.opml',
     'utf8'
   );
-  // Cast the result of xml2js to our expected structure
   const xmlContent = xmlJs.xml2js(fileContent, { compact: true }) as OpmlStructure;
-  return await parseWorkflowy(xmlContent, opts)
+  return await parseWorkflowy(xmlContent, opts);
 }
 
-// aecd0d0c reLink
-// https://giuliachiola.dev/posts/how-to-remove-all-links-in-javascript/
-const reStripHtml= /<[^>]+>/g
-const reTags = /\#\S+/g
-// Although Filters describes the metadata structure, DefaultFilterValues describes the actual shape here.
+// Constants and Defaults (Keep as is)
+const reStripHtml = /<[^>]+>/g; // Used for stripping HTML from 'text' attribute
+const reTags = /#\S+/g;
 const defaults: DefaultFilterValues = {
-  importance: "supplementary",
-  format: "other",
-  difficulty: "easy",
-  engagement: "passive",
-  topic: "basics",
-  relevance: "fresh",
+  importance: 'supplementary',
+  format: 'other',
+  difficulty: 'easy',
+  engagement: 'passive',
+  topic: 'basics',
+  relevance: 'fresh',
 };
 
+// Global State (Keep as is, reset in parseWorkflowy)
 let flat: { [id: string]: Resource } = {};
-
-// Explicitly type the episodes structure used during parsing
 let episodes: {
   mlg: { [episodeNumber: string]: string[] };
   mla: { [episodeNumber: string]: string[] };
 } = { mlg: {}, mla: {} };
-function addEpisode(
-  podcast: PodcastKey,
-  number: string, // Episode numbers are treated as strings from tags
-  id: string
-) {
-  const p = episodes[podcast]
-  if (!p[number]) {
-    p[String(number)] = [] // Ensure key is string
+
+// Helper to add episode references (Keep as is)
+function addEpisode(podcast: PodcastKey, number: string, id: string) {
+  const p = episodes[podcast];
+  const numStr = String(number); // Ensure key is string
+  if (!p[numStr]) {
+    p[numStr] = [];
   }
-  const numStr = String(number);
-  if (p[numStr]?.includes(id)) { return } // Use includes and optional chaining
-  p[numStr].push(id);
+  if (!p[numStr].includes(id)) {
+    p[numStr].push(id);
+  }
 }
 
+// OPML Structure Types (Keep as is)
 type WFTree = {
   _attributes?: {
-    text?: string
-    _note?: string
+    text?: string;
+    _note?: string;
+  };
+  outline?: WFTree[] | WFTree;
+};
+type OpmlStructure = {
+  opml: {
+    body: {
+      outline: WFTree;
+    };
+  };
+};
+
+// --- Simplified parseTree ---
+type ParseTreeArgs = { tree: WFTree; isLink?: boolean };
+async function parseTree({ tree, isLink = false }: ParseTreeArgs): Promise<Link | ResourceChildRef | null> {
+  if (!tree?._attributes?.text) {
+    return null; // Skip nodes without text
   }
-  outline?: WFTree[] | WFTree
-}
-type ParseTree = {tree: WFTree, opts?: Opts, isLink?: boolean}
-// Define a type for the processed tags object
-type ProcessedTags = {
-  pick?: PickValue;
-  price?: PriceValue;
-  mlg?: string[];
-  mla?: string[];
-  [key: string]: any; // Allow other string/boolean tags
-}
 
-async function parseTree({tree, opts, isLink}: ParseTree): Promise<Link | ResourceChildRef | {}> {
-  if (!tree) {return {}}
+  let text = tree._attributes.text.replace(reStripHtml, '').replace('&amp;', '&').trim(); // Clean title text
+  const note = tree._attributes._note || ''; // Default to empty string
+  const outline = tree.outline ? (Array.isArray(tree.outline) ? tree.outline : [tree.outline]) : [];
 
-  let text = tree._attributes?.text?.replace(reStripHtml, '').replace('&amp;', '&')
-  let _note = tree._attributes?._note?.replace(reStripHtml, '').trim()
-  let outline = !tree.outline ? [] : Array.isArray(tree.outline) ? tree.outline : [tree.outline]
-  const rawTags = text?.match(reTags) ?? []; // Ensure text is not null/undefined
-  text = text ?? ''; // Ensure text is not null/undefined
+  const rawTags = text.match(reTags) ?? [];
+  const tags: Record<string, any> = {}; // Simplified tag storage
+  let mlgEpisodes: string[] = [];
+  let mlaEpisodes: string[] = [];
 
-  const id = crypto.createHash('md5').update(text || '').digest("hex"); // Handle potential empty text
+  // Simplified Tag Parsing
+  rawTags.forEach(tag => {
+    const tagContent = tag.substring(1); // Remove #
+    const [key, ...valueParts] = tagContent.split(':');
+    const value = valueParts.join(':');
 
-  // pull out tags
-  // Process tags into a structured object
-  const tags: ProcessedTags = rawTags.reduce((acc, tag) => {
-    let [key, ...valueParts] = tag.substring(1).split(':'); // Remove #
-    let value: string | boolean | string[] = valueParts.join(':'); // Rejoin if value had colons
-
-    if (value === '') {
-      value = true; // Tag without value (e.g., #tgc)
+    if (key === 'mlg') {
+      mlgEpisodes = value.split(',').map(s => s.trim()).filter(Boolean);
+    } else if (key === 'mla') {
+      mlaEpisodes = value.split(',').map(s => s.trim()).filter(Boolean);
+    } else if (value === '') {
+      tags[key] = true; // Boolean tag
+    } else {
+      tags[key] = value; // Value tag (pick, price, format, etc.)
     }
+  });
 
-    // Handle specific multi-value tags (mlg, mla)
-    if (['mlg', 'mla'].includes(key)) {
-      // Ensure value is treated as a string before splitting
-      value = String(value).split(':').map(s => s.trim()).filter(s => s !== '');
-    }
+  text = text.replace(reTags, '').trim(); // Remove tags from text *after* parsing them
 
-    acc[key] = value;
-    return acc;
-  }, {} as ProcessedTags);
-  text = text.replace(/\#\S+/g, '').trim()
-
+  // Handle Links (Leaf children)
   if (isLink) {
-    // Return type Link
-    return { t: text, l: _note || '', p: tags.price };
+    // Extract URL from note if it's an anchor tag, otherwise use note directly
+    const linkMatch = note.match(/<a href="([^"]+)">/);
+    const linkUrl = linkMatch ? linkMatch[1] : note;
+    return { t: text, l: linkUrl.replace('&amp;', '&'), p: tags.price as PriceValue };
+  }
+
+  // Generate ID
+  const id = crypto.createHash('md5').update(text).digest('hex');
+
+  // Avoid reprocessing if already in flat map
+  if (flat[id]) {
+    // Still need to return the ID for parent linking
+    return { id };
   }
 
   const isLeaf = !tags.pick;
 
-  // Recursively parse children. Expect Link[] for leaves, ResourceChildRef[] for branches.
-  const childrenResult = await Promise.all(outline.map(o => (
-    parseTree({ tree: o, opts, isLink: isLeaf })
-  )));
+  // Recursively parse children
+  const childrenResults = await Promise.all(
+    outline.map(o => parseTree({ tree: o, isLink: isLeaf }))
+  );
+  const children = childrenResults.filter(c => c !== null) as (Link | ResourceChildRef)[];
 
-  // Filter out empty results and type appropriately
-  const children: (Link | ResourceChildRef)[] = childrenResult.filter(c => Object.keys(c).length > 0) as (Link | ResourceChildRef)[];
-  if (!flat[id]) {
-    // Construct the base node object
-    const baseNode: ResourceBase = {
-      id,
-      t: text,
-      d: await preRenderMd(_note || ''), // Ensure _note is not undefined
-      ...tags, // Spread processed tags
-    };
+  // Construct Node
+  const baseNode: ResourceBase = {
+    id,
+    t: text,
+    d: await preRenderMd(note), // Render note markdown
+    ...tags, // Add remaining parsed tags
+  };
 
-    // Create the final node, asserting the correct type (Branch or Leaf)
-    let node: Resource;
-    if (isLeaf) {
-      node = {
-        ...defaults, // Apply defaults only to leaves
-        ...baseNode,
-        links: children as Link[], // Children are Links for leaves
-      } as ResourceLeaf;
-      // Remove 'v' if it accidentally got added via spread tags
-      delete node.v;
-      delete node.pick;
-    } else {
-      node = {
-        ...baseNode,
-         // pick must exist for branches, cast from ProcessedTags
-        pick: tags.pick as PickValue,
-        v: children as ResourceChildRef[], // Children are ResourceChildRefs for branches
-      } as ResourceBranch;
-       // Remove 'links' if it accidentally got added via spread tags
-      delete node.links;
-    }
-      // Always add the node to flat, regardless of opts
-      flat[id] = node;
-
-      // Always add episode references if tags exist, regardless of opts
-      tags.mlg?.forEach(ep => addEpisode('mlg', ep, id));
-      tags.mla?.forEach(ep => addEpisode('mla', ep, id));
-    } // This closes the `if (!flat[id])` block from line 168
-  return {
-    id, // Return id for parent linking
-    ...(isLeaf ? {} : { v: children as ResourceChildRef[] }) // Return 'v' only for branches
+  let node: Resource;
+  if (isLeaf) {
+    node = {
+      ...defaults, // Apply defaults
+      ...baseNode,
+      links: children as Link[],
+    } as ResourceLeaf;
+    // Remove properties specific to branches if they somehow got added via tags spread
+    delete (node as any).pick;
+    delete (node as any).v;
+  } else {
+    node = {
+      ...baseNode,
+      pick: tags.pick as PickValue, // 'pick' must exist for branches
+      v: children as ResourceChildRef[],
+    } as ResourceBranch;
+     // Remove properties specific to leaves
+    delete (node as any).links;
   }
+
+  // Add to flat map and episode references
+  flat[id] = node;
+  mlgEpisodes.forEach(ep => addEpisode('mlg', ep, id));
+  mlaEpisodes.forEach(ep => addEpisode('mla', ep, id));
+
+  // Return ID for parent linking
+  return { id };
 }
 
-// Define a minimal type for the expected XML structure
-type OpmlStructure = {
-  opml: {
-    body: {
-      outline: WFTree
-    }
-  }
-}
 
-// Helper function to recursively find all leaf node IDs under a given branch ID
+// Helper function to find nested leaves (Keep as is)
 function findNestedLeafIds(branchId: string, allNodes: { [id: string]: Resource }): string[] {
   const node = allNodes[branchId];
-  // Base case: If it's not a branch node in flat, return empty array
-  if (!node || !('v' in node)) {
+  if (!node || !('v' in node)) { // Check if it's a branch
     return [];
   }
 
   let leafIds: string[] = [];
-  // Iterate over children references (ResourceChildRef[]) if they exist
   if (node.v) {
-  for (const childRef of node.v) {
-    const childNode = allNodes[childRef.id];
-    if (!childNode) continue; // Skip if child node not found (shouldn't happen in theory)
+    for (const childRef of node.v) {
+      const childNode = allNodes[childRef.id];
+      if (!childNode) continue;
 
-    // Check if the child node is a leaf
-    if ('links' in childNode) { // Leaves have 'links' property
-      leafIds.push(childNode.id);
+      if ('links' in childNode) { // Leaf node
+        leafIds.push(childNode.id);
+      } else if ('v' in childNode) { // Nested branch node
+        leafIds = leafIds.concat(findNestedLeafIds(childNode.id, allNodes));
+      }
     }
-    // Check if the child node is another branch
-    else if ('v' in childNode) { // Branches have 'v' property
-      // Recursively find leaves in the nested branch
-      leafIds = leafIds.concat(findNestedLeafIds(childNode.id, allNodes));
-    }
-  } // End of loop
-  } // End of if (node.v)
+  }
   return leafIds;
 }
 
-
+// Main parsing orchestrator (Keep structure, use simplified parseTree)
 async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<ResourceTree> {
-  // Reset global state variables at the beginning of each parse
+  // Reset global state
   flat = {};
   episodes = { mlg: {}, mla: {} };
 
-  const outline = xmlContent.opml.body.outline;
+  const rootOutline = xmlContent.opml.body.outline;
 
-  // Step 1: Perform a full parse of the tree to populate 'flat' and 'episodes'
-  // We pass 'undefined' for opts here so parseTree processes everything.
-  const topLevelResult = await parseTree({ tree: outline, opts: undefined, isLink: false }) as ResourceChildRef;
+  // Step 1: Full parse to populate 'flat' and 'episodes'
+  // The root node itself isn't stored, but its children are processed.
+  // We expect the root's direct children to be the main categories.
+  // Ensure rootOutline.outline exists before trying to map over it
+  const outlinesToParse = rootOutline.outline
+    ? (Array.isArray(rootOutline.outline) ? rootOutline.outline : [rootOutline.outline])
+    : [];
+  const rootChildrenResults = await Promise.all(
+    outlinesToParse.map(o => parseTree({ tree: o }))
+  );
+  const topLevelRefs = rootChildrenResults.filter(c => c !== null && 'id' in c) as ResourceChildRef[];
 
-  // Step 2: Check if episode-specific filtering is requested
+
+  // Step 2: Handle episode-specific filtering
   if (opts?.id && opts.podcast) {
-    // Get the list of node IDs directly tagged for this episode
     const directNids = episodes[opts.podcast]?.[opts.id] ?? [];
     let finalNids: string[] = [];
 
-    // Iterate through directly tagged nodes
     for (const nid of directNids) {
       const node = flat[nid];
-      if (!node) continue; // Skip if node not found in flat map
+      if (!node) continue;
 
-      // Check if the node is a leaf
-      if ('links' in node) {
-        // If it's a leaf, add its ID directly
+      if ('links' in node) { // Node is a leaf
         finalNids.push(nid);
-      }
-      // Check if the node is a branch
-      else if ('v' in node) {
-        // If it's a branch, find all nested leaf IDs under it
-        const nestedLeaves = findNestedLeafIds(nid, flat);
-        // Add the found leaf IDs to the final list
-        finalNids = finalNids.concat(nestedLeaves);
+      } else if ('v' in node) { // Node is a branch
+        finalNids = finalNids.concat(findNestedLeafIds(nid, flat));
       }
     }
 
-    // Remove duplicate IDs that might arise from the process
-    finalNids = [...new Set(finalNids)];
+    finalNids = [...new Set(finalNids)]; // Remove duplicates
 
-    // Construct the result for a specific episode
-    const episodeResult: EpisodeResources = {
-      flat, // Return the complete flat map as before
-      top: {}, // 'top' structure is not relevant for episode-specific results
-      nids: finalNids, // The aggregated list of relevant leaf node IDs
-    };
-    return episodeResult;
+    return {
+      flat,
+      top: {}, // Not relevant for episode view
+      nids: finalNids,
+    } as EpisodeResources;
 
   } else {
-    // Step 3: Handle the case where no specific episode is requested (return all resources)
-    const v = topLevelResult.v || []; // Get top-level children references
-
-    // Define the 'top' structure based on the top-level nodes
-    // Add checks for array length to prevent errors if the structure is unexpected
+    // Step 3: Handle returning all resources (Keep hardcoded top structure)
     const top = {
-      degrees: v.length > 0 ? { id: v[0].id } : { id: '' },
-      main:    v.length > 1 ? { id: v[1].id } : { id: '' },
-      math:    v.length > 2 ? { id: v[2].id } : { id: '' },
-      audio:   v.length > 3 ? { id: v[3].id } : { id: '' }
+      degrees: topLevelRefs.length > 0 ? { id: topLevelRefs[0].id } : { id: '' },
+      main:    topLevelRefs.length > 1 ? { id: topLevelRefs[1].id } : { id: '' },
+      math:    topLevelRefs.length > 2 ? { id: topLevelRefs[2].id } : { id: '' },
+      audio:   topLevelRefs.length > 3 ? { id: topLevelRefs[3].id } : { id: '' }
     };
 
-    // Construct the result for all resources
-    const allResult: AllResources = {
-      flat, // The complete flat map
-      top, // The defined top-level structure
-      nids: [], // 'nids' is empty when returning all resources
-    };
-    return allResult;
+    return {
+      flat,
+      top,
+      nids: [], // Empty for all resources view
+    } as AllResources;
   }
 }
