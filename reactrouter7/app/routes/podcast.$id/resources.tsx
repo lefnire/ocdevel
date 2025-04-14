@@ -1,6 +1,6 @@
 import {ResourceCacheProvider} from '../mlg.resources/tree/resource-cache'
 import {Leaf} from "~/routes/mlg.resources/tree/leaf";
-import type {EpisodeResources} from "~/content/workflowy/mlg-resources.types";
+import type {EpisodeResources} from "~/content/podcast/resources/resources.types";
 
 // type Props = Route['loaderArgs']['resources']
 export default function ResourcesFlat({flat, nids}: EpisodeResources) {

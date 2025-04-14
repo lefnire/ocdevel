@@ -2,7 +2,7 @@ import {
   createContext,
   type PropsWithChildren,
 } from "react";
-import type {Resource} from "~/content/workflowy/mlg-resources.types";
+import type {Resource} from "~/content/podcast/resources/resources.types";
 import {PopoverSingleton} from "~/components/popover";
 
 // --- Resource Cache Context ---

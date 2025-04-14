@@ -1,7 +1,7 @@
 import {memo, type PropsWithChildren, useCallback, useContext, useState} from "react";
 import Card from "react-bootstrap/cjs/Card";
 import {ResourceCacheContext} from "~/routes/mlg.resources/tree/resource-cache";
-import type {FilterKey, Resource} from "~/content/workflowy/mlg-resources.types";
+import type {FilterKey, Resource} from "~/content/podcast/resources/resources.types";
 import {Icon} from "~/routes/mlg.resources/tree/icon";
 import {filterKeys, filters} from "~/content/podcast/resources/filters";
 import {Link} from "react-router";

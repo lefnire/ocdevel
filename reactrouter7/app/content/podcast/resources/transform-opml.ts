@@ -41,7 +41,7 @@ import type {
   ResourceBase,
   ResourceBranch,
   ResourceLeaf,
-} from './mlg-resources.types';
+} from './resources.types';
 
 // Pre-rendering Markdown (Keep as is)
 const window = new JSDOM('').window;
@@ -59,7 +59,7 @@ type Opts = { id: string; podcast: PodcastKey };
 // Main transform function (Keep structure)
 export async function transform(opts?: Opts): Promise<ResourceTree> {
   const fileContent = fs.readFileSync(
-    './app/content/workflowy/mlg-resources.opml',
+    './app/content/podcast/resources/resources.opml',
     'utf8'
   );
   const xmlContent = xmlJs.xml2js(fileContent, { compact: true }) as OpmlStructure;

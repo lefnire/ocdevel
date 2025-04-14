@@ -7,7 +7,7 @@ import {Tree} from './resources';
 import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
-import {transform} from '~/content/workflowy/mlg-resources'
+import {transform} from '~/content/podcast/resources/transform-opml'
 import { AffiliateAds } from "~/components/affiliate-ads";
 
 export async function loader(props: Route.LoaderArgs) {

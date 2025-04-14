@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
-import {transform} from '~/content/workflowy/mlg-resources'
+import {transform} from '~/content/podcast/resources/transform-opml'
 import {EpisodeContext} from "~/routes/podcast.$id/context";
 
 export async function loader(props: Route.LoaderArgs) {

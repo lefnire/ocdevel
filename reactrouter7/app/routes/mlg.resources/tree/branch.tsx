@@ -7,7 +7,7 @@ import {
 
 import {icons} from "~/components/collapsible-icons";
 import {picks} from '~/content/podcast/resources/picks'
-import type {Resource, ResourcePartial} from "~/content/workflowy/mlg-resources.types"
+import type {Resource, ResourcePartial} from "~/content/podcast/resources/resources.types"
 import {ResourceCacheContext} from "./resource-cache";
 import {Leaf} from './leaf'
 

@@ -4,7 +4,7 @@ import {Branch} from "./tree/branch";
 import {ResourceCacheContext, ResourceCacheProvider} from "./tree/resource-cache";
 import {filterKeys} from "~/content/podcast/resources/filters";
 import {useShallow} from "zustand/react/shallow";
-import type {Resource, AllResources, ResourcePartial} from '~/content/workflowy/mlg-resources.types'
+import type {Resource, AllResources, ResourcePartial} from '~/content/podcast/resources/resources.types'
 import _reduce from 'lodash/reduce'
 
 

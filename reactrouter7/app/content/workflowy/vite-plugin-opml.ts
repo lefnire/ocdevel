@@ -1,5 +1,5 @@
 import {transform as walkingDesk} from './walking-desk'
-import {transform as mlgResources} from './mlg-resources'
+import {transform as mlgResources} from '../podcast/resources/transform-opml'
 
 export const vitePluginOpml = {
   name: 'vite-plugin-opml',
