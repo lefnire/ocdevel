@@ -8,8 +8,7 @@ import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
 import {transform} from '~/content/workflowy/mlg-resources'
-import Alert from "react-bootstrap/cjs/Alert";
-import {MyAds} from "~/components/my-ads";
+import { AffiliateAds } from "~/components/affiliate-ads";
 
 export async function loader(props: Route.LoaderArgs) {
   const resources = await transform()
@@ -34,7 +33,7 @@ export default function Resources({loaderData}: Route.ComponentProps) {
       <Row>
         <Col xs={12} md={4} className='sidebar'>
           <Filters />
-          <MyAds className='my-2'/>
+          <AffiliateAds className='my-2'/>
         </Col>
         <Col xs={12} md={8}>
           <Tree {...loaderData.resources} />
