@@ -7,7 +7,7 @@ export interface ShowType {
   feed?: string
   keywords?: string
   image?: string
-  date?: string
+  date?: string | Date // Allow Date object from metas.js
   teaser: string
   body: string
   useLibsynPlayer?: boolean
@@ -23,8 +23,8 @@ export interface EpisodeType {
   libsynEpisode: string
   teaser: string
   empty?: boolean
-  default?: ReactElement
-  transcript?: ReactElement
+  // default?: ReactElement // Remove commented out property
+  transcript?: string | null // Loader provides string or null
   mla?: boolean
   mlg?: boolean
   archived?: boolean

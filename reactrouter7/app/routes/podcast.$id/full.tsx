@@ -12,13 +12,14 @@ import {About} from "~/routes/podcast/about";
 
 const ResourcesFlat = lazy(() => import('./resources'));
 
-export default function Full({loaderData}: Route.ComponentProps) {
+export default function Full(props: Route.ComponentProps) {
   const {show, podcastKey} = useContext(PodcastContext)
-  const props = loaderData
-  const {episode: e, transcript, resources, i=undefined} = loaderData
-  const title = buildTitle(props)
+  const { loaderData } = props; // Destructure loaderData from props
+  const {episode: e, transcript, resources, i=undefined} = loaderData; // Destructure from loaderData
+  const title = buildTitle(loaderData) // Pass loaderData to buildTitle
 
-  const player = useMemo(() => <Player {...props} />, [])
+  // Pass loaderData to Player, assuming it expects that structure
+  const player = useMemo(() => <Player {...loaderData} />, [loaderData])
 
   function renderAbout() {
     return <div className="d-block d-md-none">
@@ -56,7 +57,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
     <Card>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <DateHeader {...props} />
+        <DateHeader {...loaderData} />
         {player}
 
         <p className='mt-2'>{e.teaser}</p>
