@@ -6,14 +6,14 @@ import {BackButton} from "~/components/back-btn";
 import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
-import {PodcastContext} from "~/routes/podcast/context";
+import {ShowContext} from "~/routes/podcast/context";
 import {About} from "~/routes/podcast/about";
 import {EpisodeContext} from "~/routes/podcast.$id/context";
 
 const ResourcesFlat = lazy(() => import('./resources'));
 
 export default function Full() {
-  const podcastProps = useContext(PodcastContext)
+  const podcastProps = useContext(ShowContext)
   const {podcastKey, show} = podcastProps
   const episodeProps = useContext(EpisodeContext)
   const {episode: e, transcript, resources, i=undefined} = episodeProps;

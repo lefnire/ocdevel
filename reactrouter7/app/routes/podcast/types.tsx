@@ -1,6 +1,3 @@
-import type {ReactElement} from "react";
-import type {Route} from "./+types/route_mlg";
-
 export interface ShowType {
   title: string
   link?: string
@@ -34,12 +31,3 @@ export interface EpisodeType {
   date: string
   updated: string
 }
-export interface EpisodeComponent {
-  episode: EpisodeType
-  teaser?: boolean
-  i?: number // debugging MLG/MLA numbering issue
-  podcastKey: "llh" | "mlg"
-  show: ShowType
-}
-
-export type CommonProps = Route.ComponentProps['loaderData'] & {img: string}

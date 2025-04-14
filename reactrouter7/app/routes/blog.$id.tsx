@@ -1,12 +1,13 @@
-import {useParams, Outlet} from "react-router";
+import {Outlet} from "react-router";
 import {metasObj} from "~/content/blog/metas.js";
 import {BackButton} from "~/components/back-btn";
 import Card from 'react-bootstrap/cjs/Card';
 import Container from 'react-bootstrap/cjs/Container';
 // import ReactDisqusComments from "react-disqus-comments";
-import {fmt, PostDate} from '~/routes/blog/utils'
+import {PostMeta} from '~/components/date-utils'
 import {Comments} from "~/components/comments";
 import type {Route} from './+types/blog.$id.tsx'
+import type {BlogPost} from "~/routes/blog/types";
 
 function lastPart (path: string) {
   const parts = path.split('/').filter(Boolean)
@@ -17,16 +18,8 @@ function lastPart (path: string) {
 export function loader(props: Route.LoaderArgs) {
   const pathname = (new URL(props.request.url)).pathname;
   const id = lastPart(pathname);
-  const meta = metasObj[id];
+  const meta = metasObj[id] as BlogPost;
   return { meta }
-}
-
-function Affiliate({p}) {
-  if (!p.affiliate) { return null }
-  return <>
-    <span>.</span>
-    <span className="ms-1">This post may contain affiliate links</span>
-  </>
 }
 
 export default function Full(props: Route.ComponentProps) {
@@ -37,11 +30,7 @@ export default function Full(props: Route.ComponentProps) {
     <Card>
       <Card.Body>
         <Card.Title>{p.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          <PostDate p={p} />
-          <Affiliate p={p} />
-        </Card.Subtitle>
-
+        <PostMeta created={p.date} updated={p.updated} affiliate={p.affiliate}/>
         <Outlet />
       </Card.Body>
       <Card.Footer>

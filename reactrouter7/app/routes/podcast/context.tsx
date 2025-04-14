@@ -1,6 +1,10 @@
-import type {Route} from './+types/route_mlg'
 import {createContext} from "react";
+import type {ShowType} from "~/routes/podcast/types";
 
-type PodcastContext = Route.ComponentProps['loaderData'] & {img: string}
+type ShowContext = {
+  podcastKey: "mlg" | "llh"
+  show: ShowType
+  img: string
+}
 // @ts-ignore
-export const PodcastContext = createContext<PodcastContext>()
+export const ShowContext = createContext<ShowContext>()

@@ -1,4 +1,4 @@
-import {useState, useMemo} from "react";
+import {useState, useMemo, useContext} from "react";
 import Button, { type ButtonProps } from 'react-bootstrap/cjs/Button'
 import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
 import useStore from "./store";
@@ -7,9 +7,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Teaser from './teaser';
 import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/route/podcast/types'
-import {Adsense, AdsenseScript} from "~/components/adsense"
+// import {Adsense, AdsenseScript} from "~/components/adsense"
 import {llhShow, mlgShow, llhList, mlgList} from "~/content/podcast/metas.js";
 import type {Route} from './+types/route.tsx'
+import {ShowContext} from "~/routes/podcast/context";
+import {EpisodeContext} from "~/routes/podcast.$id/context";
+import {EpisodesContext} from "~/routes/podcast._index/context";
 
 type LoaderReturn =
   | { podcastKey: "llh"; show: typeof llhShow; episodesList: typeof llhList }
@@ -25,16 +28,17 @@ export function loader({request}: Route.LoaderArgs): LoaderReturn {
 }
 
 type ComponentProps = Route.ComponentProps['loaderData']
-export default function Index({loaderData}: Route.ComponentProps) {
-  const {podcastKey} = loaderData
-  return <div>
-    <FilterButtons {...loaderData} />
-    <EpisodeList {...loaderData} />
-    {podcastKey === "mlg" && <AdsenseScript />}
-  </div>
+export default function Index({loaderData: {episodesList}}: Route.ComponentProps) {
+  // const {podcastKey} = loaderData
+  return <EpisodesContext.Provider value={{episodesList}}>
+    <FilterButtons />
+    <EpisodeList />
+    {/*{podcastKey === "mlg" && <AdsenseScript />}*/}
+  </EpisodesContext.Provider>
 }
 
-function FilterButtons ({podcastKey}: ComponentProps) {
+function FilterButtons () {
+  const {podcastKey} = useContext(ShowContext)
   const [showMla, showMlg, newFirst, toggleNewFirst, setMla, setMlg] = useStore(useShallow(
     s => [s.mla, s.mlg, s.newFirst, s.toggleNewFirst, s.setMla, s.setMlg]
   ))
@@ -69,7 +73,9 @@ function FilterButtons ({podcastKey}: ComponentProps) {
   </div>
 }
 
-function EpisodeList({podcastKey, episodesList, show}: ComponentProps) {
+function EpisodeList() {
+  const {podcastKey, show} = useContext(ShowContext)
+  const {episodesList} = useContext(EpisodesContext)
   const sortedEps = useMemo(() => {
     // Create a shallow copy before sorting to avoid mutating the original list
     return [...episodesList].sort((a, b) => {
@@ -102,21 +108,16 @@ function EpisodeList({podcastKey, episodesList, show}: ComponentProps) {
   eps = eps.slice(0, (page+1)*pageSize)
   const hasMore = eps.length < fullLen
 
-  function renderEpisode(e: EpisodeType, i: number) {
-    const episode = <Teaser
-      show={show}
-      podcastKey={podcastKey}
-      key={e.id}
-      episode={e}
-      teaser={true}
-      i={i}
-    />
-    if (i > 0 && i % 5 === 0) {
-      return [
-        <Adsense key={`ad-${i}`} />,
-        episode
-      ]
-    }
+  function renderEpisode(episode: EpisodeType, i: number) {
+    return <EpisodeContext.Provider value={{episode}} key={episode.id}>
+      <Teaser i={i} />
+    </EpisodeContext.Provider>
+    // if (i > 0 && i % 5 === 0) {
+    //   return [
+    //     <Adsense key={`ad-${i}`} />,
+    //     episode
+    //   ]
+    // }
     return episode
   }
 

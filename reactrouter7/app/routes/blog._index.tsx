@@ -1,5 +1,4 @@
-// import {BlogPost, fmt} from './utils'
-import {PostDate} from '~/routes/blog/utils'
+import {PostMeta} from '~/components/date-utils'
 import type {BlogPost} from './blog/types'
 import metas_ from "~/content/blog/metas.js"
 import * as walkMeta from '~/routes/walk/meta.js'
@@ -27,7 +26,7 @@ export default function List({loaderData}: Route.ComponentProps) {
   const metas = [
     loaderData.legacyFitnessDesk,
     ...metas_
-  ]
+  ] as BlogPost[]
   return <Container>
     {metas.map(p => <Teaser key={p.id} p={p} />)}
   </Container>
@@ -45,9 +44,7 @@ export function Teaser({p}: { p: BlogPost }) {
         {p.pinned && <span className='float-end'>📌</span>}
         <Link to={url}>{p.title}</Link>
       </Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">
-        <PostDate p={p} />
-      </Card.Subtitle>
+      <PostMeta created={p.date} updated={p.updated} />
       <p>{p.teaser}</p>
     </Card.Body>
   </Card>

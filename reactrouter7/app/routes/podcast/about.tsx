@@ -10,13 +10,13 @@ import {memo, useContext} from "react";
 import {FaEnvelope} from "@react-icons/all-files/fa/FaEnvelope";
 import type {ButtonProps} from "react-bootstrap/cjs/Button";
 import {AffiliateAds} from "~/components/affiliate-ads";
-import {PodcastContext} from "~/routes/podcast/context";
+import {ShowContext} from "~/routes/podcast/context";
 
 // git-blame: moved them to ./extras
 // git-blame: dept links
 
 export const About = memo(()=> {
-  const {podcastKey, show: {title, body}, img} = useContext(PodcastContext)
+  const {podcastKey, show: {title, body}, img} = useContext(ShowContext)
   const links_ = (
     podcastKey === 'llh' ? [
       {id:"itunes", href: "https://podcasts.apple.com/us/podcast/lefnires-life-hacks/id1745611207"},

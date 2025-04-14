@@ -3,7 +3,7 @@ import Col from '~/components/col'
 import Container from 'react-bootstrap/cjs/Container'
 import {Outlet} from 'react-router';
 import {About} from "~/routes/podcast/about";
-import {PodcastContext} from "~/routes/podcast/context";
+import {ShowContext} from "~/routes/podcast/context";
 import type {Route} from './+types/route_mlg';
 
 type Props = Route.ComponentProps & {img: string}
@@ -13,7 +13,7 @@ export default function Podcast({loaderData, matches, img}: Props) {
   const isIndex = ['mlg._index', 'llh._index'].includes(route)
   const hideSidebarOnMobile = isIndex ? "" : "d-none d-md-block"
 
-  return <PodcastContext.Provider value={{...loaderData, img}}>
+  return <ShowContext.Provider value={{...loaderData, img}}>
     <Container>
       <Row>
         <Col xs={12} md={5}>
@@ -26,7 +26,7 @@ export default function Podcast({loaderData, matches, img}: Props) {
         </Col>
       </Row>
     </Container>
-  </PodcastContext.Provider>
+  </ShowContext.Provider>
 }
 
 

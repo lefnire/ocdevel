@@ -9,4 +9,8 @@ export interface BlogPost {
   default: any
   url?: string
   pinned?: boolean
+  head?: {
+    title: string
+    description: string
+  }
 }

@@ -2,13 +2,16 @@ import Badge from 'react-bootstrap/cjs/Badge';
 import Card from 'react-bootstrap/cjs/Card';
 import {Link} from "react-router";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
-import type {EpisodeComponent} from '~/routes/podcast/types'
-// import {FaCirclePlay} from "@react-icons/all-files/fa6/FaCirclePlay";
+import {useContext} from "react";
+import {ShowContext} from "~/routes/podcast/context";
+import {EpisodeContext} from "~/routes/podcast.$id/context";
 
-export default function Teaser(props: EpisodeComponent) {
-  const {podcastKey, episode: e, i} = props
+export type Teaser = {i?: number}
+export default function Teaser({i}: Teaser) {
+  const {podcastKey} = useContext(ShowContext)
+  const {episode: e} = useContext(EpisodeContext)
   const link = `/${podcastKey}/${e.id}`
-  const title = buildTitle(props)
+  const title = buildTitle({episode: e, podcastKey})
 
   function renderContent() {
     if (e.archived) {
@@ -33,7 +36,7 @@ export default function Teaser(props: EpisodeComponent) {
       <Card.Title>
         <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
       </Card.Title>
-      <DateHeader {...props} />
+      <DateHeader />
       {renderDebugging()}
       {renderContent()}
     </Card.Body>

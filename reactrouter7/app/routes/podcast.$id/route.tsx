@@ -5,6 +5,7 @@ import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
 import {transform} from '~/content/podcast/resources/transform-opml'
 import {EpisodeContext} from "~/routes/podcast.$id/context";
+import type {EpisodeType} from "~/routes/podcast/types";
 
 export async function loader(props: Route.LoaderArgs) {
   const {request} = props
@@ -34,14 +35,17 @@ export async function loader(props: Route.LoaderArgs) {
     podcastKey === 'llh' ? {flat: {}, top: {}, nids: []}
     : await transform({id: epId, podcast: (series as 'mlg' | 'mla')})
   )
+  // @ts-ignore
+  const episode = pod.obj[id] as unknown as EpisodeType
 
-  return {
+  const result: EpisodeContext = {
     resources,
     show: pod.show,
-    episode: pod.obj[id],
+    episode,
     transcript,
     i: undefined // can't remember what for?
   }
+  return result
 }
 
 export default function PodcastId(props: Route.ComponentProps) {
