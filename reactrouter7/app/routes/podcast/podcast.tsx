@@ -12,6 +12,7 @@ import type {Route} from './+types/route_mlg'
 import {memo} from "react";
 import {FaEnvelope} from "@react-icons/all-files/fa/FaEnvelope";
 import type {ButtonProps} from "react-bootstrap/cjs/Button";
+import {AffiliateAds} from "~/components/affiliate-ads";
 
 type Props = Route.ComponentProps['loaderData'] & {img: string}
 export default function Podcast(props: Props) {
@@ -35,7 +36,7 @@ export default function Podcast(props: Props) {
 // git-blame: moved them to ./extras
 // git-blame: dept links
 
-function About({podcastKey, show, img}: Props) {
+const About = memo(({podcastKey, show, img}: Props)=> {
   const links_ = (
     podcastKey === 'llh' ? [
       {id:"itunes", href: "https://podcasts.apple.com/us/podcast/lefnires-life-hacks/id1745611207"},
@@ -82,8 +83,9 @@ function About({podcastKey, show, img}: Props) {
     <div className="mt-2">
       {show.body}
     </div>
+    {podcastKey !== "mlg" && <AffiliateAds />}
   </>
-}
+})
 
 
 const size = undefined

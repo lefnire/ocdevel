@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"; // Assuming react-router-dom v6+
+import { Link } from "react-router";
 import { FaWalking } from "@react-icons/all-files/fa/FaWalking";
 import { FaMicrophone } from "@react-icons/all-files/fa/FaMicrophone";
 import Card from 'react-bootstrap/cjs/Card';
@@ -19,7 +19,7 @@ export function AffiliateAds({ className = "" }: { className?: string }) {
           </div>
           <div>
             <small>
-              Stay healthy & sharp while you learn & code.
+              Stay healthy & sharp while you learn & code
             </small>
           </div>
         </Card>
@@ -33,7 +33,7 @@ export function AffiliateAds({ className = "" }: { className?: string }) {
             </small>
           </div>
           <small>
-            AI-powered Audio & video studio with AI power-tools.
+            Audio/video editing with AI power-tools
           </small>
         </Card>
       </Col>

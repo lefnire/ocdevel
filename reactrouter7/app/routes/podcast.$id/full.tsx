@@ -8,7 +8,6 @@ import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
 import type {Route} from './+types/route.tsx'
-import { AffiliateAds } from "~/components/affiliate-ads";
 
 const ResourcesFlat = lazy(() => import('./resources'));
 
@@ -49,7 +48,6 @@ export default function Full({loaderData}: Route.ComponentProps) {
         {player}
 
         <p className='mt-2'>{e.teaser}</p>
-        {podcastKey !== "llh" && <AffiliateAds className='mb-3'/>}
       </Card.Body>
       {renderResources()}
       {renderNotes()}
