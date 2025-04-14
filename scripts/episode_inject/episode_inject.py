@@ -1,3 +1,13 @@
+"""
+The goal of this file is to read in @/scripts/episode_inject/splice.json , and splice in some mid-roll ads based on the keys in that file; and to add outro.mp3 to the end. So an input file will be injected with 1 or 2 ads; and 1 outro. The current code is a bit of a mess, and outdated, but you can see what it was attempting to do. So I'm gonna give you some guidelines for what I'm after, and I want you to have Architect mode come up with a game plan, and delegate to Code mode some subtasks for tackling these various parts.
+
+1. splice.json is structured like so. `{ <input filename without .mp3>: { <midroll filename without .mp3>: [start, end] } }`
+2. the `start` and `end` from (1) goes like this. That midroll <key>.mp3 will be inserted at `end` in the original file. Then, after the mid-roll, take `start->end` from the original file and duplicate it again. This is to buffer against the harsh interuption; that is, it reminds them what we were talking about before the mid-roll.
+3. Do so for however many input files we're working with, they'll look like `scripts/episode_inject/input/<top level key>.mp3`. for each of those, add as many mid-rolls as are keys in that object. Their files will be `scripts/episode_inject/<key>.mp3`. Then finally, add `outro.mp3` to the very end.
+4. Some care will be needed, since timestamps may shift as you're augmenting the file. These timestamps in splice.json are based on the *original* file. So be clever.
+5. Finally, be very mindful that this code file is very very tight. I'm going to be using it just myself, so it doesn't need to cover each and every edge-case. Fewer lines of code is more improtant to me than more fallbacks and edge-cases.
+"""
+
 # Phase 1: Setup and Initialization
 import os
 import json
