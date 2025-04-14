@@ -6,20 +6,21 @@ import {BackButton} from "~/components/back-btn";
 import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
-import type {Route} from './+types/route.tsx'
 import {PodcastContext} from "~/routes/podcast/context";
 import {About} from "~/routes/podcast/about";
+import {EpisodeContext} from "~/routes/podcast.$id/context";
 
 const ResourcesFlat = lazy(() => import('./resources'));
 
-export default function Full(props: Route.ComponentProps) {
-  const {show, podcastKey} = useContext(PodcastContext)
-  const { loaderData } = props; // Destructure loaderData from props
-  const {episode: e, transcript, resources, i=undefined} = loaderData; // Destructure from loaderData
-  const title = buildTitle(loaderData) // Pass loaderData to buildTitle
+export default function Full() {
+  const podcastProps = useContext(PodcastContext)
+  const {podcastKey, show} = podcastProps
+  const episodeProps = useContext(EpisodeContext)
+  const {episode: e, transcript, resources, i=undefined} = episodeProps;
+  const title = buildTitle(episodeProps) // Pass loaderData to buildTitle
 
   // Pass loaderData to Player, assuming it expects that structure
-  const player = useMemo(() => <Player {...loaderData} />, [loaderData])
+  const player = useMemo(() => <Player  />, [])
 
   function renderAbout() {
     return <div className="d-block d-md-none">
@@ -57,7 +58,7 @@ export default function Full(props: Route.ComponentProps) {
     <Card>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <DateHeader {...loaderData} />
+        <DateHeader {...episodeProps} />
         {player}
 
         <p className='mt-2'>{e.teaser}</p>

@@ -4,6 +4,7 @@ import path from 'path';
 import {llhShow, mlgShow, llhObj, mlgObj} from "~/content/podcast/metas.js";
 import Full from './full'
 import {transform} from '~/content/workflowy/mlg-resources'
+import {EpisodeContext} from "~/routes/podcast.$id/context";
 
 export async function loader(props: Route.LoaderArgs) {
   const {request} = props
@@ -36,7 +37,6 @@ export async function loader(props: Route.LoaderArgs) {
 
   return {
     resources,
-    podcastKey,
     show: pod.show,
     episode: pod.obj[id],
     transcript,
@@ -45,7 +45,9 @@ export async function loader(props: Route.LoaderArgs) {
 }
 
 export default function PodcastId(props: Route.ComponentProps) {
-  return <Full {...props} />
+  return <EpisodeContext.Provider value={props['loaderData']}>
+    <Full />
+  </EpisodeContext.Provider>
 }
 
 export function meta({data}: Route.MetaArgs) {

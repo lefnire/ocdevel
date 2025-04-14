@@ -1,9 +1,11 @@
-import type {EpisodeComponent} from '~/routes/podcast/types'
-import {type PropsWithChildren, useState} from "react";
+import {type PropsWithChildren, useContext, useState} from "react";
+import {EpisodeContext} from "~/routes/podcast.$id/context";
 
 const CLICK_TO_PLAY = true;
 
-function Player_({episode: e}: EpisodeComponent) {
+function Player_() {
+  const props = useContext(EpisodeContext)
+  const {episode: e} = props
   const color = e.archived ? '6c757d' : '111111';
   return <iframe
     title="Embed Player"
@@ -59,9 +61,10 @@ function ClickToPlay({children}: PropsWithChildren) {
   return children
 }
 
-export function Player(props: EpisodeComponent) {
+export function Player() {
+  const props = useContext(EpisodeContext)
   if (!props.episode.libsynEpisode) { return null; }
-  const player = <Player_ {...props} />
+  const player = <Player_ />
   const wrapped = CLICK_TO_PLAY ? <ClickToPlay>{player}</ClickToPlay> : player
   // Create a wrapper div with the exact height to prevent layout shift
   return <div style={{ height: "128px", width: "100%" }}>
