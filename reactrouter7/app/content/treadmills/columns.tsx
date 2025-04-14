@@ -28,8 +28,8 @@ import Dropdown from 'react-bootstrap/cjs/Dropdown';
 import DropdownButton from 'react-bootstrap/cjs/DropdownButton';
 import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
 import {useModalStore} from "~/components/modal";
-import Alert from "react-bootstrap/cjs/Alert";
 import {VideoButtonLg} from "~/components/video-btn";
+import {clickAffiliate} from "~/components/analytics";
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -484,10 +484,7 @@ export const columnsArray: ColumnDefinition[] = [
                   key={`link-picker-${row.key}-${code}-${site}`}
                   href={productLink}
                   target="_blank"
-                  className={[
-                    'plausible-event-name=affiliate',
-                    `plausible-event-product=${row.key}`,
-                  ].join(' ')}
+                  onClick={clickAffiliate(row.key)}
                   rel="noopener noreferrer"
                 >
                   {siteNames[site]}

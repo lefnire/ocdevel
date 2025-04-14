@@ -10,6 +10,7 @@ import {Link} from "react-router";
 import {FaArrowLeft} from "@react-icons/all-files/fa/FaArrowLeft";
 import {useContext} from "react";
 import picks from '~/content/treadmills/product-cards'
+import {clickAffiliate} from "~/components/analytics";
 
 
 interface Products {
@@ -45,7 +46,8 @@ export function ProductsCard ({ title, links, products }: Products) {
             href={card.link}
             rel="noopener noreferrer"
             target="_blank"
-            className={`btn btn-primary align-self-start plausible-event-name=affiliate plausible-event-product=${card.key}`}
+            onClick={clickAffiliate(card.key)}
+            className={`btn btn-primary align-self-start`}
           >
             <span>{card.linkText || 'View on Amazon'}</span>
           </a>

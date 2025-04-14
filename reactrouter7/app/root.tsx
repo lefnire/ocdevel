@@ -5,7 +5,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  // useSearchParams,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -44,12 +43,6 @@ export const links: Route.LinksFunction = () => [
   }
 ];
 
-function Plausible() {
-  // const [searchParams, setSearchParams] = useSearchParams()
-  // if (!import.meta.env.PROD) { return null; }
-  // if (searchParams.get('notrack')) { return null; }
-  return <script defer data-domain="ocdevel.com" src="https://plausible.io/js/script.pageview-props.tagged-events.js"></script>
-}
 
 export function Layout({children}: { children: ReactNode }) {
   return (
@@ -59,7 +52,6 @@ export function Layout({children}: { children: ReactNode }) {
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta name='impact-site-verification' value='c47f4703-3b54-4a24-9d35-67f518f4dbc7' />
       <meta name="google-adsense-account" content="ca-pub-3242350243827794"/>
-      <Plausible />
 
       <Meta/>
       <Links/>

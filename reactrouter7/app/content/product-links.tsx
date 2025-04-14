@@ -1,5 +1,6 @@
 import {type PropsWithChildren, type ReactElement} from 'react'
 import {expires} from "~/components/date-utils";
+import {clickAffiliate} from "~/components/analytics";
 
 // TODO consolidate this with Product
 export interface AffiliateLink {
@@ -15,29 +16,24 @@ export function affiliateLink(product: AffiliateLink, label?: string) {
   return <a
     href={product.link}
     target="_blank"
-    className={`plausible-event-name=affiliate plausible-event-product=${product.key}`}
+    onClick={clickAffiliate(product.key)}
     rel="noopener noreferrer"
   >{label || product.title}</a>
 }
 
 // FIXME combine with affiliateLink above (change all the mdx files)
 // FIXME move the image imports somwhere else, so they're not included in keyboards/mice
-export function Affiliate({product, children, ...props}: PropsWithChildren<{
+export function Affiliate({product, children, className="", ...props}: PropsWithChildren<{
   product: AffiliateLink,
   className?: string
 }>) {
-  const {className, ...rest} = props
-  const classes = [
-    "plausible-event-name=affiliate",
-    `plausible-event-product=${product.key}`,
-    (className || "")
-  ].join(' ')
   return <a
+    onClick={clickAffiliate(product.key)}
     href={product.link}
     target="_blank"
-    className={classes}
+    className={className || ""}
     rel="noopener noreferrer"
-    {...rest}
+    {...props}
   >
     {children}
   </a>
