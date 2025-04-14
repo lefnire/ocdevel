@@ -143,7 +143,7 @@ async function parseTree({tree, opts, isLink}: ParseTree): Promise<Link | Resour
     // Handle specific multi-value tags (mlg, mla)
     if (['mlg', 'mla'].includes(key)) {
       // Ensure value is treated as a string before splitting
-      value = String(value).split(',').map(s => s.trim()).filter(s => s !== '');
+      value = String(value).split(':').map(s => s.trim()).filter(s => s !== '');
     }
 
     acc[key] = value;
@@ -195,17 +195,13 @@ async function parseTree({tree, opts, isLink}: ParseTree): Promise<Link | Resour
        // Remove 'links' if it accidentally got added via spread tags
       delete node.links;
     }
-    if (
-      (!opts?.id) || // blanket-parse, for /mlg/resource
-      // Check episode relevance using the correctly typed tags
-      (tags[opts.podcast as PodcastKey]?.includes(opts.id) && isLeaf)
-    ) {
+      // Always add the node to flat, regardless of opts
       flat[id] = node;
-      // Add episode references using the processed string arrays
+
+      // Always add episode references if tags exist, regardless of opts
       tags.mlg?.forEach(ep => addEpisode('mlg', ep, id));
       tags.mla?.forEach(ep => addEpisode('mla', ep, id));
-    }
-  }
+    } // This closes the `if (!flat[id])` block from line 168
   return {
     id, // Return id for parent linking
     ...(isLeaf ? {} : { v: children as ResourceChildRef[] }) // Return 'v' only for branches
@@ -221,31 +217,102 @@ type OpmlStructure = {
   }
 }
 
+// Helper function to recursively find all leaf node IDs under a given branch ID
+function findNestedLeafIds(branchId: string, allNodes: { [id: string]: Resource }): string[] {
+  const node = allNodes[branchId];
+  // Base case: If it's not a branch node in flat, return empty array
+  if (!node || !('v' in node)) {
+    return [];
+  }
+
+  let leafIds: string[] = [];
+  // Iterate over children references (ResourceChildRef[]) if they exist
+  if (node.v) {
+  for (const childRef of node.v) {
+    const childNode = allNodes[childRef.id];
+    if (!childNode) continue; // Skip if child node not found (shouldn't happen in theory)
+
+    // Check if the child node is a leaf
+    if ('links' in childNode) { // Leaves have 'links' property
+      leafIds.push(childNode.id);
+    }
+    // Check if the child node is another branch
+    else if ('v' in childNode) { // Branches have 'v' property
+      // Recursively find leaves in the nested branch
+      leafIds = leafIds.concat(findNestedLeafIds(childNode.id, allNodes));
+    }
+  } // End of loop
+  } // End of if (node.v)
+  return leafIds;
+}
+
+
 async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<ResourceTree> {
+  // Reset global state variables at the beginning of each parse
+  flat = {};
+  episodes = { mlg: {}, mla: {} };
+
   const outline = xmlContent.opml.body.outline;
-  // The top-level parse returns a ResourceChildRef structure
-  const topLevelResult = await parseTree({ tree: outline, opts, isLink: false }) as ResourceChildRef;
-  const v = topLevelResult.v || []; // Get the actual top-level children refs
-  if (opts?.id) {
-    // Return EpisodeResources structure
+
+  // Step 1: Perform a full parse of the tree to populate 'flat' and 'episodes'
+  // We pass 'undefined' for opts here so parseTree processes everything.
+  const topLevelResult = await parseTree({ tree: outline, opts: undefined, isLink: false }) as ResourceChildRef;
+
+  // Step 2: Check if episode-specific filtering is requested
+  if (opts?.id && opts.podcast) {
+    // Get the list of node IDs directly tagged for this episode
+    const directNids = episodes[opts.podcast]?.[opts.id] ?? [];
+    let finalNids: string[] = [];
+
+    // Iterate through directly tagged nodes
+    for (const nid of directNids) {
+      const node = flat[nid];
+      if (!node) continue; // Skip if node not found in flat map
+
+      // Check if the node is a leaf
+      if ('links' in node) {
+        // If it's a leaf, add its ID directly
+        finalNids.push(nid);
+      }
+      // Check if the node is a branch
+      else if ('v' in node) {
+        // If it's a branch, find all nested leaf IDs under it
+        const nestedLeaves = findNestedLeafIds(nid, flat);
+        // Add the found leaf IDs to the final list
+        finalNids = finalNids.concat(nestedLeaves);
+      }
+    }
+
+    // Remove duplicate IDs that might arise from the process
+    finalNids = [...new Set(finalNids)];
+
+    // Construct the result for a specific episode
     const episodeResult: EpisodeResources = {
-      flat,
-      top: {},
-      nids: episodes[opts.podcast]?.[opts.id] ?? [], // Handle cases where episode/podcast might not exist
+      flat, // Return the complete flat map as before
+      top: {}, // 'top' structure is not relevant for episode-specific results
+      nids: finalNids, // The aggregated list of relevant leaf node IDs
     };
     return episodeResult;
+
+  } else {
+    // Step 3: Handle the case where no specific episode is requested (return all resources)
+    const v = topLevelResult.v || []; // Get top-level children references
+
+    // Define the 'top' structure based on the top-level nodes
+    // Add checks for array length to prevent errors if the structure is unexpected
+    const top = {
+      degrees: v.length > 0 ? { id: v[0].id } : { id: '' },
+      main:    v.length > 1 ? { id: v[1].id } : { id: '' },
+      math:    v.length > 2 ? { id: v[2].id } : { id: '' },
+      audio:   v.length > 3 ? { id: v[3].id } : { id: '' }
+    };
+
+    // Construct the result for all resources
+    const allResult: AllResources = {
+      flat, // The complete flat map
+      top, // The defined top-level structure
+      nids: [], // 'nids' is empty when returning all resources
+    };
+    return allResult;
   }
-  const top = {
-    degrees: {id: v[0].id},
-    main: {id: v[1].id},
-    math: {id: v[2].id},
-    audio: {id: v[3].id}
-  }
-  // Return AllResources structure
-  const allResult: AllResources = {
-    flat,
-    top,
-    nids: [],
-  };
-  return allResult;
 }
