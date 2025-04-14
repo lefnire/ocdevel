@@ -1,3 +1,27 @@
+/*
+This file takes an OPML export from Workflowy, which is a tree-based note-taking app,
+and converts it into a JavaScript object that can be used in my app. It represents the
+resources relevant to podcast episodes I record; and can then be displayed either in the
+podcast episode page at /mlg/$id, or in the aggregated resources page at /mlg/resources.
+I use Workflowy as a start because it's easier for me to manage day-to-day, but it has
+limitations, so I came up with a quirky way to design the structure for later conversion.
+
+- Tags are used (#pick:any, #format:audiobook) in Workflowy, which get converted to
+  attributes here. Eg, obj.pick="any", obj.format="audiobook".
+- One tag is #mlg:1,3,2 or #mla:2. There are two subsections of the podcast: MLG and MLA.
+  This tag specifies which episodes of which subsection this resource is relevant for. If
+  it's a comma-separated list (#mlg:1,3,2) it's relevant to MLG episodes 1, 3, and 2. If
+  it's a single number (#mla:2), it's only relevant to MLA episode 2.
+- The tree structure is determined by whether #pick present or not. If present, it's a
+  branch (expand to drill in); if not present, it's a leaf (click this resource for details)
+- HTML elements are present in the Workflowy. The current implementation here strips
+  those HTML elements, and instead defers to Markdown format in the OPML. This file
+  then pre-renders the Markdown, to be later injected into the page.
+- There are two ways to call compile the object. (1) where `opts: {id, podcast}` are
+  not present, it will compile the entire resources tree. If they are present, it will
+  collect only the resources relevant to that episode (a flat-list of leafs).
+ */
+
 import fs from 'fs'
 import path from 'path'
 import xmlJs from 'xml-js'
