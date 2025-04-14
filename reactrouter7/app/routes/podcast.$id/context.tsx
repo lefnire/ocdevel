@@ -7,6 +7,7 @@ export type EpisodeContext = {
   show: any // we'll use ShowContext for real values; this is used for Rout.MetaArgs
   episode: EpisodeType
   transcript: string | null
+  podcastKey: "mlg" | "llh"
   i?: number
 }
 

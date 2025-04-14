@@ -14,20 +14,13 @@ import {ShowContext} from "~/routes/podcast/context";
 import {EpisodeContext} from "~/routes/podcast.$id/context";
 import {EpisodesContext} from "~/routes/podcast._index/context";
 
-type LoaderReturn =
-  | { podcastKey: "llh"; show: typeof llhShow; episodesList: typeof llhList }
-  | { podcastKey: "mlg"; show: typeof mlgShow; episodesList: typeof mlgList };
-
-export function loader({request}: Route.LoaderArgs): LoaderReturn {
+export function loader({request}: Route.LoaderArgs) {
   const pathname = (new URL(request.url)).pathname;
   const llh = pathname.includes('/llh')
-  if (llh) {
-    return {podcastKey: "llh", show: llhShow, episodesList: llhList}
-  }
-  return {podcastKey: "mlg", show: mlgShow, episodesList: mlgList}
+  const episodesList = (llh ? llhList : mlgList) as unknown as EpisodeType[]
+  return {episodesList}
 }
 
-type ComponentProps = Route.ComponentProps['loaderData']
 export default function Index({loaderData: {episodesList}}: Route.ComponentProps) {
   // const {podcastKey} = loaderData
   return <EpisodesContext.Provider value={{episodesList}}>
@@ -109,7 +102,9 @@ function EpisodeList() {
   const hasMore = eps.length < fullLen
 
   function renderEpisode(episode: EpisodeType, i: number) {
-    return <EpisodeContext.Provider value={{episode}} key={episode.id}>
+    // TODO see if this is ok, lacking resources,transcript
+    const context = {episode} as unknown as EpisodeContext
+    return <EpisodeContext.Provider value={context} key={episode.id}>
       <Teaser i={i} />
     </EpisodeContext.Provider>
     // if (i > 0 && i % 5 === 0) {

@@ -40,6 +40,7 @@ export async function loader(props: Route.LoaderArgs) {
 
   const result: EpisodeContext = {
     resources,
+    podcastKey,
     show: pod.show,
     episode,
     transcript,
@@ -54,10 +55,11 @@ export default function PodcastId(props: Route.ComponentProps) {
   </EpisodeContext.Provider>
 }
 
-export function meta({data}: Route.MetaArgs) {
+export function meta({data: {episode, show, podcastKey}}: Route.MetaArgs) {
+  const showTitle = podcastKey === "mlg" ? "Machine Learning Podcast" : show.title
   return [
-    {title: `${data.episode.title} | ${data.show.title} Podcast`},
-    {name: "description", content: data.episode.teaser},
+    {title: `${episode.title} | ${showTitle}`},
+    {name: "description", content: episode.teaser},
     // Possibly helps with LCP on the iframe? Anyway, using click-to-play now
     // {
     //   tagName: "link",
