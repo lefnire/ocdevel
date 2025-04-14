@@ -1,6 +1,5 @@
-import {type PropsWithChildren, Suspense, useMemo, lazy} from "react";
+import {type PropsWithChildren, Suspense, useMemo, lazy, useContext} from "react";
 import Card from 'react-bootstrap/cjs/Card'
-import Alert from 'react-bootstrap/cjs/Alert'
 import {Link, Outlet} from "react-router";
 import {BackButton} from "~/components/back-btn";
 // import ReactDisqusComments from "react-disqus-comments";
@@ -8,15 +7,26 @@ import {Comments} from "~/components/comments";
 import {DateHeader, buildTitle} from '~/routes/podcast/utils'
 import {Player} from './player'
 import type {Route} from './+types/route.tsx'
+import {PodcastContext} from "~/routes/podcast/context";
+import {About} from "~/routes/podcast/about";
 
 const ResourcesFlat = lazy(() => import('./resources'));
 
 export default function Full({loaderData}: Route.ComponentProps) {
+  const {show, podcastKey} = useContext(PodcastContext)
   const props = loaderData
-  const {episode: e, podcastKey, show, transcript, resources, i=undefined} = loaderData
+  const {episode: e, transcript, resources, i=undefined} = loaderData
   const title = buildTitle(props)
 
   const player = useMemo(() => <Player {...props} />, [])
+
+  function renderAbout() {
+    return <div className="d-block d-md-none">
+      <Section>
+        <About />
+      </Section>
+    </div>
+  }
 
   function renderNotes() {
     if (e.empty) { return null; }
@@ -24,6 +34,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
       <Outlet />
     </Section>
   }
+
   function renderResources() {
     if (!resources?.nids?.length) { return null; }
     return <Section title="Resources">
@@ -33,6 +44,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
       </Suspense>
     </Section>
   }
+
   function renderTranscript() {
     if (!transcript) {return null;}
     return <Section title="Transcript">
@@ -50,6 +62,7 @@ export default function Full({loaderData}: Route.ComponentProps) {
         <p className='mt-2'>{e.teaser}</p>
       </Card.Body>
       {renderResources()}
+      {renderAbout()}
       {renderNotes()}
       {renderTranscript()}
       {e.guid && <Card.Footer>
@@ -63,9 +76,12 @@ export default function Full({loaderData}: Route.ComponentProps) {
   </div>
 }
 
-function Section({title, children}: PropsWithChildren<{title: string}>) {
-  return <Card.Body>
-    <Card.Title>{title}</Card.Title>
-    <Card.Body>{children}</Card.Body>
-  </Card.Body>
+function Section({title, children}: PropsWithChildren<{title?: string}>) {
+  return <>
+    <hr/>
+    <Card.Body>
+      {title && <Card.Title>{title}</Card.Title>}
+      <div>{children}</div>
+    </Card.Body>
+  </>
 }

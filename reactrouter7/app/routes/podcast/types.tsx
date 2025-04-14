@@ -1,4 +1,5 @@
 import type {ReactElement} from "react";
+import type {Route} from "./+types/route_mlg";
 
 export interface ShowType {
   title: string
@@ -40,3 +41,5 @@ export interface EpisodeComponent {
   podcastKey: "llh" | "mlg"
   show: ShowType
 }
+
+export type CommonProps = Route.ComponentProps['loaderData'] & {img: string}

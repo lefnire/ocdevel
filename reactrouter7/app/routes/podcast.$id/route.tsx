@@ -45,9 +45,7 @@ export async function loader(props: Route.LoaderArgs) {
 }
 
 export default function PodcastId(props: Route.ComponentProps) {
-  return <>
-    <Full {...props} />
-  </>
+  return <Full {...props} />
 }
 
 export function meta({data}: Route.MetaArgs) {

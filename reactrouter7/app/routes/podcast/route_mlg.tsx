@@ -3,16 +3,17 @@ import Podcast from './podcast'
 import Navbar from './navbar'
 import img from "~/assets/logos/MLG-Option-1.jpg?w=250&h=250&format=webp&effort=max"
 import type {Route} from './+types/route_mlg'
+import {PodcastContext} from "~/routes/podcast/context";
 
 export function loader({request}: Route.LoaderArgs) {
   return {podcastKey: "mlg", show: mlgShow}
 }
 
 export default function RouteMLG({loaderData}: Route.ComponentProps) {
-  return <>
+  return <PodcastContext.Provider value={{...loaderData, img}}>
     <Navbar />
-    <Podcast {...loaderData} img={img} />
-  </>
+    <Podcast />
+  </PodcastContext.Provider>
 }
 
 export function meta({data}: Route.MetaArgs) {
