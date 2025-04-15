@@ -4,9 +4,11 @@ import { FaMicrophone } from "@react-icons/all-files/fa/FaMicrophone";
 import Card from 'react-bootstrap/cjs/Card';
 import Row from 'react-bootstrap/cjs/Row';
 import Col from '~/components/col';
+import {clickAffiliate} from "~/components/analytics";
 
 // Assuming /creator is the correct path for the Descript link
 const descriptLink = "/creator";
+
 
 export function AffiliateAds({ className = "" }: { className?: string }) {
   return (
@@ -15,7 +17,12 @@ export function AffiliateAds({ className = "" }: { className?: string }) {
         <Card className="border-0 bg-light h-100" body> {/* Use h-100 for equal height cards */}
           <div>
             <FaWalking className="me-2" />
-            <Link to="/walk">Try a walking desk</Link>
+            <Link
+              onClick={clickAffiliate('walk')}
+              to="/walk"
+            >
+              Try a walking desk
+            </Link>
           </div>
           <div>
             <small>
@@ -29,7 +36,12 @@ export function AffiliateAds({ className = "" }: { className?: string }) {
           <div>
             <small>
               <FaMicrophone className="me-2" />
-              <a href={descriptLink} target="_blank" rel="noopener noreferrer">Try Descript</a>
+              <a
+                onClick={clickAffiliate('descript')}
+                href={descriptLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >Try Descript</a>
             </small>
           </div>
           <small>
