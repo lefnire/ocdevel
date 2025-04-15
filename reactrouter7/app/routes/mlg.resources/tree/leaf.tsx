@@ -95,6 +95,7 @@ const LeafExpanded = memo(({id}: {id: string}) => {
   }
 
   function renderTable() {
+    if (node.info) { return null; }
     return <div className='small'>
       <Table striped size='sm filters-table my-2'>
         <colgroup>
@@ -139,6 +140,10 @@ export const Leaf = memo(({id}: { id: string }) => {
     const id = `${filterKey}-${node[filterKey]}`
     return <Icon key={id} id={id} />
   }
+  function renderIcons() {
+    if (node.info) { return null; }
+    return filterKeys.map(renderIcon)
+  }
 
   const toggle = useCallback(() => setShow(!show), [show])
 
@@ -146,10 +151,10 @@ export const Leaf = memo(({id}: { id: string }) => {
     <LeafWrapper show={show}>
       <div onClick={toggle} className="pointer">
         {show ? icons.down : icons.right}
-        <span className='mx-2 resource-title'>
+        <span className={`mx-2 resource-title ${node.info ? 'text-muted' : ''}`}>
           {node.t}
         </span>
-        {filterKeys.map(renderIcon)}
+        {renderIcons()}
       </div>
       {show && <LeafExpanded id={id} />}
     </LeafWrapper>

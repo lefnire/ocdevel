@@ -28,6 +28,7 @@ import xmlJs from 'xml-js';
 import { marked } from 'marked';
 import createDOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
+import { decode } from 'html-entities';
 import type {
   Resource,
   ResourceTree,
@@ -47,7 +48,7 @@ import type {
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
 export async function preRenderMd(content: string): Promise<string> {
-  const rawHtml = await marked.parse(content);
+  const rawHtml = await marked.parse(content, { gfm: true }); // Explicitly enable GFM
   const cleanHtml = DOMPurify.sanitize(rawHtml);
   return cleanHtml;
 }
@@ -120,8 +121,13 @@ async function parseTree({ tree, isLink = false }: ParseTreeArgs): Promise<Link 
     return null; // Skip nodes without text
   }
 
-  let text = tree._attributes.text.replace(reStripHtml, '').replace('&amp;', '&').trim(); // Clean title text
-  const note = tree._attributes._note || ''; // Default to empty string
+  let text = decode(
+    tree._attributes.text
+      .replace(reStripHtml, '')
+  ).trim()
+  const note = decode(
+    (tree._attributes._note || '')
+  )
   const outline = tree.outline ? (Array.isArray(tree.outline) ? tree.outline : [tree.outline]) : [];
 
   const rawTags = text.match(reTags) ?? [];
@@ -136,9 +142,9 @@ async function parseTree({ tree, isLink = false }: ParseTreeArgs): Promise<Link 
     const value = valueParts.join(':');
 
     if (key === 'mlg') {
-      mlgEpisodes = value.split(',').map(s => s.trim()).filter(Boolean);
+      mlgEpisodes = value.split(':').map(s => s.trim()).filter(Boolean);
     } else if (key === 'mla') {
-      mlaEpisodes = value.split(',').map(s => s.trim()).filter(Boolean);
+      mlaEpisodes = value.split(':').map(s => s.trim()).filter(Boolean);
     } else if (value === '') {
       tags[key] = true; // Boolean tag
     } else {
@@ -264,7 +270,7 @@ async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<R
       const node = flat[nid];
       if (!node) continue;
 
-      if ('links' in node) { // Node is a leaf
+      if ('links' in node && !node.archived) { // Node is a leaf
         finalNids.push(nid);
       } else if ('v' in node) { // Node is a branch
         finalNids = finalNids.concat(findNestedLeafIds(nid, flat));
