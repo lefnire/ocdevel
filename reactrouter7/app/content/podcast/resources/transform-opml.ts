@@ -115,8 +115,10 @@ type OpmlStructure = {
 };
 
 // --- Simplified parseTree ---
-type ParseTreeArgs = { tree: WFTree; isLink?: boolean };
-async function parseTree({ tree, isLink = false }: ParseTreeArgs): Promise<Link | ResourceChildRef | null> {
+// Add parentId to args
+type ParseTreeArgs = { tree: WFTree; isLink?: boolean; parentId?: string };
+// Add parentId to signature with default
+async function parseTree({ tree, isLink = false, parentId = 'root' }: ParseTreeArgs): Promise<Link | ResourceChildRef | null> {
   if (!tree?._attributes?.text) {
     return null; // Skip nodes without text
   }
@@ -162,20 +164,26 @@ async function parseTree({ tree, isLink = false }: ParseTreeArgs): Promise<Link 
     return { t: text, l: linkUrl.replace('&amp;', '&'), p: tags.price as PriceValue };
   }
 
-  // Generate ID
-  const id = crypto.createHash('md5').update(text).digest('hex');
+  // Determine if leaf *before* generating ID
+  const isLeaf = !tags.pick;
+
+  // Generate ID conditionally
+  const idSource = isLeaf ? text : `${parentId}::${text}`;
+  const id = crypto.createHash('md5').update(idSource).digest('hex');
 
   // Avoid reprocessing if already in flat map
+  // NOTE: This check now prevents reprocessing identical *branches* under the *same parent*,
+  // and identical *leaves* globally.
   if (flat[id]) {
     // Still need to return the ID for parent linking
     return { id };
   }
 
-  const isLeaf = !tags.pick;
+  // const isLeaf = !tags.pick; // Moved up
 
   // Recursively parse children
   const childrenResults = await Promise.all(
-    outline.map(o => parseTree({ tree: o, isLink: isLeaf }))
+    outline.map(o => parseTree({ tree: o, isLink: isLeaf, parentId: id })) // Pass current id as parentId
   );
   const children = childrenResults.filter(c => c !== null) as (Link | ResourceChildRef)[];
 
@@ -288,10 +296,10 @@ async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<R
   } else {
     // Step 3: Handle returning all resources (Keep hardcoded top structure)
     const top = {
-      degrees: topLevelRefs.length > 0 ? { id: topLevelRefs[0].id } : { id: '' },
-      main:    topLevelRefs.length > 1 ? { id: topLevelRefs[1].id } : { id: '' },
-      math:    topLevelRefs.length > 2 ? { id: topLevelRefs[2].id } : { id: '' },
-      audio:   topLevelRefs.length > 3 ? { id: topLevelRefs[3].id } : { id: '' }
+      degrees: { id: topLevelRefs[0].id },
+      main: { id: topLevelRefs[1].id },
+      math: { id: topLevelRefs[2].id },
+      audio: { id: topLevelRefs[3].id },
     };
 
     return {
