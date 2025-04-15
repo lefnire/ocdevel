@@ -29,7 +29,7 @@ export const learnStyles = {
     d: "List learning resources for self-teaching, or resources for getting a degree",
     opts: {
       selfTaught: {t: "Self-Taught", d: "Lists all resources intended for self-learning ML, including math."},
-      degree: {t: "Degrees/Certificates", d: "Lists degrees/certificates, and hides resources you'd which teach you what you'll learn during the degree. Keeps supplementary material listed."}
+      degree: {t: "Degrees/Certificates", d: "Lists degrees/certificates, and hides resources which teach you what you'll learn during the degree. Keeps supplementary material listed."}
     }
   },
 

@@ -136,24 +136,31 @@ export const Leaf = memo(({id}: { id: string }) => {
   const [show, setShow] = useState(false)
   const node = flat[id];
 
+  const toggle = useCallback(() => setShow(!show), [show])
+
+  function renderTitle() {
+    const classes = ["mx-2 resource-title"]
+    if (node.info) { classes.push("text-muted") }
+    if (node.archived) { classes.push("text-decoration-line-through") }
+    return <span className={classes.join(' ')}>{node.t}</span>
+  }
+
   const renderIcon = (filterKey: FilterKey) => {
     const id = `${filterKey}-${node[filterKey]}`
     return <Icon key={id} id={id} />
   }
+
   function renderIcons() {
     if (node.info) { return null; }
     return filterKeys.map(renderIcon)
   }
 
-  const toggle = useCallback(() => setShow(!show), [show])
 
   return <div className="resource py-2">
     <LeafWrapper show={show}>
       <div onClick={toggle} className="pointer">
         {show ? icons.down : icons.right}
-        <span className={`mx-2 resource-title ${node.info ? 'text-muted' : ''}`}>
-          {node.t}
-        </span>
+        {renderTitle()}
         {renderIcons()}
       </div>
       {show && <LeafExpanded id={id} />}
