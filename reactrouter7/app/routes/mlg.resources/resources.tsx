@@ -41,13 +41,19 @@ function FilteredTree({top}: {top: Top}) {
     }
 
     // leaf node
-    if (full.audioOption) {
-      if (learnStyles.audio === 'normal' && section === 'audio') {
-        return null
-      }
-      if (learnStyles.audio === 'hardCore' && section !== 'audio') {
-        return null
-      }
+    const nodeEasyAudio = ['podcast', 'audiobook'].includes(full.format)
+    const nodeHardAudio = full.audioOption
+    const nodeAnyAudio = nodeEasyAudio || nodeHardAudio
+    const filterLightAudio = learnStyles.audio === 'normal'
+    const filterHeavyAudio = learnStyles.audio === 'hardCore'
+    if (section !== 'audio') {
+      // They want heavy audio. We're in the normal section, so hide it
+      // (to be shown in audio section)
+      if (filterHeavyAudio && nodeAnyAudio) { return null; }
+    } else {
+      // In the audio section. Show if light; or if heavy, and they want heavy
+      if (filterLightAudio && !nodeEasyAudio) { return null; }
+      if (filterHeavyAudio && !nodeHardAudio) { return null; }
     }
 
     const keep = _reduce(filterKeys, (m, fk) => {
