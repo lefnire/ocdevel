@@ -11,12 +11,19 @@ export default function Teaser({i}: Teaser) {
   const {podcastKey} = useContext(ShowContext)
   const {episode: e} = useContext(EpisodeContext)
   const link = `/${podcastKey}/${e.id}`
-  const title = buildTitle({episode: e, podcastKey})
+  const title = buildTitle()
+
+  function renderTitle() {
+    const className = e.archived ? 'text-muted text-decoration-line-through' : ''
+    return <Card.Title>
+      <Link to={link} className={className}>{title}</Link>
+    </Card.Title>
+  }
 
   function renderContent() {
     if (e.archived) {
       return <div className='text-muted'>This episode is archived. As I'm re-doing the podcast, some episodes are
-        outdated or superfluous. <Link to={`/mlg/${e.episode}`}>You can still access it here</Link>.</div>
+        outdated or superfluous. <Link to={link}>You can still access it here</Link>.</div>
     }
     return <p className='mt-2'>{e.teaser}</p>
     // git-blame for faded body render
@@ -33,9 +40,7 @@ export default function Teaser({i}: Teaser) {
 
   return <Card className={`mb-3 card-post`}>
     <Card.Body>
-      <Card.Title>
-        <Link to={link} className={e.archived ? 'text-muted text-decoration-line-through' : ''}>{title}</Link>
-      </Card.Title>
+      {renderTitle()}
       <DateHeader />
       {renderDebugging()}
       {renderContent()}

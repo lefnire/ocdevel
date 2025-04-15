@@ -35,9 +35,11 @@ export const PlausibleListener = memo(() => {
 
   useEffect(() => {
     if (didSetNoTrack.current) { return; } // navigated to new page
-    // TODO set window.localStorage.plausible_ignore = 'true'
     const notrack = searchParams.get('notrack')
     if (notrack === null || notrack === undefined) { return; }
+    window.localStorage.setItem("plausible_ignore", "true")
+    // extra TRACK-setting maybe not necessary since using localstorage. Keeping
+    // in case I migrate analytics provider
     TRACK = false;
     didSetNoTrack.current = true;
     // console.log("notrack")
@@ -49,11 +51,14 @@ export const PlausibleListener = memo(() => {
     if (pathname === lastPathname.current) { return; }
     // console.log("pageview")
     lastPathname.current = pathname;
+    // Wrap in timeout so localStorage notrack can be set before trackpageview checks
+    // setTimeout(() => {
     plausible.trackPageview({
 
     }, {
       callback: clearUtm
     })
+    // }, 1)
   }, [pathname])
 
   function clearUtm() {
