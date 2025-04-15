@@ -47,6 +47,8 @@ export default function getPrerenderRoutes(forSitemap) {
         '/walk': 1,
         '/blog': 0.6,
         '/mlg/mla-22': 0.8,
+        '/mlg/mla-23': 0.8,
+        '/mlg/mla-24': 0.8,
         '/blog/20240110-ergo-mouse-keyboard': 0.8,
         '/blog/20250408-trackball-mouse': 0.8,
         '/blog/20210108-how-to-use-habitica': 0.8,

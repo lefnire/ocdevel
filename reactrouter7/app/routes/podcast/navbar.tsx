@@ -5,8 +5,8 @@ import {LinkContainer} from "~/components/link-container";
 export default function Navbar_() {
   return <Navbar bg='dark' variant='dark' className="border-bottom justify-content-center secondary-nav">
     <Nav>
-      <LinkContainer to="/mlg" tabIndex={0}>Episodes</LinkContainer>
-      <LinkContainer to="/mlg/resources" tabIndex={1} end>Resources</LinkContainer>
+      <LinkContainer to="/mlg">Episodes</LinkContainer>
+      <LinkContainer to="/mlg/resources" end>Resources</LinkContainer>
     </Nav>
   </Navbar>
 }

@@ -12,10 +12,10 @@ export default function Layout() {
         <Navbar.Brand>OCDevel</Navbar.Brand>
       </LinkContainer>
       <Nav>
-        <LinkContainer to="/blog" tabIndex={1}>Blog</LinkContainer>
-        <LinkContainer to="/walk" tabIndex={2}>Walk</LinkContainer>
-        <LinkContainer to="/mlg" tabIndex={3}>MLG</LinkContainer>
-        <LinkContainer to="/llh" tabIndex={4}>LLH</LinkContainer>
+        <LinkContainer to="/blog">Blog</LinkContainer>
+        <LinkContainer to="/walk">Walk</LinkContainer>
+        <LinkContainer to="/mlg">MLG</LinkContainer>
+        <LinkContainer to="/llh">LLH</LinkContainer>
       </Nav>
     </Navbar>
 
