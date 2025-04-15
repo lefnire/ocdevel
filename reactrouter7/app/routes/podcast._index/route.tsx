@@ -7,12 +7,13 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Teaser from './teaser';
 import {useShallow} from "zustand/react/shallow";
 import type {EpisodeType, ShowType} from '~/route/podcast/types'
-// import {Adsense, AdsenseScript} from "~/components/adsense"
 import {llhList, mlgList} from "~/content/podcast/metas.js";
 import type {Route} from './+types/route.tsx'
 import {ShowContext} from "~/routes/podcast/context";
 import {EpisodeContext} from "~/routes/podcast.$id/context";
 import {EpisodesContext} from "~/routes/podcast._index/context";
+
+// git-blame: adsense
 
 export function loader({request}: Route.LoaderArgs) {
   const pathname = (new URL(request.url)).pathname;
@@ -26,7 +27,6 @@ export default function Index({loaderData: {episodesList}}: Route.ComponentProps
   return <EpisodesContext.Provider value={{episodesList}}>
     <FilterButtons />
     <EpisodeList />
-    {/*{podcastKey === "mlg" && <AdsenseScript />}*/}
   </EpisodesContext.Provider>
 }
 
@@ -107,13 +107,6 @@ function EpisodeList() {
     return <EpisodeContext.Provider value={context} key={episode.id}>
       <Teaser i={i} />
     </EpisodeContext.Provider>
-    // if (i > 0 && i % 5 === 0) {
-    //   return [
-    //     <Adsense key={`ad-${i}`} />,
-    //     episode
-    //   ]
-    // }
-    return episode
   }
 
   // TODO filter episodes
