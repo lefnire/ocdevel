@@ -270,7 +270,7 @@ async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<R
       const node = flat[nid];
       if (!node) continue;
 
-      if ('links' in node && !node.archived) { // Node is a leaf
+      if ('links' in node) { // Node is a leaf
         finalNids.push(nid);
       } else if ('v' in node) { // Node is a branch
         finalNids = finalNids.concat(findNestedLeafIds(nid, flat));
