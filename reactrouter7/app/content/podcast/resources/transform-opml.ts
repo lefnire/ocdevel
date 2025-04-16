@@ -149,6 +149,8 @@ async function parseTree({ tree, isLink = false, parentId = 'root' }: ParseTreeA
       mlaEpisodes = value.split(':').map(s => s.trim()).filter(Boolean);
     } else if (value === '') {
       tags[key] = true; // Boolean tag
+    } else if (valueParts.length > 1) {
+      tags[key] = valueParts;
     } else {
       tags[key] = value; // Value tag (pick, price, format, etc.)
     }

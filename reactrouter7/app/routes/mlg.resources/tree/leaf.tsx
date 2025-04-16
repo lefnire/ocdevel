@@ -146,8 +146,13 @@ export const Leaf = memo(({id}: { id: string }) => {
   }
 
   const renderIcon = (filterKey: FilterKey) => {
-    const id = `${filterKey}-${node[filterKey]}`
-    return <Icon key={id} id={id} />
+    const val = node[filterKey]
+    // allow multiple values per tag, like #format:book:audiobook
+    const vals = Array.isArray(val) ? val : [val]
+    return vals.map((val:string) => {
+      const id = `${filterKey}-${val}`
+      return <Icon key={id} id={id} />
+    })
   }
 
   function renderIcons() {

@@ -56,10 +56,20 @@ function FilteredTree({top}: {top: Top}) {
       if (filterHeavyAudio && !nodeHardAudio) { return null; }
     }
 
-    const keep = _reduce(filterKeys, (m, fk) => {
-      if (!full[fk]) {return m} // N/A attrs, like video2audio
-      const isActive = filters[fk][full[fk]]
-      return m && isActive
+    const keep = _reduce(filterKeys, (isPassing, filterKey) => {
+      // looks like {format: "book"}
+      const nodeVal = full[filterKey]
+      // looks like {format: {book: true}}
+      const activeFilters = filters[filterKey]
+      if (!nodeVal) { return isPassing; } // N/A attrs, like video2audio
+      // If there are multiple values, match if any of them are present
+      if (Array.isArray(nodeVal)) {
+        return _reduce(nodeVal, (anyPassing, nodeVal_i) => {
+          return anyPassing || activeFilters[nodeVal_i]
+        }, false)
+      }
+      // otherwise it's a string
+      return isPassing && activeFilters[nodeVal]
     }, true)
     return keep ? {id, v: []} : null
   }
