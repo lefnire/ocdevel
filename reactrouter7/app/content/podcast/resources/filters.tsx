@@ -33,14 +33,6 @@ export const learnStyles = {
     }
   },
 
-  audio: {
-    t: "Audio Preference",
-    d: "If you enjoy audio for learning, setting this to Audio-Heavy will move as much as possible to the Audio section. Eg, if a book has both paper & audiobook, it's listed in audio. This includes some videos which do a good job orating!",
-    opts: {
-      hardCore: {t: "Audio-Heavy", d: "Some video resources are well-orated, and can thus be listened to - saving your eye-time for other resources. These resources are moved to the audio section, with instructions on converting video to audio."},
-      normal: {t: "Audio-Light", d: "If you prefer your audio time to be less intense, or simply prefer to watch video resources as they're intended to be consumed, choose this. It'll put video resources in their normal place."}
-    }
-  },
 } as const
 export type LearnStyleKeys = keyof typeof learnStyles
 export type LearnStyles = typeof learnStyles

@@ -40,22 +40,6 @@ function FilteredTree({top}: {top: Top}) {
       return {id, v}
     }
 
-    // leaf node
-    const nodeEasyAudio = ['podcast', 'audiobook'].includes(full.format)
-    const nodeHardAudio = full.audioOption
-    const nodeAnyAudio = nodeEasyAudio || nodeHardAudio
-    const filterLightAudio = learnStyles.audio === 'normal'
-    const filterHeavyAudio = learnStyles.audio === 'hardCore'
-    if (section !== 'audio') {
-      // They want heavy audio. We're in the normal section, so hide it
-      // (to be shown in audio section)
-      if (filterHeavyAudio && nodeAnyAudio) { return null; }
-    } else {
-      // In the audio section. Show if light; or if heavy, and they want heavy
-      if (filterLightAudio && !nodeEasyAudio) { return null; }
-      if (filterHeavyAudio && !nodeHardAudio) { return null; }
-    }
-
     const keep = _reduce(filterKeys, (isPassing, filterKey) => {
       // looks like {format: "book"}
       const nodeVal = full[filterKey]

@@ -9,10 +9,7 @@ interface Store {
   toggleFilters: () => void
   learnStyles: {
     learn: string
-    audio: string
-
     set_learn: (learn: string) => void
-    set_audio: (audio: string) => void
   }
   filters: any // FiltersFilter & FilterSet
 }
@@ -48,12 +45,6 @@ export const useStore = create<Store>()(
         set_learn: (learn) => set(state => {
           state.learnStyles.learn = learn
         }),
-        audio: 'normal',
-        set_audio: (audio) => {
-          set(state => {
-            state.learnStyles.audio = audio
-          })
-        },
       },
 
       filters
