@@ -3,8 +3,7 @@ import {useContext} from "react";
 import {Branch} from "./tree/branch";
 import {ResourceCacheContext, ResourceCacheProvider} from "./tree/resource-cache";
 import {filterKeys} from "~/content/podcast/resources/filters";
-import {useShallow} from "zustand/react/shallow";
-import type {Resource, AllResources, ResourcePartial} from '~/content/podcast/resources/resources.types'
+import type {AllResources, ResourceChildRef} from '~/content/podcast/resources/resources.types'
 import _reduce from 'lodash/reduce'
 
 
@@ -17,15 +16,11 @@ export function Tree({flat, top}: AllResources) {
 }
 
 type Top = AllResources['top']
-type Section = keyof Top
 function FilteredTree({top}: {top: Top}) {
   const {flat} = useContext(ResourceCacheContext)
-  const [filters, learnStyles] = useStore(useShallow(s => [
-    s.filters,
-    s.learnStyles
-  ]))
+  const filters = useStore(s => s.filters)
 
-  function recurseTree(id: string): ResourcePartial | null {
+  function recurseTree(id: string): ResourceChildRef | null {
     const full = flat[id]
 
     // section

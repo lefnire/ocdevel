@@ -291,7 +291,7 @@ async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<R
 
     return {
       flat,
-      top: {}, // Not relevant for episode view
+      top: [], // Not relevant for episode view
       nids: finalNids,
     } as EpisodeResources;
 

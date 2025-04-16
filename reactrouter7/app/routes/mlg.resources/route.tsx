@@ -32,8 +32,10 @@ export default function Resources({loaderData}: Route.ComponentProps) {
       </p>
       <Row>
         <Col xs={12} md={4} className='sidebar'>
-          <Filters />
-          <AffiliateAds className='my-2'/>
+          <div className="sticky-top">
+            <Filters />
+            <AffiliateAds className='my-2'/>
+          </div>
         </Col>
         <Col xs={12} md={8}>
           <Tree {...loaderData.resources} />

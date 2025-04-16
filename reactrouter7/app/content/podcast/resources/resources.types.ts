@@ -98,18 +98,13 @@ export interface ResourcesTreeBase {
 
 // Structure returned when processing for the main resources page (/mlg/resources)
 export interface AllResources extends ResourcesTreeBase {
-  top: { // References to the top-level category nodes
-    degrees: { id: string };
-    main: { id: string };
-    math: { id: string };
-    audio: { id: string };
-  };
+  top: {id: string}[]
   nids: []; // nids is empty for the 'all resources' view
 }
 
 // Structure returned when processing for a specific episode page (/mlg/:id)
 export interface EpisodeResources extends ResourcesTreeBase {
-  top: {}; // No top-level structure needed for episode-specific view
+  top: []; // No top-level structure needed for episode-specific view
   nids: string[]; // Array of resource IDs relevant to the specific episode
 }
 

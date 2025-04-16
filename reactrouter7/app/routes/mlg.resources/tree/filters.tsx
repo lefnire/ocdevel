@@ -9,7 +9,7 @@ import {useCallback, useState} from "react";
 import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup'
 import Card from 'react-bootstrap/cjs/Card'
 import {useStore} from "~/routes/mlg.resources/tree/store";
-import {filterKeys, filters, learnStyles} from "~/content/podcast/resources/filters";
+import {filterKeys, filters} from "~/content/podcast/resources/filters";
 import {IconButton, sizes} from "~/components/icon-btn";
 import {useShallow} from "zustand/react/shallow";
 
@@ -52,47 +52,13 @@ function Option({opt, select, active, setHelp, multi=true}) {
   />
 }
 
-function LearnStyle({k}) {
-  const active = useStore(state => state.learnStyles[k])
-  const select = useStore(actions => actions.learnStyles[`set_${k}`])
-  const [show, setShow] = useState(true)
-  const [help, setHelp] = useState()
-
-  const setShow_ = useCallback(() => setShow(!show), [show])
-  const select_ = useCallback(opt_k => () => {
-    select(opt_k)
-  }, [k, active])
-
-  const f = learnStyles[k]
-  if (!f.opts) {return null}
-
-  // TODO refactor this with <Filter /> below
-  return <>
-    <Card.Body>
-      <Card.Subtitle className='pointer' onClick={setShow_}>
-        {show ? <FiMinusSquare /> : <FiPlusSquare />}{' '}
-        {f.t}
-      </Card.Subtitle>
-      {show && <ButtonGroup vertical className='w-100 mt-2'>
-        {Object.entries(f.opts || {}).map(([opt_k, v]) => (
-          <Option
-            key={opt_k}
-            opt={v}
-            active={active === opt_k}
-            select={select_(opt_k)}
-            setHelp={setHelp}
-            multi={false}
-          />
-        ))}
-      </ButtonGroup>}
-    </Card.Body>
-    {show && <Card.Footer className='small'>{help || f.d}</Card.Footer>}
-  </>
-}
+// git-blame: learn styles (audio heavy/light, self-taught vs degree)
 
 function Filter({k, section='filters'}) {
-  const active = useStore(state => state[section][k])
-  const select = useStore(state => state[section][`set_${k}`])
+  const [active, select] = useStore(useShallow(s => [
+    s[section][k],
+    s[section][`set_${k}`]
+  ]))
   const [show, setShow] = useState(false)
   const [help, setHelp] = useState()
 
@@ -145,9 +111,7 @@ export default function Filters() {
       </Card.Header>
     {show && <>
       {/* 71f9ea01: MLA/MLG filter & sorting */}
-      {[
-        'learn',
-      ].map(k => <LearnStyle key={k} k={k} />)}
+      {/* git-blame: learn_style, audio_style */}
       {filterKeys.map(k => <Filter key={k} k={k} />)}
     </>}
     </Card>

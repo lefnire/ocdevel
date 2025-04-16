@@ -7,10 +7,6 @@ import { immer } from 'zustand/middleware/immer'
 interface Store {
   showFilters: boolean
   toggleFilters: () => void
-  learnStyles: {
-    learn: string
-    set_learn: (learn: string) => void
-  }
   filters: any // FiltersFilter & FilterSet
 }
 
@@ -39,14 +35,7 @@ export const useStore = create<Store>()(
       showFilters: true,
       toggleFilters: () => set(state => ({showFilters: !state.showFilters})),
 
-      // learnStyles: _.transform(learnStyles, filtersToStore, {}),
-      learnStyles: {
-        learn: 'selfTaught',
-        set_learn: (learn) => set(state => {
-          state.learnStyles.learn = learn
-        }),
-      },
-
+      // git-blame: learnStyles (audio_style, self-taught vs degree)
       filters
     }
   }
