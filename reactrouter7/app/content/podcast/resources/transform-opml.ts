@@ -145,8 +145,11 @@ async function parseTree({ tree, isLink = false, parentId = 'root' }: ParseTreeA
 
     if (key === 'mlg') {
       mlgEpisodes = value.split(':').map(s => s.trim()).filter(Boolean);
+      // ensure it remains a list, rather than punting to below to add it
+      tags[key] = mlgEpisodes
     } else if (key === 'mla') {
       mlaEpisodes = value.split(':').map(s => s.trim()).filter(Boolean);
+      tags[key] = mlaEpisodes
     } else if (value === '') {
       tags[key] = true; // Boolean tag
     } else if (valueParts.length > 1) {

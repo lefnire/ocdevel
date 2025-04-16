@@ -9,6 +9,7 @@ import Table from "react-bootstrap/cjs/Table";
 import Alert from "react-bootstrap/cjs/Alert";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
 import {icons} from "~/components/collapsible-icons";
+import {mlgObj} from '~/content/podcast/metas'
 
 const LeafWrapper = ({children, show}: PropsWithChildren<{ show: boolean }>) => {
   if (!show) {
@@ -98,6 +99,32 @@ const LeafExpanded = memo(({id}: {id: string}) => {
     </tr>
   }
 
+  function renderEpisode(id: string){
+    const episode = mlgObj[id]
+    if (!episode) { return null; }
+    // TODO duplicating utils.buildTitle to bypase useContext requirement
+    const titleStart = episode.mla ? 'MLA' : 'MLG'
+    const num = String(episode.episode).padStart(3, '0');
+    const title = `${titleStart} ${num} ${episode.title}`;
+    return <tr key={id}>
+      <td {...helpAttrs("Relevant Machine Learning Guide Episode", 'pointer')}>
+        {id.includes('mla') ? "MLA" : "MLG"} Episode
+      </td>
+      <td>
+        <Link to={`mlg/${id}`} className='d-block'>{title}</Link>
+      </td>
+    </tr>
+  }
+
+  function renderEpisodes() {
+    const ids = [
+      ...(node.mlg || []),
+      ...((node.mla || []).map(id => `mla-${id}`))
+    ]
+    if (!ids.length) { return null; }
+    return ids.flatMap(renderEpisode)
+  }
+
   function renderTable() {
     if (node.info) { return null; }
     return <div className='small'>
@@ -109,6 +136,7 @@ const LeafExpanded = memo(({id}: {id: string}) => {
         <tbody>
         {renderLinks()}
         {filterKeys.flatMap(renderFilters)}
+        {renderEpisodes()}
         </tbody>
       </Table>
       {showHelp ?
