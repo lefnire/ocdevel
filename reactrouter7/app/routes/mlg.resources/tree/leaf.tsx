@@ -124,11 +124,12 @@ const LeafExpanded = memo(({id}: {id: string}) => {
         className={'my-2 small text-muted'}
         dangerouslySetInnerHTML={{ __html: node.d }}
       ></div>}
-      {node.itunesu && <div className='small text-muted my-2'>
-        This is a recorded university course, what used be part of the iTunesU system. These courses can be listened
-        to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do
-        a great job orating, unlike TheGreatCourses teachers who orate wonderfully. So you'll likely want the
-        visuals.
+      {node.missing && <div className='my-2'>
+        <mark>This resource might be missing now. This is common with YouTube-hosted university courses, because Universities like Stanford & MIT faced legal battles around accessibility and had to pull certain lectures. Sometimes old (2016) lectures are retained, but with the fast pace of ML, I wouldn't recommend anything older than 2020. I kept links here in case your search skills are better than mine; but don't search too hard, there's plenty of other good resources.</mark>
+      </div>}
+      {node.itunesu && <div className='my-2'>
+        <mark>This is a recorded university course, what used be part of the iTunesU system. These courses can be listened to audio-only, but I wouldn't recommend it unless you're really pushing audio-heavy. The professors don't do a great job orating, unlike TheGreatCourses teachers who orate wonderfully. So you'll likely want the
+          visuals.</mark>
       </div>}
       {renderTable()}
     </div>
