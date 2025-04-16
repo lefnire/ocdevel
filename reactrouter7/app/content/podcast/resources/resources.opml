@@ -323,36 +323,47 @@
             </outline>
           </outline>
         </outline>
-        <outline text="Podcasts #pick:any " _note="Once you've gotten your fill of the above resources, time to go into auto-pilot. Try a few of these podcasts, find your favorites, and coast.">
-          <outline text="Machine Learning Guide #importance:essential #format:podcast" _note="Teaches the fundamentals of ML in podcast form. Importantly, guides users to deep-dive the concepts offline via curated resources (this website!)">
+        <outline text="Podcasts #pick:any  #expand" _note="Once you've gotten your fill of the above resources, time to go into auto-pilot. Try a few of these podcasts, find your favorites, and coast.">
+          <outline text="Machine Learning Guide #topic:basics:fun #importance:essential #format:podcast #difficulty:medium" _note="Teaches the fundamentals of ML in podcast form. Importantly, guides users to deep-dive the concepts offline via curated resources (this website!)">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://ocdevel.com/mlg&quot;&gt;https://ocdevel.com/mlg&lt;/a&gt;" />
           </outline>
-          <outline text="Data Skeptic #topic:basics #importance:valuable #format:podcast">
+          <outline text="Machine Learning Street Talk (MLST) #topic:basics:fun #importance:valuable #format:podcast #difficulty:medium" _note="In-depth, technical discussions with leading AI experts, often dissecting research papers. Covers advanced AI research, diverse approaches (beyond just LLMs), cognitive science, neuroscience, and philosophy of mind. Rigorous and intellectually curious.">
+            <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/c/MachineLearningStreetTalk&quot;&gt;https://www.youtube.com/c/MachineLearningStreetTalk&lt;/a&gt;" />
+            <outline text="iTunes #price:free" _note="&lt;a href=&quot;https://podcasts.apple.com/us/podcast/machine-learning-street-talk-mlst/id1510472996&quot;&gt;https://podcasts.apple.com/us/podcast/machine-learning-street-talk-mlst/id1510472996&lt;/a&gt;" />
+            <outline text="Spotify #price:free" _note="&lt;a href=&quot;https://open.spotify.com/show/02e6PZeIOdpmBGT9THuzwR&quot;&gt;https://open.spotify.com/show/02e6PZeIOdpmBGT9THuzwR&lt;/a&gt;" />
+          </outline>
+          <outline text="Practical AI #topic:basics:tech #importance:valuable #format:podcast" _note="Makes AI practical, productive, and accessible. Discusses real-world use cases, implementations, and interviews experts, breaking down trends in an understandable way for application.">
+            <outline text="Website #free" _note="&lt;a href=&quot;https://practicalai.fm/&quot;&gt;https://practicalai.fm/&lt;/a&gt;" />
+          </outline>
+          <outline text="Data Skeptic #topic:basics #importance:valuable #format:podcast" _note="Explores topics in data science, statistics, machine learning, and AI, often applying critical thinking and skepticism. Features a mix of shorter &quot;mini-episodes&quot; explaining concepts and longer interviews with experts. Good for understanding core ideas and their real-world application and limitations.">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://dataskeptic.com/&quot;&gt;https://dataskeptic.com/&lt;/a&gt;" />
           </outline>
-          <outline text="Lex Fridman Podcast #topic:news_interviews #importance:essential #format:podcast #difficulty:easy " _note="My #1 favorite podcast of any kind ever. Lex interviews experts from every walk of futurology: AI, ML, philosophy, ethics, etc. Non-technical, very inspirational.">
-            <outline text="Website #price:free" _note="&lt;a href=&quot;https://lexfridman.com/podcast/&quot;&gt;https://lexfridman.com/podcast/&lt;/a&gt;" />
-          </outline>
-          <outline text="TWiML &amp; AI #topic:news_interviews #format:podcast " _note="News &amp; interviews experts in the field. This is a network of podcasts, not just one.">
+          <outline text="TWiML &amp; AI #topic:news_interviews #format:podcast " _note="Hosted by Sam Charrington, this podcast focuses on making ML and AI accessible through interviews with researchers, practitioners, and innovators. Covers a wide range of ML/AI topics including deep learning, NLP, MLOps, and industry trends. Great for staying current with technical advancements and applications.">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://twimlai.com&quot;&gt;https://twimlai.com&lt;/a&gt;" />
           </outline>
-          <outline text="Talking machines #topic:news_interviews #format:podcast ">
-            <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.thetalkingmachines.com/&quot;&gt;http://www.thetalkingmachines.com/&lt;/a&gt;" />
+          <outline text="More #pick:any" _note="Still active and valuable, but nesting here to keep the core list slim.&#10;">
+            <outline text="Lex Fridman Podcast #topic:news_interviews #importance:valuable #format:podcast #difficulty:easy " _note="Formerly focused heavily on AI, now broadened but still features many key figures in AI, technology, science, and philosophy. Excellent for long-form, deep conversations exploring the nature of intelligence, consciousness, and the future impact of technology. Highly inspirational.">
+              <outline text="Website #price:free" _note="&lt;a href=&quot;https://lexfridman.com/podcast/&quot;&gt;https://lexfridman.com/podcast/&lt;/a&gt;" />
+            </outline>
+            <outline text="Two Minute Papers" _note="Excels at creating short (often slightly longer than two minutes, despite the name!), digestible video summaries of cutting-edge scientific research papers, with a strong focus on AI, machine learning, computer graphics, and robotics. Its major strength and defining characteristic are the visuals. Dr. Zsolnai-Fehér uses clips, diagrams, and results from the papers he discusses to make complex concepts much more understandable. The visual component is integral to the experience.  While you can listen to YouTube videos as audio-only, Two Minute Papers doesn't have a dedicated, official audio podcast feed. Furthermore, listening without the visuals would mean missing a significant part of the explanation and context, especially for papers dealing with visual results (like image generation, simulation, or robotics). Some sources specifically state it's not a podcast but include it in lists due to its value for staying updated efficiently.&#10;" />
+            <outline text="AWS Podcast #format:podcast" _note="Not ML proper, but AWS (or Azure, GCP, etc) will eventually be your bread-and-butter for training, tuning, deploying your models. AWS is the most popular of the cloud providers, especially in ML, so start familiarizing yourself with SageMaker, Batch, EMR, and all that good stuff.">
+              <outline text="Website #price:free" _note="&lt;a href=&quot;https://aws.amazon.com/podcasts/aws-podcast/&quot;&gt;https://aws.amazon.com/podcasts/aws-podcast/&lt;/a&gt;" />
+            </outline>
           </outline>
-          <outline text="Learning machines 101 #topic:basics #importance:valuable  #format:podcast  ">
-            <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.learningmachines101.com/&quot;&gt;http://www.learningmachines101.com/&lt;/a&gt;" />
-          </outline>
-          <outline text="AWS Podcast #format:podcast" _note="Not ML proper, but AWS (or Azure, GCP, etc) will eventually be your bread-and-butter for training, tuning, deploying your models. AWS is the most popular of the cloud providers, especially in ML, so start familiarizing yourself with SageMaker, Batch, EMR, and all that good stuff.">
-            <outline text="Website #price:free" _note="&lt;a href=&quot;https://aws.amazon.com/podcasts/aws-podcast/&quot;&gt;https://aws.amazon.com/podcasts/aws-podcast/&lt;/a&gt;" />
-          </outline>
-          <outline text="Dead, were great #pick:any" _note="These podcasts are no longer in biz, but they were great in their time. If you're less concerned about cutting-edge, these will still hold high catch-up value">
-            <outline text="O'Reilly Data Show #format:podcast  #topic:news_interviews ">
+          <outline text="Inactive #pick:any" _note="These podcasts no longer appear active. If you're less concerned about cutting-edge, these will still hold high catch-up value.&#10;">
+            <outline text="Learning machines 101 #topic:basics #format:podcast  " _note="Last episode 2021. Less prominent now; structured courses are generally better for foundational learning via audio (just pocket your phone and ignore the video).&#10;">
+              <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.learningmachines101.com/&quot;&gt;http://www.learningmachines101.com/&lt;/a&gt;" />
+            </outline>
+            <outline text="Talking machines #topic:news_interviews #format:podcast " _note="Last episode: 2021">
+              <outline text="Website #price:free" _note="&lt;a href=&quot;http://www.thetalkingmachines.com/&quot;&gt;http://www.thetalkingmachines.com/&lt;/a&gt;" />
+            </outline>
+            <outline text="O'Reilly Data Show #format:podcast  #topic:news_interviews " _note="Last episode: 2019&#10;">
               <outline text="Website #price:free" _note="&lt;a href=&quot;https://www.oreilly.com/topics/oreilly-data-show-podcast&quot;&gt;https://www.oreilly.com/topics/oreilly-data-show-podcast&lt;/a&gt;" />
             </outline>
-            <outline text="Linear Digressions #format:podcast #topic:basics #importance:valuable ">
+            <outline text="Linear Digressions #format:podcast #topic:basics #importance:valuable " _note="Last episode: 2020">
               <outline text="Website #price:free" _note="&lt;a href=&quot;http://lineardigressions.com/&quot;&gt;http://lineardigressions.com/&lt;/a&gt;" />
             </outline>
-            <outline text="Partially Derivative #format:podcast">
+            <outline text="Partially Derivative #format:podcast" _note="Last episode: 2017. &#10;">
               <outline text="Website #price:free" _note="&lt;a href=&quot;http://partiallyderivative.com/&quot;&gt;http://partiallyderivative.com/&lt;/a&gt;" />
             </outline>
           </outline>
