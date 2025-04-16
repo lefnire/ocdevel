@@ -27,9 +27,10 @@ export default function getPrerenderRoutes(forSitemap) {
   // TODO put these in the meta.js files
   const changeFreq = Object.fromEntries(
     routes.map(r => {
-      const freq = ['/mlg', '/blog', '/llh'].includes(r) ? 'monthly'
+      const freq = ['/mlg', '/blog'].includes(r) ? 'weekly'
+        : ['/llh'].includes(r) ? 'monthly'
         : ['/walk'].includes(r) ? 'daily'
-          : 'yearly'
+        : 'yearly'
       return [r, freq]
     })
   )
