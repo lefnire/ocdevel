@@ -5,6 +5,7 @@ import {ResourceCacheContext, ResourceCacheProvider} from "./tree/resource-cache
 import {filterKeys} from "~/content/podcast/resources/filters";
 import type {AllResources, ResourceChildRef} from '~/content/podcast/resources/resources.types'
 import _reduce from 'lodash/reduce'
+// import {mlgList} from "~/content/podcast/metas";
 
 
 export function Tree({flat, top}: AllResources) {
@@ -19,6 +20,10 @@ type Top = AllResources['top']
 function FilteredTree({top}: {top: Top}) {
   const {flat} = useContext(ResourceCacheContext)
   const filters = useStore(s => s.filters)
+
+  // console.log(mlgList.map(episode => {
+  //   return `${episode.mla ? "MLA" : "MLG"} ${episode.episode} ${episode.title}. ${episode.teaser?.slice(0, 100)}...`
+  // }))
 
   function recurseTree(id: string): ResourceChildRef | null {
     const full = flat[id]

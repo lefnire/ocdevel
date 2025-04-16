@@ -16,5 +16,5 @@ export default function ResourcesFlat({flat, nids}: EpisodeResources) {
 const Resources = (
   {nids}: Pick<EpisodeResources, 'nids'>
 ) => {
-  return nids.map(id => <Leaf id={id} key={id} />)
+  return nids.map(id => <Leaf id={id} key={id} route='podcast.$id'/>)
 }

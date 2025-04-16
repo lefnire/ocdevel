@@ -111,7 +111,7 @@ const LeafExpanded = memo(({id}: {id: string}) => {
         {id.includes('mla') ? "MLA" : "MLG"} Episode
       </td>
       <td>
-        <Link to={`mlg/${id}`} className='d-block'>{title}</Link>
+        <Link to={`/mlg/${id}`} className='d-block'>{title}</Link>
       </td>
     </tr>
   }
@@ -164,12 +164,16 @@ const LeafExpanded = memo(({id}: {id: string}) => {
   </div>
 })
 
-export const Leaf = memo(({id}: { id: string }) => {
+type Leaf = {id: string, route?: "podcast.$id" | "mlg/resources"}
+export const Leaf = memo(({id, route}: Leaf) => {
   const {flat} = useContext(ResourceCacheContext);
   const [show, setShow] = useState(false)
   const node = flat[id];
-
   const toggle = useCallback(() => setShow(!show), [show])
+
+  // Only show core resources within show-notes. They should come to mlg/resources for
+  // fuller picture
+  if (route === 'podcast.$id' && node.hide) { return null; }
 
   function renderTitle() {
     const classes = ["mx-2 resource-title"]
