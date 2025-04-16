@@ -26,8 +26,8 @@ const LeafExpanded = memo(({id}: {id: string}) => {
   const node = flat[id]
   const [showHelp, setShowHelp] = useState<string | null>(null)
 
-  const renderIcon = (filterKey: FilterKey) => {
-    const id = `${filterKey}-${node[filterKey]}`
+  const renderIcon = (filterKey: FilterKey, opt: string) => {
+    const id = `${filterKey}-${opt}`
     return <Icon key={id} id={id} />
   }
 
@@ -46,26 +46,30 @@ const LeafExpanded = memo(({id}: {id: string}) => {
     // if (!resource[filterKey]) {return } // FIXME due to old resources?
     const filter = filters[filterKey]
     const opt = node[filterKey]
-    const resourceFilter = filters[filterKey]?.opts?.[opt]
-    if (!(resourceFilter)) return null
-    return <tr key={filterKey}>
-      <td {...helpAttrs(filter.d, 'pointer')}>
-        {filter.t}
-      </td>
-      <td {...helpAttrs(resourceFilter.d, 'pointer')}>
-        {renderIcon(filterKey, opt)}
-        {resourceFilter.t || resourceFilter}
+    // handle multi-value tags, like #format:book:audiobook
+    const opts = Array.isArray(opt) ? opt : [opt]
+    return opts.flatMap(opt => {
+      const resourceFilter = filter?.opts?.[opt]
+      if (!(resourceFilter)) return null
+      return <tr key={`${filterKey}-${opt}`}>
+        <td {...helpAttrs(filter.d, 'pointer')}>
+          {filter.t}
+        </td>
+        <td {...helpAttrs(resourceFilter.d, 'pointer')}>
+          {renderIcon(filterKey, opt)}
+          {resourceFilter.t || resourceFilter}
 
-        {/*TODO put this in resources.js somewhere */}
-        {filterKey === 'video2audio' && resourceFilter && <>
-          <span className='ms-2'>
-            <Link to='/blog/20201213-video2audio'>How to do this?</Link>
-          </span>
-        </>}
+          {/*TODO put this in resources.js somewhere */}
+          {filterKey === 'video2audio' && resourceFilter && <>
+            <span className='ms-2'>
+              <Link to='/blog/20201213-video2audio'>How to do this?</Link>
+            </span>
+          </>}
 
-      </td>
-    </tr>
-    // <Popover_ /> showing at random pages on page
+        </td>
+      </tr>
+      // <Popover_ /> showing at random pages on page
+    }).filter(Boolean)
   }
 
   function renderLink(l: Resource['links'][0]) {
@@ -104,7 +108,7 @@ const LeafExpanded = memo(({id}: {id: string}) => {
         </colgroup>
         <tbody>
         {renderLinks()}
-        {filterKeys.map(renderFilters)}
+        {filterKeys.flatMap(renderFilters)}
         </tbody>
       </Table>
       {showHelp ?
@@ -145,19 +149,17 @@ export const Leaf = memo(({id}: { id: string }) => {
     return <span className={classes.join(' ')}>{node.t}</span>
   }
 
-  const renderIcon = (filterKey: FilterKey) => {
-    const val = node[filterKey]
-    // allow multiple values per tag, like #format:book:audiobook
-    const vals = Array.isArray(val) ? val : [val]
-    return vals.map((val:string) => {
-      const id = `${filterKey}-${val}`
-      return <Icon key={id} id={id} />
-    })
-  }
-
   function renderIcons() {
     if (node.info) { return null; }
-    return filterKeys.map(renderIcon)
+    return filterKeys.flatMap(fk => {
+      const val = node[fk]
+      // allow multiple values per tag, like #format:book:audiobook
+      const vals = Array.isArray(val) ? val : [val]
+      return vals.map((val:string) => {
+        const id = `${fk}-${val}`
+        return <Icon key={id} id={id} />
+      })
+    })
   }
 
 
