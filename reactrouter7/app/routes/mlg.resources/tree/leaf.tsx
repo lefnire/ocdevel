@@ -84,7 +84,10 @@ const LeafExpanded = memo(({id}: {id: string}) => {
     if (l.l?.startsWith('/')) { // Added optional chaining for safety
       return <Link to={l.l} key={l.l} {...opts}>{txt}</Link>
     }
-    return <a href={l.l} key={l.l} {...opts}>{txt}</a>
+    return <a href={l.l} key={l.l} {...opts}>
+      {txt}
+      {l.l.includes('amzn.to') ? " (affiliate link)" : ""}
+    </a>
   }
 
   function renderLinks() {

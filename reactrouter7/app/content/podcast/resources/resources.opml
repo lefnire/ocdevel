@@ -13,7 +13,7 @@
             <outline text="Coursera #price:free " _note="&lt;a href=&quot;https://www.coursera.org/specializations/machine-learning-introduction#courses&quot;&gt;https://www.coursera.org/specializations/machine-learning-introduction#courses&lt;/a&gt;" />
           </outline>
           <outline text="Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd Edition) #difficulty:medium #importance:essential  #topic:tech:basics #format:book #mlg:9:10:12:13:24:29 #mla:2:5:7:14 " _note="This book by Aurélien Géron is widely considered the golden standard practical companion for learning ML. The 3rd edition (late 2022) is crucial as it updates the second half to use Keras 3, which can run on TensorFlow, PyTorch, or JAX backends, mitigating concerns about being locked into TensorFlow. The first half provides an excellent practical tour of fundamental ML concepts using Scikit-Learn, complementing Ng's course perfectly. It teaches how to build, train, and evaluate models using industry-standard tools. Essential for bridging theory and practice.&#10;&#10;**Note**: PyTorch has gained significant popularity, especially in the research community, due to its Pythonic feel and dynamic computation graphs. But HOML remains a the top pick here for the following reasons.&#10;&#10;1. **Foundational ML (Part 1): Scikit-Learn is King:** The first ~10 chapters of HOML, which cover the core &quot;Basics&quot; of machine learning (linear/logistic regression, SVMs, trees, ensembles, dimensionality reduction, clustering), primarily use **Scikit-Learn**. Scikit-Learn is the industry standard library for these algorithms and is completely **framework-agnostic**. Whether you use TensorFlow or PyTorch for deep learning later, you *will* use Scikit-Learn for these foundational tasks. This crucial part of the book is unaffected by the TensorFlow/PyTorch debate.&#10;2. **Deep Learning (Part 2): Keras 3 is Multi-Backend:** This is the key change in the 3rd edition. The second half of the book, which introduces neural networks and deep learning, uses **Keras 3**.&#10;    * **Keras 3 is Framework-Agnostic:** Unlike earlier versions that were tightly integrated with TensorFlow, Keras 3 is designed to run on *multiple backends*, including **TensorFlow, PyTorch, and JAX**.&#10;    * **You Choose the Backend:** You can configure Keras 3 to use PyTorch as its backend. While the book's code examples might *originate* from a TensorFlow context (since Keras was historically TF-based), the Keras API itself is consistent. Learning Keras 3 allows you to leverage its user-friendly API while having the *option* to run it on a PyTorch backend.&#10;    * **Benefits:** This means the deep learning concepts and Keras API skills you learn are transferable. You are *not* locked into TensorFlow. You can write Keras code and execute it using PyTorch.&#10;">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4luDXiO&quot;&gt;https://amzn.to/4luDXiO&lt;/a&gt;" />
+            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4cwF2m6&quot;&gt;https://amzn.to/4cwF2m6&lt;/a&gt;" />
           </outline>
           <outline text="An Introduction to Statistical Learning (ISLR) (2nd Edition) #engagement:active #difficulty:hard #format:book:course #importance:essential #topic:basics:math #topic:math #price:free #mlg:2:4:5:7:8:12:13" _note="While Ng provides intuition and HOML provides practice, ISLR offers the most accessible yet rigorous theoretical grounding in fundamental ML concepts from a statistical perspective. It's considered a more approachable version of the classic &quot;Elements of Statistical Learning&quot; (ESL). The 2nd edition includes updated topics and labs available in both R and Python. Understanding the 'why' behind the algorithms is crucial, and ISLR is arguably the best resource for this at the foundational level without being overly mathematical like ESL or PRML. Often used as a university textbook. The authors also provide video lectures.">
             <outline text="PDF #price:free" _note="&lt;a href=&quot;https://www.google.com/url?sa=E&amp;q=https%3A%2F%2Fwww.statlearning.com%2F&quot;&gt;https://www.statlearning.com/&lt;/a&gt;" />
@@ -40,14 +40,14 @@
             </outline>
             <outline text="The Hundred-Page Machine Learning Book #importance:valuable  #topic:basics #format:book #difficulty:hard #mlg:1:2:4:5:7:8:9:12:13:14:29 #hide">
               <outline text="Website #price:$" _note="&lt;a href=&quot;http://themlbook.com/&quot;&gt;http://themlbook.com/&lt;/a&gt;" />
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3aKAbQI&quot;&gt;https://amzn.to/3aKAbQI&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/42rseKJ&quot;&gt;https://amzn.to/42rseKJ&lt;/a&gt;" />
             </outline>
             <outline text="Elements of Statistical Learning #importance:valuable  #topic:basics:math #format:book #difficulty:hard #mlg:2:4:5:7:8:12:13:14:29 #hide">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2tWW8He&quot;&gt;http://amzn.to/2tWW8He&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/44wISd5&quot;&gt;https://amzn.to/44wISd5&lt;/a&gt;" />
             </outline>
             <outline text="Pattern Recognition and Machine Learning #importance:valuable  #topic:basics #format:book #difficulty:hard #mlg:2:4:5:7:8:9:12:13:14:25:29 #hide">
-              <outline text="Amazon #price:$ " _note="&lt;a href=&quot;http://amzn.to/2sDIIfb&quot;&gt;http://amzn.to/2sDIIfb&lt;/a&gt;" />
               <outline text="PDF #price:free" _note="&lt;a href=&quot;http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf&quot;&gt;http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf&lt;/a&gt;" />
+              <outline text="Amazon #price:$ " _note="&lt;a href=&quot;https://amzn.to/3EpBUfk&quot;&gt;http://amzn.to/2sDIIfb&lt;/a&gt;" />
             </outline>
             <outline text="Introduction to Machine Learning for Coders #format:video #video2audio:good #topic:basics #difficulty:medium #audioOption #importance:valuable #mlg:4:5:7:9:10:12:13:14:24 #hide" _note="Video series part of &lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt;. You'll use these videos if you're taking the &lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; courses, or you can just download the playlist as supplementary audio material">
               <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLfYUBJiXbdtSyktd8A_x0JNd6lxDcZE96&quot;&gt;https://www.youtube.com/playlist?list=PLfYUBJiXbdtSyktd8A_x0JNd6lxDcZE96&lt;/a&gt;" />
@@ -65,11 +65,11 @@
           </outline>
           <outline text="&lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; Practical Deep Learning for Coders #difficulty:medium  #format:course #topic:dl:tech #importance:essential  #engagement:active #mlg:9:10:24:25 #mla:7" _note="The premier, structured course for a practice-first understanding of deep learning. Focuses on getting learners to build and train state-of-the-art models quickly using PyTorch and the fastai library. Teaches concepts through practical application (&quot;top-down&quot; approach). Ideal if you learn best by doing and want to achieve results rapidly. Regularly updated. **Note: Always refer to &lt;a href=&quot;http://course.fast.ai&quot;&gt;course.fast.ai&lt;/a&gt; for the latest playlist link**&#10;">
             <outline text="Website #price:free" _note="&lt;a href=&quot;http://course.fast.ai/&quot;&gt;http://course.fast.ai/&lt;/a&gt;" />
-            <outline text="Book #price:$" _note="&lt;a href=&quot;https://amzn.to/42K6B8i&quot;&gt;https://amzn.to/42K6B8i&lt;/a&gt;" />
+            <outline text="Book #price:$" _note="&lt;a href=&quot;https://amzn.to/4jzIPkW&quot;&gt;https://amzn.to/4jzIPkW&lt;/a&gt;" />
             <outline text="YouTube (2020) #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLfYUBJiXbdtRL3FMB3GoWHRI8ieU6FhfM&quot;&gt;https://www.youtube.com/playlist?list=PLfYUBJiXbdtRL3FMB3GoWHRI8ieU6FhfM&lt;/a&gt;" />
           </outline>
           <outline text="Deep Learning Book by Goodfellow, Bengio, Courville #topic:dl #importance:essential #format:book #difficulty:hard #mlg:9:25" _note="The definitive, comprehensive theoretical reference for deep learning. Covers the mathematical and conceptual foundations in unparalleled depth. While challenging, it's the go-to resource for a deep understanding and serves as an essential companion throughout your learning.">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4cuET2A&quot;&gt;https://amzn.to/4cuET2A&lt;/a&gt;" />
+            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3YuoTrx&quot;&gt;https://amzn.to/3YuoTrx&lt;/a&gt;" />
             <outline text="HTML #price:free" _note="&lt;a href=&quot;http://www.deeplearningbook.org&quot;&gt;http://www.deeplearningbook.org&lt;/a&gt;" />
           </outline>
           <outline text="DL Topics (NLP, CV, RL) #pick:any #expand" _note="Within deep learning, you'll eventually want to specialize. While exposure to multiple areas is beneficial, focusing on mastering one area initially is often a good strategy. Choose one of the following subfields to dive deeper into.&#10;">
@@ -80,7 +80,7 @@
               </outline>
               <outline text="Speech and Language Processing (3rd Ed. Draft) by Jurafsky &amp; Martin #format:book #difficulty:hard #topic:nlp #importance:valuable #mlg:9:18:19:20:22:23:33" _note="The definitive, comprehensive reference textbook covering the breadth of NLP theory and methods, from classical to modern deep learning. Less of a tutorial, more of an essential encyclopedia for deep understanding and reference. The online draft is frequently updated.">
                 <outline text="PDF (3rd Ed Draft) #price:free" _note="&lt;a href=&quot;https://web.stanford.edu/~jurafsky/slp3/&quot;&gt;https://web.stanford.edu/~jurafsky/slp3/&lt;/a&gt;" />
-                <outline text="Amazon (2nd Ed Complete) #price:$" _note="&lt;a href=&quot;http://amzn.to/2uZaNyg&quot;&gt;http://amzn.to/2uZaNyg&lt;/a&gt;" />
+                <outline text="Amazon (2nd Ed Complete) #price:$" _note="&lt;a href=&quot;https://amzn.to/4j7QTJW&quot;&gt;https://amzn.to/4j7QTJW&lt;/a&gt;" />
               </outline>
               <outline text="Transformers / Large Language Models (LLMs) #pick:any #expand" _note="A subfield (or arguably, now a dominant paradigm) focusing on the Transformer architecture and its scaling to create powerful Large Language Models capable of diverse language (and increasingly, multi-modal) tasks. Primarily for NLP but increasingly multi-modal.&#10;">
                 <outline text="Jay Alammar: &quot;The Illustrated Transformer&quot; #format:other #difficulty:medium #topic:nlp #importance:valuable  #mlg:9:22:23:33" _note="Widely considered the single best conceptual introduction to the Transformer architecture. Breaks down self-attention and the model structure with clear visualizations. Essential reading *before* diving into code or denser papers.">
@@ -102,7 +102,7 @@
             <outline text="Computer Vision (CV), Generative Models, Diffusion #pick:any " _note="Focus: Enabling computers to &quot;see&quot; and interpret information from images and videos (recognition, detection, segmentation, generation).&#10;">
               <outline text="Computer Vision: Algorithms and Applications #importance:valuable #topic:cv #format:book #difficulty:hard  #mlg:9:25">
                 <outline text="Website #price:$" _note="&lt;a href=&quot;https://szeliski.org/Book/&quot;&gt;https://szeliski.org/Book/&lt;/a&gt;" />
-                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2WQ9RMQ&quot;&gt;https://amzn.to/2WQ9RMQ&lt;/a&gt;" />
+                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4ih70ni&quot;&gt;https://amzn.to/4ih70ni&lt;/a&gt;" />
               </outline>
               <outline text="Generative Models (including Diffusion) #pick:any #expand" _note="Focus: Models designed to generate new data samples (images, text, audio) that resemble a learned distribution. Includes GANs, VAEs, and currently SOTA Diffusion models. Listed under CV for now, as Transformers (generative) are covered in LLMs (NLP); so what's left over is most popularly used in image generation.&#10;">
                 <outline text="Lilian Weng: &quot;What are Diffusion Models?&quot; #format:other #difficulty:hard #topic:cv #importance:valuable #mlg:9:25" _note="A highly-regarded, comprehensive, and clear explanation of the theory and mathematics behind Denoising Diffusion Probabilistic Models (DDPMs). Excellent for building a solid conceptual understanding of how modern image generation works.">
@@ -123,7 +123,7 @@
             <outline text="Reinforcement Learning (RL) #pick:any" _note="Focus: Training agents to make sequences of decisions in an environment to maximize cumulative reward. Used in games, robotics, optimization.&#10;">
               <outline text="Reinforcement Learning: An Introduction (2nd Ed.) by Sutton &amp; Barto #importance:essential  #topic:rl #format:book  #difficulty:hard  #mlg:9:29" _note="The undisputed bible of RL. Provides the foundational concepts, terminology, algorithms (MDPs, Monte Carlo, TD-Learning, Q-Learning, Policy Gradients), and theoretical underpinnings. Essential reading.">
                 <outline text="PDF #price:free" _note="&lt;a href=&quot;http://incompleteideas.net/book/the-book-2nd.html&quot;&gt;http://incompleteideas.net/book/the-book-2nd.html&lt;/a&gt;" />
-                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3Es8vBd&quot;&gt;https://amzn.to/3Es8vBd&lt;/a&gt;" />
+                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4igJPJK&quot;&gt;https://amzn.to/4igJPJK&lt;/a&gt;" />
               </outline>
               <outline text="UC Berkeley CS285: Deep Reinforcement Learning #difficulty:hard #topic:rl #itunesu #audioOption  #format:video #video2audio:medium #importance:valuable #mlg:9:29" _note="The leading academic course focusing specifically on *Deep* RL (using neural networks within RL). Covers modern algorithms (DQN variations, Policy Gradients like TRPO/PPO, SAC, Model-Based RL) and theory. Taught by Sergey Levine, a top researcher.">
                 <outline text="Website (for latest version) #price:free" _note="&lt;a href=&quot;http://rail.eecs.berkeley.edu/deeprlcourse/&quot;&gt;http://rail.eecs.berkeley.edu/deeprlcourse/&lt;/a&gt;" />
@@ -132,7 +132,7 @@
               <outline text="More #pick:any">
                 <outline text="AI a Modern Approach #importance:essential  #topic:rl #format:book #difficulty:hard #mlg:2:9:16:29 #hide">
                   <outline text="Website #price:free" _note="&lt;a href=&quot;http://aima.cs.berkeley.edu/&quot;&gt;http://aima.cs.berkeley.edu/&lt;/a&gt;" />
-                  <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2E02dEr&quot;&gt;http://amzn.to/2E02dEr&lt;/a&gt;" />
+                  <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3Y1J1RM&quot;&gt;https://amzn.to/3Y1J1RM&lt;/a&gt;" />
                 </outline>
                 <outline text="RL Course by David Silver #video2audio:good #difficulty:hard #topic:rl #itunesu #audioOption #format:video #importance:valuable #mlg:9:29 #hide">
                   <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&quot;&gt;https://www.youtube.com/playlist?list=PLzuuYNsE1EZAXYR4FJ75jcJseBmo4KQ9-&lt;/a&gt;" />
@@ -146,30 +146,30 @@
           <outline text="Programming #pick:any #expand" _note="Python is the lingua franca of machine learning. You need a solid foundation. Choose ONE resource to learn the core language.&#10;&#10;* &lt;a href=&quot;https://scikit-learn.org/stable/&quot;&gt;Scikit-learn&lt;/a&gt; as your shallow-learning library&#10;* &lt;a href=&quot;https://www.tensorflow.org/&quot;&gt;Tensorflow&lt;/a&gt; or &lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt; as your deep-learning framework (prefer PyTorch)&#10;* &lt;a href=&quot;https://numpy.org/&quot;&gt;Numpy&lt;/a&gt; &lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;Pandas&lt;/a&gt;, and &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter&lt;/a&gt; as your utility belt&#10;">
             <outline text="Python #pick:one #expand">
               <outline text="Python Crash Course, 3rd Edition #difficulty:medium #topic:tech #format:book #mlg:10:24" _note="Widely regarded as one of the best, most practical, and up-to-date introductions to Python for general purposes, making it a great starting point before specializing in data science libraries.">
-                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4jjBFlo&quot;&gt;https://amzn.to/4jjBFlo&lt;/a&gt;" />
+                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4lGt6mf&quot;&gt;https://amzn.to/4lGt6mf&lt;/a&gt;" />
               </outline>
               <outline text="Python for Everybody Specialization #difficulty:medium #topic:tech #format:course #engagement:active #mlg:10:24" _note="Extremely popular, well-structured introduction focusing on fundamentals. Available on Coursera and free via freeCodeCamp/Dr. Chuck's website. Less ML-specific than some later resources, but excellent for core Python.">
                 <outline text="Coursera #price:free" _note="&lt;a href=&quot;https://www.coursera.org/specializations/python&quot;&gt;https://www.coursera.org/specializations/python&lt;/a&gt;" />
               </outline>
               <outline text="Alternatives #pick:one" _note="These are popular books, but &amp;gt;1000 pages. Since you have a lot of territory to cover in ML, only pick one of these if you're *really* serious about becoming a Python pro. My opinion: the basics (above resources) will suffice, and you'll learn as you go along.&#10;">
                 <outline text="Fluent Python: Clear, Concise, and Effective Programming 2nd Ed #difficulty:medium #topic:tech #format:book #mlg:10:24 #hide">
-                  <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/42xU2LV&quot;&gt;https://amzn.to/42xU2LV&lt;/a&gt;" />
+                  <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4lzE10S&quot;&gt;https://amzn.to/4lzE10S&lt;/a&gt;" />
                 </outline>
                 <outline text="Learning Python: Powerful Object-Oriented Programming 6th Edition #difficulty:medium #topic:tech #format:book #mlg:10:24 #hide">
-                  <outline text="Amazon: #price:$" _note="&lt;a href=&quot;https://amzn.to/44qHBUU&quot;&gt;https://amzn.to/44qHBUU&lt;/a&gt;" />
+                  <outline text="Amazon: #price:$" _note="&lt;a href=&quot;https://amzn.to/4lAoJZQ&quot;&gt;https://amzn.to/4lAoJZQ&lt;/a&gt;" />
                 </outline>
               </outline>
             </outline>
             <outline text="Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (3rd Edition) #difficulty:medium #importance:essential  #topic:tech:basics #format:book #mlg:9:10:12:13:24:29 #mla:2:5:7:14 " _note="This book by Aurélien Géron is widely considered the golden standard practical companion for learning ML. The 3rd edition (late 2022) is crucial as it updates the second half to use Keras 3, which can run on TensorFlow, PyTorch, or JAX backends, mitigating concerns about being locked into TensorFlow. The first half provides an excellent practical tour of fundamental ML concepts using Scikit-Learn, complementing Ng's course perfectly. It teaches how to build, train, and evaluate models using industry-standard tools. Essential for bridging theory and practice.&#10;&#10;**Note**: PyTorch has gained significant popularity, especially in the research community, due to its Pythonic feel and dynamic computation graphs. But HOML remains a the top pick here for the following reasons.&#10;&#10;1. **Foundational ML (Part 1): Scikit-Learn is King:** The first ~10 chapters of HOML, which cover the core &quot;Basics&quot; of machine learning (linear/logistic regression, SVMs, trees, ensembles, dimensionality reduction, clustering), primarily use **Scikit-Learn**. Scikit-Learn is the industry standard library for these algorithms and is completely **framework-agnostic**. Whether you use TensorFlow or PyTorch for deep learning later, you *will* use Scikit-Learn for these foundational tasks. This crucial part of the book is unaffected by the TensorFlow/PyTorch debate.&#10;2. **Deep Learning (Part 2): Keras 3 is Multi-Backend:** This is the key change in the 3rd edition. The second half of the book, which introduces neural networks and deep learning, uses **Keras 3**.&#10;    * **Keras 3 is Framework-Agnostic:** Unlike earlier versions that were tightly integrated with TensorFlow, Keras 3 is designed to run on *multiple backends*, including **TensorFlow, PyTorch, and JAX**.&#10;    * **You Choose the Backend:** You can configure Keras 3 to use PyTorch as its backend. While the book's code examples might *originate* from a TensorFlow context (since Keras was historically TF-based), the Keras API itself is consistent. Learning Keras 3 allows you to leverage its user-friendly API while having the *option* to run it on a PyTorch backend.&#10;    * **Benefits:** This means the deep learning concepts and Keras API skills you learn are transferable. You are *not* locked into TensorFlow. You can write Keras code and execute it using PyTorch.&#10;">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4luDXiO&quot;&gt;https://amzn.to/4luDXiO&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4cwF2m6&quot;&gt;https://amzn.to/4cwF2m6&lt;/a&gt;" />
             </outline>
             <outline text="Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython 3rd Edition #topic:tech #difficulty:easy #format:book #mlg:10:24 #mla:2:5:7:8">
               <outline text="Webiste: #price:free" _note="&lt;a href=&quot;https://wesmckinney.com/book/&quot;&gt;https://wesmckinney.com/book/&lt;/a&gt;" />
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3EptPY2&quot;&gt;https://amzn.to/3EptPY2&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4juxt1G&quot;&gt;https://amzn.to/4juxt1G&lt;/a&gt;" />
             </outline>
             <outline text="&lt;a href=&quot;http://Fast.ai&quot;&gt;Fast.ai&lt;/a&gt; Practical Deep Learning for Coders #difficulty:medium  #format:course #topic:dl:tech #importance:essential  #engagement:active #mlg:9:10:24:25 #mla:7" _note="The premier, structured course for a practice-first understanding of deep learning. Focuses on getting learners to build and train state-of-the-art models quickly using PyTorch and the fastai library. Teaches concepts through practical application (&quot;top-down&quot; approach). Ideal if you learn best by doing and want to achieve results rapidly. Regularly updated. **Note: Always refer to &lt;a href=&quot;http://course.fast.ai&quot;&gt;course.fast.ai&lt;/a&gt; for the latest playlist link**&#10;">
               <outline text="Website #price:free" _note="&lt;a href=&quot;http://course.fast.ai/&quot;&gt;http://course.fast.ai/&lt;/a&gt;" />
-              <outline text="Book #price:$" _note="&lt;a href=&quot;https://amzn.to/42K6B8i&quot;&gt;https://amzn.to/42K6B8i&lt;/a&gt;" />
+              <outline text="Book #price:$" _note="&lt;a href=&quot;https://amzn.to/4jzIPkW&quot;&gt;https://amzn.to/4jzIPkW&lt;/a&gt;" />
               <outline text="YouTube (2020) #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLfYUBJiXbdtRL3FMB3GoWHRI8ieU6FhfM&quot;&gt;https://www.youtube.com/playlist?list=PLfYUBJiXbdtRL3FMB3GoWHRI8ieU6FhfM&lt;/a&gt;" />
             </outline>
           </outline>
@@ -182,7 +182,7 @@
             </outline>
             <outline text="AWS-Specific #pick:any " _note="Rather than writing your own server-code with FastAPI (the traditional ML deployment path), learn AWS nuts-to-bolts. They offer not only hosted server modules (like auth via Cognito, storage via S3, and security via IAM / VPC) - but also the full end-to-end machine learning data-prep, training, and deployment lifecycle. I loved aCloudGuru, but my company paid the hefty subscription fee. Follow the certification paths, even if you don't take the cert tests.&#10;">
               <outline text="Data Science on AWS: Implementing End-to-End, Continuous AI and Machine Learning Pipelines #format:book #difficulty:medium  #topic:tech #importance:valuable #mlg:24 #mla:13:14:15:16:17:19:20:21:24" _note="Eventually you'll be deploying your model to the cloud. Likely AWS. Better to get that mindset started early, you may even consider doing your development in the cloud (rather than localhost) to keep you eye on the ball.">
-                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3CqJ9xo&quot;&gt;https://amzn.to/3CqJ9xo&lt;/a&gt;" />
+                <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3Ets4sT&quot;&gt;https://amzn.to/3Ets4sT&lt;/a&gt;" />
               </outline>
               <outline text="Amazon SageMaker Technical Deep Dive Series #difficulty:easy #topic:tech #format:video #video2audio:good #audioOption #mlg:24 #mla:14:15:16:17">
                 <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&quot;&gt;https://www.youtube.com/playlist?list=PLhr1KZpdzukcOr_6j_zmSrvYnLUtgqsZz&lt;/a&gt;" />
@@ -216,7 +216,7 @@
             <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/playlist?list=PLtmWHNX-gukIc92m1K0P6bIOnZb-mg0hY&quot;&gt;https://www.youtube.com/playlist?list=PLtmWHNX-gukIc92m1K0P6bIOnZb-mg0hY&lt;/a&gt;" />
           </outline>
           <outline text="Introduction to Linear Algebra #topic:math #format:book #difficulty:hard #importance:valuable #mlg:8">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2wP8TWS&quot;&gt;https://amzn.to/2wP8TWS&lt;/a&gt;" />
+            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3RhBJ8O&quot;&gt;https://amzn.to/3RhBJ8O&lt;/a&gt;" />
           </outline>
           <outline text="KhanAcademy Linear Algebra #importance:valuable #topic:math #engagement:active #difficulty:hard #format:course  #mlg:8">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://www.khanacademy.org/math/linear-algebra&quot;&gt;https://www.khanacademy.org/math/linear-algebra&lt;/a&gt;" />
@@ -234,7 +234,7 @@
             <outline text="YouTube - Multivariate #price:free" _note="&lt;a href=&quot;https://www.youtube.com/watch?v=TrcCbdWwCBc&amp;list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7&quot;&gt;https://www.youtube.com/watch?v=TrcCbdWwCBc&amp;list=PLSQl0a2vh4HC5feHa6Rc5c0wbRTx56nF7&lt;/a&gt;" />
           </outline>
           <outline text="Calculus Book #topic:math #format:book #difficulty:hard  #mlg:8">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2tXfXhp&quot;&gt;http://amzn.to/2tXfXhp&lt;/a&gt;" />
+            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3Y4e4wm&quot;&gt;https://amzn.to/3Y4e4wm&lt;/a&gt;" />
           </outline>
           <outline text="KhanAcademy Calculus #topic:math #engagement:active #difficulty:hard #format:course #importance:valuable #mlg:8">
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://www.khanacademy.org/math/calculus-home&quot;&gt;https://www.khanacademy.org/math/calculus-home&lt;/a&gt;" />
@@ -249,7 +249,7 @@
             <outline text="Website #price:free" _note="&lt;a href=&quot;https://www.khanacademy.org/math/statistics-probability&quot;&gt;https://www.khanacademy.org/math/statistics-probability&lt;/a&gt;" />
           </outline>
           <outline text="All of statistics #topic:math #format:book #difficulty:hard #importance:valuable  #mlg:8:15">
-            <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2t2dOwg&quot;&gt;http://amzn.to/2t2dOwg&lt;/a&gt;" />
+            <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4jlqCYY&quot;&gt;https://amzn.to/4jlqCYY&lt;/a&gt;" />
           </outline>
         </outline>
         <outline text="Other #pick:any " _note="Misc topics valuable to ML, but not the core triumvirate">
@@ -306,7 +306,7 @@
           <outline text="History of AI #pick:any #expand #mlg:3">
             <outline text="The Quest for Artificial Intelligence #format:book #topic:fun #difficulty:medium " _note="A comprehensive academic history by Nils J. Nilsson, one of the pioneers in the field. While slightly dated (2009), it remains a standard reference for understanding the intellectual journey and key milestones before the deep learning explosion. Excellent for historical depth.">
               <outline text="PDF #price:free" _note="&lt;a href=&quot;https://ai.stanford.edu/~nilsson/QAI/qai.pdf&quot;&gt;https://ai.stanford.edu/~nilsson/QAI/qai.pdf&lt;/a&gt;" />
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3EoVEQb&quot;&gt;https://amzn.to/3EoVEQb&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4jgobGW&quot;&gt;https://amzn.to/4jgobGW&lt;/a&gt;" />
             </outline>
             <outline text=" AlphaGo - The Movie #format:video #topic:fun #difficulty:easy #engagement:passive #price:free " _note="This documentary captures a pivotal moment in AI history – DeepMind's AlphaGo defeating world champion Lee Sedol. It's less a comprehensive history and more a deeply human story about a specific breakthrough that showcased the power of deep reinforcement learning and significantly shifted public perception of AI capabilities. Highly engaging and illustrative.">
               <outline text="YouTube #price:free" _note="&lt;a href=&quot;https://www.youtube.com/watch?v=WXuK6gekU1Y&quot;&gt;https://www.youtube.com/watch?v=WXuK6gekU1Y&lt;/a&gt;" />
@@ -314,7 +314,7 @@
           </outline>
           <outline text="Future, Risk &amp; Societal Impact #pick:any #expand #mlg:3">
             <outline text="Superintelligence: Paths, Dangers, Strategies #format:book:audiobook #topic:fun #audioOption #engagement:passive " _note="Nick Bostrom's 2014 book remains the foundational text on the potential risks and strategic considerations of artificial superintelligence (ASI). It meticulously outlines the &quot;control problem&quot; and potential existential risks. Though challenging, it's essential for understanding the core arguments driving AI safety research and discourse, cited frequently by industry leaders. Still highly relevant in 2025.">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3RP9cYj&quot;&gt;https://amzn.to/3RP9cYj&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3GfhlTt&quot;&gt;https://amzn.to/3GfhlTt&lt;/a&gt;" />
             </outline>
             <outline text="The Coming Wave: Technology, Power, and the Twenty-First Century's Greatest Dilemma #format:book:audiobook #topic:fun #difficulty:easy #engagement:passive #audioOption " _note="Written by Mustafa Suleyman (co-founder of DeepMind), this 2023 book offers a crucial, contemporary perspective from a leading AI pioneer. It examines the immense power and rapid proliferation of AI and synthetic biology, arguing for urgent containment strategies. Highly influential and provides an insider's view on the current wave of technology and its societal challenges. Excellent narration by the author in the audiobook.">
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4jzwygz&quot;&gt;https://amzn.to/4jzwygz&lt;/a&gt;" />
@@ -324,21 +324,19 @@
             <outline text="Being You: A New Science of Consciousness #format:book:audiobook #topic:fun #difficulty:easy #engagement:passive #audioOption " _note="Neuroscientist Anil Seth presents a compelling and accessible view of consciousness rooted in predictive processing and the brain as a &quot;prediction machine.&quot; Published in 2021, it's a highly-regarded contemporary take, moving beyond abstract philosophy towards a scientifically grounded understanding of subjective experience. Excellent for those curious about how minds (biological or potentially artificial) might arise.&#10;">
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4jApz73&quot;&gt;https://amzn.to/4jApz73&lt;/a&gt;" />
             </outline>
-            <outline text="TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines #topic:fun #format:video:audiobook #difficulty:easy #importance:valuable #tgc #video2audio:good #audioOption">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/38GHt5n&quot;&gt;https://amzn.to/38GHt5n&lt;/a&gt;" />
-              <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4278&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fphilosophy-of-mind-brains-consciousness-and-thinking-machines&amp;intsrc=PUI1_1204&lt;/a&gt;" />
+            <outline text="TGC Philosophy of Mind: Brains, Consciousness, and Thinking Machines #topic:fun #format:audiobook #difficulty:easy #importance:valuable ">
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3GcngJ3&quot;&gt;https://amzn.to/3GcngJ3&lt;/a&gt;" />
             </outline>
-            <outline text="TGC Mind-Body Philosophy #topic:fun #tgc #format:video:audiobook #difficulty:easy #video2audio:good #audioOption" _note="Pretty similar to the other TGC above; just some more material, in case that one wasn't enough.">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/2WWYliy&quot;&gt;https://amzn.to/2WWYliy&lt;/a&gt;" />
-              <outline text="TGC #price:$$" _note="&lt;a href=&quot;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4932&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmind-body-philosophy&amp;intsrc=PUI1_1204&quot;&gt;https://thegreatcourses.7eer.net/c/358692/167386/2997?prodsku=4932&amp;u=https%3A%2F%2Fwww.thegreatcourses.com%2Fcourses%2Fmind-body-philosophy&amp;intsrc=PUI1_1204&lt;/a&gt;" />
+            <outline text="TGC Mind-Body Philosophy #topic:fun #format:audiobook #difficulty:easy " _note="Pretty similar to the other TGC above; just some more material, in case that one wasn't enough.">
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/4cKWVOj&quot;&gt;https://amzn.to/4cKWVOj&lt;/a&gt;" />
             </outline>
           </outline>
           <outline text="More #pick:any" _note="These are still fun reads, but they're slightly dated, and I want to keep the syllabus slim. So if you chewed through all of the above, by all means - continue!&#10;">
             <outline text="The Master Algorithm #format:book:audiobook #topic:fun #difficulty:medium #importance:valuable  #audioOption #mlg:3 #hide" _note="Semi-technical overview of ML basics &amp; main algorithms. Fun and learn at the same time! **Archived**: while good, its semi-technical overview might be better placed elsewhere or is slightly dated compared to the rapid pace of ML.">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;http://amzn.to/2kLOQjW&quot;&gt;http://amzn.to/2kLOQjW&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3G70tOO&quot;&gt;https://amzn.to/3G70tOO&lt;/a&gt;" />
             </outline>
             <outline text="The Society of Mind #format:book #topic:fun #difficulty:medium #price:$  #mlg:3:6 #hide" _note="A classic (1986) by AI pioneer Marvin Minsky. Explores the idea that minds are composed of many smaller, simpler &quot;agents.&quot; While not reflecting modern neuroscience or ML techniques, its conceptual framework remains influential and offers a different perspective on intelligence and consciousness, particularly relevant to modularity in AI design. Important historical context from a founder. **Archived**: While a classic, it's less central to the current neuroscience/AI consciousness debate than Seth or Koch/IIT. Removed for slimness.">
-              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3XZvlqt&quot;&gt;https://amzn.to/3XZvlqt&lt;/a&gt;" />
+              <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/43YFmIo&quot;&gt;https://amzn.to/43YFmIo&lt;/a&gt;" />
             </outline>
             <outline text="The Feeling of Life Itself: Why Consciousness Is Widespread but Can't Be Computed #difficulty:easy #audioOption #format:book:audiobook #topic:fun #mlg:3:6 #hide" _note="Christof Koch explains Integrated Information Theory (IIT), a prominent formal theory attempting to define and measure consciousness (Φ). Directly relevant to the AI consciousness debate, exploring whether machines could, in principle, possess the integrated information structure required for consciousness, even while arguing current architectures fall short. Key for understanding a major theoretical approach to AI consciousness.">
               <outline text="Amazon #price:$" _note="&lt;a href=&quot;https://amzn.to/3ROMjUO&quot;&gt;https://amzn.to/3ROMjUO&lt;/a&gt;" />
