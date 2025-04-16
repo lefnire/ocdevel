@@ -296,17 +296,9 @@ async function parseWorkflowy(xmlContent: OpmlStructure, opts?: Opts): Promise<R
     } as EpisodeResources;
 
   } else {
-    // Step 3: Handle returning all resources (Keep hardcoded top structure)
-    const top = {
-      degrees: { id: topLevelRefs[0].id },
-      main: { id: topLevelRefs[1].id },
-      math: { id: topLevelRefs[2].id },
-      audio: { id: topLevelRefs[3].id },
-    };
-
     return {
       flat,
-      top,
+      top: topLevelRefs,
       nids: [], // Empty for all resources view
     } as AllResources;
   }

@@ -25,16 +25,13 @@ function FilteredTree({top}: {top: Top}) {
     s.learnStyles
   ]))
 
-  function recurseTree(
-    id: string,
-    section: Section
-  ): ResourcePartial | null {
+  function recurseTree(id: string): ResourcePartial | null {
     const full = flat[id]
 
     // section
     if (full.v?.length) {
       const v = full.v
-        .map(({id}) => recurseTree(id, section))
+        .map(({id}) => recurseTree(id))
         .filter(n => n !== null)
       if (v.length === 0) {return null}
       return {id, v}
@@ -58,16 +55,8 @@ function FilteredTree({top}: {top: Top}) {
     return keep ? {id, v: []} : null
   }
 
-  const sections: Section[] = []
-  if (learnStyles.learn === 'selfTaught') {
-    sections.push('main')
-    sections.push('math')
-  } else {
-    sections.push('degrees')
-  }
-  sections.push('audio')
-  return sections
-    .map(section => recurseTree(top[section].id, section))
+  return top
+    .map(section => recurseTree(section.id))
     .filter(n => n !== null)
     .map(n => (
       <Branch id={n.id} v={n.v} key={n.id} />
