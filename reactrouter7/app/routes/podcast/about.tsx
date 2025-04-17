@@ -9,7 +9,7 @@ import {IconButton, sizes} from "~/components/icon-btn";
 import {memo, useContext} from "react";
 import {FaEnvelope} from "@react-icons/all-files/fa/FaEnvelope";
 import type {ButtonProps} from "react-bootstrap/cjs/Button";
-import {AffiliateAds} from "~/components/affiliate-ads";
+import {Battlestation} from "~/components/battlestation";
 import {ShowContext} from "~/routes/podcast/context";
 
 // git-blame: moved them to ./extras
@@ -66,7 +66,7 @@ export const About = memo(()=> {
     >
       {body}
     </p>
-    {podcastKey !== "llh" && <AffiliateAds />}
+    {podcastKey !== "llh" && <Battlestation />}
   </aside>
 })
 
