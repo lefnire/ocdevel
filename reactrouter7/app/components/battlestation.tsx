@@ -21,7 +21,7 @@ const sections = {
     >Walking Desk</Link>,
     body: "Stay healthy while I work & study"
   },
-  descript: {
+  software: {
     icon: <>
       <FaCode {...iconClass} />
       <FaMicrophone {...iconClass} />
@@ -81,7 +81,7 @@ export function Battlestation({
         <LinkCard id="walk" />
       </Col>
       <Col {...colProps}>
-        <LinkCard id="descript" />
+        <LinkCard id="software" />
       </Col>
     </Row>
     <Row>

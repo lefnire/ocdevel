@@ -8,6 +8,7 @@ import {PostMeta} from '~/components/date-utils'
 import {Comments} from "~/components/comments";
 import type {Route} from './+types/blog.$id.tsx'
 import type {BlogPost} from "~/routes/blog/types";
+import {Battlestation} from "~/components/battlestation";
 
 function lastPart (path: string) {
   const parts = path.split('/').filter(Boolean)
@@ -33,6 +34,9 @@ export default function Full(props: Route.ComponentProps) {
         <PostMeta created={p.date} updated={p.updated} affiliate={p.affiliate}/>
         <Outlet />
       </Card.Body>
+      <div className="d-xs-block d-md-none">
+        <Battlestation />
+      </div>
       <Card.Footer>
         <Comments
           shortname="ocdevel"

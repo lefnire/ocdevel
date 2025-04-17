@@ -66,7 +66,7 @@ export const About = memo(()=> {
     >
       {body}
     </p>
-    {podcastKey !== "llh" && <Battlestation />}
+    <Battlestation />
   </aside>
 })
 
