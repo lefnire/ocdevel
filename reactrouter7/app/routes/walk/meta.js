@@ -1,7 +1,7 @@
 export const id = '20240109-fitness-desk'
 export const url = '/walk'
 export const date = '2024-01-09'
-export const updated = '2025-03-22'
+export const updated = '2025-04-17'
 export const title = "Walking Desks"
 export const head = {
   title: "Best Walking Pads 2025",

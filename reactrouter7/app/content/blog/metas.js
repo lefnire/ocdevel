@@ -22,6 +22,9 @@ import * as b9 from './20201207-wsl2-gpu-docker/meta.js'
 import * as b8 from './20201206-index-vs-quest2/meta.js'
 import * as b7 from './20201112-emacs27-ubuntu1804/meta.js'
 import * as b6 from './20201022-aws-batch-efs-mount/meta.js'
+
+import * as b24 from '~/routes/walk/meta.js'
+
 // import * as b5 from './jobpig/4'
 // import * as b4 from './jobpig/3'
 // import * as b3 from './jobpig/2'
@@ -29,21 +32,19 @@ import * as b6 from './20201022-aws-batch-efs-mount/meta.js'
 // import * as b1 from './jobpig/0'
 
 const metas = [
-  // pinned
-  b19,
-  b15,
-
   b28,
   b27,
   b26,
   b25,
-  // b24,
+  b24,
   b23,
   b22,
   b21,
   b20,
+  b19,
   b17,
   b16,
+  b15,
   b14,
   b13,
   b12,
