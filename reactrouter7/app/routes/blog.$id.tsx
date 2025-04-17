@@ -26,7 +26,7 @@ export function loader(props: Route.LoaderArgs) {
 export default function Full(props: Route.ComponentProps) {
   const p = props.loaderData.meta;
   const id = p.id;
-  return <Container>
+  return <div>
     <BackButton to="/blog" label="All Posts" />
     <Card>
       <Card.Body>
@@ -45,7 +45,7 @@ export default function Full(props: Route.ComponentProps) {
           url={`http://ocdevel.com/blog/${id}`} />
       </Card.Footer>
     </Card>
-  </Container>
+  </div>
 }
 
 export function meta(props: Route.MetaArgs) {

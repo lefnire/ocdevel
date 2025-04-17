@@ -8,7 +8,7 @@ export default function Blog() {
   return <Container>
       <Row>
         <Col xs={12} md={3}>
-          <div className="d-none d-md-block sticky-top mt-3">
+          <div className="d-none d-md-block sticky-top">
             <Battlestation left />
           </div>
         </Col>

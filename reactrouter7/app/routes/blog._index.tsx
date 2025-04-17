@@ -11,9 +11,9 @@ const metas = metas_ as BlogPost[]
 // git-blame for [placeholder] walking pads by SEO
 
 export default function List() {
-  return <Container>
+  return <div>
     {metas.map(p => <Teaser key={p.id} p={p} />)}
-  </Container>
+  </div>
 }
 
 export function Teaser({p}: { p: BlogPost }) {
