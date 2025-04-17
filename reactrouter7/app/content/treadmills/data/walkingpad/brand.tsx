@@ -5,7 +5,7 @@ const info: Brand = {
   warranty: {},
   links: {
     brand: {
-      US: "https://www.walkingpad.com/?srsltid=AfmBOop2F5kQxypsznv0TKuHuzfcXXuhz8l-p-3frq6DKwdiw8G3yk5p",
+      US: "https://walkingpad.pxf.io/6yVymm",
     },
     amazon: {
       US: "https://amzn.to/41WXQ9z",

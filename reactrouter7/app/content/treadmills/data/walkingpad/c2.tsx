@@ -6,7 +6,7 @@ const links = {
     US: "https://amzn.to/3XyGqPa"
   },
   brand: {
-    US: "https://www.walkingpad.com/products/walkingpad-c2-foldable-walking-machine",
+    US: "https://walkingpad.pxf.io/LKRKVo",
     EU: "https://amzn.to/442i2cu"
   }
 }

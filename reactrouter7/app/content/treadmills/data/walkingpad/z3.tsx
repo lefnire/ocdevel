@@ -5,7 +5,7 @@ const links = {
   amazon: {
   },
   brand: {
-    US: "https://www.walkingpad.com/products/walkingpad-z3-just-walk-foldable-treadmill"
+    US: "https://walkingpad.pxf.io/raJaZy"
   }
 }
 const info: Product = {
