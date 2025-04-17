@@ -18,6 +18,7 @@ const sections = {
     header: <Link
       onClick={clickAffiliate('walk')}
       to="/walk"
+      reloadDocument
     >Walking Desk</Link>,
     body: "Stay healthy while I work & study"
   },
@@ -29,7 +30,7 @@ const sections = {
     header: <Link
       onClick={clickAffiliate('software')}
       to="/blog/20240111-tylers-setup"
-      target="_blank"
+      reloadDocument
     >Software</Link>,
     body: "AI code, AI content-creation",
   },
@@ -38,6 +39,7 @@ const sections = {
     header: <Link
       onClick={clickAffiliate('ergo')}
       to="/blog/20240110-ergo-mouse-keyboard"
+      reloadDocument
     >Ergonomics</Link>,
     body: "Ergo mouse & keyboard",
   },
@@ -46,6 +48,7 @@ const sections = {
     header: <Link
       to="/blog/20240108-ml-gaming-laptop"
       onClick={clickAffiliate('laptop')}
+      reloadDocument
     >Laptop</Link>,
     body: "Gaming & machine learning PC"
   }
