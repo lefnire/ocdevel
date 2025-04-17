@@ -77,23 +77,25 @@ export function Battlestation({
   left=false,
 }: Battlestation) {
   const colProps: ColProps = left ? {xs: 12} : {xs: 6}
-  return <Card className={`border-0 bg-light p-0 ${className}`} body>
-    <h5 className={left ? "" : "text-center"}>Tyler's Battlestation</h5>
-    <Row>
-      <Col {...colProps}>
-        <LinkCard id="walk" />
-      </Col>
-      <Col {...colProps}>
-        <LinkCard id="software" />
-      </Col>
-    </Row>
-    <Row>
-      <Col {...colProps}>
-        <LinkCard id="ergo" />
-      </Col>
-      <Col {...colProps}>
-        <LinkCard id="laptop" />
-      </Col>
-    </Row>
-  </Card>;
+  return <div data-nosnippet="true">
+    <Card className={`border-0 bg-light p-0 ${className}`} body>
+      <h5 className={left ? "" : "text-center"}>Tyler's Battlestation</h5>
+      <Row>
+        <Col {...colProps}>
+          <LinkCard id="walk" />
+        </Col>
+        <Col {...colProps}>
+          <LinkCard id="software" />
+        </Col>
+      </Row>
+      <Row>
+        <Col {...colProps}>
+          <LinkCard id="ergo" />
+        </Col>
+        <Col {...colProps}>
+          <LinkCard id="laptop" />
+        </Col>
+      </Row>
+    </Card>
+  </div>
 }

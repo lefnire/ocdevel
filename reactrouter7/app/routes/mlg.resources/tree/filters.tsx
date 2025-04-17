@@ -98,7 +98,7 @@ function Filter({k, section='filters'}) {
 export default function Filters() {
   const [show, toggle] = useStore(useShallow(s => [s.showFilters, s.toggleFilters]))
 
-  return <div className='sidebar-filters'>
+  return <div className='sidebar-filters' data-nosnippet="true">
     <Card className='border-0'>
       <Card.Header className='border-bottom-0 pointer'>
         <Card.Title

@@ -23,3 +23,11 @@ export default function Recommend() {
     </Card.Footer>
   </Card>
 }
+
+export function meta() {
+  return [
+    {title: "Recommend an Episode"},
+    {name: "description", content: "Recommend an episode for MLG"},
+    {name: "robots", content:"noindex"}
+  ]
+}
