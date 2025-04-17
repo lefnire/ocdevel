@@ -174,6 +174,7 @@ async function parseTree({ tree, isLink = false, parentId = 'root' }: ParseTreeA
 
   // Generate ID conditionally
   const idSource = isLeaf ? text : `${parentId}::${text}`;
+
   const id = crypto.createHash('md5').update(idSource).digest('hex');
 
   // Avoid reprocessing if already in flat map
@@ -202,9 +203,17 @@ async function parseTree({ tree, isLink = false, parentId = 'root' }: ParseTreeA
 
   let node: Resource;
   if (isLeaf) {
+    // Generate a key for leaf nodes
+    const key = "mlg_" + (
+      text.toLowerCase()
+        .replace(/[^a-z]/g, '')
+        .slice(0, 20)
+    )
+
     node = {
       ...defaults, // Apply defaults
       ...baseNode,
+      key, // Add the generated key
       links: children as Link[],
     } as ResourceLeaf;
     // Remove properties specific to branches if they somehow got added via tags spread

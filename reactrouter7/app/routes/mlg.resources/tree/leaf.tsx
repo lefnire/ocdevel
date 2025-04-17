@@ -10,6 +10,7 @@ import Alert from "react-bootstrap/cjs/Alert";
 import {FaInfoCircle} from "@react-icons/all-files/fa/FaInfoCircle";
 import {icons} from "~/components/collapsible-icons";
 import {mlgObj} from '~/content/podcast/metas'
+import {clickAffiliate} from "~/components/analytics";
 
 const LeafWrapper = ({children, show}: PropsWithChildren<{ show: boolean }>) => {
   if (!show) {
@@ -34,7 +35,10 @@ const LeafExpanded = memo(({id}: {id: string}) => {
 
   const resetHelp = useCallback(() => setShowHelp(null), [])
 
-  const helpAttrs = (helpMsg: string, className: string | null = null) => ({
+  const helpAttrs = (
+    helpMsg: string, 
+    className: string | null = null
+  ) => ({
     className,
     onMouseEnter: () => setShowHelp(helpMsg),
     onMouseLeave: resetHelp
@@ -84,7 +88,12 @@ const LeafExpanded = memo(({id}: {id: string}) => {
     if (l.l?.startsWith('/')) { // Added optional chaining for safety
       return <Link to={l.l} key={l.l} {...opts}>{txt}</Link>
     }
-    return <a href={l.l} key={l.l} {...opts}>
+    return <a
+      href={l.l}
+      key={l.l}
+      onClick={clickAffiliate(node.key)}
+      {...opts}
+    >
       {txt}
       {l.l.includes('amzn.to') ? " (affiliate link)" : ""}
     </a>
