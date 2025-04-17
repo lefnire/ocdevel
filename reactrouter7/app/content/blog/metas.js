@@ -23,7 +23,7 @@ import * as b8 from './20201206-index-vs-quest2/meta.js'
 import * as b7 from './20201112-emacs27-ubuntu1804/meta.js'
 import * as b6 from './20201022-aws-batch-efs-mount/meta.js'
 
-import * as b24 from '~/routes/walk/meta.js'
+import * as b24 from '../../routes/walk/meta.js'
 
 // import * as b5 from './jobpig/4'
 // import * as b4 from './jobpig/3'

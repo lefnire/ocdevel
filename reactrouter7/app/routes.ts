@@ -6,7 +6,8 @@ import {
   prefix
 } from "@react-router/dev/routes";
 import {llhList, mlgList} from "./app/content/podcast/metas.js";
-import blogList from './app/content/blog/metas.js'
+import blog_ from './app/content/blog/metas.js'
+const blogList = blog_.filter(b => b.id !== '20240109-fitness-desk')
 
 // export default flatRoutes() satisfies RouteConfig;
 
