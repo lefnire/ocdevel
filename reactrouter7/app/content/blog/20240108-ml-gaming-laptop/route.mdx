@@ -1,17 +1,18 @@
 import products, {affiliateLink} from '../../product-links.tsx'
 export * from './meta.js'
 
-I strongly recommend the {affiliateLink(products.lenovo_legion, "Legion Pro series")}. Check [gaminglaptop.deals](https://gaminglaptop.deals/) against [brand quality](https://www.reddit.com/r/GamingLaptops/comments/1hbvrvo/this_is_how_often_a_product_of_this_brand_in_the/). Also get a {affiliateLink(products.flydigi_bs1, "cooling pad")} to control temps (which impacts performance) and protect from dust.
+For machine learning engineering, and/or gaming, I strongly recommend a {affiliateLink(products.lenovo_legion, "Legion Pro")}. I'm rocking [this](https://www.ebay.com/itm/295068953330) from 2022 ($1400 at the time). Check [gaminglaptop.deals](https://gaminglaptop.deals/) and [r/laptopdeals](https://reddit.com/r/laptopdeals). Outside Legion, see [brand quality](https://www.reddit.com/r/GamingLaptops/comments/1hbvrvo/this_is_how_often_a_product_of_this_brand_in_the/). Get a {affiliateLink(products.flydigi_bs1, "cooling pad")} to improve temps, performance, and protect from dust.
 
-### Only Gaming
+If money's not an issue, ignore everything below and get a 5090 (or the latest and greatest). Instructions below are meant to save money by finding a needs-based sweet-spot.
+
+#### Only Gaming
 If you're buying it *only* for gaming, get as high a GPU as you can afford in the Nvidia 40-series, anything 4070 and above. The 50-series raster gains are marginal (low bang-for-buck). And DLSS4 (the main performance marketing of the 50-series launch) is backwards-compatible to 40. This offers AI upscaling and multi-frame generation, which improve gaming performance significantly. It opens performance improvements to software instead of hardware, so your laptop can continue to improve as Nvidia drivers release. You'll be limited in DLSS capabilities if you buy a 30-series Nvidia; so if you plan to game, get a 4070+. I recommend a 4080. Nvidia is recommended over AMD due to DLSS.
 
-### Gaming & ML Programming
-If you're buying the laptop for ML training *and* gaming, get 4090. With ML, VRAM is more essential than compute, and the top tier of each series (xx90) has the highest VRAM. Nvidia is required - ML frameworks are Nvidia-first, through CUDA and CuDNN.
+#### Gaming + ML Engineering
+If you're buying the laptop to traing machine learning models *and* play games, get 4090. With ML, VRAM is more essential than compute, and the top tier of each series (xx90) has the highest VRAM. Nvidia is required - ML frameworks are Nvidia-first, through CUDA and CuDNN.
 
-### Only ML Programming
-If you're buying the laptop *only* for work in ML, you can downgrade to 3090 and save lots of money. Much cheaper than 40/50-series, but in the VRAM sweet-spot at an xx90. Use WSL2 (Ubuntu) + Docker for your ML work, see [mla/12](/mlg/mla-12) for details.
+#### Only ML Engineering
+If you're buying the laptop *only* for work in ML, you can downgrade to 3090 and save lots of money. Much cheaper than 40/50-series, but in the VRAM sweet-spot at an xx90. Use WSL2 (Ubuntu) if you need Windows; else, use Linux. See [mla/12](/mlg/mla-12) for details.
 
----
-
-Why not Mac? For gamers it's obvious. But for ML, while strides are being taken in Apple Silicon (eg with LLMs), it's still not first-class. If you plan to do heavy ML work, you're much safer with a PC.
+### Why not Mac?
+For gamers it's obvious. But for ML, while strides are being taken in Apple Silicon, it's still not first-class. If you plan to do heavy ML work, especially training, you're much safer with a PC. If you only need inference (eg running a local LLM via Ollama), a Mac is fantastic.
