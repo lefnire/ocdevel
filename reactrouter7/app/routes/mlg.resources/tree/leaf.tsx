@@ -35,11 +35,11 @@ const LeafExpanded = memo(({id}: {id: string}) => {
 
   const resetHelp = useCallback(() => setShowHelp(null), [])
 
-  const helpAttrs = (
+  const mouseProps = (
     helpMsg: string, 
-    className: string | null = null
-  ) => ({
-    className,
+    className?: string
+  ): React.HTMLAttributes<HTMLElement> => ({
+    className: `pointer ${className}`,
     onMouseEnter: () => setShowHelp(helpMsg),
     onMouseLeave: resetHelp
   })
@@ -57,10 +57,10 @@ const LeafExpanded = memo(({id}: {id: string}) => {
       const resourceFilter = filter?.opts?.[opt]
       if (!(resourceFilter)) return null
       return <tr key={`${filterKey}-${opt}`}>
-        <td {...helpAttrs(filter.d, 'pointer')}>
+        <td {...mouseProps(filter.d)}>
           {filter.t}
         </td>
-        <td {...helpAttrs(resourceFilter.d, 'pointer')}>
+        <td {...mouseProps(resourceFilter.d)}>
           {renderIcon(filterKey, opt)}
           {resourceFilter.t || resourceFilter}
 
@@ -78,30 +78,36 @@ const LeafExpanded = memo(({id}: {id: string}) => {
   }
 
   function renderLink(l: Resource['links'][0]) {
-    const opts = {
-      ...helpAttrs(filters.price.opts[l.p].d),
-      className: 'd-block',
+    // @ts-ignore
+    const desc = filters.price.opts[l.p].d
+    const opts: React.HTMLProps<HTMLAnchorElement> = {
+      ...mouseProps(desc),
       target: "_blank"
     }
     const txt = `${l.t} (${l.p})`
+
     // React doesn't allow key in the {...props} spread, have to pass explicitly
     if (l.l?.startsWith('/')) { // Added optional chaining for safety
-      return <Link to={l.l} key={l.l} {...opts}>{txt}</Link>
+      return <div key={l.l}>
+        <Link to={l.l} {...opts}>{txt}</Link>
+      </div>
     }
-    return <a
-      href={l.l}
-      key={l.l}
-      onClick={clickAffiliate(node.key)}
-      {...opts}
-    >
-      {txt}
-      {l.l.includes('amzn.to') ? " (affiliate link)" : ""}
-    </a>
+    return <div key={l.l}>
+      <a
+        href={l.l}
+        onClick={clickAffiliate(node.key)}
+        {...opts}
+      >{txt}</a>
+      {l.l.includes('amzn.to') && (
+        <span className="ms-2">(affiliate link)</span>
+      )}
+    </div>
   }
 
   function renderLinks() {
+    if (!node.links?.length) { return null; }
     return <tr>
-      <td {...helpAttrs("Where to get this resource", 'pointer')}>
+      <td {...mouseProps("Where to get this resource")}>
         Links
       </td>
       <td>
@@ -119,7 +125,7 @@ const LeafExpanded = memo(({id}: {id: string}) => {
     const num = String(episode.episode).padStart(3, '0');
     const title = `${titleStart} ${num} ${episode.title}`;
     return <tr key={id}>
-      <td {...helpAttrs("Relevant Machine Learning Guide Episode", 'pointer')}>
+      <td {...mouseProps("Relevant Machine Learning Guide Episode")}>
         {id.includes('mla') ? "MLA" : "MLG"} Episode
       </td>
       <td>
