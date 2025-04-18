@@ -44,6 +44,7 @@ import therun_2in1 from './therun/2in1'
 import vitalwalk_apollo11 from './vitalwalk/apollo11'
 import revomadic_revo from './revomadic/revo'
 import toputure_tp2 from './toputure/tp2'
+import acezoe_p11s from './acezoe/p11s'
 
 import {produce} from 'immer'
 import type {Product} from "~/content/treadmills/types";
@@ -98,6 +99,7 @@ const data = Object.fromEntries([
   vitalwalk_apollo11,
   revomadic_revo,
   toputure_tp2,
+  acezoe_p11s,
 ]
   .map(produce(d => {
     // ensure defaults to prevent escape-hatches later
