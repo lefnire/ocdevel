@@ -39,7 +39,8 @@ const info: Product = {
     value: ["B", brand.fakespot],
   },
   price: {
-    value: 290,
+    value: 240,
+    sale: 180,
   },
   pickedBy: {
     affiliate: [{value: 1}]

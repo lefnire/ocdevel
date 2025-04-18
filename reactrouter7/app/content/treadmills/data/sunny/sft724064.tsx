@@ -43,7 +43,7 @@ const info: Product = {
     value: ["A", brand.fakespot],
   },
   price: {
-    value: 288,
+    value: 330,
   },
   pickedBy: {
     // me: 1,

@@ -41,7 +41,8 @@ const info: Product = {
   },
   price: {
     value: 500,
-    sale: 300,
+    sale: 290,
+    coupon: true
   },
   pickedBy: {
   },
