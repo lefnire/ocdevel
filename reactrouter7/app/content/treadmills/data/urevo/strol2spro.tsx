@@ -29,7 +29,8 @@ const info: Product = {
   },
   price: {
     value: 800,
-    sale: 450,
+    sale: 530,
+    coupon: true
   },
   dimensions: {
     value: [54.72, 25.37, 6.67],

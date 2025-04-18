@@ -4,7 +4,8 @@ const links = {
     // US: ""
   },
   amazon: {
-    // US: ""
+    US: "https://amzn.to/3Ev5QGS",
+    CA: "https://amzn.to/4jxBr9M",
   },
 }
 const info: Brand = {

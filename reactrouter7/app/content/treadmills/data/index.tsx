@@ -123,5 +123,3 @@ const data = Object.fromEntries([
   .map(obj => [obj.key, obj])
 )
 export default data as {[k: string]: Product}
-
-export const UPDATED = "2025-03-28"

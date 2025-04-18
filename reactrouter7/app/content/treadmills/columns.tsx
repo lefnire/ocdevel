@@ -1,5 +1,5 @@
 import {type CSSProperties, memo, type ReactElement, type ReactNode} from "react";
-import type { Row } from "./types";
+import type { Row as RowType } from "./types";
 import {FaExternalLinkAlt} from "@react-icons/all-files/fa/FaExternalLinkAlt";
 import {FaUser} from "@react-icons/all-files/fa/FaUser";
 import {FaWrench} from "@react-icons/all-files/fa/FaWrench";
@@ -20,7 +20,6 @@ const faMe = <FaUser style={{ color: '#4a86e8' }} />
 const faTrusted = <FaWrench style={{ color: '#4a86e8' }} />
 const faWebsites = <FaGlobe style={{ color: '#999999' }} />
 const faAffiliate = <FaDollarSign style={{ color: '#999999' }} />
-import {UPDATED} from './data'
 import {NA} from "./data/utils"
 import {Affiliate} from "~/content/product-links";
 import ButtonGroup from 'react-bootstrap/cjs/ButtonGroup';
@@ -30,6 +29,11 @@ import {RiInformationLine} from "@react-icons/all-files/ri/RiInformationLine";
 import {useModalStore} from "~/components/modal";
 import {VideoButtonLg} from "~/components/video-btn";
 import {clickAffiliate} from "~/components/analytics";
+import {TbCalendarDollar} from "react-icons/tb";
+import {PopoverTrigger} from "~/components/popover";
+import {IoPricetagsOutline} from "@react-icons/all-files/io5/IoPricetagsOutline";
+
+const UPDATED = "2025-04-18"
 
 // Column type definition with added properties
 interface ColumnDefinition {
@@ -39,14 +43,14 @@ interface ColumnDefinition {
   hideScore?: boolean;
   description?: string;
   notes?: () => ReactElement;
-  getValue: (row: Row) => string | number | boolean | undefined;
-  format?: (row: Row) => string | ReactNode; // Function to format the value as a string (for simple cases)
-  render?: (row: Row, clickHandler?: () => void) => ReactNode; // Function to render the value with optional click handler
+  getValue: (row: RowType) => string | number | boolean | undefined;
+  format?: (row: RowType) => string | ReactNode; // Function to format the value as a string (for simple cases)
+  render?: (row: RowType, clickHandler?: () => void) => ReactNode; // Function to render the value with optional click handler
   columnStyle?: CSSProperties;
-  getStyle?: (row: Row) => CSSProperties; // Function to get cell style
-  getSortValue?: (row: Row) => string | number | undefined; // Function to get value for sorting
-  renderModalTitle?: (row: Row) => string;
-  renderModal?: (row: Row) => ReactNode; // Function to render the popover body
+  getStyle?: (row: RowType) => CSSProperties; // Function to get cell style
+  getSortValue?: (row: RowType) => string | number | undefined; // Function to get value for sorting
+  renderModalTitle?: (row: RowType) => string;
+  renderModal?: (row: RowType) => ReactNode; // Function to render the popover body
   filterOptions?: {
     min?: boolean; // Whether to show min filter for numeric columns
     max?: boolean; // Whether to show max filter for numeric columns
@@ -142,21 +146,40 @@ export const columnsArray: ColumnDefinition[] = [
     render: (row, clickHandler): ReactElement => {
       const link = getCurrentLink(row);
       const price = getPrice(row);
-      const affiliate = {key: row.key, link}
-
+      const affiliate = {key: row.key, link, title: `${row.brand.name} ${row.model.value}`}
       // Create a wrapper div that can handle the modal click
       // but let the link handle its own click without propagation
-      return <>
-        <Affiliate product={affiliate}>
-          ${price} <FaExternalLinkAlt style={{ fontSize: '0.8em', marginLeft: '3px' }} />
+      return <div className="d-flex flex-wrap align-items-center">
+        <Affiliate product={affiliate} className='icon-link'>
+          ${price} <FaExternalLinkAlt fontSize={'0.8em'} />
         </Affiliate>
+        {row?.price?.sale && <div>
+          <PopoverTrigger
+            content={{
+              title: "Sale",
+              body: () => `Listed price is a sale (last seen ${UPDATED})`
+            }}
+          >
+            <TbCalendarDollar className='ms-1' />
+          </PopoverTrigger>
+        </div>}
+        {row?.price?.coupon && <div>
+          <PopoverTrigger
+            content={{
+              title: "Coupon",
+              body: () => `Apply the Amazon coupon (last seen ${UPDATED})`
+            }}
+          >
+            <IoPricetagsOutline className='ms-1' />
+          </PopoverTrigger>
+        </div>}
         {row.price?.notes && <div
           onClick={clickHandler}
-          className="dotted-underline"
+          className="dotted-underline ms-1"
         >
-          <RiInformationLine />
+          <RiInformationLine className='ms-1' />
         </div>}
-      </>
+      </div>
     },
   },
   {
@@ -256,7 +279,7 @@ export const columnsArray: ColumnDefinition[] = [
       }
       if (!(picks.me || picks.trusted || picks.websites || picks.affiliate)) return <></>;
 
-      const className = row.pickedBy.notes ? "dotted-underline" : ""
+      const className = clickHandler ? "dotted-underline" : ""
       return (
         <div
           style={{ display: 'flex', gap: '8px' }}
@@ -349,9 +372,9 @@ export const columnsArray: ColumnDefinition[] = [
     // purposes, it should use dates if possible, and handle non-date strings
     // appropriately
     dtype: "string",
-    notes: () => <div>Age is a gut check on goodness. Newer mills, especially by a brand which iterates frequently (like Urevo), mean hardware lessons learned. I've validated this gut-check through testing.</div>,
-    getValue: (row: Row) => row.age?.value,
-    format: (row: Row): string => row.age?.value ?? "",
+    notes: () => <div>Age is a gut check on quality. Newer mills, especially by a brand which iterates frequently (like Urevo), boast hardware lessons learned. I've validated this gut-check through testing. So take note of the release date, then before you buy go to that company's store page (click the company's name in the table) and find the most recent version of the same product, in case my link is outdated.</div>,
+    getValue: (row: RowType) => row.age?.value,
+    format: (row: RowType): string => row.age?.value ?? "",
   },
   {
     key: "shock",
@@ -496,7 +519,7 @@ export const columnsArray: ColumnDefinition[] = [
         </div>
       );
     },
-    getSortValue: (row: Row): number => row.c.links,
+    getSortValue: (row: RowType): number => row.c.links,
   },
   {
     key: "app",
