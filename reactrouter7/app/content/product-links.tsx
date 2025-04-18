@@ -127,7 +127,8 @@ const links: Record<string, AffiliateLink> = {
     key: "fingerlessgloves"
   },
   wristweights: {
-    link: "https://amzn.to/4guIAGd",
+    title: "Wrist Weights",
+    link: "https://amzn.to/3Y50Uz8",
     key: "wristweights"
   },
   lenovo_legion: {

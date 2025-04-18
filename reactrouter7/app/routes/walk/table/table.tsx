@@ -27,8 +27,18 @@ import {Filter, filterFn, sortingFn} from './filter'
 import {HeaderCell, ColumnDescription} from './header'
 import {CellContent, CellScore} from './cell'
 import {TableContext} from './context'
+import {ModalSingleton} from "~/components/modal";
+import {PopoverSingleton} from "~/components/popover";
 
-export default function Default() {
+export default function Route() {
+  return <>
+    <ModalSingleton />
+    <PopoverSingleton />
+    <TableContainer />
+  </>
+}
+
+function TableContainer() {
   // Initialize sorting state with Rank column in descending order
   const [sorting, setSorting] = useState<SortingState>([
     {id: 'total', desc: true}

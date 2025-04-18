@@ -194,8 +194,7 @@ const WalkingCalorieCalculator_ = memo(() => {
         </>
       ) : (
         <div className="text-center text-muted">
-          <p>Please enter your weight to calculate calories burned.</p>
-          <p className="small">Weight is required for an accurate calculation.</p>
+          <p>Enter your weight to calculate calories burned.</p>
         </div>
       )}
     </div>

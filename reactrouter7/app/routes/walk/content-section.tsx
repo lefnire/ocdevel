@@ -172,24 +172,18 @@ const ContentSection = memo(() => {
         and to preserve your health you should <em>choose one or the other</em>; and then sit to recover.
       </p>
 
+      <Sub>Monitor Arms</Sub>
+      <p>{al(products.vivo, "VIVO")} or {al(products.mountup, "MountUp")}. I highly recommend using monitor arms instead of a monitor stand. It's vital to position the monitor such that you're looking perfectly perpendicular - a straight line from your eyes to the center of your monitor - especially while walking. Plus then you can add additional monitors to a cluster, save desk space, adjust the depth, etc.</p>
+
       <Sub>Fingerless Gloves</Sub>
       <p>{al(products.fingerlessgloves, "Gloves")}. Since you'll be sweating a bunch, get some cheap cloth fingerless gloves to catch the sweat so it
         doesn't get on your keyboard or mouse. I tried wrist-bands, but it didn't catch sweat from the hands
         themselves.
       </p>
 
-      {/*<h5>{affiliateLink(essentials.wristweights, "Wrist weights")}</h5>
-                <p>If you wanna get really hard-core, use some wrist weights while you walk and type. This will engage
-                  your arms, shoulders, and back. I use these ankle weights (so I can crank up the weight, wrist weights
-                  are typically lighter) and wear them all day.
-                </p>*/}
-
-      <Sub>Monitor Arms</Sub>
-      <p>{al(products.vivo, "VIVO")} or {al(products.mountup, "MountUp")}. I highly recommend using monitor arms instead of a stand; especially if you have multiple monitors.
-        This allows you to position the monitors in a tighter cluster, since you have flexibility to angle them
-        without worry of the base leaning over the edge. It also allows you to pull the monitors closer to your
-        face, just above your mouse and keyboard, in a way you couldn't do with a stand.
-      </p>
+      <Sub>Wrist Weights</Sub>
+      <p>If you're really hard-core, slap on some wrist weights. {al(products.wristweights, "I use these")}, but if that's too heavy shop around. I wore them for months, without any pain in shoulders, back, or arms. This because I maintain proper posture (from walking, and eye-level monitor positioning), and should→elbow, elbow→hand 90° form. Without proper form, weights can injure you - so be vigilant! Don't wear these on your ankles, you can harm your joints. If you want to accomplish the same goal, wear a weighted vest instead.</p>
+      <p>Incidentally I stopped wearing them because my family said I was getting to "veiny". I was definitely bulking up, but I'd rather be non-buff than "veiny".</p>
     </>}
     <ToTop />
   </Container>

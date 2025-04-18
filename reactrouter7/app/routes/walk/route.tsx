@@ -42,7 +42,6 @@ export default function Route({loaderData}: Route.ComponentProps) {
       <CalorieCalc />
       <ContentSection />
     </ProductProvider>
-    <ModalSingleton />
   </>
 }
 
