@@ -7,21 +7,23 @@ export * from './meta.js'
 Since my <Link reloadDocument to="/blog/20240110-ergo-mouse-keyboard">last post</Link>, there have been many new trackball mouse releases, with some absolute winners, so my I'm refreshing my recommendations here. Refer to that post for reasoning on why to choose a finger trackball mouse over a thumb trackball; and why not to bother with vertical mice or just ergonomically-designed standard mice. Soon I'll add a product comparison tool like my <Link to="/walk">walking pads</Link> page; but in the meantime, blog post.
 
 
-<TLDR>
-  <h6>Ultra-premium: {al(prods.svalboard)}</h6>
+<TLDR multiline>
+  <div className='my-1'>
+    <strong>Ultra-premium</strong>: {al(prods.svalboard)}
+  </div>
   <div>
-    <h6>Premium</h6>
-    <ul>
+    <strong>Premium</strong>
+    <ul className='mb-1'>
       <li>Wedge: {al(prods.ploopy_adept)}</li>
       <li>MSTE: {al(prods.ploopy_classic2)}</li>
     </ul>
   </div>
   <div>
-    <h6>Budget</h6>
-    <ul>
+    <strong>Budget</strong>
+    <ul className='mb-0'>
       <li>
         <div>Wedge: {al(prods.ploopy_adept)}</div>
-        <div className="ms-2">
+        <div>
           <small className="text-muted">{al(prods.nulea_m512)} to shave a few bucks.</small>
         </div>
       </li>

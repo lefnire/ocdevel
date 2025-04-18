@@ -232,6 +232,21 @@ body {
   }
 }
 
+.tldr {
+  padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0 .25rem .25rem 0;
+  border-left: 3px solid #0d6efd; /*$primary*/
+  margin: 1rem 0 1rem 0;
+  background-color: tint-color($info, 95%);
+  // <p> is getting auto-applied to certain text, so remove its effect
+  p { margin: 0; }
+  ul {
+    //margin-top: 0;
+    //margin-bottom: 0;
+  }
+}
+
 .notice-card {
   border: none;
   border-radius: 0 .25rem .25rem 0;
