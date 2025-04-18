@@ -124,7 +124,7 @@ const ContentSection = memo(() => {
     </p>
 
     <Sub>Ergonomic keyboard & mouse</Sub>
-    <p><Link to="/blog/20240110-ergo-mouse-keyboard">Article</Link>. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion. That type of wrist motion is bad for you. When you walk, you move your arms more than usual, which amplifies RSI risk significantly. It could take 6 months, it could take a 5 years, but many I've talked to with walking desks have experienced an RSI uptick. Ergo peripherals solve this - specifically a "wedge-style" trackball mouse and a split + tented keyboard. Read that article for recommendations (different budgets & styles), but hot-take budget-picks are (Mouse: {al(products.ploopy_adept)}, Keyboard: {al(products.epomaker_split65)})
+    <p><Link to="/blog/20240110-ergo-mouse-keyboard">Article</Link>. People often develop RSI (Repetitive Stress Injury, a cousin of Carpal Tunnel) when seated with a standard mouse, due to the arm motion. That type of wrist motion is bad for you. When you walk, you move your arms more than usual, which amplifies RSI risk significantly. It could take 6 months, it could take a 5 years, but many I've talked to with walking desks have experienced an RSI uptick. Ergo peripherals solve this - specifically a "wedge-style" trackball mouse and a split + tented keyboard. Read that article for recommendations (different budgets & styles), but hot-take budget-picks are (Mouse: {al(products.ploopy_adept)}, Keyboard: {al(products.royalkludge_rks70)})
     </p>
 
     {/*<div>

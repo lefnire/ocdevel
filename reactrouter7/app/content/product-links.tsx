@@ -280,6 +280,15 @@ const links: Record<string, AffiliateLink> = {
     link: "https://walkolution.com/products/walkolution2?sca_ref=8416295.Hx5JVtdlxLpM&sca_source=blog",
     title: "Walkolution 2",
     key: "walkolution_walkolution2"
+  },
+  royalkludge_rks70: {
+    key: "royalkludge_rks70",
+    title: "Royal Kludge RKS70",
+    link: expires(
+      "https://www.amazon.com/dp/B0C88V7LQK?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.1XGTZSRTYMT05&linkCode=tr1&tag=ha0d2-20&linkId=amzn1.campaign.1XGTZSRTYMT05_1744985282195",
+      "2025-06-01",
+      "https://amzn.to/3EtFZ24"
+    )
   }
 }
 export default links;
