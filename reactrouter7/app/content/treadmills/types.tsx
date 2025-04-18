@@ -73,12 +73,15 @@ export interface Product {
   price: CustomVal & {
     value: number
     sale?: number
+    coupon?: boolean
   }
   incline: NumVal & {
     method?: "manual" | "fixed" | "auto"
   }
   shock: BoolVal
-  decibels: NumVal
+  decibels: NumVal & {
+    verified?: boolean
+  }
   app: BoolVal
   easyLube: NumVal
   // Use later

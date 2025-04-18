@@ -4,8 +4,8 @@ import value, {card as valueCard} from '~/content/treadmills/data/urevo/cyberpad
 // import value, {card as valueCard} from '~/content/treadmills/data/urevo/strol2spro'
 // import value, {card as valueCard} from '~/content/treadmills/data/urevo/3s'
 // import budget, {card as budgetCard} from '~/content/treadmills/data/deerrun/q1mini'
-// import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/motioneaselitep1'
-import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/incline'
+import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/motioneaselitep1'
+// import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/incline'
 import {getCurrentLink, getPrice} from "~/content/treadmills/utils";
 import type {CardIn, CardOut, Product} from "~/content/treadmills/types";
 import {VideoButton} from "~/components/video-btn";

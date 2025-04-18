@@ -43,7 +43,6 @@ const info: Product = {
   },
   maxSpeed: {
     value: 7.6,
-    notes: () => <div>One of the few quality walking pads which allows running.</div>
   },
   horsePower: {
     value: 2.5,
