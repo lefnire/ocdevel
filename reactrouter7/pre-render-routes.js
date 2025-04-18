@@ -44,6 +44,7 @@ export default function getPrerenderRoutes(forSitemap) {
   const priority = Object.fromEntries(
     routes.map(r => {
       const prio = {
+        "/__spa-fallback": 0,
         '/': 0.1,
         '/mlg': 1,
         '/walk': 1,
