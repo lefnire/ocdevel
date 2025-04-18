@@ -1,7 +1,7 @@
 // import premium, {card as premiumCard} from '~/content/treadmills/data/lifespan/tx6'
 import premium, {card as premiumCard} from '~/content/treadmills/data/walkolution/walkolution2'
-// import value, {card as valueCard} from '~/content/treadmills/data/urevo/cyberpad'
-import value, {card as valueCard} from '~/content/treadmills/data/urevo/strol2spro'
+import value, {card as valueCard} from '~/content/treadmills/data/urevo/cyberpad'
+// import value, {card as valueCard} from '~/content/treadmills/data/urevo/strol2spro'
 // import value, {card as valueCard} from '~/content/treadmills/data/urevo/3s'
 // import budget, {card as budgetCard} from '~/content/treadmills/data/deerrun/q1mini'
 // import budget, {card as budgetCard} from '~/content/treadmills/data/sperax/motioneaselitep1'
@@ -11,7 +11,7 @@ import type {CardIn, CardOut, Product} from "~/content/treadmills/types";
 import {VideoButton} from "~/components/video-btn";
 import links from '~/content/product-links'
 
-const VIDEOS = false
+const VIDEOS = true
 
 type LinkCardIn = CardIn & {key: string}
 
