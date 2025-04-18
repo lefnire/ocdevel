@@ -12,7 +12,7 @@ const info: Brand = {
   // Key for looking up the brand later
   key: 'therun',
   // Name of the brand
-  name: "THERUN",
+  name: "Therun",
   links,
   // Warranty options for this brand
   warranty: {},

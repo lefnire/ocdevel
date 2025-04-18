@@ -5,7 +5,7 @@ export const updated = '2025-04-17'
 export const title = "Walking Desks"
 export const head = {
   title: "Best Walking Pads 2025",
-  description: "Compares walking pad brands for a walking desk / treadmill desk. Recommends standing desks, monitor arms, and ergonomic peripherals. Walking pad comparison includes [placeholder], and more."
+  description: "Compares walking desk / treadmill desk brands. Walking pad comparison includes [placeholder], and more."
 }
 export const pinned = true
 export const affiliate = true

@@ -15,10 +15,11 @@ const Table = lazy(() => import('./table/table'))
 
 export function loader() {
   // calculate scores and inverted links server-side to save on render time
-  const {scores, labels} = getScoresAndLabels()
+  const {labels, scores} = getScoresAndLabels()
   const combos = getCombos(scores)
+  const metaDescription = meta_.head.description
   return {
-    seo: {labels, combos},
+    seo: { labels, combos, metaDescription },
     computed: getComputed()
   }
 }
@@ -31,10 +32,12 @@ export default function Route({loaderData}: Route.ComponentProps) {
   const {computed, seo} = loaderData
   return <>
     <ProductProvider computed={computed}>
-      <TopSection />
-      <Suspense fallback={loading}>
-        <Table />
-      </Suspense>
+      <div data-nosnippet="true">
+        <TopSection />
+        <Suspense fallback={loading}>
+          <Table />
+        </Suspense>
+      </div>
       <CompareButtons seo={seo}/>
       <CalorieCalc />
       <ContentSection />
@@ -45,7 +48,7 @@ export default function Route({loaderData}: Route.ComponentProps) {
 
 export function meta({data}: Route.MetaArgs) {
   const brands = data.seo.labels.slice(0, 20).join(', ')
-  const desc = meta_.head.description.replace('[placeholder]', brands)
+  const desc = data.seo.metaDescription.replace('[placeholder]', brands)
   return [
     { title: meta_.head.title },
     { name: "description", content: desc },
