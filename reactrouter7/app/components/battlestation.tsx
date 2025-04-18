@@ -20,7 +20,7 @@ const sections = {
       to="/walk"
       reloadDocument
     >Walking Desk</Link>,
-    body: "Stay healthy while I work & study"
+    body: "Stay healthy at work & study"
   },
   software: {
     icon: <>

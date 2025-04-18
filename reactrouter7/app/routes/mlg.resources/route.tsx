@@ -8,7 +8,6 @@ import type {Route} from './+types/route.tsx'
 import Navbar from '../podcast/navbar'
 import {mlgShow} from '~/content/podcast/metas.js'
 import {transform} from '~/content/podcast/resources/transform-opml'
-import { Battlestation } from "~/components/battlestation";
 
 export async function loader(props: Route.LoaderArgs) {
   const resources = await transform()
@@ -34,7 +33,6 @@ export default function Resources({loaderData}: Route.ComponentProps) {
         <Col xs={12} md={4} className='sidebar'>
           <div className="sticky-top">
             <Filters />
-            <Battlestation className='my-2'/>
           </div>
         </Col>
         <Col xs={12} md={8}>

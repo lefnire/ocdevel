@@ -12,6 +12,7 @@ import {useStore} from "~/routes/mlg.resources/tree/store";
 import {filterKeys, filters} from "~/content/podcast/resources/filters";
 import {IconButton, sizes} from "~/components/icon-btn";
 import {useShallow} from "zustand/react/shallow";
+import {Battlestation} from "~/components/battlestation";
 
 const btns = {
   on: {
@@ -113,6 +114,7 @@ export default function Filters() {
       {/* 71f9ea01: MLA/MLG filter & sorting */}
       {/* git-blame: learn_style, audio_style */}
       {filterKeys.map(k => <Filter key={k} k={k} />)}
+      <Battlestation className='my-2'/>
     </>}
     </Card>
   </div>

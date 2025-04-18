@@ -31,12 +31,9 @@ export default function Body() {
     <h6><Link to="#respect-colors">Respect the Colors</Link></h6>
     <h6><Link to="#classes">Classes</Link></h6>
 
-    <Alert variant="primary">Besides gamifying life, my biggest life-hack is a <Link to="/walk">walking
-      desk</Link>. Try it out!
-    </Alert>
     <hr/>
 
-    <h3 id="dailies"><FaCalendar/> Dailies</h3>
+    <h4 id="dailies"><FaCalendar/> Dailies</h4>
     <TLDR>Things you want to complete each day. If one-per-day (exercise, take meds), then it's a standard Daily. If
       x-times/day (hours worked), it's a Daily with a checklist. Add an <b>[+]Overflow</b> habit for excess Daily.
       Digital peeps: use Pomodoro Technique with SiteKeeper.</TLDR>
@@ -88,7 +85,7 @@ export default function Body() {
       But we've got what we've got, so there's your workaround. Dailies for the usual stuff; add a checklist if you
       want <code>x</code>-times/day; add an overflow-Habit if you may exceed <code>x</code>.</p>
 
-    <h3 id="todos"><FaCheckSquare/> ToDos</h3>
+    <h4 id="todos"><FaCheckSquare/> ToDos</h4>
     <TLDR>Set each ToDo's difficulty, and give it 1-3 points corresponding to that difficulty. Add a Daily
       called <b>ToDo</b> with a 3-mark checklist. Mark 1 check per point of completed ToDo. Feel free to use an
       external app if Habitica ToDo's aren't advanced enough for you. I use Workflowy.</TLDR>
@@ -125,7 +122,7 @@ export default function Body() {
 
     {/*<p className='text-danger'>TODO ADD IMAGES</p>*/}
 
-    <h3 id="habits"><FaPlusSquare/> Habits</h3>
+    <h4 id="habits"><FaPlusSquare/> Habits</h4>
     <TLDR>Create a single Habit <b>[+]CBT[-]</b>. Click [+] if you do the thinking exercise, and [-] if you do the
       bad Habit. Consider using Gnothi for added analytics.</TLDR>
     <p>Alright <em>*rolls up sleeves*</em>, the dreaded Habits. This one's hard for people to figure out, so let's
@@ -185,7 +182,7 @@ export default function Body() {
       about change than insight. But if you want some Habit analytics, maybe try individual Habits as-intended for a
       while, paired with Gnothi, then after you've gotten a decent gauge, switch to the CBT setup.</p>
 
-    <h3 id="rewards"><FaGift/> Rewards</h3>
+    <h4 id="rewards"><FaGift/> Rewards</h4>
     <TLDR>Use Habitica rewards (gear) as long as it lasts for you, then switch to custom rewards (gaming, TV, etc).
       Take this very seriously!</TLDR>
     <p>Rewards rewards. The least-properly-used feature of all! Yet, in my opinion, the single most impactful, most
@@ -240,7 +237,7 @@ export default function Body() {
     <p>And again, I still continue to use in-game rewards (gear & items), but usually do so with excess gold. I
       prioritize custom rewards. Find the balance that works.</p>
 
-    <h3 id="respect-colors"><FaSwatchbook/> Respect the Colors</h3>
+    <h4 id="respect-colors"><FaSwatchbook/> Respect the Colors</h4>
     <TLDR>Don't be a perfectionist. Challenge yourself with heavy Dailies. Let blues go un-completed, focus on reds
       & yellows.</TLDR>
     <p>In Rewards (above) I pushed hard on balance. Colors is another key in Habitica to improving balance in your
@@ -276,7 +273,7 @@ export default function Body() {
       handle short-term discomfort for long-term gain. Your health will be fine, the boss will bearly nick your
       party. Try it!</p>
 
-    <h3 id="classes"><FaHatWizard/> Classes</h3>
+    <h4 id="classes"><FaHatWizard/> Classes</h4>
     <p>At level 10 you unlock the class system, where you choose Warrior, Mage, Healer, or Rogue. See each class's {l("https://habitica.fandom.com/wiki/Skills", "skills here")}, it plays into discussion below. Here's the skinny.</p>
     <h6>Warrior</h6>
     <ul>
