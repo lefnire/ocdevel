@@ -42,6 +42,7 @@ import walkolution_walkolution2 from './walkolution/walkolution2'
 import airhot_tm400 from './airhot/tm400'
 import therun_2in1 from './therun/2in1'
 import vitalwalk_apollo11 from './vitalwalk/apollo11'
+import revomadic_revo from '~/content/treadmills/data/revomadic/revo'
 
 import {produce} from 'immer'
 import type {Product} from "~/content/treadmills/types";
@@ -94,6 +95,7 @@ const data = Object.fromEntries([
   walkolution_walkolution2,
   therun_2in1,
   vitalwalk_apollo11,
+  revomadic_revo,
 ]
   .map(produce(d => {
     // ensure defaults to prevent escape-hatches later
